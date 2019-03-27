@@ -1,5 +1,6 @@
 import ApexDoc from '../core/ApexDoc';
 import Utils from '../core/Utils';
+import { existsSync } from 'fs';
 
 abstract class ApexModel {
 
@@ -219,7 +220,8 @@ abstract class ApexModel {
         }
 
         let path = root + line.trim();
-        if (/.*\.s?html?$/.test(line.trim()) /*&& new File(path).exists()*/) {
+        // TODO: check to make sure this Node implementation of pathExists works as expected!
+        if (/.*\.s?html?$/.test(line.trim()) && existsSync(path)) {
             return true;
         } else {
             console.log(`\nWARNING: @group-content path: '${path}' is invalid!\n`);
