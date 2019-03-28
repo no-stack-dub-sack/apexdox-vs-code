@@ -1,19 +1,20 @@
 import * as vscode from 'vscode';
 import { exec } from 'child_process';
+import ApexDoc from './core/ApexDoc';
 
 // define ApexDoc2 Config object
 export interface ApexDoc2Config {
 	sourceDirectory: string;
-	includes: string[],
-	excludes: string[],
 	targetDirectory: string;
-	sourceControlURL: string;
-	homePagePath: string;
-	bannerPagePath: string;
-	scope: string[];
-	title: string;
-	showTOCSnippets: boolean;
-	sortOrder: string;
+	includes?: string[];
+	excludes?: string[];
+	sourceControlURL?: string;
+	homePagePath?: string;
+	bannerPagePath?: string;
+	scope?: string[];
+	title?: string;
+	showTOCSnippets?: boolean;
+	sortOrder?: string;
 }
 
 // this method is called when your extension is activated
@@ -54,10 +55,10 @@ function buildCommand(config: ApexDoc2Config, extensionRoot: string): string {
 		java -jar ${apexDoc2}
 		-s "${config.sourceDirectory}"
 		-t "${config.targetDirectory}"
-		-p "${config.scope.join(',')}"
 		-d "${config.title}"
 		-c ${config.showTOCSnippets}
 		-o ${config.sortOrder}
+		-p "${config.scope && config.scope.join(',')}"
 		${includes.length > 0 ? '-i "' + includes.join(',') + '"' : ''}
 		${excludes.length > 0 ? '-e "' + excludes.join(',') + '"' : ''}
 		${sourceControlURL ? '-u "' + sourceControlURL + '"' : ''}

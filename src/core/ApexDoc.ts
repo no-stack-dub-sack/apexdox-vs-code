@@ -1,6 +1,7 @@
 import { ApexDoc2Config } from '../extension';
 import { existsSync } from 'fs';
 import Utils from './Utils';
+import Config from '../models/Config';
 
 export class ApexDocError extends Error {}
 
@@ -9,13 +10,14 @@ class ApexDoc {
     private static APEX_DOC_VERSION: string = "1.0.0";
     private static COMMENT_CLOSE: string = "*/";
     private static COMMENT_OPEN: string = "/**";
-    private static GLOBAL: string = "global";
-    private static PUBLIC: string = "public";
-    private static WEB_SERVICE: string = "webService";
-    private static PROTECTED: string = "protected";
 
+    public static GLOBAL: string = "global";
+    public static PUBLIC: string = "public";
+    public static PROTECTED: string = "protected";
     public static PRIVATE: string = "private";
     public static TEST_METHOD: string = "testMethod";
+    public static WEB_SERVICE: string = "webService";
+
     public static CLASS: string = "class";
     public static ENUM: string = "enum";
     public static INTERFACE: string = "interface";
@@ -29,9 +31,11 @@ class ApexDoc {
     // behavior when lesser scopes than available are indicated
     // e.g. private;public when there are protected methods
     public static DOC_BLOCK_BREAK: string = "@@BREAK@@";
-    private static SCOPES: string[] = [ApexDoc.GLOBAL, ApexDoc.PUBLIC, ApexDoc.PRIVATE, ApexDoc.PROTECTED, ApexDoc.WEB_SERVICE, ApexDoc.TEST_METHOD];
+    public static SCOPES: string[] = [ApexDoc.GLOBAL, ApexDoc.PUBLIC, ApexDoc.PRIVATE, ApexDoc.PROTECTED, ApexDoc.WEB_SERVICE, ApexDoc.TEST_METHOD];
 
     // non-constant properties
+
+    // TODO: rename this!
     public static rgstrScope: string[];
     // private static FileManager fileManager;
     public static targetDirectory: string;
@@ -83,20 +87,57 @@ class ApexDoc {
         }
     }
 
+    private static targetDirectoryGuard(path: string): string {
+        if (path && path.length > 0) {
+            return path.endsWith("/") || path.endsWith("\\") ? path : path + "/";
+        } else {
+            throw new ApexDocError(
+                "Value for <target_directory> argument: '" + path +
+                "' is invalid. Please provide a valid directory."
+            );
+        }
+    }
+
+    private static showTOCGuard(bool: any): boolean {
+        if (typeof bool !== 'boolean') {
+            return true; // DEFAULT
+        } else {
+            return bool;
+        }
+    }
+
+    private static scopeGuard(scopes: string[]): string[] {
+        let i = 0;
+        for (let scope of scopes) {
+            scope = scope.toLowerCase().trim();
+            if (!ApexDoc.SCOPES.includes(scope)) {
+                throw new ApexDocError(
+                    "Value for <scope> argument: '" + scope +
+                    "' is invalid. Please provide a comma delimited list of valid scopes." +
+                    " Valid scopes include: " + ApexDoc.SCOPES.join(", ")
+                );
+            }
+            scopes[i] = scope;
+            i++;
+        }
+
+        return scopes;
+    }
+
     // public main routine which is used by both command line invocation and
     // Eclipse PlugIn invocation
-    public static runApexDoc(config: ApexDoc2Config): void {
+    public static runApexDoc(config: Config): void {
         // TODO: replace StopWatch functionality
 
         let homePagePath = this.directoryGuard(config.homePagePath, 'home_page');
         let bannerPagePath = this.directoryGuard(config.bannerPagePath, 'banner_page');
         let hostedSourceURL = this.sourceURLGuard(config.sourceControlURL);
-        let documentTitle = config.title;
+        let documentTitle = config.title || '';
         let includes = config.includes || [];
         let excludes = config.excludes || [];
         let sortOrder = this.sortOrderGuard(config.sortOrder);
         let sourceDirectory = this.directoryGuard(config.sourceDirectory, 'source_directory');
-
+        let targetDirectory = this.targetDirectoryGuard(config.targetDirectory);
         let showMethodTOCDescription = true;
 
         // // parse command line parameters
