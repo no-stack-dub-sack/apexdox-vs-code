@@ -5,17 +5,17 @@ import { existsSync } from 'fs';
 abstract class ApexModel {
 
     // token constants
-    private static AUTHOR: string = ' @author' ;
-    private static DATE: string = ' @date' ;
-    private static DEPRECATED: string = ' @deprecated' ;
-    private static DESCRIPTION: string = ' @description' ;
-    private static EXAMPLE: string = ' @example' ;
-    private static EXCEPTION: string = ' @exception' ;
-    private static GROUP: string = ' @group ' ; // needed to include space to not match group-content
-    private static GROUP_CONTENT: string = ' @group-content' ;
-    private static PARAM: string = ' @param' ;
-    private static RETURN: string = ' @return' ;
-    private static SEE: string = ' @see' ;
+    private static AUTHOR: string = ' @author';
+    private static DATE: string = ' @date';
+    private static DEPRECATED: string = ' @deprecated';
+    private static DESCRIPTION: string = ' @description';
+    private static EXAMPLE: string = ' @example';
+    private static EXCEPTION: string = ' @exception';
+    private static GROUP: string = ' @group '; // needed to include space to not match group-content
+    private static GROUP_CONTENT: string = ' @group-content';
+    private static PARAM: string = ' @param';
+    private static RETURN: string = ' @return';
+    private static SEE: string = ' @see';
 
     // instance variables
     private author: string = '';

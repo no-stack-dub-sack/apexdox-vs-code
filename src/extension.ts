@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { exec } from 'child_process';
 
 // define ApexDoc2 Config object
-interface ApexDoc2Config {
+export interface ApexDoc2Config {
 	sourceDirectory: string;
 	includes: string[],
 	excludes: string[],

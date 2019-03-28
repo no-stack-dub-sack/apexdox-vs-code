@@ -4,8 +4,6 @@ import ApexDoc from './ApexDoc';
 
 
 class Utils {
-
-    private static URL_REGEXP: string = '/(https?)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]/';
     private static KEYWORDS: string[] = ['list', 'set', 'map'];
     private static COLLECTIONS: string[] = [
         'abstract',
@@ -26,6 +24,20 @@ class Utils {
         'string',
         'time'
     ];
+
+    public static isURL(str: string): boolean {
+        if (!str) {
+            return false;
+        }
+
+        // TODO: consider all cases. Should we just use Validator?
+        // Definitely if there are other validation cases which call for another method from it.
+        return /^(https?):\/\/[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]/.test(str.trim());
+    }
+
+    public static isMarkdownURL(str: string): boolean {
+        return /^\\[.*\\]\\(.*\\)$/.test(str.trim());
+    }
 
     /**
      * See if line starts with scope keywords, if it does not, and

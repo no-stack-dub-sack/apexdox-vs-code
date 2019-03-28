@@ -6,23 +6,37 @@ import TopLevelModel, { ModelType } from './TopLevelModel';
 
 class ClassModel extends TopLevelModel {
 
-    private isInterface: boolean = false;
+    private isInterface: boolean;
+    private enums: Array<EnumModel>;
     private cmodelParent: ClassModel;
-    private methods: Array<MethodModel> = [];
-    private properties: Array<PropertyModel> = [];
-    private childClasses: Array<ClassModel> = [];
-    private enums: Array<EnumModel> = [];
-    private childClassNameToChildClass: { [name: string]: ClassModel } = {};
+    private methods: Array<MethodModel>;
+    private childClasses: Array<ClassModel>;
+    private properties: Array<PropertyModel>;
+    private childClassNameToChildClass: Map<string, ClassModel>;
 
     public constructor(cmodelParent: ClassModel, comments: string[], nameLine: string, lineNum: number) {
         super(comments, ModelType.CLASS);
         super.setNameLine(nameLine, lineNum);
 
+        this.childClassNameToChildClass = new Map<string, ClassModel>();
+        this.isInterface = this.setIsInterface(nameLine);
         this.cmodelParent = cmodelParent;
+        this.childClasses = [];
+        this.properties = [];
+        this.methods = [];
+        this.enums = [];
+    }
 
-        if (nameLine.toLowerCase().includes(` ${ApexDoc.INTERFACE} `)) {
-            this.isInterface = true;
+    private setIsInterface(nameLine: string): boolean {
+        if (/\b\s?interface\s/i.test(nameLine)) {
+            return true;
+        } else {
+            return false;
         }
+    }
+
+    public getIsInterface(): boolean {
+        return this.isInterface;
     }
 
     public getSee(): string {
@@ -97,10 +111,10 @@ class ClassModel extends TopLevelModel {
     public addChildClass(child: ClassModel): void {
         this.childClasses.push(child);
         // also add child class to map for use in making @see links
-        this.childClassNameToChildClass[child.getName().toLowerCase()] = child;
+        this.childClassNameToChildClass.set(child.getName().toLowerCase(), child);
     }
 
-    public getChildClassMap(): { [name: string]: ClassModel } {
+    public getChildClassMap(): Map<string, ClassModel> {
         return this.childClassNameToChildClass;
     }
 
@@ -160,10 +174,6 @@ class ClassModel extends TopLevelModel {
         }
 
         return !group ? '' : group;
-    }
-
-    public getIsInterface(): boolean {
-        return this.isInterface;
     }
 }
 
