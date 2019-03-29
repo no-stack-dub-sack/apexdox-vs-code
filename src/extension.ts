@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import { exec } from 'child_process';
 import ApexDoc from './core/ApexDoc';
+import Config from './core/Config';
 
 // define ApexDoc2 Config object
 export interface ApexDoc2Config {
@@ -24,16 +24,16 @@ export function activate(context: vscode.ExtensionContext) {
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('extension.runApexDoc2', () => {
-		const config: ApexDoc2Config = getApexDocConfig();
-		const command = buildCommand(config, context.extensionPath);
+		const config: Config = getApexDocConfig();
+		if (true) {
+			console.log('cool! But where do you go!?');
+		}
 
-		exec(command, error => {
-			if (error) {
-				vscode.window.showErrorMessage('ApexDoc2 Failed!\n' + error);
-			} else {
-				vscode.window.showInformationMessage('ApexDoc2 Complete!');
-			}
-		});
+		try {
+			ApexDoc.runApexDoc(config);
+		} catch (e) {
+			vscode.window.showErrorMessage(e.message);
+		}
 	});
 
 	context.subscriptions.push(disposable);
@@ -42,51 +42,8 @@ export function activate(context: vscode.ExtensionContext) {
 // this method is called when your extension is deactivated
 export function deactivate() { }
 
-
-function buildCommand(config: ApexDoc2Config, extensionRoot: string): string {
-	const apexDoc2 = extensionRoot + '\\assets\\ApexDoc2-1.0.0.jar';
-	const sourceControlURL = config.sourceControlURL;
-	const homePagePath = config.homePagePath;
-	const bannerPagePath = config.bannerPagePath;
-	const includes = config.includes || [];
-	const excludes = config.excludes || [];
-
-	const command = `
-		java -jar ${apexDoc2}
-		-s "${config.sourceDirectory}"
-		-t "${config.targetDirectory}"
-		-d "${config.title}"
-		-c ${config.showTOCSnippets}
-		-o ${config.sortOrder}
-		-p "${config.scope && config.scope.join(',')}"
-		${includes.length > 0 ? '-i "' + includes.join(',') + '"' : ''}
-		${excludes.length > 0 ? '-e "' + excludes.join(',') + '"' : ''}
-		${sourceControlURL ? '-u "' + sourceControlURL + '"' : ''}
-		${homePagePath ? '-h "' + homePagePath + '"' : ''}
-		${bannerPagePath ? '-b "' + bannerPagePath + '"' : ''}
-  `;
-
-	return command.replace(/\s+/g, ' ').trim();
-}
-
-function getApexDocConfig(): ApexDoc2Config {
+function getApexDocConfig(): Config {
 	// Clone object when fetching config to avoid 'read only' field error when trying to overwrite defaults.
 	const config: ApexDoc2Config = { ...vscode.workspace.getConfiguration('apexdoc2')['config'] };
-
-	let projectRoot = '.';
-	if (vscode.workspace.workspaceFolders) {
-		projectRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
-	}
-
-	// if user has not overridden defaults defined in package.json
-	// or if has just not added these required fields, add them here
-	if (config.sourceDirectory === '') {
-		config.sourceDirectory = projectRoot + '\\src\\classes';
-	}
-
-	if (config.targetDirectory === '') {
-		config.targetDirectory = projectRoot + '\\documentation\\apex';
-	}
-
-	return config;
+	return Config.merge(config);
 }

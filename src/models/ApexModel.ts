@@ -1,5 +1,5 @@
 import ApexDoc from '../core/ApexDoc';
-import Utils from '../core/Utils';
+import Utils from '../utils/Utils';
 import { existsSync } from 'fs';
 
 abstract class ApexModel {

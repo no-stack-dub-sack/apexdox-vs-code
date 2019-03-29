@@ -1,4 +1,4 @@
-import ApexDoc from '../core/ApexDoc';
+import ApexDoc from './ApexDoc';
 import { ApexDoc2Config } from '../extension';
 import * as vscode from 'vscode';
 

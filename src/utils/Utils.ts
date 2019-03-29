@@ -1,4 +1,5 @@
-import ApexDoc from './ApexDoc';
+import ApexDoc from '../core/ApexDoc';
+import ClassModel from '../models/ClassModel';
 
 // veggie liver stuff
 
@@ -50,8 +51,8 @@ class Utils {
      * it doesnt start with these keywords, it will be undetectable by ApexDoc2.
     */
     public static containsScope(line: string): string {
-        for (let i = 0; i < ApexDoc.rgstrScope.length; i++) {
-            let scope = ApexDoc.rgstrScope[i].toLowerCase();
+        for (let i = 0; i < ApexDoc.registerScope.length; i++) {
+            let scope = ApexDoc.registerScope[i].toLowerCase();
 
             // if line starts with annotations, replace them, so
             // we can accurately use startsWith to match scope.
@@ -72,14 +73,14 @@ class Utils {
 
                 // match methods that start with
                 // keywords or return primitive types:
-                for (let keyword of Utils.KEYWORDS) {
+                for (let keyword of this.KEYWORDS) {
                     if (line.startsWith(keyword + ' ') && line.includes('(')) {
                         return ApexDoc.PRIVATE;
                     }
                 }
 
                 // match methods that return collections:
-                for (let collection of Utils.COLLECTIONS) {
+                for (let collection of this.COLLECTIONS) {
                     if (new RegExp('^' + collection + '<.+>\\s.*').test(line) && line.includes('(')) {
                         return ApexDoc.PRIVATE;
                     }
@@ -131,6 +132,44 @@ class Utils {
         } else {
             return str.substring(idxStart, idxEnd);
         }
+    }
+
+    /**
+     * @description Helper method to determine if a line being parsed should be skipped.
+     * Ignore lines not dealing with scope unless they start with the certain keywords:
+     * We do not want to skip @isTest classes, inner classes, inner interfaces, or innter
+     * enums defined without without explicit access modifiers. These are assumed to be
+     * private. Also, interface methods don't have scope, so don't skip those lines either.
+     */
+    public static shouldSkipLine(line: string, cModel: ClassModel): boolean {
+        if (this.containsScope(line) === null &&
+            !line.toLowerCase().startsWith(ApexDoc.ENUM + " ") &&
+            !line.toLowerCase().startsWith(ApexDoc.CLASS + " ") &&
+            !line.toLowerCase().startsWith(ApexDoc.INTERFACE + " ") &&
+            !(cModel !== null && cModel.getIsInterface() && line.includes('('))) {
+                return true;
+        }
+
+        return false;
+    }
+
+    public static isEnum(line: string): boolean {
+        line = this.stripAnnotations(line);
+        if (/^(global\\s+|public\\s+|private\\s+)?enum\\b.*"/.test(line)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static countChars(str: string, char: string): number {
+        let count = 0;
+        for (let i = 0; i < str.length; ++i) {
+            if (str.charAt(i) === char) {
+                ++count;
+            }
+        }
+        return count;
     }
 }
 

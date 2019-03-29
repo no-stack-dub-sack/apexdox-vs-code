@@ -1,5 +1,5 @@
 import ApexModel from './ApexModel';
-import Utils from '../core/Utils';
+import Utils from '../utils/Utils';
 
 class MethodModel extends ApexModel {
 
