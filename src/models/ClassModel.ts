@@ -8,13 +8,13 @@ class ClassModel extends TopLevelModel {
 
     private isInterface: boolean;
     private enums: Array<EnumModel>;
-    private cmodelParent: ClassModel;
+    private cmodelParent?: ClassModel;
     private methods: Array<MethodModel>;
     private childClasses: Array<ClassModel>;
     private properties: Array<PropertyModel>;
     private childClassNameToChildClass: Map<string, ClassModel>;
 
-    public constructor(cmodelParent: ClassModel, comments: string[], nameLine: string, lineNum: number) {
+    public constructor(cmodelParent: ClassModel | undefined, comments: string[], nameLine: string, lineNum: number) {
         super(comments, ModelType.CLASS);
         super.setNameLine(nameLine, lineNum);
 
@@ -28,7 +28,7 @@ class ClassModel extends TopLevelModel {
     }
 
     private setIsInterface(nameLine: string): boolean {
-        if (/\b\s?interface\s/i.test(nameLine)) {
+        if (/\s?\binterface\s/i.test(nameLine.toLowerCase())) {
             return true;
         } else {
             return false;

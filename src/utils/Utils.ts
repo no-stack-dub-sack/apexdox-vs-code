@@ -1,5 +1,6 @@
 import ApexDoc from '../core/ApexDoc';
 import ClassModel from '../models/ClassModel';
+import ApexModel from '../models/ApexModel';
 
 // veggie liver stuff
 
@@ -93,7 +94,7 @@ class Utils {
 
     public static stripAnnotations(line: string): string {
         let i = 0;
-        while (line.trim().startsWith('@')) {
+        while (line && line.trim().startsWith('@')) {
             line = line.trim().replace(/@\w+\s*(\([\w=.*''/\s]+\))?/, '');
             if (i >= 100) {
                 break; // infinite loop protect, just in case
@@ -134,6 +135,33 @@ class Utils {
         }
     }
 
+    public static isClassOrInterface(line: string): boolean {
+        // Account for inner classes or @isTest classes without an access modifier; implicitly private
+        if (/.*\bclass\b.*/.test(line.toLowerCase()) || /\s?\binterface\s/i.test(line.toLowerCase())) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static parseAnnotations(previousLine: string, line: string, model: ApexModel): void {
+        // If previous line is not a comment line, it could be an annotation line.
+        // Annotations may also be on the signature line, so check both for matches.
+        if (previousLine && !previousLine.startsWith('*')) {
+            line +=  " " + previousLine;
+        }
+
+        let matches: RegExpMatchArray | null = line.match(/@\w+\s*(\([\w=.*''/\s]+\))?/);
+
+        if (matches !== null) {
+            matches.forEach(match => {
+                if (match) {
+                    model && model.getAnnotations().push(match.trim());
+                }
+            });
+        }
+    }
+
     /**
      * @description Helper method to determine if a line being parsed should be skipped.
      * Ignore lines not dealing with scope unless they start with the certain keywords:
@@ -141,12 +169,12 @@ class Utils {
      * enums defined without without explicit access modifiers. These are assumed to be
      * private. Also, interface methods don't have scope, so don't skip those lines either.
      */
-    public static shouldSkipLine(line: string, cModel: ClassModel): boolean {
+    public static shouldSkipLine(line: string, cModel?: ClassModel): boolean {
         if (this.containsScope(line) === null &&
             !line.toLowerCase().startsWith(ApexDoc.ENUM + " ") &&
             !line.toLowerCase().startsWith(ApexDoc.CLASS + " ") &&
             !line.toLowerCase().startsWith(ApexDoc.INTERFACE + " ") &&
-            !(cModel !== null && cModel.getIsInterface() && line.includes('('))) {
+            !(cModel && cModel.getIsInterface() && line.includes('('))) {
                 return true;
         }
 

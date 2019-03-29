@@ -1,12 +1,19 @@
 import { ApexDoc2Config } from '../extension';
 import Config from './Config';
-import Guards from '../utils/Guards';
+import Guards, { ApexDocError } from '../utils/Guards';
 import TopLevelModel from '../models/TopLevelModel';
 import FileManager from './FileManager';
 import * as vscode from 'vscode';
 import { readFileSync } from 'fs';
 import ClassModel from '../models/ClassModel';
 import Utils from '../utils/Utils';
+import EnumModel from '../models/EnumModel';
+import MethodModel from '../models/MethodModel';
+import PropertyModel from '../models/PropertyModel';
+
+interface LineReader {
+    readLine: () => string | null;
+}
 
 class ApexDoc {
     // constants
@@ -77,13 +84,15 @@ class ApexDoc {
         // // parse each file, creating a class or enum model for it
         files.forEach(fileName => {
             let filePath = sourceDirectory + '/' + fileName;
-            // let model: TopLevelModel = parseFileContents(filePath);
-            // modelMap.set(model.getName().toLowerCase(), model);
-            // if (model) {
-            //     models.push(model);
-            //     this.numProcessed++;
-            // }
+            let model: TopLevelModel = this.parseFileContents(filePath);
+            modelMap.set(model.getName().toLowerCase(), model);
+            if (model) {
+                models.push(model);
+                this.numProcessed++;
+            }
         });
+
+        console.log('lets check these models out!');
 
         // // create our Groups
         // TreeMap<string, ClassGroup> classGroupMap = createGroupNameMap(models, sourceDirectory);
@@ -97,7 +106,7 @@ class ApexDoc {
 
         // // we are done!
         // timer.stop();
-        // Utils.log("ApexDoc2 complete! " + numProcessed + " Apex files processed in " + timer.getTime() + " ms.");
+        // Utils.log('ApexDoc2 complete! " + numProcessed + " Apex files processed in " + timer.getTime() + " ms.');
         // System.exit(0);
     }
 
@@ -128,20 +137,20 @@ class ApexDoc {
     //     return map;
     // }
 
-    public static parseFileContents(filePath: string): TopLevelModel | void {
-        try {
+    public static parseFileContents(filePath: string): TopLevelModel {
+        // try {
             // Get the object of DataInputStream
-            let reader: string[] = readFileSync(filePath).toString('utf8').split(/(?:\r\n|\r|\n)/g);
+            const reader: LineReader = this.makeLineReader(filePath);
 
             let nestedCurlyBraceDepth = 0, lineNum = 0;
             let line, originalLine, previousLine = '';
             let commentsStarted = false, docBlockStarted = false;
 
-            let cModel: ClassModel, cModelParent: ClassModel;
+            const cModels: Array<ClassModel> = [];
+            let cModel: ClassModel | undefined, cModelParent: ClassModel | undefined;
             let comments: string[] = [];
-            let cModels: Array<ClassModel> = [];
 
-            for (line of reader) {
+            while ((line = reader.readLine())) {
                 originalLine = line;
                 line = line.trim();
                 lineNum++;
@@ -153,13 +162,13 @@ class ApexDoc {
                 // ignore anything after // style comments. this allows hiding
                 // of tokens from ApexDoc. However, don't ignore when line
                 // doesn't start with //, we want to preserver @example comments
-                let offset = line.indexOf("//");
+                let offset = line.indexOf('//');
                 if (offset === 0) {
                     line = line.substring(0, offset);
                 }
 
                 // gather up our comments
-                if (line.startsWith("/*")) {
+                if (line.startsWith('/*')) {
                     commentsStarted = true;
                     let commentEnded = false;
                     if (line.startsWith(this.COMMENT_OPEN)) {
@@ -202,7 +211,7 @@ class ApexDoc {
 
                 // if we are in a nested class, and we just got back to nesting level 1,
                 // then we are done with the nested class, and should set its props and methods.
-                if (nestedCurlyBraceDepth === 1 && openCurlies !== closeCurlies && cModels.length > 1 && cModel !== null) {
+                if (nestedCurlyBraceDepth === 1 && openCurlies !== closeCurlies && cModels.length > 1 && cModel) {
                     cModels.pop();
                     cModel = cModels[cModels.length - 1];
                     continue;
@@ -216,155 +225,164 @@ class ApexDoc {
 
                 // ignore anything after an '{' (if we're not dealing with an enum)
                 // this avoids confusing properties with methods.
-                offset = !Utils.isEnum(line) ? line.indexOf("{") : -1;
+                offset = !Utils.isEnum(line) ? line.indexOf('{') : -1;
                 if (offset > -1) {
                     line = line.substring(0, offset);
                 }
-            } // DELETE THIS BRACKET TO PICKUP WHERE YOU LEFT OFF!
 
-            //     // skip lines not dealing with scope that are not inner
-            //     // classes, interface methods, or (assumed to be) @isTest
-            //     if (Utils.shouldSkipLine(line, cModel)) {
-            //         // preserve skipped line, it may be an annotation
-            //         // line for a class, method, prop, or enum (though
-            //         // enums support few and are unlikely to have any)
-            //         previousLine = originalLine;
-            //         continue;
-            //     }
+                // skip lines not dealing with scope that are not inner
+                // classes, interface methods, or (assumed to be) @isTest
+                if (Utils.shouldSkipLine(line, cModel)) {
+                    // preserve skipped line, it may be an annotation
+                    // line for a class, method, prop, or enum (though
+                    // enums support few and are unlikely to have any)
+                    previousLine = originalLine;
+                    continue;
+                }
 
-            //     // look for a class.
-            //     if (Utils.isClassOrInterface(line)) {
-            //         // create the new class
-            //         ClassModel cModelNew = new ClassModel(cModelParent, comments, line, lineNum);
-            //         Utils.parseAnnotations(previousLine, line, cModelNew);
-            //         comments.clear();
+                // look for a class.
+                if (Utils.isClassOrInterface(line)) {
+                    // create the new class
+                    let cModelNew: ClassModel = new ClassModel(cModelParent, comments, line, lineNum);
+                    Utils.parseAnnotations(previousLine, line, cModelNew);
+                    comments = [];
 
-            //         // keep track of the new class, as long as it wasn't a single liner {}
-            //         // but handle not having any curlies on the class line!
-            //         if (openCurlies === 0 || openCurlies !== closeCurlies) {
-            //             cModels.push(cModelNew);
-            //             cModel = cModelNew;
-            //         }
+                    // keep track of the new class, as long as it wasn't a single liner {}
+                    // but handle not having any curlies on the class line!
+                    if (openCurlies === 0 || openCurlies !== closeCurlies) {
+                        cModels.push(cModelNew);
+                        cModel = cModelNew;
+                    }
 
-            //         // add it to its parent (or track the parent)
-            //         if (cModelParent !== null) {
-            //             cModelParent.addChildClass(cModelNew);
-            //         } else {
-            //             cModelParent = cModelNew;
-            //         }
+                    // add it to its parent (or track the parent)
+                    if (cModelParent) {
+                        cModelParent.addChildClass(cModelNew);
+                    } else {
+                        cModelParent = cModelNew;
+                    }
 
-            //         previousLine = null;
-            //         continue;
-            //     }
+                    previousLine = '';
+                    continue;
+                }
 
-            //     // look for an enum
-            //     if (Utils.isEnum(line)) {
-            //         EnumModel eModel = new EnumModel(comments, line, lineNum);
-            //         Utils.parseAnnotations(previousLine, line, eModel);
-            //         comments.clear();
+                // look for an enum
+                if (Utils.isEnum(line)) {
+                    let eModel: EnumModel = new EnumModel(comments, line, lineNum);
+                    Utils.parseAnnotations(previousLine, line, eModel);
+                    comments = [];
 
-            //         ArrayList<string> values = new ArrayList<string>();
-            //         string nameLine = eModel.getNameLine();
-            //         // one-liner enum
-            //         if (line.endsWith("}")) {
-            //             line = line.replace("}", "");
-            //             line = line.replace("{", "");
-            //             // isolate values of one-liner, split at comma & add to list
-            //             line = line.substring(line.indexOf(nameLine) + nameLine.length());
-            //             values.addAll(Arrays.asList(line.trim().split(",")));
-            //         }
-            //         // enum is over multiple lines
-            //         else {
-            //             // handle fist line, there may be multiple values on it
-            //             line = line.replace("{", "");
-            //             line = line.substring(line.indexOf(nameLine) + nameLine.length());
-            //             values.addAll(Arrays.asList(line.trim().split(",")));
+                    let values: string[] = [];
+                    let nameLine = eModel.getNameLine();
+                    // one-liner enum
+                    if (line.endsWith('}')) {
+                        line = line.replace('}', '');
+                        line = line.replace('{', '');
+                        // isolate values of one-liner, split at comma & add to list
+                        line = line.substring(line.indexOf(nameLine) + nameLine.length);
+                        values.push(...(line.trim().split(',')));
+                    }
+                    // enum is over multiple lines
+                    else {
+                        // handle fist line, there may be multiple values on it
+                        line = line.replace('{', '');
+                        line = line.substring(line.indexOf(nameLine) + nameLine.length);
+                        values.push(...(line.trim().split(',')));
 
-            //             // handle each additional line of enum
-            //             while (!line.contains("}")) {
-            //                 line = reader.readLine();
-            //                 lineNum++;
-            //                 // in case opening curly is on the second line
-            //                 // also handle replacing closing curly for last line
-            //                 string valLine = line.replace("{", "");
-            //                 valLine = valLine.replace("}", "");
-            //                 values.addAll(Arrays.asList(valLine.trim().split(",")));
-            //             }
-            //         }
+                        // handle each additional line of enum
+                        while (line && !line.includes('}')) {
+                            line = reader.readLine();
+                            lineNum++;
+                            // in case opening curly is on the second line
+                            // also handle replacing closing curly for last line
+                            let valLine = line ? line.replace('{', '') : '';
+                            valLine = valLine.replace('}', '');
+                            values.push(...(valLine.trim().split(',')));
+                        }
+                    }
 
-            //         // add all enum values to model
-            //         values.stream().forEach(value -> {
-            //             if (!value.trim().isEmpty()) {
-            //                 eModel.getValues().add(value.trim());
-            //             }
-            //         });
+                    // add all enum values to model
+                    values.forEach(value => value.trim()
+                        && eModel.getValues().push(value.trim()));
 
-            //         // if no class models have been created, and we see an
-            //         // enum, we must be dealing with a class level enum and
-            //         // should return early, otherwise we're dealing with
-            //         // an inner enum and should add to our class model.
-            //         if (cModel === null && cModels.length === 0) {
-            //             reader.close();
-            //             inputStream.close();
-            //             return eModel;
-            //         } else {
-            //             cModel.getEnums().add(eModel);
-            //             previousLine = null;
-            //             continue;
-            //         }
-            //     }
+                    // if no class models have been created, and we see an
+                    // enum, we must be dealing with a class level enum and
+                    // should return early, otherwise we're dealing with
+                    // an inner enum and should add to our class model.
+                    if (cModel && cModels.length === 0) {
+                        return eModel;
+                    } else {
+                        cModel && cModel.getEnums().push(eModel);
+                        previousLine = '';
+                        continue;
+                    }
+                }
 
-            //     // look for a method
-            //     if (line.contains("(")) {
-            //         int startingLine = lineNum;
+                // look for a method
+                if (line.includes('(')) {
+                    let startingLine = lineNum;
 
-            //         // deal with a method over multiple lines.
-            //         while (!line.contains(")")) {
-            //             line += reader.readLine();
-            //             lineNum++;
-            //         }
+                    // deal with a method over multiple lines.
+                    while (!line.includes(')')) {
+                        line += reader.readLine();
+                        lineNum++;
+                    }
 
-            //         MethodModel mModel = new MethodModel(comments, line, startingLine);
-            //         Utils.parseAnnotations(previousLine, line, mModel);
-            //         cModel.getMethods().add(mModel);
-            //         comments.clear();
-            //         previousLine = null;
-            //         continue;
-            //     }
+                    let mModel: MethodModel = new MethodModel(comments, line, startingLine);
+                    Utils.parseAnnotations(previousLine, line, mModel);
+                    cModel && cModel.getMethods().push(mModel);
+                    comments = [];
+                    previousLine = '';
+                    continue;
+                }
 
-            //     // handle set & get within the property
-            //     if (line.contains(" get ") ||
-            //         line.contains(" set ") ||
-            //         line.contains(" get;") ||
-            //         line.contains(" set;") ||
-            //         line.contains(" get{") ||
-            //         line.contains(" set{")) {
-            //         previousLine = null;
-            //         continue;
-            //     }
+                // handle set & get within the property
+                if (line.includes(' get ') ||
+                    line.includes(' set ') ||
+                    line.includes(' get;') ||
+                    line.includes(' set;') ||
+                    line.includes(' get{') ||
+                    line.includes(' set{')) {
+                    previousLine = '';
+                    continue;
+                }
 
-            //     // must be a property
-            //     PropertyModel pModel = new PropertyModel(comments, line, lineNum);
-            //     Utils.parseAnnotations(previousLine, line, pModel);
-            //     cModel.getProperties().add(pModel);
-            //     comments.clear();
-            //     previousLine = null;
-            //     continue;
-            // }
+                // must be a property
+                let pModel: PropertyModel = new PropertyModel(comments, line, lineNum);
+                Utils.parseAnnotations(previousLine, line, pModel);
+                cModel && cModel.getProperties().push(pModel);
+                comments = [];
+                previousLine = '';
+                continue;
+            }
 
-            // // Close the input stream
-            // inputStream.close();
-            // // we only want to return the parent class
-            // return cModelParent;
-        } catch (ex) { // Catch exception if any
-            // Utils.log(ex);
-            // return null;
-        }
+            return <TopLevelModel>cModelParent;
+        //} catch (e) {
+            //throw new ApexDocError(e);
+        //}
     }
 
-    // argument guards
+    private static makeLineReader(filePath: string): LineReader {
+        try {
+            const lines: string[] = readFileSync(filePath).toString('utf8').split(/(?:\r\n|\r|\n)/g);
+            let nextIndex = 0, end = lines.length;
 
+            const lineReader: LineReader = {
+                readLine: function() {
+                    let result;
+                    if (nextIndex <= end) {
+                        result = lines[nextIndex];
+                        nextIndex++;
+                        return result;
+                    }
+                    return null;
+                }
+            };
 
+            return lineReader;
+        } catch (e) {
+            throw new ApexDocError(e);
+        }
+    }
 }
 
 export default ApexDoc;

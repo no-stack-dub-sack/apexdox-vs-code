@@ -32,6 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
 		try {
 			ApexDoc.runApexDoc(config);
 		} catch (e) {
+			console.log(e);
 			vscode.window.showErrorMessage(e.message);
 		}
 	});
