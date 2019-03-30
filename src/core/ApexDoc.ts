@@ -138,6 +138,7 @@ class ApexDoc {
     //     return map;
     // }
 
+    // TODO: annotations with parens being read incorrectly
     public static parseFileContents(filePath: string): TopLevelModel {
         // try {
             // Get the object of DataInputStream
@@ -288,13 +289,13 @@ class ApexDoc {
                     }
                     // enum is over multiple lines
                     else {
-                        // handle fist line, there may be multiple values on it
+                        // handle first line, there may be multiple values on it
                         line = line.replace('{', '');
                         line = line.substring(line.indexOf(nameLine) + nameLine.length);
                         values.push(...(line.trim().split(',')));
 
                         // handle each additional line of enum
-                        while (line && !line.includes('}')) {
+                        while (line !== null && !line.includes('}')) {
                             line = reader.readLine();
                             lineNum++;
                             // in case opening curly is on the second line
@@ -341,6 +342,8 @@ class ApexDoc {
                 }
 
                 // handle set & get within the property
+                // TODO: none of these should ever evaluate to true!
+                // shouldSkipLne should skip these lines. test this.
                 if (line.includes(' get ') ||
                     line.includes(' set ') ||
                     line.includes(' get;') ||

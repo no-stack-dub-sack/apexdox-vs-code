@@ -14,10 +14,12 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [{
-			"command": "extension.runApexDoc2",
-			"title": "Run ApexDoc2"
-		}]
+		"commands": [
+			{
+				"command": "extension.runApexDoc2",
+				"title": "Run ApexDoc2"
+			}
+		]
 	},
 	"configuration": {
 		"type": "object",
@@ -57,10 +59,14 @@
 		"test": "yarn run compile && node ./node_modules/vscode/bin/test"
 	},
 	"devDependencies": {
-		"typescript": "^3.3.1",
-		"vscode": "^1.1.28",
-		"tslint": "^5.12.1",
+		"@types/lodash": "^4.14.123",
+		"@types/mocha": "^2.2.42",
 		"@types/node": "^10.12.21",
-		"@types/mocha": "^2.2.42"
+		"tslint": "^5.12.1",
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28"
+	},
+	"dependencies": {
+		"lodash": "^4.17.11"
 	}
 }

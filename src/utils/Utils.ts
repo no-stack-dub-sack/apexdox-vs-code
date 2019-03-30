@@ -1,6 +1,7 @@
 import ApexDoc from '../core/ApexDoc';
 import ClassModel from '../models/ClassModel';
 import ApexModel from '../models/ApexModel';
+import { last } from 'lodash';
 
 // veggie liver stuff
 
@@ -165,15 +166,21 @@ class Utils {
     /**
      * @description Helper method to determine if a line being parsed should be skipped.
      * Ignore lines not dealing with scope unless they start with the certain keywords:
-     * We do not want to skip @isTest classes, inner classes, inner interfaces, or innter
+     * We do not want to skip @isTest classes, inner classes, inner interfaces, or inner
      * enums defined without without explicit access modifiers. These are assumed to be
      * private. Also, interface methods don't have scope, so don't skip those lines either.
      */
     public static shouldSkipLine(line: string, cModel?: ClassModel): boolean {
+        let classNameParts = cModel && cModel.getName().split('.') || [''];
+        let className = last(classNameParts);
+
         if (this.containsScope(line) === null &&
             !line.toLowerCase().startsWith(ApexDoc.ENUM + " ") &&
             !line.toLowerCase().startsWith(ApexDoc.CLASS + " ") &&
             !line.toLowerCase().startsWith(ApexDoc.INTERFACE + " ") &&
+            // don't skip default constructors without access modifiers
+            !(cModel && new RegExp('\\b' + className + '\\s*\\(').test(line)) &&
+            // don't skip interface methods - they don't have access modifiers
             !(cModel && cModel.getIsInterface() && line.includes('('))) {
                 return true;
         }
@@ -183,7 +190,7 @@ class Utils {
 
     public static isEnum(line: string): boolean {
         line = this.stripAnnotations(line);
-        if (/^(global\\s+|public\\s+|private\\s+)?enum\\b.*"/.test(line)) {
+        if (/^(global\s+|public\s+|private\s+)?enum\b.*/.test(line)) {
             return true;
         }
 
