@@ -12,6 +12,7 @@ import MethodModel from '../models/MethodModel';
 import PropertyModel from '../models/PropertyModel';
 
 interface LineReader {
+    lines: string[];
     readLine: () => string | null;
 }
 
@@ -150,14 +151,15 @@ class ApexDoc {
             let cModel: ClassModel | undefined, cModelParent: ClassModel | undefined;
             let comments: string[] = [];
 
-            while ((line = reader.readLine())) {
+            while ((line = reader.readLine()) !== null) {
+                // skip empty lines and rogue undefined strings
+                if (typeof line !== 'string' || !line.trim()) {
+                    continue;
+                }
+
                 originalLine = line;
                 line = line.trim();
                 lineNum++;
-
-                if (line.length === 0) {
-                    continue;
-                }
 
                 // ignore anything after // style comments. this allows hiding
                 // of tokens from ApexDoc. However, don't ignore when line
@@ -165,6 +167,9 @@ class ApexDoc {
                 let offset = line.indexOf('//');
                 if (offset === 0) {
                     line = line.substring(0, offset);
+                    if (!line.trim()) {
+                        continue;
+                    }
                 }
 
                 // gather up our comments
@@ -367,6 +372,7 @@ class ApexDoc {
             let nextIndex = 0, end = lines.length;
 
             const lineReader: LineReader = {
+                lines: lines,
                 readLine: function() {
                     let result;
                     if (nextIndex <= end) {
@@ -374,6 +380,7 @@ class ApexDoc {
                         nextIndex++;
                         return result;
                     }
+
                     return null;
                 }
             };

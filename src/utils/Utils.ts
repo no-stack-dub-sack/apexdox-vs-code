@@ -6,8 +6,8 @@ import ApexModel from '../models/ApexModel';
 
 
 class Utils {
-    private static KEYWORDS: string[] = ['list', 'set', 'map'];
-    private static COLLECTIONS: string[] = [
+    private static COLLECTIONS: string[] = ['list', 'set', 'map'];
+    private static KEYWORDS: string[] = [
         'abstract',
         'final',
         'virtual',
@@ -51,7 +51,7 @@ class Utils {
      * types, so if a method is not given an explicit access modifier &
      * it doesnt start with these keywords, it will be undetectable by ApexDoc2.
     */
-    public static containsScope(line: string): string {
+    public static containsScope(line: string): string | null {
         for (let i = 0; i < ApexDoc.registerScope.length; i++) {
             let scope = ApexDoc.registerScope[i].toLowerCase();
 
@@ -89,7 +89,7 @@ class Utils {
             }
         }
 
-        return '';
+        return null;
     }
 
     public static stripAnnotations(line: string): string {

@@ -65,7 +65,7 @@ abstract class ApexModel {
         if (this.nameLine) {
             let scope = Utils.containsScope(this.nameLine);
             if (scope) {
-                this.scope = scope;
+                this.scope = <string>scope;
             }
 
             // TODO: perhaps this branch of control flow should
