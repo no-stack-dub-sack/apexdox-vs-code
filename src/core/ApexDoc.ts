@@ -270,43 +270,16 @@ class ApexDoc {
 
             // look for an enum
             if (Utils.isEnum(line)) {
-                let eModel: EnumModel = new EnumModel(comments, line, lineNum);
+                let startingLine = lineNum;
+
+                // handle enums over multiple lines
+                while (!line.includes('}')) {
+                    line += reader.readLine();
+                    lineNum++;
+                }
+
+                let eModel: EnumModel = new EnumModel(comments, line, startingLine);
                 Utils.parseAnnotations(previousLine, line, eModel);
-                let values: string[] = [];
-
-                // one-liner enum
-                if (line.endsWith('}')) {
-                    line = line.substring(line.indexOf('{') + 1, line.indexOf('}'))
-                    values.push(...(line.trim().split(',')));
-                }
-
-                // multi-liner
-                else {
-
-                    // handle first line if it contains opening curly
-                    if (line.includes('{')) {
-                        line = line.substring(line.indexOf('{') + 1);
-                        values.push(...(line.trim().split(',')));
-                    }
-
-                    // handle subsequent lines and case
-                    // of opening curly being on 2nd line
-                    while (line !== null && !line.includes('}')) {
-                        line = reader.readLine();
-                        lineNum++;
-
-                        if (line) {
-                            let idx =  line.indexOf('}');
-                            let end = idx > -1 ? idx : line.length;
-                            let valLine = line.substring(line.indexOf('{') + 1, end);
-                            values.push(...(valLine.trim().split(',')));
-                        }
-                    }
-                }
-
-                // add all enum values to model
-                values.forEach(value => value.trim()
-                    && eModel.getValues().push(value.trim()));
 
                 // if no class models have been created, and we see an
                 // enum, we must be dealing with a class level enum and
@@ -326,7 +299,7 @@ class ApexDoc {
             if (line.includes('(')) {
                 let startingLine = lineNum;
 
-                // deal with a method over multiple lines.
+                // handle methods over multiple lines.
                 while (!line.includes(')')) {
                     line += reader.readLine();
                     lineNum++;

@@ -8,6 +8,7 @@ class EnumModel extends TopLevelModel {
     public constructor(comments: string[], nameLine: string, lineNum: number) {
         super(comments, ModelType.ENUM);
         this.setNameLine(nameLine, lineNum);
+        this.setValues(nameLine);
     }
 
     public getName(): string {
@@ -30,6 +31,14 @@ class EnumModel extends TopLevelModel {
         }
 
         super.setNameLine(nameLine.trim(), lineNum);
+    }
+
+    private setValues(line: string): void {
+        line = line.substring(line.indexOf('{') + 1, line.indexOf('}'))
+        line.trim()
+            .split(',')
+            .forEach(value => value.trim()
+                && this.values.push(value.trim()));
     }
 
     public getValues(): string[] {
