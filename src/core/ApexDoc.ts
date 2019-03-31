@@ -12,7 +12,6 @@ import MethodModel from '../models/MethodModel';
 import PropertyModel from '../models/PropertyModel';
 
 interface LineReader {
-    lines: string[];
     readLine: () => string | null;
 }
 
@@ -140,242 +139,238 @@ class ApexDoc {
 
     // TODO: annotations with parens being read incorrectly
     public static parseFileContents(filePath: string): TopLevelModel {
-        // try {
-            // Get the object of DataInputStream
-            const reader: LineReader = this.makeLineReader(filePath);
+        const reader: LineReader = this.makeLineReader(filePath);
 
-            let nestedCurlyBraceDepth = 0, lineNum = 0;
-            let line, originalLine, previousLine = '';
-            let commentsStarted = false, docBlockStarted = false;
+        let nestedCurlyBraceDepth = 0, lineNum = 0;
+        let line: string | null, originalLine: string, previousLine = '';
+        let commentsStarted = false, docBlockStarted = false;
 
-            const cModels: Array<ClassModel> = [];
-            let cModel: ClassModel | undefined, cModelParent: ClassModel | undefined;
-            let comments: string[] = [];
+        const cModels: Array<ClassModel> = [];
+        let cModel: ClassModel | undefined, cModelParent: ClassModel | undefined;
+        let comments: string[] = [];
 
-            while ((line = reader.readLine()) !== null) {
-                // skip empty lines and rogue undefined strings
-                if (typeof line !== 'string' || !line.trim()) {
+        while ((line = reader.readLine()) !== null) {
+            // skip empty lines and rogue undefined strings
+            if (typeof line !== 'string' || !line.trim()) {
+                continue;
+            }
+
+            originalLine = line;
+            line = line.trim();
+            lineNum++;
+
+            // ignore anything after // style comments. this allows hiding
+            // of tokens from ApexDoc. However, don't ignore when line
+            // doesn't start with //, we want to preserver @example comments
+            let offset = line.indexOf('//');
+            if (offset === 0) {
+                line = line.substring(0, offset);
+                if (!line.trim()) {
                     continue;
                 }
+            }
 
-                originalLine = line;
-                line = line.trim();
-                lineNum++;
-
-                // ignore anything after // style comments. this allows hiding
-                // of tokens from ApexDoc. However, don't ignore when line
-                // doesn't start with //, we want to preserver @example comments
-                let offset = line.indexOf('//');
-                if (offset === 0) {
-                    line = line.substring(0, offset);
-                    if (!line.trim()) {
-                        continue;
+            // gather up our comments
+            if (line.startsWith('/*')) {
+                commentsStarted = true;
+                let commentEnded = false;
+                if (line.startsWith(this.COMMENT_OPEN)) {
+                    if (line.endsWith(this.COMMENT_CLOSE)) {
+                        line = line.replace(this.COMMENT_CLOSE, this.DOC_BLOCK_BREAK);
+                        commentEnded = true;
                     }
+                    comments.push(line);
+                    docBlockStarted = true;
                 }
-
-                // gather up our comments
-                if (line.startsWith('/*')) {
-                    commentsStarted = true;
-                    let commentEnded = false;
-                    if (line.startsWith(this.COMMENT_OPEN)) {
-                        if (line.endsWith(this.COMMENT_CLOSE)) {
-                            line = line.replace(this.COMMENT_CLOSE, this.DOC_BLOCK_BREAK);
-                            commentEnded = true;
-                        }
-                        comments.push(line);
-                        docBlockStarted = true;
-                    }
-                    if (line.endsWith(this.COMMENT_CLOSE) || commentEnded) {
-                        commentsStarted = false;
-                        docBlockStarted = false;
-                    }
-                    continue;
-                }
-
-                if (commentsStarted && line.endsWith(this.COMMENT_CLOSE)) {
-                    line = line.replace(this.COMMENT_CLOSE, this.DOC_BLOCK_BREAK);
-                    if (docBlockStarted) {
-                        comments.push(line);
-                        docBlockStarted = false;
-                    }
+                if (line.endsWith(this.COMMENT_CLOSE) || commentEnded) {
                     commentsStarted = false;
-                    continue;
+                    docBlockStarted = false;
+                }
+                continue;
+            }
+
+            if (commentsStarted && line.endsWith(this.COMMENT_CLOSE)) {
+                line = line.replace(this.COMMENT_CLOSE, this.DOC_BLOCK_BREAK);
+                if (docBlockStarted) {
+                    comments.push(line);
+                    docBlockStarted = false;
+                }
+                commentsStarted = false;
+                continue;
+            }
+
+            if (commentsStarted) {
+                if (docBlockStarted) {
+                    comments.push(line);
+                }
+                continue;
+            }
+
+            // keep track of our nesting so we know which class we are in
+            let openCurlies = Utils.countChars(line, '{');
+            let closeCurlies = Utils.countChars(line, '}');
+            nestedCurlyBraceDepth += openCurlies;
+            nestedCurlyBraceDepth -= closeCurlies;
+
+            // if we are in a nested class, and we just got back to nesting level 1,
+            // then we are done with the nested class, and should set its props and methods.
+            if (nestedCurlyBraceDepth === 1 && openCurlies !== closeCurlies && cModels.length > 1 && cModel) {
+                cModels.pop();
+                cModel = cModels[cModels.length - 1];
+                continue;
+            }
+
+            // ignore anything after an =. this avoids confusing properties with methods.
+            offset = line.indexOf('=');
+            if (offset > -1) {
+                line = line.substring(0, offset);
+            }
+
+            // ignore anything after an '{' (if we're not dealing with an enum)
+            // this avoids confusing properties with methods.
+            offset = !Utils.isEnum(line) ? line.indexOf('{') : -1;
+            if (offset > -1) {
+                line = line.substring(0, offset);
+            }
+
+            // skip lines not dealing with scope that are not inner
+            // classes, interface methods, or (assumed to be) @isTest
+            if (Utils.shouldSkipLine(line, cModel)) {
+                // preserve skipped line, it may be an annotation
+                // line for a class, method, prop, or enum (though
+                // enums support few and are unlikely to have any)
+                previousLine = originalLine;
+                continue;
+            }
+
+            // look for a class.
+            if (Utils.isClassOrInterface(line)) {
+                // create the new class
+                let cModelNew: ClassModel = new ClassModel(cModelParent, comments, line, lineNum);
+                Utils.parseAnnotations(previousLine, line, cModelNew);
+                comments = [];
+
+                // keep track of the new class, as long as it wasn't a single liner {}
+                // but handle not having any curlies on the class line!
+                if (openCurlies === 0 || openCurlies !== closeCurlies) {
+                    cModels.push(cModelNew);
+                    cModel = cModelNew;
                 }
 
-                if (commentsStarted) {
-                    if (docBlockStarted) {
-                        comments.push(line);
-                    }
-                    continue;
+                // add it to its parent (or track the parent)
+                if (cModelParent) {
+                    cModelParent.addChildClass(cModelNew);
+                } else {
+                    cModelParent = cModelNew;
                 }
 
-                // keep track of our nesting so we know which class we are in
-                let openCurlies = Utils.countChars(line, '{');
-                let closeCurlies = Utils.countChars(line, '}');
-                nestedCurlyBraceDepth += openCurlies;
-                nestedCurlyBraceDepth -= closeCurlies;
+                previousLine = '';
+                continue;
+            }
 
-                // if we are in a nested class, and we just got back to nesting level 1,
-                // then we are done with the nested class, and should set its props and methods.
-                if (nestedCurlyBraceDepth === 1 && openCurlies !== closeCurlies && cModels.length > 1 && cModel) {
-                    cModels.pop();
-                    cModel = cModels[cModels.length - 1];
-                    continue;
+            // look for an enum
+            if (Utils.isEnum(line)) {
+                let eModel: EnumModel = new EnumModel(comments, line, lineNum);
+                Utils.parseAnnotations(previousLine, line, eModel);
+                let values: string[] = [];
+
+                // one-liner enum
+                if (line.endsWith('}')) {
+                    line = line.substring(line.indexOf('{') + 1, line.indexOf('}'))
+                    values.push(...(line.trim().split(',')));
                 }
 
-                // ignore anything after an =. this avoids confusing properties with methods.
-                offset = line.indexOf('=');
-                if (offset > -1) {
-                    line = line.substring(0, offset);
-                }
+                // multi-liner
+                else {
 
-                // ignore anything after an '{' (if we're not dealing with an enum)
-                // this avoids confusing properties with methods.
-                offset = !Utils.isEnum(line) ? line.indexOf('{') : -1;
-                if (offset > -1) {
-                    line = line.substring(0, offset);
-                }
-
-                // skip lines not dealing with scope that are not inner
-                // classes, interface methods, or (assumed to be) @isTest
-                if (Utils.shouldSkipLine(line, cModel)) {
-                    // preserve skipped line, it may be an annotation
-                    // line for a class, method, prop, or enum (though
-                    // enums support few and are unlikely to have any)
-                    previousLine = originalLine;
-                    continue;
-                }
-
-                // look for a class.
-                if (Utils.isClassOrInterface(line)) {
-                    // create the new class
-                    let cModelNew: ClassModel = new ClassModel(cModelParent, comments, line, lineNum);
-                    Utils.parseAnnotations(previousLine, line, cModelNew);
-                    comments = [];
-
-                    // keep track of the new class, as long as it wasn't a single liner {}
-                    // but handle not having any curlies on the class line!
-                    if (openCurlies === 0 || openCurlies !== closeCurlies) {
-                        cModels.push(cModelNew);
-                        cModel = cModelNew;
-                    }
-
-                    // add it to its parent (or track the parent)
-                    if (cModelParent) {
-                        cModelParent.addChildClass(cModelNew);
-                    } else {
-                        cModelParent = cModelNew;
-                    }
-
-                    previousLine = '';
-                    continue;
-                }
-
-                // look for an enum
-                if (Utils.isEnum(line)) {
-                    let eModel: EnumModel = new EnumModel(comments, line, lineNum);
-                    Utils.parseAnnotations(previousLine, line, eModel);
-                    comments = [];
-
-                    let values: string[] = [];
-                    let nameLine = eModel.getNameLine();
-                    // one-liner enum
-                    if (line.endsWith('}')) {
-                        line = line.replace('}', '');
-                        line = line.replace('{', '');
-                        // isolate values of one-liner, split at comma & add to list
-                        line = line.substring(line.indexOf(nameLine) + nameLine.length);
+                    // handle first line if it contains opening curly
+                    if (line.includes('{')) {
+                        line = line.substring(line.indexOf('{') + 1);
                         values.push(...(line.trim().split(',')));
                     }
-                    // enum is over multiple lines
-                    else {
-                        // handle first line, there may be multiple values on it
-                        line = line.replace('{', '');
-                        line = line.substring(line.indexOf(nameLine) + nameLine.length);
-                        values.push(...(line.trim().split(',')));
 
-                        // handle each additional line of enum
-                        while (line !== null && !line.includes('}')) {
-                            line = reader.readLine();
-                            lineNum++;
-                            // in case opening curly is on the second line
-                            // also handle replacing closing curly for last line
-                            let valLine = line ? line.replace('{', '') : '';
-                            valLine = valLine.replace('}', '');
+                    // handle subsequent lines and case
+                    // of opening curly being on 2nd line
+                    while (line !== null && !line.includes('}')) {
+                        line = reader.readLine();
+                        lineNum++;
+
+                        if (line) {
+                            let idx =  line.indexOf('}');
+                            let end = idx > -1 ? idx : line.length;
+                            let valLine = line.substring(line.indexOf('{') + 1, end);
                             values.push(...(valLine.trim().split(',')));
                         }
                     }
-
-                    // add all enum values to model
-                    values.forEach(value => value.trim()
-                        && eModel.getValues().push(value.trim()));
-
-                    // if no class models have been created, and we see an
-                    // enum, we must be dealing with a class level enum and
-                    // should return early, otherwise we're dealing with
-                    // an inner enum and should add to our class model.
-                    if (cModel && cModels.length === 0) {
-                        return eModel;
-                    } else {
-                        cModel && cModel.getEnums().push(eModel);
-                        previousLine = '';
-                        continue;
-                    }
                 }
 
-                // look for a method
-                if (line.includes('(')) {
-                    let startingLine = lineNum;
+                // add all enum values to model
+                values.forEach(value => value.trim()
+                    && eModel.getValues().push(value.trim()));
 
-                    // deal with a method over multiple lines.
-                    while (!line.includes(')')) {
-                        line += reader.readLine();
-                        lineNum++;
-                    }
-
-                    let mModel: MethodModel = new MethodModel(comments, line, startingLine);
-                    Utils.parseAnnotations(previousLine, line, mModel);
-                    cModel && cModel.getMethods().push(mModel);
+                // if no class models have been created, and we see an
+                // enum, we must be dealing with a class level enum and
+                // should return early, otherwise we're dealing with
+                // an inner enum and should add to our class model.
+                if (cModel && cModels.length === 0) {
+                    return eModel;
+                } else {
+                    cModel && cModel.getEnums().push(eModel);
+                    previousLine = '';
                     comments = [];
-                    previousLine = '';
                     continue;
                 }
+            }
 
-                // handle set & get within the property
-                // TODO: none of these should ever evaluate to true!
-                // shouldSkipLne should skip these lines. test this.
-                if (line.includes(' get ') ||
-                    line.includes(' set ') ||
-                    line.includes(' get;') ||
-                    line.includes(' set;') ||
-                    line.includes(' get{') ||
-                    line.includes(' set{')) {
-                    previousLine = '';
-                    continue;
+            // look for a method
+            if (line.includes('(')) {
+                let startingLine = lineNum;
+
+                // deal with a method over multiple lines.
+                while (!line.includes(')')) {
+                    line += reader.readLine();
+                    lineNum++;
                 }
 
-                // must be a property
-                let pModel: PropertyModel = new PropertyModel(comments, line, lineNum);
-                Utils.parseAnnotations(previousLine, line, pModel);
-                cModel && cModel.getProperties().push(pModel);
+                let mModel: MethodModel = new MethodModel(comments, line, startingLine);
+                Utils.parseAnnotations(previousLine, line, mModel);
+                cModel && cModel.getMethods().push(mModel);
                 comments = [];
                 previousLine = '';
                 continue;
             }
 
-            return <TopLevelModel>cModelParent;
-        //} catch (e) {
-            //throw new ApexDocError(e);
-        //}
+            // handle set & get within the property
+            // TODO: none of these should ever evaluate to true!
+            // shouldSkipLne should skip these lines. test this.
+            if (line.includes(' get ') ||
+                line.includes(' set ') ||
+                line.includes(' get;') ||
+                line.includes(' set;') ||
+                line.includes(' get{') ||
+                line.includes(' set{')) {
+                previousLine = '';
+                continue;
+            }
+
+            // must be a property
+            let pModel: PropertyModel = new PropertyModel(comments, line, lineNum);
+            Utils.parseAnnotations(previousLine, line, pModel);
+            cModel && cModel.getProperties().push(pModel);
+            comments = [];
+            previousLine = '';
+            continue;
+        }
+
+        return <TopLevelModel>cModelParent;
     }
 
     private static makeLineReader(filePath: string): LineReader {
         try {
-            const lines: string[] = readFileSync(filePath).toString('utf8').split(/(?:\r\n|\r|\n)/g);
+            let lines: string[] = readFileSync(filePath).toString('utf8').split(/(?:\r\n|\r|\n)/g);
             let nextIndex = 0, end = lines.length;
 
             const lineReader: LineReader = {
-                lines: lines,
                 readLine: function() {
                     let result;
                     if (nextIndex <= end) {
@@ -384,6 +379,7 @@ class ApexDoc {
                         return result;
                     }
 
+                    lines = [];
                     return null;
                 }
             };
