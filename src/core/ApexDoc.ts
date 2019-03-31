@@ -137,7 +137,6 @@ class ApexDoc {
     //     return map;
     // }
 
-    // TODO: annotations with parens being read incorrectly
     public static parseFileContents(filePath: string): TopLevelModel {
         const reader: LineReader = this.makeLineReader(filePath);
 

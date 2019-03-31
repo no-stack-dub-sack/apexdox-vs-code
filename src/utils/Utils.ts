@@ -149,10 +149,10 @@ class Utils {
         // If previous line is not a comment line, it could be an annotation line.
         // Annotations may also be on the signature line, so check both for matches.
         if (previousLine && !previousLine.startsWith('*')) {
-            line +=  " " + previousLine;
+            line = previousLine + ' ' + line;
         }
 
-        let matches: RegExpMatchArray | null = line.match(/@\w+\s*(\([\w=.*''/\s]+\))?/);
+        let matches: RegExpMatchArray | null = line.match(/@\w+\s*(\([\w=.*''/\s]+\))?/g);
 
         if (matches !== null) {
             matches.forEach(match => {
