@@ -1,19 +1,16 @@
-import { ApexDoc2Config } from '../extension';
-import Config from './Config';
-import Guards, { ApexDocError } from '../utils/Guards';
-import TopLevelModel from '../models/TopLevelModel';
-import FileManager from './FileManager';
-import * as vscode from 'vscode';
+import { last } from 'lodash';
 import { readFileSync } from 'fs';
 import ClassModel from '../models/ClassModel';
-import Utils from '../utils/Utils';
+import Config from './Config';
 import EnumModel from '../models/EnumModel';
+import FileManager from './FileManager';
+import Guards, { ApexDocError } from '../utils/Guards';
 import MethodModel from '../models/MethodModel';
 import PropertyModel from '../models/PropertyModel';
-
-interface LineReader {
-    readLine: () => string | null;
-}
+import TopLevelModel from '../models/TopLevelModel';
+import Utils from '../utils/Utils';
+import ClassGroup from '../models/ClassGroup';
+import LineReader from '../utils/LineReader';
 
 class ApexDoc {
     // constants
@@ -48,6 +45,7 @@ class ApexDoc {
     public static registerScope: string[];
     // private static FileManager fileManager;
     public static targetDirectory: string;
+    public static currentFile: string;
     private static numProcessed: number = 0;
 
     // public main routine which is used by both command line invocation and
@@ -56,13 +54,14 @@ class ApexDoc {
         // TODO: replace StopWatch functionality
 
         // prepare arguments, ensure compliant
+        this.registerScope = Guards.scope(config.scope);
+        this.targetDirectory = Guards.targetDirectory(config.targetDirectory);
+
         let includes = config.includes || [];
         let excludes = config.excludes || [];
-        this.registerScope = Guards.scope(config.scope);
         let sortOrder = Guards.sortOrder(config.sortOrder);
         let sourceControlURL = Guards.sourceURL(config.sourceControlURL);
         let showTOCSnippets = Guards.showTOCSnippets(config.showTOCSnippets);
-        let targetDirectory = Guards.targetDirectory(config.targetDirectory);
         let homePagePath = Guards.directory(config.homePagePath, 'home_page');
         let bannerPagePath = Guards.directory(config.bannerPagePath, 'banner_page');
         let sourceDirectory = Guards.directory(config.sourceDirectory, 'source_directory');
@@ -70,7 +69,7 @@ class ApexDoc {
 
         // find all the files to parse`
         // TODO: implement file manager!
-        let fileManager = new FileManager(targetDirectory);
+        let fileManager = new FileManager(this.targetDirectory);
         let files = fileManager.getFiles(sourceDirectory, includes, excludes);
         let modelMap = new Map<string, TopLevelModel>();
         let models: Array<TopLevelModel> = [];
@@ -83,6 +82,7 @@ class ApexDoc {
         console.log('sourceDirectory: ' + sourceDirectory);
         // // parse each file, creating a class or enum model for it
         files.forEach(fileName => {
+            this.currentFile = fileName;
             let filePath = sourceDirectory + '/' + fileName;
             let model: TopLevelModel = this.parseFileContents(filePath);
             modelMap.set(model.getName().toLowerCase(), model);
@@ -95,7 +95,7 @@ class ApexDoc {
         console.log('lets check these models out!');
 
         // // create our Groups
-        // TreeMap<string, ClassGroup> classGroupMap = createGroupNameMap(models, sourceDirectory);
+        const classGroupMap: Map<string, ClassGroup> = this.createClassGroupMap(models, sourceDirectory);
 
         // // load up optional specified file templates
         // string bannerContents = fileManager.parseHTMLFile(bannerPagePath);
@@ -110,38 +110,36 @@ class ApexDoc {
         // System.exit(0);
     }
 
-    // private static TreeMap<string, ClassGroup> createGroupNameMap(ArrayList<TopLevelModel> models,
-    //         string sourceDirectory) {
-    //     TreeMap<string, ClassGroup> map = new TreeMap<string, ClassGroup>();
+    private static createClassGroupMap(models: Array<TopLevelModel>, sourceDirectory: string): Map<string, ClassGroup> {
+        const map: Map<string, ClassGroup> = new Map<string, ClassGroup>();
 
-    //     models.stream().forEach(model -> {
-    //         string group = model.getGroupName();
-    //         string contentPath = model.getGroupContentPath();
-    //         if (contentPath !== null && !contentPath.isEmpty()) {
-    //             contentPath = sourceDirectory + "/" + contentPath;
-    //         }
+        models.forEach(model => {
+            let group = model.getGroupName();
+            let contentPath = model.getGroupContentPath();
+            if (contentPath) {
+                contentPath = sourceDirectory + "/" + contentPath;
+            }
 
-    //         ClassGroup cg;
-    //         if (group !== null) {
-    //             cg = map.get(group);
-    //             if (cg === null) {
-    //                 cg = new ClassGroup(group, contentPath);
-    //             } else if (cg.getContentSource() === null) {
-    //                 cg.setContentSource(contentPath);
-    //             }
-    //             // put the new or potentially modified ClassGroup back in the map
-    //             map.put(group, cg);
-    //         }
-    //     });
+            let cg: ClassGroup | undefined;
+            if (group) {
+                cg = map.get(group);
+                if (!cg) {
+                    cg = new ClassGroup(group, contentPath);
+                } else if (!cg.getContentSource()) {
+                    cg.setContentSource(contentPath);
+                }
+                map.set(group, cg);
+            }
+        });
 
-    //     return map;
-    // }
+        return map;
+    }
 
     public static parseFileContents(filePath: string): TopLevelModel {
-        const reader: LineReader = this.makeLineReader(filePath);
+        const reader = new LineReader(filePath);
 
         let nestedCurlyBraceDepth = 0, lineNum = 0;
-        let line: string | null, originalLine: string, previousLine = '';
+        let line: string | null;
         let commentsStarted = false, docBlockStarted = false;
 
         const cModels: Array<ClassModel> = [];
@@ -154,7 +152,6 @@ class ApexDoc {
                 continue;
             }
 
-            originalLine = line;
             line = line.trim();
             lineNum++;
 
@@ -215,7 +212,7 @@ class ApexDoc {
             // then we are done with the nested class, and should set its props and methods.
             if (nestedCurlyBraceDepth === 1 && openCurlies !== closeCurlies && cModels.length > 1 && cModel) {
                 cModels.pop();
-                cModel = cModels[cModels.length - 1];
+                cModel = last(cModels);
                 continue;
             }
 
@@ -235,10 +232,6 @@ class ApexDoc {
             // skip lines not dealing with scope that are not inner
             // classes, interface methods, or (assumed to be) @isTest
             if (Utils.shouldSkipLine(line, cModel)) {
-                // preserve skipped line, it may be an annotation
-                // line for a class, method, prop, or enum (though
-                // enums support few and are unlikely to have any)
-                previousLine = originalLine;
                 continue;
             }
 
@@ -246,7 +239,7 @@ class ApexDoc {
             if (Utils.isClassOrInterface(line)) {
                 // create the new class
                 let cModelNew: ClassModel = new ClassModel(cModelParent, comments, line, lineNum);
-                Utils.parseAnnotations(previousLine, line, cModelNew);
+                Utils.parseAnnotations(<string>reader.peekPrevLine(), line, cModelNew);
                 comments = [];
 
                 // keep track of the new class, as long as it wasn't a single liner {}
@@ -263,7 +256,7 @@ class ApexDoc {
                     cModelParent = cModelNew;
                 }
 
-                previousLine = '';
+                // previousLine = '';
                 continue;
             }
 
@@ -278,7 +271,7 @@ class ApexDoc {
                 }
 
                 let eModel: EnumModel = new EnumModel(comments, line, startingLine);
-                Utils.parseAnnotations(previousLine, line, eModel);
+                Utils.parseAnnotations(<string>reader.peekPrevLine(), line, eModel);
 
                 // if no class models have been created, and we see an
                 // enum, we must be dealing with a class level enum and
@@ -288,7 +281,7 @@ class ApexDoc {
                     return eModel;
                 } else {
                     cModel && cModel.getEnums().push(eModel);
-                    previousLine = '';
+                    // previousLine = '';
                     comments = [];
                     continue;
                 }
@@ -305,10 +298,10 @@ class ApexDoc {
                 }
 
                 let mModel: MethodModel = new MethodModel(comments, line, startingLine);
-                Utils.parseAnnotations(previousLine, line, mModel);
+                Utils.parseAnnotations(<string>reader.peekPrevLine(), line, mModel);
                 cModel && cModel.getMethods().push(mModel);
                 comments = [];
-                previousLine = '';
+                // previousLine = '';
                 continue;
             }
 
@@ -321,46 +314,46 @@ class ApexDoc {
                 line.includes(' set;') ||
                 line.includes(' get{') ||
                 line.includes(' set{')) {
-                previousLine = '';
+                // previousLine = '';
                 continue;
             }
 
             // must be a property
             let pModel: PropertyModel = new PropertyModel(comments, line, lineNum);
-            Utils.parseAnnotations(previousLine, line, pModel);
+            Utils.parseAnnotations(<string>reader.peekPrevLine(), line, pModel);
             cModel && cModel.getProperties().push(pModel);
             comments = [];
-            previousLine = '';
+            // previousLine = '';
             continue;
         }
 
         return <TopLevelModel>cModelParent;
     }
 
-    private static makeLineReader(filePath: string): LineReader {
-        try {
-            let lines: string[] = readFileSync(filePath).toString('utf8').split(/(?:\r\n|\r|\n)/g);
-            let nextIndex = 0, end = lines.length;
+    // private static makeLineReader(filePath: string): LineReader {
+    //     try {
+    //         let lines: string[] = readFileSync(filePath).toString('utf8').split(/(?:\r\n|\r|\n)/g);
+    //         let nextIndex = 0, end = lines.length;
 
-            const lineReader: LineReader = {
-                readLine: function() {
-                    let result;
-                    if (nextIndex <= end) {
-                        result = lines[nextIndex];
-                        nextIndex++;
-                        return result;
-                    }
+    //         const lineReader: LineReader = {
+    //             readLine: function() {
+    //                 let result;
+    //                 if (nextIndex <= end) {
+    //                     result = lines[nextIndex];
+    //                     nextIndex++;
+    //                     return result;
+    //                 }
 
-                    lines = [];
-                    return null;
-                }
-            };
+    //                 lines = [];
+    //                 return null;
+    //             }
+    //         };
 
-            return lineReader;
-        } catch (e) {
-            throw new ApexDocError(e);
-        }
-    }
+    //         return lineReader;
+    //     } catch (e) {
+    //         throw new ApexDocError(e);
+    //     }
+    // }
 }
 
 export default ApexDoc;

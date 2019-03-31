@@ -5,8 +5,6 @@ import * as vscode from 'vscode';
 class FileManager {
     private path: string;
     private documentTitle: string = '';
-    // private FileOutputStream fileOutputStream;
-    // private DataOutputStream dataOutputStream;
 
     public constructor(targetDirectory: string) {
         this.path = targetDirectory;

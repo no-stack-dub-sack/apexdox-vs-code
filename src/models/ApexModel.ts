@@ -1,6 +1,7 @@
 import ApexDoc from '../core/ApexDoc';
 import Utils from '../utils/Utils';
 import { existsSync } from 'fs';
+import * as vscode from 'vscode';
 
 abstract class ApexModel {
 
@@ -164,7 +165,7 @@ abstract class ApexModel {
             if (line.includes(ApexDoc.DOC_BLOCK_BREAK)) {
                 line = line.replace(ApexDoc.DOC_BLOCK_BREAK, '');
                 isBreak = true;
-            };
+            }
 
             // add line to appropriate block...
             // if currBlock was not reset on this iteration we're on the next line of the last token, add line
@@ -215,16 +216,17 @@ abstract class ApexModel {
     // directory exists for @group-content token
     private pathExists(line: string): boolean {
         let root = ApexDoc.targetDirectory;
-        if (!root.endsWith('/') || !root.endsWith('\\')) {
+        if (!root.endsWith('/') && !root.endsWith('\\')) {
             root += '/';
         }
 
         let path = root + line.trim();
-        // TODO: check to make sure this Node implementation of pathExists works as expected!
         if (/.*\.s?html?$/.test(line.trim()) && existsSync(path)) {
             return true;
         } else {
-            console.log(`\nWARNING: @group-content path: '${path}' is invalid!\n`);
+            vscode.window.showErrorMessage(
+                `WARNING: @group-content path '${path.replace(/\\/g, '/')}' in file '${ApexDoc.currentFile}' is invalid!`
+            );
             return false;
         }
     }

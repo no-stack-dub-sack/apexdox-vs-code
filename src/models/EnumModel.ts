@@ -34,7 +34,7 @@ class EnumModel extends TopLevelModel {
     }
 
     private setValues(line: string): void {
-        line = line.substring(line.indexOf('{') + 1, line.indexOf('}'))
+        line = line.substring(line.indexOf('{') + 1, line.indexOf('}'));
         line.trim()
             .split(',')
             .forEach(value => value.trim()

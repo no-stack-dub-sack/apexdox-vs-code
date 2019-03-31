@@ -47,7 +47,7 @@ class Guards {
     public static targetDirectory(path: string): string {
         this.typeGuard('string', path, 'target_directory');
         if (path && path.length > 0) {
-            return path.endsWith("/") || path.endsWith("\\") ? path : path + "/";
+            return path.endsWith('/') || path.endsWith('\\') ? path : path + '/';
         } else {
             throw new ApexDocError(
                 "Value for <target_directory> argument: '" + path +

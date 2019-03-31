@@ -50,7 +50,7 @@ class Utils {
      * otherwise we would be matching local variables as well. This is
      * why we check for '('. Unfortunately, we cannot check for all data
      * types, so if a method is not given an explicit access modifier &
-     * it doesnt start with these keywords, it will be undetectable by ApexDoc2.
+     * it doesn't start with these keywords, it will be undetectable by ApexDoc2.
     */
     public static containsScope(line: string): string | null {
         for (let i = 0; i < ApexDoc.registerScope.length; i++) {
