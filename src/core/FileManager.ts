@@ -1,6 +1,8 @@
-import { readdirSync } from "fs";
 import { ApexDocError } from "../utils/Guards";
+import { readdirSync, copyFileSync } from "fs";
 import * as vscode from 'vscode';
+import ApexDoc from "./ApexDoc";
+import LineReader from "../utils/LineReader";
 
 class FileManager {
     private path: string;
@@ -49,6 +51,57 @@ class FileManager {
                 vscode.window.showErrorMessage("ApexDoc2 Failed: No files found in directory: " + sourceDirectory);
             }
             return filesToCopy;
+        } catch (e) {
+            throw new ApexDocError(e);
+        }
+    }
+
+    private parseFile(filePath: string): string {
+        try {
+            if (filePath) {
+                const reader = new LineReader(filePath);
+                let contents = '';
+                let line;
+
+                while ((line = reader.readLine()) !== null) {
+                    line = line.trim();
+                    if (line) {
+                        contents += line;
+                    }
+                }
+
+                return contents;
+            }
+        } catch (e) {
+            vscode.window.showErrorMessage(e);
+        }
+
+        return "";
+    }
+
+    public parseHTMLFile(filePath: string): string {
+        let contents = (this.parseFile(filePath)).trim();
+        if (contents) {
+            let startIndex = contents.indexOf('<body>');
+            let endIndex = contents.indexOf('</body>');
+            if (startIndex !== -1) {
+                if (contents.indexOf('</body>') !== -1) {
+                    contents = contents.substring(startIndex, endIndex);
+                    return contents;
+                }
+            }
+        }
+        return '';
+    }
+
+    // TODO: find the right time to invoke this!
+    // this is slightly different that the java implementation
+    private copyResourcesToTarget() {
+        try {
+            const files: string[] = readdirSync(ApexDoc.extensionRoot + '/resources');
+            files.forEach(file => {
+                copyFileSync(ApexDoc.extensionRoot + '/resources/' + file, this.path + '/' + file);
+            });
         } catch (e) {
             throw new ApexDocError(e);
         }

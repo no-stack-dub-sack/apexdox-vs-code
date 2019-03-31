@@ -48,6 +48,9 @@ class ApexDoc {
     public static currentFile: string;
     private static numProcessed: number = 0;
 
+    // the extensions root directory
+    public static extensionRoot: string;
+
     // public main routine which is used by both command line invocation and
     // Eclipse PlugIn invocation
     public static runApexDoc(config: Config): void {
@@ -94,12 +97,12 @@ class ApexDoc {
 
         console.log('lets check these models out!');
 
-        // // create our Groups
+        // create our Groups
         const classGroupMap: Map<string, ClassGroup> = this.createClassGroupMap(models, sourceDirectory);
 
-        // // load up optional specified file templates
-        // string bannerContents = fileManager.parseHTMLFile(bannerPagePath);
-        // string homeContents = fileManager.parseHTMLFile(homePagePath);
+        // load up optional specified file templates
+        const bannerContents = fileManager.parseHTMLFile(bannerPagePath);
+        const homeContents = fileManager.parseHTMLFile(homePagePath);
 
         // // create our set of HTML files
         // fileManager.createDocs(classGroupMap, modelMap, models, bannerContents, homeContents);
@@ -256,7 +259,6 @@ class ApexDoc {
                     cModelParent = cModelNew;
                 }
 
-                // previousLine = '';
                 continue;
             }
 
@@ -281,7 +283,6 @@ class ApexDoc {
                     return eModel;
                 } else {
                     cModel && cModel.getEnums().push(eModel);
-                    // previousLine = '';
                     comments = [];
                     continue;
                 }
@@ -301,7 +302,6 @@ class ApexDoc {
                 Utils.parseAnnotations(<string>reader.peekPrevLine(), line, mModel);
                 cModel && cModel.getMethods().push(mModel);
                 comments = [];
-                // previousLine = '';
                 continue;
             }
 
@@ -314,7 +314,6 @@ class ApexDoc {
                 line.includes(' set;') ||
                 line.includes(' get{') ||
                 line.includes(' set{')) {
-                // previousLine = '';
                 continue;
             }
 
@@ -323,37 +322,11 @@ class ApexDoc {
             Utils.parseAnnotations(<string>reader.peekPrevLine(), line, pModel);
             cModel && cModel.getProperties().push(pModel);
             comments = [];
-            // previousLine = '';
             continue;
         }
 
         return <TopLevelModel>cModelParent;
     }
-
-    // private static makeLineReader(filePath: string): LineReader {
-    //     try {
-    //         let lines: string[] = readFileSync(filePath).toString('utf8').split(/(?:\r\n|\r|\n)/g);
-    //         let nextIndex = 0, end = lines.length;
-
-    //         const lineReader: LineReader = {
-    //             readLine: function() {
-    //                 let result;
-    //                 if (nextIndex <= end) {
-    //                     result = lines[nextIndex];
-    //                     nextIndex++;
-    //                     return result;
-    //                 }
-
-    //                 lines = [];
-    //                 return null;
-    //             }
-    //         };
-
-    //         return lineReader;
-    //     } catch (e) {
-    //         throw new ApexDocError(e);
-    //     }
-    // }
 }
 
 export default ApexDoc;

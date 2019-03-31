@@ -30,6 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 
 		try {
+			ApexDoc.extensionRoot = context.extensionPath;
 			ApexDoc.runApexDoc(config);
 		} catch (e) {
 			console.log(e);

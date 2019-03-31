@@ -1,0 +1,391 @@
+:root {
+    --dark-blue: #003672;
+    --grey-blue: #51638A;
+    --light-grey: #f7f7f7;
+    --med-grey: #e7e7e7;
+    --med-blue: #00f;
+    --white: #fff;
+    --dark-red: #a31515;
+}
+
+body {
+    font-family: "ProximaNovaSoft-Regular", Calibri, "Gill Sans",
+        "Gill Sans MT", Candara, Segoe, "Segoe UI", Arial, sans-serif;
+    font-size: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* the top page banner  */
+.topsection {
+    background-color: var(--dark-blue);
+    width: 100%;
+    height: 110px;
+    color: var(--white);
+}
+
+.topsection td {
+    color: var(--white);
+    padding: 8px;
+}
+
+.topsection a {
+    color: var(--white);
+}
+
+/* the area that holds the documentation on the right of the page */
+.contentTD {
+    font-size: 100%;
+    width: 80%;
+    padding-left: 10px;
+    vertical-align: top;
+}
+
+/* the horizontal section headers that declares the Class name */
+.sectionTitle {
+    background-color: var(--dark-blue); /* rgb(155,203,236); */
+    color: var(--white);
+    font-size: 100%;
+    font-weight: bold;
+    padding: 5px 5px 5px 14px;
+    margin: 0 0 5px 0;
+}
+
+.sectionTitle a {
+    color: var(--white);
+}
+
+/* the horizontal section headers that declares the Methods & Properties subsections */
+.subsectionTitle {
+    color: var(--grey-blue);
+    border-top: 1px solid var(--grey-blue);
+    font-size: 120%;
+    padding: 2px;
+    margin: 0;
+}
+
+.subsectionContainer {
+    padding: 0 0 0 14px;
+    margin-top: 10px;
+}
+
+/* the horizontal header for each Method */
+.methodHeader {
+    font-size: 1em;
+    color: var(--grey-blue);
+    border-top: 1px solid var(--grey-blue);
+    margin: 20px 0 0 0;
+    padding: 4px 0 2px 0;
+}
+
+/* attrTable is used to display the table of class attrTable */
+.attrTable {
+    border-collapse: collapse;
+    max-width: 95%;
+}
+
+.attrTable th {
+    text-align: left;
+    color: var(--dark-blue);
+    /* OR */
+    /* background: var(--dark-blue); */
+    /* color: var(--white); */
+}
+
+.attrTable th,
+.attrTable td {
+    padding: 5px;
+    border: 1px solid #919191;
+    font-size: .9em;
+}
+
+.attrTable tr:nth-child(odd) {
+    background: var(--light-grey);
+}
+
+/* restrict width of enum value column so
+most signatures will fit on a single lin */
+.attrTable .enumValues {
+    max-width: 500px;
+}
+
+.attrName {
+    font-size: .9em;
+    font-weight: bold;
+}
+
+.propAnnotations,
+.attrSignature {
+    background: none;
+    font-family: monospace;
+    padding: 0;
+}
+
+.attrDescription {
+    font-weight: normal;
+}
+
+.attrDescription.hasDescription {
+    height: 1em;
+}
+
+.propDescriptionWrapper {
+    margin-top: 15px;
+}
+
+/* the class's signature line */
+.classAnnotations,
+.classSignature {
+    font-family: monospace;
+    font-size: 1.05em;
+    font-weight: normal;
+    text-indent: -15px;
+    padding: 0 0 4px 15px;
+}
+
+/* the class's Annotation line */
+.classAnnotations {
+    padding: 0 0 0 15px;
+}
+
+/* the description, author, date and other class attributes */
+.classDetails {
+    font-size: .9em;
+}
+
+.classSubtitle {
+    color: var(--grey-blue);
+    font-size: 1em;
+    font-weight: bold;
+    margin: .7em 0 0 0;
+}
+
+.classSubDescription {
+    font-size: 1em;
+    margin: 0 0 0 1em;
+}
+
+/* signatures of methods and attrTable */
+.hostedSourceLink {
+    text-decoration: initial;
+    color: var(--med-blue);
+}
+
+.hostedSourceLink:hover {
+    text-decoration: underline;
+}
+
+/* method table of contents related classes */
+.methodsContainer {
+    margin-bottom: 10px;
+}
+
+ul.methodTOC {
+    margin-top: 0;
+}
+
+.methodTOCEntry {
+    font-size: .9em;
+    color: var(--med-blue);
+}
+
+.methodTOCEntry:visited {
+    font-size: .9em;
+    color: purple;
+}
+
+.methodTOCEntry.deprecated {
+    font-weight: inherit;
+}
+
+.methodTOCEntry.deprecated:visited {
+    font-size: .9em;
+    color: var(--dark-red);
+}
+
+.methodTOCDescription {
+    font-size: .9em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 1em;
+    height: 1em;
+    white-space: nowrap;
+    width: 500px;
+}
+
+/* method listing related classes */
+.methodSignature,
+.methodAnnotations {
+    font-family: monospace;
+    font-size: 1em;
+    text-indent: -15px;
+    padding: 0 0 0 15px;
+}
+
+.methodDescription {
+    font-size: .9em;
+    margin: .5em 0 0 0;
+}
+
+.methodSubDescription {
+    font-size: .9em;
+    margin: 0 0 0 1em;
+}
+
+.methodSubTitle {
+    font-size: .9em;
+    color: var(--grey-blue);
+    font-weight: bold;
+    margin: .7em 0 0 0;
+}
+
+.codeExample {
+    margin: 0 5px 0 0;
+}
+
+.codeExample code {
+    background: var(--light-grey);
+    padding: .5em .5em .5em .2em;
+}
+
+.paramName {
+    font-size: .9em;
+    font-weight: bold;
+    font-style: italic;
+    margin: 0 0 0 .5em;
+}
+
+.paramDescription {
+    font-size: .9em;
+    margin: 0 0 0 1em;
+}
+
+/* Style Details Caret Element */
+details summary::-webkit-details-marker {
+    float: right;
+    margin-top: 5px;
+    color: black !important;
+}
+
+.contentTd details.section summary::-webkit-details-marker {
+    color: var(--light-grey) !important;
+}
+
+.contentTd details.subSection summary::-webkit-details-marker {
+    color: black !important;
+}
+
+.contentTd details summary::-webkit-details-marker {
+    margin-top: 10px;
+}
+
+/* SIDEBAR CSS */
+.navbar {
+    font-size: .95em;
+}
+
+.navbar li {
+    height: 25px;
+    padding: 6px 0 2px 40px;
+    margin: 0;
+    background: var(--med-grey);
+    border-top: 1px solid #d1d1d1;
+    cursor: pointer;
+    user-select: none;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: var(--med-grey);
+}
+
+.navbar .navItem.active,
+.navbar .navItem:hover {
+    background: #d9d9d9;
+}
+
+.navbar .navItem a {
+    color: black;
+}
+
+.navbar .navItem a:focus,
+.navbar .navItem:hover a {
+    color: var(--med-blue);
+    outline: none;
+}
+
+.navHeader {
+    height: 25px;
+    background: var(--light-grey);
+    border: 1px solid #dce4e7;
+    border-top-color: var(--white);
+    padding: 6px 0 0 6px;
+    cursor: pointer;
+    user-select: none;
+}
+
+a.navHeader {
+    display: block;
+}
+
+.navHeader,
+.navHeader a {
+    color: black;
+}
+
+.navHeader a:focus,
+.navHeader:focus {
+    outline: none;
+    color: var(--med-blue);
+}
+
+/* Hmm not sure if we want this anymore... */
+/* a.navHeader.active {
+    background: #cfcdcd;
+}
+
+details[open] .navHeader.active {
+    background: #cfcdcd;
+} */
+
+.navHeader:hover,
+.navHeader:hover a {
+    background: #cfcdcd;
+    color: var(--med-blue);
+}
+
+/* accents */
+/* .classAnnotations,
+.methodAnnotations {
+    color: var(--dark-blue);
+    font-weight: 600;
+} */
+
+.inlineCode {
+    background-color: var(--light-grey);
+    color: var(--dark-red);
+    font-family: monospace;
+    padding: 1px 5px;
+}
+
+.deprecated {
+    color: var(--dark-red);
+    font-weight: bold;
+}
+
+.footer {
+    font-size:.8em;
+    margin-bottom: 10px;
+}
+
+.externalLink {
+    margin: 0 5px;
+    height: 10px;
+    fill: var(--light-grey);
+}
+
+.hide {
+    display: none;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1200 1200" style="enable-background:new 0 0 1200 1200;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#00AEEF;}
+	.st1{fill:#002856;}
+	.st2{font-family:'OperatorMono-Bold';}
+	.st3{font-size:86px;}
+	.st4{letter-spacing:30.5;}
+</style>
+<g id="Layer_2">
+	<rect x="353.5" y="307" class="st0" width="493" height="507"/>
+</g>
+<g id="Layer_1">
+	<g transform="translate(0.000000,1200.000000) scale(0.100000,-0.100000)">
+		<path class="st1" d="M3000,6455V3450h3000h3000v3005v3005H6000H3000V6455z M6998,7067c222-734,486-1609,587-1946
+			c102-336,185-614,185-616c0-3-246-5-547-5h-548l-95,413l-96,412h-528c-342,0-530-3-535-10c-4-5-36-134-70-285
+			c-35-151-77-332-93-402l-30-128h-530c-499,0-529,1-524,18c3,9,228,757,501,1662s535,1774,582,1933l87,287h626h626L6998,7067z"/>
+		<path class="st1" d="M5862,7288c-41-189-114-524-163-746c-49-221-89-404-89-407s155-5,344-5h343l-39,173c-21,94-88,390-148,657
+			c-146,651-151,670-164,670C5939,7630,5906,7494,5862,7288z"/>
+		<text transform="matrix(9.5197 0 0 -10 3190 2599.9414)" class="st0 st2 st3 st4">ApexDoc2</text>
+	</g>
+</g>
+</svg>
