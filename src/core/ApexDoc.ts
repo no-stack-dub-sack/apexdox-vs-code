@@ -1,16 +1,17 @@
 import { last } from 'lodash';
-import { readFileSync } from 'fs';
+import * as vscode from 'vscode';
+import ClassGroup from '../models/ClassGroup';
 import ClassModel from '../models/ClassModel';
 import Config from './Config';
+import DocGen from './DocGen';
 import EnumModel from '../models/EnumModel';
 import FileManager from './FileManager';
-import Guards, { ApexDocError } from '../utils/Guards';
+import Guards from '../utils/Guards';
+import LineReader from '../utils/LineReader';
 import MethodModel from '../models/MethodModel';
 import PropertyModel from '../models/PropertyModel';
 import TopLevelModel from '../models/TopLevelModel';
 import Utils from '../utils/Utils';
-import ClassGroup from '../models/ClassGroup';
-import LineReader from '../utils/LineReader';
 
 class ApexDoc {
     // constants
@@ -39,20 +40,17 @@ class ApexDoc {
     public static DOC_BLOCK_BREAK: string = "@@BREAK@@";
     public static SCOPES: string[] = [ApexDoc.GLOBAL, ApexDoc.PUBLIC, ApexDoc.PRIVATE, ApexDoc.PROTECTED, ApexDoc.WEB_SERVICE, ApexDoc.TEST_METHOD];
 
-    // non-constant properties
-
-    // TODO: rename this!
     public static registerScope: string[];
-    // private static FileManager fileManager;
+    public static extensionRoot: string;
     public static targetDirectory: string;
     public static currentFile: string;
-    private static numProcessed: number = 0;
 
-    // the extensions root directory
-    public static extensionRoot: string;
-
-    // public main routine which is used by both command line invocation and
-    // Eclipse PlugIn invocation
+    /**
+     * Entry point for the program. Called by VSCode on extension activation.
+     *
+     * @param config The configuration collected from the users config,
+     * supplemented with any defaults if user did not include them.
+     */
     public static runApexDoc(config: Config): void {
         // TODO: replace StopWatch functionality
 
@@ -60,64 +58,60 @@ class ApexDoc {
         this.registerScope = Guards.scope(config.scope);
         this.targetDirectory = Guards.targetDirectory(config.targetDirectory);
 
-        let includes = config.includes || [];
-        let excludes = config.excludes || [];
-        let sortOrder = Guards.sortOrder(config.sortOrder);
-        let sourceControlURL = Guards.sourceURL(config.sourceControlURL);
-        let showTOCSnippets = Guards.showTOCSnippets(config.showTOCSnippets);
-        let homePagePath = Guards.directory(config.homePagePath, 'home_page');
-        let bannerPagePath = Guards.directory(config.bannerPagePath, 'banner_page');
-        let sourceDirectory = Guards.directory(config.sourceDirectory, 'source_directory');
-        let documentTitle = Guards.typeGuard('string', config.title, 'title') ? config.title : '';
+        const includes = config.includes || [];
+        const excludes = config.excludes || [];
+        const sortOrder = Guards.sortOrder(config.sortOrder);
+        const sourceControlURL = Guards.sourceURL(config.sourceControlURL);
+        const showTOCSnippets = Guards.showTOCSnippets(config.showTOCSnippets);
+        const homePagePath = Guards.directory(config.homePagePath, 'home_page');
+        const bannerPagePath = Guards.directory(config.bannerPagePath, 'banner_page');
+        const sourceDirectory = Guards.directory(config.sourceDirectory, 'source_directory');
+        const documentTitle = Guards.typeGuard('string', config.title, 'title') ? config.title : '';
 
-        // find all the files to parse`
-        // TODO: implement file manager!
-        let fileManager = new FileManager(this.targetDirectory);
-        let files = fileManager.getFiles(sourceDirectory, includes, excludes);
-        let modelMap = new Map<string, TopLevelModel>();
-        let models: Array<TopLevelModel> = [];
-        // fileManager.setDocumentTitle(documentTitle);
+        const fileManager = new FileManager(this.targetDirectory, documentTitle);
+        const files = fileManager.getFiles(sourceDirectory, includes, excludes);
+        const modelMap = new Map<string, TopLevelModel>();
+        const models: Array<TopLevelModel> = [];
 
-        // // set up document generator
-        // DocGen.sortOrderStyle = sortOrder;
-        // DocGen.sourceControlURL = sourceControlURL;
-        // DocGen.showTOCSnippets = showTOCSnippets;
-        console.log('sourceDirectory: ' + sourceDirectory);
-        // // parse each file, creating a class or enum model for it
+        // set up document generator
+        DocGen.sortOrderStyle = sortOrder;
+        DocGen.sourceControlURL = sourceControlURL;
+        DocGen.showTOCSnippets = showTOCSnippets;
+
+        // track the number of files we've processed
+        let numProcessed = 0;
+
+        // parse our top-level class files
         files.forEach(fileName => {
             this.currentFile = fileName;
-            let filePath = sourceDirectory + '/' + fileName;
-            let model: TopLevelModel = this.parseFileContents(filePath);
+            const filePath = sourceDirectory + '/' + fileName;
+            const model = this.parseFileContents(filePath);
             modelMap.set(model.getName().toLowerCase(), model);
             if (model) {
                 models.push(model);
-                this.numProcessed++;
+                numProcessed++;
             }
         });
 
-        console.log('lets check these models out!');
-
-        // create our Groups
-        const classGroupMap: Map<string, ClassGroup> = this.createClassGroupMap(models, sourceDirectory);
-
-        // load up optional specified file templates
-        const bannerContents = fileManager.parseHTMLFile(bannerPagePath);
+        // load up optional specified file templates and create class groups for menu
         const homeContents = fileManager.parseHTMLFile(homePagePath);
+        const bannerContents = fileManager.parseHTMLFile(bannerPagePath);
+        const classGroupMap = this.createClassGroupMap(models, sourceDirectory);
 
-        // // create our set of HTML files
-        // fileManager.createDocs(classGroupMap, modelMap, models, bannerContents, homeContents);
+        // create our set of HTML files
+        fileManager.createDocs(classGroupMap, modelMap, models, bannerContents, homeContents);
 
-        // // we are done!
-        // timer.stop();
-        // Utils.log('ApexDoc2 complete! " + numProcessed + " Apex files processed in " + timer.getTime() + " ms.');
-        // System.exit(0);
+        // we are done!
+        vscode.window.showInformationMessage(
+            `ApexDoc2 complete! ${numProcessed} Apex files processed in ${'<TO_BE_IMPLEMENTED>'} ms.`
+        );
     }
 
     private static createClassGroupMap(models: Array<TopLevelModel>, sourceDirectory: string): Map<string, ClassGroup> {
         const map: Map<string, ClassGroup> = new Map<string, ClassGroup>();
 
         models.forEach(model => {
-            let group = model.getGroupName();
+            const group = model.getGroupName();
             let contentPath = model.getGroupContentPath();
             if (contentPath) {
                 contentPath = sourceDirectory + "/" + contentPath;
@@ -138,6 +132,13 @@ class ApexDoc {
         return map;
     }
 
+    /**
+     * The main routine for parsing our Apex files. Here we collect ApexDoc comments, and create
+     * models of our top-level types (Classes and Enums) and their members (Enum values, Methods,
+     * Properties, Inner Classes, etc.).
+     *
+     * @param filePath The path of the file being parsed
+     */
     public static parseFileContents(filePath: string): TopLevelModel {
         const reader = new LineReader(filePath);
 

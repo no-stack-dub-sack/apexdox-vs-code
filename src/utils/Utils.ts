@@ -2,9 +2,7 @@ import ApexDoc from '../core/ApexDoc';
 import ClassModel from '../models/ClassModel';
 import ApexModel from '../models/ApexModel';
 import { last } from 'lodash';
-
-// veggie liver stuff
-
+import DocGen from '../core/DocGen';
 
 class Utils {
     private static COLLECTIONS: string[] = ['list', 'set', 'map'];
@@ -28,18 +26,78 @@ class Utils {
         'time'
     ];
 
-    public static isURL(str: string): boolean {
-        if (!str) {
-            return false;
+    public static isClassOrInterface(line: string): boolean {
+        // Account for inner classes or @isTest classes without an access modifier; implicitly private
+        if (/.*\bclass\b.*/.test(line.toLowerCase()) || /\s?\binterface\s/i.test(line.toLowerCase())) {
+            return true;
         }
 
-        // TODO: consider all cases. Should we just use Validator?
-        // Definitely if there are other validation cases which call for another method from it.
-        return /^(https?):\/\/[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]/.test(str.trim());
+        return false;
     }
 
-    public static isMarkdownURL(str: string): boolean {
-        return /^\\[.*\\]\\(.*\\)$/.test(str.trim());
+    public static isEnum(line: string): boolean {
+        line = this.stripAnnotations(line);
+        if (/^(global\s+|public\s+|private\s+)?enum\b.*/.test(line)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static stripAnnotations(line: string): string {
+        let i = 0;
+        while (line && line.trim().startsWith('@')) {
+            line = line.trim().replace(/@\w+\s*(\([\w=.*''/\s]+\))?/, '');
+            if (i >= 100) {
+                break; // infinite loop protect, just in case
+            }
+            i++;
+        }
+
+        return line;
+    }
+
+    public static parseAnnotations(previousLine: string, line: string, model: ApexModel): void {
+        // If previous line is not a comment line, it could be an annotation line.
+        // Annotations may also be on the signature line, so check both for matches.
+        if (previousLine && !previousLine.startsWith('*')) {
+            line = previousLine + ' ' + line;
+        }
+
+        let matches: RegExpMatchArray | null = line.match(/@\w+\s*(\([\w=.*''/\s]+\))?/g);
+
+        if (matches !== null) {
+            matches.forEach(match => {
+                if (match) {
+                    model && model.getAnnotations().push(match.trim());
+                }
+            });
+        }
+    }
+
+    /**
+     * Helper method to determine if a line being parsed should be skipped.
+     * Ignore lines not dealing with scope unless they start with the certain keywords:
+     * We do not want to skip @isTest classes, inner classes, inner interfaces, or inner
+     * enums defined without without explicit access modifiers. These are assumed to be
+     * private. Also, interface methods don't have scope, so don't skip those lines either.
+     */
+    public static shouldSkipLine(line: string, cModel?: ClassModel): boolean {
+        let classNameParts = cModel && cModel.getName().split('.') || [''];
+        let className = last(classNameParts);
+
+        if (this.containsScope(line) === null &&
+            !line.toLowerCase().startsWith(ApexDoc.ENUM + " ") &&
+            !line.toLowerCase().startsWith(ApexDoc.CLASS + " ") &&
+            !line.toLowerCase().startsWith(ApexDoc.INTERFACE + " ") &&
+            // don't skip default constructors without access modifiers
+            !(cModel && new RegExp('\\b' + className + '\\s*\\(').test(line)) &&
+            // don't skip interface methods - they don't have access modifiers
+            !(cModel && cModel.getIsInterface() && line.includes('('))) {
+                return true;
+        }
+
+        return false;
     }
 
     /**
@@ -93,18 +151,6 @@ class Utils {
         return null;
     }
 
-    public static stripAnnotations(line: string): string {
-        let i = 0;
-        while (line && line.trim().startsWith('@')) {
-            line = line.trim().replace(/@\w+\s*(\([\w=.*''/\s]+\))?/, '');
-            if (i >= 100) {
-                break; // infinite loop protect, just in case
-            }
-            i++;
-        }
-
-        return line;
-    }
 
     public static previousWord(str: string, searchIdx: number): string {
         if (!str) {
@@ -136,67 +182,6 @@ class Utils {
         }
     }
 
-    public static isClassOrInterface(line: string): boolean {
-        // Account for inner classes or @isTest classes without an access modifier; implicitly private
-        if (/.*\bclass\b.*/.test(line.toLowerCase()) || /\s?\binterface\s/i.test(line.toLowerCase())) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public static parseAnnotations(previousLine: string, line: string, model: ApexModel): void {
-        // If previous line is not a comment line, it could be an annotation line.
-        // Annotations may also be on the signature line, so check both for matches.
-        if (previousLine && !previousLine.startsWith('*')) {
-            line = previousLine + ' ' + line;
-        }
-
-        let matches: RegExpMatchArray | null = line.match(/@\w+\s*(\([\w=.*''/\s]+\))?/g);
-
-        if (matches !== null) {
-            matches.forEach(match => {
-                if (match) {
-                    model && model.getAnnotations().push(match.trim());
-                }
-            });
-        }
-    }
-
-    /**
-     * @description Helper method to determine if a line being parsed should be skipped.
-     * Ignore lines not dealing with scope unless they start with the certain keywords:
-     * We do not want to skip @isTest classes, inner classes, inner interfaces, or inner
-     * enums defined without without explicit access modifiers. These are assumed to be
-     * private. Also, interface methods don't have scope, so don't skip those lines either.
-     */
-    public static shouldSkipLine(line: string, cModel?: ClassModel): boolean {
-        let classNameParts = cModel && cModel.getName().split('.') || [''];
-        let className = last(classNameParts);
-
-        if (this.containsScope(line) === null &&
-            !line.toLowerCase().startsWith(ApexDoc.ENUM + " ") &&
-            !line.toLowerCase().startsWith(ApexDoc.CLASS + " ") &&
-            !line.toLowerCase().startsWith(ApexDoc.INTERFACE + " ") &&
-            // don't skip default constructors without access modifiers
-            !(cModel && new RegExp('\\b' + className + '\\s*\\(').test(line)) &&
-            // don't skip interface methods - they don't have access modifiers
-            !(cModel && cModel.getIsInterface() && line.includes('('))) {
-                return true;
-        }
-
-        return false;
-    }
-
-    public static isEnum(line: string): boolean {
-        line = this.stripAnnotations(line);
-        if (/^(global\s+|public\s+|private\s+)?enum\b.*/.test(line)) {
-            return true;
-        }
-
-        return false;
-    }
-
     public static countChars(str: string, char: string): number {
         let count = 0;
         for (let i = 0; i < str.length; ++i) {
@@ -205,6 +190,46 @@ class Utils {
             }
         }
         return count;
+    }
+
+    public static isURL(str: string): boolean {
+        if (!str) {
+            return false;
+        }
+
+        // TODO: consider all cases. Should we just use Validator?
+        // Definitely if there are other validation cases which call for another method from it.
+        return /^(https?):\/\/[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]/.test(str.trim());
+    }
+
+    public static isMarkdownURL(str: string): boolean {
+        return /^\\[.*\\]\\(.*\\)$/.test(str.trim());
+    }
+
+    public static markdownUrlToLink(str: string): string {
+        str = str.trim();
+
+        const linkName = str.substring(1, str.indexOf(']'));
+        const url = str.substring(str.indexOf('](') + 2, str.length - 1);
+
+        return Utils.isURL(url)
+            ? `<a target="_blank" href="${url}">${linkName}</a>`
+            : `<span title="URL is invalid!">${linkName}</span>`;
+    }
+
+    /**
+    * Help highlight.js along, since props and enum signatures are not
+    * recognized by highlight.js since they are not full declarations.
+    */
+   public static highlightNameLine(nameLine: string): string {
+        if (nameLine.includes('(')) {
+            const name = this.previousWord(nameLine, nameLine.indexOf('('));
+            return nameLine.replace(name, `<span class="hljs-title">${name}</span>`);
+        } else {
+            const words = DocGen.escapeHTML(nameLine, false).split(' ');
+            words[words.length - 1] = `<span class="hljs-title">${last(words)}<span>`;
+            return words.join(' ');
+        }
     }
 }
 
