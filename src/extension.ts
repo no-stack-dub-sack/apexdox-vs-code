@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import ApexDoc from './core/ApexDoc';
 import Config from './core/Config';
+import { createDocServer, closeServer } from './server';
 
 // define ApexDoc2 Config object
 export interface ApexDoc2Config {
@@ -23,8 +24,9 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('extension.runApexDoc2', () => {
-		const config: Config = getApexDocConfig();
+	const config: Config = getApexDocConfig();
+
+	let runApexDoc2 = vscode.commands.registerCommand('extension.runApexDoc2', () => {
 		try {
 			ApexDoc.extensionRoot = context.extensionPath;
 			ApexDoc.runApexDoc(config);
@@ -34,11 +36,22 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	context.subscriptions.push(disposable);
+	let openDocs = vscode.commands.registerCommand('extension.openDocs', () => {
+		try {
+			createDocServer(config.targetDirectory, config.title);
+		} catch (e) {
+			console.log(e);
+			vscode.window.showErrorMessage(e.message);
+		}
+	});
+
+	context.subscriptions.push(...[runApexDoc2, openDocs]);
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() { }
+export function deactivate() {
+	closeServer();
+}
 
 function getApexDocConfig(): Config {
 	// Clone object when fetching config to avoid 'read only' field error when trying to overwrite defaults.

@@ -224,8 +224,8 @@ abstract class ApexModel {
         if (/.*\.s?html?$/.test(line.trim()) && existsSync(path)) {
             return true;
         } else {
-            vscode.window.showErrorMessage(
-                `WARNING: @group-content path '${path.replace(/\\/g, '/')}' in file '${ApexDoc.currentFile}' is invalid!`
+            vscode.window.showWarningMessage(
+                `@group-content path '${path.replace(/\\/g, '/')}' in file '${ApexDoc.currentFile}' is invalid!`
             );
             return false;
         }

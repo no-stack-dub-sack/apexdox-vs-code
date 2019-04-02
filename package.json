@@ -10,14 +10,19 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.runApexDoc2"
+		"onCommand:extension.runApexDoc2",
+		"onCommand:extension.openDocs"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "extension.runApexDoc2",
-				"title": "Run ApexDoc2"
+				"title": "ApexDoc2: Run"
+			},
+			{
+				"command": "extension.openDocs",
+				"title": "ApexDoc2: Open Docs"
 			}
 		]
 	},
@@ -59,14 +64,18 @@
 		"test": "yarn run compile && node ./node_modules/vscode/bin/test"
 	},
 	"devDependencies": {
+		"@types/express": "^4.16.1",
 		"@types/lodash": "^4.14.123",
 		"@types/mocha": "^2.2.42",
 		"@types/node": "^10.12.21",
+		"@types/open": "^6.0.0",
 		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
 		"vscode": "^1.1.28"
 	},
 	"dependencies": {
-		"lodash": "^4.17.11"
+		"express": "^4.16.4",
+		"lodash": "^4.17.11",
+		"open": "^6.0.0"
 	}
 }
