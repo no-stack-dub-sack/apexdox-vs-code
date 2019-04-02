@@ -15,6 +15,7 @@ import {
     mkdirSync,
     writeFileSync
 } from 'fs';
+import { resolve } from 'path';
 
 class FileManager {
     private path: string;
@@ -95,7 +96,7 @@ class FileManager {
     public parseHTMLFile(filePath: string): string {
         let contents = (this.parseFile(filePath)).trim();
         if (contents) {
-            let startIndex = contents.indexOf('<body>');
+            let startIndex = contents.indexOf('<body>') + 6;
             let endIndex = contents.indexOf('</body>');
             if (startIndex !== -1) {
                 if (contents.indexOf('</body>') !== -1) {
@@ -114,7 +115,7 @@ class FileManager {
                 mkdirSync(this.path);
             }
 
-            for (let fileName of fileNameToContent.values()) {
+            for (let fileName of fileNameToContent.keys()) {
                 let contents = fileNameToContent.get(fileName);
                 let fullyQualifiedFileName = this.path + fileName + '.html';
                 writeFileSync(fullyQualifiedFileName, contents);

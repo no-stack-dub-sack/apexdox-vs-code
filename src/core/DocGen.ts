@@ -450,7 +450,7 @@ class DocGen {
             let groupId = group.replace(/\s+/g, "_");
 
             contents += `<details id="${groupId}" class="groupName">`;
-            contents += `<summary onclick="toggleActiveClass(this);" id='header-${groupId}" class="navHeader">`;
+            contents += `<summary onclick="toggleActiveClass(this);" id="header-${groupId}" class="navHeader">`;
 
             if (cg && cg.getContentFilename()) {
                 let destination = cg.getContentFilename() + '.html';

@@ -147,9 +147,9 @@ class ClassModel extends TopLevelModel {
             // TODO: come back to this. Does this work as expected? Is it needed?
             try {
                 let name = nameLine.substring(0, spaceAt);
-                return parent + name;
+                return (parent + name).trim();
             } catch (ex) {
-                return parent + nameLine.substring(nameLine.lastIndexOf(" ") + 1);
+                return (parent + nameLine.substring(nameLine.lastIndexOf(" ") + 1)).trim();
             }
         } else {
             return '';

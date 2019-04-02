@@ -27,7 +27,7 @@ class LineReader {
      */
     public readLine(): string | null {
         let result;
-        if (this.nextIndex <= this.end) {
+        if (this.nextIndex < this.end) {
             result = this.lines[this.nextIndex];
             this.nextIndex++;
             return result;

@@ -51,7 +51,7 @@ class Guards {
         } else {
             throw new ApexDocError(
                 "Value for <target_directory> argument: '" + path +
-                "' is invalid. Please provide a valid directory."
+                "' is invalid. Please provide a valid path."
             );
         }
     }

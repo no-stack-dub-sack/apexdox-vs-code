@@ -25,10 +25,6 @@ export function activate(context: vscode.ExtensionContext) {
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('extension.runApexDoc2', () => {
 		const config: Config = getApexDocConfig();
-		if (true) {
-			console.log('cool! But where do you go!?');
-		}
-
 		try {
 			ApexDoc.extensionRoot = context.extensionPath;
 			ApexDoc.runApexDoc(config);

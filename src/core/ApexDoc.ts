@@ -43,6 +43,7 @@ class ApexDoc {
     public static registerScope: string[];
     public static extensionRoot: string;
     public static targetDirectory: string;
+    public static sourceDirectory: string;
     public static currentFile: string;
 
     /**
@@ -56,20 +57,20 @@ class ApexDoc {
 
         // prepare arguments, ensure compliant
         this.registerScope = Guards.scope(config.scope);
-        this.targetDirectory = Guards.targetDirectory(config.targetDirectory);
+        this.sourceDirectory = Guards.directory(config.sourceDirectory, 'source_directory');
 
         const includes = config.includes || [];
         const excludes = config.excludes || [];
         const sortOrder = Guards.sortOrder(config.sortOrder);
         const sourceControlURL = Guards.sourceURL(config.sourceControlURL);
+        const targetDirectory = Guards.targetDirectory(config.targetDirectory);
         const showTOCSnippets = Guards.showTOCSnippets(config.showTOCSnippets);
         const homePagePath = Guards.directory(config.homePagePath, 'home_page');
         const bannerPagePath = Guards.directory(config.bannerPagePath, 'banner_page');
-        const sourceDirectory = Guards.directory(config.sourceDirectory, 'source_directory');
         const documentTitle = Guards.typeGuard('string', config.title, 'title') ? config.title : '';
 
         const fileManager = new FileManager(this.targetDirectory, documentTitle);
-        const files = fileManager.getFiles(sourceDirectory, includes, excludes);
+        const files = fileManager.getFiles(this.sourceDirectory, includes, excludes);
         const modelMap = new Map<string, TopLevelModel>();
         const models: Array<TopLevelModel> = [];
 
@@ -84,7 +85,7 @@ class ApexDoc {
         // parse our top-level class files
         files.forEach(fileName => {
             this.currentFile = fileName;
-            const filePath = sourceDirectory + '/' + fileName;
+            const filePath = this.sourceDirectory + '/' + fileName;
             const model = this.parseFileContents(filePath);
             modelMap.set(model.getName().toLowerCase(), model);
             if (model) {
@@ -96,7 +97,7 @@ class ApexDoc {
         // load up optional specified file templates and create class groups for menu
         const homeContents = fileManager.parseHTMLFile(homePagePath);
         const bannerContents = fileManager.parseHTMLFile(bannerPagePath);
-        const classGroupMap = this.createClassGroupMap(models, sourceDirectory);
+        const classGroupMap = this.createClassGroupMap(models, this.sourceDirectory);
 
         // create our set of HTML files
         fileManager.createDocs(classGroupMap, modelMap, models, bannerContents, homeContents);
@@ -151,13 +152,13 @@ class ApexDoc {
         let comments: string[] = [];
 
         while ((line = reader.readLine()) !== null) {
-            // skip empty lines and rogue undefined strings
-            if (typeof line !== 'string' || !line.trim()) {
-                continue;
-            }
-
             line = line.trim();
             lineNum++;
+
+            // skip empty lines
+            if (!line.trim()) {
+                continue;
+            }
 
             // ignore anything after // style comments. this allows hiding
             // of tokens from ApexDoc. However, don't ignore when line
@@ -309,14 +310,19 @@ class ApexDoc {
             // handle set & get within the property
             // TODO: none of these should ever evaluate to true!
             // shouldSkipLne should skip these lines. test this.
+            let didCatchOnThese = false;
             if (line.includes(' get ') ||
                 line.includes(' set ') ||
                 line.includes(' get;') ||
                 line.includes(' set;') ||
                 line.includes(' get{') ||
                 line.includes(' set{')) {
+                    didCatchOnThese = true;
+                    console.log('WHOOPS!!!!');
                 continue;
             }
+
+            console.log('SHOULD THESE BE REMOVED!??? Answer: ' + !(didCatchOnThese));
 
             // must be a property
             let pModel: PropertyModel = new PropertyModel(comments, line, lineNum);

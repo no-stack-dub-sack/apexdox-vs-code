@@ -215,7 +215,7 @@ abstract class ApexModel {
     // make sure path relative to target
     // directory exists for @group-content token
     private pathExists(line: string): boolean {
-        let root = ApexDoc.targetDirectory;
+        let root = ApexDoc.sourceDirectory;
         if (!root.endsWith('/') && !root.endsWith('\\')) {
             root += '/';
         }
