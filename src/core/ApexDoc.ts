@@ -42,7 +42,6 @@ class ApexDoc {
 
     public static registerScope: string[];
     public static extensionRoot: string;
-    public static targetDirectory: string;
     public static sourceDirectory: string;
     public static currentFile: string;
 
@@ -69,7 +68,7 @@ class ApexDoc {
         const bannerPagePath = Guards.directory(config.bannerPagePath, 'banner_page');
         const documentTitle = Guards.typeGuard('string', config.title, 'title') ? config.title : '';
 
-        const fileManager = new FileManager(this.targetDirectory, documentTitle);
+        const fileManager = new FileManager(targetDirectory, documentTitle);
         const files = fileManager.getFiles(this.sourceDirectory, includes, excludes);
         const modelMap = new Map<string, TopLevelModel>();
         const models: Array<TopLevelModel> = [];
