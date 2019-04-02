@@ -372,7 +372,7 @@ class DocGen {
     }
 
     private static wrapInlineCode(html: string): string {
-        const words = html.split("\\b\\s{1,2}\\b")
+        const words = html.split(/\b\s{1,2}\b/)
             .map(word => {
                 let firstIndex = word.indexOf(' ');
                 let lastIndex = word.lastIndexOf(' ');
@@ -399,7 +399,7 @@ class DocGen {
         // add checkboxes for registered scopes
         const checkBoxes = ApexDoc.registerScope.map(scope =>
             `<input type="checkbox" checked="true" id="cbx-${scope}" ` +
-            `onclick="toggleScope("${scope}", this.checked);" />` +
+            `onclick="toggleScope('${scope}', this.checked);" />` +
             `<label for="cbx-${scope}">${scope}</label>`
         );
 
@@ -436,7 +436,7 @@ class DocGen {
         let contents = '<td width="22%" vertical-align="top">';
         contents += '<div class="navbar">';
         contents += '<nav role="navigation">';
-        contents += '<a class="navHeader" id="home" href="javascript:void(0)" onclick="goToLocation(\'index.html\');">';
+        contents += `<a class="navHeader" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">`;
         contents += 'Home</a>';
 
         // add a bucket ClassGroup for all Classes without a ClassGroup specified
@@ -505,7 +505,7 @@ class DocGen {
 
         // the @see token may contain a comma separated list of fully qualified
         // method or class names. Start by splitting them into individual qualifiers.
-        const qualifiers = qualifiersStr.split(",");
+        const qualifiers = qualifiersStr.split(',');
 
         // initialize list to store created links
         const links: string[] = [];
@@ -552,10 +552,10 @@ class DocGen {
                 qualifier = qualifier.substring(0, i);
             }
 
-            let parts = qualifier.split("\\.").map(p => p.toLowerCase());
+            let parts = qualifier.split('.').map(p => p.toLowerCase());
 
             if (parts.length > 3) {
-                throw new ApexDocError(errorMessage);
+                throw new ApexDocError(`Qualifier: '${qualifier}' is invalid. ${errorMessage}`);
             }
 
             let href = '';
@@ -582,8 +582,8 @@ class DocGen {
                     let methodNum = 0;
                     for (let method of methods) {
                         if (method.getMethodName().toLowerCase() === parts[1]) {
-                            // use actual class/methof name to create link to avoid case issues
-                            href = Class.getName() + ".html#" + Class.getName() + '.' + method.getMethodName();
+                            // use actual class/method name to create link to avoid case issues
+                            href = Class.getName() + '.html#' + Class.getName() + '.' + method.getMethodName();
                             // no overload selector, we've made a match!
                             if (overloadSelector === 0) {
                                 foundMatch = true;
@@ -644,7 +644,7 @@ class DocGen {
             // Otherwise, add span with Tooltip indicating no link could be made
             let link: string;
             if (foundMatch) {
-                link = `<a href="javascript:void(0)" onclick="goToLocation(${href})">${qualifier}</a>`;
+                link = `<a href="javascript:void(0)" onclick="goToLocation('${href}')">${qualifier}</a>`;
             } else {
                 link = `<span title="A matching reference could not be found!">${qualifier}</span>`;
             }

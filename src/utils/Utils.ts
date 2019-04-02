@@ -203,7 +203,7 @@ class Utils {
     }
 
     public static isMarkdownURL(str: string): boolean {
-        return /^\\[.*\\]\\(.*\\)$/.test(str.trim());
+        return /^\[.*\]\(.*\)$/.test(str.trim());
     }
 
     public static markdownUrlToLink(str: string): string {
