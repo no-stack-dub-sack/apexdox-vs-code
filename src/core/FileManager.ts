@@ -31,7 +31,7 @@ class FileManager {
         let filesToCopy: string[] = [];
         let files: string[];
         files = readdirSync(sourceDirectory);
-
+        // make sure files is truthy and contains Apex classes
         if (files && files.some(file => file.endsWith('cls'))) {
             files.forEach(fileName => {
                 // make sure entry is a file and is an apex cl
@@ -62,8 +62,8 @@ class FileManager {
                     }
                 }
             });
-            throw new ApexDocError(ApexDocError.NO_FILES_FOUND(sourceDirectory));
         } else {
+            throw new ApexDocError(ApexDocError.NO_FILES_FOUND(sourceDirectory));
         }
 
         return filesToCopy;
