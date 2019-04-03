@@ -1,5 +1,6 @@
 export const HEADER_OPEN =
     `<script type="text/javascript" src="index.js"></script>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="highlight.css">
     <script charset="UTF-8" src="highlight.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css" />
