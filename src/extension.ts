@@ -9,12 +9,9 @@ function getConfig(): IApexDocConfig {
 		...vscode.workspace.getConfiguration('apexdoc2')['config']
 	});
 }
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+
 export function activate(context: vscode.ExtensionContext) {
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
+	// main ApexDoc2 command
 	let runApexDoc2 = vscode.commands.registerCommand('extension.runApexDoc2', () => {
 		try {
 			const config: IApexDocConfig = getConfig();
@@ -26,7 +23,8 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	let openDocs = vscode.commands.registerCommand('extension.openDocs', () => {
+	// serve created docs over HTTP on local host
+	let serveDocs = vscode.commands.registerCommand('extension.serveDocs', () => {
 		try {
 			const config: IApexDocConfig = getConfig();
 			createDocServer(config.targetDirectory, config.title, Guards.portGuard(config.port));
@@ -36,7 +34,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	context.subscriptions.push(...[runApexDoc2, openDocs]);
+	context.subscriptions.push(...[runApexDoc2, serveDocs]);
 }
 
 export function deactivate() {

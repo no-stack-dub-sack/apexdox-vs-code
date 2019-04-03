@@ -11,7 +11,7 @@
 	],
 	"activationEvents": [
 		"onCommand:extension.runApexDoc2",
-		"onCommand:extension.openDocs"
+		"onCommand:extension.serveDocs"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -21,7 +21,7 @@
 				"title": "ApexDoc2: Run"
 			},
 			{
-				"command": "extension.openDocs",
+				"command": "extension.serveDocs",
 				"title": "ApexDoc2: Open Docs"
 			}
 		]
