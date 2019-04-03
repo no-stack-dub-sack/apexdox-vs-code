@@ -361,8 +361,8 @@ class DocGen {
 
     public static escapeHTML(str: string, wrapBackticks: boolean): string {
         let result = wrapBackticks ? this.wrapInlineCode(escape(str)) : escape(str);
-        // preserve <br> tags so they render as HTML
-        result = result.replace(/&#60;br\\s?\/?&#62;/g, '<br>');
+        // unescape <br> tags, we want to keep these
+        result = result.replace(/&lt;br\s?\/?&gt;/g, '<br>');
 
         return result;
     }
