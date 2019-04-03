@@ -2,7 +2,7 @@ import { last } from 'lodash';
 import * as vscode from 'vscode';
 import ClassGroup from '../models/ClassGroup';
 import ClassModel from '../models/ClassModel';
-import Config from './Config';
+import { IApexDocConfig } from './Config';
 import DocGen from './DocGen';
 import EnumModel from '../models/EnumModel';
 import FileManager from './FileManager';
@@ -51,7 +51,7 @@ class ApexDoc {
      * @param config The configuration collected from the users config,
      * supplemented with any defaults if user did not include them.
      */
-    public static runApexDoc(config: Config): void {
+    public static runApexDoc(config: IApexDocConfig): void {
         // TODO: replace StopWatch functionality
         try {
 

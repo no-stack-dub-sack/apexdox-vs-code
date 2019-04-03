@@ -1,26 +1,14 @@
 import * as vscode from 'vscode';
 import ApexDoc from './core/ApexDoc';
-import Config from './core/Config';
+import Configurator, { IApexDocConfig } from './core/Config';
 import { createDocServer, closeServer } from './server';
 import Guards from './utils/Guards';
 
-// define ApexDoc2 Config object
-export interface ApexDoc2Config {
-	sourceDirectory: string;
-	targetDirectory: string;
-	includes?: string[];
-	excludes?: string[];
-	sourceControlURL?: string;
-	homePagePath?: string;
-	bannerPagePath?: string;
-	scope?: string[];
-	title?: string;
-	showTOCSnippets?: boolean;
-	sortOrder?: string;
-	assets?: string[];
-	port: number;
+function getConfig(): IApexDocConfig {
+	return Configurator.merge({
+		...vscode.workspace.getConfiguration('apexdoc2')['config']
+	});
 }
-
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -29,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// The commandId parameter must match the command field in package.json
 	let runApexDoc2 = vscode.commands.registerCommand('extension.runApexDoc2', () => {
 		try {
-			const config: Config = getApexDocConfig();
+			const config: IApexDocConfig = getConfig();
 			ApexDoc.extensionRoot = context.extensionPath;
 			ApexDoc.runApexDoc(config);
 		} catch (e) {
@@ -40,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let openDocs = vscode.commands.registerCommand('extension.openDocs', () => {
 		try {
-			const config: Config = getApexDocConfig();
+			const config: IApexDocConfig = getConfig();
 			createDocServer(config.targetDirectory, config.title, Guards.portGuard(config.port));
 		} catch (e) {
 			console.log(e);
@@ -51,13 +39,6 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(...[runApexDoc2, openDocs]);
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {
 	closeServer();
-}
-
-function getApexDocConfig(): Config {
-	// Clone object when fetching config to avoid 'read only' field error when trying to overwrite defaults.
-	const config: ApexDoc2Config = { ...vscode.workspace.getConfiguration('apexdoc2')['config'] };
-	return Config.merge(config);
 }

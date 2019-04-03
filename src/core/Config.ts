@@ -1,8 +1,23 @@
 import ApexDoc from './ApexDoc';
-import { ApexDoc2Config } from '../extension';
 import * as vscode from 'vscode';
 
-class Config implements ApexDoc2Config {
+export interface IApexDocConfig {
+	sourceDirectory: string;
+	targetDirectory: string;
+	includes: string[];
+	excludes: string[];
+	sourceControlURL: string;
+	homePagePath: string;
+	bannerPagePath: string;
+	scope: string[];
+	title: string;
+	showTOCSnippets: boolean;
+	sortOrder: string;
+	assets: string[];
+	port: number;
+}
+
+class Config implements IApexDocConfig {
     public sourceDirectory: string;
     public includes: string[];
     public excludes: string[];
@@ -41,7 +56,7 @@ class Config implements ApexDoc2Config {
         this.sortOrder = ApexDoc.ORDER_ALPHA;
     }
 
-    public static merge(userConfig: ApexDoc2Config) {
+    public static merge(userConfig: IApexDocConfig): IApexDocConfig {
         const defaults = new Config();
 
         return {
