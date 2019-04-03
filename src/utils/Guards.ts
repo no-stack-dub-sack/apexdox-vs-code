@@ -1,10 +1,10 @@
 import { existsSync } from 'fs';
 import Utils from './Utils';
 import ApexDoc from '../core/ApexDoc';
-
-export class ApexDocError extends Error {}
+import ApexDocError from './ApexDocError';
 
 class Guards {
+
     public static directory(path: string, arg: string): string {
         this.typeGuard('string', path, arg);
         if (path === '' || existsSync(path)) {
@@ -14,9 +14,7 @@ class Guards {
             }
             return path;
         } else {
-            throw new ApexDocError(
-                `Value for <${arg}> argument: '${path}' is invalid. Please provide a valid directory.`
-            );
+            throw new ApexDocError(ApexDocError.INVALID_DIRECTORY(arg, path));
         }
     }
 
@@ -26,9 +24,16 @@ class Guards {
         if (sortOrder === ApexDoc.ORDER_LOGICAL || sortOrder === ApexDoc.ORDER_ALPHA) {
             return sortOrder;
         } else {
-            throw new ApexDocError(
-                `Value for <sort_order> argument '${sortOrder}' is invalid. Options for this argument are: 'logical' or 'alpha'.`
-            );
+            throw new ApexDocError(ApexDocError.INVALID_SORT_ORDER(sortOrder));
+        }
+    }
+
+    public static portGuard(port: number): number {
+        this.typeGuard('number', port, 'port');
+        if (/^([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$/.test(String(port))) {
+            return port;
+        } else {
+            throw new ApexDocError(ApexDocError.INVALID_PORT(port));
         }
     }
 
@@ -37,10 +42,7 @@ class Guards {
         if (str === '' || Utils.isURL(str)) {
             return str.trim();
         } else {
-            throw new ApexDocError(
-                'Value for <source_url> argument: \'str\' is invalid. Please provide a valid URL where your source ' +
-                'code is hosted, e.g.: \'https://github.com/no-stack-dub-sack/ApexDoc2/tree/master/src/main\''
-            );
+            throw new ApexDocError(ApexDocError.INVALID_SOURCE_URL(str));
         }
     }
 
@@ -49,10 +51,7 @@ class Guards {
         if (path && path.length > 0) {
             return path.endsWith('/') || path.endsWith('\\') ? path : path + '/';
         } else {
-            throw new ApexDocError(
-                "Value for <target_directory> argument: '" + path +
-                "' is invalid. Please provide a valid path."
-            );
+            throw new ApexDocError(ApexDocError.INVALID_TARGET_DIRECTORY(path));
         }
     }
 
@@ -64,24 +63,32 @@ class Guards {
         }
     }
 
+    public static assets(assets: string[]): string[] {
+        this.typeGuard('array', assets, 'assets');
+        assets.forEach(resource => {
+            if (typeof resource !== 'string') {
+                throw new ApexDocError(ApexDocError.ONLY_STRINGS('assets'));
+            }
+        });
+        return assets;
+    }
+
     public static scope(scopes: string[]): string[] {
         this.typeGuard('array', scopes, 'scope');
-        const commonError = 'Please provide a comma delimited list of valid scopes. ' +
-            'Valid scopes include: ' + ApexDoc.SCOPES.join(', ');
 
         if (scopes.length > 6) {
-            throw new ApexDocError(`Argument <scope> has too many entries. ${commonError}`);
+            throw new ApexDocError(ApexDocError.SCOPE_ENTRIES_MAX);
         }
 
         if (scopes.length === 0) {
-            throw new ApexDocError(`Argument <scope> must have at least one entry. ${commonError}`);
+            throw new ApexDocError(ApexDocError.SCOPE_ENTRIES_MIN);
         }
 
         let registeredScopes: string[] = [];
 
         scopes.forEach(scope => {
             if (typeof scope !== 'string') {
-                throw new ApexDocError('Argument <scope> array may only contain strings.');
+                throw new ApexDocError(ApexDocError.ONLY_STRINGS('scope'));
             }
 
             let foundScope = false;
@@ -94,7 +101,7 @@ class Guards {
             });
 
             if (!foundScope) {
-                throw new ApexDocError(`Entry for <scope> argument: '${scope}' is invalid. ${commonError}`);
+                throw new ApexDocError(ApexDocError.SCOPE_ENTRY_INVALID(scope));
             }
         });
 
@@ -105,7 +112,7 @@ class Guards {
         if ((type === 'array' && Array.isArray(value)) || typeof value === type) {
             return true;
         } else {
-            throw new ApexDocError(`Value for <${arg}> argument is incorrect type. Expected '${type}'`);
+            throw new ApexDocError(ApexDocError.INVALID_TYPE(arg, type));
         }
     }
 }

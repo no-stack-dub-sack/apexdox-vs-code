@@ -12,13 +12,13 @@ class ClassModel extends TopLevelModel {
     private methods: Array<MethodModel>;
     private childClasses: Array<ClassModel>;
     private properties: Array<PropertyModel>;
-    private childClassNameToChildClass: Map<string, ClassModel>;
+    private childClassMap: Map<string, ClassModel>;
 
     public constructor(cmodelParent: ClassModel | undefined, comments: string[], nameLine: string, lineNum: number) {
         super(comments, ModelType.CLASS);
         super.setNameLine(nameLine, lineNum);
 
-        this.childClassNameToChildClass = new Map<string, ClassModel>();
+        this.childClassMap = new Map<string, ClassModel>();
         this.isInterface = this.setIsInterface(nameLine);
         this.cmodelParent = cmodelParent;
         this.childClasses = [];
@@ -111,11 +111,11 @@ class ClassModel extends TopLevelModel {
     public addChildClass(child: ClassModel): void {
         this.childClasses.push(child);
         // also add child class to map for use in making @see links
-        this.childClassNameToChildClass.set(child.getName().toLowerCase(), child);
+        this.childClassMap.set(child.getName().toLowerCase(), child);
     }
 
     public getChildClassMap(): Map<string, ClassModel> {
-        return this.childClassNameToChildClass;
+        return this.childClassMap;
     }
 
     public getName(): string {

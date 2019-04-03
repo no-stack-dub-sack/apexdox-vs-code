@@ -1,4 +1,4 @@
-import { ApexDocError } from '../utils/Guards';
+import ApexDocError from '../utils/ApexDocError';
 import { escape } from 'lodash';
 import * as HTML from '../utils/HTML';
 import ApexDoc from './ApexDoc';
@@ -498,11 +498,6 @@ class DocGen {
     }
 
     private static makeSeeLinks(modelMap: Map<string, TopLevelModel>, models: Array<TopLevelModel>, qualifiersStr: string): string {
-        const errorMessage =
-            'Each comma separated qualifier of the @see token must be a fully qualified class ' +
-            'or method name, with a minimum of 1 part and a maximum of 3. E.g. MyClassName, ' +
-            'MyClassName.MyMethodName, MyClassName.MyInnerClassName.MyInnerClassMethodName.';
-
         // the @see token may contain a comma separated list of fully qualified
         // method or class names. Start by splitting them into individual qualifiers.
         const qualifiers = qualifiersStr.split(',');
@@ -554,8 +549,8 @@ class DocGen {
 
             let parts = qualifier.split('.').map(p => p.toLowerCase());
 
-            if (parts.length > 3) {
-                throw new ApexDocError(`Qualifier: '${qualifier}' is invalid. ${errorMessage}`);
+            if (!parts.length || parts.length > 3) {
+                throw new ApexDocError(`Qualifier '${qualifier}' is invalid. ${ApexDocError.INVALID_SEE_QUALIFIER}`);
             }
 
             let href = '';
@@ -566,7 +561,7 @@ class DocGen {
             let model = modelMap.get(parts[0]);
 
             if (model) {
-                // if only a single qualifier, scope here
+                // if only a single qualifier, stop here
                 if (parts.length === 1) {
                     href = model.getName() + '.html';
                     foundMatch = true;
@@ -611,7 +606,7 @@ class DocGen {
                         // ApexDoc2 stores child class name as 'OuterClass.InnerClass'
                         // recreate that format below to try to make the match with
                         let childClassName = parts[0] + '.' + parts[1];
-                        let childClass = childClasses.get(childClassName.toLowerCase());
+                        let childClass = childClasses.get(childClassName);
 
                         if (childClass) {
                             let nameParts = childClass.getName().split("\\.");

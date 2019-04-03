@@ -1,13 +1,13 @@
 import * as express from 'express';
 import * as vscode from 'vscode';
 import { Server } from 'http';
+import ApexDoc from './core/ApexDoc';
 const open = require('open');
 
 let server: Server;
 
-export const createDocServer = async (targetDirectory: string, docsTitle: string) => {
+export const createDocServer = async (targetDirectory: string, docsTitle: string, port: number) => {
     const app = express();
-    const port = 8080;
 
     app.use(express.static(targetDirectory));
     server = app.listen(port);

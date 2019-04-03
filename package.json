@@ -1,5 +1,5 @@
 {
-	"name": "apexdoc2-vs-code",
+	"name": "apexdoc2-vscode",
 	"displayName": "ApexDoc2 VS Code",
 	"description": "The VS Code companion extension for ApexDoc2, making documenting your Salesforce Apex files an easy, integrated experience when using VS Code for Salesforce development.",
 	"version": "0.0.1",
@@ -50,7 +50,9 @@
 					],
 					"title": "ApexDocs",
 					"showTOCSnippets": true,
-					"sortOrder": "alpha"
+					"sortOrder": "alpha",
+					"port": 8080,
+					"assets": []
 				},
 				"description": "Configure ApexDoc2 to document your Apex .cls files."
 			}

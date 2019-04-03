@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import { ApexDocError } from './Guards';
+import ApexDocError from './ApexDocError';
 
 /**
  * A utility class similar to C#'s LineReader for synchronously reading a file line by line.
@@ -33,6 +33,7 @@ class LineReader {
             return result;
         }
 
+        // TODO: will this ensure this memory is reclaimed?
         this.lines = [];
         return null;
     }

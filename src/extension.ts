@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import ApexDoc from './core/ApexDoc';
 import Config from './core/Config';
 import { createDocServer, closeServer } from './server';
+import Guards from './utils/Guards';
 
 // define ApexDoc2 Config object
 export interface ApexDoc2Config {
@@ -16,6 +17,8 @@ export interface ApexDoc2Config {
 	title?: string;
 	showTOCSnippets?: boolean;
 	sortOrder?: string;
+	assets?: string[];
+	port: number;
 }
 
 // this method is called when your extension is activated
@@ -24,10 +27,9 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	const config: Config = getApexDocConfig();
-
 	let runApexDoc2 = vscode.commands.registerCommand('extension.runApexDoc2', () => {
 		try {
+			const config: Config = getApexDocConfig();
 			ApexDoc.extensionRoot = context.extensionPath;
 			ApexDoc.runApexDoc(config);
 		} catch (e) {
@@ -38,7 +40,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let openDocs = vscode.commands.registerCommand('extension.openDocs', () => {
 		try {
-			createDocServer(config.targetDirectory, config.title);
+			const config: Config = getApexDocConfig();
+			createDocServer(config.targetDirectory, config.title, Guards.portGuard(config.port));
 		} catch (e) {
 			console.log(e);
 			vscode.window.showErrorMessage(e.message);

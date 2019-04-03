@@ -53,58 +53,63 @@ class ApexDoc {
      */
     public static runApexDoc(config: Config): void {
         // TODO: replace StopWatch functionality
+        try {
 
-        // prepare arguments, ensure compliant
-        this.registerScope = Guards.scope(config.scope);
-        this.sourceDirectory = Guards.directory(config.sourceDirectory, 'source_directory');
+            // prepare arguments, ensure compliant
+            this.registerScope = Guards.scope(config.scope);
+            this.sourceDirectory = Guards.directory(config.sourceDirectory, 'source_directory');
 
-        const includes = config.includes || [];
-        const excludes = config.excludes || [];
-        const sortOrder = Guards.sortOrder(config.sortOrder);
-        const sourceControlURL = Guards.sourceURL(config.sourceControlURL);
-        const targetDirectory = Guards.targetDirectory(config.targetDirectory);
-        const showTOCSnippets = Guards.showTOCSnippets(config.showTOCSnippets);
-        const homePagePath = Guards.directory(config.homePagePath, 'home_page');
-        const bannerPagePath = Guards.directory(config.bannerPagePath, 'banner_page');
-        const documentTitle = Guards.typeGuard('string', config.title, 'title') ? config.title : '';
+            const includes = config.includes || [];
+            const excludes = config.excludes || [];
+            const sortOrder = Guards.sortOrder(config.sortOrder);
+            const assets = Guards.assets(config.assets);
+            const sourceControlURL = Guards.sourceURL(config.sourceControlURL);
+            const targetDirectory = Guards.targetDirectory(config.targetDirectory);
+            const showTOCSnippets = Guards.showTOCSnippets(config.showTOCSnippets);
+            const homePagePath = Guards.directory(config.homePagePath, 'home_page');
+            const bannerPagePath = Guards.directory(config.bannerPagePath, 'banner_page');
+            const documentTitle = Guards.typeGuard('string', config.title, 'title') ? config.title : '';
 
-        const fileManager = new FileManager(targetDirectory, documentTitle);
-        const files = fileManager.getFiles(this.sourceDirectory, includes, excludes);
-        const modelMap = new Map<string, TopLevelModel>();
-        const models: Array<TopLevelModel> = [];
+            const fileManager = new FileManager(targetDirectory, documentTitle, assets);
+            const files = fileManager.getFiles(this.sourceDirectory, includes, excludes);
+            const modelMap = new Map<string, TopLevelModel>();
+            const models: Array<TopLevelModel> = [];
 
-        // set up document generator
-        DocGen.sortOrderStyle = sortOrder;
-        DocGen.sourceControlURL = sourceControlURL;
-        DocGen.showTOCSnippets = showTOCSnippets;
+            // set up document generator
+            DocGen.sortOrderStyle = sortOrder;
+            DocGen.sourceControlURL = sourceControlURL;
+            DocGen.showTOCSnippets = showTOCSnippets;
 
-        // track the number of files we've processed
-        let numProcessed = 0;
+            // track the number of files we've processed
+            let numProcessed = 0;
 
-        // parse our top-level class files
-        files.forEach(fileName => {
-            this.currentFile = fileName;
-            const filePath = this.sourceDirectory + '/' + fileName;
-            const model = this.parseFileContents(filePath);
-            modelMap.set(model.getName().toLowerCase(), model);
-            if (model) {
-                models.push(model);
-                numProcessed++;
-            }
-        });
+            // parse our top-level class files
+            files.forEach(fileName => {
+                this.currentFile = fileName;
+                const filePath = this.sourceDirectory + '/' + fileName;
+                const model = this.parseFileContents(filePath);
+                modelMap.set(model.getName().toLowerCase(), model);
+                if (model) {
+                    models.push(model);
+                    numProcessed++;
+                }
+            });
 
-        // load up optional specified file templates and create class groups for menu
-        const homeContents = fileManager.parseHTMLFile(homePagePath);
-        const bannerContents = fileManager.parseHTMLFile(bannerPagePath);
-        const classGroupMap = this.createClassGroupMap(models, this.sourceDirectory);
+            // load up optional specified file templates and create class groups for menu
+            const homeContents = fileManager.parseHTMLFile(homePagePath);
+            const bannerContents = fileManager.parseHTMLFile(bannerPagePath);
+            const classGroupMap = this.createClassGroupMap(models, this.sourceDirectory);
 
-        // create our set of HTML files
-        fileManager.createDocs(classGroupMap, modelMap, models, bannerContents, homeContents);
+            // create our set of HTML files
+            fileManager.createDocs(classGroupMap, modelMap, models, bannerContents, homeContents);
 
-        // we are done!
-        vscode.window.showInformationMessage(
-            `ApexDoc2 complete! ${numProcessed} Apex files processed in ${'<TO_BE_IMPLEMENTED>'} ms.`
-        );
+            // we are done!
+            vscode.window.showInformationMessage(
+                `ApexDoc2 complete! ${numProcessed} Apex files processed in ${'<TO_BE_IMPLEMENTED>'} ms.`
+            );
+        } catch (err) {
+            throw err;
+        }
     }
 
     private static createClassGroupMap(models: Array<TopLevelModel>, sourceDirectory: string): Map<string, ClassGroup> {

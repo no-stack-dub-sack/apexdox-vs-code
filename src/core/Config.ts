@@ -14,6 +14,8 @@ class Config implements ApexDoc2Config {
     public title: string;
     public showTOCSnippets: boolean;
     public sortOrder: string;
+    public assets: string[];
+    public port: number;
 
     public constructor() {
         let projectRoot = '.';
@@ -26,14 +28,16 @@ class Config implements ApexDoc2Config {
         this.sourceDirectory = projectRoot + '\\src\\classes';
         this.targetDirectory = projectRoot + '\\documentation\\apex';
 
+        this.port = 8080;
         this.includes = [];
         this.excludes = [];
-        this.sourceControlURL = '';
+        this.assets = [];
         this.homePagePath = '';
         this.bannerPagePath = '';
+        this.sourceControlURL = '';
         this.scope = ApexDoc.SCOPES;
-        this.title = 'Apex Documentation';
         this.showTOCSnippets = true;
+        this.title = 'Apex Documentation';
         this.sortOrder = ApexDoc.ORDER_ALPHA;
     }
 

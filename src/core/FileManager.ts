@@ -1,6 +1,6 @@
-import { ApexDocError } from '../utils/Guards';
+import ApexDocError from '../utils/ApexDocError';
+import { basename } from 'path';
 import * as HTML from '../utils/HTML';
-import * as vscode from 'vscode';
 import ApexDoc from './ApexDoc';
 import ClassGroup from '../models/ClassGroup';
 import ClassModel from '../models/ClassModel';
@@ -15,86 +15,81 @@ import {
     mkdirSync,
     writeFileSync
 } from 'fs';
-import { resolve } from 'path';
 
 class FileManager {
     private path: string;
     private documentTitle: string;
+    private userAssets: string[];
 
-    public constructor(targetDirectory: string, documentTitle: string) {
+    public constructor(targetDirectory: string, documentTitle: string, assets: string[]) {
         this.path = targetDirectory;
+        this.userAssets = assets;
         this.documentTitle = documentTitle;
     }
 
     public getFiles(sourceDirectory: string, includes: string[], excludes: string[]): string[] {
-        try {
-            let filesToCopy: string[] = [];
-            let files: string[];
-            files = readdirSync(sourceDirectory);
-            if (files && files.length > 0) {
-                files.forEach(fileName => {
-                    // make sure entry is a file and is an apex cl
-                    if (!fileName.endsWith(".cls")) {
+        let filesToCopy: string[] = [];
+        let files: string[];
+        files = readdirSync(sourceDirectory);
+
+        if (files && files.some(file => file.endsWith('cls'))) {
+            files.forEach(fileName => {
+                // make sure entry is a file and is an apex cl
+                if (!fileName.endsWith(".cls")) {
+                    return;
+                }
+
+                for (let entry of excludes) {
+                    entry = entry.trim().replace("*", "");
+                    // file is explicitly excluded or matches wildcard, return early
+                    if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
                         return;
-                    }
-
-                    for (let entry of excludes) {
-                        entry = entry.trim().replace("*", "");
-                        // file is explicitly excluded or matches wildcard, return early
-                        if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
-                            return;
-                        }
-                    }
-
-                    // no includes params, include file
-                    if (includes.length === 0) {
-                        filesToCopy.push(fileName);
-                        return;
-                    }
-
-                    // there are includes params, only include files that pass test
-                    for (let entry of includes) {
-                        entry = entry.trim().replace("*", "");
-                        // file matches explicitly matches or matches wildcard
-                        if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
-                            filesToCopy.push(fileName);
-                        }
-                    }
-                });
-            } else {
-                vscode.window.showErrorMessage(`ApexDoc2 Failed: No files found in directory: ` + sourceDirectory);
-            }
-            return filesToCopy;
-        } catch (e) {
-            throw new ApexDocError(e);
-        }
-    }
-
-    private parseFile(filePath: string): string {
-        try {
-            if (filePath) {
-                const reader = new LineReader(filePath);
-                let contents = '';
-                let line;
-
-                while ((line = reader.readLine()) !== null) {
-                    line = line.trim();
-                    if (line) {
-                        contents += line;
                     }
                 }
 
-                return contents;
-            }
-        } catch (e) {
-            vscode.window.showErrorMessage(e);
+                // no includes params, include file
+                if (includes.length === 0) {
+                    filesToCopy.push(fileName);
+                    return;
+                }
+
+                // there are includes params, only include files that pass test
+                for (let entry of includes) {
+                    entry = entry.trim().replace("*", "");
+                    // file matches explicitly matches or matches wildcard
+                    if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
+                        filesToCopy.push(fileName);
+                    }
+                }
+            });
+            throw new ApexDocError(ApexDocError.NO_FILES_FOUND(sourceDirectory));
+        } else {
         }
 
-        return "";
+        return filesToCopy;
+    }
+
+    private readFile(filePath: string): string {
+        if (filePath) {
+            const reader = new LineReader(filePath);
+            let contents = '';
+            let line;
+
+            while ((line = reader.readLine()) !== null) {
+                line = line.trim();
+                if (line) {
+                    contents += line;
+                }
+            }
+
+            return contents;
+        } else {
+            return '';
+        }
     }
 
     public parseHTMLFile(filePath: string): string {
-        let contents = (this.parseFile(filePath)).trim();
+        let contents = (this.readFile(filePath)).trim();
         if (contents) {
             let startIndex = contents.indexOf('<body>') + 6;
             let endIndex = contents.indexOf('</body>');
@@ -108,27 +103,23 @@ class FileManager {
         return '';
     }
 
-    private createHTML(fileNameToContent: Map<string, string>): boolean {
-        try {
-            // create our target directory if it doesn't exist
-            if (!existsSync(this.path)) {
-                mkdirSync(this.path);
-            }
-
-            for (let fileName of fileNameToContent.keys()) {
-                let contents = fileNameToContent.get(fileName);
-                let fullyQualifiedFileName = this.path + fileName + '.html';
-                writeFileSync(fullyQualifiedFileName, contents);
-            }
-
-            // copy our resources to our target dir
-            this.copyResourcesToTarget();
-            return true;
-        } catch (err) {
-            new ApexDocError(err);
+    private createHTML(fileNameToContent: Map<string, string>): void {
+        // create our target directory if it doesn't exist
+        if (!existsSync(this.path)) {
+            mkdirSync(this.path);
         }
 
-        return false;
+        for (let fileName of fileNameToContent.keys()) {
+            let contents = fileNameToContent.get(fileName);
+            let fullyQualifiedFileName = this.path + fileName + '.html';
+            writeFileSync(fullyQualifiedFileName, contents);
+        }
+
+        // copy ApexDoc assets to our target dir
+        this.copyAssetsToTarget(this.collectApexDocAssets());
+        // copy user assets second, incase they are using a favicon
+        // this will override the default provided by ApexDoc2
+        this.copyAssetsToTarget(this.userAssets);
     }
 
     /**
@@ -218,17 +209,19 @@ class FileManager {
         }
     }
 
-    // TODO: find the right time to invoke this!
-    // this is slightly different that the java implementation
-    private copyResourcesToTarget() {
-        try {
-            const files: string[] = readdirSync(ApexDoc.extensionRoot + '/resources');
-            files.forEach(file => {
-                copyFileSync(ApexDoc.extensionRoot + '/resources/' + file, this.path + '/' + file);
-            });
-        } catch (e) {
-            throw new ApexDocError(e);
-        }
+    private collectApexDocAssets(): string[] {
+        const files: string[] = readdirSync(ApexDoc.extensionRoot + '/assets');
+        return files.map(file => ApexDoc.extensionRoot + '/assets/' + file);
+    }
+
+    private copyAssetsToTarget(files: string[]) {
+        files.forEach(file => {
+            if (existsSync(file)) {
+                copyFileSync(file, this.path + '/' + basename(file));
+            } else {
+                throw new ApexDocError(ApexDocError.ASSET_NOT_FOUND(file));
+            }
+        });
     }
 }
 
