@@ -1,5 +1,5 @@
-import ApexDoc from './ApexDoc';
 import * as vscode from 'vscode';
+import ApexDoc from './ApexDoc';
 
 export interface IApexDocConfig {
 	sourceDirectory: string;

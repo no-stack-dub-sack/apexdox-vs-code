@@ -1,8 +1,8 @@
-import * as express from 'express';
 import * as vscode from 'vscode';
-import { Server } from 'http';
+import express from 'express';
+import open from 'open';
 import { existsSync } from 'fs';
-const open = require('open');
+import { Server } from 'http';
 
 let server: Server;
 const success = (title: string) => `${title} opened in default browser!`;

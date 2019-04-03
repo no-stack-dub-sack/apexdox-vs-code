@@ -1,4 +1,3 @@
-
 class ApexDocError extends Error {
     public static INVALID_SCOPE = 'Please provide an array of valid scopes. Valid scopes include: global, public, protected, private, testMethod, and webService';
     public static SCOPE_ENTRIES_MAX = 'Argument <scope> has too many entries. ' + ApexDocError.INVALID_SCOPE;

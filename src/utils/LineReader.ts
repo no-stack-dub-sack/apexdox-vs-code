@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs';
 import ApexDocError from './ApexDocError';
+import { readFileSync } from 'fs';
 
 /**
  * A utility class similar to C#'s LineReader for synchronously reading a file line by line.

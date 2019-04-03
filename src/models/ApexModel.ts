@@ -1,7 +1,7 @@
+import * as vscode from 'vscode';
 import ApexDoc from '../core/ApexDoc';
 import Utils from '../utils/Utils';
 import { existsSync } from 'fs';
-import * as vscode from 'vscode';
 
 abstract class ApexModel {
 

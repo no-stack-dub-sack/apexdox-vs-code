@@ -1,20 +1,20 @@
-import ApexDocError from '../utils/ApexDocError';
-import { basename } from 'path';
 import * as HTML from '../utils/HTML';
 import ApexDoc from './ApexDoc';
+import ApexDocError from '../utils/ApexDocError';
 import ClassGroup from '../models/ClassGroup';
 import ClassModel from '../models/ClassModel';
 import DocGen from './DocGen';
 import EnumModel from '../models/EnumModel';
 import LineReader from '../utils/LineReader';
 import TopLevelModel, { ModelType } from '../models/TopLevelModel';
+import { basename } from 'path';
 import {
-    readdirSync,
     copyFileSync,
     existsSync,
     mkdirSync,
+    readdirSync,
     writeFileSync
-} from 'fs';
+    } from 'fs';
 
 class FileManager {
     private path: string;

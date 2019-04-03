@@ -67,7 +67,7 @@
 	},
 	"devDependencies": {
 		"@types/express": "^4.16.1",
-		"@types/lodash": "^4.14.123",
+		"@types/lodash.escape": "^4.0.6",
 		"@types/mocha": "^2.2.42",
 		"@types/node": "^10.12.21",
 		"@types/open": "^6.0.0",
@@ -77,7 +77,7 @@
 	},
 	"dependencies": {
 		"express": "^4.16.4",
-		"lodash": "^4.17.11",
+		"lodash.escape": "^4.0.1",
 		"open": "^6.0.0"
 	}
 }

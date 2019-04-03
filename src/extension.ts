@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 import ApexDoc from './core/ApexDoc';
 import Configurator, { IApexDocConfig } from './core/Config';
-import { createDocServer, closeServer } from './server';
 import Guards from './utils/Guards';
+import { closeServer, createDocServer } from './server';
 
 function getConfig(): IApexDocConfig {
 	return Configurator.merge({

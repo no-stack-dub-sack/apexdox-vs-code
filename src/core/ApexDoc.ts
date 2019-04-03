@@ -1,8 +1,6 @@
-import { last } from 'lodash';
 import * as vscode from 'vscode';
 import ClassGroup from '../models/ClassGroup';
 import ClassModel from '../models/ClassModel';
-import { IApexDocConfig } from './Config';
 import DocGen from './DocGen';
 import EnumModel from '../models/EnumModel';
 import FileManager from './FileManager';
@@ -11,7 +9,8 @@ import LineReader from '../utils/LineReader';
 import MethodModel from '../models/MethodModel';
 import PropertyModel from '../models/PropertyModel';
 import TopLevelModel from '../models/TopLevelModel';
-import Utils from '../utils/Utils';
+import Utils, { last } from '../utils/Utils';
+import { IApexDocConfig } from './Config';
 
 class ApexDoc {
     // constants

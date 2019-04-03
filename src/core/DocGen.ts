@@ -1,11 +1,11 @@
-import ApexDocError from '../utils/ApexDocError';
-import { escape } from 'lodash';
 import * as HTML from '../utils/HTML';
 import ApexDoc from './ApexDoc';
+import ApexDocError from '../utils/ApexDocError';
 import ApexModel from '../models/ApexModel';
 import ClassGroup from '../models/ClassGroup';
 import ClassModel from '../models/ClassModel';
 import EnumModel from '../models/EnumModel';
+import escape from 'lodash.escape';
 import MethodModel from '../models/MethodModel';
 import TopLevelModel, { ModelType } from '../models/TopLevelModel';
 import Utils from '../utils/Utils';

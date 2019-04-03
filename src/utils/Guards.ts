@@ -1,7 +1,7 @@
-import { existsSync } from 'fs';
-import Utils from './Utils';
 import ApexDoc from '../core/ApexDoc';
 import ApexDocError from './ApexDocError';
+import Utils from './Utils';
+import { existsSync } from 'fs';
 
 class Guards {
 
@@ -30,6 +30,7 @@ class Guards {
 
     public static portGuard(port: number): number {
         this.typeGuard('number', port, 'port');
+        // only allows integers between 0-65535 as port numbers
         if (/^([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$/.test(String(port))) {
             return port;
         } else {

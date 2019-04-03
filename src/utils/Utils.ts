@@ -1,8 +1,9 @@
 import ApexDoc from '../core/ApexDoc';
-import ClassModel from '../models/ClassModel';
 import ApexModel from '../models/ApexModel';
-import { last } from 'lodash';
+import ClassModel from '../models/ClassModel';
 import DocGen from '../core/DocGen';
+
+export const last = (arr: any[]) => arr[arr.length - 1];
 
 class Utils {
     private static COLLECTIONS: string[] = ['list', 'set', 'map'];
