@@ -15,13 +15,13 @@ class DocGen {
     public static sourceControlURL: string;
     public static showTOCSnippets: boolean;
 
-    public static documentClass(cModel: ClassModel, modelMap: Map<string, TopLevelModel>, models: Array<TopLevelModel>): string {
+    public static documentClass(cModel: ClassModel, modelMap: Map<string, TopLevelModel>): string {
         const hasSource = this.sourceControlURL ? true : false;
         const sourceLinkIcon = hasSource ? `<span>${HTML.EXTERNAL_LINK}</span>` : '';
         const sectionSourceLink = this.maybeMakeSourceLink(cModel, cModel.getTopmostClassName(), this.escapeHTML(cModel.getName(), false));
         const header = `<h2 class="sectionTitle" id="${cModel.getName()}">${sectionSourceLink + sourceLinkIcon}</h2>`;
 
-        let contents = this.documentTopLevelAttributes(cModel, modelMap, models, cModel.getTopmostClassName(), '');
+        let contents = this.documentTopLevelAttributes(cModel, modelMap, cModel.getTopmostClassName(), '');
 
         if (cModel.getProperties().length > 0) {
             contents += this.documentProperties(cModel);
@@ -32,13 +32,13 @@ class DocGen {
         }
 
         if (cModel.getMethods().length > 0) {
-            contents += this.documentMethods(cModel, modelMap, models);
+            contents += this.documentMethods(cModel, modelMap);
         }
 
         return this.wrapInDetailsTag(contents, header, 'section');
     }
 
-    public static documentEnum(eModel: EnumModel, modelMap: Map<string, TopLevelModel>, models: Array<TopLevelModel>): string {
+    public static documentEnum(eModel: EnumModel, modelMap: Map<string, TopLevelModel>): string {
         const hasSource = this.sourceControlURL ? true : false;
         const sourceLinkIcon = hasSource ? `<span>${HTML.EXTERNAL_LINK}</span>` : '';
         const sectionSourceLink = this.maybeMakeSourceLink(eModel, eModel.getName(), this.escapeHTML(eModel.getName(), false));
@@ -49,12 +49,12 @@ class DocGen {
         values += `<td class="enumValues">${eModel.getValues().join(', ')}</td>`;
         values += '</tr></table>';
 
-        contents += this.documentTopLevelAttributes(eModel, modelMap, models, eModel.getName(), values);
+        contents += this.documentTopLevelAttributes(eModel, modelMap, eModel.getName(), values);
 
         return contents;
     }
 
-    private static documentTopLevelAttributes(model: TopLevelModel, modelMap: Map<string, TopLevelModel>, models: Array<TopLevelModel>, className: string, additionalContent: string): string {
+    private static documentTopLevelAttributes(model: TopLevelModel, modelMap: Map<string, TopLevelModel>, className: string, additionalContent: string): string {
         const classSourceLink = this.maybeMakeSourceLink(model, className, this.escapeHTML(model.getNameLine(), false));
         let contents = '';
 
@@ -81,7 +81,7 @@ class DocGen {
 
         if (model.getSee()) {
             contents += '<div class="classSubtitle">See</div>';
-            contents += `<div class="classSubDescription">${this.makeSeeLinks(modelMap, models, model.getSee())}</div>`;
+            contents += `<div class="classSubDescription">${this.makeSeeLinks(modelMap, model.getSee())}</div>`;
         }
 
         if (model.getAuthor()) {
@@ -194,7 +194,7 @@ class DocGen {
         return this.wrapInDetailsTag(contents, '<h2 class="subsectionTitle enums">Enums</h2>', 'subSection');
     }
 
-    private static documentMethods(cModel: ClassModel, modelMap: Map<string, TopLevelModel>, models: Array<TopLevelModel>): string {
+    private static documentMethods(cModel: ClassModel, modelMap: Map<string, TopLevelModel>): string {
         // track Ids used to make sure we're not generating duplicate
         // Ids within this class, and so that overloaded methods each
         // have their own unique anchor to link to in the TOC.
@@ -328,7 +328,7 @@ class DocGen {
 
             if (method.getSee()) {
                 methodsHTML += '<div class="methodSubTitle">See</div>';
-                methodsHTML += `<div class="methodSubDescription">${this.makeSeeLinks(modelMap, models, method.getSee())}</div>`;
+                methodsHTML += `<div class="methodSubDescription">${this.makeSeeLinks(modelMap, method.getSee())}</div>`;
             }
 
             if (method.getAuthor()) {
@@ -497,7 +497,7 @@ class DocGen {
         }
     }
 
-    private static makeSeeLinks(modelMap: Map<string, TopLevelModel>, models: Array<TopLevelModel>, qualifiersStr: string): string {
+    private static makeSeeLinks(modelMap: Map<string, TopLevelModel>, qualifiersStr: string): string {
         // the @see token may contain a comma separated list of fully qualified
         // method or class names. Start by splitting them into individual qualifiers.
         const qualifiers = qualifiersStr.split(',');

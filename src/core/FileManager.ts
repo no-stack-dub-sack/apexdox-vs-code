@@ -158,7 +158,7 @@ class FileManager {
                 if (model.getModelType() === ModelType.CLASS) {
 
                     const cModel = <ClassModel>model;
-                    contents += DocGen.documentClass(cModel, modelMap, models);
+                    contents += DocGen.documentClass(cModel, modelMap);
 
                     // get child classes to work with in the order user specifies
                     const childClasses = DocGen.sortOrderStyle === ApexDoc.ORDER_ALPHA
@@ -167,11 +167,11 @@ class FileManager {
 
                     // map over child classes, creating HTML, and concat result
                     contents += childClasses.map(cmChild =>
-                        DocGen.documentClass(cmChild, modelMap, models)).join('');
+                        DocGen.documentClass(cmChild, modelMap)).join('');
 
                 } else if (model.getModelType() === ModelType.ENUM) {
                     const eModel = <EnumModel>model;
-                    contents += DocGen.documentEnum(eModel, modelMap, models);
+                    contents += DocGen.documentEnum(eModel, modelMap);
                 }
 
             } else {
