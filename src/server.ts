@@ -1,19 +1,25 @@
 import * as express from 'express';
 import * as vscode from 'vscode';
 import { Server } from 'http';
-import ApexDoc from './core/ApexDoc';
+import { existsSync } from 'fs';
 const open = require('open');
 
 let server: Server;
+const success = (title: string) => `${title} opened in default browser!`;
+const error = (dir: string) => `No index.html file to serve in directory: ${dir}. Did you run ApexDoc2 first?`;
 
 export const createDocServer = async (targetDirectory: string, docsTitle: string, port: number) => {
-    const app = express();
+    if (existsSync(targetDirectory + '/index.html')) {
+        const app = express();
 
-    app.use(express.static(targetDirectory));
-    server = app.listen(port);
+        app.use(express.static(targetDirectory));
+        server = app.listen(port);
 
-    await open(`http://localhost:${port}/index.html`);
-    vscode.window.showInformationMessage(`${docsTitle} opened in default browser!`);
+        await open(`http://localhost:${port}/index.html`);
+        vscode.window.showInformationMessage(success(docsTitle));
+    } else {
+        vscode.window.showErrorMessage(error(targetDirectory));
+    }
 };
 
 export const closeServer = () => {
