@@ -7,11 +7,9 @@ class Guards {
 
     public static directory(path: string, arg: string): string {
         this.typeGuard('string', path, arg);
+        // blank directory's can be ignored as default for non-required
+        // arguments. Source directory will always be populated by this point.
         if (path === '' || existsSync(path)) {
-            // trim trailing slash, so we don't have to deal with this later
-            if (path.endsWith('\\') || path.endsWith('/')) {
-                return path.slice(0, -1);
-            }
             return path;
         } else {
             throw new ApexDocError(ApexDocError.INVALID_DIRECTORY(arg, path));
@@ -50,7 +48,7 @@ class Guards {
     public static targetDirectory(path: string): string {
         this.typeGuard('string', path, 'target_directory');
         if (path && path.length > 0) {
-            return path.endsWith('/') || path.endsWith('\\') ? path : path + '/';
+            return path;
         } else {
             throw new ApexDocError(ApexDocError.INVALID_TARGET_DIRECTORY(path));
         }

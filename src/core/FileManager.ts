@@ -1,4 +1,5 @@
 import * as HTML from '../utils/HTML';
+import * as vscode from 'vscode';
 import ApexDoc from './ApexDoc';
 import ApexDocError from '../utils/ApexDocError';
 import ClassGroup from '../models/ClassGroup';
@@ -7,7 +8,7 @@ import DocGen from './DocGen';
 import EnumModel from '../models/EnumModel';
 import LineReader from '../utils/LineReader';
 import TopLevelModel, { ModelType } from '../models/TopLevelModel';
-import { basename } from 'path';
+import { basename, resolve } from 'path';
 import {
     copyFileSync,
     existsSync,
@@ -114,12 +115,6 @@ class FileManager {
             let fullyQualifiedFileName = this.path + fileName + '.html';
             writeFileSync(fullyQualifiedFileName, contents);
         }
-
-        // copy ApexDoc assets to our target dir
-        this.copyAssetsToTarget(this.collectApexDocAssets());
-        // copy user assets second, incase they are using a favicon
-        // this will override the default provided by ApexDoc2
-        this.copyAssetsToTarget(this.userAssets);
     }
 
     /**
@@ -182,7 +177,13 @@ class FileManager {
             fileMap.set(fileName, contents);
         }
 
+        // generate our HTML output files
         this.createHTML(fileMap);
+        // copy ApexDoc assets to our target dir
+        this.copyAssetsToTarget(this.collectApexDocAssets());
+        // copy user assets last, if they are using a favicon
+        // this will override the default provided by ApexDoc2
+        this.copyAssetsToTarget(this.userAssets);
     }
 
     // create our Class Group content files
@@ -217,9 +218,9 @@ class FileManager {
     private copyAssetsToTarget(files: string[]) {
         files.forEach(file => {
             if (existsSync(file)) {
-                copyFileSync(file, this.path + '/' + basename(file));
+                copyFileSync(file, resolve(...[this.path, basename(file)]));
             } else {
-                throw new ApexDocError(ApexDocError.ASSET_NOT_FOUND(file));
+                vscode.window.showWarningMessage(ApexDocError.ASSET_NOT_FOUND(file));
             }
         });
     }

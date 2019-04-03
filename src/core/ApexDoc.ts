@@ -11,6 +11,7 @@ import PropertyModel from '../models/PropertyModel';
 import TopLevelModel from '../models/TopLevelModel';
 import Utils, { last } from '../utils/Utils';
 import { IApexDocConfig } from './Config';
+import { resolve } from 'path';
 
 class ApexDoc {
     // constants
@@ -85,7 +86,7 @@ class ApexDoc {
             // parse our top-level class files
             files.forEach(fileName => {
                 this.currentFile = fileName;
-                const filePath = this.sourceDirectory + '/' + fileName;
+                const filePath = resolve(...[this.sourceDirectory, fileName]);
                 const model = this.parseFileContents(filePath);
                 modelMap.set(model.getName().toLowerCase(), model);
                 if (model) {
@@ -118,7 +119,7 @@ class ApexDoc {
             const group = model.getGroupName();
             let contentPath = model.getGroupContentPath();
             if (contentPath) {
-                contentPath = sourceDirectory + "/" + contentPath;
+                contentPath = resolve(...[sourceDirectory, contentPath]);
             }
 
             let cg: ClassGroup | undefined;
@@ -309,23 +310,6 @@ class ApexDoc {
                 comments = [];
                 continue;
             }
-
-            // handle set & get within the property
-            // TODO: none of these should ever evaluate to true!
-            // shouldSkipLne should skip these lines. test this.
-            let didCatchOnThese = false;
-            if (line.includes(' get ') ||
-                line.includes(' set ') ||
-                line.includes(' get;') ||
-                line.includes(' set;') ||
-                line.includes(' get{') ||
-                line.includes(' set{')) {
-                    didCatchOnThese = true;
-                    console.log('WHOOPS!!!!');
-                continue;
-            }
-
-            console.log('SHOULD THESE BE REMOVED!??? Answer: ' + !(didCatchOnThese));
 
             // must be a property
             let pModel: PropertyModel = new PropertyModel(comments, line, lineNum);

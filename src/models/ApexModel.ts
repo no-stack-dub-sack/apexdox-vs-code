@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import ApexDoc from '../core/ApexDoc';
 import Utils from '../utils/Utils';
 import { existsSync } from 'fs';
+import { resolve } from 'path';
 
 abstract class ApexModel {
 
@@ -214,19 +215,13 @@ abstract class ApexModel {
 
     // make sure path relative to target
     // directory exists for @group-content token
-    private pathExists(line: string): boolean {
-        let root = ApexDoc.sourceDirectory;
-        if (!root.endsWith('/') && !root.endsWith('\\')) {
-            root += '/';
-        }
-
-        let path = root + line.trim();
-        if (/.*\.s?html?$/.test(line.trim()) && existsSync(path)) {
+    private pathExists(contentPath: string): boolean {
+        let path = resolve(...[ApexDoc.sourceDirectory, contentPath.trim()]);
+        // TODO: need to test for HTMLD here as well!
+        if (/.*\.s?html?$/.test(contentPath.trim()) && existsSync(path)) {
             return true;
         } else {
-            vscode.window.showWarningMessage(
-                `@group-content path '${path.replace(/\\/g, '/')}' in file '${ApexDoc.currentFile}' is invalid!`
-            );
+            vscode.window.showWarningMessage(`@group-content path '${path}' in file '${ApexDoc.currentFile}' is invalid!`);
             return false;
         }
     }
