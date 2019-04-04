@@ -1,4 +1,4 @@
-import * as HTML from '../utils/HTML';
+import * as HTML from '../utils/Templates';
 import ApexDoc from './ApexDoc';
 import ApexDocError from '../utils/ApexDocError';
 import ApexModel from '../models/ApexModel';

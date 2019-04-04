@@ -1,4 +1,4 @@
-import * as HTML from '../utils/HTML';
+import * as HTML from '../utils/Templates';
 import * as vscode from 'vscode';
 import ApexDoc from './ApexDoc';
 import ApexDocError from '../utils/ApexDocError';
@@ -7,6 +7,7 @@ import ClassModel from '../models/ClassModel';
 import DocGen from './DocGen';
 import EnumModel from '../models/EnumModel';
 import LineReader from '../utils/LineReader';
+import rimraf from 'rimraf';
 import TopLevelModel, { ModelType } from '../models/TopLevelModel';
 import { basename, resolve } from 'path';
 import {
@@ -108,11 +109,14 @@ class FileManager {
         // create our target directory if it doesn't exist
         if (!existsSync(this.path)) {
             mkdirSync(this.path);
+        } else if (ApexDoc.cleanDir) {
+            let clean = resolve(...[this.path + '*']);
+            rimraf.sync(clean);
         }
 
         for (let fileName of fileNameToContent.keys()) {
             let contents = fileNameToContent.get(fileName);
-            let fullyQualifiedFileName = this.path + fileName + '.html';
+            let fullyQualifiedFileName = resolve(...[this.path, fileName + '.html']);
             writeFileSync(fullyQualifiedFileName, contents);
         }
     }

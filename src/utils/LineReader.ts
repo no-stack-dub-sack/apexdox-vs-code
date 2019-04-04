@@ -33,7 +33,6 @@ class LineReader {
             return result;
         }
 
-        // TODO: will this ensure this memory is reclaimed?
         this.lines = [];
         return null;
     }

@@ -44,6 +44,7 @@ class ApexDoc {
     public static extensionRoot: string;
     public static sourceDirectory: string;
     public static currentFile: string;
+    public static cleanDir: boolean;
 
     /**
      * Entry point for the program. Called by VSCode on extension activation.
@@ -58,6 +59,13 @@ class ApexDoc {
             // prepare arguments, ensure compliant
             this.registerScope = Guards.scope(config.scope);
             this.sourceDirectory = Guards.directory(config.sourceDirectory, 'source_directory');
+
+            // TODO: We need a better way to store these config vars that need to be accessed all over!!!
+            // Perhaps there should be a prop on this class of type IApexDocConfig and that can be the
+            // single reference point for all config vars. OR, just do all the Guards during config
+            // initialization and share that object around everywhere??? Either way, just creating statics
+            // on this class whenever they're needed is getting a little unwieldy and doesn't feel like best practice
+            this.cleanDir = Guards.cleanDir(config.cleanDir);
 
             const includes = config.includes || [];
             const excludes = config.excludes || [];

@@ -16,7 +16,7 @@ export const PROJECT_DETAIL =
 export const HEADER_CLOSE = `</td></tr></table></div>`;
 
 export const FOOTER = `</div></div></td></tr></table><hr/>
-    <center class="footer"><a href="https://github.com/no-stack-dub-sack/ApexDoc2" target="_blank">Powered By ApexDoc2</a>
+    <center class="footer"><a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank">Powered By ApexDoc2</a>
     </center></body></html>`;
 
 export const DEFAULT_HOME_CONTENTS = `<h2>Project Home</h2>`;

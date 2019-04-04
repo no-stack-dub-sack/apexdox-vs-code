@@ -62,6 +62,14 @@ class Guards {
         }
     }
 
+    public static cleanDir(bool: boolean): boolean {
+        if (typeof bool !== 'boolean') {
+            return false; // DEFAULT
+        } else {
+            return bool;
+        }
+    }
+
     public static assets(assets: string[]): string[] {
         this.typeGuard('array', assets, 'assets');
         assets.forEach(resource => {

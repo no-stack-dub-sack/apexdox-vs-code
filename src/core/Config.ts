@@ -13,8 +13,9 @@ export interface IApexDocConfig {
 	title: string;
 	showTOCSnippets: boolean;
 	sortOrder: string;
+    cleanDir: boolean;
 	assets: string[];
-	port: number;
+    port: number;
 }
 
 class Config implements IApexDocConfig {
@@ -29,6 +30,7 @@ class Config implements IApexDocConfig {
     public title: string;
     public showTOCSnippets: boolean;
     public sortOrder: string;
+    public cleanDir: boolean;
     public assets: string[];
     public port: number;
 
@@ -47,6 +49,7 @@ class Config implements IApexDocConfig {
         this.includes = [];
         this.excludes = [];
         this.assets = [];
+        this.cleanDir = false;
         this.homePagePath = '';
         this.bannerPagePath = '';
         this.sourceControlURL = '';

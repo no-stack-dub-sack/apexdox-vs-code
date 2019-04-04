@@ -1,3 +1,5 @@
+import { basename } from 'path';
+
 class ClassGroup {
     private name: string;
     private contentSource: string;
@@ -25,13 +27,9 @@ class ClassGroup {
 
     public getContentFilename(): string {
         if (this.contentSource) {
-            let idx1 = this.contentSource.lastIndexOf('/');
-            let idx2 = this.contentSource.lastIndexOf('.');
-            if (idx1 !== -1 && idx2 !== -1) {
-                return this.contentSource.substring(idx1 + 1, idx2);
-            }
+            return basename(this.contentSource);
         }
-        // TODO: note that this used to return null. May need to fix a reference somewhere later in the translation!
+
         return '';
     }
 }
