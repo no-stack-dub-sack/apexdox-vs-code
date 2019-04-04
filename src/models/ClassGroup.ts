@@ -27,7 +27,9 @@ class ClassGroup {
 
     public getContentFilename(): string {
         if (this.contentSource) {
-            return basename(this.contentSource);
+            let fileName = basename(this.contentSource);
+            let idx = fileName.lastIndexOf('.');
+            return fileName.substring(0, idx);
         }
 
         return '';
