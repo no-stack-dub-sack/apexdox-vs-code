@@ -1,4 +1,4 @@
-import * as HTML from '../utils/Templates';
+import * as templates from '../utils/Templates';
 import * as vscode from 'vscode';
 import ApexDoc from './ApexDoc';
 import ApexDocError from '../utils/ApexDocError';
@@ -105,18 +105,34 @@ class FileManager {
         return '';
     }
 
-    private createHTML(fileNameToContent: Map<string, string>): void {
+    private createHTML(fileMap: Map<string, string>): void {
         // create our target directory if it doesn't exist
+
+        // TODO: rework so class files go in 'pages' directory!!!
+        // this will also require assets to go in their own directory
+        // and to update the references in the HTML templates. Also
+        // will need to update goToLocation destination references and
+        // makeSeeLink to account for new folder structure.
         if (!existsSync(this.path)) {
             mkdirSync(this.path);
+            // mkdirSync(resolve(...[this.path, 'pages']));
         } else if (ApexDoc.cleanDir) {
-            let clean = resolve(...[this.path + '*']);
-            rimraf.sync(clean);
+            let cleanRoot = resolve(...[this.path + '*']);
+            // let cleanPages = resolve(...[this.path, 'pages/*']);
+            rimraf.sync(cleanRoot);
+            // rimraf.sync(cleanPages);
         }
 
-        for (let fileName of fileNameToContent.keys()) {
-            let contents = fileNameToContent.get(fileName);
-            let fullyQualifiedFileName = resolve(...[this.path, fileName + '.html']);
+        for (let fileName of fileMap.keys()) {
+            let fullyQualifiedFileName;
+            let contents = fileMap.get(fileName);
+
+            // if (fileName === 'index') {
+                fullyQualifiedFileName = resolve(...[this.path, fileName + '.html']);
+            // } else {
+                // fullyQualifiedFileName = resolve(...[this.path, 'pages', fileName + '.html']);
+            // }
+
             writeFileSync(fullyQualifiedFileName, contents);
         }
     }
@@ -134,11 +150,11 @@ class FileManager {
 
         if (homeContents) {
             homeContents = links + `<td class='contentTD'><h2 class='sectionTitle'>Home</h2>${homeContents}</td>`;
-            homeContents = DocGen.makeHeader(bannerPage, this.documentTitle) + homeContents + HTML.FOOTER;
+            homeContents = DocGen.makeHeader(bannerPage, this.documentTitle) + homeContents + templates.FOOTER;
         } else {
-            homeContents = HTML.DEFAULT_HOME_CONTENTS;
+            homeContents = templates.DEFAULT_HOME_CONTENTS;
             homeContents = links + `<td class='contentTD'><h2 class='sectionTitle'>Home</h2>${homeContents}</td>`;
-            homeContents = DocGen.makeHeader(bannerPage, this.documentTitle) + homeContents + HTML.FOOTER;
+            homeContents = DocGen.makeHeader(bannerPage, this.documentTitle) + homeContents + templates.FOOTER;
         }
 
         let fileName = '';
@@ -177,7 +193,7 @@ class FileManager {
                 continue;
             }
             contents += '</div>';
-            contents = DocGen.makeHeader(bannerPage, this.documentTitle) + contents + HTML.FOOTER;
+            contents = DocGen.makeHeader(bannerPage, this.documentTitle) + contents + templates.FOOTER;
             fileMap.set(fileName, contents);
         }
 
@@ -206,7 +222,7 @@ class FileManager {
                         ${DocGen.escapeHTML(cg.getName(), false)}
                         </h2>${cgContent}</td>`;
 
-                    html += HTML.FOOTER;
+                    html += templates.FOOTER;
 
                     fileMap.set(cg.getContentFilename(), html);
                 }

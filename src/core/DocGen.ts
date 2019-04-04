@@ -1,4 +1,4 @@
-import * as HTML from '../utils/Templates';
+import * as templates from '../utils/Templates';
 import ApexDoc from './ApexDoc';
 import ApexDocError from '../utils/ApexDocError';
 import ApexModel from '../models/ApexModel';
@@ -17,7 +17,7 @@ class DocGen {
 
     public static documentClass(cModel: ClassModel, modelMap: Map<string, TopLevelModel>): string {
         const hasSource = this.sourceControlURL ? true : false;
-        const sourceLinkIcon = hasSource ? `<span>${HTML.EXTERNAL_LINK}</span>` : '';
+        const sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : '';
         const sectionSourceLink = this.maybeMakeSourceLink(cModel, cModel.getTopmostClassName(), this.escapeHTML(cModel.getName(), false));
         const header = `<h2 class="sectionTitle" id="${cModel.getName()}">${sectionSourceLink + sourceLinkIcon}</h2>`;
 
@@ -40,7 +40,7 @@ class DocGen {
 
     public static documentEnum(eModel: EnumModel, modelMap: Map<string, TopLevelModel>): string {
         const hasSource = this.sourceControlURL ? true : false;
-        const sourceLinkIcon = hasSource ? `<span>${HTML.EXTERNAL_LINK}</span>` : '';
+        const sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : '';
         const sectionSourceLink = this.maybeMakeSourceLink(eModel, eModel.getName(), this.escapeHTML(eModel.getName(), false));
         let contents = `<h2 class="sectionTitle" id="${eModel.getName()}">${sectionSourceLink + sourceLinkIcon}</h2>`;
 
@@ -412,9 +412,9 @@ class DocGen {
         let header =  '<html><head><title>' + documentTitle + '</title>';
 
         if (bannerPage) {
-            header += HTML.HEADER_OPEN + bannerPage;
+            header += templates.HEADER_OPEN + bannerPage;
         } else {
-            header += HTML.HEADER_OPEN + HTML.PROJECT_DETAIL + HTML.HEADER_CLOSE;
+            header += templates.HEADER_OPEN + templates.PROJECT_DETAIL + templates.HEADER_CLOSE;
         }
 
         return header;
