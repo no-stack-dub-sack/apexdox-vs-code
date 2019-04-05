@@ -37,12 +37,12 @@ class FileManager {
         if (files && files.some(file => file.endsWith('cls'))) {
             files.forEach(fileName => {
                 // make sure entry is a file and is an apex cl
-                if (!fileName.endsWith(".cls")) {
+                if (!fileName.endsWith('.cls')) {
                     return;
                 }
 
                 for (let entry of excludes) {
-                    entry = entry.trim().replace("*", "");
+                    entry = entry.trim().replace('*', '');
                     // file is explicitly excluded or matches wildcard, return early
                     if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
                         return;
@@ -57,7 +57,7 @@ class FileManager {
 
                 // there are includes params, only include files that pass test
                 for (let entry of includes) {
-                    entry = entry.trim().replace("*", "");
+                    entry = entry.trim().replace('*', '');
                     // file matches explicitly matches or matches wildcard
                     if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
                         filesToCopy.push(fileName);
@@ -106,33 +106,17 @@ class FileManager {
     }
 
     private createHTML(fileMap: Map<string, string>): void {
-        // create our target directory if it doesn't exist
-
-        // TODO: rework so class files go in 'pages' directory!!!
-        // this will also require assets to go in their own directory
-        // and to update the references in the HTML templates. Also
-        // will need to update goToLocation destination references and
-        // makeSeeLink to account for new folder structure.
+        // create dir if it doesn't exist
         if (!existsSync(this.path)) {
             mkdirSync(this.path);
-            // mkdirSync(resolve(...[this.path, 'pages']));
         } else if (ApexDoc.cleanDir) {
-            let cleanRoot = resolve(...[this.path + '*']);
-            // let cleanPages = resolve(...[this.path, 'pages/*']);
-            rimraf.sync(cleanRoot);
-            // rimraf.sync(cleanPages);
+            rimraf.sync(resolve(...[this.path, '*']));
         }
 
+        // create our HTML files
         for (let fileName of fileMap.keys()) {
-            let fullyQualifiedFileName;
             let contents = fileMap.get(fileName);
-
-            // if (fileName === 'index') {
-                fullyQualifiedFileName = resolve(...[this.path, fileName + '.html']);
-            // } else {
-                // fullyQualifiedFileName = resolve(...[this.path, 'pages', fileName + '.html']);
-            // }
-
+            let fullyQualifiedFileName = resolve(...[this.path, fileName + '.html']);
             writeFileSync(fullyQualifiedFileName, contents);
         }
     }
@@ -157,7 +141,6 @@ class FileManager {
             homeContents = DocGen.makeHeader(bannerPage, this.documentTitle) + homeContents + templates.FOOTER;
         }
 
-        let fileName = '';
         const fileMap = new Map<string, string>();
         fileMap.set('index', homeContents);
 
@@ -165,6 +148,7 @@ class FileManager {
         this.createClassGroupContent(fileMap, links, bannerPage, groupNameMap);
 
         for (let model of models) {
+            let fileName = '';
             let contents = links;
             if (model.getNameLine()) {
                 fileName = model.getName();
@@ -192,14 +176,13 @@ class FileManager {
             } else {
                 continue;
             }
+
             contents += '</div>';
             contents = DocGen.makeHeader(bannerPage, this.documentTitle) + contents + templates.FOOTER;
             fileMap.set(fileName, contents);
         }
 
-        // generate our HTML output files
         this.createHTML(fileMap);
-        // copy ApexDoc assets to our target dir
         this.copyAssetsToTarget(this.collectApexDocAssets());
         // copy user assets last, if they are using a favicon
         // this will override the default provided by ApexDoc2

@@ -409,12 +409,12 @@ class DocGen {
     }
 
     public static makeHeader(bannerPage: string, documentTitle: string): string {
-        let header =  '<html><head><title>' + documentTitle + '</title>';
+        let header: string;
 
         if (bannerPage) {
-            header += templates.HEADER_OPEN + bannerPage;
+            header = templates.headerOpen(documentTitle) + bannerPage;
         } else {
-            header += templates.HEADER_OPEN + templates.PROJECT_DETAIL + templates.HEADER_CLOSE;
+            header = templates.headerOpen(documentTitle) + templates.PROJECT_DETAIL + templates.HEADER_CLOSE;
         }
 
         return header;
