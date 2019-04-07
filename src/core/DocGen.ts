@@ -362,19 +362,15 @@ class DocGen {
     }
 
     private static wrapInlineCode(html: string): string {
-        const words = html.split(/\b\s{1,2}\b/)
-            .map(word => {
-                let firstIndex = word.indexOf(' ');
-                let lastIndex = word.lastIndexOf(' ');
-                if (firstIndex > -1 && lastIndex > -1 && firstIndex !== lastIndex) {
-                    word = word.replace('`', `<code class="inlineCode">`);
-                    word = word.replace('`', '</code>');
-                    return word;
-                }
-                return word;
+        const codeWords: RegExpMatchArray | null = html.match(/(`|&#96;).+?(`|&#96;)/g);
+        if (codeWords) {
+            codeWords.forEach(word => {
+                let codeWord = word.replace(/&#96;|`/, `<code class="inlineCode">`);
+                codeWord = codeWord.replace(/&#96;|`/, '</code>');
+                html = html.replace(word, codeWord);
             });
-
-        return words.join(' ');
+        }
+        return html;
     }
 
     public static makeHTMLScopingPanel(): string {
