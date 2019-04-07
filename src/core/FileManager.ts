@@ -7,6 +7,7 @@ import ClassModel from '../models/ClassModel';
 import DocGen from './DocGen';
 import EnumModel from '../models/EnumModel';
 import LineReader from '../utils/LineReader';
+import pretty from 'pretty';
 import rimraf from 'rimraf';
 import TopLevelModel, { ModelType } from '../models/TopLevelModel';
 import { basename, resolve } from 'path';
@@ -115,7 +116,7 @@ class FileManager {
 
         // create our HTML files
         for (let fileName of fileMap.keys()) {
-            let contents = fileMap.get(fileName);
+            let contents = pretty(<string>fileMap.get(fileName), { ocd: true });
             let fullyQualifiedFileName = resolve(...[this.path, fileName + '.html']);
             writeFileSync(fullyQualifiedFileName, contents);
         }

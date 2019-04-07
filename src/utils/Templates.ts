@@ -1,5 +1,7 @@
 export const headerOpen = (documentTitle: string) => {
-    return  `<html>
+    return  `
+        <!DOCTYPE html>
+        <html lang="en">
         <head>
             <title>${documentTitle}</title>
             <meta charset="UTF-8">
