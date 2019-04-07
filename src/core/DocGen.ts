@@ -200,17 +200,19 @@ class DocGen {
         // have their own unique anchor to link to in the TOC.
         const idCountMap = new Map<string, number>();
 
-        // Local fucntion to make TOC entry and other variables we need to make HTML
-        const describeMethod = (method: MethodModel): {
-            tocEntry: string;
-            isDeprecated: boolean;
-            methodName: string;
-            methodId: string;
-        } => {
-            // Get method id, i.e. the fully qualified method name.
-            // Then see if this ID has been used previously in this class
-            // (must be an overloaded method or constructor) and ammend
-            // as needed to ensure all of our methods have unique IDs
+        // Append <init> to method name if constructor
+        const formatConstructor = (methodName: string): string => {
+            if (methodName.toLowerCase() === cModel.getName().toLowerCase()) {
+                methodName += '.&lt;init&gt;';
+            }
+
+            return methodName;
+        };
+
+        // See if method ID has been used previously in this class
+        // (must be an overloaded method or constructor) and amend
+        // as needed to ensure all of our methods have unique IDs
+        const getMethodId = (method: MethodModel): string => {
             let methodId = cModel.getName() + '.' + method.getMethodName();
             let count: number | undefined;
             if ((count = idCountMap.get(methodId)) === undefined) {
@@ -219,31 +221,22 @@ class DocGen {
                 idCountMap.set(methodId, count + 1);
                 methodId += '_' + count;
             }
+            return methodId;
+        };
 
-            // if method is constructor, append <init>
-            let methodName = method.getMethodName();
-            if (methodName.toLowerCase() === cModel.getName().toLowerCase()) {
-                methodName += '.&lt;init&gt;';
-            }
+        // make our Table of Contents entry
+        const makeTOCEntry = (method: MethodModel, name: string, id: string, deprecated: boolean): string => {
+            let entry =
+                `<li class="method ${method.getScope()}">
+                    <a class="methodTOCEntry ${(deprecated ? 'deprecated' : '')}" href="#${id}">
+                        ${name}
+                    </a>`;
 
-            const isDeprecated = method.getDeprecated().length > 0;
-
-            // make TOC entry with variables we just calculated
-            let entry = `<li class="method ${method.getScope()}">` +
-                `<a class="methodTOCEntry ${(isDeprecated ? 'deprecated' : '')}"` +
-                `href="#${methodId}">${methodName}</a>`;
-
-            // do not render description in TOC if user has indicated to hide
             if (this.showTOCSnippets && method.getDescription()) {
                 entry += `<div class="methodTOCDescription">${method.getDescription()}</div>`;
             }
 
-            return {
-                tocEntry: entry += '</li>',
-                isDeprecated,
-                methodName,
-                methodId,
-            };
+            return entry += '</li>';
         };
 
         // retrieve methods to work with in the order user specifies
@@ -258,18 +251,15 @@ class DocGen {
 
         // full method display
         for (let method of methods) {
-            // get the TOC entry and other variables we need to make HTML
-            const { methodId, methodName, isDeprecated, tocEntry } = describeMethod(method);
+            const methodId = getMethodId(method);
+            const isDeprecated = method.getDeprecated().length > 0;
+            const methodName = formatConstructor(method.getMethodName());
             const nameLine = Utils.highlightNameLine(this.escapeHTML(method.getNameLine(), false));
             const methodSourceLink = this.maybeMakeSourceLink(method, cModel.getTopmostClassName(), nameLine);
+            tocHTML += makeTOCEntry(method, methodName, methodId, isDeprecated);
 
-            // concat entry HTML
-            tocHTML += tocEntry;
             // open current method
             methodsHTML += `<div class="method ${method.getScope()}">`;
-            // use fully qualified method name as ID to prevent from TOCs in the same file linking
-            // to the same method. For example, an abstract class and a calss which extends that
-            // class in the same file are likely to have the same methods and thus conflicting IDs.
             methodsHTML += `<h2 class="methodHeader ${(isDeprecated ? 'deprecated' : '')}" id="${methodId}">${methodName}</h2>`;
 
             if (method.getAnnotations().length > 0) {
@@ -397,7 +387,7 @@ class DocGen {
         str += '<label for="cbx-all">All</label>&nbsp;&nbsp;';
 
         // add checkboxes for registered scopes
-        const checkBoxes = ApexDoc.registerScope.map(scope =>
+        const checkBoxes = ApexDoc.config.scope.map(scope =>
             `<input type="checkbox" checked="true" id="cbx-${scope}" ` +
             `onclick="toggleScope('${scope}', this.checked);" />` +
             `<label for="cbx-${scope}">${scope}</label>`

@@ -109,7 +109,7 @@ class FileManager {
         // create dir if it doesn't exist
         if (!existsSync(this.path)) {
             mkdirSync(this.path);
-        } else if (ApexDoc.cleanDir) {
+        } else if (ApexDoc.config.cleanDir) {
             rimraf.sync(resolve(...[this.path, '*']));
         }
 

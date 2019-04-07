@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import ApexDoc from './ApexDoc';
+import Guards from '../utils/Guards';
 
 export interface IApexDocConfig {
 	sourceDirectory: string;
@@ -59,7 +60,13 @@ class Config implements IApexDocConfig {
         this.sortOrder = ApexDoc.ORDER_ALPHA;
     }
 
-    public static merge(userConfig: IApexDocConfig): IApexDocConfig {
+    public static getConfig(): IApexDocConfig {
+        return this.merge({
+            ...vscode.workspace.getConfiguration('apexdoc2')['config']
+        });
+    }
+
+    private static merge(userConfig: IApexDocConfig): IApexDocConfig {
         const defaults = new Config();
 
         return {
@@ -72,6 +79,29 @@ class Config implements IApexDocConfig {
                 ? defaults.targetDirectory
                 : userConfig.targetDirectory
         };
+    }
+
+    public static validateConfig(config: IApexDocConfig): void {
+        // misc. strings
+        config.title = Guards.title(config.title);
+        config.sortOrder = Guards.sortOrder(config.sortOrder);
+        config.sourceControlURL = Guards.sourceControlURL(config.sourceControlURL);
+
+        // arrays
+        config.scope = Guards.scope(config.scope);
+        config.assets = Guards.stringArray(config.assets, 'assets');
+        config.includes = Guards.stringArray(config.includes, 'includes');
+        config.excludes = Guards.stringArray(config.excludes, 'excludes');
+
+        // booleans
+        config.cleanDir = Guards.boolGuard(config.cleanDir, false);
+        config.showTOCSnippets = Guards.boolGuard(config.showTOCSnippets, true);
+
+        // directories
+        config.targetDirectory = Guards.targetDirectory(config.targetDirectory);
+        config.homePagePath = Guards.directory(config.homePagePath, 'homePagePath');
+        config.bannerPagePath = Guards.directory(config.bannerPagePath, 'bannerPagePath');
+        config.sourceDirectory = Guards.directory(config.sourceDirectory, 'sourceDirectory');
     }
 }
 

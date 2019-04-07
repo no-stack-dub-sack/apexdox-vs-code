@@ -16,8 +16,17 @@ class Guards {
         }
     }
 
+    public static targetDirectory(path: string): string {
+        this.typeGuard('string', path, 'targetDirectory');
+        if (path && path.length > 0) {
+            return path;
+        } else {
+            throw new ApexDocError(ApexDocError.INVALID_TARGET_DIRECTORY(path));
+        }
+    }
+
     public static sortOrder(sortOrder: string): string {
-        this.typeGuard('string', sortOrder, 'sort_order');
+        this.typeGuard('string', sortOrder, 'sortOrder');
         sortOrder = sortOrder.toLowerCase();
         if (sortOrder === ApexDoc.ORDER_LOGICAL || sortOrder === ApexDoc.ORDER_ALPHA) {
             return sortOrder;
@@ -26,7 +35,12 @@ class Guards {
         }
     }
 
-    public static portGuard(port: number): number {
+    public static title(title: string): string {
+        this.typeGuard('string', title, 'title');
+        return title ? title : 'Apex Documentation';
+    }
+
+    public static port(port: number): number {
         this.typeGuard('number', port, 'port');
         // only allows integers between 0-65535 as port numbers
         if (/^([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$/.test(String(port))) {
@@ -36,8 +50,8 @@ class Guards {
         }
     }
 
-    public static sourceURL(str: string): string {
-        this.typeGuard('string', str, 'source_url');
+    public static sourceControlURL(str: string): string {
+        this.typeGuard('string', str, 'sourceControlURL');
         if (str === '' || Utils.isURL(str)) {
             return str.trim();
         } else {
@@ -45,39 +59,22 @@ class Guards {
         }
     }
 
-    public static targetDirectory(path: string): string {
-        this.typeGuard('string', path, 'target_directory');
-        if (path && path.length > 0) {
-            return path;
-        } else {
-            throw new ApexDocError(ApexDocError.INVALID_TARGET_DIRECTORY(path));
-        }
-    }
-
-    public static showTOCSnippets(bool: boolean): boolean {
+    public static boolGuard(bool: boolean, defaultValue: boolean): boolean {
         if (typeof bool !== 'boolean') {
-            return true; // DEFAULT
+            return defaultValue;
         } else {
             return bool;
         }
     }
 
-    public static cleanDir(bool: boolean): boolean {
-        if (typeof bool !== 'boolean') {
-            return false; // DEFAULT
-        } else {
-            return bool;
-        }
-    }
-
-    public static assets(assets: string[]): string[] {
-        this.typeGuard('array', assets, 'assets');
-        assets.forEach(resource => {
-            if (typeof resource !== 'string') {
-                throw new ApexDocError(ApexDocError.ONLY_STRINGS('assets'));
+    public static stringArray(arr: string[], argName: string): string[] {
+        this.typeGuard('array', arr, argName);
+        arr.forEach(item => {
+            if (typeof item !== 'string') {
+                throw new ApexDocError(ApexDocError.ONLY_STRINGS(argName));
             }
         });
-        return assets;
+        return arr;
     }
 
     public static scope(scopes: string[]): string[] {

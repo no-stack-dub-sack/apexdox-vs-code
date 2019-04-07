@@ -216,7 +216,7 @@ abstract class ApexModel {
     // make sure path relative to target
     // directory exists for @group-content token
     private pathExists(contentPath: string): boolean {
-        let path = resolve(...[ApexDoc.sourceDirectory, contentPath.trim()]);
+        let path = resolve(...[ApexDoc.config.sourceDirectory, contentPath.trim()]);
         if (/.*\.s?html?$/.test(contentPath.trim()) && existsSync(path)) {
             return true;
         } else {

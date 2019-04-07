@@ -4,32 +4,33 @@ import ClassModel from '../models/ClassModel';
 import DocGen from './DocGen';
 import EnumModel from '../models/EnumModel';
 import FileManager from './FileManager';
-import Guards from '../utils/Guards';
 import LineReader from '../utils/LineReader';
 import MethodModel from '../models/MethodModel';
 import PropertyModel from '../models/PropertyModel';
 import TopLevelModel from '../models/TopLevelModel';
 import Utils, { last } from '../utils/Utils';
 import { IApexDocConfig } from './Config';
+import { performance } from 'perf_hooks';
 import { resolve } from 'path';
 
 class ApexDoc {
     // constants
-    private static COMMENT_CLOSE: string = "*/";
-    private static COMMENT_OPEN: string = "/**";
+    public static readonly GLOBAL: string = "global";
+    public static readonly PUBLIC: string = "public";
+    public static readonly PROTECTED: string = "protected";
+    public static readonly PRIVATE: string = "private";
+    public static readonly TEST_METHOD: string = "testMethod";
+    public static readonly WEB_SERVICE: string = "webService";
+    public static readonly SCOPES: string[] = [
+        ApexDoc.GLOBAL, ApexDoc.PUBLIC, ApexDoc.PRIVATE,
+        ApexDoc.PROTECTED, ApexDoc.WEB_SERVICE, ApexDoc.TEST_METHOD
+    ];
 
-    public static GLOBAL: string = "global";
-    public static PUBLIC: string = "public";
-    public static PROTECTED: string = "protected";
-    public static PRIVATE: string = "private";
-    public static TEST_METHOD: string = "testMethod";
-    public static WEB_SERVICE: string = "webService";
-
-    public static CLASS: string = "class";
-    public static ENUM: string = "enum";
-    public static INTERFACE: string = "interface";
-    public static ORDER_ALPHA: string = "alpha";
-    public static ORDER_LOGICAL: string = "logical";
+    public static readonly CLASS: string = "class";
+    public static readonly ENUM: string = "enum";
+    public static readonly INTERFACE: string = "interface";
+    public static readonly ORDER_ALPHA: string = "alpha";
+    public static readonly ORDER_LOGICAL: string = "logical";
 
     // use special token for marking the end of a doc block
     // comment. Now that we're supporting multi-line for all
@@ -37,14 +38,14 @@ class ApexDoc {
     // must know when a block ends in order to prevent weird
     // behavior when lesser scopes than available are indicated
     // e.g. private;public when there are protected methods
-    public static DOC_BLOCK_BREAK: string = "@@BREAK@@";
-    public static SCOPES: string[] = [ApexDoc.GLOBAL, ApexDoc.PUBLIC, ApexDoc.PRIVATE, ApexDoc.PROTECTED, ApexDoc.WEB_SERVICE, ApexDoc.TEST_METHOD];
+    public static readonly DOC_BLOCK_BREAK: string = "@@BREAK@@";
+    private static readonly COMMENT_CLOSE: string = "*/";
+    private static readonly COMMENT_OPEN: string = "/**";
 
-    public static registerScope: string[];
+    // static members
     public static extensionRoot: string;
-    public static sourceDirectory: string;
     public static currentFile: string;
-    public static cleanDir: boolean;
+    public static config: IApexDocConfig;
 
     /**
      * Entry point for the program. Called by VSCode on extension activation.
@@ -53,40 +54,20 @@ class ApexDoc {
      * supplemented with any defaults if user did not include them.
      */
     public static runApexDoc(config: IApexDocConfig): void {
-        // TODO: replace StopWatch functionality
         try {
+            // time ApexDoc2
+            const beginElapsed = performance.now();
 
-            // prepare arguments, ensure compliant
-            this.registerScope = Guards.scope(config.scope);
-            this.sourceDirectory = Guards.directory(config.sourceDirectory, 'source_directory');
-
-            // TODO: We need a better way to store these config vars that need to be accessed all over!!!
-            // Perhaps there should be a prop on this class of type IApexDocConfig and that can be the
-            // single reference point for all config vars. OR, just do all the Guards during config
-            // initialization and share that object around everywhere??? Either way, just creating statics
-            // on this class whenever they're needed is getting a little unwieldy and doesn't feel like best practice
-            this.cleanDir = Guards.cleanDir(config.cleanDir);
-
-            const includes = config.includes || [];
-            const excludes = config.excludes || [];
-            const sortOrder = Guards.sortOrder(config.sortOrder);
-            const assets = Guards.assets(config.assets);
-            const sourceControlURL = Guards.sourceURL(config.sourceControlURL);
-            const targetDirectory = Guards.targetDirectory(config.targetDirectory);
-            const showTOCSnippets = Guards.showTOCSnippets(config.showTOCSnippets);
-            const homePagePath = Guards.directory(config.homePagePath, 'home_page');
-            const bannerPagePath = Guards.directory(config.bannerPagePath, 'banner_page');
-            const documentTitle = Guards.typeGuard('string', config.title, 'title') ? config.title : '';
-
-            const fileManager = new FileManager(targetDirectory, documentTitle, assets);
-            const files = fileManager.getFiles(this.sourceDirectory, includes, excludes);
+            this.config = config;
+            const fileManager = new FileManager(config.targetDirectory, config.title, config.assets);
+            const files = fileManager.getFiles(config.sourceDirectory, config.includes, config.excludes);
             const modelMap = new Map<string, TopLevelModel>();
             const models: Array<TopLevelModel> = [];
 
             // set up document generator
-            DocGen.sortOrderStyle = sortOrder;
-            DocGen.sourceControlURL = sourceControlURL;
-            DocGen.showTOCSnippets = showTOCSnippets;
+            DocGen.sortOrderStyle = config.sortOrder;
+            DocGen.sourceControlURL = config.sourceControlURL;
+            DocGen.showTOCSnippets = config.showTOCSnippets;
 
             // track the number of files we've processed
             let numProcessed = 0;
@@ -94,7 +75,7 @@ class ApexDoc {
             // parse our top-level class files
             files.forEach(fileName => {
                 this.currentFile = fileName;
-                const filePath = resolve(...[this.sourceDirectory, fileName]);
+                const filePath = resolve(...[config.sourceDirectory, fileName]);
                 const model = this.parseFileContents(filePath);
                 modelMap.set(model.getName().toLowerCase(), model);
                 if (model) {
@@ -104,16 +85,17 @@ class ApexDoc {
             });
 
             // load up optional specified file templates and create class groups for menu
-            const homeContents = fileManager.parseHTMLFile(homePagePath);
-            const bannerContents = fileManager.parseHTMLFile(bannerPagePath);
-            const classGroupMap = this.createClassGroupMap(models, this.sourceDirectory);
+            const homeContents = fileManager.parseHTMLFile(config.homePagePath);
+            const bannerContents = fileManager.parseHTMLFile(config.bannerPagePath);
+            const classGroupMap = this.createClassGroupMap(models, config.sourceDirectory);
 
             // create our set of HTML files
             fileManager.createDocs(classGroupMap, modelMap, models, bannerContents, homeContents);
 
             // we are done!
+            const endElapsed = performance.now();
             vscode.window.showInformationMessage(
-                `ApexDoc2 complete! ${numProcessed} Apex files processed in ${'<TO_BE_IMPLEMENTED>'} ms.`
+                `ApexDoc2 complete! ${numProcessed} Apex files processed in ${endElapsed - beginElapsed} ms.`
             );
         } catch (err) {
             throw err;
