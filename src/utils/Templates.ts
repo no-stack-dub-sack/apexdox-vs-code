@@ -1,23 +1,47 @@
-export const HEADER_OPEN =
-    `<script type="text/javascript" src="index.js"></script>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="highlight.css">
-    <script charset="UTF-8" src="highlight.js"></script>
-    <link rel="stylesheet" type="text/css" href="index.css" />
-    <link rel="shortcut icon" type="image/png" href="favicon.png"/>
-    </head><body>`;
+export const headerOpen = (documentTitle: string) => {
+    return  `<html lang="en">
+        <head>
+            <title>${documentTitle}</title>
+            <meta charset="UTF-8">
+            <script type="text/javascript" src="./assets/index.js"></script>
+            <script charset="UTF-8" src="./assets/highlight.js"></script>
+            <link rel="stylesheet" href="./assets/highlight.css" />
+            <link rel="stylesheet" type="text/css" href="./assets/index.css" />
+            <link rel="shortcut icon" type="image/png" href="./assets/favicon.png"/>
+        </head>
+        <body>`;
+};
 
 export const PROJECT_DETAIL =
-    `<div class="topsection">
-    <table><tr><td><img src="apex_doc_2_logo.png" style="height: 90px; margin-left: 5px;"/></td>
-    <td><h2 style="margin: -15px 0 0 0;">ApexDoc2 | Apex Documentation</h2>Check out the GitHub project at:<br/>
-    <a href="https://github.com/no-stack-dub-sack/ApexDoc2">https://github.com/no-stack-dub-sack/ApexDoc2</a><br/>`;
+`<div class="topsection">
+    <table>
+        <tr>
+            <td>
+                <img src="apex_doc_2_logo.png" style="height: 90px; margin-left: 5px;"/>
+            </td>
+            <td>
+                <h2 style="margin: -15px 0 0 0;">ApexDoc2 | Apex Documentation</h2>Check out the GitHub project at:<br/>
+                <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode">
+                    https://github.com/no-stack-dub-sack/ApexDoc2-VSCode
+                </a>
+                <br/>`;
 
 export const HEADER_CLOSE = `</td></tr></table></div>`;
 
-export const FOOTER = `</div></div></td></tr></table><hr/>
-    <center class="footer"><a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank">Powered By ApexDoc2</a>
-    </center></body></html>`;
+export const FOOTER =
+                    `</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <hr/>
+    <center class="footer">
+        <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank">
+            Powered By ApexDoc2
+        </a>
+    </center>
+</body>
+</html>`;
 
 export const DEFAULT_HOME_CONTENTS = `<h2>Project Home</h2>`;
 

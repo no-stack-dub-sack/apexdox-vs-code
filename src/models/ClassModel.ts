@@ -120,18 +120,18 @@ class ClassModel extends TopLevelModel {
 
     public getName(): string {
         let nameLine = this.getNameLine();
-        let parent = !this.cmodelParent ? '' : this.cmodelParent.getName() + ".";
+        let parent = !this.cmodelParent ? '' : this.cmodelParent.getName() + '.';
 
         if (nameLine) {
             nameLine = nameLine.trim();
         }
 
         if (nameLine && nameLine.trim().length > 0) {
-            let keywordAt = nameLine.toLowerCase().indexOf(ApexDoc.CLASS + " ");
+            let keywordAt = nameLine.toLowerCase().indexOf(ApexDoc.CLASS + ' ');
 
             let offset = 6;
             if (keywordAt === -1) {
-                keywordAt = nameLine.toLowerCase().indexOf(ApexDoc.INTERFACE + " ");
+                keywordAt = nameLine.toLowerCase().indexOf(ApexDoc.INTERFACE + ' ');
                 offset = 10;
             }
 
@@ -149,7 +149,7 @@ class ClassModel extends TopLevelModel {
                 let name = nameLine.substring(0, spaceAt);
                 return (parent + name).trim();
             } catch (ex) {
-                return (parent + nameLine.substring(nameLine.lastIndexOf(" ") + 1)).trim();
+                return (parent + nameLine.substring(nameLine.lastIndexOf(' ') + 1)).trim();
             }
         } else {
             return '';

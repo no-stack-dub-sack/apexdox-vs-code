@@ -1,4 +1,4 @@
-import * as HTML from '../utils/Templates';
+import * as templates from '../utils/Templates';
 import * as vscode from 'vscode';
 import ApexDoc from './ApexDoc';
 import ApexDocError from '../utils/ApexDocError';
@@ -7,6 +7,7 @@ import ClassModel from '../models/ClassModel';
 import DocGen from './DocGen';
 import EnumModel from '../models/EnumModel';
 import LineReader from '../utils/LineReader';
+import pretty from 'pretty';
 import rimraf from 'rimraf';
 import TopLevelModel, { ModelType } from '../models/TopLevelModel';
 import { basename, resolve } from 'path';
@@ -37,12 +38,12 @@ class FileManager {
         if (files && files.some(file => file.endsWith('cls'))) {
             files.forEach(fileName => {
                 // make sure entry is a file and is an apex cl
-                if (!fileName.endsWith(".cls")) {
+                if (!fileName.endsWith('.cls')) {
                     return;
                 }
 
                 for (let entry of excludes) {
-                    entry = entry.trim().replace("*", "");
+                    entry = entry.trim().replace('*', '');
                     // file is explicitly excluded or matches wildcard, return early
                     if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
                         return;
@@ -57,7 +58,7 @@ class FileManager {
 
                 // there are includes params, only include files that pass test
                 for (let entry of includes) {
-                    entry = entry.trim().replace("*", "");
+                    entry = entry.trim().replace('*', '');
                     // file matches explicitly matches or matches wildcard
                     if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
                         filesToCopy.push(fileName);
@@ -105,22 +106,6 @@ class FileManager {
         return '';
     }
 
-    private createHTML(fileNameToContent: Map<string, string>): void {
-        // create our target directory if it doesn't exist
-        if (!existsSync(this.path)) {
-            mkdirSync(this.path);
-        } else if (ApexDoc.cleanDir) {
-            let clean = resolve(...[this.path + '*']);
-            rimraf.sync(clean);
-        }
-
-        for (let fileName of fileNameToContent.keys()) {
-            let contents = fileNameToContent.get(fileName);
-            let fullyQualifiedFileName = resolve(...[this.path, fileName + '.html']);
-            writeFileSync(fullyQualifiedFileName, contents);
-        }
-    }
-
     /**
      * Main routine that creates an HTML file for each class specified
      */
@@ -134,14 +119,13 @@ class FileManager {
 
         if (homeContents) {
             homeContents = links + `<td class='contentTD'><h2 class='sectionTitle'>Home</h2>${homeContents}</td>`;
-            homeContents = DocGen.makeHeader(bannerPage, this.documentTitle) + homeContents + HTML.FOOTER;
+            homeContents = DocGen.makeHeader(bannerPage, this.documentTitle) + homeContents + templates.FOOTER;
         } else {
-            homeContents = HTML.DEFAULT_HOME_CONTENTS;
+            homeContents = templates.DEFAULT_HOME_CONTENTS;
             homeContents = links + `<td class='contentTD'><h2 class='sectionTitle'>Home</h2>${homeContents}</td>`;
-            homeContents = DocGen.makeHeader(bannerPage, this.documentTitle) + homeContents + HTML.FOOTER;
+            homeContents = DocGen.makeHeader(bannerPage, this.documentTitle) + homeContents + templates.FOOTER;
         }
 
-        let fileName = '';
         const fileMap = new Map<string, string>();
         fileMap.set('index', homeContents);
 
@@ -149,6 +133,7 @@ class FileManager {
         this.createClassGroupContent(fileMap, links, bannerPage, groupNameMap);
 
         for (let model of models) {
+            let fileName = '';
             let contents = links;
             if (model.getNameLine()) {
                 fileName = model.getName();
@@ -176,18 +161,44 @@ class FileManager {
             } else {
                 continue;
             }
+
             contents += '</div>';
-            contents = DocGen.makeHeader(bannerPage, this.documentTitle) + contents + HTML.FOOTER;
+            contents = DocGen.makeHeader(bannerPage, this.documentTitle) + contents + templates.FOOTER;
             fileMap.set(fileName, contents);
         }
 
-        // generate our HTML output files
+        // Now finalize everything... Make our directories first
+        // if they don't exist yet, then create our HTML files.
+        // Lastly, copy our assets, ours first, then the users.
+        // If they're using a favicon this will override ours.
+        const assets = this.collectApexDocAssets();
+
+        this.makeDirs();
         this.createHTML(fileMap);
-        // copy ApexDoc assets to our target dir
-        this.copyAssetsToTarget(this.collectApexDocAssets());
-        // copy user assets last, if they are using a favicon
-        // this will override the default provided by ApexDoc2
+        this.copyAssetsToTarget(assets);
         this.copyAssetsToTarget(this.userAssets);
+    }
+
+    private createHTML(fileMap: Map<string, string>): void {
+        for (let fileName of fileMap.keys()) {
+            let contents = pretty(<string>fileMap.get(fileName));
+            let fullyQualifiedFileName = resolve(...[this.path, fileName + '.html']);
+            writeFileSync(fullyQualifiedFileName, contents);
+        }
+    }
+
+    private makeDirs(): void {
+        const root = this.path;
+        const assets = resolve(...[root, 'assets']);
+
+        // clean directory first if user specified this
+        ApexDoc.config.cleanDir && rimraf.sync(root);
+
+        if (!existsSync(root)) {
+            [root, assets].forEach(path => mkdirSync(path));
+        } else if (existsSync(root) && !existsSync(assets)) {
+            mkdirSync(assets);
+        }
     }
 
     // create our Class Group content files
@@ -206,7 +217,7 @@ class FileManager {
                         ${DocGen.escapeHTML(cg.getName(), false)}
                         </h2>${cgContent}</td>`;
 
-                    html += HTML.FOOTER;
+                    html += templates.FOOTER;
 
                     fileMap.set(cg.getContentFilename(), html);
                 }
@@ -219,10 +230,10 @@ class FileManager {
         return files.map(file => ApexDoc.extensionRoot + '/assets/' + file);
     }
 
-    private copyAssetsToTarget(files: string[]) {
+    private copyAssetsToTarget(files: string[]): void {
         files.forEach(file => {
             if (existsSync(file)) {
-                copyFileSync(file, resolve(...[this.path, basename(file)]));
+                copyFileSync(file, resolve(...[this.path, 'assets', basename(file)]));
             } else {
                 vscode.window.showWarningMessage(ApexDocError.ASSET_NOT_FOUND(file));
             }
