@@ -95,7 +95,7 @@ class ApexDoc {
             // we are done!
             const endElapsed = performance.now();
             vscode.window.showInformationMessage(
-                `ApexDoc2 complete! ${numProcessed} Apex files processed in ${endElapsed - beginElapsed} ms.`
+                `ApexDoc2 complete! ${numProcessed} Apex files processed in ${(endElapsed - beginElapsed).toFixed(2)} ms.`
             );
         } catch (err) {
             throw err;
@@ -275,7 +275,7 @@ class ApexDoc {
                 // enum, we must be dealing with a class level enum and
                 // should return early, otherwise we're dealing with
                 // an inner enum and should add to our class model.
-                if (cModel && cModels.length === 0) {
+                if (!cModel && cModels.length === 0) {
                     return eModel;
                 } else {
                     cModel && cModel.getEnums().push(eModel);

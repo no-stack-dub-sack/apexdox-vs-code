@@ -106,22 +106,6 @@ class FileManager {
         return '';
     }
 
-    private createHTML(fileMap: Map<string, string>): void {
-        // create dir if it doesn't exist
-        if (!existsSync(this.path)) {
-            mkdirSync(this.path);
-        } else if (ApexDoc.config.cleanDir) {
-            rimraf.sync(resolve(...[this.path, '*']));
-        }
-
-        // create our HTML files
-        for (let fileName of fileMap.keys()) {
-            let contents = pretty(<string>fileMap.get(fileName), { ocd: true });
-            let fullyQualifiedFileName = resolve(...[this.path, fileName + '.html']);
-            writeFileSync(fullyQualifiedFileName, contents);
-        }
-    }
-
     /**
      * Main routine that creates an HTML file for each class specified
      */
@@ -183,11 +167,38 @@ class FileManager {
             fileMap.set(fileName, contents);
         }
 
+        // Now finalize everything... Make our directories first
+        // if they don't exist yet, then create our HTML files.
+        // Lastly, copy our assets, ours first, then the users.
+        // If they're using a favicon this will override ours.
+        const assets = this.collectApexDocAssets();
+
+        this.makeDirs();
         this.createHTML(fileMap);
-        this.copyAssetsToTarget(this.collectApexDocAssets());
-        // copy user assets last, if they are using a favicon
-        // this will override the default provided by ApexDoc2
+        this.copyAssetsToTarget(assets);
         this.copyAssetsToTarget(this.userAssets);
+    }
+
+    private createHTML(fileMap: Map<string, string>): void {
+        for (let fileName of fileMap.keys()) {
+            let contents = pretty(<string>fileMap.get(fileName));
+            let fullyQualifiedFileName = resolve(...[this.path, fileName + '.html']);
+            writeFileSync(fullyQualifiedFileName, contents);
+        }
+    }
+
+    private makeDirs(): void {
+        const root = this.path;
+        const assets = resolve(...[root, 'assets']);
+
+        // clean directory first if user specified this
+        ApexDoc.config.cleanDir && rimraf.sync(root);
+
+        if (!existsSync(root)) {
+            [root, assets].forEach(path => mkdirSync(path));
+        } else if (existsSync(root) && !existsSync(assets)) {
+            mkdirSync(assets);
+        }
     }
 
     // create our Class Group content files
@@ -219,10 +230,10 @@ class FileManager {
         return files.map(file => ApexDoc.extensionRoot + '/assets/' + file);
     }
 
-    private copyAssetsToTarget(files: string[]) {
+    private copyAssetsToTarget(files: string[]): void {
         files.forEach(file => {
             if (existsSync(file)) {
-                copyFileSync(file, resolve(...[this.path, basename(file)]));
+                copyFileSync(file, resolve(...[this.path, 'assets', basename(file)]));
             } else {
                 vscode.window.showWarningMessage(ApexDocError.ASSET_NOT_FOUND(file));
             }

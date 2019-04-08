@@ -1,15 +1,13 @@
 export const headerOpen = (documentTitle: string) => {
-    return  `
-        <!DOCTYPE html>
-        <html lang="en">
+    return  `<html lang="en">
         <head>
             <title>${documentTitle}</title>
             <meta charset="UTF-8">
-            <script type="text/javascript" src="index.js"></script>
-            <script charset="UTF-8" src="highlight.js"></script>
-            <link rel="stylesheet" href="highlight.css" />
-            <link rel="stylesheet" type="text/css" href="index.css" />
-            <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+            <script type="text/javascript" src="./assets/index.js"></script>
+            <script charset="UTF-8" src="./assets/highlight.js"></script>
+            <link rel="stylesheet" href="./assets/highlight.css" />
+            <link rel="stylesheet" type="text/css" href="./assets/index.css" />
+            <link rel="shortcut icon" type="image/png" href="./assets/favicon.png"/>
         </head>
         <body>`;
 };
