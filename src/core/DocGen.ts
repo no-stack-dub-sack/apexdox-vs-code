@@ -150,7 +150,7 @@ class DocGen {
         contents += '</table></div>';
         contents += '<p/>';
 
-        return this.wrapInDetailsTag(contents, '<h2 class="subsectionTitle properties">Properties</h2>', 'subSection');
+        return this.wrapInDetailsTag(contents, '<h2 class="subsectionTitle properties">Properties</h2>', 'subSection properties');
     }
 
     private static documentInnerEnums(cModel: ClassModel): string {
@@ -191,7 +191,7 @@ class DocGen {
         // end Properties
         contents += '</table></div><p/>';
 
-        return this.wrapInDetailsTag(contents, '<h2 class="subsectionTitle enums">Enums</h2>', 'subSection');
+        return this.wrapInDetailsTag(contents, '<h2 class="subsectionTitle enums">Enums</h2>', 'subSection enums');
     }
 
     private static documentMethods(cModel: ClassModel, modelMap: Map<string, TopLevelModel>): string {
@@ -346,7 +346,7 @@ class DocGen {
         contents += methodsHTML;
         contents += '</div>';
 
-        return this.wrapInDetailsTag(contents, '<h2 class="subsectionTitle methods">Methods</h2>', "subSection");
+        return this.wrapInDetailsTag(contents, '<h2 class="subsectionTitle methods">Methods</h2>', "subSection methods");
     }
 
     public static escapeHTML(str: string, wrapBackticks: boolean): string {

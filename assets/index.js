@@ -290,14 +290,14 @@ function toggleVisibility(elements, isShow) {
 }
 
 function maybeHideElement(toHide, itemSelector) {
-	let props, table = document.querySelectorAll(toHide);
-	if (props = document.querySelectorAll(itemSelector)) {
-		for (let prop of props) {
-			if (!prop.classList.contains('hide')) {
+	let elements, container = document.querySelectorAll(toHide);
+	if (elements = document.querySelectorAll(itemSelector)) {
+		for (let element of elements) {
+			if (!element.classList.contains('hide')) {
 				return;
 			}
 		}
-		toggleVisibility(table, false);
+		toggleVisibility(container, false);
 	}
 }
 // #endregion

@@ -1,13 +1,14 @@
 # apexdoc2-vs-code README
 
-ApexDoc2 is a VSCode extension that you can use to document your Salesforce Apex classes. You tell ApexDoc2 where your class files are, and it will generate a set of static HTML pages that fully document each class, including its properties, methods, enums, and annotations. Each static HTML page will include an expandable menu on its left hand side that shows the class groups that you've defined, and the classes within those groups. ApexDoc2 configuration settings allow you to control many aspects of ApexDoc2, such as providing your own banner and Project Home HTML for the pages to use.
+ApexDoc2 is A fast, reliable, and configurable documentation generator for Salesforce Apex .cls files, using a JavaDoc-like inline comment syntax. Tell ApexDoc2 where your class files are, and it will generate a set of static HTML pages that fully document each class, including its properties, methods, enums, and annotations.
 
 ## Features
 
-- A fast, reliable documentation generator for Salesforce Apex .cls files, using a JavaDoc-like inline comment syntax.
-- Includes a simple Express server to preview your docs once generated.
-- Include user defined static assets in your docs like images, logos, and favicons.
-- Produces clean, readable HTML files (complements of [pretty](https://github.com/jonschlinkert/pretty)).
+- Run ApexDoc2 and immediately launch your docs using the extension's built-in static server.
+- Customizable project "Home" page, banner, and Class Group pages.
+- Documentation can be easily linked to source code hosted on GitHub.
+- Customize the favicon, and/or use your own logo, and other static assets in your docs.
+- Produces clean, readable HTML output (complements of [pretty](https://github.com/jonschlinkert/pretty)).
 
 ## Commands
 
@@ -31,7 +32,7 @@ This extension contributes the following settings:
 | `apexdoc2.config.title` | `string` | | The value for the document's &lt;title&gt; attribute.  Defaults to 'Apex Documentation'. |
 | `apexdoc2.config.showTOCSnippets` | `boolean` |  | If set to `false`, ApexDoc2 will hide the method's description snippet in the class's table of contents. Defaults to `true`. |
 | `apexdoc2.config.sortOrder` | `'logical' \| 'alpha'` |  | The order in which class methods, properties, and inner classes are presented to the user in your documentation. Either 'logical', the order they appear in the source file, or 'alpha', alphabetically. Defaults to 'alpha'.|
-| `apexdoc2.config.assets` | `string[]` |  | An array of absolute paths of files you would like to be included in the target directory's 'assets' folder. This is where ApexDoc2 keeps JavaScript, CSS, and images. For instance, if your banner or home page reference images, make their `src` attribute `./assets/yourImage.png` and ApexDoc2 will copy this image into this directory. This is also useful for overriding the default favicon. |
+| `apexdoc2.config.assets` | `string[]` |  | An array of absolute paths of files you would like to be included in the target directory's 'assets' folder. This is where ApexDoc2 keeps JavaScript, CSS, and images. For instance, if your banner or home page reference images, make their `src` attribute `./assets/yourImage.png`, include the image's path in this array, and ApexDoc2 will copy the image into this directory. This is also useful for overriding the default favicon. |
 | `apexdoc2.config.cleanDir` | `boolean` |  | If set to `true`, ApexDoc2 will remove any files or folders in your target directory before creating your docs. Defaults to `false`. |
 | `apexdoc2.config.port` | `number` |  | The port number that the `ApexDoc2: Open Docs` command will serve your docs on. Defaults to `8080`. |
 
