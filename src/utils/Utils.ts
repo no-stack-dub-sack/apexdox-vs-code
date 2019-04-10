@@ -112,9 +112,8 @@ class Utils {
      * it doesn't start with these keywords, it will be undetectable by ApexDoc2.
     */
     public static containsScope(line: string): string | null {
-        for (let i = 0; i < ApexDoc.config.scope.length; i++) {
-            let scope = ApexDoc.config.scope[i].toLowerCase();
-
+        for (let scope of ApexDoc.config.scope) {
+            scope = scope.toLowerCase();
             // if line starts with annotations, replace them, so
             // we can accurately use startsWith to match scope.
             line = this.stripAnnotations(line);

@@ -47,6 +47,10 @@ class ApexDoc {
     public static currentFile: string;
     public static config: IApexDocConfig;
 
+    // flag will be set to true when we're
+    // running the comment stubbing command
+    public static isStub: boolean = false;
+
     /**
      * Entry point for the program. Called by VSCode on extension activation.
      *

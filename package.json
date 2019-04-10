@@ -10,19 +10,24 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.runApexDoc2",
-		"onCommand:extension.serveDocs"
+		"onCommand:apexDoc2.run",
+		"onCommand:apexDoc2.serveDocs",
+		"onCommand:apexDoc2.stub"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.runApexDoc2",
+				"command": "apexDoc2.run",
 				"title": "ApexDoc2: Run"
 			},
 			{
-				"command": "extension.serveDocs",
+				"command": "apexDoc2.serveDocs",
 				"title": "ApexDoc2: Open Docs"
+			},
+			{
+				"command": "apexDoc2.stub",
+				"title": "ApexDoc2: Stub ApexDoc2 Comment"
 			}
 		]
 	},
@@ -56,6 +61,11 @@
 					"cleanDir": false
 				},
 				"description": "Configure ApexDoc2 to document your Apex .cls files."
+			},
+			"apexdoc2.stubs.alignParams": {
+				"type": "boolean",
+				"default": true,
+				"description": "Pad ApexDoc2 comment stubs so that parameter descriptions align."
 			}
 		}
 	},

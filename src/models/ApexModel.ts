@@ -48,7 +48,11 @@ abstract class ApexModel {
         // we'll capture those and display them separately
         this.nameLine = Utils.stripAnnotations(nameLine).trim();
         this.lineNum = lineNum;
-        this.parseScope();
+        // if we're running the stub command
+        // we don't care about scope
+        if (!ApexDoc.isStub) {
+            this.parseScope();
+        }
     }
 
     public getNameLine(): string {

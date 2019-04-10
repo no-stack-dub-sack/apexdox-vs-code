@@ -12,12 +12,23 @@ class MethodModel extends ApexModel {
         // remove anything after param list
         if (nameLine) {
             let i = nameLine.lastIndexOf(')');
-            if (i >= 0) {
+            if (i >= 0 && i < nameLine.length - 1) {
                 nameLine = nameLine.substring(0, i + 1);
             }
         }
 
         super.setNameLine(nameLine, lineNum);
+    }
+
+    public getParamsFromNameLine(): string[] {
+        const nameLine = this.getNameLine();
+        const paramsList = nameLine.substring(nameLine.indexOf('(') + 1, nameLine.indexOf(')'));
+        let params = paramsList.split(',');
+
+        return params.map(param => {
+            let paramPair = param.trim().split(/\s+/);
+            return paramPair.length === 2 ? paramPair[1] : '';
+        });
     }
 
     public getParams(): string[] {
