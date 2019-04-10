@@ -62,10 +62,15 @@
 				},
 				"description": "Configure ApexDoc2 to document your Apex .cls files."
 			},
-			"apexdoc2.stubs.alignParams": {
+			"apexdoc2.stubs.alignItems": {
 				"type": "boolean",
 				"default": true,
-				"description": "Pad ApexDoc2 comment stubs so that parameter descriptions align."
+				"description": "Pad ApexDoc2 comment stubs so that parameter descriptions align. Defaults to 'true'."
+			},
+			"apexdoc2.stubs.omitDescriptionTag": {
+				"type": "boolean",
+				"default": true,
+				"description": "ApexDoc2 '@description' tags are optional. Set this to false to include them. Defaults to 'true'."
 			}
 		}
 	},
