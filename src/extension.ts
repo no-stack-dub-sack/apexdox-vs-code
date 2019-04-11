@@ -9,6 +9,7 @@ import { closeServer, createDocServer } from './server';
 interface IStubsConfig {
 	alignItems: boolean;
 	omitDescriptionTag: boolean;
+	spacious: boolean;
 }
 
 export function activate(context: vscode.ExtensionContext) {
@@ -38,8 +39,8 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	let stubComment = vscode.commands.registerCommand('apexDoc2.stub', () => {
-		// set this flag to true so scope parsing uses master
-		// list of all scopes, not scopes set in config
+		// set this flag to true so MethodModel does not call
+		// functions in the constructor that we don't care about
 		ApexDoc.isStub = true;
 
 		let config: IStubsConfig = { ...vscode.workspace.getConfiguration('apexdoc2')['stubs'] };
@@ -47,6 +48,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const
 			  PARAM = '@param'
 			, RETURN = '@return'
+			, EXCEPTION = '@exception'
 			, DESCRIPTION = '@description';
 
         const editor = vscode.window.activeTextEditor;
@@ -82,6 +84,7 @@ export function activate(context: vscode.ExtensionContext) {
 			// throws an exception, if so, we'll include this tag.
 			let openCurlies = Utils.countChars(nameLine, '{')
 				, closeCurlies = Utils.countChars(nameLine, '}')
+				, nameLineComplete = false
 				, throwsEx = false
 				, start = true;
 
@@ -99,8 +102,11 @@ export function activate(context: vscode.ExtensionContext) {
 				// keep appending to the nameLine until we find our
 				// opening curly brace. This will ensure we capture
 				// methods declared over multiple lines
-				else if (openCurlies < 2) {
+				else if (openCurlies < 2 && !nameLineComplete) {
 					nameLine += line.text.trim();
+					if (nameLine.includes(')')) {
+						nameLineComplete = true;
+					}
 				}
 
 				// we're looking for an exception, if we find one, we can break
@@ -112,7 +118,8 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 			// create a method model from our name line to base our stub on
-			const method = new MethodModel([], nameLine, lineNum)
+			const
+			      method = new MethodModel([], nameLine, lineNum)
 				, methodName = method.getMethodName()
 				, params = method.getParamsFromNameLine()
 				, returnType = Utils.previousWord(nameLine, nameLine.indexOf(methodName))
@@ -128,25 +135,27 @@ export function activate(context: vscode.ExtensionContext) {
 
 			stub += descriptionTemplate(methodName, indent, pad, config.omitDescriptionTag);
 
+			let snippetNum = 2;
 			if (params.length) {
-				stub += `${indent} *\n`;
+				config.spacious && (stub += `${indent} *\n`);
 			}
 
-			let snippetNum = 2;
 			for (let param of params) {
 				const length = param.length + PARAM.length + 1;
 				const pad = getPadding(config.alignItems, length, maxLength);
-				stub += paramTemplate(param, indent, pad, snippetNum++);
+				stub += tagTemplate(PARAM, `${param} ${pad}`, indent, snippetNum++, param);
 			}
 
 			if (returnType !== 'void') {
+				params.length && config.spacious && (stub += `${indent} *\n`);
 				const pad = getPadding(config.alignItems, RETURN.length, maxLength);
-				stub += returnTemplate(indent, pad, snippetNum++);
+				stub += tagTemplate(RETURN, pad, indent, snippetNum++, RETURN.slice(1));
 			}
 
 			if (throwsEx) {
-				const pad = getPadding(config.alignItems, '@exception'.length, maxLength);
-				stub += exceptionTemplate(indent, pad, snippetNum++);
+				returnType === 'void' && config.spacious && (stub += `${indent} *\n`);
+				const pad = getPadding(config.alignItems, EXCEPTION.length, maxLength);
+				stub += tagTemplate(EXCEPTION, pad, indent, snippetNum++, EXCEPTION.slice(1));
 			}
 
 			stub += `${indent}*/$0\n`;
@@ -179,20 +188,12 @@ const getPadding = (alignItems: boolean, length: number, maxLength: number): str
 	return ' ';
 };
 
-const returnTemplate = (indent: string, pad: string, snippetNum: number): string => {
-	return `${indent} *\n${indent} * @return ${pad}\${${snippetNum}:return description}\n`;
+const tagTemplate = (tag: string, value: string, indent: string, snippetNum: number, placeholder: string): string => {
+	return `${indent} * ${tag} ${value}\${${snippetNum}:${placeholder} description}\n`;
 };
 
-const exceptionTemplate = (indent: string, pad: string, snippetNum: number): string => {
-	return `${indent} *\n${indent} * @exception ${pad}\${${snippetNum}:exception description}\n`;
-};
-
-const descriptionTemplate = (methodName: string, indent: string, pad: string, omitDesc: boolean) => {
+const descriptionTemplate = (methodName: string, indent: string, pad: string, omitDesc: boolean): string => {
 	return `${indent}/**\n${indent} * ${!omitDesc ? '@description ' : ''}${pad}\${1:${methodName} description}\n`;
-};
-
-const paramTemplate = (param: string, indent: string, pad: string, snippetNum: number) => {
-	return `${indent} * @param ${param + pad} \${${snippetNum}:${param} description}\n`;
 };
 
 export function deactivate() {
