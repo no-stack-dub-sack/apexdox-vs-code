@@ -1,4 +1,4 @@
-import ApexDoc from '../core/ApexDoc';
+import ApexDoc from '../apexDoc/ApexDoc';
 import TopLevelModel, { ModelType } from './TopLevelModel';
 
 class EnumModel extends TopLevelModel {

@@ -1,4 +1,4 @@
-import ApexDoc from '../core/ApexDoc';
+import ApexDoc from '../apexDoc/ApexDoc';
 import EnumModel from './EnumModel';
 import MethodModel from './MethodModel';
 import PropertyModel from './PropertyModel';

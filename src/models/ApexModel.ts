@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import ApexDoc from '../core/ApexDoc';
+import ApexDoc from '../apexDoc/ApexDoc';
 import Utils from '../utils/Utils';
 import { existsSync } from 'fs';
 import { resolve } from 'path';

@@ -1,7 +1,7 @@
-import ApexDoc from '../core/ApexDoc';
+import ApexDoc from '../apexDoc/ApexDoc';
 import ApexModel from '../models/ApexModel';
 import ClassModel from '../models/ClassModel';
-import DocGen from '../core/DocGen';
+import DocGen from '../apexDoc/DocGen';
 
 export const last = (arr: any[]) => arr[arr.length - 1];
 
