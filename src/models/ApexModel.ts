@@ -7,17 +7,17 @@ import { resolve } from 'path';
 abstract class ApexModel {
 
     // token constants
-    private static AUTHOR: string = ' @author';
-    private static DATE: string = ' @date';
-    private static DEPRECATED: string = ' @deprecated';
-    private static DESCRIPTION: string = ' @description';
-    private static EXAMPLE: string = ' @example';
-    private static EXCEPTION: string = ' @exception';
-    private static GROUP: string = ' @group '; // needed to include space to not match group-content
-    private static GROUP_CONTENT: string = ' @group-content';
-    private static PARAM: string = ' @param';
-    private static RETURN: string = ' @return';
-    private static SEE: string = ' @see';
+    private static readonly AUTHOR: string = ' @author';
+    private static readonly DATE: string = ' @date';
+    private static readonly DEPRECATED: string = ' @deprecated';
+    private static readonly DESCRIPTION: string = ' @description';
+    private static readonly EXAMPLE: string = ' @example';
+    private static readonly EXCEPTION: string = ' @exception';
+    private static readonly GROUP: string = ' @group '; // needed to include space to not match group-content
+    private static readonly GROUP_CONTENT: string = ' @group-content';
+    private static readonly PARAM: string = ' @param';
+    private static readonly RETURN: string = ' @return';
+    private static readonly SEE: string = ' @see';
 
     // instance variables
     private author: string = '';

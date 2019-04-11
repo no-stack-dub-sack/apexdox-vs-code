@@ -8,7 +8,7 @@ import { closeServer, createDocServer } from './server';
 
 interface IStubsConfig {
 	alignItems: boolean;
-	omitDescriptionTags: boolean;
+	omitDescriptionTag: boolean;
 }
 
 export function activate(context: vscode.ExtensionContext) {
@@ -44,6 +44,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 		let config: IStubsConfig = { ...vscode.workspace.getConfiguration('apexdoc2')['stubs'] };
 
+		const
+			  PARAM = '@param'
+			, RETURN = '@return'
+			, DESCRIPTION = '@description';
+
         const editor = vscode.window.activeTextEditor;
         if (!editor) {
             return;
@@ -67,7 +72,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         // If line is still empty, do nothing
         if (!line.isEmptyOrWhitespace && line.text.includes('(')) {
-			let padTo = line.firstNonWhitespaceCharacterIndex
+			let indentTo = line.firstNonWhitespaceCharacterIndex
 				, nameLine = line.text.trim()
 				, currLineIndex = lineIndex
 				, lineNum = lineIndex + 1;
@@ -84,28 +89,35 @@ export function activate(context: vscode.ExtensionContext) {
 			const methodName = method.getMethodName()
 				, params = method.getParamsFromNameLine()
 				, returnType = Utils.previousWord(nameLine, nameLine.indexOf(methodName))
-				, maxLength = Math.max(...[methodName.length, ...params.map(p => p.length)])
-				, indent = ' '.repeat(padTo);
+				, maxLength = getMaxLength(config, returnType, params)
+				, indent = ' '.repeat(indentTo);
 
-			let pad = getPadding(config.alignItems, methodName, maxLength);
-			let stub = descriptionTemplate(methodName, indent, pad, config.omitDescriptionTags);
+			let stub = '';
+
+			// get right-pad for description line
+			const pad = !config.omitDescriptionTag
+				? getPadding(config.alignItems, DESCRIPTION.length, maxLength)
+				: '';
+
+			stub += descriptionTemplate(methodName, indent, pad, config.omitDescriptionTag);
 
 			if (params.length) {
 				stub += `${indent} *\n`;
 			}
 
-			let placeholder = 2;
+			let snippetNum = 2;
 			for (let param of params) {
-				let pad = getPadding(config.alignItems, param, maxLength);
-				stub += paramTemplate(param, indent, pad, placeholder++);
+				const length = param.length + PARAM.length + 1;
+				const pad = getPadding(config.alignItems, length, maxLength);
+				stub += paramTemplate(param, indent, pad, snippetNum++);
 			}
 
 			if (returnType !== 'void') {
-				let pad = getPadding(config.alignItems, '', maxLength);
-				stub += returnTemplate(indent, pad, placeholder++);
+				const pad = getPadding(config.alignItems, RETURN.length, maxLength);
+				stub += returnTemplate(indent, pad, snippetNum++);
 			}
 
-			stub += `${indent}*/\n`;
+			stub += `${indent}*/$0\n`;
 
             const position = new vscode.Position(lineIndex, 0);
             editor.insertSnippet(new vscode.SnippetString(`${stub}`), position);
@@ -115,12 +127,23 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(...[runApexDoc2, serveDocs, stubComment]);
 }
 
-const getPadding = (alignItems: boolean, element: string, maxLength: number): string => {
-	if (alignItems && element.length < maxLength) {
-		return ' '.repeat(maxLength - element.length);
+const getMaxLength = (config: IStubsConfig, returnType: string, params: string[]): number => {
+	// establish lengths of tags and params
+	const returnTag = returnType !== 'void' ? 7 : 0; // 7 = '@return'
+	const descriptionTag = config.omitDescriptionTag ? 0 : 12;
+	const paramsLength = params.map(p => 7 + p.length); // 7 = '@param '
+
+	// gather all lengths and take max
+	const lengths = [returnTag, descriptionTag, ...paramsLength];
+	return Math.max(...lengths);
+};
+
+const getPadding = (alignItems: boolean, length: number, maxLength: number): string => {
+	if (alignItems && length < maxLength) {
+		return ' '.repeat((maxLength - length) + 1);
 	}
 
-	return '';
+	return ' ';
 };
 
 const returnTemplate = (indent: string, pad: string, snippetNum: number): string => {

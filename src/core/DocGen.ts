@@ -307,7 +307,7 @@ class DocGen {
             }
 
             if (method.getReturns()) {
-                methodsHTML += '<div class="methodSubTitle">Return Value</div>';
+                methodsHTML += '<div class="methodSubTitle">Returns</div>';
                 methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getReturns(), true)}</div>`;
             }
 
