@@ -77,19 +77,46 @@ export function activate(context: vscode.ExtensionContext) {
 				, currLineIndex = lineIndex
 				, lineNum = lineIndex + 1;
 
-			// handle methods declared over multiple lines
-			while (!line.text.includes(')')) {
+			// Capture the method's nameLine, and traverse over
+			// enough of it's text to detect whether or not a it
+			// throws an exception, if so, we'll include this tag.
+			let openCurlies = Utils.countChars(nameLine, '{')
+				, closeCurlies = Utils.countChars(nameLine, '}')
+				, throwsEx = false
+				, start = true;
+
+			while (openCurlies !== closeCurlies || start === true) {
 				line = editor.document.lineAt(++currLineIndex);
-				nameLine += line.text.trim();
+
+				openCurlies += Utils.countChars(line.text, '{');
+				closeCurlies += Utils.countChars(line.text, '}');
+
+				// be sure to turn this off once our loop begins
+				if (openCurlies > 0 && start === true) {
+					start = false;
+				}
+
+				// keep appending to the nameLine until we find our
+				// opening curly brace. This will ensure we capture
+				// methods declared over multiple lines
+				else if (openCurlies < 2) {
+					nameLine += line.text.trim();
+				}
+
+				// we're looking for an exception, if we find one, we can break
+				// the loop, we already have all the info we need for the model
+				if (line.text.trim().toLocaleLowerCase().startsWith('throw')) {
+					throwsEx = true;
+					break;
+				}
 			}
 
 			// create a method model from our name line to base our stub on
-			const method = new MethodModel([], nameLine, lineNum);
-
-			const methodName = method.getMethodName()
+			const method = new MethodModel([], nameLine, lineNum)
+				, methodName = method.getMethodName()
 				, params = method.getParamsFromNameLine()
 				, returnType = Utils.previousWord(nameLine, nameLine.indexOf(methodName))
-				, maxLength = getMaxLength(config, returnType, params)
+				, maxLength = getMaxLength(config, returnType, params, throwsEx)
 				, indent = ' '.repeat(indentTo);
 
 			let stub = '';
@@ -117,6 +144,11 @@ export function activate(context: vscode.ExtensionContext) {
 				stub += returnTemplate(indent, pad, snippetNum++);
 			}
 
+			if (throwsEx) {
+				const pad = getPadding(config.alignItems, '@exception'.length, maxLength);
+				stub += exceptionTemplate(indent, pad, snippetNum++);
+			}
+
 			stub += `${indent}*/$0\n`;
 
             const position = new vscode.Position(lineIndex, 0);
@@ -127,14 +159,15 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(...[runApexDoc2, serveDocs, stubComment]);
 }
 
-const getMaxLength = (config: IStubsConfig, returnType: string, params: string[]): number => {
+const getMaxLength = (config: IStubsConfig, returnType: string, params: string[], throwsEx: boolean): number => {
 	// establish lengths of tags and params
-	const returnTag = returnType !== 'void' ? 7 : 0; // 7 = '@return'
-	const descriptionTag = config.omitDescriptionTag ? 0 : 12;
-	const paramsLength = params.map(p => 7 + p.length); // 7 = '@param '
+	const returnTag = returnType !== 'void' ? '@return'.length : 0;
+	const descriptionTag = config.omitDescriptionTag ? 0 : '@description'.length;
+	const paramsLength = params.map(p => '@param '.length + p.length); // 7 = '@param '
+	const exceptionLength = throwsEx ? '@exception'.length : 0;
 
 	// gather all lengths and take max
-	const lengths = [returnTag, descriptionTag, ...paramsLength];
+	const lengths = [returnTag, descriptionTag, exceptionLength, ...paramsLength];
 	return Math.max(...lengths);
 };
 
@@ -148,6 +181,10 @@ const getPadding = (alignItems: boolean, length: number, maxLength: number): str
 
 const returnTemplate = (indent: string, pad: string, snippetNum: number): string => {
 	return `${indent} *\n${indent} * @return ${pad}\${${snippetNum}:return description}\n`;
+};
+
+const exceptionTemplate = (indent: string, pad: string, snippetNum: number): string => {
+	return `${indent} *\n${indent} * @exception ${pad}\${${snippetNum}:exception description}\n`;
 };
 
 const descriptionTemplate = (methodName: string, indent: string, pad: string, omitDesc: boolean) => {
