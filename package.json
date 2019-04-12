@@ -10,9 +10,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:apexDoc2.run",
-		"onCommand:apexDoc2.serveDocs",
-		"onCommand:apexDoc2.stub"
+		"onLanguage:apex"
 	],
 	"main": "./out/extension.js",
 	"contributes": {

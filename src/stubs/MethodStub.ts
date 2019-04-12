@@ -26,23 +26,24 @@ class MethodStub {
     private editor: vscode.TextEditor;
     private line: vscode.TextLine;
     private lineIndex: number;
-    private lineNumber: number;
     private lineIndent: number;
+    private isCompletion: boolean;
+    private annotationLines: number = 0;
 
     public contents: string | undefined;
 
-    public constructor(editor: vscode.TextEditor) {
+    public constructor(editor: vscode.TextEditor, isCompletion?: boolean) {
 		// set this flag to true so MethodModel does not call
 		// functions in the constructor that we don't care about
         ApexDoc.isStub = true;
 
         this.editor = editor;
         this.lineIndex = this.editor.selection.active.line;
-		this.config = { ...vscode.workspace.getConfiguration('apexdoc2')['stubs'] };
+        this.config = { ...vscode.workspace.getConfiguration('apexdoc2')['stubs'] };
+        this.isCompletion = isCompletion || false;
 
         this.line = this.setFirstLine();
-        this.lineNumber = this.lineIndex + 1;
-        this.lineIndent = this.line.firstNonWhitespaceCharacterIndex;
+        this.lineIndent = isCompletion ? 0 : this.line.firstNonWhitespaceCharacterIndex;
 
         this.make();
     }
@@ -51,7 +52,7 @@ class MethodStub {
      * Inserts the stub snippet at a given position.
      */
     public insert(): void {
-        const position = new vscode.Position(this.lineIndex, 0);
+        const position = new vscode.Position(this.lineIndex - this.annotationLines - 1, 0);
         this.editor.insertSnippet(new vscode.SnippetString(this.contents), position);
     }
 
@@ -94,7 +95,8 @@ class MethodStub {
 				stub += this.tagTemplate(this.EXCEPTION, pad, indent, tabIndex++);
 			}
 
-            this.contents = stub += `${indent} */\n`;
+            const terminator = !this.isCompletion ? '' : '';
+            this.contents = stub += `${indent} */${terminator}`;
         }
     }
 
@@ -104,7 +106,8 @@ class MethodStub {
     }
 
     private descriptionTemplate(indent: string, pad: string, omitDesc: boolean): string {
-        return `${indent}/**\n${indent} * ${!omitDesc ? '@description ' : ''}${pad}$0\n`;
+        const openComment = !this.isCompletion ? `${indent}/**\n` : '\n';
+        return `${openComment}${indent} * ${!omitDesc ? '@description ' : ''}${pad}$0\n`;
     }
     // #endregion
 
@@ -118,16 +121,37 @@ class MethodStub {
      */
     private setFirstLine(): vscode.TextLine {
         let line = this.editor.document.lineAt(this.lineIndex);
-        // Handle annotations
-        while (line.text.trim().startsWith('@')) {
-            line = this.editor.document.lineAt(this.lineIndex++);
+
+        // handle completion event, we want the next line, unless
+        // the next line is an annotation, then find the method
+        if (this.isCompletion) {
+            line = this.editor.document.lineAt(++this.lineIndex);
+            while (line.text.trim().startsWith('@')) {
+                line = this.editor.document.lineAt(++this.lineIndex);
+                this.annotationLines++;
+            }
         }
 
-        // Handle line command being invoked on being empty and next
-        // line being the line that the method we're stubbing is on
-        let nextLineText = this.editor.document.lineAt(this.lineIndex + 1).text;
-        if (line.isEmptyOrWhitespace && nextLineText.includes('(')) {
-            line = this.editor.document.lineAt(++this.lineIndex);
+        // handle command invoked on empty line
+        else if (line.isEmptyOrWhitespace) {
+            let nextLineText = this.editor.document.lineAt(this.lineIndex + 1).text.trim();
+            if (nextLineText.startsWith('@')) {
+                line = this.editor.document.lineAt(++this.lineIndex);
+                while (line.text.trim().startsWith('@')) {
+                    line = this.editor.document.lineAt(++this.lineIndex);
+                    this.annotationLines++;
+                }
+            } else if (nextLineText.includes('(')) {
+                line = this.editor.document.lineAt(++this.lineIndex);
+            }
+        }
+
+        // handle command invoked on annotation line
+        else {
+            while (line.text.trim().startsWith('@')) {
+                line = this.editor.document.lineAt(++this.lineIndex);
+                this.annotationLines++;
+            }
         }
 
         return line;
@@ -174,7 +198,7 @@ class MethodStub {
         }
 
         // create a method model from our name line to base our stub on
-        const method = new MethodModel([], methodText.substring(0, methodText.indexOf('{')), this.lineNumber);
+        const method = new MethodModel([], methodText.substring(0, methodText.indexOf('{')), 0);
         const name = method.getMethodName(), nameLine = method.getNameLine();
 
         return {
