@@ -3,6 +3,7 @@ import ApexDoc from './apexDoc/ApexDoc';
 import Configurator, { IApexDocConfig } from './apexDoc/Config';
 import Guards from './utils/Guards';
 import MethodStub from './stubs/MethodStub';
+import Stub, { ILineType, StubType } from './stubs/Stub';
 import { closeServer, createDocServer } from './server';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -31,15 +32,22 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
+	// stub an ApexDoc2 comment, invoked by command pallette
 	const stubComment = vscode.commands.registerCommand('apexDoc2.stub', () => {
 		const editor = vscode.window.activeTextEditor;
 
         if (editor) {
-			const stub = new MethodStub(editor);
-			stub.contents && stub.insert();
+			const lineIdx = editor.selection.active.line;
+			const result: ILineType = Stub.getLineAndType(editor, lineIdx);
+
+			if (result.type === StubType.METHOD) {
+				const stub = new MethodStub(editor, result);
+				stub.contents && stub.insert();
+			}
         }
 	});
 
+	// stub an ApexDoc2 comment, invoked by completion item, i.e. '/**'
 	const stubCompletionProvider = () => {
 		const provider = {
 			provideCompletionItems: (document: vscode.TextDocument, position: vscode.Position) => {
@@ -66,9 +74,17 @@ export function activate(context: vscode.ExtensionContext) {
 			const editor = vscode.window.activeTextEditor;
 
 			if (editor) {
-				const stub = new MethodStub(editor, true);
-				const snippet = stub.contents ? new vscode.SnippetString(stub.contents) : new vscode.SnippetString('\n * $0\n */');
-				editor.insertSnippet(snippet, position, { undoStopBefore: false, undoStopAfter: false })
+				const lineIdx = editor.selection.active.line;
+				const result: ILineType = Stub.getLineAndType(editor, lineIdx, true);
+
+				if (result.type === StubType.METHOD) {
+					const stub = new MethodStub(editor, result, true);
+					const snippet = stub.contents ? new vscode.SnippetString(stub.contents) : new vscode.SnippetString('\n * $0\n */');
+					editor.insertSnippet(snippet, position, { undoStopBefore: false, undoStopAfter: false });
+				} else {
+					const snippet = new vscode.SnippetString('\n * $0\n */');
+					editor.insertSnippet(snippet, position, { undoStopBefore: false, undoStopAfter: false });
+				}
 			}
 		});
 

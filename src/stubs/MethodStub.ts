@@ -1,13 +1,7 @@
 import * as vscode from 'vscode';
-import ApexDoc from '../apexDoc/ApexDoc';
 import MethodModel from '../models/MethodModel';
+import Stub, { ILineType, IStubsConfig } from './Stub';
 import Utils from '../utils/Utils';
-
-interface IStubsConfig {
-	alignItems: boolean;
-	omitDescriptionTag: boolean;
-	spacious: boolean;
-}
 
 interface IParsedMethod {
     name: string;
@@ -16,35 +10,10 @@ interface IParsedMethod {
     throwsException: boolean;
 }
 
-class MethodStub {
-    private readonly PARAM: string = '@param';
-    private readonly RETURN: string = '@return';
-    private readonly EXCEPTION: string = '@exception';
-    private readonly DESCRIPTION: string = '@description';
+class MethodStub extends Stub {
 
-    private config: IStubsConfig;
-    private editor: vscode.TextEditor;
-    private line: vscode.TextLine;
-    private lineIndex: number;
-    private lineIndent: number;
-    private isCompletion: boolean;
-    private annotationLines: number = 0;
-
-    public contents: string | undefined;
-
-    public constructor(editor: vscode.TextEditor, isCompletion?: boolean) {
-		// set this flag to true so MethodModel does not call
-		// functions in the constructor that we don't care about
-        ApexDoc.isStub = true;
-
-        this.editor = editor;
-        this.lineIndex = this.editor.selection.active.line;
-        this.config = { ...vscode.workspace.getConfiguration('apexdoc2')['stubs'] };
-        this.isCompletion = isCompletion || false;
-
-        this.line = this.setFirstLine();
-        this.lineIndent = isCompletion ? 0 : this.line.firstNonWhitespaceCharacterIndex;
-
+    public constructor(editor: vscode.TextEditor, lineInfo: ILineType, isCompletion?: boolean) {
+        super(editor, lineInfo, isCompletion);
         this.make();
     }
 
@@ -112,51 +81,6 @@ class MethodStub {
     // #endregion
 
     // #region Utils
-
-    /**
-     * Establishes the first line of the method's text. Our line index
-     * and indent point are also derived from this method's results.
-     *
-     * @returns The `vscode.TextLine` object on which our method begins.
-     */
-    private setFirstLine(): vscode.TextLine {
-        let line = this.editor.document.lineAt(this.lineIndex);
-
-        // handle completion event, we want the next line, unless
-        // the next line is an annotation, then find the method
-        if (this.isCompletion) {
-            line = this.editor.document.lineAt(++this.lineIndex);
-            while (line.text.trim().startsWith('@')) {
-                line = this.editor.document.lineAt(++this.lineIndex);
-                this.annotationLines++;
-            }
-        }
-
-        // handle command invoked on empty line
-        else if (line.isEmptyOrWhitespace) {
-            let nextLineText = this.editor.document.lineAt(this.lineIndex + 1).text.trim();
-            if (nextLineText.startsWith('@')) {
-                line = this.editor.document.lineAt(++this.lineIndex);
-                while (line.text.trim().startsWith('@')) {
-                    line = this.editor.document.lineAt(++this.lineIndex);
-                    this.annotationLines++;
-                }
-            } else if (nextLineText.includes('(')) {
-                line = this.editor.document.lineAt(++this.lineIndex);
-            }
-        }
-
-        // handle command invoked on annotation line
-        else {
-            while (line.text.trim().startsWith('@')) {
-                line = this.editor.document.lineAt(++this.lineIndex);
-                this.annotationLines++;
-            }
-        }
-
-        return line;
-    }
-
     /**
      * Traverses over the editor lines based from our first line
      * And capture's the method's full text, or enough of it to
