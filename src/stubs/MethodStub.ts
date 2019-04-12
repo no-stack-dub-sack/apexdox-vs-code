@@ -9,6 +9,13 @@ interface IStubsConfig {
 	spacious: boolean;
 }
 
+interface IParsedMethod {
+    name: string;
+    params: string[];
+    returnType: string;
+    throwsException: boolean;
+}
+
 class MethodStub {
     private readonly PARAM: string = '@param';
     private readonly RETURN: string = '@return';
@@ -17,126 +24,176 @@ class MethodStub {
 
     private config: IStubsConfig;
     private editor: vscode.TextEditor;
+    private line: vscode.TextLine;
     private lineIndex: number;
-    public stub: string | undefined;
+    private lineNumber: number;
+    private lineIndent: number;
+
+    public contents: string | undefined;
 
     public constructor(editor: vscode.TextEditor) {
 		// set this flag to true so MethodModel does not call
 		// functions in the constructor that we don't care about
-		ApexDoc.isStub = true;
+        ApexDoc.isStub = true;
+
         this.editor = editor;
         this.lineIndex = this.editor.selection.active.line;
 		this.config = { ...vscode.workspace.getConfiguration('apexdoc2')['stubs'] };
 
+        this.line = this.setFirstLine();
+        this.lineNumber = this.lineIndex + 1;
+        this.lineIndent = this.line.firstNonWhitespaceCharacterIndex;
+
         this.make();
     }
 
+    /**
+     * Inserts the stub snippet at a given position.
+     */
     public insert(): void {
         const position = new vscode.Position(this.lineIndex, 0);
-        this.editor.insertSnippet(new vscode.SnippetString(this.stub), position);
+        this.editor.insertSnippet(new vscode.SnippetString(this.contents), position);
     }
 
+    /**
+     * Our main routine, responsible for parsing the
+     * method and creating the stub / snippet's contents.
+     */
     private make(): void {
-        // Declare & initialize our line vars
-		let line = this.editor.document.lineAt(this.lineIndex);
+        if (!this.line.isEmptyOrWhitespace && this.line.text.includes('(')) {
 
-        // Handle annotations
-        while (line.text.trim().startsWith('@')) {
-            line = this.editor.document.lineAt(this.lineIndex++);
-		}
-
-		// Handle line command being invoked on being empty and next
-		// line being the line that the method we're stubbing is on
-		let nextLineText = this.editor.document.lineAt(this.lineIndex + 1).text;
-		if (line.isEmptyOrWhitespace && nextLineText.includes('(')) {
-			line = this.editor.document.lineAt(++this.lineIndex);
-		}
-
-        // If line is still empty, do nothing
-        if (!line.isEmptyOrWhitespace && line.text.includes('(')) {
-			let indentTo = line.firstNonWhitespaceCharacterIndex
-				, methodText = line.text.trim()
-				, currLineIndex = this.lineIndex
-				, lineNum = this.lineIndex + 1;
-
-			// Capture the method's nameLine, and traverse over
-			// enough of it's text to detect whether or not a it
-			// throws an exception, if so, we'll include this tag.
-			let openCurlies = Utils.countChars(methodText, '{')
-				, closeCurlies = Utils.countChars(methodText, '}')
-				, throwsEx = false
-				, start = true;
-
-			while (openCurlies !== closeCurlies || start === true) {
-				line = this.editor.document.lineAt(++currLineIndex);
-
-				openCurlies += Utils.countChars(line.text, '{');
-				closeCurlies += Utils.countChars(line.text, '}');
-				methodText += line.text.trim();
-
-				// be sure to turn this off once our loop begins
-				if (openCurlies > 0 && start === true) {
-					start = false;
-				}
-
-				// we're looking for an exception, if we find one, we can break
-				// the loop, we already have all the info we need for the model
-				if (line.text.trim().toLocaleLowerCase().startsWith('throw')) {
-					throwsEx = true;
-					break;
-				}
-			}
-
-			// keep only the method's name line
-			methodText = methodText.substring(0, methodText.indexOf('{'));
-
-			// create a method model from our name line to base our stub on
-			const
-			      method = new MethodModel([], methodText, lineNum)
-				, methodName = method.getMethodName()
-				, params = method.getParamsFromNameLine()
-				, returnType = Utils.previousWord(methodText, methodText.indexOf(methodName))
-				, maxLength = this.getMaxLength(this.config, returnType, params, throwsEx)
-				, indent = ' '.repeat(indentTo);
-
-			let stub = '';
-
-			// get right-pad for description line
+            const { name: methodName, throwsException, returnType, params } = this.parseMethod();
+            const maxLength = this.getMaxLength(this.config, returnType, params, throwsException);
+            const indent = ' '.repeat(this.lineIndent);
 			const pad = !this.config.omitDescriptionTag
 				? this.getPadding(this.config.alignItems, this.DESCRIPTION.length, maxLength)
 				: '';
 
-			stub += this.descriptionTemplate(methodName, indent, pad, this.config.omitDescriptionTag);
+			let stub = this.descriptionTemplate(indent, pad, this.config.omitDescriptionTag);
 
-			let snippetNum = 2;
-			if (params.length) {
-				this.config.spacious && (stub += `${indent} *\n`);
+            // If config.spacious is set to true, and there are
+            // additional tags after the description add an empty line.
+			if (this.config.spacious && (params.length || returnType !== 'void' || throwsException)) {
+                stub += `${indent} *\n`;
 			}
 
+            let tabIndex = 1;
 			for (let param of params) {
 				const length = param.length + this.PARAM.length + 1;
 				const pad = this.getPadding(this.config.alignItems, length, maxLength);
-				stub += this.tagTemplate(this.PARAM, `${param} ${pad}`, indent, snippetNum++, param);
+				stub += this.tagTemplate(this.PARAM, `${param} ${pad}`, indent, tabIndex++);
 			}
 
 			if (returnType !== 'void') {
-				params.length && this.config.spacious && (stub += `${indent} *\n`);
 				const pad = this.getPadding(this.config.alignItems, this.RETURN.length, maxLength);
-				stub += this.tagTemplate(this.RETURN, pad, indent, snippetNum++, this.RETURN.slice(1));
+				stub += this.tagTemplate(this.RETURN, pad, indent, tabIndex++);
 			}
 
-			if (throwsEx) {
-				returnType === 'void' && this.config.spacious && (stub += `${indent} *\n`);
+			if (throwsException) {
 				const pad = this.getPadding(this.config.alignItems, this.EXCEPTION.length, maxLength);
-				stub += this.tagTemplate(this.EXCEPTION, pad, indent, snippetNum++, this.EXCEPTION.slice(1));
+				stub += this.tagTemplate(this.EXCEPTION, pad, indent, tabIndex++);
 			}
 
-            stub += `${indent}*/$0\n`;
-
-            this.stub = stub;
+            this.contents = stub += `${indent} */\n`;
         }
     }
 
+    // #region Stub Templates
+    private tagTemplate(tag: string, value: string, indent: string, tabIndex: number): string {
+        return `${indent} * ${tag} ${value}$${tabIndex}\n`;
+    }
+
+    private descriptionTemplate(indent: string, pad: string, omitDesc: boolean): string {
+        return `${indent}/**\n${indent} * ${!omitDesc ? '@description ' : ''}${pad}$0\n`;
+    }
+    // #endregion
+
+    // #region Utils
+
+    /**
+     * Establishes the first line of the method's text. Our line index
+     * and indent point are also derived from this method's results.
+     *
+     * @returns The `vscode.TextLine` object on which our method begins.
+     */
+    private setFirstLine(): vscode.TextLine {
+        let line = this.editor.document.lineAt(this.lineIndex);
+        // Handle annotations
+        while (line.text.trim().startsWith('@')) {
+            line = this.editor.document.lineAt(this.lineIndex++);
+        }
+
+        // Handle line command being invoked on being empty and next
+        // line being the line that the method we're stubbing is on
+        let nextLineText = this.editor.document.lineAt(this.lineIndex + 1).text;
+        if (line.isEmptyOrWhitespace && nextLineText.includes('(')) {
+            line = this.editor.document.lineAt(++this.lineIndex);
+        }
+
+        return line;
+    }
+
+    /**
+     * Traverses over the editor lines based from our first line
+     * And capture's the method's full text, or enough of it to
+     * detect whether or not a it throws an exception. If it does
+     * our stub will include this tag. Also gets the method's
+     * name, params and return type to drive other stub logic.
+     *
+     * @returns An `IParsedMethod` object describing the method.
+     */
+    private parseMethod(): IParsedMethod {
+        let methodText = this.line.text.trim()
+            , currLineIndex = this.lineIndex
+            , openCurlies = Utils.countChars(methodText, '{')
+            , closeCurlies = Utils.countChars(methodText, '}')
+            , throwsException = false
+            , start = true;
+
+        // Capture the method's nameLine, and traverse over
+        // enough of it's text to detect whether or not a it
+        // throws an exception, if so, we'll include this tag.
+        while (openCurlies !== closeCurlies || start === true) {
+            this.line = this.editor.document.lineAt(++currLineIndex);
+
+            openCurlies += Utils.countChars(this.line.text, '{');
+            closeCurlies += Utils.countChars(this.line.text, '}');
+            methodText += this.line.text.trim();
+
+            // be sure to turn this off once our loop begins
+            if (openCurlies > 0 && start === true) {
+                start = false;
+            }
+
+            // we're looking for an exception, if we find one, we can break
+            // the loop, we already have all the info we need for the model
+            if (this.line.text.trim().toLowerCase().startsWith('throw')) {
+                throwsException = true;
+                break;
+            }
+        }
+
+        // create a method model from our name line to base our stub on
+        const method = new MethodModel([], methodText.substring(0, methodText.indexOf('{')), this.lineNumber);
+        const name = method.getMethodName(), nameLine = method.getNameLine();
+
+        return {
+            throwsException,
+            name: method.getMethodName(),
+            params: method.getParamsFromNameLine(),
+            returnType: Utils.previousWord(nameLine, nameLine.indexOf(name)),
+        };
+    }
+
+    /**
+     * Takes the length of all tags and prams and determines the longest, to assist in
+     * determining right-padding if user has apexdoc2.stubs.alignItems set to true.
+     *
+     * @param config The user's ApexDoc2 Stubs config object
+     * @param returnType The method's return type
+     * @param params The method's params
+     * @param throwsEx Whether or not the method throws
+     */
     private getMaxLength(config: IStubsConfig, returnType: string, params: string[], throwsEx: boolean): number {
         // establish lengths of tags and params
         const returnTag = returnType !== 'void' ? this.RETURN.length : 0;
@@ -149,21 +206,22 @@ class MethodStub {
         return Math.max(...lengths);
     }
 
+    /**
+     * Determines the right-padding needed for a comment
+     * line if apexdoc2.stubs.alignItems is set to true.
+
+     * @param alignItems If false, do not calculate padding.
+     * @param length Length of the element (tag + value if param).
+     * @param maxLength The max length of all elements.
+     */
     private getPadding(alignItems: boolean, length: number, maxLength: number): string {
         if (alignItems && length < maxLength) {
-            return ' '.repeat((maxLength - length) + 1);
+            return ' '.repeat(maxLength - length);
         }
 
-        return ' ';
+        return '';
     }
-
-    private tagTemplate(tag: string, value: string, indent: string, snippetNum: number, placeholder: string): string {
-        return `${indent} * ${tag} ${value}\${${snippetNum}:${placeholder} description}\n`;
-    }
-
-    private descriptionTemplate(methodName: string, indent: string, pad: string, omitDesc: boolean): string {
-        return `${indent}/**\n${indent} * ${!omitDesc ? '@description ' : ''}${pad}\${1:${methodName} description}\n`;
-    }
+    // #endregion
 }
 
 export default MethodStub;

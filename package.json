@@ -74,8 +74,8 @@
 			},
 			"apexdoc2.stubs.spacious": {
 				"type": "boolean",
-				"default": true,
-				"description": "When set to true ApexDoc2 comment stubs will add empty lines before and after a method's param lines. Defaults to 'true'."
+				"default": false,
+				"description": "When set to true ApexDoc2 comment stubs will add an empty line after the description line and before the next tag. Defaults to 'false'."
 			}
 		}
 	},

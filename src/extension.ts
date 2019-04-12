@@ -44,7 +44,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         if (editor) {
 			const stub = new MethodStub(editor);
-			stub.insert();
+			stub.contents && stub.insert();
         }
 	});
 
