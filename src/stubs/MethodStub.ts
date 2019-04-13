@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import MethodModel from '../models/MethodModel';
-import Stub, { ILineType, IStubsConfig } from './Stub';
+import Stub, { IStubLine, IStubsConfig } from './Stub';
 import Utils from '../utils/Utils';
 
 interface IParsedMethod {
@@ -12,17 +12,9 @@ interface IParsedMethod {
 
 class MethodStub extends Stub {
 
-    public constructor(editor: vscode.TextEditor, lineInfo: ILineType, isCompletion?: boolean) {
-        super(editor, lineInfo, isCompletion);
+    public constructor(editor: vscode.TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
+        super(editor, activeLine, stubLine, isCompletion);
         this.make();
-    }
-
-    /**
-     * Inserts the stub snippet at a given position.
-     */
-    public insert(): void {
-        const position = new vscode.Position(this.lineIndex - this.annotationLines - 1, 0);
-        this.editor.insertSnippet(new vscode.SnippetString(this.contents), position);
     }
 
     /**
@@ -32,12 +24,12 @@ class MethodStub extends Stub {
     private make(): void {
         if (!this.line.isEmptyOrWhitespace && this.line.text.includes('(')) {
 
-            const { name: methodName, throwsException, returnType, params } = this.parseMethod();
-            const maxLength = this.getMaxLength(this.config, returnType, params, throwsException);
-            const indent = ' '.repeat(this.lineIndent);
-			const pad = !this.config.omitDescriptionTag
-				? this.getPadding(this.config.alignItems, this.DESCRIPTION.length, maxLength)
-				: '';
+            const { throwsException, returnType, params } = this.parseMethod()
+                , maxLength = this.getMaxLength(this.config, returnType, params, throwsException)
+                , indent = ' '.repeat(this.lineIndent)
+			    , pad = !this.config.omitDescriptionTag
+                    ? this.getPadding(this.config.alignItems, this.DESCRIPTION.length, maxLength)
+                    : '';
 
 			let stub = this.descriptionTemplate(indent, pad, this.config.omitDescriptionTag);
 
@@ -64,7 +56,7 @@ class MethodStub extends Stub {
 				stub += this.tagTemplate(this.EXCEPTION, pad, indent, tabIndex++);
 			}
 
-            const terminator = !this.isCompletion ? '' : '';
+            const terminator = this.insertNewLine ? '\n' : '';
             this.contents = stub += `${indent} */${terminator}`;
         }
     }

@@ -3,7 +3,7 @@ import ApexDoc from './apexDoc/ApexDoc';
 import Configurator, { IApexDocConfig } from './apexDoc/Config';
 import Guards from './utils/Guards';
 import MethodStub from './stubs/MethodStub';
-import Stub, { ILineType, StubType } from './stubs/Stub';
+import Stub, { IStubLine, StubType } from './stubs/Stub';
 import { closeServer, createDocServer } from './server';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -38,10 +38,10 @@ export function activate(context: vscode.ExtensionContext) {
 
         if (editor) {
 			const lineIdx = editor.selection.active.line;
-			const result: ILineType = Stub.getLineAndType(editor, lineIdx);
+			const result: IStubLine = Stub.getLineAndType(editor, lineIdx);
 
 			if (result.type === StubType.METHOD) {
-				const stub = new MethodStub(editor, result);
+				const stub = new MethodStub(editor, lineIdx, result);
 				stub.contents && stub.insert();
 			}
         }
@@ -75,10 +75,10 @@ export function activate(context: vscode.ExtensionContext) {
 
 			if (editor) {
 				const lineIdx = editor.selection.active.line;
-				const result: ILineType = Stub.getLineAndType(editor, lineIdx, true);
+				const result: IStubLine = Stub.getLineAndType(editor, lineIdx, true);
 
 				if (result.type === StubType.METHOD) {
-					const stub = new MethodStub(editor, result, true);
+					const stub = new MethodStub(editor, lineIdx, result, true);
 					const snippet = stub.contents ? new vscode.SnippetString(stub.contents) : new vscode.SnippetString('\n * $0\n */');
 					editor.insertSnippet(snippet, position, { undoStopBefore: false, undoStopAfter: false });
 				} else {
