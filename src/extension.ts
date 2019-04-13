@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import ApexDoc from './apexDoc/ApexDoc';
 import Configurator, { IApexDocConfig } from './apexDoc/Config';
 import Guards from './utils/Guards';
+import langConfig from './stubs/apex.config';
 import MethodStub from './stubs/MethodStub';
 import Stub, { IStubLine, StubType } from './stubs/Stub';
 import { closeServer, createDocServer } from './server';
@@ -91,7 +92,10 @@ export function activate(context: vscode.ExtensionContext) {
 		return vscode.languages.registerCompletionItemProvider('apex', provider, '*');
 	};
 
-	context.subscriptions.push(...[runApexDoc2, serveDocs, stubComment, stubCompletionProvider()]);
+	// configure onEnterRules so that we have '*' completion in ApexDoc2 comments
+	let apexConfig = vscode.languages.setLanguageConfiguration('apex', langConfig);
+
+	context.subscriptions.push(...[runApexDoc2, serveDocs, stubComment, apexConfig, stubCompletionProvider()]);
 }
 
 export function deactivate() {

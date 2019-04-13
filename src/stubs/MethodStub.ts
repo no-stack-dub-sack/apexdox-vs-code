@@ -149,7 +149,7 @@ class MethodStub extends Stub {
     /**
      * Determines the right-padding needed for a comment
      * line if apexdoc2.stubs.alignItems is set to true.
-
+     *
      * @param alignItems If false, do not calculate padding.
      * @param length Length of the element (tag + value if param).
      * @param maxLength The max length of all elements.

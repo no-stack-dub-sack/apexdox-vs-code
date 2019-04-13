@@ -1,6 +1,6 @@
-import * as vscode from 'vscode';
 import ApexDoc from './ApexDoc';
 import Guards from '../utils/Guards';
+import { workspace } from 'vscode';
 
 export interface IApexDocConfig {
 	sourceDirectory: string;
@@ -38,8 +38,8 @@ class Config implements IApexDocConfig {
     public constructor() {
         let projectRoot = '.';
         // this should never evaluate to false
-        if (vscode.workspace.workspaceFolders) {
-            projectRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
+        if (workspace.workspaceFolders) {
+            projectRoot = workspace.workspaceFolders[0].uri.fsPath;
         }
 
         // establish defaults
@@ -61,8 +61,8 @@ class Config implements IApexDocConfig {
     }
 
     public static getConfig(): IApexDocConfig {
-        return this.merge({
-            ...vscode.workspace.getConfiguration('apexdoc2')['config']
+        return this.merge(<IApexDocConfig>{
+            ...workspace.getConfiguration('apexdoc2').get('config')
         });
     }
 

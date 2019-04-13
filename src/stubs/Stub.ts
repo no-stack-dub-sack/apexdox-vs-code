@@ -52,7 +52,7 @@ class Stub {
         this.insertNewLine = stubLine.insertNewLine;
 
         this.isCompletion = isCompletion || false;
-        this.config = { ...vscode.workspace.getConfiguration('apexdoc2')['stubs'] };
+        this.config = <IStubsConfig>vscode.workspace.getConfiguration('apexdoc2').get('stubs');
     }
 
     /**
