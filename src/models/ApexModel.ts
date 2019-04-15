@@ -1,3 +1,4 @@
+import * as Tokens from './tokens';
 import * as vscode from 'vscode';
 import ApexDoc from '../apexDoc/ApexDoc';
 import Utils from '../utils/Utils';
@@ -5,21 +6,6 @@ import { existsSync } from 'fs';
 import { resolve } from 'path';
 
 abstract class ApexModel {
-
-    // token constants
-    private static readonly AUTHOR: string = ' @author';
-    private static readonly DATE: string = ' @date';
-    private static readonly DEPRECATED: string = ' @deprecated';
-    private static readonly DESCRIPTION: string = ' @description';
-    private static readonly EXAMPLE: string = ' @example';
-    private static readonly EXCEPTION: string = ' @exception';
-    private static readonly GROUP: string = ' @group '; // needed to include space to not match group-content
-    private static readonly GROUP_CONTENT: string = ' @group-content';
-    private static readonly PARAM: string = ' @param';
-    private static readonly RETURN: string = ' @return';
-    private static readonly SEE: string = ' @see';
-
-    // instance variables
     private author: string = '';
     private date: string = '';
     private deprecated: string = '';
@@ -36,7 +22,6 @@ abstract class ApexModel {
     protected see: string = '';
     protected returns: string = '';
     protected scope: string = '';
-
 
     protected constructor(comments: string[]) {
         this.parseComments(comments);
@@ -130,17 +115,17 @@ abstract class ApexModel {
             }
 
             // if we find a token, start a new block
-            if (((i = lowerComment.indexOf(block = ApexModel.AUTHOR)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.DATE)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.SEE)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.RETURN)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.PARAM)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.EXCEPTION)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.DEPRECATED)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.DESCRIPTION)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.GROUP)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.GROUP_CONTENT)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.EXAMPLE)) >= 0)) {
+            if (((i = lowerComment.indexOf(block = Tokens.AUTHOR)) >= 0)
+                || ((i = lowerComment.indexOf(block = Tokens.DATE)) >= 0)
+                || ((i = lowerComment.indexOf(block = Tokens.SEE)) >= 0)
+                || ((i = lowerComment.indexOf(block = Tokens.RETURN)) >= 0)
+                || ((i = lowerComment.indexOf(block = Tokens.PARAM)) >= 0)
+                || ((i = lowerComment.indexOf(block = Tokens.EXCEPTION)) >= 0)
+                || ((i = lowerComment.indexOf(block = Tokens.DEPRECATED)) >= 0)
+                || ((i = lowerComment.indexOf(block = Tokens.DESCRIPTION)) >= 0)
+                || ((i = lowerComment.indexOf(block = Tokens.GROUP)) >= 0)
+                || ((i = lowerComment.indexOf(block = Tokens.GROUP_CONTENT)) >= 0)
+                || ((i = lowerComment.indexOf(block = Tokens.EXAMPLE)) >= 0)) {
 
                 comment = comment.substring(i + block.length);
                 currBlock = block;
@@ -175,29 +160,29 @@ abstract class ApexModel {
             // add line to appropriate block...
             // if currBlock was not reset on this iteration we're on the next line of the last token, add line
             // to that value. Allow empty lines in example blocks to preserve whitespace in complex examples
-            if (currBlock !== null && (line.trim() || !line.trim() && currBlock === ApexModel.EXAMPLE)) {
-                if (currBlock === ApexModel.AUTHOR) {
+            if (currBlock !== null && (line.trim() || !line.trim() && currBlock === Tokens.EXAMPLE)) {
+                if (currBlock === Tokens.AUTHOR) {
                     this.author += (this.author ? ' ' : '') + line.trim();
-                } else if (currBlock === ApexModel.DATE) {
+                } else if (currBlock === Tokens.DATE) {
                     this.date += (this.date ? ' ' : '') + line.trim();
-                } else if (currBlock === ApexModel.SEE) {
+                } else if (currBlock === Tokens.SEE) {
                     this.see += (this.see ? ' ' : '') + line.trim();
-                } else if (currBlock === ApexModel.RETURN) {
+                } else if (currBlock === Tokens.RETURN) {
                     this.returns += (this.returns ? ' ' : '') + line.trim();
-                } else if (currBlock === ApexModel.PARAM) {
+                } else if (currBlock === Tokens.PARAM) {
                     let p = (newBlock ? '' : this.params.splice(this.params.length - 1, 1));
                     this.params.push(p + (p.length > 0 ? ' ' : '') + line.trim());
-                } else if (currBlock === ApexModel.EXCEPTION) {
+                } else if (currBlock === Tokens.EXCEPTION) {
                     this.exception += (this.exception ? ' ' : '') + line.trim();
-                } else if (currBlock === ApexModel.DEPRECATED) {
+                } else if (currBlock === Tokens.DEPRECATED) {
                     this.deprecated += (this.deprecated ? ' ' : '') + line.trim();
-                } else if (currBlock === ApexModel.DESCRIPTION) {
+                } else if (currBlock === Tokens.DESCRIPTION) {
                     this.description += (this.description ? ' ' : '') + line.trim();
-                } else if (currBlock === ApexModel.GROUP) {
+                } else if (currBlock === Tokens.GROUP) {
                     this.groupName += line.trim();
-                } else if (currBlock === ApexModel.EXAMPLE) {
+                } else if (currBlock === Tokens.EXAMPLE) {
                     this.example += (this.example ? ' \n'  : '') + line;
-                } else if (currBlock === ApexModel.GROUP_CONTENT) {
+                } else if (currBlock === Tokens.GROUP_CONTENT) {
                     if (this.pathExists(line.trim())) {
                         this.groupContentPath += line.trim();
                     }
@@ -205,7 +190,7 @@ abstract class ApexModel {
             }
             // not a recognized token, assume we're in un-tagged description
             else if (currBlock === null && line.trim()) {
-                currBlock = block = ApexModel.DESCRIPTION;
+                currBlock = block = Tokens.DESCRIPTION;
                 this.description += (this.description ? ' ' : '') + line.trim();
             } else if (!line.trim()) {
                 currBlock = null;
@@ -220,7 +205,7 @@ abstract class ApexModel {
     // make sure path relative to target
     // directory exists for @group-content token
     private pathExists(contentPath: string): boolean {
-        let path = resolve(...[ApexDoc.config.sourceDirectory, contentPath.trim()]);
+        let path = resolve(ApexDoc.config.sourceDirectory, contentPath.trim());
         if (/.*\.s?html?$/.test(contentPath.trim()) && existsSync(path)) {
             return true;
         } else {

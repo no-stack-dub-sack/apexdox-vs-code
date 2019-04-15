@@ -79,7 +79,7 @@ class ApexDoc {
             // parse our top-level class files
             files.forEach(fileName => {
                 this.currentFile = fileName;
-                const filePath = resolve(...[config.sourceDirectory, fileName]);
+                const filePath = resolve(config.sourceDirectory, fileName);
                 const model = this.parseFileContents(filePath);
                 modelMap.set(model.getName().toLowerCase(), model);
                 if (model) {
@@ -113,7 +113,7 @@ class ApexDoc {
             const group = model.getGroupName();
             let contentPath = model.getGroupContentPath();
             if (contentPath) {
-                contentPath = resolve(...[sourceDirectory, contentPath]);
+                contentPath = resolve(sourceDirectory, contentPath);
             }
 
             let cg: ClassGroup | undefined;

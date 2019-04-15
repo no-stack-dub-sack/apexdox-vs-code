@@ -2,6 +2,12 @@ import * as vscode from 'vscode';
 import MethodModel from '../models/MethodModel';
 import Stub, { IStubLine, IStubsConfig } from './Stub';
 import Utils from '../utils/Utils';
+import {
+    DESCRIPTION,
+    EXCEPTION,
+    PARAM,
+    RETURN
+    } from '../models/tokens';
 
 interface IParsedMethod {
     name: string;
@@ -14,63 +20,44 @@ class MethodStub extends Stub {
 
     public constructor(editor: vscode.TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
         super(editor, activeLine, stubLine, isCompletion);
-        this.make();
     }
 
     /**
      * Our main routine, responsible for parsing the
      * method and creating the stub / snippet's contents.
      */
-    private make(): void {
-        if (!this.line.isEmptyOrWhitespace && this.line.text.includes('(')) {
+    protected make(): void {
+        const { throwsException, returnType, params } = this.parseMethod()
+            , maxLength = this.getMaxLength(this.config, returnType, params, throwsException)
+            , pad = this.getPadding(this.config.alignItems, DESCRIPTION.length, maxLength);
 
-            const { throwsException, returnType, params } = this.parseMethod()
-                , maxLength = this.getMaxLength(this.config, returnType, params, throwsException)
-                , indent = ' '.repeat(this.lineIndent)
-			    , pad = !this.config.omitDescriptionTag
-                    ? this.getPadding(this.config.alignItems, this.DESCRIPTION.length, maxLength)
-                    : '';
+        let stub = this.descriptionTemplate(this.lineIndent, pad, this.config.omitDescriptionTag);
 
-			let stub = this.descriptionTemplate(indent, pad, this.config.omitDescriptionTag);
-
-            // If config.spacious is set to true, and there are
-            // additional tags after the description add an empty line.
-			if (this.config.spacious && (params.length || returnType !== 'void' || throwsException)) {
-                stub += `${indent} *\n`;
-			}
-
-            let tabIndex = 1;
-			for (let param of params) {
-				const length = param.length + this.PARAM.length + 1;
-				const pad = this.getPadding(this.config.alignItems, length, maxLength);
-				stub += this.tagTemplate(this.PARAM, `${param} ${pad}`, indent, tabIndex++);
-			}
-
-			if (returnType !== 'void') {
-				const pad = this.getPadding(this.config.alignItems, this.RETURN.length, maxLength);
-				stub += this.tagTemplate(this.RETURN, pad, indent, tabIndex++);
-			}
-
-			if (throwsException) {
-				const pad = this.getPadding(this.config.alignItems, this.EXCEPTION.length, maxLength);
-				stub += this.tagTemplate(this.EXCEPTION, pad, indent, tabIndex++);
-			}
-
-            const terminator = this.insertNewLine ? '\n' : '';
-            this.contents = stub += `${indent} */${terminator}`;
+        // If config.spacious is set to true, and there are
+        // additional tags after the description add an empty line.
+        if (this.config.spacious && (params.length || returnType !== 'void' || throwsException)) {
+            stub += `${this.lineIndent} *\n`;
         }
-    }
 
-    // #region Stub Templates
-    private tagTemplate(tag: string, value: string, indent: string, tabIndex: number): string {
-        return `${indent} * ${tag} ${value}$${tabIndex}\n`;
-    }
+        let tabIndex = 1;
+        for (let param of params) {
+            const length = param.length + PARAM.length + 1;
+            const pad = this.getPadding(this.config.alignItems, length, maxLength);
+            stub += this.tagTemplate(PARAM, `${param} ${pad}`, this.lineIndent, tabIndex++);
+        }
 
-    private descriptionTemplate(indent: string, pad: string, omitDesc: boolean): string {
-        const openComment = !this.isCompletion ? `${indent}/**\n` : '\n';
-        return `${openComment}${indent} * ${!omitDesc ? '@description ' : ''}${pad}$0\n`;
+        if (returnType !== 'void') {
+            const pad = this.getPadding(this.config.alignItems, RETURN.length, maxLength);
+            stub += this.tagTemplate(RETURN, pad, this.lineIndent, tabIndex++, `\`${returnType}\``);
+        }
+
+        if (throwsException) {
+            const pad = this.getPadding(this.config.alignItems, EXCEPTION.length, maxLength);
+            stub += this.tagTemplate(EXCEPTION, pad, this.lineIndent, tabIndex++);
+        }
+
+        this.contents = stub += this.terminator;
     }
-    // #endregion
 
     // #region Utils
     /**
@@ -136,30 +123,14 @@ class MethodStub extends Stub {
      */
     private getMaxLength(config: IStubsConfig, returnType: string, params: string[], throwsEx: boolean): number {
         // establish lengths of tags and params
-        const returnTag = returnType !== 'void' ? this.RETURN.length : 0;
-        const descriptionTag = config.omitDescriptionTag ? 0 : this.DESCRIPTION.length;
-        const paramsLength = params.map(p => this.PARAM.length + p.length + 1);
-        const exceptionLength = throwsEx ? this.EXCEPTION.length : 0;
+        const returnTag = returnType !== 'void' ? RETURN.length : 0;
+        const descriptionTag = config.omitDescriptionTag ? 0 : DESCRIPTION.length;
+        const paramsLength = params.map(p => PARAM.length + p.length + 1);
+        const exceptionLength = throwsEx ? EXCEPTION.length : 0;
 
         // gather all lengths and take max
         const lengths = [returnTag, descriptionTag, exceptionLength, ...paramsLength];
         return Math.max(...lengths);
-    }
-
-    /**
-     * Determines the right-padding needed for a comment
-     * line if apexdoc2.stubs.alignItems is set to true.
-     *
-     * @param alignItems If false, do not calculate padding.
-     * @param length Length of the element (tag + value if param).
-     * @param maxLength The max length of all elements.
-     */
-    private getPadding(alignItems: boolean, length: number, maxLength: number): string {
-        if (alignItems && length < maxLength) {
-            return ' '.repeat(maxLength - length);
-        }
-
-        return '';
     }
     // #endregion
 }

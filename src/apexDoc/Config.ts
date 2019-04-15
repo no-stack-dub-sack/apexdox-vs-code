@@ -1,5 +1,6 @@
 import ApexDoc from './ApexDoc';
 import Guards from '../utils/Guards';
+import { EXTENSION } from '../extension';
 import { workspace } from 'vscode';
 
 export interface IApexDocConfig {
@@ -61,9 +62,9 @@ class Config implements IApexDocConfig {
     }
 
     public static getConfig(): IApexDocConfig {
-        return this.merge(<IApexDocConfig>{
-            ...workspace.getConfiguration('apexdoc2').get('config')
-        });
+        return this.merge(<IApexDocConfig>
+            workspace.getConfiguration(EXTENSION).get('config')
+        );
     }
 
     private static merge(userConfig: IApexDocConfig): IApexDocConfig {

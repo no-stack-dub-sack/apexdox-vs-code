@@ -182,14 +182,14 @@ class FileManager {
     private createHTML(fileMap: Map<string, string>): void {
         for (let fileName of fileMap.keys()) {
             let contents = pretty(<string>fileMap.get(fileName));
-            let fullyQualifiedFileName = resolve(...[this.path, fileName + '.html']);
+            let fullyQualifiedFileName = resolve(this.path, fileName + '.html');
             writeFileSync(fullyQualifiedFileName, contents);
         }
     }
 
     private makeDirs(): void {
         const root = this.path;
-        const assets = resolve(...[root, 'assets']);
+        const assets = resolve(root, 'assets');
 
         // clean directory first if user specified this
         ApexDoc.config.cleanDir && rimraf.sync(root);
@@ -233,7 +233,7 @@ class FileManager {
     private copyAssetsToTarget(files: string[]): void {
         files.forEach(file => {
             if (existsSync(file)) {
-                copyFileSync(file, resolve(...[this.path, 'assets', basename(file)]));
+                copyFileSync(file, resolve(this.path, 'assets', basename(file)));
             } else {
                 vscode.window.showWarningMessage(ApexDocError.ASSET_NOT_FOUND(file));
             }
