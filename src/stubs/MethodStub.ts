@@ -56,7 +56,7 @@ class MethodStub extends Stub {
             stub += this.tagTemplate(EXCEPTION, pad, this.lineIndent, tabIndex++);
         }
 
-        this.contents = stub += this.terminator;
+        this.contents = stub += this.blockClose;
     }
 
     // #region Utils

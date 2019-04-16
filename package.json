@@ -27,7 +27,11 @@
 				"command": "apexDoc2.stub",
 				"title": "ApexDoc2: Stub ApexDoc2 Comment"
 			}
-		]
+		],
+		"languages": [{
+			"id": "apex",
+			"configuration": "./apex.configuration.json"
+		}]
 	},
 	"configuration": {
 		"type": "object",

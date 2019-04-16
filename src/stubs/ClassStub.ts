@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import Stub, { IStubLine, IStubsConfig } from './Stub';
+import Stub, { IStubLine } from './Stub';
 import { AUTHOR, DATE, DESCRIPTION } from '../models/tokens';
 
 class ClassStub extends Stub {
@@ -26,7 +26,7 @@ class ClassStub extends Stub {
             stub += this.tagTemplate(tag, pad, this.lineIndent, tabIndex++);
         }
 
-        this.contents = stub += this.terminator;
+        this.contents = stub += this.blockClose;
     }
 
     private getMaxLength(...tags: string[]) {

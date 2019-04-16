@@ -99,7 +99,7 @@ class ApexDoc {
             // we are done!
             const endElapsed = performance.now();
             vscode.window.showInformationMessage(
-                `ApexDoc2 complete! ${numProcessed} Apex files processed in ${(endElapsed - beginElapsed).toFixed(2)} ms.`
+                `ApexDoc2 complete! ${numProcessed} Apex files documented in ${(endElapsed - beginElapsed).toFixed(2)} ms.`
             );
         } catch (err) {
             throw err;

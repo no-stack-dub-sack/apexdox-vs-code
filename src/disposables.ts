@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import ApexDoc from './apexDoc/ApexDoc';
 import ClassStub from './stubs/ClassStub';
 import Configurator, { IApexDocConfig } from './apexDoc/Config';
+import DefaultStub from './stubs/DefaultStub';
 import Guards from './utils/Guards';
 import langConfig from './stubs/apex.config';
 import MethodStub from './stubs/MethodStub';
@@ -43,14 +44,18 @@ const disposables = {
 
         if (editor) {
             const lineIdx = editor.selection.active.line
-                , stubLine = Stub.getLineAndType(editor, lineIdx);
+                , stubLine = Stub.getLineAndType(editor.document, lineIdx);
 
             switch (stubLine.type) {
                 case StubType.METHOD:
                     new MethodStub(editor, lineIdx, stubLine).insert();
                     break;
-                case StubType.CLASS_OR_INTERFACE:
+                case StubType.CLASS_INTERFACE_OR_ENUM:
                     new ClassStub(editor, lineIdx, stubLine).insert();
+                    break;
+                case StubType.PROP_OR_INNER_ENUM:
+                default:
+                    new DefaultStub(editor, lineIdx, stubLine).insert();
                     break;
             }
         }
@@ -58,55 +63,57 @@ const disposables = {
 
     // stub an ApexDoc2 comment, invoked by completion item, i.e. '/**'
     stubCompletionProvider: () => {
-        const provider = {
-            provideCompletionItems: (document: vscode.TextDocument, position: vscode.Position) => {
+        class ApexDocCompletionItem extends vscode.CompletionItem {
+            constructor(position: vscode.Position) {
+                super('/** */', vscode.CompletionItemKind.Snippet);
+                this.detail = 'ApexDoc2 Comment';
+                this.insertText = '';
+                this.command = {
+                    title: 'ApexDoc2 Comment',
+                    command: 'apexdoc2.stubCompletion',
+                    arguments: [position]
+                };
+            }
+        }
+
+        class ApexDocCompletionProvider implements vscode.CompletionItemProvider {
+            public provideCompletionItems(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.CompletionItem[] | undefined> {
                 const line = document.lineAt(position.line).text;
 
                 if (line.indexOf('/**') === -1) {
                     return Promise.resolve(undefined);
                 }
 
-                let item = new vscode.CompletionItem('/** */', vscode.CompletionItemKind.Snippet);
-                item.detail = 'ApexDoc2 Comment';
-                item.insertText = '';
-                item.command = {
-                    title: 'ApexDoc2 Comment',
-                    command: 'apexdoc2.stubCompletion',
-                    arguments: [position]
-                };
-
-                return Promise.resolve([item]);
+                return Promise.resolve([new ApexDocCompletionItem(position)]);
             }
-        };
+        }
 
         vscode.commands.registerCommand('apexdoc2.stubCompletion', (position: vscode.Position) => {
             const editor = vscode.window.activeTextEditor;
 
             if (editor) {
                 const lineIdx = editor.selection.active.line;
-                const stubLine: IStubLine = Stub.getLineAndType(editor, lineIdx, true);
-                let stub: Stub | null;
+                const stubLine: IStubLine = Stub.getLineAndType(editor.document, lineIdx, true);
+                let stub: Stub;
 
                 switch (stubLine.type) {
                     case StubType.METHOD:
                         stub = new MethodStub(editor, lineIdx, stubLine, true);
                         break;
-                    case StubType.CLASS_OR_INTERFACE:
+                    case StubType.CLASS_INTERFACE_OR_ENUM:
                         stub = new ClassStub(editor, lineIdx, stubLine, true);
                         break;
+                    case StubType.PROP_OR_INNER_ENUM:
                     default:
-                        stub = null;
+                        stub = new DefaultStub(editor, lineIdx, stubLine, true);
                 }
 
-                let snippet = stub && stub.contents
-                    ? new vscode.SnippetString(stub.contents)
-                    : new vscode.SnippetString('\n * $0\n */');
-
-                editor.insertSnippet(snippet, position, { undoStopBefore: false, undoStopAfter: false });
+                const snippet = new vscode.SnippetString(stub.contents);
+                editor.insertSnippet(snippet, position);
             }
         });
 
-        return vscode.languages.registerCompletionItemProvider('apex', provider, '*');
+        return vscode.languages.registerCompletionItemProvider('apex', new ApexDocCompletionProvider(), '*');
     }
 };
 
