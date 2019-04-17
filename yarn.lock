@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@salesforce/apex-tmlanguage@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/@salesforce/apex-tmlanguage/-/apex-tmlanguage-1.1.0.tgz#3f0f871419251cd17c283ec9419c2843c420cd92"
+
 "@types/body-parser@*":
   version "1.17.0"
   resolved "https://registry.npmjs.org/@types/body-parser/-/body-parser-1.17.0.tgz#9f5c9d9bd04bb54be32d5eb9fc0d8c974e6cf58c"

@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
-import Stub, { IStubLine } from './Stub';
+import DocBlockStub, { IStubLine } from './DocBlockStub';
 import { AUTHOR, DATE, DESCRIPTION } from '../models/tokens';
 
-class ClassStub extends Stub {
+class ClassStub extends DocBlockStub {
     public constructor(editor: vscode.TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
         super(editor, activeLine, stubLine, isCompletion);
     }

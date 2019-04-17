@@ -23,7 +23,7 @@ export interface IStubsConfig {
 	spacious: boolean;
 }
 
-abstract class Stub {
+abstract class DocBlockStub {
     public contents: string = '';
     protected config: IStubsConfig;
     protected editor: vscode.TextEditor;
@@ -184,7 +184,7 @@ abstract class Stub {
         return '';
     }
 
-    // #region Stub Templates
+    // #region DocBlockStub Templates
     protected tagTemplate(tag: string, value: string, indent: string, tabIndex: number, placeholder = ''): string {
         return `${indent} * ${tag} ${value}\${${tabIndex}:${placeholder}}\n`;
     }
@@ -195,4 +195,4 @@ abstract class Stub {
     // #endregion
 }
 
-export default Stub;
+export default DocBlockStub;

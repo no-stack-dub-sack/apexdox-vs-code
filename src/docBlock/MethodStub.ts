@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
+import DocBlockStub, { IStubLine, IStubsConfig } from './DocBlockStub';
 import MethodModel from '../models/MethodModel';
-import Stub, { IStubLine, IStubsConfig } from './Stub';
 import Utils from '../utils/Utils';
 import {
     DESCRIPTION,
@@ -16,7 +16,7 @@ interface IParsedMethod {
     throwsException: boolean;
 }
 
-class MethodStub extends Stub {
+class MethodStub extends DocBlockStub {
 
     public constructor(editor: vscode.TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
         super(editor, activeLine, stubLine, isCompletion);

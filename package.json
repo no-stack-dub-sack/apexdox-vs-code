@@ -16,7 +16,7 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "apexDoc2.run",
+				"command": "apexDoc2.runApexDoc",
 				"title": "ApexDoc2: Run"
 			},
 			{
@@ -24,14 +24,16 @@
 				"title": "ApexDoc2: Open Docs"
 			},
 			{
-				"command": "apexDoc2.stub",
+				"command": "apexDoc2.insertDocBlock",
 				"title": "ApexDoc2: Stub ApexDoc2 Comment"
 			}
 		],
-		"languages": [{
-			"id": "apex",
-			"configuration": "./apex.configuration.json"
-		}]
+		"languages": [
+			{
+				"id": "apex",
+				"configuration": "./apex.configuration.json"
+			}
+		]
 	},
 	"configuration": {
 		"type": "object",
@@ -101,6 +103,7 @@
 		"vscode": "^1.1.28"
 	},
 	"dependencies": {
+		"@salesforce/apex-tmlanguage": "^1.1.0",
 		"express": "^4.16.4",
 		"lodash.escape": "^4.0.1",
 		"open": "^6.0.0",

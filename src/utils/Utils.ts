@@ -151,7 +151,6 @@ class Utils {
         return null;
     }
 
-
     public static previousWord(str: string, searchIdx: number): string {
         if (!str) {
             return '';

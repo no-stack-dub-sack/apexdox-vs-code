@@ -1,13 +1,12 @@
 import * as vscode from 'vscode';
-import disposables from './disposables';
-import { closeServer } from './server';
+import disposables, { ApexDoc2Command } from './disposables/index';
+import { closeServer } from './apexDoc/server';
 
 export const EXTENSION = 'apexdoc2';
 
 export function activate(context: vscode.ExtensionContext) {
-	const commands = Object.values(disposables);
-	commands.forEach((func: (context: vscode.ExtensionContext) => vscode.Disposable) => {
-		context.subscriptions.push(func(context));
+	disposables.forEach((cmd: ApexDoc2Command) => {
+		context.subscriptions.push(cmd(context));
 	});
 }
 
