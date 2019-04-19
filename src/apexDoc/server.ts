@@ -25,10 +25,10 @@ export default async function createDocServer(targetDirectory: string, docsTitle
     } else {
         vscode.window.showErrorMessage(error(targetDirectory));
     }
-};
+}
 
 export function closeServer() {
     if (server && server.listening) {
         server.close();
     }
-};
+}
