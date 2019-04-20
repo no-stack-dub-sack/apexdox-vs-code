@@ -34,7 +34,7 @@ class ApexDoc {
 
     // use special token for marking the end of a doc block
     // comment. Now that we're supporting multi-line for all
-    // tokens and using a common comment parser, the parser
+    // tags and using a common comment parser, the parser
     // must know when a block ends in order to prevent weird
     // behavior when lesser scopes than available are indicated
     // e.g. private;public when there are protected methods
@@ -159,8 +159,9 @@ class ApexDoc {
             }
 
             // ignore anything after // style comments. this allows hiding
-            // of tokens from ApexDoc. However, don't ignore when line
-            // doesn't start with //, we want to preserver @example comments
+            // of tags from ApexDoc. However, don't ignore when line
+            // doesn't start with //, we want to preserve comments within
+            // @example code examples
             let offset = line.indexOf('//');
             if (offset === 0) {
                 line = line.substring(0, offset);

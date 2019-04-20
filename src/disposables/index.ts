@@ -1,4 +1,5 @@
 import docBlockCompletion from './docBlockCompletion';
+import docTagCompletion from './docTagCompletion';
 import insertDocBlock from './insertDocBlock';
 import onEnterRules from './onEnterRules';
 import runApexDoc from './runApexDoc';
@@ -9,6 +10,7 @@ export type ApexDoc2Command = (context: ExtensionContext) => Disposable;
 
 export default [
     docBlockCompletion,
+    docTagCompletion,
     insertDocBlock,
     onEnterRules,
     runApexDoc,

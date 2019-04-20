@@ -7,7 +7,7 @@ import {
     EXCEPTION,
     PARAM,
     RETURN
-    } from '../models/tokens';
+    } from '../models/tags';
 
 interface IParsedMethod {
     name: string;
@@ -29,7 +29,7 @@ class MethodStub extends DocBlockStub {
     protected make(): void {
         const { throwsException, returnType, params } = this.parseMethod()
             , maxLength = this.getMaxLength(this.config, returnType, params, throwsException)
-            , pad = this.getPadding(this.config.alignItems, DESCRIPTION.length, maxLength);
+            , pad = this.getPadding(this.config.alignItems, DESCRIPTION.label.length, maxLength);
 
         let stub = this.descriptionTemplate(this.lineIndent, pad, this.config.omitDescriptionTag);
 
@@ -41,19 +41,19 @@ class MethodStub extends DocBlockStub {
 
         let tabIndex = 1;
         for (let param of params) {
-            const length = param.length + PARAM.length + 1;
+            const length = param.length + PARAM.label.length + 1;
             const pad = this.getPadding(this.config.alignItems, length, maxLength);
-            stub += this.tagTemplate(PARAM, `${param} ${pad}`, this.lineIndent, tabIndex++);
+            stub += this.tagTemplate(PARAM.label, `${param} ${pad}`, this.lineIndent, tabIndex++);
         }
 
         if (returnType !== 'void') {
-            const pad = this.getPadding(this.config.alignItems, RETURN.length, maxLength);
-            stub += this.tagTemplate(RETURN, pad, this.lineIndent, tabIndex++, `\`${returnType}\``);
+            const pad = this.getPadding(this.config.alignItems, RETURN.label.length, maxLength);
+            stub += this.tagTemplate(RETURN.label, pad, this.lineIndent, tabIndex++, `\`${returnType}\``);
         }
 
         if (throwsException) {
-            const pad = this.getPadding(this.config.alignItems, EXCEPTION.length, maxLength);
-            stub += this.tagTemplate(EXCEPTION, pad, this.lineIndent, tabIndex++);
+            const pad = this.getPadding(this.config.alignItems, EXCEPTION.label.length, maxLength);
+            stub += this.tagTemplate(EXCEPTION.label, pad, this.lineIndent, tabIndex++);
         }
 
         this.contents = stub += this.blockClose;
@@ -123,10 +123,10 @@ class MethodStub extends DocBlockStub {
      */
     private getMaxLength(config: IStubsConfig, returnType: string, params: string[], throwsEx: boolean): number {
         // establish lengths of tags and params
-        const returnTag = returnType !== 'void' ? RETURN.length : 0;
-        const descriptionTag = config.omitDescriptionTag ? 0 : DESCRIPTION.length;
-        const paramsLength = params.map(p => PARAM.length + p.length + 1);
-        const exceptionLength = throwsEx ? EXCEPTION.length : 0;
+        const returnTag = returnType !== 'void' ? RETURN.label.length : 0;
+        const descriptionTag = config.omitDescriptionTag ? 0 : DESCRIPTION.label.length;
+        const paramsLength = params.map(p => PARAM.label.length + p.length + 1);
+        const exceptionLength = throwsEx ? EXCEPTION.label.length : 0;
 
         // gather all lengths and take max
         const lengths = [returnTag, descriptionTag, exceptionLength, ...paramsLength];

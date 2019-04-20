@@ -40,7 +40,7 @@
     "apex-doc-tags": {
       "patterns": [
         {
-          "match": "((@)(author|date|deprecated|description|group|group-content|return))(?=\\s+)",
+          "match": "((@)(author|date|deprecated|description|exception|group|group-content|returns))(?=\\s+)",
           "captures": {
             "1": {
               "name": "storage.type.annotation.apex"

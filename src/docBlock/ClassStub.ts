@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import DocBlockStub, { IStubLine } from './DocBlockStub';
-import { AUTHOR, DATE, DESCRIPTION } from '../models/tokens';
+import { AUTHOR, DATE, DESCRIPTION } from '../models/tags';
 
 class ClassStub extends DocBlockStub {
     public constructor(editor: vscode.TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
@@ -8,11 +8,11 @@ class ClassStub extends DocBlockStub {
     }
 
     protected make(): void {
-        const tags = [AUTHOR, DATE]
+        const tags = [AUTHOR.label, DATE.label]
             , maxLength = this.config.omitDescriptionTag
-                ? this.getMaxLength(DESCRIPTION, ...tags)
+                ? this.getMaxLength(DESCRIPTION.label, ...tags)
                 : this.getMaxLength(...tags)
-            , pad = this.getPadding(this.config.alignItems, DESCRIPTION.length, maxLength);
+            , pad = this.getPadding(this.config.alignItems, DESCRIPTION.label.length, maxLength);
 
         let stub = this.descriptionTemplate(this.lineIndent, pad, this.config.omitDescriptionTag);
 
