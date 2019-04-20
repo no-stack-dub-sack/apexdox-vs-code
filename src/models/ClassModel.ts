@@ -6,13 +6,13 @@ import TopLevelModel, { ModelType } from './TopLevelModel';
 
 class ClassModel extends TopLevelModel {
 
-    private isInterface: boolean;
-    private enums: Array<EnumModel>;
-    private cmodelParent?: ClassModel;
-    private methods: Array<MethodModel>;
     private childClasses: Array<ClassModel>;
-    private properties: Array<PropertyModel>;
     private childClassMap: Map<string, ClassModel>;
+    private cmodelParent?: ClassModel;
+    private enums: Array<EnumModel>;
+    private isInterface: boolean;
+    private methods: Array<MethodModel>;
+    private properties: Array<PropertyModel>;
 
     public constructor(cmodelParent: ClassModel | undefined, comments: string[], nameLine: string, lineNum: number) {
         super(comments, ModelType.CLASS);
@@ -27,20 +27,25 @@ class ClassModel extends TopLevelModel {
         this.enums = [];
     }
 
-    private setIsInterface(nameLine: string): boolean {
-        if (/\s?\binterface\s/i.test(nameLine.toLowerCase())) {
-            return true;
-        } else {
-            return false;
-        }
+    public addChildClass(child: ClassModel): void {
+        this.childClasses.push(child);
+        // also add child class to map for use in making @see links
+        this.childClassMap.set(child.getName().toLowerCase(), child);
     }
 
-    public getIsInterface(): boolean {
-        return this.isInterface;
+    public getChildClasses(): Array<ClassModel> {
+        return this.childClasses;
     }
 
-    public getSee(): string {
-        return !this.see ? '' : this.see;
+    public getChildClassesSorted(): Array<ClassModel> {
+        let sorted = [...this.childClasses];
+        sorted.sort((a, b) => a.getName().localeCompare(b.getName()));
+        return sorted;
+    }
+
+
+    public getChildClassMap(): Map<string, ClassModel> {
+        return this.childClassMap;
     }
 
     public getEnums(): Array<EnumModel> {
@@ -53,14 +58,19 @@ class ClassModel extends TopLevelModel {
         return sorted;
     }
 
-    public getProperties(): Array<PropertyModel> {
-        return this.properties;
+    public getGroupName(): string {
+        let group: string;
+        if (this.cmodelParent) {
+            group = this.cmodelParent.getGroupName();
+        } else {
+            group = this.groupName;
+        }
+
+        return !group ? '' : group;
     }
 
-    public getPropertiesSorted(): Array<PropertyModel> {
-        let sorted = [...this.properties];
-        sorted.sort((a, b) => a.getPropertyName().localeCompare(b.getPropertyName()));
-        return sorted;
+    public getIsInterface(): boolean {
+        return this.isInterface;
     }
 
     public getMethods(): Array<MethodModel> {
@@ -78,8 +88,8 @@ class ClassModel extends TopLevelModel {
     public getMethodsSorted(): Array<MethodModel> {
         let sorted = [...this.methods];
         sorted.sort((a, b) => {
-            let nameA = a.getMethodName();
-            let nameB = b.getMethodName();
+            let nameA = a.getName();
+            let nameB = b.getName();
             let className = this.getName();
 
             if (nameA && nameA === className) {
@@ -92,30 +102,6 @@ class ClassModel extends TopLevelModel {
         });
 
         return sorted;
-    }
-
-    public setMethods(methods: Array<MethodModel>): void {
-        this.methods = methods;
-    }
-
-    public getChildClasses(): Array<ClassModel> {
-        return this.childClasses;
-    }
-
-    public getChildClassesSorted(): Array<ClassModel> {
-        let sorted = [...this.childClasses];
-        sorted.sort((a, b) => a.getName().localeCompare(b.getName()));
-        return sorted;
-    }
-
-    public addChildClass(child: ClassModel): void {
-        this.childClasses.push(child);
-        // also add child class to map for use in making @see links
-        this.childClassMap.set(child.getName().toLowerCase(), child);
-    }
-
-    public getChildClassMap(): Map<string, ClassModel> {
-        return this.childClassMap;
     }
 
     public getName(): string {
@@ -156,6 +142,16 @@ class ClassModel extends TopLevelModel {
         }
     }
 
+    public getProperties(): Array<PropertyModel> {
+        return this.properties;
+    }
+
+    public getPropertiesSorted(): Array<PropertyModel> {
+        let sorted = [...this.properties];
+        sorted.sort((a, b) => a.getName().localeCompare(b.getName()));
+        return sorted;
+    }
+
     public getTopmostClassName(): string {
         if (this.cmodelParent) {
             return this.cmodelParent.getName();
@@ -164,16 +160,16 @@ class ClassModel extends TopLevelModel {
         }
     }
 
-    // TODO: this used to return null if group was null. Make sure returning empty string is OK.
-    public getGroupName(): string {
-        let group: string;
-        if (this.cmodelParent) {
-            group = this.cmodelParent.getGroupName();
+    private setIsInterface(nameLine: string): boolean {
+        if (/\s?\binterface\s/i.test(nameLine.toLowerCase())) {
+            return true;
         } else {
-            group = this.groupName;
+            return false;
         }
+    }
 
-        return !group ? '' : group;
+    public setMethods(methods: Array<MethodModel>): void {
+        this.methods = methods;
     }
 }
 

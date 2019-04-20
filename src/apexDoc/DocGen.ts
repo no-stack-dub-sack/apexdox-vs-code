@@ -23,15 +23,15 @@ class DocGen {
 
         let contents = this.documentTopLevelAttributes(cModel, modelMap, cModel.getTopmostClassName(), '');
 
-        if (cModel.getProperties().length > 0) {
+        if (cModel.getProperties().length) {
             contents += this.documentProperties(cModel);
         }
 
-        if (cModel.getEnums().length > 0) {
+        if (cModel.getEnums().length) {
             contents += this.documentInnerEnums(cModel);
         }
 
-        if (cModel.getMethods().length > 0) {
+        if (cModel.getMethods().length) {
             contents += this.documentMethods(cModel, modelMap);
         }
 
@@ -58,7 +58,7 @@ class DocGen {
         const classSourceLink = this.maybeMakeSourceLink(model, className, this.escapeHTML(model.getNameLine(), false));
         let contents = '';
 
-        if (model.getAnnotations().length > 0) {
+        if (model.getAnnotations().length) {
             contents += `<div class="classAnnotations">${model.getAnnotations().join(' ')}</div>`;
         }
 
@@ -79,7 +79,7 @@ class DocGen {
             contents += `<div class="classSubDescription">${this.escapeHTML(model.getDeprecated(), true)}</div>`;
         }
 
-        if (model.getSee()) {
+        if (model.getSee().length) {
             contents += '<div class="classSubtitle">See</div>';
             contents += `<div class="classSubDescription">${this.makeSeeLinks(modelMap, model.getSee())}</div>`;
         }
@@ -120,7 +120,7 @@ class DocGen {
             if (prop.getDescription()) {
                 descriptionCol = '<th>Description</th>';
             }
-            if (prop.getAnnotations().length > 0) {
+            if (prop.getAnnotations().length) {
                 annotationsCol = '<th>Annotations</th>';
             }
         }
@@ -132,7 +132,7 @@ class DocGen {
             const propSourceLink = this.maybeMakeSourceLink(prop, cModel.getTopmostClassName(), nameLine);
 
             contents += `<tr class="property ${prop.getScope()}">`;
-            contents += `<td class="attrName">${prop.getPropertyName()}</td>`;
+            contents += `<td class="attrName">${prop.getName()}</td>`;
             contents += `<td><div class="attrSignature">${propSourceLink}</div></td>`;
 
             if (annotationsCol) {
@@ -213,7 +213,7 @@ class DocGen {
         // (must be an overloaded method or constructor) and amend
         // as needed to ensure all of our methods have unique IDs
         const getMethodId = (method: MethodModel): string => {
-            let methodId = cModel.getName() + '.' + method.getMethodName();
+            let methodId = cModel.getName() + '.' + method.getName();
             let count: number | undefined;
             if ((count = idCountMap.get(methodId)) === undefined) {
                 idCountMap.set(methodId, 1);
@@ -253,7 +253,7 @@ class DocGen {
         for (let method of methods) {
             const methodId = getMethodId(method);
             const isDeprecated = method.getDeprecated().length > 0;
-            const methodName = formatConstructor(method.getMethodName());
+            const methodName = formatConstructor(method.getName());
             const nameLine = Utils.highlightNameLine(this.escapeHTML(method.getNameLine(), false));
             const methodSourceLink = this.maybeMakeSourceLink(method, cModel.getTopmostClassName(), nameLine);
             tocHTML += makeTOCEntry(method, methodName, methodId, isDeprecated);
@@ -262,7 +262,7 @@ class DocGen {
             methodsHTML += `<div class="method ${method.getScope()}">`;
             methodsHTML += `<h2 class="methodHeader ${(isDeprecated ? 'deprecated' : '')}" id="${methodId}">${methodName}</h2>`;
 
-            if (method.getAnnotations().length > 0) {
+            if (method.getAnnotations().length) {
                 methodsHTML += `<div class="methodAnnotations">${method.getAnnotations().join(' ')}</div>`;
             }
 
@@ -277,7 +277,7 @@ class DocGen {
                 methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getDeprecated(), true)}</div>`;
             }
 
-            if (method.getParams().length > 0) {
+            if (method.getParams().length) {
                 // @param someParam This is the params description.
                 methodsHTML += '<div class="methodSubTitle">Parameters</div>';
                 for (let param of method.getParams()) {
@@ -316,7 +316,7 @@ class DocGen {
                 methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getException(), true)}</div>`;
             }
 
-            if (method.getSee()) {
+            if (method.getSee().length) {
                 methodsHTML += '<div class="methodSubTitle">See</div>';
                 methodsHTML += `<div class="methodSubDescription">${this.makeSeeLinks(modelMap, method.getSee())}</div>`;
             }
@@ -483,11 +483,7 @@ class DocGen {
         }
     }
 
-    private static makeSeeLinks(modelMap: Map<string, TopLevelModel>, qualifiersStr: string): string {
-        // the @see token may contain a comma separated list of fully qualified
-        // method or class names. Start by splitting them into individual qualifiers.
-        const qualifiers = qualifiersStr.split(',');
-
+    private static makeSeeLinks(modelMap: Map<string, TopLevelModel>, qualifiers: string[]): string {
         // initialize list to store created links
         const links: string[] = [];
 
@@ -562,9 +558,9 @@ class DocGen {
 
                     let methodNum = 0;
                     for (let method of methods) {
-                        if (method.getMethodName().toLowerCase() === parts[1]) {
+                        if (method.getName().toLowerCase() === parts[1]) {
                             // use actual class/method name to create link to avoid case issues
-                            href = Class.getName() + '.html#' + Class.getName() + '.' + method.getMethodName();
+                            href = Class.getName() + '.html#' + Class.getName() + '.' + method.getName();
                             // no overload selector, we've made a match!
                             if (overloadSelector === 0) {
                                 foundMatch = true;
@@ -608,9 +604,9 @@ class DocGen {
                             else {
                                 let childMethods = childClass.getMethods();
                                 for (let method of childMethods) {
-                                    if (method.getMethodName().toLowerCase() === parts[2]) {
+                                    if (method.getName().toLowerCase() === parts[2]) {
                                         // same as above, use actual name to avoid casing issues
-                                        href = nameParts[0] + '.html#' + childClass.getName() + '.' + method.getMethodName();
+                                        href = nameParts[0] + '.html#' + childClass.getName() + '.' + method.getName();
                                         foundMatch = true;
                                         break;
                                     }

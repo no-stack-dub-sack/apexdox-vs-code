@@ -11,14 +11,18 @@ class EnumModel extends TopLevelModel {
         this.setValues(nameLine);
     }
 
+    public getGroupName(): string {
+        return this.groupName;
+    }
+
     public getName(): string {
         let nameLine = this.getNameLine();
         let i = nameLine.indexOf(ApexDoc.ENUM);
         return nameLine.slice(i + ApexDoc.ENUM.length).trim();
     }
 
-    public getGroupName(): string {
-        return this.groupName;
+    public getValues(): string[] {
+        return this.values;
     }
 
     protected setNameLine(nameLine: string, lineNum: number): void {
@@ -39,10 +43,6 @@ class EnumModel extends TopLevelModel {
             .split(',')
             .forEach(value => value.trim()
                 && this.values.push(value.trim()));
-    }
-
-    public getValues(): string[] {
-        return this.values;
     }
 }
 

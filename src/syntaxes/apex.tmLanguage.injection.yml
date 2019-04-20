@@ -20,11 +20,13 @@ repository:
 
   apex-doc-tags:
     patterns:
+      # standard ApexDoc tags
       - match: >-
           ((@)(author|date|deprecated|description|group|group-content|return))(?=\s+)
         captures:
           '1': { name: storage.type.annotation.apex }
           '2': { name: punctuation.accessor.apex }
+      # Currently unsupported tags that we may support in the future
       - match: |-
           (?x)
           ((@)
@@ -38,11 +40,13 @@ repository:
         captures:
           '1': { name: storage.type.annotation.apex }
           '2': { name: punctuation.accessor.apex }
+      # @param paramName
       - match: '(?:(@)(param)\b\s*(([_[:alnum:]]*)))(?=\s+)'
         captures:
           '0': { name: punctuation.accessor.apex }
           '2': { name: storage.type.annotation.apex }
           '3': { name: keyword.other.class.apex }
+      # @see URL, Markdown URL, or namePath
       - match: |-
           (?x)
           (?:
@@ -94,6 +98,7 @@ repository:
           '11': { name: variable.other.object.property.apex }
           '12': { name: punctuation.accessor.apex }
           '13': { name: punctuation.accessor.apex }
+      # @example codeExample, multiline
       - name: meta.example.apex
         begin: ((@)example)\s+
         end: (?=\*/)
@@ -126,6 +131,7 @@ repository:
       - match: (<br\s?/?>)
         captures:
           '0': { name: punctuation.definition.tag.apex }
+
   apex-doc-inline-code:
     name: meta.example.apex
     begin: '(`)([^\s@*](?:[^*`]|\*[^/])+)'

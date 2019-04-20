@@ -33,9 +33,8 @@ class ApexDocError extends Error {
         `Asset '${asset}' could not be copied to the target directory. Did you provide a fully qualified file name?`
 
     public static INVALID_SEE_QUALIFIER =
-        'Each comma separated qualifier of the @see token must be a URL (e.g. https://www.google.com), markdown URL' +
-        ' (e.g [Google](https://www.google.com) ) or fully qualified class or method name, with a minimum of 1 part and ' +
-        'a maximum of 3. (e.g. MyClassName, MyClassName.MyMethodName, MyClassName.MyInnerClassName.MyInnerClassMethodName).';
+        'The value for each @see tag must be a URL, markdown URL or fully qualified class or method name ' +
+        '(e.g. MyClass, MyClass.MyMethod, MyClass.MyInnerClass.MyInnerClassMethod).';
 }
 
 export default ApexDocError;

@@ -102,11 +102,11 @@ class MethodStub extends DocBlockStub {
 
         // create a method model from our name line to base our stub on
         const method = new MethodModel([], methodText.substring(0, methodText.indexOf('{')), 0);
-        const name = method.getMethodName(), nameLine = method.getNameLine();
+        const name = method.getName(), nameLine = method.getNameLine();
 
         return {
             throwsException,
-            name: method.getMethodName(),
+            name: method.getName(),
             params: method.getParamsFromNameLine(),
             returnType: Utils.previousWord(nameLine, nameLine.indexOf(name)),
         };

@@ -6,102 +6,61 @@ import { existsSync } from 'fs';
 import { resolve } from 'path';
 
 abstract class ApexModel {
-    private author: string = '';
-    private date: string = '';
-    private deprecated: string = '';
-    private description: string = '';
-    private annotations: string[] = [];
-    private nameLine: string = '';
-    private lineNum: number = 0;
 
-    protected params: string[] = [];
+    protected annotations: string[] = [];
+    protected author: string = '';
+    protected date: string = '';
+    protected deprecated: string = '';
+    protected description: string = '';
     protected example: string = '';
     protected exception: string = '';
-    protected groupName: string = '';
     protected groupContentPath: string = '';
-    protected see: string = '';
+    protected groupName: string = '';
+    protected lineNum: number = 0;
+    protected nameLine: string = '';
+    protected params: string[] = [];
     protected returns: string = '';
     protected scope: string = '';
+    protected see: string[] = [];
 
     protected constructor(comments: string[]) {
         this.parseComments(comments);
     }
 
-    // model attribute getters / setters
-    protected setNameLine(nameLine: string, lineNum: number): void {
-        // strip any annotations from the signature line
-        // we'll capture those and display them separately
-        this.nameLine = Utils.stripAnnotations(nameLine).trim();
-        this.lineNum = lineNum;
-        // if we're running the stub command
-        // we don't care about scope
-        if (!ApexDoc.isStub) {
-            this.parseScope();
-        }
-    }
+    public abstract getName(): string;
 
-    public getNameLine(): string {
-        return this.nameLine;
-    }
-
-    public getLineNum(): number {
-        return this.lineNum;
-    }
-
-    public getScope(): string {
-        return !this.scope ? '' : this.scope;
-    }
-
-    protected parseScope(): void {
-        if (this.nameLine) {
-            let scope = Utils.containsScope(this.nameLine);
-            if (scope) {
-                this.scope = <string>scope;
-            }
-
-            // TODO: perhaps this branch of control flow should
-            // be present only in a class override method
-            else {
-
-                // this must be an inner class
-                // or an @IsTest class
-                this.scope = ApexDoc.PRIVATE;
-            }
-        }
+    public getAnnotations(): string[] {
+        return this.annotations;
     }
 
     public getDescription(): string {
         return !this.description ? '' : this.description;
     }
 
-    public getAuthor(): string {
-        return !this.author ? '' : this.author;
+    public getLineNum(): number {
+        return this.lineNum;
     }
 
-    public getDeprecated(): string {
-        return !this.deprecated ? '' : this.deprecated;
+    public getNameLine(): string {
+        return this.nameLine;
     }
 
-    public getDate(): string {
-        return !this.date ? '' : this.date;
+    public getScope(): string {
+        return !this.scope ? '' : this.scope;
     }
 
-    public getExample(): string {
-        // return example and remove trailing white space which
-        // may have built up due to the allowance of preserving
-        // white pace in complex code example blocks for methods
-        return !this.example ? '' : this.example.trimRight();
+    // make sure path relative to target
+    // directory exists for @group-content token
+    private pathExists(contentPath: string): boolean {
+        let path = resolve(ApexDoc.config.sourceDirectory, contentPath.trim());
+        if (/.*\.s?html?$/.test(contentPath.trim()) && existsSync(path)) {
+            return true;
+        } else {
+            vscode.window.showWarningMessage(`@group-content path '${path}' in file '${ApexDoc.currentFile}' is invalid!`);
+            return false;
+        }
     }
 
-    public getSee(): string {
-        return !this.see ? '' : this.see;
-    }
-
-    public getAnnotations(): string[] {
-        return this.annotations;
-    }
-
-    // comment parser
     private parseComments(comments: string[]): void {
         let currBlock: string | null = null, block = null;
         for (let comment of comments) {
@@ -166,12 +125,12 @@ abstract class ApexModel {
                 } else if (currBlock === Tokens.DATE) {
                     this.date += (this.date ? ' ' : '') + line.trim();
                 } else if (currBlock === Tokens.SEE) {
-                    this.see += (this.see ? ' ' : '') + line.trim();
+                    this.see.push(line.trim());
                 } else if (currBlock === Tokens.RETURN) {
                     this.returns += (this.returns ? ' ' : '') + line.trim();
                 } else if (currBlock === Tokens.PARAM) {
-                    let p = (newBlock ? '' : this.params.splice(this.params.length - 1, 1));
-                    this.params.push(p + (p.length > 0 ? ' ' : '') + line.trim());
+                    let p = (newBlock ? '' : this.params.pop());
+                    this.params.push(p + (p && p.length > 0 ? ' ' : '') + line.trim());
                 } else if (currBlock === Tokens.EXCEPTION) {
                     this.exception += (this.exception ? ' ' : '') + line.trim();
                 } else if (currBlock === Tokens.DEPRECATED) {
@@ -202,15 +161,33 @@ abstract class ApexModel {
         }
     }
 
-    // make sure path relative to target
-    // directory exists for @group-content token
-    private pathExists(contentPath: string): boolean {
-        let path = resolve(ApexDoc.config.sourceDirectory, contentPath.trim());
-        if (/.*\.s?html?$/.test(contentPath.trim()) && existsSync(path)) {
-            return true;
-        } else {
-            vscode.window.showWarningMessage(`@group-content path '${path}' in file '${ApexDoc.currentFile}' is invalid!`);
-            return false;
+    protected parseScope(): void {
+        if (this.nameLine) {
+            let scope = Utils.containsScope(this.nameLine);
+            if (scope) {
+                this.scope = <string>scope;
+            }
+
+            // TODO: perhaps this branch of control flow should
+            // be present only in a class override method
+            else {
+
+                // this must be an inner class
+                // or an @IsTest class
+                this.scope = ApexDoc.PRIVATE;
+            }
+        }
+    }
+
+    protected setNameLine(nameLine: string, lineNum: number): void {
+        // strip any annotations from the signature line
+        // we'll capture those and display them separately
+        this.nameLine = Utils.stripAnnotations(nameLine).trim();
+        this.lineNum = lineNum;
+        // if we're running the stub command
+        // we don't care about scope
+        if (!ApexDoc.isStub) {
+            this.parseScope();
         }
     }
 }

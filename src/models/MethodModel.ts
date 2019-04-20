@@ -8,16 +8,44 @@ class MethodModel extends ApexModel {
         this.setNameLine(nameLine, lineNum);
     }
 
-    protected setNameLine(nameLine: string, lineNum: number): void {
-        // remove anything after param list
+    public getAuthor(): string {
+        return !this.author ? '' : this.author;
+    }
+
+    public getDate(): string {
+        return !this.date ? '' : this.date;
+    }
+
+    public getDeprecated(): string {
+        return !this.deprecated ? '' : this.deprecated;
+    }
+
+    public getExample(): string {
+        // return example and remove trailing white space which
+        // may have built up due to the allowance of preserving
+        // white pace in complex code example blocks for methods
+        return !this.example ? '' : this.example.trimRight();
+    }
+
+    public getException(): string {
+        return !this.exception ? '' : this.exception;
+    }
+
+    public getName(): string {
+        let nameLine = this.getNameLine();
         if (nameLine) {
-            let i = nameLine.lastIndexOf(')');
-            if (i >= 0 && i < nameLine.length - 1) {
-                nameLine = nameLine.substring(0, i + 1);
+            nameLine = nameLine.trim();
+            let lastIndex = nameLine.indexOf('(');
+            if (lastIndex >= 0) {
+                return Utils.previousWord(nameLine, lastIndex);
             }
         }
 
-        super.setNameLine(nameLine, lineNum);
+        return '';
+    }
+
+    public getParams(): string[] {
+        return this.params;
     }
 
     public getParamsFromNameLine(): string[] {
@@ -33,33 +61,28 @@ class MethodModel extends ApexModel {
         return <string[]>result;
     }
 
-    public getParams(): string[] {
-        return this.params;
-    }
-
-    public getException(): string {
-        return !this.exception ? '' : this.exception;
-    }
-
     public getReturns(): string {
         return !this.returns ? '' : this.returns;
     }
 
-    public setScope(scope: string): void {
-        this.scope = scope;
+    public getSee(): string[] {
+        return this.see;
     }
 
-    public getMethodName(): string {
-        let nameLine = this.getNameLine();
+    protected setNameLine(nameLine: string, lineNum: number): void {
+        // remove anything after param list
         if (nameLine) {
-            nameLine = nameLine.trim();
-            let lastIndex = nameLine.indexOf('(');
-            if (lastIndex >= 0) {
-                return Utils.previousWord(nameLine, lastIndex);
+            let i = nameLine.lastIndexOf(')');
+            if (i >= 0 && i < nameLine.length - 1) {
+                nameLine = nameLine.substring(0, i + 1);
             }
         }
 
-        return '';
+        super.setNameLine(nameLine, lineNum);
+    }
+
+    public setScope(scope: string): void {
+        this.scope = scope;
     }
 }
 
