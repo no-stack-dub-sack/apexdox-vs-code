@@ -62,15 +62,18 @@
           }
         },
         {
-          "match": "(?:(@)(param)\\b\\s*(([_[:alnum:]]*)))(?=\\s+)",
+          "match": "((@)(param\\b\\s*([_[:alnum:]]*)))(?=\\s+)",
           "captures": {
-            "0": {
-              "name": "punctuation.accessor.apex"
-            },
-            "2": {
+            "1": {
               "name": "storage.type.annotation.apex"
             },
+            "2": {
+              "name": "punctuation.accessor.apex"
+            },
             "3": {
+              "name": "storage.type.annotation.apex"
+            },
+            "4": {
               "name": "keyword.other.class.apex"
             }
           }
@@ -147,13 +150,13 @@
               }
             },
             {
-              "match": "(^\\s+(\\*)\\s+@[_[:alpha:]]+\\b)",
+              "match": "^\\s+(\\*)\\s+(@[_[:alpha:]]+)\\b",
               "captures": {
                 "1": {
-                  "name": "storage.type.annotation.apex"
+                  "name": "punctuation.definition.comment.apex"
                 },
                 "2": {
-                  "name": "punctuation.definition.comment.apex"
+                  "name": "storage.type.annotation.apex"
                 }
               }
             },

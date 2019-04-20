@@ -41,11 +41,12 @@ repository:
           '1': { name: storage.type.annotation.apex }
           '2': { name: punctuation.accessor.apex }
       # @param paramName
-      - match: '(?:(@)(param)\b\s*(([_[:alnum:]]*)))(?=\s+)'
+      - match: '((@)(param\b\s*([_[:alnum:]]*)))(?=\s+)'
         captures:
-          '0': { name: punctuation.accessor.apex }
-          '2': { name: storage.type.annotation.apex }
-          '3': { name: keyword.other.class.apex }
+          '1': { name: storage.type.annotation.apex }
+          '2': { name: punctuation.accessor.apex }
+          '3': { name: storage.type.annotation.apex }
+          '4': { name: keyword.other.class.apex }
       # @see URL, Markdown URL, or namePath
       - match: |-
           (?x)
@@ -99,6 +100,8 @@ repository:
           '12': { name: punctuation.accessor.apex }
           '13': { name: punctuation.accessor.apex }
       # @example codeExample, multiline
+      # should be the last tag, because we can't end matching on
+      # next @ symbol, since code example may contain annotation
       - name: meta.example.apex
         begin: ((@)example)\s+
         end: (?=\*/)
@@ -106,18 +109,25 @@ repository:
           '1': { name: storage.type.annotation.apex }
           '2': { name: punctuation.accessor.apex }
         patterns:
+          # match closing bracket on own line, relying only
+          # on embedded code highlighting seems to ignore
+          # this in some themes. Use this rule as a backup.
           - match: '(?:^\s+(\*)\s+(})(;)?)'
             captures:
               '1': { name: punctuation.definition.comment.apex }
               '2': { name: punctuation.curlybrace.close.apex }
               '3': { name: punctuation.terminator.statement.apex }
-          - match: '(^\s+(\*)\s+@[_[:alpha:]]+\b)'
+          # match annotation in code example. Again, embedded
+          # highlighting seems to be a bit wonky on this.
+          - match: '^\s+(\*)\s+(@[_[:alpha:]]+)\b'
             captures:
-              '1': { name: storage.type.annotation.apex }
-              '2': { name: punctuation.definition.comment.apex }
+              '2': { name: storage.type.annotation.apex }
+              '1': { name: punctuation.definition.comment.apex }
+          # ensure leading asterik not highlighted as Apex
           - match: (^\s+\*\s+)
             captures:
               '0': { name: punctuation.definition.comment.apex }
+          # match and highlight the code example
           - match: '[^\s@*](?:[^*]|\*[^/])*'
             captures:
               '0':
