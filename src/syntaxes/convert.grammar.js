@@ -1,21 +1,15 @@
-const execSync = require('child_process').execSync;
-const fs = require('fs');
-const path = require('path');
+const { execSync } = require('child_process');
+const { readFileSync, writeFileSync } = require('fs');
+const { resolve } = require('path');
 
-/**
- * js-yaml package command line tool seems to be including some output information
- * in the destination file, not just the JSON we're looking for. Use this small script
- * to strip that information from the output file. Works on Windows. Strips away anything
- * before the opening curly brace, and leaves everything else intact as is.
- */
+// js-yaml package command line tool seems to be including some unwanted artifacts
+// in the destination file. Use this small script to strip that information from
+// the output. Works on Windows. Strips away anything before the opening curly brace.
 (function convertYamlToGrammar() {
-    const source = path.resolve(__dirname, 'apex.tmLanguage.injection.yml');
-    const target = path.resolve(__dirname, 'apex.tmLanguage.injection.json');
-    execSync(`yarn run js-yaml ${source} > ${target}`);
-
-    let json = fs.readFileSync(target).toString('utf8');
-    const openCurly = json.indexOf('{');
-    json = json.slice(openCurly);
-
-    fs.writeFileSync(target, json);
+    const SOURCE = resolve(__dirname, 'apex.tmLanguage.injection.yml');
+    const TARGET = resolve(__dirname, 'apex.tmLanguage.injection.json');
+    execSync(`yarn run js-yaml ${SOURCE} > ${TARGET}`);
+    let json = readFileSync(TARGET).toString('utf8');
+    json = json.slice(json.indexOf('{'));
+    writeFileSync(TARGET, json);
 })();

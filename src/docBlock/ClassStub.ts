@@ -1,14 +1,14 @@
-import * as vscode from 'vscode';
 import DocBlockStub, { IStubLine } from './DocBlockStub';
-import { AUTHOR, DATE, DESCRIPTION } from '../models/tags';
+import { AUTHOR, DESCRIPTION, SINCE } from '../models/tags';
+import { TextEditor } from 'vscode';
 
 class ClassStub extends DocBlockStub {
-    public constructor(editor: vscode.TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
+    public constructor(editor: TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
         super(editor, activeLine, stubLine, isCompletion);
     }
 
     protected make(): void {
-        const tags = [AUTHOR.label, DATE.label]
+        const tags = [AUTHOR.label, SINCE.label]
             , maxLength = this.config.omitDescriptionTag
                 ? this.getMaxLength(DESCRIPTION.label, ...tags)
                 : this.getMaxLength(...tags)

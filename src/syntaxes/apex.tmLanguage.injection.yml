@@ -22,7 +22,7 @@ repository:
     patterns:
       # standard ApexDoc tags
       - match: >-
-          ((@)(author|date|deprecated|description|exception|group|group-content|returns))(?=\s+)
+          ((@)(author|deprecated|description|exception|group|group-content|returns|since))(?=\s+)
         captures:
           '1': { name: storage.type.annotation.apex }
           '2': { name: punctuation.accessor.apex }
@@ -32,9 +32,9 @@ repository:
           ((@)
             (
               abstract|access|augments|async|borrows|constructs|copyright|constant|default|
-              event|external|file|fires|generator|ignore|inner|instance|kind|lends|license|
+              date|event|external|file|fires|generator|ignore|inner|instance|kind|lends|license|
               listens|member|memberof|mixes|module|name|namespace|override|package|readonly|
-              since|static|todo|tutorial|variation|virtual
+              since|static|todo|tutorial|variation|virtual|hack
             )
           )(?=\s+)
         captures:

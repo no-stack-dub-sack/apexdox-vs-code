@@ -1,4 +1,3 @@
-import * as vscode from 'vscode';
 import DocBlockStub, { IStubLine, IStubsConfig } from './DocBlockStub';
 import MethodModel from '../models/MethodModel';
 import Utils from '../utils/Utils';
@@ -6,8 +5,9 @@ import {
     DESCRIPTION,
     EXCEPTION,
     PARAM,
-    RETURN
+    RETURNS
     } from '../models/tags';
+import { TextEditor } from 'vscode';
 
 interface IParsedMethod {
     name: string;
@@ -18,7 +18,7 @@ interface IParsedMethod {
 
 class MethodStub extends DocBlockStub {
 
-    public constructor(editor: vscode.TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
+    public constructor(editor: TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
         super(editor, activeLine, stubLine, isCompletion);
     }
 
@@ -47,8 +47,8 @@ class MethodStub extends DocBlockStub {
         }
 
         if (returnType !== 'void') {
-            const pad = this.getPadding(this.config.alignItems, RETURN.label.length, maxLength);
-            stub += this.tagTemplate(RETURN.label, pad, this.lineIndent, tabIndex++, `\`${returnType}\``);
+            const pad = this.getPadding(this.config.alignItems, RETURNS.label.length, maxLength);
+            stub += this.tagTemplate(RETURNS.label, pad, this.lineIndent, tabIndex++, `\`${returnType}\``);
         }
 
         if (throwsException) {
@@ -123,7 +123,7 @@ class MethodStub extends DocBlockStub {
      */
     private getMaxLength(config: IStubsConfig, returnType: string, params: string[], throwsEx: boolean): number {
         // establish lengths of tags and params
-        const returnTag = returnType !== 'void' ? RETURN.label.length : 0;
+        const returnTag = returnType !== 'void' ? RETURNS.label.length : 0;
         const descriptionTag = config.omitDescriptionTag ? 0 : DESCRIPTION.label.length;
         const paramsLength = params.map(p => PARAM.label.length + p.length + 1);
         const exceptionLength = throwsEx ? EXCEPTION.label.length : 0;

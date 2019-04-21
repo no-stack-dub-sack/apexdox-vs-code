@@ -1,4 +1,4 @@
-import langConfig from '../docBlock/apex.config';
+import langConfig from '../syntaxes/apex.onEnterRules.config';
 import { Disposable, languages } from 'vscode';
 
 export default function(): Disposable {

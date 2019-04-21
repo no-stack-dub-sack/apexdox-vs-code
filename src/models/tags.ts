@@ -15,14 +15,14 @@ export const AUTHOR = {
 \`\`\``
 };
 
-export const DATE = {
-    label: '@date',
-    snippet: `date \${1:}`,
+export const SINCE = {
+    label: '@since',
+    snippet: `since \${1:}`,
     documentation:
 `For: **Class**, **Interface**, **Enum** (top level), & **Method**
 
 \`\`\`
-@date [The date the type or method was implemented]
+@since [The date the type or method was implemented]
 \`\`\``
 };
 
@@ -105,7 +105,7 @@ export const PARAM = {
 \`\`\``
 };
 
-export const RETURN = {
+export const RETURNS = {
     label: '@returns',
     snippet: `returns \${1:}`,
     documentation:

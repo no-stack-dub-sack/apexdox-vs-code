@@ -9,7 +9,6 @@ abstract class ApexModel {
 
     protected annotations: string[] = [];
     protected author: string = '';
-    protected date: string = '';
     protected deprecated: string = '';
     protected description: string = '';
     protected example: string = '';
@@ -22,6 +21,7 @@ abstract class ApexModel {
     protected returns: string = '';
     protected scope: string = '';
     protected see: string[] = [];
+    protected since: string = '';
 
     protected constructor(comments: string[]) {
         this.parseComments(comments);
@@ -75,9 +75,9 @@ abstract class ApexModel {
 
             // if we find a tag, start a new block
             if (((i = lowerComment.indexOf(block = tags.AUTHOR.label)) >= 0)
-                || ((i = lowerComment.indexOf(block = tags.DATE.label)) >= 0)
+                || ((i = lowerComment.indexOf(block = tags.SINCE.label)) >= 0)
                 || ((i = lowerComment.indexOf(block = tags.SEE.label)) >= 0)
-                || ((i = lowerComment.indexOf(block = tags.RETURN.label)) >= 0)
+                || ((i = lowerComment.indexOf(block = tags.RETURNS.label)) >= 0)
                 || ((i = lowerComment.indexOf(block = tags.PARAM.label)) >= 0)
                 || ((i = lowerComment.indexOf(block = tags.EXCEPTION.label)) >= 0)
                 || ((i = lowerComment.indexOf(block = tags.DEPRECATED.label)) >= 0)
@@ -122,11 +122,11 @@ abstract class ApexModel {
             if (currBlock !== null && (line.trim() || !line.trim() && currBlock === tags.EXAMPLE.label)) {
                 if (currBlock === tags.AUTHOR.label) {
                     this.author += (this.author ? ' ' : '') + line.trim();
-                } else if (currBlock === tags.DATE.label) {
-                    this.date += (this.date ? ' ' : '') + line.trim();
+                } else if (currBlock === tags.SINCE.label) {
+                    this.since += (this.since ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.SEE.label) {
                     this.see.push(line.trim());
-                } else if (currBlock === tags.RETURN.label) {
+                } else if (currBlock === tags.RETURNS.label) {
                     this.returns += (this.returns ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.PARAM.label) {
                     let p = (newBlock ? '' : this.params.pop());

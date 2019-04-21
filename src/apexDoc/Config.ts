@@ -1,6 +1,7 @@
 import ApexDoc from './ApexDoc';
 import Guards from '../utils/Guards';
 import { EXTENSION } from '../extension';
+import { resolve } from 'path';
 import { workspace } from 'vscode';
 
 export interface IApexDocConfig {
@@ -44,8 +45,8 @@ class Config implements IApexDocConfig {
         }
 
         // establish defaults
-        this.sourceDirectory = projectRoot + '\\src\\classes';
-        this.targetDirectory = projectRoot + '\\documentation\\apex';
+        this.sourceDirectory = resolve(projectRoot, 'src', 'classes');
+        this.targetDirectory = resolve(projectRoot, 'apex-documentation');
 
         this.port = 8080;
         this.includes = [];

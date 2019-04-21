@@ -88,8 +88,8 @@ class DocGen {
             contents += `<br/>${this.escapeHTML(model.getAuthor(), false)}`;
         }
 
-        if (model.getDate()) {
-            contents += `<br/>${this.escapeHTML(model.getDate(), false)}`;
+        if (model.getSince()) {
+            contents += `<br/>${this.escapeHTML(model.getSince(), false)}`;
         }
 
         if (model.getExample()) {
@@ -326,9 +326,9 @@ class DocGen {
                 methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getAuthor(), false)}</div>`;
             }
 
-            if (method.getDate()) {
+            if (method.getSince()) {
                 methodsHTML += '<div class="methodSubTitle">Date</div>';
-                methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getDate(), false)}</div>`;
+                methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getSince(), false)}</div>`;
             }
 
             if (method.getExample()) {

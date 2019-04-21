@@ -40,7 +40,7 @@
     "apex-doc-tags": {
       "patterns": [
         {
-          "match": "((@)(author|date|deprecated|description|exception|group|group-content|returns))(?=\\s+)",
+          "match": "((@)(author|deprecated|description|exception|group|group-content|returns|since))(?=\\s+)",
           "captures": {
             "1": {
               "name": "storage.type.annotation.apex"
@@ -51,7 +51,7 @@
           }
         },
         {
-          "match": "(?x)\n((@)\n  (\n    abstract|access|augments|async|borrows|constructs|copyright|constant|default|\n    event|external|file|fires|generator|ignore|inner|instance|kind|lends|license|\n    listens|member|memberof|mixes|module|name|namespace|override|package|readonly|\n    since|static|todo|tutorial|variation|virtual\n  )\n)(?=\\s+)",
+          "match": "(?x)\n((@)\n  (\n    abstract|access|augments|async|borrows|constructs|copyright|constant|default|\n    date|event|external|file|fires|generator|ignore|inner|instance|kind|lends|license|\n    listens|member|memberof|mixes|module|name|namespace|override|package|readonly|\n    since|static|todo|tutorial|variation|virtual|hack\n  )\n)(?=\\s+)",
           "captures": {
             "1": {
               "name": "storage.type.annotation.apex"

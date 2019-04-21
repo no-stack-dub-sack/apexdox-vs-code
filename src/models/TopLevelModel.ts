@@ -19,8 +19,8 @@ abstract class TopLevelModel extends ApexModel {
         return !this.author ? '' : this.author;
     }
 
-    public getDate(): string {
-        return !this.date ? '' : this.date;
+    public getSince(): string {
+        return !this.since ? '' : this.since;
     }
 
     public getDeprecated(): string {

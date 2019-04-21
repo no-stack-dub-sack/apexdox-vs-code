@@ -2,10 +2,18 @@ import * as vscode from 'vscode';
 import ApexDoc from '../apexDoc/ApexDoc';
 import Utils from '../utils/Utils';
 import { EXTENSION } from '../extension';
+import {
+    Position,
+    SnippetString,
+    TextDocument,
+    TextEditor,
+    TextLine,
+    workspace
+    } from 'vscode';
 
 export interface IStubLine {
     insertNewLine: boolean;
-    line: vscode.TextLine;
+    line: TextLine;
     lineIndex: number;
     type: StubType;
     indent: number;
@@ -26,8 +34,8 @@ export interface IStubsConfig {
 abstract class DocBlockStub {
     public contents: string = '';
     protected config: IStubsConfig;
-    protected editor: vscode.TextEditor;
-    protected line: vscode.TextLine;
+    protected editor: TextEditor;
+    protected line: TextLine;
     protected lineIndex: number;
     protected lineIndent: string;
     protected isCompletion: boolean;
@@ -35,7 +43,7 @@ abstract class DocBlockStub {
     protected blockOpen: string;
     private activeLine: number;
 
-    public constructor(editor: vscode.TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
+    public constructor(editor: TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
 		// set this flag to true so MethodModel does not call
 		// functions in the constructor that we don't care about
         ApexDoc.isStub = true;
@@ -51,7 +59,17 @@ abstract class DocBlockStub {
         this.blockClose = `${isCompletion ? '' : this.lineIndent + ' */'}${stubLine.insertNewLine ? '\n' : ''}`;
 
         this.isCompletion = isCompletion || false;
-        this.config = <IStubsConfig>vscode.workspace.getConfiguration(EXTENSION).get('stubs');
+
+        // establish defaults, overwrite with user config
+        // TODO: is this needed?? VSCode seems to have a
+        // default field for config settings, but at least
+        // in development, the defaults don't get populated
+        this.config = {
+            alignItems: true,
+            omitDescriptionTag: true,
+            spacious: false,
+            ...<IStubsConfig>workspace.getConfiguration(EXTENSION).get('stubs')
+        };
 
         this.make();
     }
@@ -70,8 +88,8 @@ abstract class DocBlockStub {
         // TODO: if contents are empty, do we want to do nothing, or insert empty block comment?
         // Think about the cases where contents may end up being empty, are there any right now?
         if (this.contents) {
-            const position = new vscode.Position(this.activeLine, 0);
-            this.editor.insertSnippet(new vscode.SnippetString(this.contents), position);
+            const position = new Position(this.activeLine, 0);
+            this.editor.insertSnippet(new SnippetString(this.contents), position);
         }
     }
 
@@ -86,9 +104,9 @@ abstract class DocBlockStub {
      * @param document The active file.
      * @param lineIndex The line index of the the active line when the command was invoked.
      * @param isCompletion Whether or not the command was invoked by completion event or command pallette.
-     * @returns The `vscode.TextLine` object on which our method begins.
+     * @returns The `TextLine` object on which our method begins.
      */
-    public static getLineAndType(document: vscode.TextDocument, lineIndex: number, isCompletion?: boolean): IStubLine {
+    public static getLineAndType(document: TextDocument, lineIndex: number, isCompletion?: boolean): IStubLine {
         let type: StubType
             , insertNewLine = false
             , line = document.lineAt(lineIndex);
@@ -128,7 +146,7 @@ abstract class DocBlockStub {
      * @param lineText The contents of the line.
      * @returns `StubType` enum
      */
-    private static getStubType(lineText: string, lineIndex: number, document: vscode.TextDocument) : StubType {
+    private static getStubType(lineText: string, lineIndex: number, document: TextDocument) : StubType {
         if (Utils.isClassOrInterface(lineText)) {
             return StubType.CLASS_INTERFACE_OR_ENUM;
         }
