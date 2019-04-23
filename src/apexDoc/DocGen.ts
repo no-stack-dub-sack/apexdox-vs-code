@@ -8,7 +8,7 @@ import EnumModel from '../models/EnumModel';
 import escape from 'lodash.escape';
 import MethodModel from '../models/MethodModel';
 import TopLevelModel, { ModelType } from '../models/TopLevelModel';
-import Utils from '../utils/Utils';
+import Utils, { last } from '../utils/Utils';
 
 class DocGen {
     public static sortOrderStyle: string;
@@ -202,7 +202,9 @@ class DocGen {
 
         // Append <init> to method name if constructor
         const formatConstructor = (methodName: string): string => {
-            if (methodName.toLowerCase() === cModel.getName().toLowerCase()) {
+            // split class model name on '.' and take last, in case class is inner. otherwise
+            // we'd be comparing a to its fully qualified class name, e.g. MyClass.SomeMethod
+            if (methodName.toLowerCase() === last(cModel.getName().split('.')).toLowerCase()) {
                 methodName += '.&lt;init&gt;';
             }
 

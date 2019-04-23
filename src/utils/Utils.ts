@@ -3,7 +3,7 @@ import ApexModel from '../models/ApexModel';
 import ClassModel from '../models/ClassModel';
 import DocGen from '../apexDoc/DocGen';
 
-export const last = (arr: any[]) => arr[arr.length - 1];
+export const last = <T>(arr: T[]): T => arr[arr.length - 1];
 
 class Utils {
     private static COLLECTIONS: string[] = ['list', 'set', 'map'];
@@ -160,9 +160,8 @@ class Utils {
             return '';
         }
 
-        let idxStart;
-        let idxEnd;
-        for (idxStart = searchIdx - 1, idxEnd = 0; idxStart >= 0; idxStart--) {
+        let idxStart: number, idxEnd: number;
+        for (idxStart = searchIdx - 1, idxEnd = 0; idxStart > 0; idxStart--) {
             if (idxEnd === 0) {
                 if (str.charAt(idxStart) === ' ') {
                     continue;
@@ -174,11 +173,7 @@ class Utils {
             }
         }
 
-        if (idxStart === -1) {
-            return '';
-        } else {
-            return str.substring(idxStart, idxEnd);
-        }
+        return str.substring(idxStart, idxEnd);
     }
 
     public static countChars(str: string, char: string): number {
