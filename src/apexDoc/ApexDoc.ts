@@ -107,28 +107,28 @@ class ApexDoc {
     }
 
     private static createClassGroupMap(models: Array<TopLevelModel>, sourceDirectory: string): Map<string, ClassGroup> {
-        const map: Map<string, ClassGroup> = new Map<string, ClassGroup>();
+        const classGroupMap: Map<string, ClassGroup> = new Map<string, ClassGroup>();
 
         models.forEach(model => {
-            const group = model.getGroupName();
+            // if group name is falsy, default to this misc bucket
+            // un-grouped classes will be placed under this menu
+            const group = model.getGroupName() || 'Miscellaneous';
             let contentPath = model.getGroupContentPath();
             if (contentPath) {
                 contentPath = resolve(sourceDirectory, contentPath);
             }
 
-            let cg: ClassGroup | undefined;
-            if (group) {
-                cg = map.get(group);
-                if (!cg) {
-                    cg = new ClassGroup(group, contentPath);
-                } else if (!cg.getContentSource()) {
-                    cg.setContentSource(contentPath);
-                }
-                map.set(group, cg);
+            let classGroup = classGroupMap.get(group);
+            if (!classGroup) {
+                classGroup = new ClassGroup(group, contentPath);
+            } else if (!classGroup.getContentSource()) {
+                classGroup.setContentSource(contentPath);
             }
+
+            classGroupMap.set(group, classGroup);
         });
 
-        return map;
+        return classGroupMap;
     }
 
     /**

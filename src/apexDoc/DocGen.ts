@@ -409,67 +409,74 @@ class DocGen {
     }
 
     public static makeMenu(classGroupMap: Map<string, ClassGroup>, models: Array<TopLevelModel>): string {
-        let createMiscellaneousGroup = false;
+        // 22% width is to ensure menu is always wide
+        // enough to handle 40 char class name limit
+        let markup =
+            `<td width="22%" vertical-align="top">
+                <div class="navbar">
+                    <nav role="navigation">
+                        <a class="navHeader" id="home" href="javascript:void(0)"
+                            onclick="goToLocation('index.html');">
+                            Home
+                        </a>`;
 
-        // sort class models and establish if we need to create a misc. class group for un-grouped classes
-        models.sort((a, b) => {
-            if ((!a.getGroupName() || !b.getGroupName()) && !createMiscellaneousGroup) {
-                createMiscellaneousGroup = true;
-            }
+        const menuMarkupMap = new Map<string, string>()
+            , sortedGroups = Array
+                .from(classGroupMap.keys())
+                .sort((a: string, b: string) =>  a.localeCompare(b));
 
-            return a.getName().localeCompare(b.getName());
-        });
-
-        // make menu wide enough to always handle 40 char class name limit
-        let contents = '<td width="22%" vertical-align="top">';
-        contents += '<div class="navbar">';
-        contents += '<nav role="navigation">';
-        contents += `<a class="navHeader" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">`;
-        contents += 'Home</a>';
-
-        // add a bucket ClassGroup for all Classes without a ClassGroup specified
-        if (createMiscellaneousGroup) {
-            classGroupMap.set('Miscellaneous', new ClassGroup('Miscellaneous', ''));
-        }
-
-        // create a sorted list of ClassGroups
-        for (let group of classGroupMap.keys()) {
+        // iterate over groups and make our top level menu
+        // items. store markup in map, we will concatenate
+        // later once all of our list items are created.
+        for (let group of sortedGroups) {
             const cg = classGroupMap.get(group);
             let groupId = group.replace(/\s+/g, "_");
 
-            contents += `<details id="${groupId}" class="groupName">`;
-            contents += `<summary onclick="toggleActiveClass(this);" id="header-${groupId}" class="navHeader">`;
+            let markup =
+                `<details id="${groupId}" class="groupName">
+                    <summary onclick="toggleActiveClass(this);"
+                             id="header-${groupId}"
+                             class="navHeader">`;
 
             if (cg && cg.getContentFilename()) {
                 let destination = cg.getContentFilename() + '.html';
                 // handle both onclick and onkeydown when tabbing to link
-                contents += '<a href="javascript:void(0)" title="See Class Group info" ' +
-                           `onclick="goToLocation('${destination}');">${group}</a>`;
+                markup +=
+                    `<a href="javascript:void(0)" title="See Class Group info"
+                        onclick="goToLocation('${destination}');">${group}</a>`;
             } else {
-                contents += `<span>${group}</span>`;
+                markup += `<span>${group}</span>`;
             }
 
-            contents += '</summary>';
-            contents += '<ul>';
-
-            for (let model of models) {
-                if (group === model.getGroupName() || (!model.getGroupName() && group === 'Miscellaneous')) {
-                    if (model.getNameLine()) {
-                        let fileName = model.getName();
-                        contents += `<li id="item-${fileName}" class="navItem class ${model.getScope()}" ` +
-                                    `onclick="goToLocation('${fileName}.html');">` +
-                                    `<a href="javascript:void(0)">${fileName}</a></li>`;
-                    }
-                }
-            }
-
-            contents += '</ul></details>';
+            markup += '</summary>';
+            menuMarkupMap.set(group, markup);
         }
 
-        contents += '</nav></div>';
-        contents += '</td>';
+        // create our individual menu items and concatenate
+        // them with their corresponding top level menu item
+        for (let model of models) {
+            const group = model.getGroupName() || 'Miscellaneous';
 
-        return contents;
+            if (model.getNameLine()) {
+                const fileName = model.getName()
+                    , markup =
+                    `<ul>
+                        <li id="item-${fileName}" class="navItem class ${model.getScope()}"
+                            onclick="goToLocation('${fileName}.html');">
+                            <a href="javascript:void(0)">${fileName}</a>
+                        </li>
+                    </ul>`;
+
+                menuMarkupMap.set(group, menuMarkupMap.get(group) + markup);
+            }
+        }
+
+        // iterate over map and concat each menu item with the
+        // opening markup, closing each <details> tag along the way
+        menuMarkupMap.forEach(menuItem => markup += menuItem + '</details>');
+
+        // close up our main div and return
+        return markup + '</nav></div></td>';
     }
 
     private static maybeMakeSourceLink(model: ApexModel, className: string, modelName: string): string {
