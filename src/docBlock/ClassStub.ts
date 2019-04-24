@@ -9,7 +9,7 @@ class ClassStub extends DocBlockStub {
 
     protected make(): void {
         const tags = [AUTHOR.label, SINCE.label]
-            , maxLength = this.config.omitDescriptionTag
+            , maxLength = !this.config.omitDescriptionTag
                 ? this.getMaxLength(DESCRIPTION.label, ...tags)
                 : this.getMaxLength(...tags)
             , pad = this.getPadding(this.config.alignItems, DESCRIPTION.label.length, maxLength);

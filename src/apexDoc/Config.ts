@@ -1,5 +1,6 @@
 import ApexDoc from './ApexDoc';
 import Guards from '../utils/Guards';
+import { existsSync } from 'fs';
 import { EXTENSION } from '../extension';
 import { resolve } from 'path';
 import { workspace } from 'vscode';
@@ -45,8 +46,10 @@ class Config implements IApexDocConfig {
         }
 
         // establish defaults
-        this.sourceDirectory = resolve(projectRoot, 'src', 'classes');
         this.targetDirectory = resolve(projectRoot, 'apex-documentation');
+        this.sourceDirectory = this.isDX(projectRoot)
+            ? resolve(projectRoot, 'force-app', 'main', 'default', 'classes')
+            : resolve(projectRoot, 'src', 'classes');
 
         this.port = 8080;
         this.includes = [];
@@ -62,14 +65,29 @@ class Config implements IApexDocConfig {
         this.sortOrder = ApexDoc.ORDER_ALPHA;
     }
 
+    private isDX(projectRoot: string): boolean {
+        if (
+            existsSync(resolve(projectRoot, 'force-app')) &&
+            !existsSync(resolve(projectRoot, 'src'))
+            ) {
+            return true;
+        }
+
+        return false;
+    }
+
     public static getConfig(): IApexDocConfig {
-        return this.merge(<IApexDocConfig>
-            workspace.getConfiguration(EXTENSION).get('config')
+        return this.merge(
+            workspace.getConfiguration(EXTENSION).get<IApexDocConfig>('config')
         );
     }
 
-    private static merge(userConfig: IApexDocConfig): IApexDocConfig {
+    private static merge(userConfig: IApexDocConfig | undefined): IApexDocConfig {
         const defaults = new Config();
+
+        if (!userConfig) {
+            return defaults;
+        }
 
         return {
             ...defaults,

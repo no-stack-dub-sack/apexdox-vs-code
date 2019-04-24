@@ -53,24 +53,13 @@ abstract class DocBlockStub {
         this.activeLine = activeLine;
         this.lineIndex = stubLine.lineIndex;
         this.lineIndent = ' '.repeat(stubLine.indent);
+        this.isCompletion = isCompletion || false;
 
         // set the comment block opener & closer based on isCompletion
         this.blockOpen = isCompletion ? '\n' : `${this.lineIndent}/**\n`;
         this.blockClose = `${isCompletion ? '' : this.lineIndent + ' */'}${stubLine.insertNewLine ? '\n' : ''}`;
 
-        this.isCompletion = isCompletion || false;
-
-        // establish defaults, overwrite with user config
-        // TODO: is this needed?? VSCode seems to have a
-        // default field for config settings, but at least
-        // in development, the defaults don't get populated
-        this.config = {
-            alignItems: true,
-            omitDescriptionTag: true,
-            spacious: false,
-            ...<IStubsConfig>workspace.getConfiguration(EXTENSION).get('stubs')
-        };
-
+        this.config = this.getConfig();
         this.make();
     }
 
@@ -80,6 +69,28 @@ abstract class DocBlockStub {
      * and is called in the class's constructor.
      */
     protected abstract make(): void;
+
+    /**
+     * Establish defaults for missing or incomplete user configuration.
+     */
+    private getConfig(): IStubsConfig {
+        const defaults = {
+            alignItems: false,
+            omitDescriptionTag: true,
+            spacious: false
+        };
+
+        const userConfig = workspace.getConfiguration(EXTENSION).get<IStubsConfig>('stubs');
+
+        if (userConfig) {
+            return {
+                ...defaults,
+                ...userConfig
+            };
+        }
+
+        return defaults;
+    }
 
     /**
      * Inserts the stub snippet at a given position.
