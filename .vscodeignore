@@ -1,3 +1,5 @@
+scripts
+logos
 .vscode/**
 .vscode-test/**
 out/test/**

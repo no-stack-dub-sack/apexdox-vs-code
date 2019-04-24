@@ -226,8 +226,8 @@ class FileManager {
     }
 
     private collectApexDocAssets(): string[] {
-        const files: string[] = readdirSync(ApexDoc.extensionRoot + '/assets');
-        return files.map(file => ApexDoc.extensionRoot + '/assets/' + file);
+        const files: string[] = readdirSync(resolve(ApexDoc.extensionRoot, 'assets'));
+        return files.map(fileName => resolve(ApexDoc.extensionRoot, 'assets', fileName));
     }
 
     private copyAssetsToTarget(files: string[]): void {
