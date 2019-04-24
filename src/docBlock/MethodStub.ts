@@ -1,3 +1,4 @@
+import ApexDoc from '../apexDoc/ApexDoc';
 import DocBlockStub, { IStubLine, IStubsConfig } from './DocBlockStub';
 import MethodModel from '../models/MethodModel';
 import Utils from '../utils/Utils';
@@ -102,14 +103,30 @@ class MethodStub extends DocBlockStub {
 
         // create a method model from our name line to base our stub on
         const method = new MethodModel([], methodText.substring(0, methodText.indexOf('{')), 0);
-        const name = method.getName(), nameLine = method.getNameLine();
 
         return {
             throwsException,
             name: method.getName(),
             params: method.getParamsFromNameLine(),
-            returnType: Utils.previousWord(nameLine, nameLine.indexOf(name)),
+            returnType: this.getReturnType(method)
         };
+    }
+
+    /**
+     * Get the return type for a method based on the word previous to the method name.
+     * If we're dealing with a constructor, the previous word could be an access modifier,
+     * be sure to treat that as void. If there is no previous word, treat that as void as well.
+     * @param method The method to get the return type for
+     */
+    private getReturnType(method: MethodModel): string {
+        const name = method.getName(), nameLine = method.getNameLine();
+        const prevWord = Utils.previousWord(nameLine, nameLine.indexOf(name));
+
+        if (ApexDoc.SCOPES.includes(prevWord)) {
+            return 'void';
+        }
+
+        return prevWord || 'void';
     }
 
     /**
@@ -123,7 +140,7 @@ class MethodStub extends DocBlockStub {
      */
     private getMaxLength(config: IStubsConfig, returnType: string, params: string[], throwsEx: boolean): number {
         // establish lengths of tags and params
-        const returnTag = returnType !== 'void' ? RETURNS.label.length : 0;
+        const returnTag = returnType && returnType !== 'void' ? RETURNS.label.length : 0;
         const descriptionTag = config.omitDescriptionTag ? 0 : DESCRIPTION.label.length;
         const paramsLength = params.map(p => PARAM.label.length + p.length + 1);
         const exceptionLength = throwsEx ? EXCEPTION.label.length : 0;
