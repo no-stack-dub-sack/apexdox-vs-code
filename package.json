@@ -14,7 +14,7 @@
 		"onCommand:apexDoc2.runApexDoc",
 		"onCommand:apexDoc2.serveDocs"
 	],
-	"main": "./out/extension.js",
+	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
@@ -154,11 +154,12 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "yarn run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
+		"vscode:prepublish": "webpack --mode production",
+		"compile": "webpack --mode none",
+		"watch": "webpack --mode none --watch",
+		"test-compile": "tsc -p ./",
 		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "yarn run compile && node ./node_modules/vscode/bin/test",
+		"test": "yarn run test-compile && node ./node_modules/vscode/bin/test",
 		"yaml-2-grammar": "node ./scripts/convert.grammar.js"
 	},
 	"devDependencies": {
@@ -170,9 +171,12 @@
 		"@types/pretty": "^2.0.0",
 		"@types/rimraf": "^2.0.2",
 		"js-yaml": "^3.13.1",
+		"ts-loader": "^5.4.3",
 		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
-		"vscode": "^1.1.28"
+		"vscode": "^1.1.28",
+		"webpack": "^4.30.0",
+		"webpack-cli": "^3.3.1"
 	},
 	"dependencies": {
 		"express": "^4.16.4",
