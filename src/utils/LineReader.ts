@@ -17,7 +17,7 @@ class LineReader {
             // NOTE: could use Node's os.EOL constant instead of the regexp
             // but hesitant because user could have EOL set contrary to the
             // platform they're on in VSCode. This might be safer in the end.
-            const EOL = /(?:\r\n|[\r|\n])/;
+            const EOL = /(?:\r\n|[\r\n])/;
             this.lines = readFileSync(filePath).toString('utf8').split(EOL);
             this.end = this.lines.length;
         } catch (e) {

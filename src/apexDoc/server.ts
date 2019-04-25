@@ -15,6 +15,9 @@ const error = (dir: string) =>
 
 export default async function createDocServer(targetDirectory: string, docsTitle: string, port: number) {
     if (existsSync(resolve(targetDirectory, 'index.html'))) {
+        // close existing connection first
+        closeServer();
+
         const app = express();
 
         app.use(express.static(targetDirectory));
