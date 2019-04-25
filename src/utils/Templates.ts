@@ -17,7 +17,7 @@ export const PROJECT_DETAIL =
     <table>
         <tr>
             <td>
-                <img src="apex_doc_2_logo.png" style="height: 90px; margin-left: 5px;"/>
+                <img src="./assets/apex_doc_2_logo.png" style="height: 90px; margin-left: 5px;"/>
             </td>
             <td>
                 <h2 style="margin: -15px 0 0 0;">ApexDoc2 | Apex Documentation</h2>Check out the GitHub project at:<br/>
@@ -43,7 +43,12 @@ export const FOOTER =
 </body>
 </html>`;
 
-export const DEFAULT_HOME_CONTENTS = `<h2>Project Home</h2>`;
+export const DEFAULT_HOME_CONTENTS =
+    `<h2>Project Home</h2>
+    <p>
+        Use the <code class="inlineCode">apexdoc2.homePagePath</code> setting to point to an HTML file that contains details about your project.
+        The body of the HTML will show up here instead of this default!
+    </p>`;
 
 export const EXTERNAL_LINK =
     '<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink">' +

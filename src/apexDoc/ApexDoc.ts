@@ -34,7 +34,7 @@ class ApexDoc {
 
     // use special token for marking the end of a doc block
     // comment. Now that we're supporting multi-line for all
-    // tokens and using a common comment parser, the parser
+    // tags and using a common comment parser, the parser
     // must know when a block ends in order to prevent weird
     // behavior when lesser scopes than available are indicated
     // e.g. private;public when there are protected methods
@@ -46,6 +46,10 @@ class ApexDoc {
     public static extensionRoot: string;
     public static currentFile: string;
     public static config: IApexDocConfig;
+
+    // flag will be set to true when we're
+    // running the comment stubbing command
+    public static isStub: boolean = false;
 
     /**
      * Entry point for the program. Called by VSCode on extension activation.
@@ -75,7 +79,7 @@ class ApexDoc {
             // parse our top-level class files
             files.forEach(fileName => {
                 this.currentFile = fileName;
-                const filePath = resolve(...[config.sourceDirectory, fileName]);
+                const filePath = resolve(config.sourceDirectory, fileName);
                 const model = this.parseFileContents(filePath);
                 modelMap.set(model.getName().toLowerCase(), model);
                 if (model) {
@@ -95,7 +99,7 @@ class ApexDoc {
             // we are done!
             const endElapsed = performance.now();
             vscode.window.showInformationMessage(
-                `ApexDoc2 complete! ${numProcessed} Apex files processed in ${(endElapsed - beginElapsed).toFixed(2)} ms.`
+                `ApexDoc2 complete! ${numProcessed} Apex files documented in ${(endElapsed - beginElapsed).toFixed(2)} ms.`
             );
         } catch (err) {
             throw err;
@@ -103,28 +107,28 @@ class ApexDoc {
     }
 
     private static createClassGroupMap(models: Array<TopLevelModel>, sourceDirectory: string): Map<string, ClassGroup> {
-        const map: Map<string, ClassGroup> = new Map<string, ClassGroup>();
+        const classGroupMap: Map<string, ClassGroup> = new Map<string, ClassGroup>();
 
         models.forEach(model => {
-            const group = model.getGroupName();
+            // if group name is falsy, default to this misc bucket
+            // un-grouped classes will be placed under this menu
+            const group = model.getGroupName() || 'Miscellaneous';
             let contentPath = model.getGroupContentPath();
             if (contentPath) {
-                contentPath = resolve(...[sourceDirectory, contentPath]);
+                contentPath = resolve(sourceDirectory, contentPath);
             }
 
-            let cg: ClassGroup | undefined;
-            if (group) {
-                cg = map.get(group);
-                if (!cg) {
-                    cg = new ClassGroup(group, contentPath);
-                } else if (!cg.getContentSource()) {
-                    cg.setContentSource(contentPath);
-                }
-                map.set(group, cg);
+            let classGroup = classGroupMap.get(group);
+            if (!classGroup) {
+                classGroup = new ClassGroup(group, contentPath);
+            } else if (!classGroup.getContentSource()) {
+                classGroup.setContentSource(contentPath);
             }
+
+            classGroupMap.set(group, classGroup);
         });
 
-        return map;
+        return classGroupMap;
     }
 
     /**
@@ -155,8 +159,9 @@ class ApexDoc {
             }
 
             // ignore anything after // style comments. this allows hiding
-            // of tokens from ApexDoc. However, don't ignore when line
-            // doesn't start with //, we want to preserver @example comments
+            // of tags from ApexDoc. However, don't ignore when line
+            // doesn't start with //, we want to preserve comments within
+            // @example code examples
             let offset = line.indexOf('//');
             if (offset === 0) {
                 line = line.substring(0, offset);

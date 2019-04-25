@@ -7,6 +7,18 @@ class PropertyModel extends ApexModel {
         this.setNameLine(nameLine, lineNum);
     }
 
+    public getName(): string {
+        let nameLine = this.getNameLine().trim();
+        if (nameLine) {
+            let lastIndex = nameLine.lastIndexOf(' ');
+            if (lastIndex >= 0) {
+                let propertyName = nameLine.substring(lastIndex + 1);
+                return propertyName;
+            }
+        }
+        return '';
+    }
+
     protected setNameLine(nameLine: string, lineNum: number): void {
         if (nameLine) {
             // remove any trailing stuff after property name. { =
@@ -23,18 +35,6 @@ class PropertyModel extends ApexModel {
         }
 
         super.setNameLine(nameLine, lineNum);
-    }
-
-    public getPropertyName(): string {
-        let nameLine = this.getNameLine().trim();
-        if (nameLine) {
-            let lastIndex = nameLine.lastIndexOf(' ');
-            if (lastIndex >= 0) {
-                let propertyName = nameLine.substring(lastIndex + 1);
-                return propertyName;
-            }
-        }
-        return '';
     }
 }
 

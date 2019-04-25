@@ -1,10 +1,9 @@
-import ApexDoc from '../core/ApexDoc';
+import ApexDoc from '../apexDoc/ApexDoc';
 import ApexDocError from './ApexDocError';
 import Utils from './Utils';
 import { existsSync } from 'fs';
 
 class Guards {
-
     public static directory(path: string, arg: string): string {
         this.typeGuard('string', path, arg);
         // blank directory's can be ignored as default for non-required

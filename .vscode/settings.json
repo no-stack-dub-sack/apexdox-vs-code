@@ -7,4 +7,14 @@
     },
     // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
     "typescript.tsc.autoDetect": "off",
+    // if 'Save and Run' is installed, this will prevent you from having to run yaml-2-grammar
+    // script after every modification to the Apex grammar injection Yaml file
+    "saveAndRun": {
+        "commands": [{
+            "match": "apex.tmLanguage.injection.yml",
+            "cmd": "yarn yaml-2-grammar",
+            "useShortcut": false,
+            "silent": false
+        }]
+    }
 }

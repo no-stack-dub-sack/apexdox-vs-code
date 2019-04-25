@@ -14,7 +14,11 @@ class LineReader {
 
     public constructor(filePath: string) {
         try {
-            this.lines = readFileSync(filePath).toString('utf8').split(/(?:\r\n|\r|\n)/g);
+            // NOTE: could use Node's os.EOL constant instead of the regexp
+            // but hesitant because user could have EOL set contrary to the
+            // platform they're on in VSCode. This might be safer in the end.
+            const EOL = /(?:\r\n|[\r\n])/;
+            this.lines = readFileSync(filePath).toString('utf8').split(EOL);
             this.end = this.lines.length;
         } catch (e) {
             throw new ApexDocError(e);

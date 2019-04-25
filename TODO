@@ -1,0 +1,16 @@
+General:
+    ✔ Reconfigure settings so each has own description @done(19-04-21 21:19)
+    ✔ Add DX-detector so source directory defaults to appropriate folder @done(19-04-23 21:04)
+    ✔ Bundle extension @done(19-04-24 21:18)
+    ✔ See why | symbol does not work in @example comments @done(19-04-24 20:03)
+
+Documentation:
+    ☐ README
+        ☐ Config Settings
+        ☐ Commands
+        ☐ Warnings?
+        ☐ OG ApexDoc credits
+        ☐ Example Gifs
+        ☐ Example Project?
+    ☐ CHANGELOG (include major changes since ApexDoc original)
+    ☐ KNOWN ISSUES

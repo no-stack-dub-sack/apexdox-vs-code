@@ -8,7 +8,7 @@ import EnumModel from '../models/EnumModel';
 import escape from 'lodash.escape';
 import MethodModel from '../models/MethodModel';
 import TopLevelModel, { ModelType } from '../models/TopLevelModel';
-import Utils from '../utils/Utils';
+import Utils, { last } from '../utils/Utils';
 
 class DocGen {
     public static sortOrderStyle: string;
@@ -23,15 +23,15 @@ class DocGen {
 
         let contents = this.documentTopLevelAttributes(cModel, modelMap, cModel.getTopmostClassName(), '');
 
-        if (cModel.getProperties().length > 0) {
+        if (cModel.getProperties().length) {
             contents += this.documentProperties(cModel);
         }
 
-        if (cModel.getEnums().length > 0) {
+        if (cModel.getEnums().length) {
             contents += this.documentInnerEnums(cModel);
         }
 
-        if (cModel.getMethods().length > 0) {
+        if (cModel.getMethods().length) {
             contents += this.documentMethods(cModel, modelMap);
         }
 
@@ -58,7 +58,7 @@ class DocGen {
         const classSourceLink = this.maybeMakeSourceLink(model, className, this.escapeHTML(model.getNameLine(), false));
         let contents = '';
 
-        if (model.getAnnotations().length > 0) {
+        if (model.getAnnotations().length) {
             contents += `<div class="classAnnotations">${model.getAnnotations().join(' ')}</div>`;
         }
 
@@ -79,7 +79,7 @@ class DocGen {
             contents += `<div class="classSubDescription">${this.escapeHTML(model.getDeprecated(), true)}</div>`;
         }
 
-        if (model.getSee()) {
+        if (model.getSee().length) {
             contents += '<div class="classSubtitle">See</div>';
             contents += `<div class="classSubDescription">${this.makeSeeLinks(modelMap, model.getSee())}</div>`;
         }
@@ -88,8 +88,8 @@ class DocGen {
             contents += `<br/>${this.escapeHTML(model.getAuthor(), false)}`;
         }
 
-        if (model.getDate()) {
-            contents += `<br/>${this.escapeHTML(model.getDate(), false)}`;
+        if (model.getSince()) {
+            contents += `<br/>${this.escapeHTML(model.getSince(), false)}`;
         }
 
         if (model.getExample()) {
@@ -120,7 +120,7 @@ class DocGen {
             if (prop.getDescription()) {
                 descriptionCol = '<th>Description</th>';
             }
-            if (prop.getAnnotations().length > 0) {
+            if (prop.getAnnotations().length) {
                 annotationsCol = '<th>Annotations</th>';
             }
         }
@@ -132,7 +132,7 @@ class DocGen {
             const propSourceLink = this.maybeMakeSourceLink(prop, cModel.getTopmostClassName(), nameLine);
 
             contents += `<tr class="property ${prop.getScope()}">`;
-            contents += `<td class="attrName">${prop.getPropertyName()}</td>`;
+            contents += `<td class="attrName">${prop.getName()}</td>`;
             contents += `<td><div class="attrSignature">${propSourceLink}</div></td>`;
 
             if (annotationsCol) {
@@ -202,7 +202,9 @@ class DocGen {
 
         // Append <init> to method name if constructor
         const formatConstructor = (methodName: string): string => {
-            if (methodName.toLowerCase() === cModel.getName().toLowerCase()) {
+            // split class model name on '.' and take last, in case class is inner. otherwise
+            // we'd be comparing a to its fully qualified class name, e.g. MyClass.SomeMethod
+            if (methodName.toLowerCase() === last(cModel.getName().split('.')).toLowerCase()) {
                 methodName += '.&lt;init&gt;';
             }
 
@@ -213,7 +215,7 @@ class DocGen {
         // (must be an overloaded method or constructor) and amend
         // as needed to ensure all of our methods have unique IDs
         const getMethodId = (method: MethodModel): string => {
-            let methodId = cModel.getName() + '.' + method.getMethodName();
+            let methodId = cModel.getName() + '.' + method.getName();
             let count: number | undefined;
             if ((count = idCountMap.get(methodId)) === undefined) {
                 idCountMap.set(methodId, 1);
@@ -253,7 +255,7 @@ class DocGen {
         for (let method of methods) {
             const methodId = getMethodId(method);
             const isDeprecated = method.getDeprecated().length > 0;
-            const methodName = formatConstructor(method.getMethodName());
+            const methodName = formatConstructor(method.getName());
             const nameLine = Utils.highlightNameLine(this.escapeHTML(method.getNameLine(), false));
             const methodSourceLink = this.maybeMakeSourceLink(method, cModel.getTopmostClassName(), nameLine);
             tocHTML += makeTOCEntry(method, methodName, methodId, isDeprecated);
@@ -262,7 +264,7 @@ class DocGen {
             methodsHTML += `<div class="method ${method.getScope()}">`;
             methodsHTML += `<h2 class="methodHeader ${(isDeprecated ? 'deprecated' : '')}" id="${methodId}">${methodName}</h2>`;
 
-            if (method.getAnnotations().length > 0) {
+            if (method.getAnnotations().length) {
                 methodsHTML += `<div class="methodAnnotations">${method.getAnnotations().join(' ')}</div>`;
             }
 
@@ -277,7 +279,7 @@ class DocGen {
                 methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getDeprecated(), true)}</div>`;
             }
 
-            if (method.getParams().length > 0) {
+            if (method.getParams().length) {
                 // @param someParam This is the params description.
                 methodsHTML += '<div class="methodSubTitle">Parameters</div>';
                 for (let param of method.getParams()) {
@@ -307,7 +309,7 @@ class DocGen {
             }
 
             if (method.getReturns()) {
-                methodsHTML += '<div class="methodSubTitle">Return Value</div>';
+                methodsHTML += '<div class="methodSubTitle">Returns</div>';
                 methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getReturns(), true)}</div>`;
             }
 
@@ -316,7 +318,7 @@ class DocGen {
                 methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getException(), true)}</div>`;
             }
 
-            if (method.getSee()) {
+            if (method.getSee().length) {
                 methodsHTML += '<div class="methodSubTitle">See</div>';
                 methodsHTML += `<div class="methodSubDescription">${this.makeSeeLinks(modelMap, method.getSee())}</div>`;
             }
@@ -326,9 +328,9 @@ class DocGen {
                 methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getAuthor(), false)}</div>`;
             }
 
-            if (method.getDate()) {
+            if (method.getSince()) {
                 methodsHTML += '<div class="methodSubTitle">Date</div>';
-                methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getDate(), false)}</div>`;
+                methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getSince(), false)}</div>`;
             }
 
             if (method.getExample()) {
@@ -407,67 +409,74 @@ class DocGen {
     }
 
     public static makeMenu(classGroupMap: Map<string, ClassGroup>, models: Array<TopLevelModel>): string {
-        let createMiscellaneousGroup = false;
+        // 22% width is to ensure menu is always wide
+        // enough to handle 40 char class name limit
+        let markup =
+            `<td width="22%" vertical-align="top">
+                <div class="navbar">
+                    <nav role="navigation">
+                        <a class="navHeader" id="home" href="javascript:void(0)"
+                            onclick="goToLocation('index.html');">
+                            Home
+                        </a>`;
 
-        // sort class models and establish if we need to create a misc. class group for un-grouped classes
-        models.sort((a, b) => {
-            if ((!a.getGroupName() || !b.getGroupName()) && !createMiscellaneousGroup) {
-                createMiscellaneousGroup = true;
-            }
+        const menuMarkupMap = new Map<string, string>()
+            , sortedGroups = Array
+                .from(classGroupMap.keys())
+                .sort((a: string, b: string) =>  a.localeCompare(b));
 
-            return a.getName().localeCompare(b.getName());
-        });
-
-        // make menu wide enough to always handle 40 char class name limit
-        let contents = '<td width="22%" vertical-align="top">';
-        contents += '<div class="navbar">';
-        contents += '<nav role="navigation">';
-        contents += `<a class="navHeader" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">`;
-        contents += 'Home</a>';
-
-        // add a bucket ClassGroup for all Classes without a ClassGroup specified
-        if (createMiscellaneousGroup) {
-            classGroupMap.set('Miscellaneous', new ClassGroup('Miscellaneous', ''));
-        }
-
-        // create a sorted list of ClassGroups
-        for (let group of classGroupMap.keys()) {
+        // iterate over groups and make our top level menu
+        // items. store markup in map, we will concatenate
+        // later once all of our list items are created.
+        for (let group of sortedGroups) {
             const cg = classGroupMap.get(group);
             let groupId = group.replace(/\s+/g, "_");
 
-            contents += `<details id="${groupId}" class="groupName">`;
-            contents += `<summary onclick="toggleActiveClass(this);" id="header-${groupId}" class="navHeader">`;
+            let markup =
+                `<details id="${groupId}" class="groupName">
+                    <summary onclick="toggleActiveClass(this);"
+                             id="header-${groupId}"
+                             class="navHeader">`;
 
             if (cg && cg.getContentFilename()) {
                 let destination = cg.getContentFilename() + '.html';
                 // handle both onclick and onkeydown when tabbing to link
-                contents += '<a href="javascript:void(0)" title="See Class Group info" ' +
-                           `onclick="goToLocation('${destination}');">${group}</a>`;
+                markup +=
+                    `<a href="javascript:void(0)" title="See Class Group info"
+                        onclick="goToLocation('${destination}');">${group}</a>`;
             } else {
-                contents += `<span>${group}</span>`;
+                markup += `<span>${group}</span>`;
             }
 
-            contents += '</summary>';
-            contents += '<ul>';
-
-            for (let model of models) {
-                if (group === model.getGroupName() || (!model.getGroupName() && group === 'Miscellaneous')) {
-                    if (model.getNameLine()) {
-                        let fileName = model.getName();
-                        contents += `<li id="item-${fileName}" class="navItem class ${model.getScope()}" ` +
-                                    `onclick="goToLocation('${fileName}.html');">` +
-                                    `<a href="javascript:void(0)">${fileName}</a></li>`;
-                    }
-                }
-            }
-
-            contents += '</ul></details>';
+            markup += '</summary>';
+            menuMarkupMap.set(group, markup);
         }
 
-        contents += '</nav></div>';
-        contents += '</td>';
+        // create our individual menu items and concatenate
+        // them with their corresponding top level menu item
+        for (let model of models) {
+            const group = model.getGroupName() || 'Miscellaneous';
 
-        return contents;
+            if (model.getNameLine()) {
+                const fileName = model.getName()
+                    , markup =
+                    `<ul>
+                        <li id="item-${fileName}" class="navItem class ${model.getScope()}"
+                            onclick="goToLocation('${fileName}.html');">
+                            <a href="javascript:void(0)">${fileName}</a>
+                        </li>
+                    </ul>`;
+
+                menuMarkupMap.set(group, menuMarkupMap.get(group) + markup);
+            }
+        }
+
+        // iterate over map and concat each menu item with the
+        // opening markup, closing each <details> tag along the way
+        menuMarkupMap.forEach(menuItem => markup += menuItem + '</details>');
+
+        // close up our main div and return
+        return markup + '</nav></div></td>';
     }
 
     private static maybeMakeSourceLink(model: ApexModel, className: string, modelName: string): string {
@@ -483,11 +492,7 @@ class DocGen {
         }
     }
 
-    private static makeSeeLinks(modelMap: Map<string, TopLevelModel>, qualifiersStr: string): string {
-        // the @see token may contain a comma separated list of fully qualified
-        // method or class names. Start by splitting them into individual qualifiers.
-        const qualifiers = qualifiersStr.split(',');
-
+    private static makeSeeLinks(modelMap: Map<string, TopLevelModel>, qualifiers: string[]): string {
         // initialize list to store created links
         const links: string[] = [];
 
@@ -562,9 +567,9 @@ class DocGen {
 
                     let methodNum = 0;
                     for (let method of methods) {
-                        if (method.getMethodName().toLowerCase() === parts[1]) {
+                        if (method.getName().toLowerCase() === parts[1]) {
                             // use actual class/method name to create link to avoid case issues
-                            href = Class.getName() + '.html#' + Class.getName() + '.' + method.getMethodName();
+                            href = Class.getName() + '.html#' + Class.getName() + '.' + method.getName();
                             // no overload selector, we've made a match!
                             if (overloadSelector === 0) {
                                 foundMatch = true;
@@ -608,9 +613,9 @@ class DocGen {
                             else {
                                 let childMethods = childClass.getMethods();
                                 for (let method of childMethods) {
-                                    if (method.getMethodName().toLowerCase() === parts[2]) {
+                                    if (method.getName().toLowerCase() === parts[2]) {
                                         // same as above, use actual name to avoid casing issues
-                                        href = nameParts[0] + '.html#' + childClass.getName() + '.' + method.getMethodName();
+                                        href = nameParts[0] + '.html#' + childClass.getName() + '.' + method.getName();
                                         foundMatch = true;
                                         break;
                                     }

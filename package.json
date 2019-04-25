@@ -1,7 +1,7 @@
 {
 	"name": "apexdoc2-vscode",
 	"displayName": "ApexDoc2 VS Code",
-	"description": "The VS Code companion extension for ApexDoc2, making documenting your Salesforce Apex files an easy, integrated experience when using VS Code for Salesforce development.",
+	"description": "A lightweight extension that makes documenting your Salesforce Apex files an easy, integrated experience when using VS Code for Salesforce development.",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.32.0"
@@ -10,19 +10,48 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.runApexDoc2",
-		"onCommand:extension.serveDocs"
+		"onLanguage:apex",
+		"onCommand:apexDoc2.runApexDoc",
+		"onCommand:apexDoc2.serveDocs"
 	],
-	"main": "./out/extension.js",
+	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.runApexDoc2",
+				"command": "apexDoc2.runApexDoc",
 				"title": "ApexDoc2: Run"
 			},
 			{
-				"command": "extension.serveDocs",
+				"command": "apexDoc2.serveDocs",
 				"title": "ApexDoc2: Open Docs"
+			},
+			{
+				"command": "apexDoc2.insertDocBlock",
+				"title": "ApexDoc2: Stub Comment"
+			}
+		],
+		"languages": [
+			{
+				"id": "apex",
+				"configuration": "./syntaxes/apex.configuration.json",
+				"extensions": [
+					".cls",
+					".apex",
+					".trigger",
+					".tgr"
+				],
+				"aliases": [
+					"Apex"
+				]
+			}
+		],
+		"grammars": [
+			{
+				"path": "./syntaxes/apex.tmLanguage.injection.json",
+				"scopeName": "apex-doc-comment.injection",
+				"injectTo": [
+					"source.apex"
+				]
 			}
 		]
 	},
@@ -30,41 +59,108 @@
 		"type": "object",
 		"title": "ApexDoc2 VS Code Configuration",
 		"properties": {
-			"apexdoc2.config": {
-				"type": "object",
-				"default": {
-					"sourceDirectory": "",
-					"includes": [],
-					"excludes": [],
-					"targetDirectory": "",
-					"sourceControlURL": "",
-					"homePagePath": "",
-					"bannerPagePath": "",
-					"scope": [
-						"global",
-						"public",
-						"protected",
-						"private",
-						"testMethod",
-						"webService"
-					],
-					"title": "ApexDocs",
-					"showTOCSnippets": true,
-					"sortOrder": "alpha",
-					"port": 8080,
-					"assets": [],
-					"cleanDir": false
-				},
-				"description": "Configure ApexDoc2 to document your Apex .cls files."
+			"apexdoc2.config.sourceDirectory": {
+				"type": "string",
+				"default": "",
+				"description": "The directory containing the .cls files that you'd like to document. Defaults to 'projectRoot/src/classes' for non-DX projects, and 'projectRoot/force-app/main/default/classes' for DX."
+			},
+			"apexdoc2.config.targetDirectory": {
+				"type": "string",
+				"default": "",
+				"description": "The target directory for the output documentation. The directory you specified will be created if it does not exist. Defaults to 'projectRoot/apex-documentation'."
+			},
+			"apexdoc2.config.includes": {
+				"type": "array",
+				"default": [],
+				"description": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. 'Contact*', or '*Test.cls') that indicates which files in your source directory should be documented. An empty array is treated as 'include all'."
+			},
+			"apexdoc2.config.excludes": {
+				"type": "array",
+				"default": [],
+				"description": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. 'Contact*', or '*Test.cls') that indicates which files in your source directory should NOT be documented. An empty array is treated as 'do not exclude any'."
+			},
+			"apexdoc2.config.sourceControlURL": {
+				"type": "string",
+				"default": "",
+				"description": "A URL where the .cls source files are hosted (so ApexDoc2 can provide links to your source - confirmed to work with GitHub), e.g.: 'https://github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes'."
+			},
+			"apexdoc2.config.homePagePath": {
+				"type": "string",
+				"default": "",
+				"description": "An absolute path of an HTML file that contains the project's 'home page' markup. The HTML inside the <body> tag will be used."
+			},
+			"apexdoc2.config.bannerPagePath": {
+				"type": "string",
+				"default": "",
+				"description": "An absolute path of an HTML file that contains the project's 'banner' markup. The HTML inside the <body> tag will be used."
+			},
+			"apexdoc2.config.title": {
+				"type": "string",
+				"default": "Apex Documentation",
+				"description": "The value for the output HTML <title> attribute. Defaults to 'Apex Documentation'."
+			},
+			"apexdoc2.config.scope": {
+				"type": "array",
+				"default": [
+					"global",
+					"public",
+					"protected",
+					"private",
+					"testMethod",
+					"webService"
+				],
+				"description": "An array of scopes to document. Default includes all scopes: 'global', 'public', 'protected', 'private', 'testMethod', 'webService'."
+			},
+			"apexdoc2.config.showTOCSnippets": {
+				"type": "boolean",
+				"default": true,
+				"description": "If set to `false`, ApexDoc2 will hide methods' description snippet in the class's table of contents. Defaults to `true`."
+			},
+			"apexdoc2.config.sortOrder": {
+				"type": "string",
+				"default": true,
+				"description": "The order in which class methods, properties, and inner classes are presented to the user in your documentation. Either 'logical', the order they appear in the source file, or 'alpha', alphabetically. Defaults to 'alpha'."
+			},
+			"apexdoc2.config.port": {
+				"type": "number",
+				"default": 8080,
+				"description": "The port number that the `ApexDoc2: Open Docs` command will serve your docs on. Defaults to `8080`."
+			},
+			"apexdoc2.config.assets": {
+				"type": "array",
+				"default": [],
+				"description": "An array of absolute paths of files you would like to be included in the target directory's 'assets' folder. This is where ApexDoc2 keeps JavaScript, CSS, and images. See README for additional details."
+			},
+			"apexdoc2.config.cleanDir": {
+				"type": "boolean",
+				"default": false,
+				"description": "If set to `true`, ApexDoc2 will use rimraf to remove any files or folders in your target directory before creating your docs. Useful for keeping a continuously growing project's documentation folder clean. Defaults to `false`."
+			},
+			"apexdoc2.stubs.alignItems": {
+				"type": "boolean",
+				"default": false,
+				"description": "Vertically align anything after an ApexDoc2 @tag. Defaults to 'false'."
+			},
+			"apexdoc2.stubs.omitDescriptionTag": {
+				"type": "boolean",
+				"default": true,
+				"description": "ApexDoc2 '@description' tags are optional. Set this to false to include them. Defaults to 'true'."
+			},
+			"apexdoc2.stubs.spacious": {
+				"type": "boolean",
+				"default": false,
+				"description": "When set to true ApexDoc2 comment stubs will add an empty line after the description line and before the next tag. Defaults to 'false'."
 			}
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "yarn run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
+		"vscode:prepublish": "webpack --mode production",
+		"compile": "webpack --mode none",
+		"watch": "webpack --mode none --watch",
+		"test-compile": "tsc -p ./",
 		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "yarn run compile && node ./node_modules/vscode/bin/test"
+		"test": "yarn run test-compile && node ./node_modules/vscode/bin/test",
+		"yaml-2-grammar": "node ./scripts/convert.grammar.js"
 	},
 	"devDependencies": {
 		"@types/express": "^4.16.1",
@@ -74,9 +170,13 @@
 		"@types/open": "^6.0.0",
 		"@types/pretty": "^2.0.0",
 		"@types/rimraf": "^2.0.2",
+		"js-yaml": "^3.13.1",
+		"ts-loader": "^5.4.3",
 		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
-		"vscode": "^1.1.28"
+		"vscode": "^1.1.28",
+		"webpack": "^4.30.0",
+		"webpack-cli": "^3.3.1"
 	},
 	"dependencies": {
 		"express": "^4.16.4",

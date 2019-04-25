@@ -1,9 +1,9 @@
-import ApexDoc from '../core/ApexDoc';
+import ApexDoc from '../apexDoc/ApexDoc';
 import ApexModel from '../models/ApexModel';
 import ClassModel from '../models/ClassModel';
-import DocGen from '../core/DocGen';
+import DocGen from '../apexDoc/DocGen';
 
-export const last = (arr: any[]) => arr[arr.length - 1];
+export const last = <T>(arr: T[]): T => arr[arr.length - 1];
 
 class Utils {
     private static COLLECTIONS: string[] = ['list', 'set', 'map'];
@@ -112,9 +112,8 @@ class Utils {
      * it doesn't start with these keywords, it will be undetectable by ApexDoc2.
     */
     public static containsScope(line: string): string | null {
-        for (let i = 0; i < ApexDoc.config.scope.length; i++) {
-            let scope = ApexDoc.config.scope[i].toLowerCase();
-
+        for (let scope of ApexDoc.config.scope) {
+            scope = scope.toLowerCase();
             // if line starts with annotations, replace them, so
             // we can accurately use startsWith to match scope.
             line = this.stripAnnotations(line);
@@ -152,7 +151,6 @@ class Utils {
         return null;
     }
 
-
     public static previousWord(str: string, searchIdx: number): string {
         if (!str) {
             return '';
@@ -162,9 +160,8 @@ class Utils {
             return '';
         }
 
-        let idxStart;
-        let idxEnd;
-        for (idxStart = searchIdx - 1, idxEnd = 0; idxStart >= 0; idxStart--) {
+        let idxStart: number, idxEnd: number;
+        for (idxStart = searchIdx - 1, idxEnd = 0; idxStart > 0; idxStart--) {
             if (idxEnd === 0) {
                 if (str.charAt(idxStart) === ' ') {
                     continue;
@@ -176,11 +173,7 @@ class Utils {
             }
         }
 
-        if (idxStart === -1) {
-            return '';
-        } else {
-            return str.substring(idxStart, idxEnd);
-        }
+        return str.substring(idxStart, idxEnd);
     }
 
     public static countChars(str: string, char: string): number {

@@ -1,118 +1,66 @@
+import * as tags from './tags';
 import * as vscode from 'vscode';
-import ApexDoc from '../core/ApexDoc';
+import ApexDoc from '../apexDoc/ApexDoc';
 import Utils from '../utils/Utils';
 import { existsSync } from 'fs';
 import { resolve } from 'path';
 
 abstract class ApexModel {
 
-    // token constants
-    private static AUTHOR: string = ' @author';
-    private static DATE: string = ' @date';
-    private static DEPRECATED: string = ' @deprecated';
-    private static DESCRIPTION: string = ' @description';
-    private static EXAMPLE: string = ' @example';
-    private static EXCEPTION: string = ' @exception';
-    private static GROUP: string = ' @group '; // needed to include space to not match group-content
-    private static GROUP_CONTENT: string = ' @group-content';
-    private static PARAM: string = ' @param';
-    private static RETURN: string = ' @return';
-    private static SEE: string = ' @see';
-
-    // instance variables
-    private author: string = '';
-    private date: string = '';
-    private deprecated: string = '';
-    private description: string = '';
-    private annotations: string[] = [];
-    private nameLine: string = '';
-    private lineNum: number = 0;
-
-    protected params: string[] = [];
+    protected annotations: string[] = [];
+    protected author: string = '';
+    protected deprecated: string = '';
+    protected description: string = '';
     protected example: string = '';
     protected exception: string = '';
-    protected groupName: string = '';
     protected groupContentPath: string = '';
-    protected see: string = '';
+    protected groupName: string = '';
+    protected lineNum: number = 0;
+    protected nameLine: string = '';
+    protected params: string[] = [];
     protected returns: string = '';
     protected scope: string = '';
-
+    protected see: string[] = [];
+    protected since: string = '';
 
     protected constructor(comments: string[]) {
         this.parseComments(comments);
     }
 
-    // model attribute getters / setters
-    protected setNameLine(nameLine: string, lineNum: number): void {
-        // strip any annotations from the signature line
-        // we'll capture those and display them separately
-        this.nameLine = Utils.stripAnnotations(nameLine).trim();
-        this.lineNum = lineNum;
-        this.parseScope();
-    }
+    public abstract getName(): string;
 
-    public getNameLine(): string {
-        return this.nameLine;
-    }
-
-    public getLineNum(): number {
-        return this.lineNum;
-    }
-
-    public getScope(): string {
-        return !this.scope ? '' : this.scope;
-    }
-
-    protected parseScope(): void {
-        if (this.nameLine) {
-            let scope = Utils.containsScope(this.nameLine);
-            if (scope) {
-                this.scope = <string>scope;
-            }
-
-            // TODO: perhaps this branch of control flow should
-            // be present only in a class override method
-            else {
-
-                // this must be an inner class
-                // or an @IsTest class
-                this.scope = ApexDoc.PRIVATE;
-            }
-        }
+    public getAnnotations(): string[] {
+        return this.annotations;
     }
 
     public getDescription(): string {
         return !this.description ? '' : this.description;
     }
 
-    public getAuthor(): string {
-        return !this.author ? '' : this.author;
+    public getLineNum(): number {
+        return this.lineNum;
     }
 
-    public getDeprecated(): string {
-        return !this.deprecated ? '' : this.deprecated;
+    public getNameLine(): string {
+        return this.nameLine;
     }
 
-    public getDate(): string {
-        return !this.date ? '' : this.date;
+    public getScope(): string {
+        return !this.scope ? '' : this.scope;
     }
 
-    public getExample(): string {
-        // return example and remove trailing white space which
-        // may have built up due to the allowance of preserving
-        // white pace in complex code example blocks for methods
-        return !this.example ? '' : this.example.trimRight();
+    // make sure path relative to target
+    // directory exists for @group-content tag
+    private pathExists(contentPath: string): boolean {
+        let path = resolve(ApexDoc.config.sourceDirectory, contentPath.trim());
+        if (/.*\.s?html?$/.test(contentPath.trim()) && existsSync(path)) {
+            return true;
+        } else {
+            vscode.window.showWarningMessage(`@group-content path '${path}' in file '${ApexDoc.currentFile}' is invalid!`);
+            return false;
+        }
     }
 
-    public getSee(): string {
-        return !this.see ? '' : this.see;
-    }
-
-    public getAnnotations(): string[] {
-        return this.annotations;
-    }
-
-    // comment parser
     private parseComments(comments: string[]): void {
         let currBlock: string | null = null, block = null;
         for (let comment of comments) {
@@ -125,18 +73,18 @@ abstract class ApexModel {
                 continue;
             }
 
-            // if we find a token, start a new block
-            if (((i = lowerComment.indexOf(block = ApexModel.AUTHOR)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.DATE)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.SEE)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.RETURN)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.PARAM)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.EXCEPTION)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.DEPRECATED)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.DESCRIPTION)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.GROUP)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.GROUP_CONTENT)) >= 0)
-                || ((i = lowerComment.indexOf(block = ApexModel.EXAMPLE)) >= 0)) {
+            // if we find a tag, start a new block
+            if (((i = lowerComment.indexOf(block = tags.AUTHOR.label)) >= 0)
+                || ((i = lowerComment.indexOf(block = tags.SINCE.label)) >= 0)
+                || ((i = lowerComment.indexOf(block = tags.SEE.label)) >= 0)
+                || ((i = lowerComment.indexOf(block = tags.RETURNS.label)) >= 0)
+                || ((i = lowerComment.indexOf(block = tags.PARAM.label)) >= 0)
+                || ((i = lowerComment.indexOf(block = tags.EXCEPTION.label)) >= 0)
+                || ((i = lowerComment.indexOf(block = tags.DEPRECATED.label)) >= 0)
+                || ((i = lowerComment.indexOf(block = tags.DESCRIPTION.label)) >= 0)
+                || ((i = lowerComment.indexOf(block = tags.GROUP.label)) >= 0)
+                || ((i = lowerComment.indexOf(block = tags.GROUP_CONTENT.label)) >= 0)
+                || ((i = lowerComment.indexOf(block = tags.EXAMPLE.label)) >= 0)) {
 
                 comment = comment.substring(i + block.length);
                 currBlock = block;
@@ -169,39 +117,39 @@ abstract class ApexModel {
             }
 
             // add line to appropriate block...
-            // if currBlock was not reset on this iteration we're on the next line of the last token, add line
+            // if currBlock was not reset on this iteration we're on the next line of the last tag, add line
             // to that value. Allow empty lines in example blocks to preserve whitespace in complex examples
-            if (currBlock !== null && (line.trim() || !line.trim() && currBlock === ApexModel.EXAMPLE)) {
-                if (currBlock === ApexModel.AUTHOR) {
+            if (currBlock !== null && (line.trim() || !line.trim() && currBlock === tags.EXAMPLE.label)) {
+                if (currBlock === tags.AUTHOR.label) {
                     this.author += (this.author ? ' ' : '') + line.trim();
-                } else if (currBlock === ApexModel.DATE) {
-                    this.date += (this.date ? ' ' : '') + line.trim();
-                } else if (currBlock === ApexModel.SEE) {
-                    this.see += (this.see ? ' ' : '') + line.trim();
-                } else if (currBlock === ApexModel.RETURN) {
+                } else if (currBlock === tags.SINCE.label) {
+                    this.since += (this.since ? ' ' : '') + line.trim();
+                } else if (currBlock === tags.SEE.label) {
+                    this.see.push(line.trim());
+                } else if (currBlock === tags.RETURNS.label) {
                     this.returns += (this.returns ? ' ' : '') + line.trim();
-                } else if (currBlock === ApexModel.PARAM) {
-                    let p = (newBlock ? '' : this.params.splice(this.params.length - 1, 1));
-                    this.params.push(p + (p.length > 0 ? ' ' : '') + line.trim());
-                } else if (currBlock === ApexModel.EXCEPTION) {
+                } else if (currBlock === tags.PARAM.label) {
+                    let p = (newBlock ? '' : this.params.pop());
+                    this.params.push(p + (p && p.length > 0 ? ' ' : '') + line.trim());
+                } else if (currBlock === tags.EXCEPTION.label) {
                     this.exception += (this.exception ? ' ' : '') + line.trim();
-                } else if (currBlock === ApexModel.DEPRECATED) {
+                } else if (currBlock === tags.DEPRECATED.label) {
                     this.deprecated += (this.deprecated ? ' ' : '') + line.trim();
-                } else if (currBlock === ApexModel.DESCRIPTION) {
+                } else if (currBlock === tags.DESCRIPTION.label) {
                     this.description += (this.description ? ' ' : '') + line.trim();
-                } else if (currBlock === ApexModel.GROUP) {
+                } else if (currBlock === tags.GROUP.label) {
                     this.groupName += line.trim();
-                } else if (currBlock === ApexModel.EXAMPLE) {
+                } else if (currBlock === tags.EXAMPLE.label) {
                     this.example += (this.example ? ' \n'  : '') + line;
-                } else if (currBlock === ApexModel.GROUP_CONTENT) {
+                } else if (currBlock === tags.GROUP_CONTENT.label) {
                     if (this.pathExists(line.trim())) {
                         this.groupContentPath += line.trim();
                     }
                 }
             }
-            // not a recognized token, assume we're in un-tagged description
+            // not a recognized tag, assume we're in un-tagged description
             else if (currBlock === null && line.trim()) {
-                currBlock = block = ApexModel.DESCRIPTION;
+                currBlock = block = tags.DESCRIPTION.label;
                 this.description += (this.description ? ' ' : '') + line.trim();
             } else if (!line.trim()) {
                 currBlock = null;
@@ -213,15 +161,33 @@ abstract class ApexModel {
         }
     }
 
-    // make sure path relative to target
-    // directory exists for @group-content token
-    private pathExists(contentPath: string): boolean {
-        let path = resolve(...[ApexDoc.config.sourceDirectory, contentPath.trim()]);
-        if (/.*\.s?html?$/.test(contentPath.trim()) && existsSync(path)) {
-            return true;
-        } else {
-            vscode.window.showWarningMessage(`@group-content path '${path}' in file '${ApexDoc.currentFile}' is invalid!`);
-            return false;
+    protected parseScope(): void {
+        if (this.nameLine) {
+            let scope = Utils.containsScope(this.nameLine);
+            if (scope) {
+                this.scope = <string>scope;
+            }
+
+            // TODO: perhaps this branch of control flow should
+            // be present only in a class override method
+            else {
+
+                // this must be an inner class
+                // or an @IsTest class
+                this.scope = ApexDoc.PRIVATE;
+            }
+        }
+    }
+
+    protected setNameLine(nameLine: string, lineNum: number): void {
+        // strip any annotations from the signature line
+        // we'll capture those and display them separately
+        this.nameLine = Utils.stripAnnotations(nameLine).trim();
+        this.lineNum = lineNum;
+        // if we're running the stub command
+        // we don't care about scope
+        if (!ApexDoc.isStub) {
+            this.parseScope();
         }
     }
 }

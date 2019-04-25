@@ -1,0 +1,153 @@
+scopeName: apex-doc-comment.injection
+injectionSelector: 'L:source.apex'
+patterns:
+  - include: '#apex-doc-comment'
+
+repository:
+  apex-doc-comment:
+    patterns:
+      - name: comment.block.documentation.apex
+        begin: /\*\*(?!/)
+        beginCaptures:
+          '0': { name: punctuation.definition.comment.apex }
+        end: \*/
+        endCaptures:
+          '0': { name: punctuation.definition.comment.apex }
+        patterns:
+          - include: '#apex-doc-tags'
+          - include: '#apex-doc-inline-code'
+          - include: '#apex-doc-break'
+
+  apex-doc-tags:
+    patterns:
+      # standard ApexDoc tags
+      - match: >-
+          ((@)(author|deprecated|description|exception|group|group-content|returns|since))(?=\s+)
+        captures:
+          '1': { name: storage.type.annotation.apex }
+          '2': { name: punctuation.accessor.apex }
+      # Currently unsupported tags that we may support in the future
+      - match: |-
+          (?x)
+          ((@)
+            (
+              abstract|access|augments|async|borrows|constructs|copyright|constant|default|
+              date|event|external|file|fires|generator|ignore|inner|instance|kind|lends|license|
+              listens|member|memberof|mixes|module|name|namespace|override|package|readonly|
+              since|static|todo|tutorial|variation|virtual|hack
+            )
+          )(?=\s+)
+        captures:
+          '1': { name: storage.type.annotation.apex }
+          '2': { name: punctuation.accessor.apex }
+      # @param paramName
+      - match: '((@)(param\b\s*([_[:alnum:]]*)))(?=\s+)'
+        captures:
+          '1': { name: storage.type.annotation.apex }
+          '2': { name: punctuation.accessor.apex }
+          '3': { name: storage.type.annotation.apex }
+          '4': { name: keyword.other.class.apex }
+      # @see URL, Markdown URL, or namePath
+      - match: |-
+          (?x)
+          (?:
+            ((@)see)\b\s*
+            # match dot notation name path
+            (
+              [._[:alnum:]]*
+              # match overload link syntax, e.g. Class.Method[4]
+              (
+                (\[)
+                  [[:digit:]]+
+                (\])
+              )?
+            )
+            |
+            (
+              # match URLs
+              (?=https?://)
+              (?:[^\s*]|\*[^/])+
+            )
+            |
+            (?:
+              # match markdown style URLs
+              (
+                (\[)
+                  [._\s[:alnum:]]*
+                (\])
+              )
+              (
+                (\()
+                  (?=https?://)
+                  (?:[^\s*]|\*[^/])+
+                (\))
+              )
+            )
+          )
+          (?=\s+)
+        captures:
+          '1': { name: storage.type.annotation.apex }
+          '2': { name: punctuation.accessor.apex }
+          '3': { name: support.class.apex }
+          '4': { name: keyword.other.class.apex }
+          '5': { name: punctuation.accessor.apex }
+          '6': { name: punctuation.accessor.apex }
+          '7': { name: variable.other.object.property.apex }
+          '8': { name: keyword.other.class.apex }
+          '9': { name: punctuation.accessor.apex }
+          '10': { name: punctuation.accessor.apex }
+          '11': { name: variable.other.object.property.apex }
+          '12': { name: punctuation.accessor.apex }
+          '13': { name: punctuation.accessor.apex }
+      # @example codeExample, multiline
+      # should be the last tag, because we can't end matching on
+      # next @ symbol, since code example may contain annotation
+      - name: meta.example.apex
+        begin: ((@)example)\s+
+        end: (?=\*/)
+        beginCaptures:
+          '1': { name: storage.type.annotation.apex }
+          '2': { name: punctuation.accessor.apex }
+        patterns:
+          # match closing bracket on own line, relying only
+          # on embedded code highlighting seems to ignore
+          # this in some themes. Use this rule as a backup.
+          - match: '(?:^\s+(\*)\s+(})(;)?)'
+            captures:
+              '1': { name: punctuation.definition.comment.apex }
+              '2': { name: punctuation.curlybrace.close.apex }
+              '3': { name: punctuation.terminator.statement.apex }
+          # match annotation in code example. Again, embedded
+          # highlighting seems to be a bit wonky on this.
+          - match: '^\s+(\*)\s+(@[_[:alpha:]]+)\b'
+            captures:
+              '2': { name: storage.type.annotation.apex }
+              '1': { name: punctuation.definition.comment.apex }
+          # ensure leading asterik not highlighted as Apex
+          - match: (^\s+\*\s+)
+            captures:
+              '0': { name: punctuation.definition.comment.apex }
+          # match and highlight the code example
+          - match: '[^\s@*](?:[^*]|\*[^/])*'
+            captures:
+              '0':
+                name: source.embedded.apex
+                patterns:
+                  - include: source.apex
+
+  apex-doc-break:
+    name: meta.tag.apex
+    patterns:
+      - match: (<br\s?/?>)
+        captures:
+          '0': { name: punctuation.definition.tag.apex }
+
+  apex-doc-inline-code:
+    name: meta.example.apex
+    begin: '(`)([^\s@*](?:[^*`]|\*[^/])+)'
+    beginCaptures:
+      '1': { name: punctuation.definition.tag.apex }
+      '2': { name: entity.name.tag.apex }
+    end: (`?)
+    endCaptures:
+      '1': { name: punctuation.definition.tag.apex }

@@ -1,6 +1,9 @@
-import * as vscode from 'vscode';
 import ApexDoc from './ApexDoc';
 import Guards from '../utils/Guards';
+import { existsSync } from 'fs';
+import { EXTENSION } from '../extension';
+import { resolve } from 'path';
+import { workspace } from 'vscode';
 
 export interface IApexDocConfig {
 	sourceDirectory: string;
@@ -38,13 +41,15 @@ class Config implements IApexDocConfig {
     public constructor() {
         let projectRoot = '.';
         // this should never evaluate to false
-        if (vscode.workspace.workspaceFolders) {
-            projectRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
+        if (workspace.workspaceFolders) {
+            projectRoot = workspace.workspaceFolders[0].uri.fsPath;
         }
 
         // establish defaults
-        this.sourceDirectory = projectRoot + '\\src\\classes';
-        this.targetDirectory = projectRoot + '\\documentation\\apex';
+        this.targetDirectory = resolve(projectRoot, 'apex-documentation');
+        this.sourceDirectory = this.isDX(projectRoot)
+            ? resolve(projectRoot, 'force-app', 'main', 'default', 'classes')
+            : resolve(projectRoot, 'src', 'classes');
 
         this.port = 8080;
         this.includes = [];
@@ -60,14 +65,29 @@ class Config implements IApexDocConfig {
         this.sortOrder = ApexDoc.ORDER_ALPHA;
     }
 
-    public static getConfig(): IApexDocConfig {
-        return this.merge({
-            ...vscode.workspace.getConfiguration('apexdoc2')['config']
-        });
+    private isDX(projectRoot: string): boolean {
+        if (
+            existsSync(resolve(projectRoot, 'force-app')) &&
+            !existsSync(resolve(projectRoot, 'src'))
+            ) {
+            return true;
+        }
+
+        return false;
     }
 
-    private static merge(userConfig: IApexDocConfig): IApexDocConfig {
+    public static getConfig(): IApexDocConfig {
+        return this.merge(
+            workspace.getConfiguration(EXTENSION).get<IApexDocConfig>('config')
+        );
+    }
+
+    private static merge(userConfig: IApexDocConfig | undefined): IApexDocConfig {
         const defaults = new Config();
+
+        if (!userConfig) {
+            return defaults;
+        }
 
         return {
             ...defaults,

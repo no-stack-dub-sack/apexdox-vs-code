@@ -2,14 +2,22 @@ import * as vscode from 'vscode';
 import express from 'express';
 import open from 'open';
 import { existsSync } from 'fs';
+import { resolve } from 'path';
 import { Server } from 'http';
 
 let server: Server;
-const success = (title: string) => `${title} opened in default browser!`;
-const error = (dir: string) => `No index.html file to serve in directory: ${dir}. Did you run ApexDoc2 first?`;
 
-export const createDocServer = async (targetDirectory: string, docsTitle: string, port: number) => {
-    if (existsSync(targetDirectory + '/index.html')) {
+const success = (title: string) =>
+    `${title} opened in default browser!`;
+
+const error = (dir: string) =>
+    `No index.html file to serve in directory: ${dir}. Did you run ApexDoc2 first?`;
+
+export default async function createDocServer(targetDirectory: string, docsTitle: string, port: number) {
+    if (existsSync(resolve(targetDirectory, 'index.html'))) {
+        // close existing connection first
+        closeServer();
+
         const app = express();
 
         app.use(express.static(targetDirectory));
@@ -20,10 +28,10 @@ export const createDocServer = async (targetDirectory: string, docsTitle: string
     } else {
         vscode.window.showErrorMessage(error(targetDirectory));
     }
-};
+}
 
-export const closeServer = () => {
+export function closeServer() {
     if (server && server.listening) {
         server.close();
     }
-};
+}
