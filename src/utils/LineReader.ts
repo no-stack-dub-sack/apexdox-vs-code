@@ -1,4 +1,5 @@
 import ApexDocError from './ApexDocError';
+import { Option } from './Utils';
 import { readFileSync } from 'fs';
 
 /**
@@ -29,7 +30,7 @@ class LineReader {
      * Returns the next line and advances the reader a single step.
      * @returns The next line, or null if there is no next line.
      */
-    public readLine(): string | null {
+    public readLine(): Option<string, null> {
         let result;
         if (this.nextIndex < this.end) {
             result = this.lines[this.nextIndex];
@@ -45,7 +46,7 @@ class LineReader {
      * Returns the previous line without affecting the reader's position.
      * @returns String, the previous line, or null if there is no previous line.
      */
-    public peekPrevLine(): string | null {
+    public peekPrevLine(): Option<string, null> {
         if ((this.nextIndex - 1) > 0) {
             return this.lines[this.nextIndex - 2];
         }
@@ -56,7 +57,7 @@ class LineReader {
      * Returns the next line without advancing the reader.
      * @returns String, the next line, or null if there is no next line.
      */
-    public peekNextLine(): string | null {
+    public peekNextLine(): Option<string, null> {
         if ((this.nextIndex + 1) < this.end) {
             return this.lines[this.nextIndex + 2];
         }

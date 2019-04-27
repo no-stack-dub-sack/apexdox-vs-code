@@ -3,6 +3,7 @@ import EnumModel from './EnumModel';
 import MethodModel from './MethodModel';
 import PropertyModel from './PropertyModel';
 import TopLevelModel, { ModelType } from './TopLevelModel';
+import { Option } from '../utils/Utils';
 
 class ClassModel extends TopLevelModel {
 
@@ -14,7 +15,7 @@ class ClassModel extends TopLevelModel {
     private methods: Array<MethodModel>;
     private properties: Array<PropertyModel>;
 
-    public constructor(cmodelParent: ClassModel | undefined, comments: string[], nameLine: string, lineNum: number) {
+    public constructor(cmodelParent: Option<ClassModel>, comments: string[], nameLine: string, lineNum: number) {
         super(comments, ModelType.CLASS);
         super.setNameLine(nameLine, lineNum);
 

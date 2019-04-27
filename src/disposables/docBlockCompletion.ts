@@ -14,6 +14,7 @@ import {
     TextDocument,
     window
     } from 'vscode';
+import { Option } from '../utils/Utils';
 
 const COMMAND = 'apexdoc2.docBlockCompletion';
 
@@ -34,7 +35,7 @@ class ApexDocBlockCompletionProvider implements CompletionItemProvider {
     public provideCompletionItems(
         document: TextDocument,
         position: Position
-        ): Promise<CompletionItem[] | undefined>  {
+        ): Promise<Option<CompletionItem[]>>  {
 
         const line = document.lineAt(position.line).text;
 

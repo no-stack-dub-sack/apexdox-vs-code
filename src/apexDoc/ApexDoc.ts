@@ -1,4 +1,3 @@
-import * as vscode from 'vscode';
 import ClassGroup from '../models/ClassGroup';
 import ClassModel from '../models/ClassModel';
 import DocGen from './DocGen';
@@ -8,10 +7,11 @@ import LineReader from '../utils/LineReader';
 import MethodModel from '../models/MethodModel';
 import PropertyModel from '../models/PropertyModel';
 import TopLevelModel from '../models/TopLevelModel';
-import Utils, { last } from '../utils/Utils';
+import Utils, { last, Option } from '../utils/Utils';
 import { basename, resolve } from 'path';
 import { IApexDocConfig } from './Config';
 import { performance } from 'perf_hooks';
+import { window } from 'vscode';
 
 class ApexDoc {
     // constants
@@ -64,22 +64,24 @@ class ApexDoc {
 
             this.config = config;
             const fileManager = new FileManager(config.targetDirectory, config.title, config.assets);
-            const files = fileManager.getFiles(config.sourceDirectories, config.includes, config.excludes);
+            const files = fileManager.getFiles(config.source, config.includes, config.excludes);
             const modelMap = new Map<string, TopLevelModel>();
-            const models: Array<TopLevelModel> = [];
+            const models = new Array<TopLevelModel>();
 
             // set up document generator
             DocGen.sortOrderStyle = config.sortOrder;
-            DocGen.sourceControlURL = config.sourceControlURL;
             DocGen.showTOCSnippets = config.showTOCSnippets;
 
             // track the number of files we've processed
             let numProcessed = 0;
 
             // parse our top-level class files
-            files.forEach(filePath => {
-                this.currentFile = basename(filePath);
-                const model = this.parseFileContents(filePath);
+            files.forEach(entry => {
+                this.currentFile = basename(entry.path);
+
+                const model = this.parseFileContents(entry.path);
+                model.setSourceUrl(entry.sourceUrl);
+
                 modelMap.set(model.getName().toLowerCase(), model);
                 if (model) {
                     models.push(model);
@@ -97,9 +99,8 @@ class ApexDoc {
 
             // we are done!
             const endElapsed = performance.now();
-            vscode.window.showInformationMessage(
-                `ApexDoc2 complete! ${numProcessed} Apex files documented in ${(endElapsed - beginElapsed).toFixed(2)} ms.`
-            );
+            const elapsed = ((endElapsed - beginElapsed) / 1000).toFixed(2);
+            window.showInformationMessage(`ApexDoc2 complete! ${numProcessed} Apex files documented in ${elapsed} s.`);
         } catch (err) {
             throw err;
         }
@@ -137,14 +138,13 @@ class ApexDoc {
      */
     public static parseFileContents(filePath: string): TopLevelModel {
         const reader = new LineReader(filePath);
+        const cModels = new Array<ClassModel>();
 
-        let nestedCurlyBraceDepth = 0, lineNum = 0;
-        let line: string | null;
+        let line: Option<string, null>;
+        let comments = new Array<string>();
+        let lineNum = 0, nestedCurlyBraceDepth = 0;
         let commentsStarted = false, docBlockStarted = false;
-
-        const cModels: Array<ClassModel> = [];
-        let cModel: ClassModel | undefined, cModelParent: ClassModel | undefined;
-        let comments: string[] = [];
+        let cModel: Option<ClassModel>, cModelParent: Option<ClassModel>;
 
         while ((line = reader.readLine()) !== null) {
             line = line.trim();

@@ -1,6 +1,6 @@
 import * as tags from './tags';
 import ApexDoc from '../apexDoc/ApexDoc';
-import Utils from '../utils/Utils';
+import Utils, { Option } from '../utils/Utils';
 import { existsSync } from 'fs';
 import { resolve } from 'path';
 import { window } from 'vscode';
@@ -10,7 +10,7 @@ abstract class ApexModel {
     protected annotations: string[] = [];
     protected author: string = '';
     protected deprecated: string = '';
-    protected description: string = '';
+    protected description?: string;
     protected example: string = '';
     protected exception: string = '';
     protected groupContentPath: string = '';
@@ -22,6 +22,7 @@ abstract class ApexModel {
     protected scope: string = '';
     protected see: string[] = [];
     protected since: string = '';
+    protected sourceUrl?: string;
 
     protected constructor(comments: string[]) {
         this.parseComments(comments);
@@ -33,8 +34,8 @@ abstract class ApexModel {
         return this.annotations;
     }
 
-    public getDescription(): string {
-        return !this.description ? '' : this.description;
+    public getDescription(): Option<string> {
+        return this.description;
     }
 
     public getLineNum(): number {
@@ -46,11 +47,17 @@ abstract class ApexModel {
     }
 
     public getScope(): string {
-        return !this.scope ? '' : this.scope;
+        return this.scope;
+    }
+
+    public getSourceUrl(): Option<string> {
+        return this.sourceUrl;
     }
 
     private parseComments(comments: string[]): void {
-        let currBlock: string | null = null, block = null;
+        let currBlock: Option<string, null> = null;
+        let block: Option<string, null> = null;
+
         for (let comment of comments) {
             let newBlock = false, isBreak = false;
             let lowerComment = comment.toLowerCase();
@@ -154,7 +161,7 @@ abstract class ApexModel {
         if (this.nameLine) {
             let scope = Utils.containsScope(this.nameLine);
             if (scope) {
-                this.scope = <string>scope;
+                this.scope = scope;
             } else {
                 // scope is implicitly private
                 this.scope = ApexDoc.PRIVATE;
@@ -162,9 +169,11 @@ abstract class ApexModel {
         }
     }
 
-    private resolveContentPath(contentPath: string): string | null {
-        for (let dir of ApexDoc.config.sourceDirectories) {
-            let path = resolve(dir, contentPath.trim());
+    // TODO: change this to relative to project root now that we can
+    // have multiple sources! This will have to be fixed in README too.
+    private resolveContentPath(contentPath: string): Option<string, null> {
+        for (let src of ApexDoc.config.source) {
+            let path = resolve(src.path, contentPath.trim());
             if (/.*\.s?html?$/.test(contentPath.trim()) && existsSync(path)) {
                 return path;
             }
@@ -188,6 +197,10 @@ abstract class ApexModel {
         if (!ApexDoc.isStub) {
             this.parseScope();
         }
+    }
+
+    public setSourceUrl(url: Option<string>): void {
+        this.sourceUrl = url;
     }
 }
 

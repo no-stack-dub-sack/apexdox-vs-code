@@ -18,6 +18,7 @@ import {
     readdirSync,
     writeFileSync
     } from 'fs';
+import { ISourceEntry } from './Config';
 
 class FileManager {
     private path: string;
@@ -30,12 +31,12 @@ class FileManager {
         this.documentTitle = documentTitle;
     }
 
-    public getFiles(sourceDirectories: string[], includes: string[], excludes: string[]): string[] {
-        const filesToCopy: string[] = []
-            , noneFound: string[] = [];
+    public getFiles(sources: ISourceEntry[], includes: string[], excludes: string[]): ISourceEntry[] {
+        const filesToCopy = new Array<ISourceEntry>()
+            , noneFound = new Array<string>();
 
-        for (let dir of sourceDirectories) {
-            const files = readdirSync(dir);
+        for (let src of sources) {
+            const files = readdirSync(src.path);
 
             if (files && files.some(file => file.endsWith('cls'))) {
                 files.forEach(fileName => {
@@ -54,7 +55,10 @@ class FileManager {
 
                     // no includes params, include file
                     if (includes.length === 0) {
-                        filesToCopy.push(resolve(dir, fileName));
+                        filesToCopy.push({
+                            path: resolve(src.path, fileName),
+                            sourceUrl: src.sourceUrl
+                        });
                         return;
                     }
 
@@ -63,17 +67,22 @@ class FileManager {
                         entry = entry.trim().replace('*', '');
                         // file matches explicitly matches or matches wildcard
                         if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
-                            filesToCopy.push(resolve(dir, fileName));
+                            filesToCopy.push({
+                                path: resolve(src.path, fileName),
+                                sourceUrl: src.sourceUrl
+                            });
+                            return;
                         }
                     }
                 });
             } else {
-                noneFound.push(dir);
+                noneFound.push(src.path);
             }
         }
 
         if (!filesToCopy.length) {
-            throw new ApexDocError(ApexDocError.NO_FILES_FOUND(sourceDirectories.join(',')));
+            const sourceDirs = sources.map(src => src.path).join(',');
+            throw new ApexDocError(ApexDocError.NO_FILES_FOUND(sourceDirs));
         } else if (noneFound.length) {
             vscode.window.showWarningMessage(`No .cls files found in ${noneFound.join(',')}`);
         }

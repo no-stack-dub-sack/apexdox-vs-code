@@ -8,15 +8,14 @@ import EnumModel from '../models/EnumModel';
 import escape from 'lodash.escape';
 import MethodModel from '../models/MethodModel';
 import TopLevelModel, { ModelType } from '../models/TopLevelModel';
-import Utils, { last } from '../utils/Utils';
+import Utils, { last, Option } from '../utils/Utils';
 
 class DocGen {
     public static sortOrderStyle: string;
-    public static sourceControlURL: string;
     public static showTOCSnippets: boolean;
 
     public static documentClass(cModel: ClassModel, modelMap: Map<string, TopLevelModel>): string {
-        const hasSource = this.sourceControlURL ? true : false;
+        const hasSource = cModel.getSourceUrl() ? true : false;
         const sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : '';
         const sectionSourceLink = this.maybeMakeSourceLink(cModel, cModel.getTopmostClassName(), this.escapeHTML(cModel.getName(), false));
         const header = `<h2 class="sectionTitle" id="${cModel.getName()}">${sectionSourceLink + sourceLinkIcon}</h2>`;
@@ -39,15 +38,23 @@ class DocGen {
     }
 
     public static documentEnum(eModel: EnumModel, modelMap: Map<string, TopLevelModel>): string {
-        const hasSource = this.sourceControlURL ? true : false;
-        const sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : '';
-        const sectionSourceLink = this.maybeMakeSourceLink(eModel, eModel.getName(), this.escapeHTML(eModel.getName(), false));
-        let contents = `<h2 class="sectionTitle" id="${eModel.getName()}">${sectionSourceLink + sourceLinkIcon}</h2>`;
+        const hasSource = eModel.getSourceUrl() ? true : false
+            , sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : ''
+            , sectionSourceLink = this.maybeMakeSourceLink(eModel, eModel.getName(), this.escapeHTML(eModel.getName(), false));
 
-        let values = '<p /><table class="attrTable">';
-        values += '<tr><th>Values</th></tr><tr>';
-        values += `<td class="enumValues">${eModel.getValues().join(', ')}</td>`;
-        values += '</tr></table>';
+        let contents =
+            `<h2 class="sectionTitle" id="${eModel.getName()}">
+                ${sectionSourceLink + sourceLinkIcon}
+            </h2>`;
+
+        let values =
+            `<p />
+            <table class="attrTable">
+                <tr><th>Values</th></tr>
+                <tr>
+                    <td class="enumValues">${eModel.getValues().join(', ')}</td>
+                </tr>
+            </table>`;
 
         contents += this.documentTopLevelAttributes(eModel, modelMap, eModel.getName(), values);
 
@@ -65,7 +72,7 @@ class DocGen {
         contents += `<div class="classSignature">${classSourceLink}</div>`;
 
         if (model.getDescription()) {
-            contents += `<div class="classDetails"><div>${this.escapeHTML(model.getDescription(), true)}</div>`;
+            contents += `<div class="classDetails"><div>${this.escapeHTML(<string>model.getDescription(), true)}</div>`;
         }
 
         // add any additional content passed in from the caller. currently, only
@@ -141,7 +148,9 @@ class DocGen {
 
             // if any property has a description build out the third column
             if (descriptionCol) {
-                contents += `<td><div class="attrDescription">${this.escapeHTML(prop.getDescription(), true)}</div></td>`;
+                const desc = prop.getDescription() || '';
+                const escaped = desc ? this.escapeHTML(desc, true) : desc;
+                contents += `<td><div class="attrDescription">${escaped}</div></td>`;
             }
 
             contents += '</tr>';
@@ -183,7 +192,9 @@ class DocGen {
 
             // if any property has a description build out the third column
             if (descriptionCol) {
-                contents += `<td><div class="attrDescription">${this.escapeHTML(Enum.getDescription(), true)}</div></td>`;
+                const desc = Enum.getDescription() || '';
+                const escaped = desc ? this.escapeHTML(desc, true) : desc;
+                contents += `<td><div class="attrDescription">${escaped}</div></td>`;
             }
 
             contents += '</tr>';
@@ -216,7 +227,7 @@ class DocGen {
         // as needed to ensure all of our methods have unique IDs
         const getMethodId = (method: MethodModel): string => {
             let methodId = cModel.getName() + '.' + method.getName();
-            let count: number | undefined;
+            let count: Option<number>;
             if ((count = idCountMap.get(methodId)) === undefined) {
                 idCountMap.set(methodId, 1);
             } else {
@@ -271,7 +282,7 @@ class DocGen {
             methodsHTML += `<div class="methodSignature">${methodSourceLink}</div>`;
 
             if (method.getDescription()) {
-                methodsHTML += `<div class="methodDescription">${this.escapeHTML(method.getDescription(), true)}</div>`;
+                methodsHTML += `<div class="methodDescription">${this.escapeHTML(<string>method.getDescription(), true)}</div>`;
             }
 
             if (isDeprecated) {
@@ -287,7 +298,7 @@ class DocGen {
                     if (param) {
                         let paramName: string;
                         let paramDescription: string;
-                        const match: RegExpExecArray | null = /\s/.exec(param);
+                        const match: Option<RegExpExecArray, null> = /\s/.exec(param);
 
                         if (match !== null) {
                             const idx = match.index;
@@ -364,7 +375,7 @@ class DocGen {
     }
 
     private static wrapInlineCode(html: string): string {
-        const codeWords: RegExpMatchArray | null = html.match(/(`|&#96;).+?(`|&#96;)/g);
+        const codeWords: Option<RegExpMatchArray, null> = html.match(/(`|&#96;).+?(`|&#96;)/g);
         if (codeWords) {
             codeWords.forEach(word => {
                 let codeWord = word.replace(/&#96;|`/, `<code class="inlineCode">`);
@@ -479,22 +490,23 @@ class DocGen {
         return markup + '</nav></div></td>';
     }
 
-    private static maybeMakeSourceLink(model: ApexModel, className: string, modelName: string): string {
-        if (this.sourceControlURL) {
+    private static maybeMakeSourceLink(model: ApexModel, className: string, title: string): string {
+        let sourceUrl = model.getSourceUrl();
+        if (sourceUrl) {
             // if user leaves off trailing slash, save the day!
-            if (!this.sourceControlURL.endsWith('/')) {
-                this.sourceControlURL += '/';
+            if (!sourceUrl.endsWith('/')) {
+                sourceUrl += '/';
             }
-            let href = this.sourceControlURL + className + '.cls#L' + model.getLineNum();
-            return `<a target="_blank" title="Go to source" class="hostedSourceLink" href="${href}">${modelName}</a>`;
+            let href = sourceUrl + className + '.cls#L' + model.getLineNum();
+            return `<a target="_blank" title="Go to source" class="hostedSourceLink" href="${href}">${title}</a>`;
         } else {
-            return `<span>${modelName}</span>`;
+            return `<span>${title}</span>`;
         }
     }
 
     private static makeSeeLinks(modelMap: Map<string, TopLevelModel>, qualifiers: string[]): string {
         // initialize list to store created links
-        const links: string[] = [];
+        const links = new Array<string>();
 
         // iterate over each qualifier and process
         // we could just take the users qualifiers and assume its a valid path

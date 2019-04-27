@@ -2,15 +2,20 @@ import ApexDoc from './ApexDoc';
 import Guards from '../utils/Guards';
 import { existsSync } from 'fs';
 import { EXTENSION } from '../extension';
+import { Option } from '../utils/Utils';
 import { resolve } from 'path';
 import { workspace } from 'vscode';
 
+export interface ISourceEntry {
+    path: string;
+    sourceUrl?: string;
+}
+
 export interface IApexDocConfig {
-	sourceDirectories: string[];
+	source: ISourceEntry[];
 	targetDirectory: string;
 	includes: string[];
 	excludes: string[];
-	sourceControlURL: string;
 	homePagePath: string;
 	bannerPagePath: string;
 	scope: string[];
@@ -23,11 +28,10 @@ export interface IApexDocConfig {
 }
 
 class Config implements IApexDocConfig {
-    public sourceDirectories: string[];
+    public source: ISourceEntry[];
     public includes: string[];
     public excludes: string[];
     public targetDirectory: string;
-    public sourceControlURL: string;
     public homePagePath: string;
     public bannerPagePath: string;
     public scope: string[];
@@ -46,7 +50,7 @@ class Config implements IApexDocConfig {
         }
 
         // establish defaults
-        this.sourceDirectories = [this.getDefaultDir(projectRoot)];
+        this.source = [{ path: this.getDefaultDir(projectRoot) }];
         this.targetDirectory = resolve(projectRoot, 'apex-documentation');
 
         this.port = 8080;
@@ -56,7 +60,6 @@ class Config implements IApexDocConfig {
         this.cleanDir = false;
         this.homePagePath = '';
         this.bannerPagePath = '';
-        this.sourceControlURL = '';
         this.scope = ApexDoc.SCOPES;
         this.showTOCSnippets = true;
         this.title = 'Apex Documentation';
@@ -64,7 +67,7 @@ class Config implements IApexDocConfig {
     }
 
     private getDefaultDir(projectRoot: string): string {
-        return this.isDX(projectRoot)
+        return !this.isDX(projectRoot)
             ? resolve(projectRoot, 'src', 'classes')
             : resolve(projectRoot, 'force-app', 'main', 'default', 'classes');
     }
@@ -86,7 +89,7 @@ class Config implements IApexDocConfig {
         );
     }
 
-    private static merge(userConfig: IApexDocConfig | undefined): IApexDocConfig {
+    private static merge(userConfig: Option<IApexDocConfig>): IApexDocConfig {
         const defaults = new Config();
 
         if (!userConfig) {
@@ -96,9 +99,9 @@ class Config implements IApexDocConfig {
         return {
             ...defaults,
             ...userConfig,
-            sourceDirectories: !userConfig.sourceDirectories
-                ? defaults.sourceDirectories
-                : userConfig.sourceDirectories,
+            source: !userConfig.source
+                ? defaults.source
+                : userConfig.source,
             targetDirectory: !userConfig.targetDirectory
                 ? defaults.targetDirectory
                 : userConfig.targetDirectory
@@ -109,7 +112,6 @@ class Config implements IApexDocConfig {
         // misc. strings
         config.title = Guards.title(config.title);
         config.sortOrder = Guards.sortOrder(config.sortOrder);
-        config.sourceControlURL = Guards.sourceControlURL(config.sourceControlURL);
 
         // arrays
         config.scope = Guards.scope(config.scope);
@@ -125,7 +127,10 @@ class Config implements IApexDocConfig {
         config.targetDirectory = Guards.targetDirectory(config.targetDirectory);
         config.homePagePath = Guards.directory(config.homePagePath, 'homePagePath');
         config.bannerPagePath = Guards.directory(config.bannerPagePath, 'bannerPagePath');
-        config.sourceDirectories = config.sourceDirectories.map(dir => Guards.directory(dir, 'sourceDirectories'));
+        config.source = config.source.map(src => ({
+            path: Guards.directory(src.path, 'source.path'),
+            sourceUrl: Guards.sourceUrl(src.sourceUrl)
+        }));
     }
 }
 

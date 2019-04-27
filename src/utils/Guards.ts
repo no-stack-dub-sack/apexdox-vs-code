@@ -1,6 +1,6 @@
 import ApexDoc from '../apexDoc/ApexDoc';
 import ApexDocError from './ApexDocError';
-import Utils from './Utils';
+import Utils, { Option } from './Utils';
 import { existsSync } from 'fs';
 
 class Guards {
@@ -49,9 +49,13 @@ class Guards {
         }
     }
 
-    public static sourceControlURL(str: string): string {
-        this.typeGuard('string', str, 'sourceControlURL');
-        if (str === '' || Utils.isURL(str)) {
+    public static sourceUrl(str: Option<string>): Option<string> {
+        if (!str) {
+            return undefined;
+        }
+
+        this.typeGuard('string', str, 'sourceUrl');
+        if (Utils.isURL(str)) {
             return str.trim();
         } else {
             throw new ApexDocError(ApexDocError.INVALID_SOURCE_URL(str));
@@ -87,7 +91,7 @@ class Guards {
             throw new ApexDocError(ApexDocError.SCOPE_ENTRIES_MIN);
         }
 
-        let registeredScopes: string[] = [];
+        let registeredScopes = new Array<string>();
 
         scopes.forEach(scope => {
             if (typeof scope !== 'string') {

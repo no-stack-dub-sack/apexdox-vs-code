@@ -59,10 +59,10 @@
 		"type": "object",
 		"title": "ApexDoc2 VS Code Configuration",
 		"properties": {
-			"apexdoc2.config.sourceDirectories": {
+			"apexdoc2.config.source": {
 				"type": "array",
-				"default": "",
-				"description": "An array of directories containing the .cls files that you'd like to document. Defaults to ['projectRoot/src/classes'] for non-DX projects, and ['projectRoot/force-app/main/default/classes'] for DX."
+				"default": "[]",
+				"markdownDescription": "An array of 'source' objects, with the following keys:\\n- `path` (string): An absolute path to a directory containing .cls files you'd like to document.\\n- `sourceUrl?` (string): Optional. A URL where the .cls source files are hosted, so ApexDoc2 can provide links to your code - confirmed to work with GitHub), e.g.: `https://github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes`.\\n\\nDefaults to \\n```json\\n[\\n  {\\n    \"path\": \"projectRoot/src/classes\"\\n  }\\n]\\n```\\nfor non-DX projects, and \\n```json\\n[\\n  {\\n    \"path\": \"projectRoot/force-app/main/default/classes\"\\n  }\\n]\\n```\\nfor DX."
 			},
 			"apexdoc2.config.targetDirectory": {
 				"type": "string",
@@ -78,11 +78,6 @@
 				"type": "array",
 				"default": [],
 				"description": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. 'Contact*', or '*Test.cls') that indicates which files in your source directory should NOT be documented. An empty array is treated as 'do not exclude any'."
-			},
-			"apexdoc2.config.sourceControlURL": {
-				"type": "string",
-				"default": "",
-				"description": "A URL where the .cls source files are hosted (so ApexDoc2 can provide links to your source - confirmed to work with GitHub), e.g.: 'https://github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes'."
 			},
 			"apexdoc2.config.homePagePath": {
 				"type": "string",

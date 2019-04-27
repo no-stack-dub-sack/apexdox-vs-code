@@ -3,6 +3,8 @@ import ApexModel from '../models/ApexModel';
 import ClassModel from '../models/ClassModel';
 import DocGen from '../apexDoc/DocGen';
 
+export type Option<T, V = undefined> = T | V;
+
 export const last = <T>(arr: T[]): T => arr[arr.length - 1];
 
 class Utils {
@@ -65,7 +67,7 @@ class Utils {
             line = previousLine + ' ' + line;
         }
 
-        let matches: RegExpMatchArray | null = line.match(/@\w+\s*(\([\w=.*''/\s]+\))?/g);
+        let matches: Option<RegExpMatchArray, null> = line.match(/@\w+\s*(\([\w=.*''/\s]+\))?/g);
 
         if (matches !== null) {
             matches.forEach(match => {
@@ -87,7 +89,7 @@ class Utils {
         let classNameParts = cModel && cModel.getName().split('.') || [''];
         let className = last(classNameParts);
 
-        if (this.containsScope(line) === null &&
+        if (!this.containsScope(line) &&
             !line.toLowerCase().startsWith(ApexDoc.ENUM + " ") &&
             !line.toLowerCase().startsWith(ApexDoc.CLASS + " ") &&
             !line.toLowerCase().startsWith(ApexDoc.INTERFACE + " ") &&
@@ -111,7 +113,7 @@ class Utils {
      * types, so if a method is not given an explicit access modifier &
      * it doesn't start with these keywords, it will be undetectable by ApexDoc2.
     */
-    public static containsScope(line: string): string | null {
+    public static containsScope(line: string): Option<string, void> {
         for (let scope of ApexDoc.config.scope) {
             scope = scope.toLowerCase();
             // if line starts with annotations, replace them, so
@@ -147,8 +149,6 @@ class Utils {
                 }
             }
         }
-
-        return null;
     }
 
     public static previousWord(str: string, searchIdx: number): string {

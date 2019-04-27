@@ -5,6 +5,7 @@ General:
     ✔ See why | symbol does not work in @example comments @done(19-04-24 20:03)
     ☐ Support multiple source directories, needed for DX projects with features (this is very realistic, now, dealing with DX projects, where you might have classes in multiple directories)
         ☐ How to handle source control URL with multi source dirs?
+    ☐ Resolve in-code TODOs
 
 Documentation:
     ☐ README
