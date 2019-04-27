@@ -3,6 +3,8 @@ General:
     ✔ Add DX-detector so source directory defaults to appropriate folder @done(19-04-23 21:04)
     ✔ Bundle extension @done(19-04-24 21:18)
     ✔ See why | symbol does not work in @example comments @done(19-04-24 20:03)
+    ☐ Support multiple source directories, needed for DX projects with features (this is very realistic, now, dealing with DX projects, where you might have classes in multiple directories)
+        ☐ How to handle source control URL with multi source dirs?
 
 Documentation:
     ☐ README

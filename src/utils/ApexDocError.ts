@@ -27,7 +27,7 @@ class ApexDocError extends Error {
     public static INVALID_TYPE = (arg: string, type: string) =>
         `Value for <${arg}> parameter is incorrect type. Expected '${type}'`
 
-    public static NO_FILES_FOUND = (sourceDir: string) => `No Apex files found in directory: ${sourceDir}`;
+    public static NO_FILES_FOUND = (sourceDirs: string) => `No .cls files found in ${sourceDirs}`;
 
     public static ASSET_NOT_FOUND = (asset: string) =>
         `Asset '${asset}' could not be copied to the target directory. Did you provide a fully qualified file name?`

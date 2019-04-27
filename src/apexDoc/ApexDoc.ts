@@ -9,9 +9,9 @@ import MethodModel from '../models/MethodModel';
 import PropertyModel from '../models/PropertyModel';
 import TopLevelModel from '../models/TopLevelModel';
 import Utils, { last } from '../utils/Utils';
+import { basename, resolve } from 'path';
 import { IApexDocConfig } from './Config';
 import { performance } from 'perf_hooks';
-import { resolve } from 'path';
 
 class ApexDoc {
     // constants
@@ -64,7 +64,7 @@ class ApexDoc {
 
             this.config = config;
             const fileManager = new FileManager(config.targetDirectory, config.title, config.assets);
-            const files = fileManager.getFiles(config.sourceDirectory, config.includes, config.excludes);
+            const files = fileManager.getFiles(config.sourceDirectories, config.includes, config.excludes);
             const modelMap = new Map<string, TopLevelModel>();
             const models: Array<TopLevelModel> = [];
 
@@ -77,9 +77,8 @@ class ApexDoc {
             let numProcessed = 0;
 
             // parse our top-level class files
-            files.forEach(fileName => {
-                this.currentFile = fileName;
-                const filePath = resolve(config.sourceDirectory, fileName);
+            files.forEach(filePath => {
+                this.currentFile = basename(filePath);
                 const model = this.parseFileContents(filePath);
                 modelMap.set(model.getName().toLowerCase(), model);
                 if (model) {
@@ -91,7 +90,7 @@ class ApexDoc {
             // load up optional specified file templates and create class groups for menu
             const homeContents = fileManager.parseHTMLFile(config.homePagePath);
             const bannerContents = fileManager.parseHTMLFile(config.bannerPagePath);
-            const classGroupMap = this.createClassGroupMap(models, config.sourceDirectory);
+            const classGroupMap = this.createClassGroupMap(models);
 
             // create our set of HTML files
             fileManager.createDocs(classGroupMap, modelMap, models, bannerContents, homeContents);
@@ -106,19 +105,17 @@ class ApexDoc {
         }
     }
 
-    private static createClassGroupMap(models: Array<TopLevelModel>, sourceDirectory: string): Map<string, ClassGroup> {
+    private static createClassGroupMap(models: Array<TopLevelModel>): Map<string, ClassGroup> {
         const classGroupMap: Map<string, ClassGroup> = new Map<string, ClassGroup>();
 
         models.forEach(model => {
             // if group name is falsy, default to this misc bucket
             // un-grouped classes will be placed under this menu
-            const group = model.getGroupName() || 'Miscellaneous';
-            let contentPath = model.getGroupContentPath();
-            if (contentPath) {
-                contentPath = resolve(sourceDirectory, contentPath);
-            }
+            const group = model.getGroupName() || 'Miscellaneous'
+                , contentPath = model.getGroupContentPath();
 
             let classGroup = classGroupMap.get(group);
+
             if (!classGroup) {
                 classGroup = new ClassGroup(group, contentPath);
             } else if (!classGroup.getContentSource()) {

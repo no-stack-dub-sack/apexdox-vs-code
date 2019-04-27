@@ -59,10 +59,10 @@
 		"type": "object",
 		"title": "ApexDoc2 VS Code Configuration",
 		"properties": {
-			"apexdoc2.config.sourceDirectory": {
-				"type": "string",
+			"apexdoc2.config.sourceDirectories": {
+				"type": "array",
 				"default": "",
-				"description": "The directory containing the .cls files that you'd like to document. Defaults to 'projectRoot/src/classes' for non-DX projects, and 'projectRoot/force-app/main/default/classes' for DX."
+				"description": "An array of directories containing the .cls files that you'd like to document. Defaults to ['projectRoot/src/classes'] for non-DX projects, and ['projectRoot/force-app/main/default/classes'] for DX."
 			},
 			"apexdoc2.config.targetDirectory": {
 				"type": "string",

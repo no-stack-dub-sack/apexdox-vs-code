@@ -1,9 +1,9 @@
 import * as tags from './tags';
-import * as vscode from 'vscode';
 import ApexDoc from '../apexDoc/ApexDoc';
 import Utils from '../utils/Utils';
 import { existsSync } from 'fs';
 import { resolve } from 'path';
+import { window } from 'vscode';
 
 abstract class ApexModel {
 
@@ -47,18 +47,6 @@ abstract class ApexModel {
 
     public getScope(): string {
         return !this.scope ? '' : this.scope;
-    }
-
-    // make sure path relative to target
-    // directory exists for @group-content tag
-    private pathExists(contentPath: string): boolean {
-        let path = resolve(ApexDoc.config.sourceDirectory, contentPath.trim());
-        if (/.*\.s?html?$/.test(contentPath.trim()) && existsSync(path)) {
-            return true;
-        } else {
-            vscode.window.showWarningMessage(`@group-content path '${path}' in file '${ApexDoc.currentFile}' is invalid!`);
-            return false;
-        }
     }
 
     private parseComments(comments: string[]): void {
@@ -142,8 +130,9 @@ abstract class ApexModel {
                 } else if (currBlock === tags.EXAMPLE.label) {
                     this.example += (this.example ? ' \n'  : '') + line;
                 } else if (currBlock === tags.GROUP_CONTENT.label) {
-                    if (this.pathExists(line.trim())) {
-                        this.groupContentPath += line.trim();
+                    const doesResolve = this.resolveContentPath(line.trim());
+                    if (doesResolve) {
+                        this.groupContentPath += doesResolve;
                     }
                 }
             }
@@ -166,17 +155,27 @@ abstract class ApexModel {
             let scope = Utils.containsScope(this.nameLine);
             if (scope) {
                 this.scope = <string>scope;
-            }
-
-            // TODO: perhaps this branch of control flow should
-            // be present only in a class override method
-            else {
-
-                // this must be an inner class
-                // or an @IsTest class
+            } else {
+                // scope is implicitly private
                 this.scope = ApexDoc.PRIVATE;
             }
         }
+    }
+
+    private resolveContentPath(contentPath: string): string | null {
+        for (let dir of ApexDoc.config.sourceDirectories) {
+            let path = resolve(dir, contentPath.trim());
+            if (/.*\.s?html?$/.test(contentPath.trim()) && existsSync(path)) {
+                return path;
+            }
+        }
+
+        const warningMessage =
+            `@group-content path '${contentPath.trim()}' in file '${ApexDoc.currentFile}' is invalid! ` +
+            `You may want to update this tag's value to a valid HTML file path.`;
+
+        window.showWarningMessage(warningMessage);
+        return null;
     }
 
     protected setNameLine(nameLine: string, lineNum: number): void {

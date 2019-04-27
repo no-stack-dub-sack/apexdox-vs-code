@@ -21,7 +21,7 @@ This extension contributes the following settings:
 
 | Setting | Type | Required | Description |
 |------|-----------|----------|-------------|
-| `apexdoc2.config.sourceDirectory` | `string` | :heavy_check_mark: | Absolute path of the folder location which contains your Apex .cls files. |
+| `apexdoc2.config.sourceDirectories` | `string` | :heavy_check_mark: | An array of absolute paths of the folder locations which contains your Apex .cls files. |
 | `apexdoc2.config.targetDirectory` | `string` | :heavy_check_mark: | Absolute path of the folder location where ApexDoc2 documentation will be generated to.|
 | `apexdoc2.config.includes` | `string[]` |  | A case-sensitive array of file names and/or wildcard patterns that indicate which files in your source directory should be documented. Only simple leading and trailing wildcards are supported. E.g. `[ "NotificationsEmailer.cls", "*TriggerHandler.cls", "Contact*" ]` will result in the file 'NotificationsEmailer.cls' being processed, as well as any files that begin with 'Contact' or end with 'TriggerHandler.cls'. |
 | `apexdoc2.config.excludes`| `string[]` |  | A case-sensitive array of file names and/or wildcard patterns that indicate which files in your source directory should NOT be documented. Only simple leading and trailing wildcards are supported. E.g. `[ "NotificationsEmailer.cls", "*TriggerHandler.cls", "Contact*" ]` will result in all files being processed EXCEPT 'NotificationsEmailer.cls' and those begin with 'Contact' or end with 'TriggerHandler.cls'. **Note** that files are excluded before they are included, so keep this in mind when using 'includes' and 'excludes' together. |
@@ -43,7 +43,9 @@ Minimum Settings Example:
 ```json
 {
     "apexdoc2.config.targetDirectory": "C:\\Users\\pweinberg\\Documents\\code\\documentation\\My Salesforce Project",
-    "apexdoc2.config.sourceDirectory": "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\src\\classes"
+    "apexdoc2.config.sourceDirectories": [
+        "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\src\\classes"
+    ]
 }
 ```
 
@@ -52,7 +54,10 @@ Expanded Settings Example:
 ```json
 {
     "apexdoc2.config": {
-        "sourceDirectory": "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\src\\classes",
+        "sourceDirectories": [
+            "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\force-app\\main\\default\\classes",
+            "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\force-app\\my-feature\\classes",
+        ],
         "targetDirectory": "C:\\Users\\pweinberg\\Documents\\code\\documentation\\My Salesforce Project",
         "includes": [
             "NotificationsEmailer.cls",

@@ -30,43 +30,52 @@ class FileManager {
         this.documentTitle = documentTitle;
     }
 
-    public getFiles(sourceDirectory: string, includes: string[], excludes: string[]): string[] {
-        let filesToCopy: string[] = [];
-        let files: string[];
-        files = readdirSync(sourceDirectory);
-        // make sure files is truthy and contains Apex classes
-        if (files && files.some(file => file.endsWith('cls'))) {
-            files.forEach(fileName => {
-                // make sure entry is a file and is an apex cl
-                if (!fileName.endsWith('.cls')) {
-                    return;
-                }
+    public getFiles(sourceDirectories: string[], includes: string[], excludes: string[]): string[] {
+        const filesToCopy: string[] = []
+            , noneFound: string[] = [];
 
-                for (let entry of excludes) {
-                    entry = entry.trim().replace('*', '');
-                    // file is explicitly excluded or matches wildcard, return early
-                    if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
+        for (let dir of sourceDirectories) {
+            const files = readdirSync(dir);
+
+            if (files && files.some(file => file.endsWith('cls'))) {
+                files.forEach(fileName => {
+                    // make sure entry is a file and is an apex cl
+                    if (!fileName.endsWith('.cls')) {
                         return;
                     }
-                }
 
-                // no includes params, include file
-                if (includes.length === 0) {
-                    filesToCopy.push(fileName);
-                    return;
-                }
-
-                // there are includes params, only include files that pass test
-                for (let entry of includes) {
-                    entry = entry.trim().replace('*', '');
-                    // file matches explicitly matches or matches wildcard
-                    if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
-                        filesToCopy.push(fileName);
+                    for (let entry of excludes) {
+                        entry = entry.trim().replace('*', '');
+                        // file is explicitly excluded or matches wildcard, return early
+                        if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
+                            return;
+                        }
                     }
-                }
-            });
-        } else {
-            throw new ApexDocError(ApexDocError.NO_FILES_FOUND(sourceDirectory));
+
+                    // no includes params, include file
+                    if (includes.length === 0) {
+                        filesToCopy.push(resolve(dir, fileName));
+                        return;
+                    }
+
+                    // there are includes params, only include files that pass test
+                    for (let entry of includes) {
+                        entry = entry.trim().replace('*', '');
+                        // file matches explicitly matches or matches wildcard
+                        if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
+                            filesToCopy.push(resolve(dir, fileName));
+                        }
+                    }
+                });
+            } else {
+                noneFound.push(dir);
+            }
+        }
+
+        if (!filesToCopy.length) {
+            throw new ApexDocError(ApexDocError.NO_FILES_FOUND(sourceDirectories.join(',')));
+        } else if (noneFound.length) {
+            vscode.window.showWarningMessage(`No .cls files found in ${noneFound.join(',')}`);
         }
 
         return filesToCopy;

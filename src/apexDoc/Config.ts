@@ -6,7 +6,7 @@ import { resolve } from 'path';
 import { workspace } from 'vscode';
 
 export interface IApexDocConfig {
-	sourceDirectory: string;
+	sourceDirectories: string[];
 	targetDirectory: string;
 	includes: string[];
 	excludes: string[];
@@ -23,7 +23,7 @@ export interface IApexDocConfig {
 }
 
 class Config implements IApexDocConfig {
-    public sourceDirectory: string;
+    public sourceDirectories: string[];
     public includes: string[];
     public excludes: string[];
     public targetDirectory: string;
@@ -46,10 +46,8 @@ class Config implements IApexDocConfig {
         }
 
         // establish defaults
+        this.sourceDirectories = [this.getDefaultDir(projectRoot)];
         this.targetDirectory = resolve(projectRoot, 'apex-documentation');
-        this.sourceDirectory = this.isDX(projectRoot)
-            ? resolve(projectRoot, 'force-app', 'main', 'default', 'classes')
-            : resolve(projectRoot, 'src', 'classes');
 
         this.port = 8080;
         this.includes = [];
@@ -63,6 +61,12 @@ class Config implements IApexDocConfig {
         this.showTOCSnippets = true;
         this.title = 'Apex Documentation';
         this.sortOrder = ApexDoc.ORDER_ALPHA;
+    }
+
+    private getDefaultDir(projectRoot: string): string {
+        return this.isDX(projectRoot)
+            ? resolve(projectRoot, 'src', 'classes')
+            : resolve(projectRoot, 'force-app', 'main', 'default', 'classes');
     }
 
     private isDX(projectRoot: string): boolean {
@@ -92,9 +96,9 @@ class Config implements IApexDocConfig {
         return {
             ...defaults,
             ...userConfig,
-            sourceDirectory: !userConfig.sourceDirectory
-                ? defaults.sourceDirectory
-                : userConfig.sourceDirectory,
+            sourceDirectories: !userConfig.sourceDirectories
+                ? defaults.sourceDirectories
+                : userConfig.sourceDirectories,
             targetDirectory: !userConfig.targetDirectory
                 ? defaults.targetDirectory
                 : userConfig.targetDirectory
@@ -121,7 +125,7 @@ class Config implements IApexDocConfig {
         config.targetDirectory = Guards.targetDirectory(config.targetDirectory);
         config.homePagePath = Guards.directory(config.homePagePath, 'homePagePath');
         config.bannerPagePath = Guards.directory(config.bannerPagePath, 'bannerPagePath');
-        config.sourceDirectory = Guards.directory(config.sourceDirectory, 'sourceDirectory');
+        config.sourceDirectories = config.sourceDirectories.map(dir => Guards.directory(dir, 'sourceDirectories'));
     }
 }
 
