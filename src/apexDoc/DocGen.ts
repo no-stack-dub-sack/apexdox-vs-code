@@ -1,20 +1,15 @@
+import * as Models from '../models';
 import * as templates from '../utils/Templates';
 import ApexDoc from './ApexDoc';
 import ApexDocError from '../utils/ApexDocError';
-import ApexModel from '../models/ApexModel';
-import ClassGroup from '../models/ClassGroup';
-import ClassModel from '../models/ClassModel';
-import EnumModel from '../models/EnumModel';
 import escape from 'lodash.escape';
-import MethodModel from '../models/MethodModel';
-import TopLevelModel, { ModelType } from '../models/TopLevelModel';
 import Utils, { last, Option } from '../utils/Utils';
 
 class DocGen {
     public static sortOrderStyle: string;
     public static showTOCSnippets: boolean;
 
-    public static documentClass(cModel: ClassModel, modelMap: Map<string, TopLevelModel>): string {
+    public static documentClass(cModel: Models.ClassModel, modelMap: Map<string, Models.TopLevelModel>): string {
         const hasSource = cModel.getSourceUrl() ? true : false;
         const sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : '';
         const sectionSourceLink = this.maybeMakeSourceLink(cModel, cModel.getTopmostClassName(), this.escapeHTML(cModel.getName(), false));
@@ -37,7 +32,7 @@ class DocGen {
         return this.wrapInDetailsTag(contents, header, 'section');
     }
 
-    public static documentEnum(eModel: EnumModel, modelMap: Map<string, TopLevelModel>): string {
+    public static documentEnum(eModel: Models.EnumModel, modelMap: Map<string, Models.TopLevelModel>): string {
         const hasSource = eModel.getSourceUrl() ? true : false
             , sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : ''
             , sectionSourceLink = this.maybeMakeSourceLink(eModel, eModel.getName(), this.escapeHTML(eModel.getName(), false));
@@ -61,7 +56,7 @@ class DocGen {
         return contents;
     }
 
-    private static documentTopLevelAttributes(model: TopLevelModel, modelMap: Map<string, TopLevelModel>, className: string, additionalContent: string): string {
+    private static documentTopLevelAttributes(model: Models.TopLevelModel, modelMap: Map<string, Models.TopLevelModel>, className: string, additionalContent: string): string {
         const classSourceLink = this.maybeMakeSourceLink(model, className, this.escapeHTML(model.getNameLine(), false));
         let contents = '';
 
@@ -109,7 +104,7 @@ class DocGen {
         return contents;
     }
 
-    private static documentProperties(cModel: ClassModel): string {
+    private static documentProperties(cModel: Models.ClassModel): string {
         let contents = '';
         // retrieve properties to work with in the order user specifies
         const properties = this.sortOrderStyle === ApexDoc.ORDER_ALPHA
@@ -162,7 +157,7 @@ class DocGen {
         return this.wrapInDetailsTag(contents, '<h2 class="subsectionTitle properties">Properties</h2>', 'subSection properties');
     }
 
-    private static documentInnerEnums(cModel: ClassModel): string {
+    private static documentInnerEnums(cModel: Models.ClassModel): string {
         let contents = '';
         const enums = this.sortOrderStyle === ApexDoc.ORDER_ALPHA
             ? cModel.getEnumsSorted()
@@ -205,7 +200,7 @@ class DocGen {
         return this.wrapInDetailsTag(contents, '<h2 class="subsectionTitle enums">Enums</h2>', 'subSection enums');
     }
 
-    private static documentMethods(cModel: ClassModel, modelMap: Map<string, TopLevelModel>): string {
+    private static documentMethods(cModel: Models.ClassModel, modelMap: Map<string, Models.TopLevelModel>): string {
         // track Ids used to make sure we're not generating duplicate
         // Ids within this class, and so that overloaded methods each
         // have their own unique anchor to link to in the TOC.
@@ -225,7 +220,7 @@ class DocGen {
         // See if method ID has been used previously in this class
         // (must be an overloaded method or constructor) and amend
         // as needed to ensure all of our methods have unique IDs
-        const getMethodId = (method: MethodModel): string => {
+        const getMethodId = (method: Models.MethodModel): string => {
             let methodId = cModel.getName() + '.' + method.getName();
             let count: Option<number>;
             if ((count = idCountMap.get(methodId)) === undefined) {
@@ -238,7 +233,7 @@ class DocGen {
         };
 
         // make our Table of Contents entry
-        const makeTOCEntry = (method: MethodModel, name: string, id: string, deprecated: boolean): string => {
+        const makeTOCEntry = (method: Models.MethodModel, name: string, id: string, deprecated: boolean): string => {
             let entry =
                 `<li class="method ${method.getScope()}">
                     <a class="methodTOCEntry ${(deprecated ? 'deprecated' : '')}" href="#${id}">
@@ -407,7 +402,7 @@ class DocGen {
         return str;
     }
 
-    public static makeHeader(bannerPage: string, documentTitle: string): string {
+    public static makeHeader(bannerPage: Option<string, void>, documentTitle: string): string {
         let header: string;
 
         if (bannerPage) {
@@ -419,7 +414,7 @@ class DocGen {
         return header;
     }
 
-    public static makeMenu(classGroupMap: Map<string, ClassGroup>, models: Array<TopLevelModel>): string {
+    public static makeMenu(classGroupMap: Map<string, Models.ClassGroup>, models: Map<string, Models.TopLevelModel>): string {
         // 22% width is to ensure menu is always wide
         // enough to handle 40 char class name limit
         let markup =
@@ -465,7 +460,7 @@ class DocGen {
 
         // create our individual menu items and concatenate
         // them with their corresponding top level menu item
-        for (let model of models) {
+        for (let model of models.values()) {
             const group = model.getGroupName() || 'Miscellaneous';
 
             if (model.getNameLine()) {
@@ -490,7 +485,7 @@ class DocGen {
         return markup + '</nav></div></td>';
     }
 
-    private static maybeMakeSourceLink(model: ApexModel, className: string, title: string): string {
+    private static maybeMakeSourceLink(model: Models.ApexModel, className: string, title: string): string {
         let sourceUrl = model.getSourceUrl();
         if (sourceUrl) {
             // if user leaves off trailing slash, save the day!
@@ -504,7 +499,7 @@ class DocGen {
         }
     }
 
-    private static makeSeeLinks(modelMap: Map<string, TopLevelModel>, qualifiers: string[]): string {
+    private static makeSeeLinks(modelMap: Map<string, Models.TopLevelModel>, qualifiers: string[]): string {
         // initialize list to store created links
         const links = new Array<string>();
 
@@ -572,8 +567,8 @@ class DocGen {
 
                 // 4.B) otherwise keep searching for a match for the second qualifier as long as
                 // model is not an enum model, in which case there is no searching left to do
-                else if (parts.length >= 2 && model.getModelType() !== ModelType.ENUM) {
-                    let Class = <ClassModel>model;
+                else if (parts.length >= 2 && model.getModelType() !== Models.ModelType.ENUM) {
+                    let Class = <Models.ClassModel>model;
                     let methods = Class.getMethods();
                     let childClasses = Class.getChildClassMap();
 

@@ -1,4 +1,5 @@
-import ApexModel from './ApexModel';
+import { ApexModel } from './ApexModel';
+import { Option } from '../utils/Utils';
 
 export enum ModelType {
     CLASS,
@@ -8,8 +9,8 @@ export enum ModelType {
 abstract class TopLevelModel extends ApexModel {
     public modelType: ModelType;
 
-    constructor(comments: string[], modelType: ModelType) {
-        super(comments);
+    constructor(comments: string[], modelType: ModelType, sourceUrl: Option<string>) {
+        super(comments, sourceUrl);
         this.modelType = modelType;
     }
 
@@ -47,4 +48,4 @@ abstract class TopLevelModel extends ApexModel {
     }
 }
 
-export default TopLevelModel;
+export { TopLevelModel };

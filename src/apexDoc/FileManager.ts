@@ -1,15 +1,11 @@
+import * as Models from '../models';
 import * as templates from '../utils/Templates';
-import * as vscode from 'vscode';
 import ApexDoc from './ApexDoc';
 import ApexDocError from '../utils/ApexDocError';
-import ClassGroup from '../models/ClassGroup';
-import ClassModel from '../models/ClassModel';
 import DocGen from './DocGen';
-import EnumModel from '../models/EnumModel';
 import LineReader from '../utils/LineReader';
 import pretty from 'pretty';
 import rimraf from 'rimraf';
-import TopLevelModel, { ModelType } from '../models/TopLevelModel';
 import { basename, resolve } from 'path';
 import {
     copyFileSync,
@@ -19,6 +15,8 @@ import {
     writeFileSync
     } from 'fs';
 import { ISourceEntry } from './Config';
+import { Option } from '../utils/Utils';
+import { window } from 'vscode';
 
 class FileManager {
     private path: string;
@@ -84,7 +82,7 @@ class FileManager {
             const sourceDirs = sources.map(src => src.path).join(',');
             throw new ApexDocError(ApexDocError.NO_FILES_FOUND(sourceDirs));
         } else if (noneFound.length) {
-            vscode.window.showWarningMessage(`No .cls files found in ${noneFound.join(',')}`);
+            window.showWarningMessage(`No .cls files found in ${noneFound.join(',')}`);
         }
 
         return filesToCopy;
@@ -109,57 +107,81 @@ class FileManager {
         }
     }
 
-    public parseHTMLFile(filePath: string): string {
-        let contents = (this.readFile(filePath)).trim();
+    /**
+     * Parses HTML files provided by the user, like class group pages,
+     * project home page, banner page, etc. Returns any content between
+     * the <body> tags, or the entire markup if no <body> tags are present.
+     * The extracted markup will be placed within the project's standard
+     * page layout (header, menu, footer) for the final product.
+     *
+     * @param filePath The path of the HTML file to parse.
+     * @returns string representing the markup or void.
+     */
+    public parseHTMLFile(filePath: string): Option<string, void> {
+        if (!filePath.trim()) { return ; }
+        const contents = (this.readFile(filePath)).trim();
         if (contents) {
-            let startIndex = contents.indexOf('<body>') + 6;
-            let endIndex = contents.indexOf('</body>');
-            if (startIndex !== -1) {
-                if (contents.indexOf('</body>') !== -1) {
-                    contents = contents.substring(startIndex, endIndex);
-                    return contents;
+            const startIndex = contents.indexOf('<body>');
+            const endIndex = contents.indexOf('</body>');
+            if (startIndex !== -1 && endIndex !== -1) {
+                return contents.substring(startIndex + 6, endIndex);
+            } else if (startIndex === -1 && endIndex === -1) {
+                return contents;
+            }
+        }
+    }
+
+    private makePage(contents: string, banner: Option<string, void>, links: string, title?: string) {
+        title = title ? `<h2 class='sectionTitle'>${title}</h2>` : '';
+        return `${DocGen.makeHeader(banner, this.documentTitle)}
+            ${links}<td class="contentTD">${title + contents}</td>
+            ${templates.FOOTER}`;
+    }
+
+    private makeSupplementaryPages(fileMap: Map<string, string>, links: string, banner: Option<string, void>, pages: string[]): void {
+        pages.forEach((pagePath, i) => {
+            if (i === 0) {
+                // our home page is always the first index
+                const homePageContents = this.parseHTMLFile(pagePath);
+                const markup = this.makePage(homePageContents || templates.DEFAULT_HOME_CONTENTS, banner, links, 'Home');
+                fileMap.set('index', markup);
+            } else {
+                const contents = this.parseHTMLFile(pagePath);
+                if (contents) {
+                    const markup = this.makePage(contents, banner, links, 'Home');
+                    fileMap.set(basename(pagePath.substring(0, pagePath.lastIndexOf('.'))), markup);
+                }
+            }
+        });
+    }
+
+    private makeClassGroupPages(fileMap: Map<string, string>, links: string, banner: Option<string, void>,
+        classGroupMap: Map<string, Models.ClassGroup>): void {
+
+        for (let group of classGroupMap.keys()) {
+            const cg = classGroupMap.get(group);
+            if (cg && cg.getContentSource()) {
+                const cgContent = this.parseHTMLFile(cg.getContentSource());
+                if (cgContent) {
+                    let markup = this.makePage(cgContent, banner, links, DocGen.escapeHTML(cg.getName(), false));
+                    fileMap.set(cg.getContentFilename(), markup);
                 }
             }
         }
-        return '';
     }
 
-    /**
-     * Main routine that creates an HTML file for each class specified
-     */
-    public createDocs(groupNameMap: Map<string, ClassGroup>, modelMap: Map<string, TopLevelModel>,
-            models: Array<TopLevelModel>, bannerPage: string, homeContents: string): void {
+    public makeDocumentationPages(fileMap: Map<string, string>, links: string, banner: Option<string, void>,
+            modelMap: Map<string, Models.TopLevelModel>): void {
 
-        let links = '<table width="100%">';
-        links += DocGen.makeHTMLScopingPanel();
-        links += "<tr style='vertical-align:top;' >";
-        links += DocGen.makeMenu(groupNameMap, models);
-
-        if (homeContents) {
-            homeContents = links + `<td class='contentTD'><h2 class='sectionTitle'>Home</h2>${homeContents}</td>`;
-            homeContents = DocGen.makeHeader(bannerPage, this.documentTitle) + homeContents + templates.FOOTER;
-        } else {
-            homeContents = templates.DEFAULT_HOME_CONTENTS;
-            homeContents = links + `<td class='contentTD'><h2 class='sectionTitle'>Home</h2>${homeContents}</td>`;
-            homeContents = DocGen.makeHeader(bannerPage, this.documentTitle) + homeContents + templates.FOOTER;
-        }
-
-        const fileMap = new Map<string, string>();
-        fileMap.set('index', homeContents);
-
-        // create our Class Group content files
-        this.createClassGroupContent(fileMap, links, bannerPage, groupNameMap);
-
-        for (let model of models) {
+        for (let model of modelMap.values()) {
             let fileName = '';
-            let contents = links;
+            let contents = '';
             if (model.getNameLine()) {
                 fileName = model.getName();
-                contents += '<td class="contentTD">';
 
-                if (model.getModelType() === ModelType.CLASS) {
+                if (model.getModelType() === Models.ModelType.CLASS) {
 
-                    const cModel = <ClassModel>model;
+                    const cModel = <Models.ClassModel>model;
                     contents += DocGen.documentClass(cModel, modelMap);
 
                     // get child classes to work with in the order user specifies
@@ -171,8 +193,8 @@ class FileManager {
                     contents += childClasses.map(cmChild =>
                         DocGen.documentClass(cmChild, modelMap)).join('');
 
-                } else if (model.getModelType() === ModelType.ENUM) {
-                    const eModel = <EnumModel>model;
+                } else if (model.getModelType() === Models.ModelType.ENUM) {
+                    const eModel = <Models.EnumModel>model;
                     contents += DocGen.documentEnum(eModel, modelMap);
                 }
 
@@ -181,9 +203,36 @@ class FileManager {
             }
 
             contents += '</div>';
-            contents = DocGen.makeHeader(bannerPage, this.documentTitle) + contents + templates.FOOTER;
+            contents = this.makePage(contents, banner, links);
             fileMap.set(fileName, contents);
         }
+    }
+
+    /**
+     * Main routine that creates HTML file for each of our classes and for any additional
+     * pages that a user has included, e.g. home page, class group, supplementary.
+     *
+     * @param groupNameMap Map of our class group names to their ClassGroup instances
+     * @param modelMap Map of our model names to their TopLevelModel instances
+     * @param banner The HTML markup for the project's banner
+     * @param pages Any additional pages, including the project home page, the user has included
+     */
+    public createDocs(groupNameMap: Map<string, Models.ClassGroup>, models: Map<string, Models.TopLevelModel>,
+            banner: Option<string, void>, pages: string[]): void {
+
+        // make the menu and the scoping panel
+        // and initialize our main file map
+        const fileMap = new Map<string, string>();
+        const links = `<table width="100%">
+            ${DocGen.makeHTMLScopingPanel()}
+            <tr style="vertical-align:top;">
+            ${DocGen.makeMenu(groupNameMap, models)}`;
+
+        // create the markup for our different varieties of HTML pages
+        // and add to our file map. HTML files will be created from this map.
+        this.makeSupplementaryPages(fileMap, links, banner, pages);
+        this.makeClassGroupPages(fileMap, links, banner, groupNameMap);
+        this.makeDocumentationPages(fileMap, links, banner, models);
 
         // Now finalize everything... Make our directories first
         // if they don't exist yet, then create our HTML files.
@@ -192,17 +241,14 @@ class FileManager {
         const assets = this.collectApexDocAssets();
 
         this.makeDirs();
-        this.createHTML(fileMap);
+        this.createHTMLFiles(fileMap);
         this.copyAssetsToTarget(assets);
         this.copyAssetsToTarget(this.userAssets);
     }
 
-    private createHTML(fileMap: Map<string, string>): void {
-        for (let fileName of fileMap.keys()) {
-            let contents = pretty(<string>fileMap.get(fileName));
-            let fullyQualifiedFileName = resolve(this.path, fileName + '.html');
-            writeFileSync(fullyQualifiedFileName, contents);
-        }
+    private collectApexDocAssets(): string[] {
+        const files: string[] = readdirSync(resolve(ApexDoc.extensionRoot, 'assets'));
+        return files.map(fileName => resolve(ApexDoc.extensionRoot, 'assets', fileName));
     }
 
     private makeDirs(): void {
@@ -219,33 +265,12 @@ class FileManager {
         }
     }
 
-    // create our Class Group content files
-    private createClassGroupContent(fileMap: Map<string, string>, links: string, bannerPage: string,
-        classGroupMap: Map<string, ClassGroup>): void {
-
-        for (let group of classGroupMap.keys()) {
-            const cg = classGroupMap.get(group);
-            if (cg && cg.getContentSource()) {
-                const cgContent = this.parseHTMLFile(cg.getContentSource());
-                if (cgContent) {
-
-                    let html =
-                        DocGen.makeHeader(bannerPage, this.documentTitle) + links +
-                        `<td class="contentTD"><h2 class="sectionTitle">
-                        ${DocGen.escapeHTML(cg.getName(), false)}
-                        </h2>${cgContent}</td>`;
-
-                    html += templates.FOOTER;
-
-                    fileMap.set(cg.getContentFilename(), html);
-                }
-            }
+    private createHTMLFiles(fileMap: Map<string, string>): void {
+        for (let fileName of fileMap.keys()) {
+            let contents = pretty(<string>fileMap.get(fileName));
+            let fullyQualifiedFileName = resolve(this.path, fileName + '.html');
+            writeFileSync(fullyQualifiedFileName, contents);
         }
-    }
-
-    private collectApexDocAssets(): string[] {
-        const files: string[] = readdirSync(resolve(ApexDoc.extensionRoot, 'assets'));
-        return files.map(fileName => resolve(ApexDoc.extensionRoot, 'assets', fileName));
     }
 
     private copyAssetsToTarget(files: string[]): void {
@@ -253,7 +278,7 @@ class FileManager {
             if (existsSync(file)) {
                 copyFileSync(file, resolve(this.path, 'assets', basename(file)));
             } else {
-                vscode.window.showWarningMessage(ApexDocError.ASSET_NOT_FOUND(file));
+                window.showWarningMessage(ApexDocError.ASSET_NOT_FOUND(file));
             }
         });
     }

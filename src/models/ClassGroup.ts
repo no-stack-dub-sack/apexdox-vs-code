@@ -36,4 +36,4 @@ class ClassGroup {
     }
 }
 
-export default ClassGroup;
+export  { ClassGroup };

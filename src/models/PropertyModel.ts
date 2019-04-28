@@ -1,9 +1,10 @@
-import ApexModel from './ApexModel';
+import { ApexModel } from './ApexModel';
+import { Option } from '../utils/Utils';
 
 class PropertyModel extends ApexModel {
 
-    public constructor(comments: string[], nameLine: string, lineNum: number) {
-        super(comments);
+    public constructor(comments: string[], nameLine: string, lineNum: number, sourceUrl: Option<string>) {
+        super(comments, sourceUrl);
         this.setNameLine(nameLine, lineNum);
     }
 
@@ -38,4 +39,4 @@ class PropertyModel extends ApexModel {
     }
 }
 
-export default PropertyModel;
+export { PropertyModel };

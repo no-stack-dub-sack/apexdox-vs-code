@@ -1,9 +1,9 @@
 import ApexDoc from '../apexDoc/ApexDoc';
-import EnumModel from './EnumModel';
-import MethodModel from './MethodModel';
-import PropertyModel from './PropertyModel';
-import TopLevelModel, { ModelType } from './TopLevelModel';
+import { EnumModel } from './EnumModel';
+import { MethodModel } from './MethodModel';
+import { ModelType, TopLevelModel } from './TopLevelModel';
 import { Option } from '../utils/Utils';
+import { PropertyModel } from './PropertyModel';
 
 class ClassModel extends TopLevelModel {
 
@@ -15,8 +15,8 @@ class ClassModel extends TopLevelModel {
     private methods: Array<MethodModel>;
     private properties: Array<PropertyModel>;
 
-    public constructor(cmodelParent: Option<ClassModel>, comments: string[], nameLine: string, lineNum: number) {
-        super(comments, ModelType.CLASS);
+    public constructor(cmodelParent: Option<ClassModel>, comments: string[], nameLine: string, lineNum: number, sourceUrl: Option<string>) {
+        super(comments, ModelType.CLASS, sourceUrl);
         super.setNameLine(nameLine, lineNum);
 
         this.childClassMap = new Map<string, ClassModel>();
@@ -174,4 +174,4 @@ class ClassModel extends TopLevelModel {
     }
 }
 
-export default ClassModel;
+export { ClassModel };

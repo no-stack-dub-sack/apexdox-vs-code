@@ -29,10 +29,7 @@ export const PROJECT_DETAIL =
 export const HEADER_CLOSE = `</td></tr></table></div>`;
 
 export const FOOTER =
-                    `</div>
-                </div>
-            </td>
-        </tr>
+        `</tr>
     </table>
     <hr/>
     <center class="footer">

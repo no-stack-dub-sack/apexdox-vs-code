@@ -1,10 +1,10 @@
-import ApexModel from './ApexModel';
-import Utils from '../utils/Utils';
+import Utils, { Option } from '../utils/Utils';
+import { ApexModel } from './ApexModel';
 
 class MethodModel extends ApexModel {
 
-    public constructor(comments: string[], nameLine: string, lineNum: number) {
-        super(comments);
+    public constructor(comments: string[], nameLine: string, lineNum: number, sourceUrl?: Option<string>) {
+        super(comments, sourceUrl);
         this.setNameLine(nameLine, lineNum);
     }
 
@@ -86,4 +86,4 @@ class MethodModel extends ApexModel {
     }
 }
 
-export default MethodModel;
+export { MethodModel };

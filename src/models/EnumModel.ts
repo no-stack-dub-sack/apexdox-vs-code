@@ -1,12 +1,13 @@
 import ApexDoc from '../apexDoc/ApexDoc';
-import TopLevelModel, { ModelType } from './TopLevelModel';
+import { ModelType, TopLevelModel } from './TopLevelModel';
+import { Option } from '../utils/Utils';
 
 class EnumModel extends TopLevelModel {
 
     private values: string[] = [];
 
-    public constructor(comments: string[], nameLine: string, lineNum: number) {
-        super(comments, ModelType.ENUM);
+    public constructor(comments: string[], nameLine: string, lineNum: number, sourceUrl: Option<string>) {
+        super(comments, ModelType.ENUM, sourceUrl);
         this.setNameLine(nameLine, lineNum);
         this.setValues(nameLine);
     }
@@ -46,4 +47,4 @@ class EnumModel extends TopLevelModel {
     }
 }
 
-export default EnumModel;
+export { EnumModel };

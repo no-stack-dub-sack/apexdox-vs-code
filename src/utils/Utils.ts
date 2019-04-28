@@ -1,8 +1,7 @@
 import ApexDoc from '../apexDoc/ApexDoc';
-import ApexModel from '../models/ApexModel';
-import ClassModel from '../models/ClassModel';
 import DocGen from '../apexDoc/DocGen';
-import { AUTHOR } from '../models/tags';
+import { ApexModel } from '../models/ApexModel';
+import { ClassModel } from '../models/ClassModel';
 import { resolve } from 'path';
 import { window, workspace, WorkspaceFolder } from 'vscode';
 

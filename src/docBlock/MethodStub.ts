@@ -1,6 +1,5 @@
 import ApexDoc from '../apexDoc/ApexDoc';
 import DocBlockStub, { IStubLine, IStubsConfig } from './DocBlockStub';
-import MethodModel from '../models/MethodModel';
 import Utils from '../utils/Utils';
 import {
     DESCRIPTION,
@@ -8,6 +7,7 @@ import {
     PARAM,
     RETURNS
     } from '../models/tags';
+import { MethodModel } from '../models/MethodModel';
 import { TextEditor } from 'vscode';
 
 interface IParsedMethod {

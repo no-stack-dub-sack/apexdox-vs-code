@@ -1,14 +1,9 @@
-import ClassGroup from '../models/ClassGroup';
-import ClassModel from '../models/ClassModel';
+import * as Models from '../models';
 import DocGen from './DocGen';
-import EnumModel from '../models/EnumModel';
 import FileManager from './FileManager';
 import LineReader from '../utils/LineReader';
-import MethodModel from '../models/MethodModel';
-import PropertyModel from '../models/PropertyModel';
-import TopLevelModel from '../models/TopLevelModel';
 import Utils, { last, Option } from '../utils/Utils';
-import { basename, resolve } from 'path';
+import { basename } from 'path';
 import { IApexDocConfig } from './Config';
 import { performance } from 'perf_hooks';
 import { window } from 'vscode';
@@ -65,8 +60,7 @@ class ApexDoc {
             this.config = config;
             const fileManager = new FileManager(config.targetDirectory, config.title, config.assets);
             const files = fileManager.getFiles(config.source, config.includes, config.excludes);
-            const modelMap = new Map<string, TopLevelModel>();
-            const models = new Array<TopLevelModel>();
+            const models = new Map<string, Models.TopLevelModel>();
 
             // set up document generator
             DocGen.sortOrderStyle = config.sortOrder;
@@ -79,35 +73,32 @@ class ApexDoc {
             files.forEach(entry => {
                 this.currentFile = basename(entry.path);
 
-                const model = this.parseFileContents(entry.path);
-                model.setSourceUrl(entry.sourceUrl);
+                const model = this.parseFileContents(entry.path, entry.sourceUrl);
 
-                modelMap.set(model.getName().toLowerCase(), model);
                 if (model) {
-                    models.push(model);
+                    models.set(model.getName().toLowerCase(), model);
                     numProcessed++;
                 }
             });
 
-            // load up optional specified file templates and create class groups for menu
-            const homeContents = fileManager.parseHTMLFile(config.homePagePath);
+            // load up optional banner file template and create class groups for menu
             const bannerContents = fileManager.parseHTMLFile(config.bannerPagePath);
             const classGroupMap = this.createClassGroupMap(models);
 
             // create our set of HTML files
-            fileManager.createDocs(classGroupMap, modelMap, models, bannerContents, homeContents);
+            fileManager.createDocs(classGroupMap, models, bannerContents, [config.homePagePath]);
 
             // we are done!
             const endElapsed = performance.now();
             const elapsed = ((endElapsed - beginElapsed) / 1000).toFixed(2);
-            window.showInformationMessage(`ApexDoc2 complete! ${numProcessed} Apex files documented in ${elapsed} s.`);
+            window.showInformationMessage(`ApexDoc2 complete! ${numProcessed} Apex files documented in ${elapsed}s.`);
         } catch (err) {
             throw err;
         }
     }
 
-    private static createClassGroupMap(models: Array<TopLevelModel>): Map<string, ClassGroup> {
-        const classGroupMap: Map<string, ClassGroup> = new Map<string, ClassGroup>();
+    private static createClassGroupMap(models: Map<string, Models.TopLevelModel>): Map<string, Models.ClassGroup> {
+        const classGroupMap: Map<string, Models.ClassGroup> = new Map<string, Models.ClassGroup>();
 
         models.forEach(model => {
             // if group name is falsy, default to this misc bucket
@@ -118,7 +109,7 @@ class ApexDoc {
             let classGroup = classGroupMap.get(group);
 
             if (!classGroup) {
-                classGroup = new ClassGroup(group, contentPath);
+                classGroup = new Models.ClassGroup(group, contentPath);
             } else if (!classGroup.getContentSource()) {
                 classGroup.setContentSource(contentPath);
             }
@@ -136,15 +127,15 @@ class ApexDoc {
      *
      * @param filePath The path of the file being parsed
      */
-    public static parseFileContents(filePath: string): TopLevelModel {
+    public static parseFileContents(filePath: string, sourceUrl: Option<string>): Models.TopLevelModel {
         const reader = new LineReader(filePath);
-        const cModels = new Array<ClassModel>();
+        const cModels = new Array<Models.ClassModel>();
 
         let line: Option<string, null>;
         let comments = new Array<string>();
         let lineNum = 0, nestedCurlyBraceDepth = 0;
         let commentsStarted = false, docBlockStarted = false;
-        let cModel: Option<ClassModel>, cModelParent: Option<ClassModel>;
+        let cModel: Option<Models.ClassModel>, cModelParent: Option<Models.ClassModel>;
 
         while ((line = reader.readLine()) !== null) {
             line = line.trim();
@@ -239,7 +230,7 @@ class ApexDoc {
             // look for a class.
             if (Utils.isClassOrInterface(line)) {
                 // create the new class
-                let cModelNew: ClassModel = new ClassModel(cModelParent, comments, line, lineNum);
+                let cModelNew: Models.ClassModel = new Models.ClassModel(cModelParent, comments, line, lineNum, sourceUrl);
                 Utils.parseAnnotations(<string>reader.peekPrevLine(), line, cModelNew);
                 comments = [];
 
@@ -270,7 +261,7 @@ class ApexDoc {
                     lineNum++;
                 }
 
-                let eModel: EnumModel = new EnumModel(comments, line, startingLine);
+                let eModel: Models.EnumModel = new Models.EnumModel(comments, line, startingLine, sourceUrl);
                 Utils.parseAnnotations(<string>reader.peekPrevLine(), line, eModel);
 
                 // if no class models have been created, and we see an
@@ -296,7 +287,7 @@ class ApexDoc {
                     lineNum++;
                 }
 
-                let mModel: MethodModel = new MethodModel(comments, line, startingLine);
+                let mModel: Models.MethodModel = new Models.MethodModel(comments, line, startingLine, sourceUrl);
                 Utils.parseAnnotations(<string>reader.peekPrevLine(), line, mModel);
                 cModel && cModel.getMethods().push(mModel);
                 comments = [];
@@ -304,14 +295,14 @@ class ApexDoc {
             }
 
             // must be a property
-            let pModel: PropertyModel = new PropertyModel(comments, line, lineNum);
+            let pModel: Models.PropertyModel = new Models.PropertyModel(comments, line, lineNum, sourceUrl);
             Utils.parseAnnotations(<string>reader.peekPrevLine(), line, pModel);
             cModel && cModel.getProperties().push(pModel);
             comments = [];
             continue;
         }
 
-        return <TopLevelModel>cModelParent;
+        return <Models.TopLevelModel>cModelParent;
     }
 }
 

@@ -1,4 +1,3 @@
-import * as vscode from 'vscode';
 import ApexDoc from '../apexDoc/ApexDoc';
 import Utils from '../utils/Utils';
 import { EXTENSION } from '../extension';

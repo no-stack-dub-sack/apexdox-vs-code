@@ -10,7 +10,7 @@ abstract class ApexModel {
     protected annotations: string[] = [];
     protected author: string = '';
     protected deprecated: string = '';
-    protected description?: string;
+    protected description: string = '';
     protected example: string = '';
     protected exception: string = '';
     protected groupContentPath: string = '';
@@ -24,8 +24,9 @@ abstract class ApexModel {
     protected since: string = '';
     protected sourceUrl?: string;
 
-    protected constructor(comments: string[]) {
+    protected constructor(comments: string[], sourceUrl: Option<string>) {
         this.parseComments(comments);
+        this.sourceUrl = sourceUrl;
     }
 
     public abstract getName(): string;
@@ -34,7 +35,7 @@ abstract class ApexModel {
         return this.annotations;
     }
 
-    public getDescription(): Option<string> {
+    public getDescription(): string {
         return this.description;
     }
 
@@ -198,10 +199,6 @@ abstract class ApexModel {
             this.parseScope();
         }
     }
-
-    public setSourceUrl(url: Option<string>): void {
-        this.sourceUrl = url;
-    }
 }
 
-export default ApexModel;
+export { ApexModel };

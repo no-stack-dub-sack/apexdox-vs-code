@@ -1,10 +1,10 @@
-import * as vscode from 'vscode';
 import express from 'express';
 import open from 'open';
 import Utils from '../utils/Utils';
 import { existsSync } from 'fs';
 import { resolve } from 'path';
 import { Server } from 'http';
+import { window } from 'vscode';
 
 let server: Server;
 
@@ -25,9 +25,9 @@ export default async function createDocServer(targetDirectory: string, docsTitle
         server = app.listen(port);
 
         await open(`http://localhost:${port}/index.html`);
-        vscode.window.showInformationMessage(success(docsTitle));
+        window.showInformationMessage(success(docsTitle));
     } else {
-        vscode.window.showErrorMessage(error(resolvedTarget));
+        window.showErrorMessage(error(resolvedTarget));
     }
 }
 
