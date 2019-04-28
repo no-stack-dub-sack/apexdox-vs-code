@@ -3,8 +3,9 @@ General:
     ✔ Add DX-detector so source directory defaults to appropriate folder @done(19-04-23 21:04)
     ✔ Bundle extension @done(19-04-24 21:18)
     ✔ See why | symbol does not work in @example comments @done(19-04-24 20:03)
-    ☐ Support multiple source directories, needed for DX projects with features (this is very realistic, now, dealing with DX projects, where you might have classes in multiple directories)
-        ☐ How to handle source control URL with multi source dirs?
+    ✔ Support multiple source directories, needed for DX projects with features (this is very realistic, now, dealing with DX projects, where you might have classes in multiple directories) @done(19-04-27 22:11)
+        ✔ How to handle source control URL with multi source dirs? @done(19-04-27 22:11)
+    ✔ Implement our own version of `${workspaceFolder}` variable for settings.json @done(19-04-27 22:45)
     ☐ Resolve in-code TODOs
 
 Documentation:
@@ -18,3 +19,4 @@ Documentation:
         ☐ Example Project?
     ☐ CHANGELOG (include major changes since ApexDoc original)
     ☐ KNOWN ISSUES
+    ☐ Document ${workspaceFolder} settings variable

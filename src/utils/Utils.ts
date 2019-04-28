@@ -2,6 +2,9 @@ import ApexDoc from '../apexDoc/ApexDoc';
 import ApexModel from '../models/ApexModel';
 import ClassModel from '../models/ClassModel';
 import DocGen from '../apexDoc/DocGen';
+import { AUTHOR } from '../models/tags';
+import { resolve } from 'path';
+import { window, workspace, WorkspaceFolder } from 'vscode';
 
 export type Option<T, V = undefined> = T | V;
 
@@ -224,6 +227,31 @@ class Utils {
             words[words.length - 1] = `<span class="hljs-title">${last(words)}<span>`;
             return words.join(' ');
         }
+    }
+
+    public static resolveWorkspaceFolder(path: string): string {
+        // should be safe to cast this as not-undefined
+        // If running this tool, workspace folders should always exist.
+        const folders = <WorkspaceFolder[]>(workspace.workspaceFolders);
+
+        const rootFolderRe = /\$\{workspaceFolder\}(.*)?/;
+        const multiFolderRe = /\$\{workspaceFolder:(.*)\}(.*)/;
+
+        if (rootFolderRe.test(path)) {
+            const results = <RegExpExecArray>rootFolderRe.exec(path);
+            return resolve(folders[0].uri.fsPath, ...results[1].split(/\\|\//));
+        } else if (multiFolderRe.test(path)) {
+            const results = <RegExpExecArray>multiFolderRe.exec(path);
+            for (let folder of folders) {
+                if (folder.name === results[1]) {
+                    return resolve(folder.uri.fsPath, ...results[2].split(/\\|\//));
+                }
+            }
+
+            window.showWarningMessage(`Workspace variable in path '${path}' could not be resolved.`);
+        }
+
+        return path;
     }
 }
 
