@@ -88,25 +88,6 @@ class FileManager {
         return filesToCopy;
     }
 
-    private readFile(filePath: string): string {
-        if (filePath) {
-            const reader = new LineReader(filePath);
-            let contents = '';
-            let line;
-
-            while ((line = reader.readLine()) !== null) {
-                line = line.trim();
-                if (line) {
-                    contents += line;
-                }
-            }
-
-            return contents;
-        } else {
-            return '';
-        }
-    }
-
     /**
      * Parses HTML files provided by the user, like class group pages,
      * project home page, banner page, etc. Returns any content between
@@ -119,7 +100,7 @@ class FileManager {
      */
     public parseHTMLFile(filePath: string): Option<string, void> {
         if (!filePath.trim()) { return ; }
-        const contents = (this.readFile(filePath)).trim();
+        const contents = new LineReader(filePath).toString();
         if (contents) {
             const startIndex = contents.indexOf('<body>');
             const endIndex = contents.indexOf('</body>');

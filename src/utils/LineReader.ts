@@ -63,6 +63,23 @@ class LineReader {
         }
         return null;
     }
+
+    /**
+     * Convert the line reader's lines into a single string.
+     * @param trim A flag for determining whether or not white space
+     * between lines should be trimmed before concatenating into a
+     * single string.
+     */
+    public toString(trim = true): Option<string, null> {
+        if (this.lines.length) {
+            if (trim) {
+                return this.lines.reduce((a, b) => a.trim() + b.trim());
+            }
+
+            return this.lines.join('');
+        }
+        return null;
+    }
 }
 
 export default LineReader;
