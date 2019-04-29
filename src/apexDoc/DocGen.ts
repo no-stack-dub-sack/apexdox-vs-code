@@ -446,7 +446,6 @@ class DocGen {
 
             if (cg && cg.getContentFilename()) {
                 let destination = cg.getContentFilename() + '.html';
-                // handle both onclick and onkeydown when tabbing to link
                 markup +=
                     `<a href="javascript:void(0)" title="See Class Group info"
                         onclick="goToLocation('${destination}');">${group}</a>`;
@@ -454,7 +453,7 @@ class DocGen {
                 markup += `<span>${group}</span>`;
             }
 
-            markup += '</summary>';
+            markup += '</summary><ul>';
             menuMarkupMap.set(group, markup);
         }
 
@@ -466,12 +465,10 @@ class DocGen {
             if (model.getNameLine()) {
                 const fileName = model.getName()
                     , markup =
-                    `<ul>
-                        <li id="item-${fileName}" class="navItem class ${model.getScope()}"
+                        `<li id="item-${fileName}" class="navItem class ${model.getScope()}"
                             onclick="goToLocation('${fileName}.html');">
-                            <a href="javascript:void(0)">${fileName}</a>
-                        </li>
-                    </ul>`;
+                            <a tabindex="1" href="javascript:void(0)">${fileName}</a>
+                        </li>`;
 
                 menuMarkupMap.set(group, menuMarkupMap.get(group) + markup);
             }
@@ -479,7 +476,7 @@ class DocGen {
 
         // iterate over map and concat each menu item with the
         // opening markup, closing each <details> tag along the way
-        menuMarkupMap.forEach(menuItem => markup += menuItem + '</details>');
+        menuMarkupMap.forEach(menuItem => markup += menuItem + '</ul></details>');
 
         // close up our main div and return
         return markup + '</nav></div></td>';
