@@ -97,7 +97,7 @@ Note that in the table below, the 'Class' column includes any top-level types th
 |-------|-------------|-------|--------|------|----------|
 | **@description** | A description or overview of the code you are documenting. | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | **@group** | The group to display a class under in the menu hierarchy. Un-grouped classes will be placed under 'Miscellaneous'. | :heavy_check_mark: | :x: | :x: | :x: |
-| **@group-content** | A relative path (to the provided source directory) to a static HTML file that provides content about the group. The group will be hyperlinked to this content, which will be parsed and placed into the documentation's content window. | :heavy_check_mark: | :x: | :x: | :x: |
+| **@group-content** | A relative path (to the project's root directory) to a static HTML file that provides content about the class group. The group's menu item will be hyperlinked to this content, which will be parsed and placed into the documentation's content window. | :heavy_check_mark: | :x: | :x: | :x: |
 | **@author** | The author of a class or method. | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
 | **@since** | The date a class or method was first implemented. | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
 | **@deprecated** | Indicates class or method should no longer be used; message should indicate replacement path. | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |

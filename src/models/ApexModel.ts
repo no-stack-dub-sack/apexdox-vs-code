@@ -3,7 +3,7 @@ import ApexDoc from '../apexDoc/ApexDoc';
 import Utils, { Option } from '../utils/Utils';
 import { existsSync } from 'fs';
 import { resolve } from 'path';
-import { window } from 'vscode';
+import { window, workspace, WorkspaceFolder } from 'vscode';
 
 abstract class ApexModel {
 
@@ -170,14 +170,14 @@ abstract class ApexModel {
         }
     }
 
-    // TODO: change this to relative to project root now that we can
-    // have multiple sources! This will have to be fixed in README too.
+    // TODO: update README about where content path is relative to
     private resolveContentPath(contentPath: string): Option<string, null> {
-        for (let src of ApexDoc.config.source) {
-            let path = resolve(src.path, contentPath.trim());
-            if (/.*\.s?html?$/.test(contentPath.trim()) && existsSync(path)) {
-                return path;
-            }
+        // If running this tool, workspace folders should always exist, okay to cast.
+        const projectRoot = (<WorkspaceFolder[]>workspace.workspaceFolders)[0].uri.fsPath;
+        const path = resolve(projectRoot, contentPath.trim());
+
+        if (contentPath.trim().endsWith('.html') && existsSync(path)) {
+            return path;
         }
 
         const warningMessage =

@@ -20,3 +20,4 @@ Documentation:
     ☐ CHANGELOG (include major changes since ApexDoc original)
     ☐ KNOWN ISSUES
     ☐ Document ${workspaceFolder} settings variable
+    ☐ Create sample Apex project with output documentation that shows most use cases
