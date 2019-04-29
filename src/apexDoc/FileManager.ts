@@ -99,7 +99,7 @@ class FileManager {
      * @returns string representing the markup or void.
      */
     public parseHTMLFile(filePath: string): Option<string, void> {
-        if (!filePath.trim()) { return ; }
+        if (!filePath.trim()) { return; }
         const contents = new LineReader(filePath).toString();
         if (contents) {
             const startIndex = contents.indexOf('<body>');
@@ -129,7 +129,7 @@ class FileManager {
             } else {
                 const contents = this.parseHTMLFile(pagePath);
                 if (contents) {
-                    const markup = this.makePage(contents, banner, links, 'Home');
+                    const markup = this.makePage(contents, banner, links);
                     fileMap.set(basename(pagePath.substring(0, pagePath.lastIndexOf('.'))), markup);
                 }
             }

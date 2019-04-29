@@ -4,11 +4,14 @@ import Utils, { Option } from './Utils';
 import { existsSync } from 'fs';
 
 class Guards {
-    public static directory(path: string, arg: string): string {
+    public static directory(path: string, arg: string, extension?: string): string {
         this.typeGuard('string', path, arg);
         // blank directory's can be ignored as default for non-required
         // arguments. Source directory will always be populated by this point.
         if (path === '' || existsSync(path)) {
+            if (extension && !path.endsWith(extension)) {
+                throw new ApexDocError(ApexDocError.INVALID_EXTENSION(arg, path, extension));
+            }
             return path;
         } else {
             throw new ApexDocError(ApexDocError.INVALID_DIRECTORY(arg, path));

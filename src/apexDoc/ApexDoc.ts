@@ -81,12 +81,13 @@ class ApexDoc {
                 }
             });
 
-            // load up optional banner file template and create class groups for menu
+            // load up optional templates and create class groups for menu
             const bannerContents = fileManager.parseHTMLFile(config.bannerPagePath);
+            const supplementaryPages = [config.homePagePath, ...config.pages];
             const classGroupMap = this.createClassGroupMap(models);
 
-            // create our set of HTML files
-            fileManager.createDocs(classGroupMap, models, bannerContents, [config.homePagePath]);
+            // run our documentation engine and create set of HTML files
+            fileManager.createDocs(classGroupMap, models, bannerContents, supplementaryPages);
 
             // we are done!
             const endElapsed = performance.now();

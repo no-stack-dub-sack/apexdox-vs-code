@@ -70,7 +70,7 @@ class LineReader {
      * between lines should be trimmed before concatenating into a
      * single string.
      */
-    public toString(trim = true): Option<string, null> {
+    public toString(trim = false): Option<string, null> {
         if (this.lines.length) {
             if (trim) {
                 return this.lines.reduce((a, b) => a.trim() + b.trim());

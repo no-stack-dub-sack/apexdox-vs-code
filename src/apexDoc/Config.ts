@@ -23,7 +23,8 @@ export interface IApexDocConfig {
 	showTOCSnippets: boolean;
 	sortOrder: string;
     cleanDir: boolean;
-	assets: string[];
+    assets: string[];
+    pages: string[];
     port: number;
 }
 
@@ -41,6 +42,7 @@ class Config implements IApexDocConfig {
     public cleanDir: boolean;
     public assets: string[];
     public port: number;
+    public pages: string[];
 
     public constructor() {
         // this should be safe to cast as not-undefined.
@@ -52,6 +54,7 @@ class Config implements IApexDocConfig {
         this.targetDirectory = resolve(projectRoot, 'apex-documentation');
 
         this.port = 8080;
+        this.pages = [];
         this.includes = [];
         this.excludes = [];
         this.assets = [];
@@ -148,8 +151,9 @@ class Config implements IApexDocConfig {
 
         // directories: don't you wish TypeScript had a |> operator!
         config.targetDirectory = this.resolveDirectory(config.targetDirectory);
-        config.homePagePath = this.resolveDirectory(config.homePagePath, 'homePagePath');
-        config.bannerPagePath = this.resolveDirectory(config.bannerPagePath, 'bannerPagePath');
+        config.homePagePath = this.resolveDirectory(config.homePagePath, 'homePagePath', '.html');
+        config.bannerPagePath = this.resolveDirectory(config.bannerPagePath, 'bannerPagePath', '.html');
+        config.pages = config.pages.map(pagePath => this.resolveDirectory(pagePath, 'pages', '.html'));
 
         config.source = config.source.map(src => ({
             path: this.resolveDirectory(src.path, 'source.path'),
@@ -164,9 +168,9 @@ class Config implements IApexDocConfig {
      * @param path The directory to attempt to resolve
      * @param param The setting name for this path. e.g. 'homePagePath'
      */
-    private static resolveDirectory(path: string, param?: string): string {
+    private static resolveDirectory(path: string, param?: string, extension?: string): string {
         if (param) {
-            return Guards.directory(Utils.resolveWorkspaceFolder(path), param);
+            return Guards.directory(Utils.resolveWorkspaceFolder(path), param, extension);
         } else {
             return Guards.targetDirectory(Utils.resolveWorkspaceFolder(path));
         }

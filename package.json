@@ -82,17 +82,17 @@
 			"apexdoc2.config.homePagePath": {
 				"type": "string",
 				"default": "",
-				"description": "An absolute path of an HTML file that contains the project's 'home page' markup. The HTML inside the <body> tag will be used."
+				"markdownDescription": "An absolute path of an HTML file that contains the project's 'home page' markup. Only the markup inside the `<body>` tags will be used, or if the file contains only a partial HTML page, e.g. `<h2>Cool!</h2>`, the entire contents will be used."
 			},
 			"apexdoc2.config.bannerPagePath": {
 				"type": "string",
 				"default": "",
-				"description": "An absolute path of an HTML file that contains the project's 'banner' markup. The HTML inside the <body> tag will be used."
+				"markdownDescription": "An absolute path of an HTML file that contains the project's 'banner' markup. Only the markup inside the `<body>` tags will be used, or if the file contains only a partial HTML page, e.g. `<h2>Cool!</h2>`, the entire contents will be used."
 			},
 			"apexdoc2.config.title": {
 				"type": "string",
 				"default": "Apex Documentation",
-				"description": "The value for the output HTML <title> attribute. Defaults to 'Apex Documentation'."
+				"markdownDescription": "The value for the output HTML `<title>` attribute. Defaults to 'Apex Documentation'."
 			},
 			"apexdoc2.config.scope": {
 				"type": "array",
@@ -109,7 +109,7 @@
 			"apexdoc2.config.showTOCSnippets": {
 				"type": "boolean",
 				"default": true,
-				"description": "If set to `false`, ApexDoc2 will hide methods' description snippet in the class's table of contents. Defaults to `true`."
+				"markdownDescription": "If set to `false`, ApexDoc2 will hide methods' description snippet in the class's table of contents. Defaults to `true`."
 			},
 			"apexdoc2.config.sortOrder": {
 				"type": "string",
@@ -119,32 +119,37 @@
 			"apexdoc2.config.port": {
 				"type": "number",
 				"default": 8080,
-				"description": "The port number that the `ApexDoc2: Open Docs` command will serve your docs on. Defaults to `8080`."
+				"markdownDescription": "The port number that the `ApexDoc2: Open Docs` command will serve your docs on. Defaults to `8080`."
 			},
 			"apexdoc2.config.assets": {
 				"type": "array",
 				"default": [],
-				"description": "An array of absolute paths of files you would like to be included in the target directory's 'assets' folder. This is where ApexDoc2 keeps JavaScript, CSS, and images. See README for additional details."
+				"markdownDescription": "An array of absolute paths of files you would like to be included in the target directory's 'assets' folder. This is where ApexDoc2 keeps JavaScript, CSS, and images. Read mode about this setting [here](https://github.com/no-stack-dub-sack/ApexDoc2-VSCode#extension-settings)."
 			},
 			"apexdoc2.config.cleanDir": {
 				"type": "boolean",
 				"default": false,
-				"description": "If set to `true`, ApexDoc2 will use rimraf to remove any files or folders in your target directory before creating your docs. Useful for keeping a continuously growing project's documentation folder clean. Defaults to `false`."
+				"markdownDescription": "If set to `true`, ApexDoc2 will use rimraf to remove any files or folders in your target directory before creating your docs. Useful for keeping a continuously growing project's documentation folder clean. Defaults to `false`."
+			},
+			"apexdoc2.config.pages": {
+				"type": "array",
+				"default": [],
+				"markdownDescription": "An array of absolute paths of HTML files that you'd like to be available to your documentation.\nFor example, if you'd like to link to a page from your project's home page or from one of it's class group pages, include that page here.\nIf your file's path is `path/to/MyCoolPage.html`, you can link to it with `href=\"./MyCoolPage.html\"`.\nRead mode about this setting [here](https://github.com/no-stack-dub-sack/ApexDoc2-VSCode#extension-settings)."
 			},
 			"apexdoc2.stubs.alignItems": {
 				"type": "boolean",
 				"default": false,
-				"description": "Vertically align anything after an ApexDoc2 @tag. Defaults to 'false'."
+				"markdownDescription": "Vertically align anything after an ApexDoc2 @tag. E.g.:\n```/**\n * @description         Here's a description\n * @param myParam       Param description\n * @param anotherParam  Another param description\n */\n```\nDefaults to `false`."
 			},
 			"apexdoc2.stubs.omitDescriptionTag": {
 				"type": "boolean",
 				"default": true,
-				"description": "ApexDoc2 '@description' tags are optional. Set this to false to include them. Defaults to 'true'."
+				"markdownDescription": "ApexDoc2 `@description` tags are optional. Set this to `false` to include them. Defaults to `true`."
 			},
 			"apexdoc2.stubs.spacious": {
 				"type": "boolean",
 				"default": false,
-				"description": "When set to true ApexDoc2 comment stubs will add an empty line after the description line and before the next tag. Defaults to 'false'."
+				"markdownDescription": "When set to true ApexDoc2 comment stubs will add an empty line after the description line and before the next tag. Defaults to `false`."
 			}
 		}
 	},
