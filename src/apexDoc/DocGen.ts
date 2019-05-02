@@ -5,6 +5,7 @@ import ApexDocError from '../utils/ApexDocError';
 import escape from 'lodash.escape';
 import Utils, { last, Option } from '../utils/Utils';
 import { MethodMarkupGenerator } from './markupGenerators/MethodMarkupGenerator';
+import { TopLevelMarkupGenerator } from './markupGenerators/TopLevelMarkupGenerator';
 
 class DocGen {
     public static sortOrderStyle: string;
@@ -57,52 +58,24 @@ class DocGen {
         return contents;
     }
 
-    private static documentTopLevelAttributes(model: Models.TopLevelModel, modelMap: Map<string, Models.TopLevelModel>, className: string, additionalContent: string): string {
-        const classSourceLink = this.maybeMakeSourceLink(model, className, this.escapeHTML(model.getNameLine()));
-        let contents = '';
+    private static documentTopLevelAttributes(model: Models.TopLevelModel, modelMap: Map<string, Models.TopLevelModel>, className: string, additionalContent = ''): string {
+        const generator = new TopLevelMarkupGenerator(model);
 
-        if (model.getAnnotations().length) {
-            contents += `<div class="classAnnotations">${model.getAnnotations().join(' ')}</div>`;
-        }
-
-        contents += `<div class="classSignature">${classSourceLink}</div>`;
-
-        if (model.getDescription()) {
-            contents += `<div class="classDetails"><div>${this.escapeHTML(<string>model.getDescription(), true)}</div>`;
-        }
-
+        let markup = '';
+        markup += generator.getAnnotations('classAnnotations');
+        markup += generator.maybeMakeSourceLink(className, this.escapeHTML(model.getNameLine()));
         // add any additional content passed in from the caller. currently, only
         // use case is the values table used when documenting class-level enums
-        if (additionalContent) {
-            contents += additionalContent;
-        }
+        markup += generator.getDescription('classDetails');
+        markup += additionalContent;
+        markup += generator.getDeprecated();
+        markup += generator.getSee(modelMap);
+        markup += generator.getAuthor();
+        markup += generator.getSince();
+        markup += generator.getExample();
 
-        if (model.getDeprecated()) {
-            contents +='<div class="classSubtitle deprecated">Deprecated</div>';
-            contents += `<div class="classSubDescription">${this.escapeHTML(model.getDeprecated(), true)}</div>`;
-        }
-
-        if (model.getSee().length) {
-            contents += '<div class="classSubtitle">See</div>';
-            contents += `<div class="classSubDescription">${this.makeSeeLinks(modelMap, model.getSee())}</div>`;
-        }
-
-        if (model.getAuthor()) {
-            contents += `<br/>${this.escapeHTML(model.getAuthor())}`;
-        }
-
-        if (model.getSince()) {
-            contents += `<br/>${this.escapeHTML(model.getSince())}`;
-        }
-
-        if (model.getExample()) {
-            contents += '<div class="classSubTitle">Example</div>';
-            contents += `<pre class="codeExample"><code>${this.escapeHTML(model.getExample())}</code></pre>`;
-        }
-
-        contents += '</div><p/>';
-
-        return contents;
+        markup = `<div class="classDetails">${markup}</div><p/>`;
+        return markup;
     }
 
     private static documentProperties(cModel: Models.ClassModel): string {

@@ -10,10 +10,18 @@ abstract class MarkupGenerator {
     }
 
     public getAnnotations(className: string): string {
+        if (!this.model.annotations.length) {
+            return '';
+        }
+
         return `<div class="${className}">${this.model.annotations.join(' ')}</div>`;
     }
 
     public getDescription(className = ''): string {
+        if (!this.model.description) {
+            return '';
+        }
+
         return `<div class="${className}">${DocGen.escapeHTML(this.model.description, true)}</div>`;
     }
 
