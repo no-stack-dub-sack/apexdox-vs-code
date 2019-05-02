@@ -4,6 +4,7 @@ import ApexDoc from './ApexDoc';
 import ApexDocError from '../utils/ApexDocError';
 import escape from 'lodash.escape';
 import Utils, { last, Option } from '../utils/Utils';
+import { MethodMarkupGenerator } from './markupGenerators/MethodMarkupGenerator';
 
 class DocGen {
     public static sortOrderStyle: string;
@@ -12,7 +13,7 @@ class DocGen {
     public static documentClass(cModel: Models.ClassModel, modelMap: Map<string, Models.TopLevelModel>): string {
         const hasSource = cModel.getSourceUrl() ? true : false;
         const sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : '';
-        const sectionSourceLink = this.maybeMakeSourceLink(cModel, cModel.getTopmostClassName(), this.escapeHTML(cModel.getName(), false));
+        const sectionSourceLink = this.maybeMakeSourceLink(cModel, cModel.getTopmostClassName(), this.escapeHTML(cModel.getName()));
         const header = `<h2 class="sectionTitle" id="${cModel.getName()}">${sectionSourceLink + sourceLinkIcon}</h2>`;
 
         let contents = this.documentTopLevelAttributes(cModel, modelMap, cModel.getTopmostClassName(), '');
@@ -35,7 +36,7 @@ class DocGen {
     public static documentEnum(eModel: Models.EnumModel, modelMap: Map<string, Models.TopLevelModel>): string {
         const hasSource = eModel.getSourceUrl() ? true : false
             , sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : ''
-            , sectionSourceLink = this.maybeMakeSourceLink(eModel, eModel.getName(), this.escapeHTML(eModel.getName(), false));
+            , sectionSourceLink = this.maybeMakeSourceLink(eModel, eModel.getName(), this.escapeHTML(eModel.getName()));
 
         let contents =
             `<h2 class="sectionTitle" id="${eModel.getName()}">
@@ -57,7 +58,7 @@ class DocGen {
     }
 
     private static documentTopLevelAttributes(model: Models.TopLevelModel, modelMap: Map<string, Models.TopLevelModel>, className: string, additionalContent: string): string {
-        const classSourceLink = this.maybeMakeSourceLink(model, className, this.escapeHTML(model.getNameLine(), false));
+        const classSourceLink = this.maybeMakeSourceLink(model, className, this.escapeHTML(model.getNameLine()));
         let contents = '';
 
         if (model.getAnnotations().length) {
@@ -87,16 +88,16 @@ class DocGen {
         }
 
         if (model.getAuthor()) {
-            contents += `<br/>${this.escapeHTML(model.getAuthor(), false)}`;
+            contents += `<br/>${this.escapeHTML(model.getAuthor())}`;
         }
 
         if (model.getSince()) {
-            contents += `<br/>${this.escapeHTML(model.getSince(), false)}`;
+            contents += `<br/>${this.escapeHTML(model.getSince())}`;
         }
 
         if (model.getExample()) {
             contents += '<div class="classSubTitle">Example</div>';
-            contents += `<pre class="codeExample"><code>${this.escapeHTML(model.getExample(), false)}</code></pre>`;
+            contents += `<pre class="codeExample"><code>${this.escapeHTML(model.getExample())}</code></pre>`;
         }
 
         contents += '</div><p/>';
@@ -202,162 +203,62 @@ class DocGen {
 
     private static documentMethods(cModel: Models.ClassModel, modelMap: Map<string, Models.TopLevelModel>): string {
         // track Ids used to make sure we're not generating duplicate
-        // Ids within this class, and so that overloaded methods each
+        // ids within this class and so that overloaded methods each
         // have their own unique anchor to link to in the TOC.
         const idCountMap = new Map<string, number>();
-
-        // Append <init> to method name if constructor
-        const formatConstructor = (methodName: string): string => {
-            // split class model name on '.' and take last, in case class is inner. otherwise
-            // we'd be comparing a to its fully qualified class name, e.g. MyClass.SomeMethod
-            if (methodName.toLowerCase() === last(cModel.getName().split('.')).toLowerCase()) {
-                methodName += '.&lt;init&gt;';
-            }
-
-            return methodName;
-        };
-
-        // See if method ID has been used previously in this class
-        // (must be an overloaded method or constructor) and amend
-        // as needed to ensure all of our methods have unique IDs
-        const getMethodId = (method: Models.MethodModel): string => {
-            let methodId = cModel.getName() + '.' + method.getName();
-            let count: Option<number>;
-            if ((count = idCountMap.get(methodId)) === undefined) {
-                idCountMap.set(methodId, 1);
-            } else {
-                idCountMap.set(methodId, count + 1);
-                methodId += '_' + count;
-            }
-            return methodId;
-        };
-
-        // make our Table of Contents entry
-        const makeTOCEntry = (method: Models.MethodModel, name: string, id: string, deprecated: boolean): string => {
-            let entry =
-                `<li class="method ${method.getScope()}">
-                    <a class="methodTOCEntry ${(deprecated ? 'deprecated' : '')}" href="#${id}">
-                        ${name}
-                    </a>`;
-
-            if (this.showTOCSnippets && method.getDescription()) {
-                entry += `<div class="methodTOCDescription">${method.getDescription()}</div>`;
-            }
-
-            return entry += '</li>';
-        };
 
         // retrieve methods to work with in the order user specifies
         const methods = this.sortOrderStyle === ApexDoc.ORDER_ALPHA
             ? cModel.getMethodsSorted()
             : cModel.getMethods();
 
-        // start Methods
-        let contents = '<div class="methodsContainer">';
-        let tocHTML = '<ul class="methodTOC">';
-        let methodsHTML = '';
+        // initialize a couple of strings to house our markup
+        let tocMarkup = '';
+        let methodsMarkup = '';
 
         // full method display
         for (let method of methods) {
-            const methodId = getMethodId(method);
-            const isDeprecated = method.getDeprecated().length > 0;
-            const methodName = formatConstructor(method.getName());
-            const nameLine = Utils.highlightNameLine(this.escapeHTML(method.getNameLine(), false));
-            const methodSourceLink = this.maybeMakeSourceLink(method, cModel.getTopmostClassName(), nameLine);
-            tocHTML += makeTOCEntry(method, methodName, methodId, isDeprecated);
+            // instantiate our markup generator
+            const generator = new MethodMarkupGenerator(method);
 
-            // open current method
-            methodsHTML += `<div class="method ${method.getScope()}">`;
-            methodsHTML += `<h2 class="methodHeader ${(isDeprecated ? 'deprecated' : '')}" id="${methodId}">${methodName}</h2>`;
+            // get some variables we'll reuse a couple of times
+            const methodId = generator.generateMethodId(idCountMap, cModel);
+            const methodName = generator.formatConstructorName(cModel);
+            const nameLine = generator.highlightNameLine(this.escapeHTML(method.getNameLine()));
 
-            if (method.getAnnotations().length) {
-                methodsHTML += `<div class="methodAnnotations">${method.getAnnotations().join(' ')}</div>`;
-            }
+            // make our TOC entry, we'll concat this with the rest of the markup in the proper order later
+            tocMarkup += generator.getTOCEntry(this.showTOCSnippets, methodName, methodId);
 
-            methodsHTML += `<div class="methodSignature">${methodSourceLink}</div>`;
+            // run our generators in the desired order
+            let methodMarkup = '';
+            methodMarkup += generator.getHeader(methodId, methodName);
+            methodMarkup += generator.getAnnotations('methodAnnotations');
+            methodMarkup += generator.maybeMakeSourceLink(cModel.getTopmostClassName(), nameLine);
+            methodMarkup += generator.getDescription('methodDescription');
+            methodMarkup += generator.getDeprecated();
+            methodMarkup += generator.getParams();
+            methodMarkup += generator.getReturns();
+            methodMarkup += generator.getException();
+            methodMarkup += generator.getSee(modelMap);
+            methodMarkup += generator.getAuthor();
+            methodMarkup += generator.getSince();
+            methodMarkup += generator.getExample();
 
-            if (method.getDescription()) {
-                methodsHTML += `<div class="methodDescription">${this.escapeHTML(<string>method.getDescription(), true)}</div>`;
-            }
-
-            if (isDeprecated) {
-                methodsHTML +='<div class="methodSubTitle deprecated">Deprecated</div>';
-                methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getDeprecated(), true)}</div>`;
-            }
-
-            if (method.getParams().length) {
-                // @param someParam This is the params description.
-                methodsHTML += '<div class="methodSubTitle">Parameters</div>';
-                for (let param of method.getParams()) {
-                    param = this.escapeHTML(param, true).trim();
-                    if (param) {
-                        let paramName: string;
-                        let paramDescription: string;
-                        const match: Option<RegExpExecArray, null> = /\s/.exec(param);
-
-                        if (match !== null) {
-                            const idx = match.index;
-                            paramName = param.substring(0, idx);
-                            paramDescription = param.substring(idx + 1);
-                        } else {
-                            paramName = param;
-                            paramDescription = '';
-                        }
-
-                        methodsHTML += `<div class="paramName">${paramName}</div>`;
-
-                        if (paramDescription) {
-                            methodsHTML += `<div class="paramDescription">${paramDescription}</div>`;
-                        }
-                    }
-                }
-                // end Parameters
-            }
-
-            if (method.getReturns()) {
-                methodsHTML += '<div class="methodSubTitle">Returns</div>';
-                methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getReturns(), true)}</div>`;
-            }
-
-            if (method.getException()) {
-                methodsHTML += '<div class="methodSubTitle">Exceptions</div>';
-                methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getException(), true)}</div>`;
-            }
-
-            if (method.getSee().length) {
-                methodsHTML += '<div class="methodSubTitle">See</div>';
-                methodsHTML += `<div class="methodSubDescription">${this.makeSeeLinks(modelMap, method.getSee())}</div>`;
-            }
-
-            if (method.getAuthor()) {
-                methodsHTML += '<div class="methodSubTitle">Author</div>';
-                methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getAuthor(), false)}</div>`;
-            }
-
-            if (method.getSince()) {
-                methodsHTML += '<div class="methodSubTitle">Date</div>';
-                methodsHTML += `<div class="methodSubDescription">${this.escapeHTML(method.getSince(), false)}</div>`;
-            }
-
-            if (method.getExample()) {
-                methodsHTML += '<div class="methodSubTitle">Example</div>';
-                methodsHTML += `<pre class="codeExample"><code>${this.escapeHTML(method.getExample(), false)}</code></pre>`;
-            }
-
-            // end current method
-            methodsHTML += '</div>';
+            // add method markup to our running methodsMarkup string
+            methodsMarkup += `<div class="method ${method.scope}">${methodMarkup}</div>`;
         }
 
         // concat and close TOC and full methods display HTML
-        contents += tocHTML;
-        contents += '</ul>';
-        contents += methodsHTML;
-        contents += '</div>';
+        const markup =
+            `<div class="methodsContainer">
+                <ul class="methodTOC">${tocMarkup}</ul>
+                ${methodsMarkup}
+            </div>`;
 
-        return this.wrapInDetailsTag(contents, '<h2 class="subsectionTitle methods">Methods</h2>', "subSection methods");
+        return this.wrapInDetailsTag(markup, '<h2 class="subsectionTitle methods">Methods</h2>', "subSection methods");
     }
 
-    public static escapeHTML(str: string, wrapBackticks: boolean): string {
+    public static escapeHTML(str: string, wrapBackticks: boolean = false): string {
         let result = wrapBackticks ? this.wrapInlineCode(escape(str)) : escape(str);
         // unescape <br> tags, we want to keep these
         result = result.replace(/&lt;br\s?\/?&gt;/g, '<br>');
@@ -496,7 +397,7 @@ class DocGen {
         }
     }
 
-    private static makeSeeLinks(modelMap: Map<string, Models.TopLevelModel>, qualifiers: string[]): string {
+    public static makeSeeLinks(modelMap: Map<string, Models.TopLevelModel>, qualifiers: string[]): string {
         // initialize list to store created links
         const links = new Array<string>();
 

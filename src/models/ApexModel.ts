@@ -7,22 +7,22 @@ import { window, workspace, WorkspaceFolder } from 'vscode';
 
 abstract class ApexModel {
 
-    protected annotations: string[] = [];
-    protected author: string = '';
-    protected deprecated: string = '';
-    protected description: string = '';
-    protected example: string = '';
-    protected exception: string = '';
-    protected groupContentPath: string = '';
-    protected groupName: string = '';
-    protected lineNum: number = 0;
-    protected nameLine: string = '';
-    protected params: string[] = [];
-    protected returns: string = '';
-    protected scope: string = '';
-    protected see: string[] = [];
-    protected since: string = '';
-    protected sourceUrl?: string;
+    public annotations: string[] = [];
+    public author: string = '';
+    public deprecated: string = '';
+    public description: string = '';
+    public example: string = '';
+    public exception: string = '';
+    public groupContentPath: string = '';
+    public groupName: string = '';
+    public lineNum: number = 0;
+    public nameLine: string = '';
+    public params: string[] = [];
+    public returns: string = '';
+    public scope: string = '';
+    public see: string[] = [];
+    public since: string = '';
+    public sourceUrl?: string;
 
     protected constructor(comments: string[], sourceUrl: Option<string>) {
         this.parseComments(comments);

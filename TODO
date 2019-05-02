@@ -6,6 +6,8 @@ General:
     ✔ Support multiple source directories, needed for DX projects with features (this is very realistic, now, dealing with DX projects, where you might have classes in multiple directories) @done(19-04-27 22:11)
         ✔ How to handle source control URL with multi source dirs? @done(19-04-27 22:11)
     ✔ Implement our own version of `${workspaceFolder}` variable for settings.json @done(19-04-27 22:45)
+    ☐ Support TODO and Hack tags?
+    ☐ Replace get*() on models with getters, and set up backing fields so we can have more idiomatic private set, public get
     ☐ Resolve in-code TODOs
 
 Documentation:
