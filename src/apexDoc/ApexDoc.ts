@@ -76,7 +76,7 @@ class ApexDoc {
                 const model = this.parseFileContents(entry.path, entry.sourceUrl);
 
                 if (model) {
-                    models.set(model.getName().toLowerCase(), model);
+                    models.set(model.name.toLowerCase(), model);
                     numProcessed++;
                 }
             });
@@ -104,15 +104,15 @@ class ApexDoc {
         models.forEach(model => {
             // if group name is falsy, default to this misc bucket
             // un-grouped classes will be placed under this menu
-            const group = model.getGroupName() || 'Miscellaneous'
-                , contentPath = model.getGroupContentPath();
+            const group = model.groupName || 'Miscellaneous'
+                , contentPath = model.groupContentPath;
 
             let classGroup = classGroupMap.get(group);
 
             if (!classGroup) {
                 classGroup = new Models.ClassGroup(group, contentPath);
-            } else if (!classGroup.getContentSource()) {
-                classGroup.setContentSource(contentPath);
+            } else if (!classGroup.contentSource) {
+                classGroup.contentSource = contentPath;
             }
 
             classGroupMap.set(group, classGroup);
@@ -272,7 +272,7 @@ class ApexDoc {
                 if (!cModel && cModels.length === 0) {
                     return eModel;
                 } else {
-                    cModel && cModel.getEnums().push(eModel);
+                    cModel && cModel.enums.push(eModel);
                     comments = [];
                     continue;
                 }
@@ -290,7 +290,7 @@ class ApexDoc {
 
                 let mModel: Models.MethodModel = new Models.MethodModel(comments, line, startingLine, sourceUrl);
                 Utils.parseAnnotations(<string>reader.peekPrevLine(), line, mModel);
-                cModel && cModel.getMethods().push(mModel);
+                cModel && cModel.methods.push(mModel);
                 comments = [];
                 continue;
             }
@@ -298,7 +298,7 @@ class ApexDoc {
             // must be a property
             let pModel: Models.PropertyModel = new Models.PropertyModel(comments, line, lineNum, sourceUrl);
             Utils.parseAnnotations(<string>reader.peekPrevLine(), line, pModel);
-            cModel && cModel.getProperties().push(pModel);
+            cModel && cModel.properties.push(pModel);
             comments = [];
             continue;
         }

@@ -1,33 +1,30 @@
 import { basename } from 'path';
 
 class ClassGroup {
-    private name: string;
-    private contentSource: string;
+    private _name: string;
+    private _contentSource: string;
 
     public constructor(name: string, contentSource: string) {
-        this.name = name;
-        this.contentSource = contentSource;
+        this._name = name;
+        this._contentSource = contentSource;
     }
 
-    public getName(): string {
-        return this.name;
+    public get name(): string {
+        return this._name;
     }
 
-    public setName(name: string): void {
-        this.name = name;
+
+    public get contentSource(): string {
+        return this._contentSource;
     }
 
-    public getContentSource(): string {
-        return this.contentSource;
+    public set contentSource(contentSource: string) {
+        this._contentSource = contentSource;
     }
 
-    public setContentSource(contentSource: string): void {
-        this.contentSource = contentSource;
-    }
-
-    public getContentFilename(): string {
-        if (this.contentSource) {
-            let fileName = basename(this.contentSource);
+    public get contentFileName(): string {
+        if (this._contentSource) {
+            let fileName = basename(this._contentSource);
             let idx = fileName.lastIndexOf('.');
             return fileName.substring(0, idx);
         }
@@ -36,4 +33,4 @@ class ClassGroup {
     }
 }
 
-export  { ClassGroup };
+export { ClassGroup };

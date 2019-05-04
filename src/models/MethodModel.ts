@@ -8,31 +8,30 @@ class MethodModel extends ApexModel {
         this.setNameLine(nameLine, lineNum);
     }
 
-    public getAuthor(): string {
-        return !this.author ? '' : this.author;
+    public get author(): string {
+        return this._author;
     }
 
-    public getSince(): string {
-        return !this.since ? '' : this.since;
+    public get since(): string {
+        return this._since;
     }
 
-    public getDeprecated(): string {
-        return !this.deprecated ? '' : this.deprecated;
+    public get deprecated(): string {
+        return this._deprecated;
     }
 
-    public getExample(): string {
-        // return example and remove trailing white space which
-        // may have built up due to the allowance of preserving
-        // white pace in complex code example blocks for methods
-        return !this.example ? '' : this.example.trimRight();
+    public get example(): string {
+        // remove trailing white space which may have built
+        // up due to the allowance of preserving white space
+        return this._example.trimRight();
     }
 
-    public getException(): string {
-        return !this.exception ? '' : this.exception;
+    public get exception(): string {
+        return this._exception;
     }
 
-    public getName(): string {
-        let nameLine = this.getNameLine();
+    public get name(): string {
+        let nameLine = this.nameLine;
         if (nameLine) {
             nameLine = nameLine.trim();
             let lastIndex = nameLine.indexOf('(');
@@ -44,12 +43,12 @@ class MethodModel extends ApexModel {
         return '';
     }
 
-    public getParams(): string[] {
-        return this.params;
+    public get params(): string[] {
+        return this._params;
     }
 
-    public getParamsFromNameLine(): string[] {
-        const nameLine = this.getNameLine();
+    public get paramsFromNameLine(): string[] {
+        const nameLine = this.nameLine;
         const paramsList = nameLine.substring(nameLine.indexOf('(') + 1, nameLine.indexOf(')'));
         let params = paramsList.includes(',') ? paramsList.split(',') : [];
 
@@ -61,12 +60,12 @@ class MethodModel extends ApexModel {
         return <string[]>result;
     }
 
-    public getReturns(): string {
-        return !this.returns ? '' : this.returns;
+    public get returns(): string {
+        return this._returns;
     }
 
-    public getSee(): string[] {
-        return this.see;
+    public get see(): string[] {
+        return this._see;
     }
 
     protected setNameLine(nameLine: string, lineNum: number): void {
@@ -81,8 +80,8 @@ class MethodModel extends ApexModel {
         super.setNameLine(nameLine, lineNum);
     }
 
-    public setScope(scope: string): void {
-        this.scope = scope;
+    public set scope(scope: string) {
+        this._scope = scope;
     }
 }
 

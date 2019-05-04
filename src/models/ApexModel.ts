@@ -7,52 +7,52 @@ import { window, workspace, WorkspaceFolder } from 'vscode';
 
 abstract class ApexModel {
 
-    public annotations: string[] = [];
-    public author: string = '';
-    public deprecated: string = '';
-    public description: string = '';
-    public example: string = '';
-    public exception: string = '';
-    public groupContentPath: string = '';
-    public groupName: string = '';
-    public lineNum: number = 0;
-    public nameLine: string = '';
-    public params: string[] = [];
-    public returns: string = '';
-    public scope: string = '';
-    public see: string[] = [];
-    public since: string = '';
-    public sourceUrl?: string;
+    protected _annotations: string[] = [];
+    protected _author: string = '';
+    protected _deprecated: string = '';
+    protected _description: string = '';
+    protected _example: string = '';
+    protected _exception: string = '';
+    protected _groupContentPath: string = '';
+    protected _groupName: string = '';
+    protected _lineNum: number = 0;
+    protected _nameLine: string = '';
+    protected _params: string[] = [];
+    protected _returns: string = '';
+    protected _scope: string = '';
+    protected _see: string[] = [];
+    protected _since: string = '';
+    protected _sourceUrl?: string;
 
     protected constructor(comments: string[], sourceUrl: Option<string>) {
         this.parseComments(comments);
-        this.sourceUrl = sourceUrl;
+        this._sourceUrl = sourceUrl;
     }
 
-    public abstract getName(): string;
+    public abstract get name(): string;
 
-    public getAnnotations(): string[] {
-        return this.annotations;
+    public get annotations(): string[] {
+        return this._annotations;
     }
 
-    public getDescription(): string {
-        return this.description;
+    public get description(): string {
+        return this._description;
     }
 
-    public getLineNum(): number {
-        return this.lineNum;
+    public get lineNum(): number {
+        return this._lineNum;
     }
 
-    public getNameLine(): string {
-        return this.nameLine;
+    public get nameLine(): string {
+        return this._nameLine;
     }
 
-    public getScope(): string {
-        return this.scope;
+    public get scope(): string {
+        return this._scope;
     }
 
-    public getSourceUrl(): Option<string> {
-        return this.sourceUrl;
+    public get sourceUrl(): Option<string> {
+        return this._sourceUrl;
     }
 
     private parseComments(comments: string[]): void {
@@ -114,40 +114,40 @@ abstract class ApexModel {
 
             // add line to appropriate block...
             // if currBlock was not reset on this iteration we're on the next line of the last tag, add line
-            // to that value. Allow empty lines in example blocks to preserve whitespace in complex examples
+            // to that value. Allow empty lines in @example blocks to preserve whitespace in complex examples
             if (currBlock !== null && (line.trim() || !line.trim() && currBlock === tags.EXAMPLE.label)) {
                 if (currBlock === tags.AUTHOR.label) {
-                    this.author += (this.author ? ' ' : '') + line.trim();
+                    this._author += (this._author ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.SINCE.label) {
-                    this.since += (this.since ? ' ' : '') + line.trim();
+                    this._since += (this._since ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.SEE.label) {
-                    this.see.push(line.trim());
+                    this._see.push(line.trim());
                 } else if (currBlock === tags.RETURNS.label) {
-                    this.returns += (this.returns ? ' ' : '') + line.trim();
+                    this._returns += (this._returns ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.PARAM.label) {
-                    let p = (newBlock ? '' : this.params.pop());
-                    this.params.push(p + (p && p.length > 0 ? ' ' : '') + line.trim());
+                    let p = (newBlock ? '' : this._params.pop());
+                    this._params.push(p + (p && p.length > 0 ? ' ' : '') + line.trim());
                 } else if (currBlock === tags.EXCEPTION.label) {
-                    this.exception += (this.exception ? ' ' : '') + line.trim();
+                    this._exception += (this._exception ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.DEPRECATED.label) {
-                    this.deprecated += (this.deprecated ? ' ' : '') + line.trim();
+                    this._deprecated += (this._deprecated ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.DESCRIPTION.label) {
-                    this.description += (this.description ? ' ' : '') + line.trim();
+                    this._description += (this._description ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.GROUP.label) {
-                    this.groupName += line.trim();
+                    this._groupName += line.trim();
                 } else if (currBlock === tags.EXAMPLE.label) {
-                    this.example += (this.example ? ' \n'  : '') + line;
+                    this._example += (this._example ? ' \n'  : '') + line;
                 } else if (currBlock === tags.GROUP_CONTENT.label) {
                     const doesResolve = this.resolveContentPath(line.trim());
                     if (doesResolve) {
-                        this.groupContentPath += doesResolve;
+                        this._groupContentPath += doesResolve;
                     }
                 }
             }
-            // not a recognized tag, assume we're in un-tagged description
+            // not a recognized tag, assume we're in un-tagged _description
             else if (currBlock === null && line.trim()) {
                 currBlock = block = tags.DESCRIPTION.label;
-                this.description += (this.description ? ' ' : '') + line.trim();
+                this._description += (this._description ? ' ' : '') + line.trim();
             } else if (!line.trim()) {
                 currBlock = null;
             }
@@ -159,13 +159,13 @@ abstract class ApexModel {
     }
 
     protected parseScope(): void {
-        if (this.nameLine) {
-            let scope = Utils.containsScope(this.nameLine);
-            if (scope) {
-                this.scope = scope;
+        if (this._nameLine) {
+            let _scope = Utils.containsScope(this._nameLine);
+            if (_scope) {
+                this._scope = _scope;
             } else {
-                // scope is implicitly private
-                this.scope = ApexDoc.PRIVATE;
+                // _scope is implicitly private
+                this._scope = ApexDoc.PRIVATE;
             }
         }
     }
@@ -188,13 +188,13 @@ abstract class ApexModel {
         return null;
     }
 
-    protected setNameLine(nameLine: string, lineNum: number): void {
-        // strip any annotations from the signature line
+    protected setNameLine(_nameLine: string, _lineNum: number): void {
+        // strip any _annotations from the signature line
         // we'll capture those and display them separately
-        this.nameLine = Utils.stripAnnotations(nameLine).trim();
-        this.lineNum = lineNum;
+        this._nameLine = Utils.stripAnnotations(_nameLine).trim();
+        this._lineNum = _lineNum;
         // if we're running the stub command
-        // we don't care about scope
+        // we don't care about _scope
         if (!ApexDoc.isStub) {
             this.parseScope();
         }

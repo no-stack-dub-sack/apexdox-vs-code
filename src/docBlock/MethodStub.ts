@@ -106,8 +106,8 @@ class MethodStub extends DocBlockStub {
 
         return {
             throwsException,
-            name: method.getName(),
-            params: method.getParamsFromNameLine(),
+            name: method.name,
+            params: method.paramsFromNameLine,
             returnType: this.getReturnType(method)
         };
     }
@@ -119,7 +119,7 @@ class MethodStub extends DocBlockStub {
      * @param method The method to get the return type for
      */
     private getReturnType(method: MethodModel): string {
-        const name = method.getName(), nameLine = method.getNameLine();
+        const name = method.name, nameLine = method.nameLine;
         const prevWord = Utils.previousWord(nameLine, nameLine.indexOf(name));
 
         if (ApexDoc.SCOPES.includes(prevWord)) {

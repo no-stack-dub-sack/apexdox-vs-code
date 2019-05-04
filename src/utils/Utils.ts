@@ -74,7 +74,7 @@ class Utils {
         if (matches !== null) {
             matches.forEach(match => {
                 if (match) {
-                    model && model.getAnnotations().push(match.trim());
+                    model && model.annotations.push(match.trim());
                 }
             });
         }
@@ -88,7 +88,7 @@ class Utils {
      * private. Also, interface methods don't have scope, so don't skip those lines either.
      */
     public static shouldSkipLine(line: string, cModel?: ClassModel): boolean {
-        let classNameParts = cModel && cModel.getName().split('.') || [''];
+        let classNameParts = cModel && cModel.name.split('.') || [''];
         let className = last(classNameParts);
 
         if (!this.containsScope(line) &&
@@ -98,7 +98,7 @@ class Utils {
             // don't skip default constructors without access modifiers
             !(cModel && new RegExp('\\b' + className + '\\s*\\(').test(line)) &&
             // don't skip interface methods - they don't have access modifiers
-            !(cModel && cModel.getIsInterface() && line.includes('('))) {
+            !(cModel && cModel.isInterface && line.includes('('))) {
                 return true;
         }
 

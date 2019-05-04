@@ -2,7 +2,7 @@ import DocGen from '../DocGen';
 import { MarkupGenerator } from './MarkupGenerator';
 import { TopLevelModel } from '../../models';
 
-class TopLevelMarkupGenerator extends MarkupGenerator {
+class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
     public constructor(model: TopLevelModel) {
         super(model);
     }

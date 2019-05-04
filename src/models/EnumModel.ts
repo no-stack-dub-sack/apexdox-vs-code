@@ -4,7 +4,7 @@ import { Option } from '../utils/Utils';
 
 class EnumModel extends TopLevelModel {
 
-    private values: string[] = [];
+    private _values: string[] = [];
 
     public constructor(comments: string[], nameLine: string, lineNum: number, sourceUrl: Option<string>) {
         super(comments, ModelType.ENUM, sourceUrl);
@@ -12,18 +12,18 @@ class EnumModel extends TopLevelModel {
         this.setValues(nameLine);
     }
 
-    public getGroupName(): string {
-        return this.groupName;
+    public get groupName(): string {
+        return this._groupName;
     }
 
-    public getName(): string {
-        let nameLine = this.getNameLine();
+    public get name(): string {
+        let nameLine = this.nameLine;
         let i = nameLine.indexOf(ApexDoc.ENUM);
         return nameLine.slice(i + ApexDoc.ENUM.length).trim();
     }
 
-    public getValues(): string[] {
-        return this.values;
+    public get values(): string[] {
+        return this._values;
     }
 
     protected setNameLine(nameLine: string, lineNum: number): void {

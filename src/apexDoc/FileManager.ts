@@ -141,11 +141,11 @@ class FileManager {
 
         for (let group of classGroupMap.keys()) {
             const cg = classGroupMap.get(group);
-            if (cg && cg.getContentSource()) {
-                const cgContent = this.parseHTMLFile(cg.getContentSource());
+            if (cg && cg.contentSource) {
+                const cgContent = this.parseHTMLFile(cg.contentSource);
                 if (cgContent) {
-                    let markup = this.makePage(cgContent, banner, links, DocGen.escapeHTML(cg.getName(), false));
-                    fileMap.set(cg.getContentFilename(), markup);
+                    let markup = this.makePage(cgContent, banner, links, DocGen.escapeHTML(cg.name, false));
+                    fileMap.set(cg.contentFileName, markup);
                 }
             }
         }
@@ -157,24 +157,24 @@ class FileManager {
         for (let model of modelMap.values()) {
             let fileName = '';
             let contents = '';
-            if (model.getNameLine()) {
-                fileName = model.getName();
+            if (model.nameLine) {
+                fileName = model.name;
 
-                if (model.getModelType() === Models.ModelType.CLASS) {
+                if (model.modelType === Models.ModelType.CLASS) {
 
                     const cModel = <Models.ClassModel>model;
                     contents += DocGen.documentClass(cModel, modelMap);
 
                     // get child classes to work with in the order user specifies
                     const childClasses = DocGen.sortOrderStyle === ApexDoc.ORDER_ALPHA
-                        ? cModel.getChildClassesSorted()
-                        : cModel.getChildClasses();
+                        ? cModel.childClassesSorted
+                        : cModel.childClasses;
 
                     // map over child classes, creating HTML, and concat result
                     contents += childClasses.map(cmChild =>
                         DocGen.documentClass(cmChild, modelMap)).join('');
 
-                } else if (model.getModelType() === Models.ModelType.ENUM) {
+                } else if (model.modelType === Models.ModelType.ENUM) {
                     const eModel = <Models.EnumModel>model;
                     contents += DocGen.documentEnum(eModel, modelMap);
                 }

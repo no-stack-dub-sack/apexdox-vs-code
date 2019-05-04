@@ -12,22 +12,22 @@ class DocGen {
     public static showTOCSnippets: boolean;
 
     public static documentClass(cModel: Models.ClassModel, modelMap: Map<string, Models.TopLevelModel>): string {
-        const hasSource = cModel.getSourceUrl() ? true : false;
+        const hasSource = cModel.sourceUrl ? true : false;
         const sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : '';
-        const sectionSourceLink = this.maybeMakeSourceLink(cModel, cModel.getTopmostClassName(), this.escapeHTML(cModel.getName()));
-        const header = `<h2 class="sectionTitle" id="${cModel.getName()}">${sectionSourceLink + sourceLinkIcon}</h2>`;
+        const sectionSourceLink = this.maybeMakeSourceLink(cModel, cModel.topMostClassName, this.escapeHTML(cModel.name));
+        const header = `<h2 class="sectionTitle" id="${cModel.name}">${sectionSourceLink + sourceLinkIcon}</h2>`;
 
-        let contents = this.documentTopLevelAttributes(cModel, modelMap, cModel.getTopmostClassName(), '');
+        let contents = this.documentTopLevelAttributes(cModel, modelMap, cModel.topMostClassName, '');
 
-        if (cModel.getProperties().length) {
+        if (cModel.properties.length) {
             contents += this.documentProperties(cModel);
         }
 
-        if (cModel.getEnums().length) {
+        if (cModel.enums.length) {
             contents += this.documentInnerEnums(cModel);
         }
 
-        if (cModel.getMethods().length) {
+        if (cModel.methods.length) {
             contents += this.documentMethods(cModel, modelMap);
         }
 
@@ -35,12 +35,12 @@ class DocGen {
     }
 
     public static documentEnum(eModel: Models.EnumModel, modelMap: Map<string, Models.TopLevelModel>): string {
-        const hasSource = eModel.getSourceUrl() ? true : false
+        const hasSource = eModel.sourceUrl ? true : false
             , sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : ''
-            , sectionSourceLink = this.maybeMakeSourceLink(eModel, eModel.getName(), this.escapeHTML(eModel.getName()));
+            , sectionSourceLink = this.maybeMakeSourceLink(eModel, eModel.name, this.escapeHTML(eModel.name));
 
         let contents =
-            `<h2 class="sectionTitle" id="${eModel.getName()}">
+            `<h2 class="sectionTitle" id="${eModel.name}">
                 ${sectionSourceLink + sourceLinkIcon}
             </h2>`;
 
@@ -49,11 +49,11 @@ class DocGen {
             <table class="attrTable">
                 <tr><th>Values</th></tr>
                 <tr>
-                    <td class="enumValues">${eModel.getValues().join(', ')}</td>
+                    <td class="enumValues">${eModel.values.join(', ')}</td>
                 </tr>
             </table>`;
 
-        contents += this.documentTopLevelAttributes(eModel, modelMap, eModel.getName(), values);
+        contents += this.documentTopLevelAttributes(eModel, modelMap, eModel.name, values);
 
         return contents;
     }
@@ -63,7 +63,7 @@ class DocGen {
 
         let markup = '';
         markup += generator.getAnnotations('classAnnotations');
-        markup += generator.maybeMakeSourceLink(className, this.escapeHTML(model.getNameLine()));
+        markup += generator.maybeMakeSourceLink(className, this.escapeHTML(model.nameLine));
         // add any additional content passed in from the caller. currently, only
         // use case is the values table used when documenting class-level enums
         markup += generator.getDescription('classDetails');
@@ -82,8 +82,8 @@ class DocGen {
         let contents = '';
         // retrieve properties to work with in the order user specifies
         const properties = this.sortOrderStyle === ApexDoc.ORDER_ALPHA
-            ? cModel.getPropertiesSorted()
-            : cModel.getProperties();
+            ? cModel.propertiesSorted
+            : cModel.properties;
 
         // start Properties
         contents += '<div class="subsectionContainer">';
@@ -93,10 +93,10 @@ class DocGen {
         // build annotations and and description columns
         let descriptionCol = '', annotationsCol = '';
         for (let prop of properties) {
-            if (prop.getDescription()) {
+            if (prop.description) {
                 descriptionCol = '<th>Description</th>';
             }
-            if (prop.getAnnotations().length) {
+            if (prop.annotations.length) {
                 annotationsCol = '<th>Annotations</th>';
             }
         }
@@ -104,20 +104,20 @@ class DocGen {
         contents += `<tr><th>Name</th><th>Signature</th>${annotationsCol}${descriptionCol}</tr>`;
 
         for (let prop of properties) {
-            const nameLine = Utils.highlightNameLine(prop.getNameLine());
-            const propSourceLink = this.maybeMakeSourceLink(prop, cModel.getTopmostClassName(), nameLine);
+            const nameLine = Utils.highlightNameLine(prop.nameLine);
+            const propSourceLink = this.maybeMakeSourceLink(prop, cModel.topMostClassName, nameLine);
 
-            contents += `<tr class="property ${prop.getScope()}">`;
-            contents += `<td class="attrName">${prop.getName()}</td>`;
+            contents += `<tr class="property ${prop.scope}">`;
+            contents += `<td class="attrName">${prop.name}</td>`;
             contents += `<td><div class="attrSignature">${propSourceLink}</div></td>`;
 
             if (annotationsCol) {
-                contents += `<td><div class="propAnnotations">${prop.getAnnotations().join(', ')}</div></td>`;
+                contents += `<td><div class="propAnnotations">${prop.annotations.join(', ')}</div></td>`;
             }
 
             // if any property has a description build out the third column
             if (descriptionCol) {
-                const desc = prop.getDescription() || '';
+                const desc = prop.description || '';
                 const escaped = desc ? this.escapeHTML(desc, true) : desc;
                 contents += `<td><div class="attrDescription">${escaped}</div></td>`;
             }
@@ -134,8 +134,8 @@ class DocGen {
     private static documentInnerEnums(cModel: Models.ClassModel): string {
         let contents = '';
         const enums = this.sortOrderStyle === ApexDoc.ORDER_ALPHA
-            ? cModel.getEnumsSorted()
-            : cModel.getEnums();
+            ? cModel.enumsSorted
+            : cModel.enums;
 
         // start Properties
         contents += '<div class="subsectionContainer">' +
@@ -144,7 +144,7 @@ class DocGen {
         // iterate once first to determine if we need to build the third column in the table
         let descriptionCol = '';
         for (let Enum of enums) {
-            if (Enum.getDescription()) {
+            if (Enum.description) {
                 descriptionCol = '<th>Description</th>';
             }
         }
@@ -152,16 +152,16 @@ class DocGen {
         contents += `<tr><th>Name</th><th>Signature</th><th>Values</th>${descriptionCol}</tr>`;
 
         for (let Enum of enums) {
-            const nameLine = Utils.highlightNameLine(Enum.getNameLine());
-            const propSourceLink = this.maybeMakeSourceLink(Enum, cModel.getTopmostClassName(), nameLine);
-            contents += `<tr class="enum " ${Enum.getScope()}">`;
-            contents += `<td class="attrName">${Enum.getName()}</td>`;
+            const nameLine = Utils.highlightNameLine(Enum.nameLine);
+            const propSourceLink = this.maybeMakeSourceLink(Enum, cModel.topMostClassName, nameLine);
+            contents += `<tr class="enum " ${Enum.scope}">`;
+            contents += `<td class="attrName">${Enum.name}</td>`;
             contents += `<td><div class="attrSignature">${propSourceLink}</div></td>`;
-            contents += `<td class="enumValues">${Enum.getValues().join(', ')}</td>`;
+            contents += `<td class="enumValues">${Enum.values.join(', ')}</td>`;
 
             // if any property has a description build out the third column
             if (descriptionCol) {
-                const desc = Enum.getDescription() || '';
+                const desc = Enum.description || '';
                 const escaped = desc ? this.escapeHTML(desc, true) : desc;
                 contents += `<td><div class="attrDescription">${escaped}</div></td>`;
             }
@@ -182,8 +182,8 @@ class DocGen {
 
         // retrieve methods to work with in the order user specifies
         const methods = this.sortOrderStyle === ApexDoc.ORDER_ALPHA
-            ? cModel.getMethodsSorted()
-            : cModel.getMethods();
+            ? cModel.methodsSorted
+            : cModel.methods;
 
         // initialize a couple of strings to house our markup
         let tocMarkup = '';
@@ -197,7 +197,7 @@ class DocGen {
             // get some variables we'll reuse a couple of times
             const methodId = generator.generateMethodId(idCountMap, cModel);
             const methodName = generator.formatConstructorName(cModel);
-            const nameLine = generator.highlightNameLine(this.escapeHTML(method.getNameLine()));
+            const nameLine = generator.highlightNameLine(this.escapeHTML(method.nameLine));
 
             // make our TOC entry, we'll concat this with the rest of the markup in the proper order later
             tocMarkup += generator.getTOCEntry(this.showTOCSnippets, methodName, methodId);
@@ -206,7 +206,7 @@ class DocGen {
             let methodMarkup = '';
             methodMarkup += generator.getHeader(methodId, methodName);
             methodMarkup += generator.getAnnotations('methodAnnotations');
-            methodMarkup += generator.maybeMakeSourceLink(cModel.getTopmostClassName(), nameLine);
+            methodMarkup += generator.maybeMakeSourceLink(cModel.topMostClassName, nameLine);
             methodMarkup += generator.getDescription('methodDescription');
             methodMarkup += generator.getDeprecated();
             methodMarkup += generator.getParams();
@@ -318,8 +318,8 @@ class DocGen {
                              id="header-${groupId}"
                              class="navHeader">`;
 
-            if (cg && cg.getContentFilename()) {
-                let destination = cg.getContentFilename() + '.html';
+            if (cg && cg.contentFileName) {
+                let destination = cg.contentFileName + '.html';
                 markup +=
                     `<a href="javascript:void(0)" title="See Class Group info"
                         onclick="goToLocation('${destination}');">${group}</a>`;
@@ -334,12 +334,12 @@ class DocGen {
         // create our individual menu items and concatenate
         // them with their corresponding top level menu item
         for (let model of models.values()) {
-            const group = model.getGroupName() || 'Miscellaneous';
+            const group = model.groupName || 'Miscellaneous';
 
-            if (model.getNameLine()) {
-                const fileName = model.getName()
+            if (model.nameLine) {
+                const fileName = model.name
                     , markup =
-                        `<li id="item-${fileName}" class="navItem class ${model.getScope()}"
+                        `<li id="item-${fileName}" class="navItem class ${model.scope}"
                             onclick="goToLocation('${fileName}.html');">
                             <a tabindex="1" href="javascript:void(0)">${fileName}</a>
                         </li>`;
@@ -357,13 +357,13 @@ class DocGen {
     }
 
     private static maybeMakeSourceLink(model: Models.ApexModel, className: string, title: string): string {
-        let sourceUrl = model.getSourceUrl();
+        let sourceUrl = model.sourceUrl;
         if (sourceUrl) {
             // if user leaves off trailing slash, save the day!
             if (!sourceUrl.endsWith('/')) {
                 sourceUrl += '/';
             }
-            let href = sourceUrl + className + '.cls#L' + model.getLineNum();
+            let href = sourceUrl + className + '.cls#L' + model.lineNum;
             return `<a target="_blank" title="Go to source" class="hostedSourceLink" href="${href}">${title}</a>`;
         } else {
             return `<span>${title}</span>`;
@@ -432,22 +432,22 @@ class DocGen {
             if (model) {
                 // if only a single qualifier, stop here
                 if (parts.length === 1) {
-                    href = model.getName() + '.html';
+                    href = model.name + '.html';
                     foundMatch = true;
                 }
 
                 // 4.B) otherwise keep searching for a match for the second qualifier as long as
                 // model is not an enum model, in which case there is no searching left to do
-                else if (parts.length >= 2 && model.getModelType() !== Models.ModelType.ENUM) {
+                else if (parts.length >= 2 && model.modelType !== Models.ModelType.ENUM) {
                     let Class = <Models.ClassModel>model;
-                    let methods = Class.getMethods();
-                    let childClasses = Class.getChildClassMap();
+                    let methods = Class.methods;
+                    let childClasses = Class.childClassMap;
 
                     let methodNum = 0;
                     for (let method of methods) {
-                        if (method.getName().toLowerCase() === parts[1]) {
+                        if (method.name.toLowerCase() === parts[1]) {
                             // use actual class/method name to create link to avoid case issues
-                            href = Class.getName() + '.html#' + Class.getName() + '.' + method.getName();
+                            href = Class.name + '.html#' + Class.name + '.' + method.name;
                             // no overload selector, we've made a match!
                             if (overloadSelector === 0) {
                                 foundMatch = true;
@@ -478,7 +478,7 @@ class DocGen {
                         let childClass = childClasses.get(childClassName);
 
                         if (childClass) {
-                            let nameParts = childClass.getName().split("\\.");
+                            let nameParts = childClass.name.split("\\.");
                             // 4.D) If match, and only 2 parts, stop here.
                             if (parts.length === 2) {
                                 // to ensure the link works, use actual name rather than
@@ -489,11 +489,11 @@ class DocGen {
                             // 4.E) Otherwise, there must be 3 parts
                             // attempt to match on child class method.
                             else {
-                                let childMethods = childClass.getMethods();
+                                let childMethods = childClass.methods;
                                 for (let method of childMethods) {
-                                    if (method.getName().toLowerCase() === parts[2]) {
+                                    if (method.name.toLowerCase() === parts[2]) {
                                         // same as above, use actual name to avoid casing issues
-                                        href = nameParts[0] + '.html#' + childClass.getName() + '.' + method.getName();
+                                        href = nameParts[0] + '.html#' + childClass.name + '.' + method.name;
                                         foundMatch = true;
                                         break;
                                     }

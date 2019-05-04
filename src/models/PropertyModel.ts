@@ -8,8 +8,8 @@ class PropertyModel extends ApexModel {
         this.setNameLine(nameLine, lineNum);
     }
 
-    public getName(): string {
-        let nameLine = this.getNameLine().trim();
+    public get name(): string {
+        let nameLine = this.nameLine.trim();
         if (nameLine) {
             let lastIndex = nameLine.lastIndexOf(' ');
             if (lastIndex >= 0) {

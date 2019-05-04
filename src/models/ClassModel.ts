@@ -7,91 +7,92 @@ import { PropertyModel } from './PropertyModel';
 
 class ClassModel extends TopLevelModel {
 
-    private childClasses: Array<ClassModel>;
-    private childClassMap: Map<string, ClassModel>;
-    private cmodelParent?: ClassModel;
-    private enums: Array<EnumModel>;
-    private isInterface: boolean;
-    private methods: Array<MethodModel>;
-    private properties: Array<PropertyModel>;
+    private _childClasses: Array<ClassModel>;
+    private _childClassMap: Map<string, ClassModel>;
+    private _cModelParent?: ClassModel;
+    private _enums: Array<EnumModel>;
+    private _isInterface: boolean = false;
+    private _methods: Array<MethodModel>;
+    private _properties: Array<PropertyModel>;
 
-    public constructor(cmodelParent: Option<ClassModel>, comments: string[], nameLine: string, lineNum: number, sourceUrl: Option<string>) {
+    public constructor(cModelParent: Option<ClassModel>, comments: string[], nameLine: string, lineNum: number, sourceUrl: Option<string>) {
         super(comments, ModelType.CLASS, sourceUrl);
         super.setNameLine(nameLine, lineNum);
 
-        this.childClassMap = new Map<string, ClassModel>();
-        this.isInterface = this.setIsInterface(nameLine);
-        this.cmodelParent = cmodelParent;
-        this.childClasses = [];
-        this.properties = [];
-        this.methods = [];
-        this.enums = [];
+        this.setIsInterface(nameLine);
+        this._childClassMap = new Map<string, ClassModel>();
+        this._cModelParent = cModelParent;
+        this._childClasses = [];
+        this._properties = [];
+        this._methods = [];
+        this._enums = [];
     }
 
     public addChildClass(child: ClassModel): void {
-        this.childClasses.push(child);
+        this._childClasses.push(child);
         // also add child class to map for use in making @see links
-        this.childClassMap.set(child.getName().toLowerCase(), child);
+        this._childClassMap.set(child.name.toLowerCase(), child);
     }
 
-    public getChildClasses(): Array<ClassModel> {
-        return this.childClasses;
+    // TODO: this is redundant, use childClassMap.values() instead
+    public get childClasses(): Array<ClassModel> {
+        return this._childClasses;
     }
 
-    public getChildClassesSorted(): Array<ClassModel> {
-        let sorted = [...this.childClasses];
-        sorted.sort((a, b) => a.getName().localeCompare(b.getName()));
+    public get childClassesSorted(): Array<ClassModel> {
+        let sorted = [...this._childClasses];
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
         return sorted;
     }
 
 
-    public getChildClassMap(): Map<string, ClassModel> {
-        return this.childClassMap;
+    public get childClassMap(): Map<string, ClassModel> {
+        return this._childClassMap;
     }
 
-    public getEnums(): Array<EnumModel> {
-        return this.enums;
+    public get enums(): Array<EnumModel> {
+        return this._enums;
     }
 
-    public getEnumsSorted(): Array<EnumModel> {
-        let sorted = [...this.enums];
-        sorted.sort((a, b) => a.getName().localeCompare(b.getName()));
+    public get enumsSorted(): Array<EnumModel> {
+        let sorted = [...this._enums];
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
         return sorted;
     }
 
-    public getGroupName(): string {
+    public get groupName(): string {
         let group: string;
-        if (this.cmodelParent) {
-            group = this.cmodelParent.getGroupName();
+        if (this._cModelParent) {
+            group = this._cModelParent.groupName;
         } else {
-            group = this.groupName;
+            group = this._groupName;
         }
 
-        return !group ? '' : group;
+        return group;
     }
 
-    public getIsInterface(): boolean {
-        return this.isInterface;
+    public get isInterface(): boolean {
+        return this._isInterface;
     }
 
-    public getMethods(): Array<MethodModel> {
+    public get methods(): Array<MethodModel> {
         // ensure interface methods take the
         // scope of their defining type
-        if (this.isInterface) {
-            for (let method of this.methods) {
-                method.setScope(this.getScope());
+        if (this._isInterface) {
+            for (let method of this._methods) {
+                method.scope = this._scope;
             }
         }
 
-        return this.methods;
+        return this._methods;
     }
 
-    public getMethodsSorted(): Array<MethodModel> {
-        let sorted = [...this.methods];
+    public get methodsSorted(): Array<MethodModel> {
+        let sorted = [...this._methods];
         sorted.sort((a, b) => {
-            let nameA = a.getName();
-            let nameB = b.getName();
-            let className = this.getName();
+            let nameA = a.name;
+            let nameB = b.name;
+            let className = this.name;
 
             if (nameA && nameA === className) {
                 return -1;
@@ -105,9 +106,9 @@ class ClassModel extends TopLevelModel {
         return sorted;
     }
 
-    public getName(): string {
-        let nameLine = this.getNameLine();
-        let parent = !this.cmodelParent ? '' : this.cmodelParent.getName() + '.';
+    public get name(): string {
+        let nameLine = this.nameLine;
+        let parent = !this._cModelParent ? '' : this._cModelParent.name + '.';
 
         if (nameLine) {
             nameLine = nameLine.trim();
@@ -143,34 +144,32 @@ class ClassModel extends TopLevelModel {
         }
     }
 
-    public getProperties(): Array<PropertyModel> {
-        return this.properties;
+    public get properties(): Array<PropertyModel> {
+        return this._properties;
     }
 
-    public getPropertiesSorted(): Array<PropertyModel> {
-        let sorted = [...this.properties];
-        sorted.sort((a, b) => a.getName().localeCompare(b.getName()));
+    public get propertiesSorted(): Array<PropertyModel> {
+        let sorted = [...this._properties];
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
         return sorted;
     }
 
-    public getTopmostClassName(): string {
-        if (this.cmodelParent) {
-            return this.cmodelParent.getName();
+    public get topMostClassName(): string {
+        if (this._cModelParent) {
+            return this._cModelParent.name;
         } else {
-            return this.getName();
+            return this.name;
         }
     }
 
-    private setIsInterface(nameLine: string): boolean {
+    private setIsInterface(nameLine: string): void {
         if (/\s?\binterface\s/i.test(nameLine.toLowerCase())) {
-            return true;
-        } else {
-            return false;
+            this._isInterface = true;
         }
     }
 
-    public setMethods(methods: Array<MethodModel>): void {
-        this.methods = methods;
+    public set methods(methods: Array<MethodModel>) {
+        this._methods = methods;
     }
 }
 

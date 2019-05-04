@@ -2,10 +2,10 @@ import DocGen from '../DocGen';
 import Utils, { last } from '../../utils/Utils';
 import { ApexModel } from '../../models';
 
-abstract class MarkupGenerator {
-    protected model: ApexModel;
+abstract class MarkupGenerator<T extends ApexModel> {
+    protected model: T;
 
-    protected constructor(model: ApexModel) {
+    protected constructor(model: T) {
         this.model = model;
     }
 
@@ -27,13 +27,13 @@ abstract class MarkupGenerator {
 
     // TODO: can we rename this maybe? How about getSignature?
     public maybeMakeSourceLink(className: string, title: string): string {
-        let sourceUrl = this.model.getSourceUrl();
+        let sourceUrl = this.model.sourceUrl;
         if (sourceUrl) {
             // if user leaves off trailing slash, save the day!
             if (!sourceUrl.endsWith('/')) {
                 sourceUrl += '/';
             }
-            let href = sourceUrl + className + '.cls#L' + this.model.getLineNum();
+            let href = sourceUrl + className + '.cls#L' + this.model.lineNum;
             return `<a target="_blank" title="Go to source" class="hostedSourceLink" href="${href}">${title}</a>`;
         } else {
             return `<span>${title}</span>`;

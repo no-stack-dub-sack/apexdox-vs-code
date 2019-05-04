@@ -3,9 +3,10 @@ import { ClassModel, MethodModel, TopLevelModel } from '../../models';
 import { last, Option } from '../../utils/Utils';
 import { MarkupGenerator } from './MarkupGenerator';
 
-class MethodMarkupGenerator extends MarkupGenerator {
+class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
+
     public constructor(model: MethodModel) {
-        super(model); // haha!
+        super(model);
     }
 
     private markupTemplate(label: string, contents: string, titleClass = '', contentClass = 'methodSubDescription', tag = 'div') {
@@ -14,10 +15,10 @@ class MethodMarkupGenerator extends MarkupGenerator {
     }
 
     public formatConstructorName(classModel: ClassModel): string {
-        let methodName = this.model.getName();
+        let methodName = this.model.name;
         // split class model name on '.' and take last, in case class is inner. otherwise
         // we'd be comparing a to its fully qualified class name, e.g. MyClass.SomeMethod
-        if (methodName.toLowerCase() === last(classModel.getName().split('.')).toLowerCase()) {
+        if (methodName.toLowerCase() === last(classModel.name.split('.')).toLowerCase()) {
             methodName += '.&lt;init&gt;';
         }
 
@@ -154,7 +155,7 @@ class MethodMarkupGenerator extends MarkupGenerator {
      * as needed to ensure all of our methods have unique IDs
      */
     public generateMethodId(idCountMap: Map<string, number>,  classModel: ClassModel): string {
-        let methodId = classModel.getName() + '.' + this.model.getName();
+        let methodId = classModel.name + '.' + this.model.name;
         let count: Option<number>;
         if ((count = idCountMap.get(methodId)) === undefined) {
             idCountMap.set(methodId, 1);
