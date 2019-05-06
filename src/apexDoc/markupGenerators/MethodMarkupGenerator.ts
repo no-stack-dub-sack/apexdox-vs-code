@@ -25,7 +25,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         return methodName;
     }
 
-    public getAuthor(): string {
+    public author(): string {
         if (!this.model.author) {
             return '';
         } else {
@@ -33,11 +33,11 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         }
     }
 
-    public getHeader(id: string, name: string): string {
+    public header(id: string, name: string): string {
        return  `<h2 class="methodHeader ${(this.model.deprecated ? 'deprecated' : '')}" id="${id}">${name}</h2>`;
     }
 
-    public getSince(): string {
+    public since(): string {
         if (!this.model.since) {
             return '';
         } else {
@@ -45,7 +45,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         }
     }
 
-    public getDeprecated(): string {
+    public deprecated(): string {
         if (!this.model.deprecated) {
             return '';
         } else {
@@ -53,7 +53,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         }
     }
 
-    public getExample(): string {
+    public example(): string {
         // return example and remove trailing white space which
         // may have built up due to the allowance of preserving
         // white pace in complex code example blocks for methods
@@ -70,7 +70,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         }
     }
 
-    public getException(): string {
+    public exception(): string {
         if (!this.model.exception) {
             return '';
         } else {
@@ -78,7 +78,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         }
     }
 
-    public getParams(): string {
+    public params(): string {
         let markup = '';
         if (this.model.params.length) {
             // @param someParam This is the params description.
@@ -111,7 +111,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         return markup;
     }
 
-    public getReturns(): string {
+    public returns(): string {
         if (!this.model.returns) {
             return '';
         } else {
@@ -119,11 +119,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         }
     }
 
-    public getScope(tag = 'div'): string {
-        return `<${tag} class="method ${this.model.scope}">`;
-    }
-
-    public getSee(models: Map<string, TopLevelModel>): string {
+    public see(models: Map<string, TopLevelModel>): string {
         if (!this.model.see.length) {
             return '';
         } else {
@@ -133,20 +129,20 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
 
     public getTOCEntry(showTOCSnippets: boolean, name: string, id: string): string {
         let entry =
-            `${this.getScope('li')}
+            `<li class="method ${this.model.scope}">
                 <a class="methodTOCEntry ${(this.model.deprecated ? 'deprecated' : '')}" href="#${id}">
                     ${name}
                 </a>`;
 
         if (showTOCSnippets && this.model.description) {
-            entry += this.getDescription('methodTOCDescription');
+            entry += this.description('methodTOCDescription');
         }
 
         return entry += '</li>';
     }
 
-    public maybeMakeSourceLink(className: string, title: string): string {
-        return `<div class="methodSignature">${super.maybeMakeSourceLink(className, title)}</div>`;
+    public signatureLine(memberClassName: string): string {
+        return `<div class="methodSignature">${super.signatureLine(memberClassName, true)}</div>`;
     }
 
     /**

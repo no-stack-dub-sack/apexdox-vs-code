@@ -9,7 +9,7 @@ abstract class MarkupGenerator<T extends ApexModel> {
         this.model = model;
     }
 
-    public getAnnotations(className: string): string {
+    public annotations(className: string): string {
         if (!this.model.annotations.length) {
             return '';
         }
@@ -17,7 +17,7 @@ abstract class MarkupGenerator<T extends ApexModel> {
         return `<div class="${className}">${this.model.annotations.join(' ')}</div>`;
     }
 
-    public getDescription(className = ''): string {
+    public description(className = ''): string {
         if (!this.model.description) {
             return '';
         }
@@ -25,18 +25,23 @@ abstract class MarkupGenerator<T extends ApexModel> {
         return `<div class="${className}">${DocGen.escapeHTML(this.model.description, true)}</div>`;
     }
 
-    // TODO: can we rename this maybe? How about getSignature?
-    public maybeMakeSourceLink(className: string, title: string): string {
+    public signatureLine(memberClassName: string, highlightJSify = false): string {
+        let signature = highlightJSify
+            ? this.highlightSignature(DocGen.escapeHTML(this.model.nameLine))
+            : DocGen.escapeHTML(this.model.nameLine);
         let sourceUrl = this.model.sourceUrl;
         if (sourceUrl) {
             // if user leaves off trailing slash, save the day!
             if (!sourceUrl.endsWith('/')) {
                 sourceUrl += '/';
             }
-            let href = sourceUrl + className + '.cls#L' + this.model.lineNum;
-            return `<a target="_blank" title="Go to source" class="hostedSourceLink" href="${href}">${title}</a>`;
+            let href = sourceUrl + memberClassName + '.cls#L' + this.model.lineNum;
+            return `
+                <a target="_blank" title="Go to source" class="hostedSourceLink" href="${href}">
+                    ${signature}
+                </a>`;
         } else {
-            return `<span>${title}</span>`;
+            return `<span>${signature}</span>`;
         }
     }
 
@@ -44,7 +49,7 @@ abstract class MarkupGenerator<T extends ApexModel> {
     * Help highlight.js along, since props and enum signatures are not
     * recognized by highlight.js since they are not full declarations.
     */
-    public highlightNameLine(nameLine: string): string {
+    public highlightSignature(nameLine: string): string {
         if (nameLine.includes('(')) {
             const name = Utils.previousWord(nameLine, nameLine.indexOf('('));
             return nameLine.replace(name, `<span class="hljs-title">${name}</span>`);

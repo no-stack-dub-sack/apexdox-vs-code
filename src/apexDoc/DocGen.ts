@@ -4,7 +4,10 @@ import ApexDoc from './ApexDoc';
 import ApexDocError from '../utils/ApexDocError';
 import escape from 'lodash.escape';
 import Utils, { last, Option } from '../utils/Utils';
+import { ClassMarkupGenerator } from './markupGenerators/ClassMarkupGenerator';
+import { EnumMarkupGenerator } from './markupGenerators/EnumMarkupGenerator';
 import { MethodMarkupGenerator } from './markupGenerators/MethodMarkupGenerator';
+import { PropertyMarkupGenerator } from './markupGenerators/PropertyMarkupGenerator';
 import { TopLevelMarkupGenerator } from './markupGenerators/TopLevelMarkupGenerator';
 
 class DocGen {
@@ -12,10 +15,8 @@ class DocGen {
     public static showTOCSnippets: boolean;
 
     public static documentClass(cModel: Models.ClassModel, modelMap: Map<string, Models.TopLevelModel>): string {
-        const hasSource = cModel.sourceUrl ? true : false;
-        const sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : '';
-        const sectionSourceLink = this.maybeMakeSourceLink(cModel, cModel.topMostClassName, this.escapeHTML(cModel.name));
-        const header = `<h2 class="sectionTitle" id="${cModel.name}">${sectionSourceLink + sourceLinkIcon}</h2>`;
+        const generator = new ClassMarkupGenerator(cModel);
+        const header = generator.header(cModel.topMostClassName);
 
         let contents = this.documentTopLevelAttributes(cModel, modelMap, cModel.topMostClassName, '');
 
@@ -35,100 +36,58 @@ class DocGen {
     }
 
     public static documentEnum(eModel: Models.EnumModel, modelMap: Map<string, Models.TopLevelModel>): string {
-        const hasSource = eModel.sourceUrl ? true : false
-            , sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : ''
-            , sectionSourceLink = this.maybeMakeSourceLink(eModel, eModel.name, this.escapeHTML(eModel.name));
+        const generator = new EnumMarkupGenerator(eModel);
+        let markup = generator.header(eModel.name);
+        let values = generator.valuesTable();
 
-        let contents =
-            `<h2 class="sectionTitle" id="${eModel.name}">
-                ${sectionSourceLink + sourceLinkIcon}
-            </h2>`;
+        markup += this.documentTopLevelAttributes(eModel, modelMap, eModel.name, values);
 
-        let values =
-            `<p />
-            <table class="attrTable">
-                <tr><th>Values</th></tr>
-                <tr>
-                    <td class="enumValues">${eModel.values.join(', ')}</td>
-                </tr>
-            </table>`;
-
-        contents += this.documentTopLevelAttributes(eModel, modelMap, eModel.name, values);
-
-        return contents;
+        return markup;
     }
 
     private static documentTopLevelAttributes(model: Models.TopLevelModel, modelMap: Map<string, Models.TopLevelModel>, className: string, additionalContent = ''): string {
         const generator = new TopLevelMarkupGenerator(model);
 
         let markup = '';
-        markup += generator.getAnnotations('classAnnotations');
-        markup += generator.maybeMakeSourceLink(className, this.escapeHTML(model.nameLine));
+        markup += generator.annotations('classAnnotations');
+        markup += generator.signatureLine(className);
         // add any additional content passed in from the caller. currently, only
         // use case is the values table used when documenting class-level enums
-        markup += generator.getDescription('classDetails');
+        markup += generator.description('classDetails');
         markup += additionalContent;
-        markup += generator.getDeprecated();
-        markup += generator.getSee(modelMap);
-        markup += generator.getAuthor();
-        markup += generator.getSince();
-        markup += generator.getExample();
+        markup += generator.deprecated();
+        markup += generator.see(modelMap);
+        markup += generator.author();
+        markup += generator.since();
+        markup += generator.example();
 
         markup = `<div class="classDetails">${markup}</div><p/>`;
         return markup;
     }
 
     private static documentProperties(cModel: Models.ClassModel): string {
-        let contents = '';
-        // retrieve properties to work with in the order user specifies
         const properties = this.sortOrderStyle === ApexDoc.ORDER_ALPHA
             ? cModel.propertiesSorted
             : cModel.properties;
 
-        // start Properties
-        contents += '<div class="subsectionContainer">';
-        contents += '<table class="attrTable properties">';
-
-        // iterate once first to determine if we need to
-        // build annotations and and description columns
-        let descriptionCol = '', annotationsCol = '';
-        for (let prop of properties) {
-            if (prop.description) {
-                descriptionCol = '<th>Description</th>';
-            }
-            if (prop.annotations.length) {
-                annotationsCol = '<th>Annotations</th>';
-            }
-        }
-
-        contents += `<tr><th>Name</th><th>Signature</th>${annotationsCol}${descriptionCol}</tr>`;
+        let markup = PropertyMarkupGenerator.headerRow(properties);
+        const hasAnnotations = PropertyMarkupGenerator.hasAnnotationsColumn(markup);
+        const hasDescription = PropertyMarkupGenerator.hasDescriptionColumn(markup);
 
         for (let prop of properties) {
-            const nameLine = Utils.highlightNameLine(prop.nameLine);
-            const propSourceLink = this.maybeMakeSourceLink(prop, cModel.topMostClassName, nameLine);
-
-            contents += `<tr class="property ${prop.scope}">`;
-            contents += `<td class="attrName">${prop.name}</td>`;
-            contents += `<td><div class="attrSignature">${propSourceLink}</div></td>`;
-
-            if (annotationsCol) {
-                contents += `<td><div class="propAnnotations">${prop.annotations.join(', ')}</div></td>`;
-            }
-
-            // if any property has a description build out the third column
-            if (descriptionCol) {
-                const desc = prop.description || '';
-                const escaped = desc ? this.escapeHTML(desc, true) : desc;
-                contents += `<td><div class="attrDescription">${escaped}</div></td>`;
-            }
-
-            contents += '</tr>';
+            const generator = new PropertyMarkupGenerator(prop);
+            markup = generator.propRow(cModel.topMostClassName, hasAnnotations, hasDescription);
         }
-        // end Properties
-        contents += '</table></div>';
-        contents += '<p/>';
 
-        return this.wrapInDetailsTag(contents, '<h2 class="subsectionTitle properties">Properties</h2>', 'subSection properties');
+        const props = `
+            <div class="subsectionContainer">
+                <table class="attrTable properties">
+                    ${markup}
+                </table>
+            </div>
+            <p/>`;
+
+        return this.wrapInDetailsTag(props, '<h2 class="subsectionTitle properties">Properties</h2>', 'subSection properties');
     }
 
     private static documentInnerEnums(cModel: Models.ClassModel): string {
@@ -153,7 +112,7 @@ class DocGen {
 
         for (let Enum of enums) {
             const nameLine = Utils.highlightNameLine(Enum.nameLine);
-            const propSourceLink = this.maybeMakeSourceLink(Enum, cModel.topMostClassName, nameLine);
+            const propSourceLink = this.signatureLine(Enum, cModel.topMostClassName, nameLine);
             contents += `<tr class="enum " ${Enum.scope}">`;
             contents += `<td class="attrName">${Enum.name}</td>`;
             contents += `<td><div class="attrSignature">${propSourceLink}</div></td>`;
@@ -197,25 +156,24 @@ class DocGen {
             // get some variables we'll reuse a couple of times
             const methodId = generator.generateMethodId(idCountMap, cModel);
             const methodName = generator.formatConstructorName(cModel);
-            const nameLine = generator.highlightNameLine(this.escapeHTML(method.nameLine));
 
             // make our TOC entry, we'll concat this with the rest of the markup in the proper order later
             tocMarkup += generator.getTOCEntry(this.showTOCSnippets, methodName, methodId);
 
             // run our generators in the desired order
             let methodMarkup = '';
-            methodMarkup += generator.getHeader(methodId, methodName);
-            methodMarkup += generator.getAnnotations('methodAnnotations');
-            methodMarkup += generator.maybeMakeSourceLink(cModel.topMostClassName, nameLine);
-            methodMarkup += generator.getDescription('methodDescription');
-            methodMarkup += generator.getDeprecated();
-            methodMarkup += generator.getParams();
-            methodMarkup += generator.getReturns();
-            methodMarkup += generator.getException();
-            methodMarkup += generator.getSee(modelMap);
-            methodMarkup += generator.getAuthor();
-            methodMarkup += generator.getSince();
-            methodMarkup += generator.getExample();
+            methodMarkup += generator.header(methodId, methodName);
+            methodMarkup += generator.annotations('methodAnnotations');
+            methodMarkup += generator.signatureLine(cModel.topMostClassName);
+            methodMarkup += generator.description('methodDescription');
+            methodMarkup += generator.deprecated();
+            methodMarkup += generator.params();
+            methodMarkup += generator.returns();
+            methodMarkup += generator.exception();
+            methodMarkup += generator.see(modelMap);
+            methodMarkup += generator.author();
+            methodMarkup += generator.since();
+            methodMarkup += generator.example();
 
             // add method markup to our running methodsMarkup string
             methodsMarkup += `<div class="method ${method.scope}">${methodMarkup}</div>`;
@@ -356,7 +314,7 @@ class DocGen {
         return markup + '</nav></div></td>';
     }
 
-    private static maybeMakeSourceLink(model: Models.ApexModel, className: string, title: string): string {
+        private static signatureLine(model: Models.ApexModel, className: string, title: string): string {
         let sourceUrl = model.sourceUrl;
         if (sourceUrl) {
             // if user leaves off trailing slash, save the day!

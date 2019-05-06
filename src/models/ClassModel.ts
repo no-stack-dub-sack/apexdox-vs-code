@@ -7,7 +7,6 @@ import { PropertyModel } from './PropertyModel';
 
 class ClassModel extends TopLevelModel {
 
-    private _childClasses: Array<ClassModel>;
     private _childClassMap: Map<string, ClassModel>;
     private _cModelParent?: ClassModel;
     private _enums: Array<EnumModel>;
@@ -22,29 +21,23 @@ class ClassModel extends TopLevelModel {
         this.setIsInterface(nameLine);
         this._childClassMap = new Map<string, ClassModel>();
         this._cModelParent = cModelParent;
-        this._childClasses = [];
         this._properties = [];
         this._methods = [];
         this._enums = [];
     }
 
     public addChildClass(child: ClassModel): void {
-        this._childClasses.push(child);
-        // also add child class to map for use in making @see links
         this._childClassMap.set(child.name.toLowerCase(), child);
     }
 
-    // TODO: this is redundant, use childClassMap.values() instead
     public get childClasses(): Array<ClassModel> {
-        return this._childClasses;
+        return Array.from(this._childClassMap.values());
     }
 
     public get childClassesSorted(): Array<ClassModel> {
-        let sorted = [...this._childClasses];
-        sorted.sort((a, b) => a.name.localeCompare(b.name));
-        return sorted;
+        return this.childClasses
+            .sort((a, b) => a.name.localeCompare(b.name));
     }
-
 
     public get childClassMap(): Map<string, ClassModel> {
         return this._childClassMap;
@@ -166,10 +159,6 @@ class ClassModel extends TopLevelModel {
         if (/\s?\binterface\s/i.test(nameLine.toLowerCase())) {
             this._isInterface = true;
         }
-    }
-
-    public set methods(methods: Array<MethodModel>) {
-        this._methods = methods;
     }
 }
 

@@ -7,13 +7,14 @@ General:
         ✔ How to handle source control URL with multi source dirs? @done(19-04-27 22:11)
     ✔ Implement our own version of `${workspaceFolder}` variable for settings.json @done(19-04-27 22:45)
     ☐ Support TODO and Hack tags?
-    ☐ Replace get*() on models with getters, and set up backing fields so we can have more idiomatic private set, public get
+    ✔ Replace get*() on models with getters, and set up backing fields so we can have more idiomatic private set, public get @done(19-05-03 20:10)
     ☐ Resolve in-code TODOs
 
 Documentation:
     ☐ README
         ☐ Config Settings
             ☐ Replace 'Required' column with 'Default'  table
+            ☐ New `source` setting, reomve old settings
         ☐ Commands
         ☐ Warnings?
         ☐ OG ApexDoc credits

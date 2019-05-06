@@ -7,13 +7,13 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         super(model);
     }
 
-    // TODO: this is possible redundant. Might be able to put this on MarkupGenerator abstract class and modify for both TopLevel and Method
+    // TODO: this is possibly redundant. Might be able to put this on MarkupGenerator abstract class and modify for both TopLevel and Method
     private markupTemplate(label: string, contents: string, titleClass = '', contentClass = 'classSubDescription', tag = 'div') {
         return `<div class="classSubtitle ${titleClass}">${label}</div>
                 <${tag} class="${contentClass}">${contents}</${tag}>`;
     }
 
-    public getAuthor() {
+    public author() {
         if (!this.model.author) {
             return '';
         }
@@ -21,7 +21,7 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         return `<br/>${DocGen.escapeHTML(this.model.author)}`;
     }
 
-    public getExample(): string {
+    public example(): string {
         // return example and remove trailing white space which
         // may have built up due to the allowance of preserving
         // white pace in complex code example blocks for methods
@@ -38,7 +38,7 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         }
     }
 
-    public getSince() {
+    public since() {
         if (!this.model.since) {
             return '';
         }
@@ -46,7 +46,7 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         return `<br/>${DocGen.escapeHTML(this.model.since)}`;
     }
 
-    public getDeprecated(): string {
+    public deprecated(): string {
         if (!this.model.deprecated) {
             return '';
         } else {
@@ -54,7 +54,7 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         }
     }
 
-    public getSee(models: Map<string, TopLevelModel>): string {
+    public see(models: Map<string, TopLevelModel>): string {
         if (!this.model.see.length) {
             return '';
         } else {
@@ -62,8 +62,8 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         }
     }
 
-    public maybeMakeSourceLink(className: string, title: string): string {
-        return `<div class="classSignature">${super.maybeMakeSourceLink(className, title)}</div>`;
+    public signatureLine(memberClassName: string): string {
+        return `<div class="classSignature">${super.signatureLine(memberClassName)}</div>`;
     }
 }
 

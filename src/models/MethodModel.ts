@@ -12,10 +12,6 @@ class MethodModel extends ApexModel {
         return this._author;
     }
 
-    public get since(): string {
-        return this._since;
-    }
-
     public get deprecated(): string {
         return this._deprecated;
     }
@@ -82,6 +78,10 @@ class MethodModel extends ApexModel {
 
     public set scope(scope: string) {
         this._scope = scope;
+    }
+
+    public get since(): string {
+        return this._since;
     }
 }
 
