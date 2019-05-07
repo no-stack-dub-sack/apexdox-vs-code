@@ -59,45 +59,42 @@ Expanded Settings Example:
 ```jsonc
 {
     // Documentation Engine Configuration
-    "apexdoc2.config": {
-        "source": [{
-            "path": "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\force-app\\main\\default\\classes",
-            "sourceUrl": "https://github.com/my-username/my-dx-project/tree/master/force-app/main/default/classes"
-        }, {
-            "path": "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\force-app\\my-feature\\classes",
-            "sourceUrl": "https://github.com/my-username/my-dx-project/tree/master/force-app/my-feature/classes"
-        }],
-        "targetDirectory": "C:\\Users\\pweinberg\\Documents\\code\\documentation\\My Salesforce Project",
-        "includes": [
-            "MySpecialClass.cls",
-            "*TriggerHandler.cls",
-            "Contact*"
-        ],
-        "excludes": [ "*Test.cls" ],
-        "homePagePath": "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\assets\\Docs Home Page.html\\",
-        "bannerPagePath": "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\assets\\Docs Banner.html\\",
-        "scope": [
-            "global",
-            "public",
-            "protected"
-            "webService"
-        ],
-        "title": "My DX Project",
-        "showTOCSnippets": false,
-        "sortOrder": "logical",
-        "assets": [
-            "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\assets\\My Project Logo.png",
-            "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\assets\\favicon.png"
-        ],
-        "port": 5000,
-        "cleanDir": true
-    },
+    "apexdoc2.config.source": [{
+        "path": "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\force-app\\main\\default\\classes",
+        "sourceUrl": "https://github.com/my-username/my-dx-project/tree/master/force-app/main/default/classes"
+    }, {
+        "path": "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\force-app\\my-feature\\classes",
+        "sourceUrl": "https://github.com/my-username/my-dx-project/tree/master/force-app/my-feature/classes"
+    }],
+    "apexdoc2.config.targetDirectory": "C:\\Users\\pweinberg\\Documents\\code\\documentation\\My Salesforce Project",
+    "apexdoc2.config.includes": [
+        "MySpecialClass.cls",
+        "*TriggerHandler.cls",
+        "Contact*"
+    ],
+    "apexdoc2.config.excludes": [ "*Test.cls" ],
+    "apexdoc2.config.homePagePath": "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\assets\\Docs Home Page.html\\",
+    "apexdoc2.config.bannerPagePath": "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\assets\\Docs Banner.html\\",
+    "apexdoc2.config.scope": [
+        "global",
+        "public",
+        "protected"
+        "webService"
+    ],
+    "apexdoc2.config.title": "My DX Project",
+    "apexdoc2.config.showTOCSnippets": false,
+    "apexdoc2.config.sortOrder": "logical",
+    "apexdoc2.config.assets": [
+        "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\assets\\My Project Logo.png",
+        "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\assets\\favicon.png"
+    ],
+    "apexdoc2.config.port": 5000,
+    "apexdoc2.config.cleanDir": true,
+
     // ApexDoc2 Comment Block configuration
-    "apexdoc2.docBlock": {
-        "omitDescriptionTag": false,
-        "spacious": true,
-        "alignItems": true
-    }
+    "apexdoc2.docBlock.omitDescriptionTag": false,
+    "apexdoc2.docBlock.spacious": true,
+    "apexdoc2.docBlock.alignItems": true
 }
 ```
 

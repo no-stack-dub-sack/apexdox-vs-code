@@ -61,8 +61,8 @@
 			"properties": {
 				"apexdoc2.config.source": {
 					"type": "array",
-					"default": "[]",
-					"markdownDescription": "An array of 'source' objects, with the following keys:\\n- `path` (string): An absolute path to a directory containing .cls files you'd like to document.\\n- `sourceUrl?` (string): Optional. A URL where the .cls source files are hosted, so ApexDoc2 can provide links to your code - confirmed to work with GitHub), e.g.: `https://github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes`.\\n\\nDefaults to \\n```json\\n[\\n  {\\n    \"path\": \"projectRoot/src/classes\"\\n  }\\n]\\n```\\nfor non-DX projects, and \\n```json\\n[\\n  {\\n    \"path\": \"projectRoot/force-app/main/default/classes\"\\n  }\\n]\\n```\\nfor DX."
+					"default": [],
+					"markdownDescription": "An array of 'source' objects, with the following keys:\n- `path` (string): An absolute path to a directory containing .cls files you'd like to document.\n- `sourceUrl?` (string): Optional. A URL where the .cls source files are hosted, so ApexDoc2 can provide links to your code - confirmed to work with GitHub), e.g.: `https://github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes`.\n\nDefaults to: \n```\n[{\n  \"path\": \"projectRoot/src/classes\"\n  }]\n```\nfor non-DX projects, and \n```\n[{\n  \"path\": \"projectRoot/force-app/main/default/classes\"\n  }]\n```\nfor DX."
 				},
 				"apexdoc2.config.targetDirectory": {
 					"type": "string",
@@ -72,12 +72,12 @@
 				"apexdoc2.config.includes": {
 					"type": "array",
 					"default": [],
-					"description": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. 'Contact*', or '*Test.cls') that indicates which files in your source directory should be documented. An empty array is treated as 'include all'."
+					"markdownDescription": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. `Contact*`, or `*Test.cls`) that indicates which files in your source directory should be documented. An empty array is treated as 'include all'."
 				},
 				"apexdoc2.config.excludes": {
 					"type": "array",
 					"default": [],
-					"description": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. 'Contact*', or '*Test.cls') that indicates which files in your source directory should NOT be documented. An empty array is treated as 'do not exclude any'."
+					"markdownDescription": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. `Contact*`, or `*Test.cls`) that indicates which files in your source directory should NOT be documented. An empty array is treated as 'do not exclude any'."
 				},
 				"apexdoc2.config.homePagePath": {
 					"type": "string",
@@ -134,12 +134,12 @@
 				"apexdoc2.config.pages": {
 					"type": "array",
 					"default": [],
-					"markdownDescription": "An array of absolute paths of HTML files that you'd like to be available to your documentation.\nFor example, if you'd like to link to a page from your project's home page or from one of it's class group pages, include that page here.\nIf your file's path is `path/to/MyCoolPage.html`, you can link to it with `href=\"./MyCoolPage.html\"`.\nRead mode about this setting [here](https://github.com/no-stack-dub-sack/ApexDoc2-VSCode#extension-settings)."
+					"markdownDescription": "An array of absolute paths of HTML files that you'd like to be available to your documentation. For example, if you'd like to link to a page from your project's home page or from one of it's class group pages, include that page here. If your file's path is `path/to/MyCoolPage.html`, you can link to it with `href=\"./MyCoolPage.html\"`. Read mode about this setting [here](https://github.com/no-stack-dub-sack/ApexDoc2-VSCode#extension-settings)."
 				},
 				"apexdoc2.docBlock.alignItems": {
 					"type": "boolean",
 					"default": false,
-					"markdownDescription": "Vertically align anything after an ApexDoc2 @tag. E.g.:\n```/**\n * @description         Here's a description\n * @param myParam       Param description\n * @param anotherParam  Another param description\n */\n```\nDefaults to `false`."
+					"markdownDescription": "Vertically align anything after an ApexDoc2 @tag. E.g.:\n```\n/**\n * @description         Here's a description\n * @param myParam       Param description\n * @param anotherParam  Another param description\n */\n```\nDefaults to `false`."
 				},
 				"apexdoc2.docBlock.omitDescriptionTag": {
 					"type": "boolean",
