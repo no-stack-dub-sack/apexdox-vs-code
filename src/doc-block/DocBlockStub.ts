@@ -79,7 +79,7 @@ abstract class DocBlockStub {
             spacious: false
         };
 
-        const userConfig = workspace.getConfiguration(EXTENSION).get<IStubsConfig>('stubs');
+        const userConfig = workspace.getConfiguration(EXTENSION).get<IStubsConfig>('docBlock');
 
         if (userConfig) {
             return {

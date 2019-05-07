@@ -136,20 +136,20 @@
 				"default": [],
 				"markdownDescription": "An array of absolute paths of HTML files that you'd like to be available to your documentation.\nFor example, if you'd like to link to a page from your project's home page or from one of it's class group pages, include that page here.\nIf your file's path is `path/to/MyCoolPage.html`, you can link to it with `href=\"./MyCoolPage.html\"`.\nRead mode about this setting [here](https://github.com/no-stack-dub-sack/ApexDoc2-VSCode#extension-settings)."
 			},
-			"apexdoc2.stubs.alignItems": {
+			"apexdoc2.docBlock.alignItems": {
 				"type": "boolean",
 				"default": false,
 				"markdownDescription": "Vertically align anything after an ApexDoc2 @tag. E.g.:\n```/**\n * @description         Here's a description\n * @param myParam       Param description\n * @param anotherParam  Another param description\n */\n```\nDefaults to `false`."
 			},
-			"apexdoc2.stubs.omitDescriptionTag": {
+			"apexdoc2.docBlock.omitDescriptionTag": {
 				"type": "boolean",
 				"default": true,
 				"markdownDescription": "ApexDoc2 `@description` tags are optional. Set this to `false` to include them. Defaults to `true`."
 			},
-			"apexdoc2.stubs.spacious": {
+			"apexdoc2.docBlock.spacious": {
 				"type": "boolean",
 				"default": false,
-				"markdownDescription": "When set to true ApexDoc2 comment stubs will add an empty line after the description line and before the next tag. Defaults to `false`."
+				"markdownDescription": "When set to `true` ApexDoc2 comment block stubs will add an empty line after the description line and before the next tag. Defaults to `false`."
 			}
 		}
 	},

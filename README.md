@@ -9,11 +9,14 @@ ApexDoc2 is A fast, reliable, and configurable documentation generator for Sales
 - Documentation can be easily linked to source code hosted on GitHub.
 - Customize the favicon, and/or use your own logo, and other static assets in your docs.
 - Produces clean, readable HTML output (complements of [pretty](https://github.com/jonschlinkert/pretty)).
+- Includes easy-to-use commands and completion items for contextually stubbing ApexDoc2 comment blocks.
+- Adds ApexDoc2 comment block syntax highlighting to the Apex language's grammar to make your comment blocks stylish and easier to read.
 
 ## Commands
-
-- **ApexDoc2: Run**: Run ApexDoc2
+You can launch the following commands via the command pallette (<kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>):
+- **ApexDoc2: Run**: Run ApexDoc2. Many aspects of how this command behaves can be configured using the settings below.
 - **ApexDoc2: Open Docs**: Launch a server on localhost and open the generated documentation.
+- **ApexDoc2: Stub Comment Block**: On the line above a method, class/interface, property, or enum, invoke this command to stub an ApexDoc2 comment based on the current context. This command can also be invoked by completion item: type `/**` and press <kbd>Tab</kbd> when prompted. The appearance / style of comment stubs can be configured using the settings below.
 
 ## Extension Settings
 
@@ -21,11 +24,10 @@ This extension contributes the following settings:
 
 | Setting | Type | Required | Description |
 |------|-----------|----------|-------------|
-| `apexdoc2.config.sourceDirectories` | `string` | :heavy_check_mark: | An array of absolute paths of the folder locations which contains your Apex .cls files. |
+| `apexdoc2.config.source` | `object[]` | :heavy_check_mark: | An array of objects each containing the required key `path`, an absolute path of a folder location which contains Apex .cls files, and optionally a `sourceUrl` key, A URL where the .cls source files are hosted (so ApexDoc2 can provide links to your source code throughout the documentation - confirmed to work with GitHub), e.g.: 'https:\//github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes'. |
 | `apexdoc2.config.targetDirectory` | `string` | :heavy_check_mark: | Absolute path of the folder location where ApexDoc2 documentation will be generated to.|
 | `apexdoc2.config.includes` | `string[]` |  | A case-sensitive array of file names and/or wildcard patterns that indicate which files in your source directory should be documented. Only simple leading and trailing wildcards are supported. E.g. `[ "NotificationsEmailer.cls", "*TriggerHandler.cls", "Contact*" ]` will result in the file 'NotificationsEmailer.cls' being processed, as well as any files that begin with 'Contact' or end with 'TriggerHandler.cls'. |
 | `apexdoc2.config.excludes`| `string[]` |  | A case-sensitive array of file names and/or wildcard patterns that indicate which files in your source directory should NOT be documented. Only simple leading and trailing wildcards are supported. E.g. `[ "NotificationsEmailer.cls", "*TriggerHandler.cls", "Contact*" ]` will result in all files being processed EXCEPT 'NotificationsEmailer.cls' and those begin with 'Contact' or end with 'TriggerHandler.cls'. **Note** that files are excluded before they are included, so keep this in mind when using 'includes' and 'excludes' together. |
-| `apexdoc2.config.sourceControlURL` | `string` |  | A URL where the .cls source files are hosted (so ApexDoc2 can provide links to your source - confirmed to work with GitHub), e.g.: 'https:\//github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes'. |
 | `apexdoc2.config.homePagePath` | `string` |  | An absolute path of an html file that contains the contents for the project's 'Home' page. |
 | `apexdoc2.config.bannerPagePath` | `string` |  | An absolute path of an html file that contains the content for the banner section of each generated page.|
 | `apexdoc2.config.scope` | `string[]` |  | An array of scopes to document. Default includes all scopes: 'global', 'public', 'protected', 'private', 'testMethod', 'webService'. |
@@ -35,6 +37,9 @@ This extension contributes the following settings:
 | `apexdoc2.config.assets` | `string[]` |  | An array of absolute paths of files you would like to be included in the target directory's 'assets' folder. This is where ApexDoc2 keeps JavaScript, CSS, and images. For instance, if your banner or home page reference images, make their `src` attribute `./assets/yourImage.png`, include the image's path in this array, and ApexDoc2 will copy the image into this directory. This is also useful for overriding the default favicon. |
 | `apexdoc2.config.cleanDir` | `boolean` |  | If set to `true`, ApexDoc2 will remove any files or folders in your target directory before creating your docs. Defaults to `false`. |
 | `apexdoc2.config.port` | `number` |  | The port number that the `ApexDoc2: Open Docs` command will serve your docs on. Defaults to `8080`. |
+| `apexdoc2.docBlock.alignItems` | `boolean` | | Vertically align anything after an ApexDoc2 @tag. Defaults to `false`. |
+| `apexdoc2.docBlock.omitDescriptionTag` | `boolean` | | ApexDoc2 `@description` tags are optional. Set this to `false` to include them in the comment block stub. Defaults to `true`. |
+| `apexdoc2.docBlock.spacious` | `boolean` | | When set to `true` ApexDoc2 comment block stubs will add an empty line after the description line and before the next tag. Defaults to `false`. |
 
 ### Example Configurations
 
@@ -43,9 +48,9 @@ Minimum Settings Example:
 ```json
 {
     "apexdoc2.config.targetDirectory": "C:\\Users\\pweinberg\\Documents\\code\\documentation\\My Salesforce Project",
-    "apexdoc2.config.sourceDirectories": [
-        "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\src\\classes"
-    ]
+    "apexdoc2.config.source": [{
+        "path": "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\src\\classes"
+    }]
 }
 ```
 
@@ -53,19 +58,22 @@ Expanded Settings Example:
 
 ```json
 {
+    // Documentation Engine Configuration
     "apexdoc2.config": {
-        "sourceDirectories": [
-            "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\force-app\\main\\default\\classes",
-            "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\force-app\\my-feature\\classes",
-        ],
+        "source": [{
+            "path": "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\force-app\\main\\default\\classes",
+            "sourceUrl": "https://github.com/my-username/my-dx-project/tree/master/force-app/main/default/classes"
+        }, {
+            "path": "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\force-app\\my-feature\\classes",
+            "sourceUrl": "https://github.com/my-username/my-dx-project/tree/master/force-app/my-feature/classes"
+        }],
         "targetDirectory": "C:\\Users\\pweinberg\\Documents\\code\\documentation\\My Salesforce Project",
         "includes": [
-            "NotificationsEmailer.cls",
+            "MySpecialClass.cls",
             "*TriggerHandler.cls",
             "Contact*"
         ],
         "excludes": [ "*Test.cls" ],
-        "sourceControlURL": "https://github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes",
         "homePagePath": "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\assets\\Docs Home Page.html\\",
         "bannerPagePath": "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\assets\\Docs Banner.html\\",
         "scope": [
@@ -74,7 +82,7 @@ Expanded Settings Example:
             "protected"
             "webService"
         ],
-        "title": "My Salesforce Project",
+        "title": "My DX Project",
         "showTOCSnippets": false,
         "sortOrder": "logical",
         "assets": [
@@ -83,6 +91,12 @@ Expanded Settings Example:
         ],
         "port": 5000,
         "cleanDir": true
+    },
+    // ApexDoc2 Comment Block configuration
+    "apexdoc2.docBlock": {
+        "omitDescriptionTag": false,
+        "spacious": true,
+        "alignItems": true
     }
 }
 ```
