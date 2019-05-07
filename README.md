@@ -45,7 +45,7 @@ This extension contributes the following settings:
 
 Minimum Settings Example:
 
-```json
+```jsonc
 {
     "apexdoc2.config.targetDirectory": "C:\\Users\\pweinberg\\Documents\\code\\documentation\\My Salesforce Project",
     "apexdoc2.config.source": [{
@@ -56,7 +56,7 @@ Minimum Settings Example:
 
 Expanded Settings Example:
 
-```json
+```jsonc
 {
     // Documentation Engine Configuration
     "apexdoc2.config": {
