@@ -1,7 +1,7 @@
-import ClassStub from '../docBlock/ClassStub';
-import DefaultStub from '../docBlock/DefaultStub';
-import DocBlockStub, { StubType } from '../docBlock/DocBlockStub';
-import MethodStub from '../docBlock/MethodStub';
+import ClassStub from '../doc-block/ClassStub';
+import DefaultStub from '../doc-block/DefaultStub';
+import DocBlockStub, { StubType } from '../doc-block/DocBlockStub';
+import MethodStub from '../doc-block/MethodStub';
 import { commands, window } from 'vscode';
 
 const COMMAND = 'apexDoc2.insertDocBlock';

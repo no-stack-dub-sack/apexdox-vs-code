@@ -1,4 +1,4 @@
-import ApexDoc from '../apexDoc/ApexDoc';
+import ApexDoc from '../apex-doc/ApexDoc';
 import { ModelType, TopLevelModel } from './TopLevelModel';
 import { Option } from '../utils/Utils';
 

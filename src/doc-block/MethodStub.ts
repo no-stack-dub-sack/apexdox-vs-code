@@ -1,4 +1,4 @@
-import ApexDoc from '../apexDoc/ApexDoc';
+import ApexDoc from '../apex-doc/ApexDoc';
 import DocBlockStub, { IStubLine, IStubsConfig } from './DocBlockStub';
 import Utils from '../utils/Utils';
 import {

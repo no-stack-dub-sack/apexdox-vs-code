@@ -1,6 +1,6 @@
 import * as Models from '../models';
-import DocGen from './DocGen';
 import FileManager from './FileManager';
+import GeneratorUtils from './generators/GeneratorUtils';
 import LineReader from '../utils/LineReader';
 import Utils, { last, Option } from '../utils/Utils';
 import { basename } from 'path';
@@ -61,10 +61,6 @@ class ApexDoc {
             const fileManager = new FileManager(config.targetDirectory, config.title, config.assets);
             const files = fileManager.getFiles(config.source, config.includes, config.excludes);
             const models = new Map<string, Models.TopLevelModel>();
-
-            // set up document generator
-            DocGen.sortOrderStyle = config.sortOrder;
-            DocGen.showTOCSnippets = config.showTOCSnippets;
 
             // track the number of files we've processed
             let numProcessed = 0;

@@ -2,18 +2,15 @@ import * as Models from '../models';
 import * as templates from '../utils/Templates';
 import ApexDoc from './ApexDoc';
 import ApexDocError from '../utils/ApexDocError';
-import DocGen from './DocGen';
+import ClassMarkupGenerator from './generators/model-generators/ClassMarkupGenerator';
+import EnumMarkupGenerator from './generators/model-generators/EnumMarkupGenerator';
+import fs from 'fs';
+import GeneratorUtils from './generators/GeneratorUtils';
 import LineReader from '../utils/LineReader';
+import MenuGenerator from './generators/MenuGenerator';
+import path from 'path';
 import pretty from 'pretty';
 import rimraf from 'rimraf';
-import { basename, resolve } from 'path';
-import {
-    copyFileSync,
-    existsSync,
-    mkdirSync,
-    readdirSync,
-    writeFileSync
-    } from 'fs';
 import { ISourceEntry } from './Config';
 import { Option } from '../utils/Utils';
 import { window } from 'vscode';
@@ -29,12 +26,21 @@ class FileManager {
         this.documentTitle = documentTitle;
     }
 
+    // #region Public API Methods
+
+    /**
+     * Collects the Apex .cls files the user has indicated they'd like to document via config settings.
+     *
+     * @param sources A list of `ISourceEntry` objects from where to collect our .cls files
+     * @param includes See config settings: a list of patterns to include
+     * @param excludes See config settings: a list of patterns to exclude
+     */
     public getFiles(sources: ISourceEntry[], includes: string[], excludes: string[]): ISourceEntry[] {
         const filesToCopy = new Array<ISourceEntry>()
             , noneFound = new Array<string>();
 
         for (let src of sources) {
-            const files = readdirSync(src.path);
+            const files = fs.readdirSync(src.path);
 
             if (files && files.some(file => file.endsWith('cls'))) {
                 files.forEach(fileName => {
@@ -54,7 +60,7 @@ class FileManager {
                     // no includes params, include file
                     if (includes.length === 0) {
                         filesToCopy.push({
-                            path: resolve(src.path, fileName),
+                            path: path.resolve(src.path, fileName),
                             sourceUrl: src.sourceUrl
                         });
                         return;
@@ -66,7 +72,7 @@ class FileManager {
                         // file matches explicitly matches or matches wildcard
                         if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
                             filesToCopy.push({
-                                path: resolve(src.path, fileName),
+                                path: path.resolve(src.path, fileName),
                                 sourceUrl: src.sourceUrl
                             });
                             return;
@@ -86,6 +92,44 @@ class FileManager {
         }
 
         return filesToCopy;
+    }
+
+    /**
+     * Main routine that creates HTML file for each of our classes and for any additional
+     * pages that a user has included, e.g. home page, class group, supplementary.
+     *
+     * @param groupNameMap Map of our class group names to their ClassGroup instances
+     * @param modelMap Map of our model names to their TopLevelModel instances
+     * @param banner The HTML markup for the project's banner
+     * @param pages Any additional pages, including the project home page, the user has included
+     */
+    public createDocs(groupNameMap: Map<string, Models.ClassGroup>, models: Map<string, Models.TopLevelModel>,
+            banner: Option<string, void>, pages: string[]): void {
+
+        // make the menu and the scoping panel
+        // and initialize our main file map
+        const fileMap = new Map<string, string>();
+        const links = `<table width="100%">
+            ${MenuGenerator.makeScopingPanel()}
+            <tr style="vertical-align:top;">
+            ${MenuGenerator.makeMenu(groupNameMap, models)}`;
+
+        // create the markup for our different varieties of HTML pages
+        // and add to our file map. HTML files will be created from this map.
+        this.makeSupplementaryPages(fileMap, links, banner, pages);
+        this.makeClassGroupPages(fileMap, links, banner, groupNameMap);
+        this.makeDocumentationPages(fileMap, links, banner, models);
+
+        // Now finalize everything... Make our directories first
+        // if they don't exist yet, then create our HTML files.
+        // Lastly, copy our assets, ours first, then the users.
+        // If they're using a favicon this will override ours.
+        const assets = this.collectApexDocAssets();
+
+        this.makeDirs();
+        this.createHTMLFiles(fileMap);
+        this.copyAssetsToTarget(assets);
+        this.copyAssetsToTarget(this.userAssets);
     }
 
     /**
@@ -112,9 +156,49 @@ class FileManager {
         }
     }
 
+    // #region FS Utils
+    private makeDirs(): void {
+        const root = this.path;
+        const assets = path.resolve(root, 'assets');
+
+        // clean directory first if user specified this
+        ApexDoc.config.cleanDir && rimraf.sync(root);
+
+        if (!fs.existsSync(root)) {
+            [root, assets].forEach(path => fs.mkdirSync(path));
+        } else if (fs.existsSync(root) && !fs.existsSync(assets)) {
+            fs.mkdirSync(assets);
+        }
+    }
+
+    private createHTMLFiles(fileMap: Map<string, string>): void {
+        for (let fileName of fileMap.keys()) {
+            let contents = pretty(<string>fileMap.get(fileName));
+            let fullyQualifiedFileName = path.resolve(this.path, fileName + '.html');
+            fs.writeFileSync(fullyQualifiedFileName, contents);
+        }
+    }
+
+    private collectApexDocAssets(): string[] {
+        const files: string[] = fs.readdirSync(path.resolve(ApexDoc.extensionRoot, 'assets'));
+        return files.map(fileName => path.resolve(ApexDoc.extensionRoot, 'assets', fileName));
+    }
+
+    private copyAssetsToTarget(files: string[]): void {
+        files.forEach(file => {
+            if (fs.existsSync(file)) {
+                fs.copyFileSync(file, path.resolve(this.path, 'assets', path.basename(file)));
+            } else {
+                window.showWarningMessage(ApexDocError.ASSET_NOT_FOUND(file));
+            }
+        });
+    }
+    // #endregion
+
+    // #region Document Generators
     private makePage(contents: string, banner: Option<string, void>, links: string, title?: string) {
         title = title ? `<h2 class='sectionTitle'>${title}</h2>` : '';
-        return `${DocGen.makeHeader(banner, this.documentTitle)}
+        return `${GeneratorUtils.makeHeader(banner, this.documentTitle)}
             ${links}<td class="contentTD">${title + contents}</td>
             ${templates.FOOTER}`;
     }
@@ -130,7 +214,7 @@ class FileManager {
                 const contents = this.parseHTMLFile(pagePath);
                 if (contents) {
                     const markup = this.makePage(contents, banner, links);
-                    fileMap.set(basename(pagePath.substring(0, pagePath.lastIndexOf('.'))), markup);
+                    fileMap.set(path.basename(pagePath.substring(0, pagePath.lastIndexOf('.'))), markup);
                 }
             }
         });
@@ -144,7 +228,7 @@ class FileManager {
             if (cg && cg.contentSource) {
                 const cgContent = this.parseHTMLFile(cg.contentSource);
                 if (cgContent) {
-                    let markup = this.makePage(cgContent, banner, links, DocGen.escapeHTML(cg.name, false));
+                    let markup = this.makePage(cgContent, banner, links, GeneratorUtils.escapeHTML(cg.name, false));
                     fileMap.set(cg.contentFileName, markup);
                 }
             }
@@ -163,20 +247,20 @@ class FileManager {
                 if (model.modelType === Models.ModelType.CLASS) {
 
                     const cModel = <Models.ClassModel>model;
-                    contents += DocGen.documentClass(cModel, modelMap);
+                    contents += ClassMarkupGenerator.generate(cModel, modelMap);
 
                     // get child classes to work with in the order user specifies
-                    const childClasses = DocGen.sortOrderStyle === ApexDoc.ORDER_ALPHA
+                    const childClasses = ApexDoc.config.sortOrder === ApexDoc.ORDER_ALPHA
                         ? cModel.childClassesSorted
                         : cModel.childClasses;
 
                     // map over child classes, creating HTML, and concat result
                     contents += childClasses.map(cmChild =>
-                        DocGen.documentClass(cmChild, modelMap)).join('');
+                        ClassMarkupGenerator.generate(cmChild, modelMap)).join('');
 
                 } else if (model.modelType === Models.ModelType.ENUM) {
                     const eModel = <Models.EnumModel>model;
-                    contents += DocGen.documentEnum(eModel, modelMap);
+                    contents += EnumMarkupGenerator.generate(eModel, modelMap);
                 }
 
             } else {
@@ -188,81 +272,7 @@ class FileManager {
             fileMap.set(fileName, contents);
         }
     }
-
-    /**
-     * Main routine that creates HTML file for each of our classes and for any additional
-     * pages that a user has included, e.g. home page, class group, supplementary.
-     *
-     * @param groupNameMap Map of our class group names to their ClassGroup instances
-     * @param modelMap Map of our model names to their TopLevelModel instances
-     * @param banner The HTML markup for the project's banner
-     * @param pages Any additional pages, including the project home page, the user has included
-     */
-    public createDocs(groupNameMap: Map<string, Models.ClassGroup>, models: Map<string, Models.TopLevelModel>,
-            banner: Option<string, void>, pages: string[]): void {
-
-        // make the menu and the scoping panel
-        // and initialize our main file map
-        const fileMap = new Map<string, string>();
-        const links = `<table width="100%">
-            ${DocGen.makeHTMLScopingPanel()}
-            <tr style="vertical-align:top;">
-            ${DocGen.makeMenu(groupNameMap, models)}`;
-
-        // create the markup for our different varieties of HTML pages
-        // and add to our file map. HTML files will be created from this map.
-        this.makeSupplementaryPages(fileMap, links, banner, pages);
-        this.makeClassGroupPages(fileMap, links, banner, groupNameMap);
-        this.makeDocumentationPages(fileMap, links, banner, models);
-
-        // Now finalize everything... Make our directories first
-        // if they don't exist yet, then create our HTML files.
-        // Lastly, copy our assets, ours first, then the users.
-        // If they're using a favicon this will override ours.
-        const assets = this.collectApexDocAssets();
-
-        this.makeDirs();
-        this.createHTMLFiles(fileMap);
-        this.copyAssetsToTarget(assets);
-        this.copyAssetsToTarget(this.userAssets);
-    }
-
-    private collectApexDocAssets(): string[] {
-        const files: string[] = readdirSync(resolve(ApexDoc.extensionRoot, 'assets'));
-        return files.map(fileName => resolve(ApexDoc.extensionRoot, 'assets', fileName));
-    }
-
-    private makeDirs(): void {
-        const root = this.path;
-        const assets = resolve(root, 'assets');
-
-        // clean directory first if user specified this
-        ApexDoc.config.cleanDir && rimraf.sync(root);
-
-        if (!existsSync(root)) {
-            [root, assets].forEach(path => mkdirSync(path));
-        } else if (existsSync(root) && !existsSync(assets)) {
-            mkdirSync(assets);
-        }
-    }
-
-    private createHTMLFiles(fileMap: Map<string, string>): void {
-        for (let fileName of fileMap.keys()) {
-            let contents = pretty(<string>fileMap.get(fileName));
-            let fullyQualifiedFileName = resolve(this.path, fileName + '.html');
-            writeFileSync(fullyQualifiedFileName, contents);
-        }
-    }
-
-    private copyAssetsToTarget(files: string[]): void {
-        files.forEach(file => {
-            if (existsSync(file)) {
-                copyFileSync(file, resolve(this.path, 'assets', basename(file)));
-            } else {
-                window.showWarningMessage(ApexDocError.ASSET_NOT_FOUND(file));
-            }
-        });
-    }
+    // #endregion
 }
 
 export default FileManager;

@@ -1,12 +1,12 @@
-import ApexDoc from '../apexDoc/ApexDoc';
-import Configurator from '../apexDoc/Config';
+import ApexDoc from '../apex-doc/ApexDoc';
+import Configurator from '../apex-doc/Config';
 import {
     commands,
     Disposable,
     ExtensionContext,
     window
     } from 'vscode';
-import { IApexDocConfig } from '../apexDoc/Config';
+import { IApexDocConfig } from '../apex-doc/Config';
 
 const COMMAND = 'apexDoc2.runApexDoc';
 

@@ -1,8 +1,8 @@
-import Configurator from '../apexDoc/Config';
-import createDocServer from '../apexDoc/server';
+import Configurator from '../apex-doc/Config';
+import createDocServer from '../apex-doc/server';
 import Guards from '../utils/Guards';
 import { commands, window } from 'vscode';
-import { IApexDocConfig } from '../apexDoc/Config';
+import { IApexDocConfig } from '../apex-doc/Config';
 
 const COMMAND = 'apexDoc2.serveDocs';
 

@@ -1,5 +1,5 @@
 import * as tags from './tags';
-import ApexDoc from '../apexDoc/ApexDoc';
+import ApexDoc from '../apex-doc/ApexDoc';
 import Utils, { Option } from '../utils/Utils';
 import { existsSync } from 'fs';
 import { resolve } from 'path';

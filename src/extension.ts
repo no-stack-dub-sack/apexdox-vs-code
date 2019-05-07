@@ -1,5 +1,5 @@
 import disposables, { ApexDoc2Command } from './disposables/index';
-import { closeServer } from './apexDoc/server';
+import { closeServer } from './apex-doc/server';
 import { ExtensionContext } from 'vscode';
 
 export const EXTENSION = 'apexdoc2';

@@ -1,30 +1,16 @@
-export const headerOpen = (documentTitle: string) => {
-    return  `<html lang="en">
-        <head>
-            <title>${documentTitle}</title>
-            <meta charset="UTF-8">
-            <script type="text/javascript" src="./assets/index.js"></script>
-            <script charset="UTF-8" src="./assets/highlight.js"></script>
-            <link rel="stylesheet" href="./assets/highlight.css" />
-            <link rel="stylesheet" type="text/css" href="./assets/index.css" />
-            <link rel="shortcut icon" type="image/png" href="./assets/favicon.png"/>
-        </head>
-        <body>`;
-};
-
 export const PROJECT_DETAIL =
-`<div class="topsection">
-    <table>
-        <tr>
-            <td>
-                <img src="./assets/apex_doc_2_logo.png" style="height: 90px; margin-left: 5px;"/>
-            </td>
-            <td>
-                <h2 style="margin: -15px 0 0 0;">ApexDoc2 | Apex Documentation</h2>Check out the GitHub project at:<br/>
-                <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode">
-                    https://github.com/no-stack-dub-sack/ApexDoc2-VSCode
-                </a>
-                <br/>`;
+    `<div class="topsection">
+        <table>
+            <tr>
+                <td>
+                    <img src="./assets/apex_doc_2_logo.png" style="height: 90px; margin-left: 5px;"/>
+                </td>
+                <td>
+                    <h2 style="margin: -15px 0 0 0;">ApexDoc2 | Apex Documentation</h2>Check out the GitHub project at:<br/>
+                    <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode">
+                        https://github.com/no-stack-dub-sack/ApexDoc2-VSCode
+                    </a>
+                    <br/>`;
 
 export const HEADER_CLOSE = `</td></tr></table></div>`;
 

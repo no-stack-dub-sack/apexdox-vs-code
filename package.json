@@ -1,7 +1,7 @@
 {
 	"name": "apexdoc2-vscode",
 	"displayName": "ApexDoc2 VS Code",
-	"description": "A lightweight extension that makes documenting your Salesforce Apex files an easy, integrated experience when using VS Code for Salesforce development.",
+	"description": "A lightweight VS Code extension that makes documenting your Salesforce Apex files an easy, integrated experience.",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.32.0"
@@ -27,7 +27,7 @@
 			},
 			{
 				"command": "apexDoc2.insertDocBlock",
-				"title": "ApexDoc2: Stub Comment"
+				"title": "ApexDoc2: Stub Comment Block"
 			}
 		],
 		"languages": [

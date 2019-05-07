@@ -1,6 +1,6 @@
-import DocGen from '../DocGen';
-import Utils, { last } from '../../utils/Utils';
-import { ApexModel } from '../../models';
+import GeneratorUtils from '../GeneratorUtils';
+import Utils, { last } from '../../../utils/Utils';
+import { ApexModel } from '../../../models';
 
 abstract class MarkupGenerator<T extends ApexModel> {
     protected model: T;
@@ -9,7 +9,7 @@ abstract class MarkupGenerator<T extends ApexModel> {
         this.model = model;
     }
 
-    public annotations(className: string): string {
+    protected annotations(className: string): string {
         if (!this.model.annotations.length) {
             return '';
         }
@@ -17,18 +17,16 @@ abstract class MarkupGenerator<T extends ApexModel> {
         return `<div class="${className}">${this.model.annotations.join(' ')}</div>`;
     }
 
-    public description(className = ''): string {
+    protected description(className = ''): string {
         if (!this.model.description) {
             return '';
         }
 
-        return `<div class="${className}">${DocGen.escapeHTML(this.model.description, true)}</div>`;
+        return `<div class="${className}">${GeneratorUtils.escapeHTML(this.model.description, true)}</div>`;
     }
 
-    public signatureLine(memberClassName: string, highlightJSify = false): string {
-        let signature = highlightJSify
-            ? this.highlightSignature(DocGen.escapeHTML(this.model.nameLine))
-            : DocGen.escapeHTML(this.model.nameLine);
+    protected signatureLine(nameLine: string, memberClassName: string, highlightJSify = false): string {
+        let signature = highlightJSify ? this.highlightSignature(nameLine) : nameLine;
         let sourceUrl = this.model.sourceUrl;
         if (sourceUrl) {
             // if user leaves off trailing slash, save the day!
@@ -49,16 +47,16 @@ abstract class MarkupGenerator<T extends ApexModel> {
     * Help highlight.js along, since props and enum signatures are not
     * recognized by highlight.js since they are not full declarations.
     */
-    public highlightSignature(nameLine: string): string {
+    protected highlightSignature(nameLine: string): string {
         if (nameLine.includes('(')) {
             const name = Utils.previousWord(nameLine, nameLine.indexOf('('));
             return nameLine.replace(name, `<span class="hljs-title">${name}</span>`);
         } else {
-            const words = DocGen.escapeHTML(nameLine, false).split(' ');
+            const words = GeneratorUtils.escapeHTML(nameLine, false).split(' ');
             words[words.length - 1] = `<span class="hljs-title">${last(words)}<span>`;
             return words.join(' ');
         }
     }
 }
 
-export { MarkupGenerator };
+export default MarkupGenerator;

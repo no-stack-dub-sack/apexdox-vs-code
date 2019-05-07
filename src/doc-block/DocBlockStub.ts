@@ -1,4 +1,4 @@
-import ApexDoc from '../apexDoc/ApexDoc';
+import ApexDoc from '../apex-doc/ApexDoc';
 import Utils from '../utils/Utils';
 import { EXTENSION } from '../extension';
 import {

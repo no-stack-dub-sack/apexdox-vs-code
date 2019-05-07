@@ -1,4 +1,4 @@
-import ApexDoc from '../apexDoc/ApexDoc';
+import ApexDoc from '../apex-doc/ApexDoc';
 import { EnumModel } from './EnumModel';
 import { MethodModel } from './MethodModel';
 import { ModelType, TopLevelModel } from './TopLevelModel';

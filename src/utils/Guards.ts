@@ -1,4 +1,4 @@
-import ApexDoc from '../apexDoc/ApexDoc';
+import ApexDoc from '../apex-doc/ApexDoc';
 import ApexDocError from './ApexDocError';
 import Utils, { Option } from './Utils';
 import { existsSync } from 'fs';

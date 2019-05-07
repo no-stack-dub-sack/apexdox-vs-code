@@ -1,5 +1,5 @@
-import ApexDoc from '../apexDoc/ApexDoc';
-import DocGen from '../apexDoc/DocGen';
+import ApexDoc from '../apex-doc/ApexDoc';
+import GeneratorUtils from '../apex-doc/generators/GeneratorUtils';
 import { ApexModel } from '../models/ApexModel';
 import { ClassModel } from '../models/ClassModel';
 import { resolve } from 'path';
@@ -196,36 +196,6 @@ class Utils {
         // TODO: consider all cases. Should we just use Validator?
         // Definitely if there are other validation cases which call for another method from it.
         return /^(https?):\/\/[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]/.test(str.trim());
-    }
-
-    public static isMarkdownURL(str: string): boolean {
-        return /^\[.*\]\(.*\)$/.test(str.trim());
-    }
-
-    public static markdownUrlToLink(str: string): string {
-        str = str.trim();
-
-        const linkName = str.substring(1, str.indexOf(']'));
-        const url = str.substring(str.indexOf('](') + 2, str.length - 1);
-
-        return Utils.isURL(url)
-            ? `<a target="_blank" href="${url}">${linkName}</a>`
-            : `<span title="URL is invalid!">${linkName}</span>`;
-    }
-
-    /**
-    * Help highlight.js along, since props and enum signatures are not
-    * recognized by highlight.js since they are not full declarations.
-    */
-   public static highlightNameLine(nameLine: string): string {
-        if (nameLine.includes('(')) {
-            const name = this.previousWord(nameLine, nameLine.indexOf('('));
-            return nameLine.replace(name, `<span class="hljs-title">${name}</span>`);
-        } else {
-            const words = DocGen.escapeHTML(nameLine, false).split(' ');
-            words[words.length - 1] = `<span class="hljs-title">${last(words)}<span>`;
-            return words.join(' ');
-        }
     }
 
     public static resolveWorkspaceFolder(path: string): string {
