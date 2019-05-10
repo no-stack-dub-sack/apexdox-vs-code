@@ -20,10 +20,13 @@ You can launch the following commands via the command pallette (<kbd>Ctrl/Cmd</k
 
 ## Extension Settings
 
-This extension contributes the below settings.
+### The ${WorkspaceFolder} variable
+For any setting that refers to a path on your file system, you can use the variable `${workspaceFolder}` to refer to the root folder of your project. If you have a multi-root setup, you can use `${workspaceFolder:directory-name}` to indicate the correct directory.
 
-**The ${WorkspaceFolder} variable**:
-For any setting that refers to a path on your file system, you can use the variable `${workspaceFolder}` to refer to the root folder of your project. If you have a multi-root setup, you can use `${workspaceFolder:directory-name}` to indicate the correct directory. To avoid confusion, **please note** that this **_is not_** a supported VS Code feature. VS Code does support this and other variables in other settings files, however, in this case, ApexDoc2-VSCode handles the necessary replacements in settings.json to make checking this config into source control and sharing across machines easier.
+To avoid confusion, **please note** that this **_is not_** a supported VS Code feature. VS Code does support this and other variables in other settings files, however, in this case, ApexDoc2-VSCode handles the necessary replacements in settings.json to make checking this config into source control and sharing across machines easier.
+
+### Settings
+This extension contributes the below settings.
 
 | Setting | Type | Description | Default |
 |------|-----------|----------|-------------|
@@ -44,9 +47,7 @@ For any setting that refers to a path on your file system, you can use the varia
 | `apexdoc2.docBlock.omitDescriptionTag` | `boolean` | ApexDoc2 `@description` tags are optional. Set this to `false` to include them in the comment block stub. | `true` |
 | `apexdoc2.docBlock.spacious` | `boolean` | When set to `true` ApexDoc2 comment block stubs will add an empty line after the description line and before the next tag. | `false` |
 
-### Example Configurations
-
-Minimum Settings:
+### Minimum Settings Example
 
 ```jsonc
 {
@@ -57,7 +58,8 @@ Minimum Settings:
 }
 ```
 
-Expanded Settings (**NOTE:** that in this example '${workspaceFolder}' and 'C:\\Users\\pweinberg\\Documents\\code\\my-dx-project' are equivalent):
+### Expanded Settings Example
+**NOTE:** that in this example '${workspaceFolder}' and 'C:\\Users\\pweinberg\\Documents\\code\\my-dx-project' are equivalent).
 
 ```jsonc
 {
