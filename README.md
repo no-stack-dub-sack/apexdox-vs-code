@@ -20,7 +20,7 @@ You can launch the following commands via the command pallette (<kbd>Ctrl/Cmd</k
 
 ## Extension Settings
 
-### The ${WorkspaceFolder} variable
+### The ${workspaceFolder} variable
 For any setting that refers to a path on your file system, you can use the variable `${workspaceFolder}` to refer to the root folder of your project. If you have a multi-root setup, you can use `${workspaceFolder:directory-name}` to indicate the correct directory.
 
 To avoid confusion, **please note** that this **_is not_** a supported VS Code feature. VS Code does support this and other variables in other settings files, however, in this case, ApexDoc2-VSCode handles the necessary replacements in settings.json to make checking this config into source control and sharing across machines easier.
