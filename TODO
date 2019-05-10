@@ -16,7 +16,7 @@ Documentation:
         ☐ Config Settings
             ✔ Replace 'Required' column with 'Default'  table @done(19-05-10 18:01)
             ✔ New `source` setting, reomve old settings @done(19-05-07 09:24)
-            ☐ Document ${workspaceFolder} settings variable
+            ✔ Document ${workspaceFolder} settings variable @done(19-05-10 18:19)
         ☐ Commands
         ☐ Warnings?
         ☐ OG ApexDoc credits

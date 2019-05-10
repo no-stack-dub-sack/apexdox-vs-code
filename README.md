@@ -20,12 +20,15 @@ You can launch the following commands via the command pallette (<kbd>Ctrl/Cmd</k
 
 ## Extension Settings
 
-This extension contributes the following settings:
+This extension contributes the below settings.
+
+**The ${WorkspaceFolder} variable**:
+For any setting that refers to a path on your file system, you can use the variable `${workspaceFolder}` to refer to the root folder of your project. If you have a multi-root setup, you can use `${workspaceFolder:directory-name}` to indicate the correct directory. To avoid confusion, **please note** that this **_is not_** a supported VS Code feature. VS Code does support this and other variables in other settings files, however, in this case, ApexDoc2-VSCode handles the necessary replacements in settings.json to make checking this config into source control and sharing across machines easier.
 
 | Setting | Type | Description | Default |
 |------|-----------|----------|-------------|
-| `apexdoc2.config.source` | `object[]` |  An array of objects each containing the required key `path`, an absolute path of a folder location which contains Apex .cls files, and optionally a `sourceUrl` key, A URL where the .cls source files are hosted (so ApexDoc2 can provide links to your source code throughout the documentation - confirmed to work with GitHub), e.g.: 'https:\//github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes'. | `[{ "path": "${workspaceFolder}/src/classes" }]` for non-DX projects, and `[{ "path": "${workspaceFolder}/force-app/main/default/classes" }]` for DX. |
-| `apexdoc2.config.targetDirectory` | `string` |  Absolute path of the folder location where ApexDoc2 documentation will be generated to.| `${workspaceFolder}/apex-documentation` |
+| `apexdoc2.config.source` | `object[]` |  An array of objects each containing the required key `path`, an absolute path of a folder location which contains Apex .cls files, and optionally a `sourceUrl` key, A URL where the .cls source files are hosted (so ApexDoc2 can provide links to your source code throughout the documentation - confirmed to work with GitHub), e.g.: 'https:\//github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes'. | A single entry with the `path` key defaulting to `${workspaceFolder}/src/classes` for non-DX projects, and `${workspaceFolder}/force-app/main/default/classes` for DX. |
+| `apexdoc2.config.targetDirectory` | `string` |  Absolute path of the folder location where ApexDoc2 documentation will be generated to.| `${workspaceFolder}/apex-documentation/` |
 | `apexdoc2.config.includes` | `string[]` | A case-sensitive array of file names and/or wildcard patterns that indicate which files in your source directory should be documented. Only simple leading and trailing wildcards are supported. E.g. `[ "NotificationsEmailer.cls", "*TriggerHandler.cls", "Contact*" ]` will result in the file 'NotificationsEmailer.cls' being processed, as well as any files that begin with 'Contact' or end with 'TriggerHandler.cls'. | `[]` |
 | `apexdoc2.config.excludes`| `string[]` | A case-sensitive array of file names and/or wildcard patterns that indicate which files in your source directory should NOT be documented. Only simple leading and trailing wildcards are supported. E.g. `[ "NotificationsEmailer.cls", "*TriggerHandler.cls", "Contact*" ]` will result in all files being processed EXCEPT 'NotificationsEmailer.cls' and those begin with 'Contact' or end with 'TriggerHandler.cls'. **Note** that files are excluded before they are included, so keep this in mind when using 'includes' and 'excludes' together. | `[]` |
 | `apexdoc2.config.homePagePath` | `string` | An absolute path of an html file that contains the contents for the project's 'Home' page. | `""` |
@@ -43,7 +46,7 @@ This extension contributes the following settings:
 
 ### Example Configurations
 
-Minimum Settings Example:
+Minimum Settings:
 
 ```jsonc
 {
@@ -54,13 +57,14 @@ Minimum Settings Example:
 }
 ```
 
-Expanded Settings Example:
+Expanded Settings (**NOTE:** that in this example '${workspaceFolder}' and 'C:\\Users\\pweinberg\\Documents\\code\\my-dx-project' are equivalent):
 
 ```jsonc
 {
     // Documentation Engine Configuration
     "apexdoc2.config.source": [{
-        "path": "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\force-app\\main\\default\\classes",
+        // ${workspaceFolder} and below path are equivalent. Using both only for example purposes.
+        "path": "${workspaceFolder}\\force-app\\main\\default\\classes",
         "sourceUrl": "https://github.com/my-username/my-dx-project/tree/master/force-app/main/default/classes"
     }, {
         "path": "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\force-app\\my-feature\\classes",
@@ -73,8 +77,8 @@ Expanded Settings Example:
         "Contact*"
     ],
     "apexdoc2.config.excludes": [ "*Test.cls" ],
-    "apexdoc2.config.homePagePath": "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\assets\\Docs Home Page.html\\",
-    "apexdoc2.config.bannerPagePath": "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\assets\\Docs Banner.html\\",
+    "apexdoc2.config.homePagePath": "${workspaceFolder}\\assets\\Docs Home Page.html\\",
+    "apexdoc2.config.bannerPagePath": "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\assets\\Docs Banner.html\\",
     "apexdoc2.config.scope": [
         "global",
         "public",
@@ -85,8 +89,8 @@ Expanded Settings Example:
     "apexdoc2.config.showTOCSnippets": false,
     "apexdoc2.config.sortOrder": "logical",
     "apexdoc2.config.assets": [
-        "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\assets\\My Project Logo.png",
-        "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\assets\\favicon.png"
+        "${workspaceFolder}\\assets\\My Project Logo.png",
+        "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\assets\\favicon.png"
     ],
     "apexdoc2.config.port": 5000,
     "apexdoc2.config.cleanDir": true,
