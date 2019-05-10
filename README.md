@@ -48,6 +48,7 @@ This extension contributes the below settings.
 | `apexdoc2.docBlock.spacious` | `boolean` | When set to `true` ApexDoc2 comment block stubs will add an empty line after the description line and before the next tag. | `false` |
 
 ### Minimum Settings Example
+This is all that's required to run ApexDoc2. Technically, you could skip this too, and if your project is a standard DX or Salesforce project, the defaults should pick up your source files, but it's better to be explicit.
 
 ```jsonc
 {
