@@ -14,8 +14,9 @@ General:
 Documentation:
     ☐ README
         ☐ Config Settings
-            ☐ Replace 'Required' column with 'Default'  table
+            ✔ Replace 'Required' column with 'Default'  table @done(19-05-10 18:01)
             ✔ New `source` setting, reomve old settings @done(19-05-07 09:24)
+            ☐ Document ${workspaceFolder} settings variable
         ☐ Commands
         ☐ Warnings?
         ☐ OG ApexDoc credits
@@ -23,5 +24,4 @@ Documentation:
         ☐ Example Project?
     ☐ CHANGELOG (include major changes since ApexDoc original)
     ☐ KNOWN ISSUES
-    ☐ Document ${workspaceFolder} settings variable
     ☐ Create sample Apex project with output documentation that shows most use cases
