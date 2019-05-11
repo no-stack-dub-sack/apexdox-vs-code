@@ -25,11 +25,11 @@ For any setting that refers to a path on your file system, you can use the varia
 
 To avoid confusion, **please note** that this **_is not_** a supported VS Code feature. VS Code does support this and other variables in other settings files, however, in this case, ApexDoc2-VSCode handles the necessary replacements in settings.json to make checking this config into source control and sharing across machines easier.
 
-### Settings
-This extension contributes the below settings.
+### Documentation Engine Settings
+Use these settings to configure the ApexDoc2 documentation engine.
 
 | Setting | Type | Description | Default |
-|------|-----------|----------|-------------|
+|---------|------|-------------|---------|
 | `apexdoc2.config.source` | `object[]` |  An array of objects each containing the required key `path`, an absolute path of a folder location which contains Apex .cls files, and optionally a `sourceUrl` key, A URL where the .cls source files are hosted (so ApexDoc2 can provide links to your source code throughout the documentation - confirmed to work with GitHub), e.g.: 'https:\//github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes'. | A single entry with the `path` key defaulting to `${workspaceFolder}/src/classes` for non-DX projects, and `${workspaceFolder}/force-app/main/default/classes` for DX. |
 | `apexdoc2.config.targetDirectory` | `string` |  Absolute path of the folder location where ApexDoc2 documentation will be generated to.| `${workspaceFolder}/apex-documentation/` |
 | `apexdoc2.config.includes` | `string[]` | A case-sensitive array of file names and/or wildcard patterns that indicate which files in your source directory should be documented. Only simple leading and trailing wildcards are supported. E.g. `[ "NotificationsEmailer.cls", "*TriggerHandler.cls", "Contact*" ]` will result in the file 'NotificationsEmailer.cls' being processed, as well as any files that begin with 'Contact' or end with 'TriggerHandler.cls'. | `[]` |
@@ -43,6 +43,12 @@ This extension contributes the below settings.
 | `apexdoc2.config.assets` | `string[]` | An array of absolute paths of files you would like to be included in the target directory's 'assets' folder. This is where ApexDoc2 keeps JavaScript, CSS, and images. For instance, if your banner or home page reference images, make their `src` attribute `./assets/yourImage.png`, include the image's path in this array, and ApexDoc2 will copy the image into this directory. This is also useful for overriding the default favicon. | `[]` |
 | `apexdoc2.config.cleanDir` | `boolean` | If set to `true`, ApexDoc2 will remove any files or folders in your target directory before creating your docs. | `false` |
 | `apexdoc2.config.port` | `number` | The port number that the `ApexDoc2: Open Docs` command will serve your docs on. | `8080` |
+
+### ApexDoc2 Comment Block Settings
+Use these settings to configure the appearance of ApexDoc2 comment block stubs (see the [commands](#commands) section for how to contextually stub a comment block).
+
+| Setting | Type | Description | Default |
+|---------|------|-------------|---------|
 | `apexdoc2.docBlock.alignItems` | `boolean` | Vertically align anything after an ApexDoc2 @tag. | `false` |
 | `apexdoc2.docBlock.omitDescriptionTag` | `boolean` | ApexDoc2 `@description` tags are optional. Set this to `false` to include them in the comment block stub. | `true` |
 | `apexdoc2.docBlock.spacious` | `boolean` | When set to `true` ApexDoc2 comment block stubs will add an empty line after the description line and before the next tag. | `false` |

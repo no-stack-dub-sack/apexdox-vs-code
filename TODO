@@ -13,11 +13,11 @@ General:
 
 Documentation:
     ☐ README
-        ☐ Config Settings
+        ✔ Config Settings @done(19-05-11 16:11)
             ✔ Replace 'Required' column with 'Default'  table @done(19-05-10 18:01)
             ✔ New `source` setting, reomve old settings @done(19-05-07 09:24)
             ✔ Document ${workspaceFolder} settings variable @done(19-05-10 18:19)
-        ☐ Commands
+        ✔ Commands @done(19-05-11 16:17)
         ☐ Warnings?
         ☐ OG ApexDoc credits
         ☐ Example Gifs
