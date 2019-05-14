@@ -31,21 +31,18 @@
 				"title": "ApexDoc2: Stub Comment Block"
 			}
 		],
-		"languages": [
-			{
-				"id": "apex",
-				"configuration": "./syntaxes/apex.configuration.json",
-				"extensions": [
-					".cls",
-					".apex",
-					".trigger",
-					".tgr"
-				],
-				"aliases": [
-					"Apex"
-				]
-			}
-		],
+		"languages": [{
+			"id": "apex",
+			"aliases": [
+				"Apex",
+				"apex"
+			],
+			"extensions": [
+				".cls",
+				".trigger"
+			],
+			"configuration": "./syntaxes/language-configuration.json"
+		}],
 		"grammars": [
 			{
 				"path": "./syntaxes/apex.tmLanguage.injection.json",

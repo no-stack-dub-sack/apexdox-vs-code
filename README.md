@@ -44,7 +44,7 @@ Use these settings to configure the ApexDoc2 documentation engine.
 | `apexdoc2.config.cleanDir` | `boolean` | If set to `true`, ApexDoc2 will remove any files or folders in your target directory before creating your docs. | `false` |
 | `apexdoc2.config.port` | `number` | The port number that the `ApexDoc2: Open Docs` command will serve your docs on. | `8080` |
 
-### ApexDoc2 Comment Block Settings
+### Comment Block Settings
 Use these settings to configure the appearance of ApexDoc2 comment block stubs (see the [commands](#commands) section for how to contextually stub a comment block).
 
 | Setting | Type | Description | Default |

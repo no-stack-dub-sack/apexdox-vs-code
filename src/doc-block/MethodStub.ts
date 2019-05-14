@@ -17,6 +17,13 @@ interface IParsedMethod {
     throwsException: boolean;
 }
 
+interface IPairCount {
+    openCurlies: number;
+    closeCurlies: number;
+    openParens: number;
+    closeParens: number;
+}
+
 class MethodStub extends DocBlockStub {
 
     public constructor(editor: TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
@@ -73,36 +80,45 @@ class MethodStub extends DocBlockStub {
     private parseMethod(): IParsedMethod {
         let methodText = this.line.text.trim()
             , currLineIndex = this.lineIndex
-            , openCurlies = Utils.countChars(methodText, '{')
-            , closeCurlies = Utils.countChars(methodText, '}')
+            , pairs = this.countMatchingPairs(methodText)
             , throwsException = false
             , start = true;
 
-        // Capture the method's nameLine, and traverse over
-        // enough of it's text to detect whether or not a it
-        // throws an exception, if so, we'll include this tag.
-        while (openCurlies !== closeCurlies || start === true) {
-            this.line = this.editor.document.lineAt(++currLineIndex);
+        if (!this.isInterfaceOrAbstractMethod(methodText, pairs)) {
+            // Capture the method's nameLine, and traverse over
+            // enough of it's text to detect whether or not a it
+            // throws an exception, if so, we'll include this tag.
+            while (pairs.openCurlies !== pairs.closeCurlies || start === true) {
+                this.line = this.editor.document.lineAt(++currLineIndex);
 
-            openCurlies += Utils.countChars(this.line.text, '{');
-            closeCurlies += Utils.countChars(this.line.text, '}');
-            methodText += this.line.text.trim();
+                // update our pair count with the current line's text
+                pairs = this.countMatchingPairs(this.line.text, pairs);
+                methodText += this.line.text.trim();
 
-            // be sure to turn this off once our loop begins
-            if (openCurlies > 0 && start === true) {
-                start = false;
+                // if we're dealing with an interface method, break
+                if (this.isInterfaceOrAbstractMethod(methodText, pairs)) {
+                    break;
+                }
+
+                // be sure to turn this off once our loop begins
+                if (pairs.openCurlies > 0 && start === true) {
+                    start = false;
+                }
+
+                // we're looking for an exception, if we find one, we can break
+                // the loop, we already have all the info we need for the model
+                if (this.line.text.trim().toLowerCase().startsWith('throw')) {
+                    throwsException = true;
+                    break;
+                }
             }
 
-            // we're looking for an exception, if we find one, we can break
-            // the loop, we already have all the info we need for the model
-            if (this.line.text.trim().toLowerCase().startsWith('throw')) {
-                throwsException = true;
-                break;
-            }
         }
 
-        // create a method model from our name line to base our stub on
-        const method = new MethodModel([], methodText.substring(0, methodText.indexOf('{')), 0);
+        // trim our method text if needed and create a method model from it
+        const endIdx = methodText.indexOf('{');
+        methodText = endIdx > -1 ? methodText.substring(0,  endIdx) : methodText;
+        const method = new MethodModel([], methodText, 0);
 
         return {
             throwsException,
@@ -110,6 +126,48 @@ class MethodStub extends DocBlockStub {
             params: method.paramsFromNameLine,
             returnType: this.getReturnType(method)
         };
+    }
+
+    /**
+     * Count matching pairs in our method's text, so we can determine if it is an
+     * interface method, and when to break the loop for parsing a full method's body.
+     *
+     * @param lineText The text to count pairs for.
+     * @param pairs If called subsequently, the pair object to update.
+     */
+    private countMatchingPairs(lineText: string, pairs?: IPairCount): IPairCount {
+        if (!pairs) {
+            return {
+                openCurlies: Utils.countChars(lineText, '{'),
+                closeCurlies: Utils.countChars(lineText, '}'),
+                openParens: Utils.countChars(lineText, '('),
+                closeParens: Utils.countChars(lineText, ')')
+            };
+        } else {
+            pairs.openCurlies += Utils.countChars(lineText, '{');
+            pairs.closeCurlies += Utils.countChars(lineText, '}');
+            pairs.openParens += Utils.countChars(lineText, '(');
+            pairs.closeParens += Utils.countChars(lineText, ')');
+            return pairs;
+        }
+    }
+
+    /**
+     * A helper method to determine whether or not a method is part of an interface or an abstract method definition.
+     *
+     * @param methodText The method's text to analyze.
+     * @param pairs An `IPairCount` instance which tracks the number of matching brackets in the method's text.
+     */
+    private isInterfaceOrAbstractMethod(methodText: string, pairs: IPairCount): boolean {
+        if (
+            pairs.openParens === 1 && pairs.closeParens === 1 &&
+            pairs.openCurlies === 0 && pairs.closeCurlies === 0 &&
+            methodText.trim().endsWith(';')
+        ) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
