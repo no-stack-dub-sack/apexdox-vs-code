@@ -1,4 +1,4 @@
-import langConfig from '../doc-block/onEnterRules.config';
+import langConfig from '../docblock/onEnterRules.config';
 import { Disposable, languages } from 'vscode';
 
 export default function(): Disposable {

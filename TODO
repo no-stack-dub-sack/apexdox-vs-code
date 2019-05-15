@@ -10,6 +10,7 @@ General:
     ✔ Replace get*() on models with getters, and set up backing fields so we can have more idiomatic private set, public get @done(19-05-03 20:10)
     ☐ Resolve in-code TODOs
     ☐ Configuration options for comment stubs (default tags for methods / classes)
+    ☐ Look into Proxy issue with Config! Need to be able to detect empty configuration.
 
 Documentation:
     ☐ README
@@ -17,6 +18,8 @@ Documentation:
             ✔ Replace 'Required' column with 'Default'  table @done(19-05-10 18:01)
             ✔ New `source` setting, reomve old settings @done(19-05-07 09:24)
             ✔ Document ${workspaceFolder} settings variable @done(19-05-10 18:19)
+            ☐ markupDescription descriptions don't show up in Contributes tab of extension info? Can we include both?
+            ☐ Make README descriptions same as package.json descriptions
         ✔ Commands @done(19-05-11 16:17)
         ☐ Warnings?
         ☐ OG ApexDoc credits

@@ -1,5 +1,5 @@
-import * as tags from '../models/tags';
-import { Option } from '../utils/Utils';
+import * as tags from '../common/tags';
+import { Option } from '../common/Utils';
 import {
     CompletionItem,
     CompletionItemKind,

@@ -1,7 +1,7 @@
-import ClassStub from '../doc-block/ClassStub';
-import DefaultStub from '../doc-block/DefaultStub';
-import DocBlockStub, { IStubLine, StubType } from '../doc-block/DocBlockStub';
-import MethodStub from '../doc-block/MethodStub';
+import ClassStub from '../docblock/ClassStub';
+import DefaultStub from '../docblock/DefaultStub';
+import DocBlockStub, { IStubLine, StubType } from '../docblock/DocBlockStub';
+import MethodStub from '../docblock/MethodStub';
 import {
     commands,
     CompletionItem,
@@ -14,7 +14,7 @@ import {
     TextDocument,
     window
     } from 'vscode';
-import { Option } from '../utils/Utils';
+import { Option } from '../common/Utils';
 
 const COMMAND = 'apexdoc2.docBlockCompletion';
 
