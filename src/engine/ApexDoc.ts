@@ -3,6 +3,7 @@ import FileManager from './FileManager';
 import GeneratorUtils from './generators/GeneratorUtils';
 import LineReader from './LineReader';
 import Utils, { last, Option } from '../common/Utils';
+import { ApexModel } from '../common/models';
 import { basename } from 'path';
 import { IApexDocConfig } from '../common/Settings';
 import { performance } from 'perf_hooks';
@@ -228,7 +229,7 @@ class ApexDoc {
             if (Utils.isClassOrInterface(line)) {
                 // create the new class
                 let cModelNew: Models.ClassModel = new Models.ClassModel(cModelParent, comments, line, lineNum, sourceUrl);
-                Utils.parseAnnotations(<string>reader.peekPrevLine(), line, cModelNew);
+                ApexModel.parseAnnotations(reader.peekPrevLine(), line, cModelNew);
                 comments = [];
 
                 // keep track of the new class, as long as it wasn't a single liner {}
@@ -259,7 +260,7 @@ class ApexDoc {
                 }
 
                 let eModel: Models.EnumModel = new Models.EnumModel(comments, line, startingLine, sourceUrl);
-                Utils.parseAnnotations(<string>reader.peekPrevLine(), line, eModel);
+                ApexModel.parseAnnotations(reader.peekPrevLine(), line, eModel);
 
                 // if no class models have been created, and we see an
                 // enum, we must be dealing with a class level enum and
@@ -285,7 +286,7 @@ class ApexDoc {
                 }
 
                 let mModel: Models.MethodModel = new Models.MethodModel(comments, line, startingLine, sourceUrl);
-                Utils.parseAnnotations(<string>reader.peekPrevLine(), line, mModel);
+                ApexModel.parseAnnotations(reader.peekPrevLine(), line, mModel);
                 cModel && cModel.methods.push(mModel);
                 comments = [];
                 continue;
@@ -293,7 +294,7 @@ class ApexDoc {
 
             // must be a property
             let pModel: Models.PropertyModel = new Models.PropertyModel(comments, line, lineNum, sourceUrl);
-            Utils.parseAnnotations(<string>reader.peekPrevLine(), line, pModel);
+            ApexModel.parseAnnotations(reader.peekPrevLine(), line, pModel);
             cModel && cModel.properties.push(pModel);
             comments = [];
             continue;

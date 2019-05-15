@@ -7,7 +7,7 @@ import { window, workspace, WorkspaceFolder } from 'vscode';
 
 export type Option<T, V = undefined> = T | V;
 
-export const last = <T>(arr: T[]): T => arr[arr.length - 1];
+export const last = <T>(arr: T[]): T => arr.length > 1 ? arr[arr.length - 1] : arr[0];
 
 class Utils {
     private static COLLECTIONS: string[] = ['list', 'set', 'map'];
@@ -60,24 +60,6 @@ class Utils {
         }
 
         return line;
-    }
-
-    public static parseAnnotations(previousLine: string, line: string, model: ApexModel): void {
-        // If previous line is not a comment line, it could be an annotation line.
-        // Annotations may also be on the signature line, so check both for matches.
-        if (previousLine && !previousLine.startsWith('*')) {
-            line = previousLine + ' ' + line;
-        }
-
-        let matches: Option<RegExpMatchArray, null> = line.match(/@\w+\s*(\([\w=.*''/\s]+\))?/g);
-
-        if (matches !== null) {
-            matches.forEach(match => {
-                if (match) {
-                    model && model.annotations.push(match.trim());
-                }
-            });
-        }
     }
 
     /**

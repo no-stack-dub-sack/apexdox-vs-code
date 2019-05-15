@@ -158,6 +158,27 @@ abstract class ApexModel {
         }
     }
 
+    public static parseAnnotations(previousLine: Option<string, null>, line: string, model: ApexModel): void {
+        // If previous line is not a comment line, it could be an annotation line.
+        // Annotations may also be on the signature line, so check both for matches.
+        if (previousLine) {
+            previousLine = previousLine.trim();
+            if (!previousLine.startsWith('*') && /.*(@\w+\s*(\([\w=.*''/\s]+\))?)$/.test(previousLine)) {
+                line = previousLine + ' ' + line;
+            }
+        }
+
+        let matches: Option<RegExpMatchArray, null> = line.match(/@\w+\s*(\([\w=.*''/\s]+\))?/g);
+
+        if (matches !== null) {
+            matches.forEach(match => {
+                if (match) {
+                    model && model.annotations.push(match.trim());
+                }
+            });
+        }
+    }
+
     protected parseScope(): void {
         if (this._nameLine) {
             let _scope = Utils.containsScope(this._nameLine);
