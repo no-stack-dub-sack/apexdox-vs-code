@@ -45,8 +45,9 @@ class MethodModel extends ApexModel {
 
     public get paramsFromNameLine(): string[] {
         const nameLine = this.nameLine;
-        const paramsList = nameLine.substring(nameLine.indexOf('(') + 1, nameLine.indexOf(')'));
-        let params = paramsList.includes(',') ? paramsList.split(',') : [];
+        let params = nameLine
+            .substring(nameLine.indexOf('(') + 1, nameLine.indexOf(')'))
+            .split(',');
 
         const result = params.map(param => {
             let paramPair = param.trim().split(/\s+/);

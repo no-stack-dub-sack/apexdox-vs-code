@@ -139,7 +139,6 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
     protected params(): string {
         let markup = '';
         if (this.model.params.length) {
-            // @param someParam This is the params description.
             markup += '<div class="methodSubTitle">Parameters</div>';
             for (let param of this.model.params) {
                 param = GeneratorUtils.escapeHTML(param, true).trim();

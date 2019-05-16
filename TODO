@@ -13,6 +13,7 @@ Phase Two:
     ☐ "Stub All" command
     ☐ Configuration options for comment stubs (default tags for methods / classes)
     ☐ Support TODO and Hack tags?
+    ☐ Put link to open docs in "Complete" notification if possible
 
 Documentation:
     ☐ README

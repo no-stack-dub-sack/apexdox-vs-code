@@ -12,12 +12,10 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         const generator = new TopLevelMarkupGenerator(model);
 
         let markup = '';
-        markup += generator.annotations('classAnnotations');
-        markup += generator.signatureLine(className);
 
         // add any additional content passed in from the caller. currently, only
         // use case is the values table used when documenting class-level enums
-        markup += generator.description('classDetails');
+        markup += generator.description();
         markup += additionalContent;
         markup += generator.deprecated();
         markup += generator.see(modelMap);
@@ -25,7 +23,12 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         markup += generator.since();
         markup += generator.example();
 
-        markup = `<div class="classDetails">${markup}</div><p/>`;
+        markup = `
+            ${generator.annotations('classAnnotations')}
+            ${generator.signatureLine(className)}
+            <div class="classDetails">${markup}</div>
+            <p/>`;
+
         return markup;
     }
 
