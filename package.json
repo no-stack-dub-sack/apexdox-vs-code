@@ -58,7 +58,7 @@
 			"properties": {
 				"apexdoc2.engine.source": {
 					"type": "array",
-					"default": [],
+					"default": [{ "path": "" }],
 					"markdownDescription": "An array of 'source' objects, with the following keys:\n- `path` (string): An absolute path to a directory containing .cls files you'd like to document.\n- `sourceUrl?` (string): Optional. A URL where the .cls source files are hosted, so ApexDoc2 can provide links to your code - confirmed to work with GitHub), e.g.: `https://github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes`.\n\nDefaults to: \n```\n[{\n  \"path\": \"${workspaceFolder}/src/classes\"\n  }]\n```\nfor non-DX projects, and \n```\n[{\n  \"path\": \"${workspaceFolder}/force-app/main/default/classes\"\n  }]\n```\nfor DX."
 				},
 				"apexdoc2.engine.targetDirectory": {

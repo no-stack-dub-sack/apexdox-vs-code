@@ -75,7 +75,9 @@ class Settings {
 
         return {
             ...config,
-            source: !config.source.length ? defaultSource : config.source,
+            // if config.source has only one entry and path is '', its prob our default, even if it's
+            // not, it's an invalid configuration, so replace with our defaultSource variable
+            source: config.source.length === 1 && !config.source[0].path ? defaultSource : config.source,
             targetDirectory: !config.targetDirectory ? defaultTarget : config.targetDirectory
         };
     }

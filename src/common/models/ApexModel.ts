@@ -133,14 +133,17 @@ abstract class ApexModel {
                     this._deprecated += (this._deprecated ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.DESCRIPTION.label) {
                     this._description += (this._description ? ' ' : '') + line.trim();
-                } else if (currBlock === tags.GROUP.label) {
-                    this._groupName += line.trim();
                 } else if (currBlock === tags.EXAMPLE.label) {
                     this._example += (this._example ? ' \n'  : '') + line;
+                }
+                // These tags only support a single line if a duplicate
+                // tag is encountered, override any existing value.
+                else if (currBlock === tags.GROUP.label) {
+                    this._groupName = line.trim();
                 } else if (currBlock === tags.GROUP_CONTENT.label) {
                     const doesResolve = this.resolveContentPath(line.trim());
                     if (doesResolve) {
-                        this._groupContentPath += doesResolve;
+                        this._groupContentPath = doesResolve;
                     }
                 }
             }

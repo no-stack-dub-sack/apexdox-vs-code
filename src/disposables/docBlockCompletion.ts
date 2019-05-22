@@ -60,10 +60,10 @@ export default function docBlockCompletion(): Disposable {
                 case StubType.METHOD:
                     stub = new MethodStub(editor, lineIdx, stubLine, true);
                     break;
-                case StubType.CLASS_INTERFACE_OR_ENUM:
+                case StubType.TOP_LEVEL_TYPE:
                     stub = new ClassStub(editor, lineIdx, stubLine, true);
                     break;
-                case StubType.PROP_OR_INNER_ENUM:
+                case StubType.PROP_OR_NESTED_TYPE:
                 default:
                     stub = new DefaultStub(editor, lineIdx, stubLine, true);
             }

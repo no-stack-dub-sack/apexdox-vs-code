@@ -18,10 +18,10 @@ export default function() {
                 case StubType.METHOD:
                     new MethodStub(editor, lineIdx, stubLine).insert();
                     break;
-                case StubType.CLASS_INTERFACE_OR_ENUM:
+                case StubType.TOP_LEVEL_TYPE:
                     new ClassStub(editor, lineIdx, stubLine).insert();
                     break;
-                case StubType.PROP_OR_INNER_ENUM:
+                case StubType.PROP_OR_NESTED_TYPE:
                 default:
                     new DefaultStub(editor, lineIdx, stubLine).insert();
                     break;

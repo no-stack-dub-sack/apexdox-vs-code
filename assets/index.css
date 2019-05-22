@@ -86,16 +86,14 @@ body {
 
 .attrTable th {
     text-align: left;
-    color: var(--dark-blue);
-    /* OR */
-    /* background: var(--dark-blue); */
-    /* color: var(--white); */
+    background: #547499;
+    color: var(--white);
 }
 
 .attrTable th,
 .attrTable td {
     padding: 5px;
-    border: 1px solid #919191;
+    border: 1px solid #d6d4d4;
     font-size: .9em;
 }
 
@@ -106,7 +104,8 @@ body {
 /* restrict width of enum value column so
 most signatures will fit on a single lin */
 .attrTable .enumValues {
-    max-width: 500px;
+    max-width: 300px;
+    overflow-wrap: break-word;
 }
 
 .attrName {
@@ -308,6 +307,7 @@ details summary::-webkit-details-marker {
 
 .navbar .navItem a {
     color: black;
+    text-decoration: none;
 }
 
 .navbar .navItem a:focus,

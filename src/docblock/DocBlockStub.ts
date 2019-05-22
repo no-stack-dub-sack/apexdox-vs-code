@@ -20,8 +20,8 @@ export interface IStubLine {
 }
 
 export enum StubType {
-    CLASS_INTERFACE_OR_ENUM,
-    PROP_OR_INNER_ENUM,
+    TOP_LEVEL_TYPE,
+    PROP_OR_NESTED_TYPE,
     METHOD
 }
 
@@ -82,7 +82,7 @@ abstract class DocBlockStub {
      * an annotation, so traverse downward to find the first non-annotation line.
      * If the command is invoked on an empty line, it will look to see if the next
      * line is an annotation or contains text to be stubbed. If neither, stub type
-     * PROP_OR_INNER_ENUM will be returned, and an empty block comment will be inserted.
+     * PROP_OR_NESTED_TYPE will be returned, and an empty block comment will be inserted.
      *
      * @param document The active file.
      * @param lineIndex The line index of the the active line when the command was invoked.
@@ -130,14 +130,9 @@ abstract class DocBlockStub {
      * @returns `StubType` enum
      */
     private static getStubType(lineText: string, lineIndex: number, document: TextDocument) : StubType {
-        if (Utils.isClassOrInterface(lineText)) {
-            return StubType.CLASS_INTERFACE_OR_ENUM;
-        }
-
-        // If we encounter an enum, traverse up the document and
-        // find out if we're in a class. If we are, treat stub as
-        // inner enum which has different tags than class level enum.
-        else if (Utils.isEnum(lineText.trim())) {
+        // If we encounter an enum or class, traverse up the
+        // doc and find out if we're nested inside another class
+        if (Utils.isEnum(lineText.trim()) || Utils.isClassOrInterface(lineText)) {
             let isNested = false;
             while (lineIndex >= 1 && isNested === false) {
                 let prevLineText = document.lineAt(--lineIndex).text.trim();
@@ -151,10 +146,10 @@ abstract class DocBlockStub {
             }
 
             if (isNested) {
-                return StubType.PROP_OR_INNER_ENUM;
+                return StubType.PROP_OR_NESTED_TYPE;
             }
 
-            return StubType.CLASS_INTERFACE_OR_ENUM;
+            return StubType.TOP_LEVEL_TYPE;
         }
 
         // TODO: equals sign is how we're avoiding confusing methods
@@ -164,7 +159,7 @@ abstract class DocBlockStub {
         }
 
         else {
-            return StubType.PROP_OR_INNER_ENUM;
+            return StubType.PROP_OR_NESTED_TYPE;
         }
     }
 

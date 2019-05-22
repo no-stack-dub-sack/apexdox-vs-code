@@ -14,6 +14,8 @@ Phase Two:
     ☐ Configuration options for comment stubs (default tags for methods / classes)
     ☐ Support TODO and Hack tags?
     ☐ Put link to open docs in "Complete" notification if possible
+    ☐ User defined CSS stylesheet that allows overriding current styles
+    ☐ Trigger documentation!!
 
 Documentation:
     ☐ README
@@ -27,7 +29,7 @@ Documentation:
         ☐ Warnings?
         ☐ OG ApexDoc credits
         ☐ Example Gifs
-        ☐ Example Project?
+        ☐ Example Project
     ☐ CHANGELOG (include major changes since ApexDoc original)
     ☐ KNOWN ISSUES
     ☐ Create sample Apex project with output documentation that shows most use cases
