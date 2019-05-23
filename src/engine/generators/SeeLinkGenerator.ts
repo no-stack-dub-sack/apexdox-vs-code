@@ -15,7 +15,7 @@ class SeeLinkGenerator {
         const url = str.substring(str.indexOf('](') + 2, str.length - 1);
 
         return Utils.isURL(url)
-            ? `<a target="_blank" href="${url}">${linkName}</a>`
+            ? `<a target="_blank" rel="noopener noreferrer" href="${url}">${linkName}</a>`
             : `<span title="URL is invalid!">${linkName}</span>`;
     }
 
@@ -38,7 +38,7 @@ class SeeLinkGenerator {
 
             // 2) check if URL, add to links and continue with loop if so
             if (Utils.isURL(qualifier)) {
-                links.push(`<a target="_blank" href="${qualifier}">${qualifier}</a>`);
+                links.push(`<a target="_blank" rel="noopener noreferrer" href="${qualifier}">${qualifier}</a>`);
                 continue;
             }
 

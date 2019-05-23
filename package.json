@@ -63,7 +63,7 @@
 				},
 				"apexdoc2.engine.targetDirectory": {
 					"type": "string",
-					"default": "",
+					"default": "${workspaceFolder}/apex-documentation/",
 					"description": "The target directory for the output documentation. The directory you specified will be created if it does not exist. Defaults to `${workspaceFolder}/apex-documentation`."
 				},
 				"apexdoc2.engine.includes": {
@@ -136,7 +136,7 @@
 				"apexdoc2.docBlock.alignItems": {
 					"type": "boolean",
 					"default": false,
-					"markdownDescription": "Vertically align anything after an ApexDoc2 @tag. E.g.:\n```\n/**\n * @description         Here's a description\n * @param myParam       Param description\n * @param anotherParam  Another param description\n */\n```\nDefaults to `false`."
+					"markdownDescription": "Vertically align anything after an ApexDoc2 @tag. E.g.:\n```\n/**\n * @description         Some description\n * @param myParam       Param description\n * @param anotherParam  Another param description\n */\n```\nDefaults to `false`."
 				},
 				"apexdoc2.docBlock.omitDescriptionTag": {
 					"type": "boolean",

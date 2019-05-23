@@ -19,7 +19,7 @@ export const FOOTER =
     </table>
     <hr/>
     <center class="footer">
-        <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank">
+        <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank" rel="noopener noreferrer">
             Powered By ApexDoc2
         </a>
     </center>

@@ -35,7 +35,7 @@ abstract class MarkupGenerator<T extends ApexModel> {
             }
             let href = sourceUrl + memberClassName + '.cls#L' + this.model.lineNum;
             return `
-                <a target="_blank" title="Go to source" class="hostedSourceLink" href="${href}">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="${href}">
                     ${signature}
                 </a>`;
         } else {

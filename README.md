@@ -30,7 +30,7 @@ Use these settings to configure the ApexDoc2 documentation engine.
 
 | Setting | Type | Description | Default |
 |---------|------|-------------|---------|
-| `apexdoc2.engine.source` | `object[]` |  An array of objects each containing the required key `path`, an absolute path of a folder location which contains Apex .cls files, and optionally a `sourceUrl` key, A URL where the .cls source files are hosted (so ApexDoc2 can provide links to your source code throughout the documentation - confirmed to work with GitHub), e.g.: 'https:\//github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes'. | A single entry with the `path` key defaulting to `${workspaceFolder}/src/classes` for non-DX projects, and `${workspaceFolder}/force-app/main/default/classes` for DX. |
+| `apexdoc2.engine.source` | `object[]` |  An array of objects each containing the required key `path`, an absolute path of a folder location which contains Apex .cls files, and optionally a `sourceUrl` key, A URL where the .cls source files are hosted (so ApexDoc2 can provide links to your source code throughout the documentation - confirmed to work with GitHub), e.g.: 'https:\//github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes'. | If omitted, ApexDoc2-VSCode will default this setting to a single entry with the `path` key defaulting to `${workspaceFolder}/src/classes` for non-DX projects, and `${workspaceFolder}/force-app/main/default/classes` for DX. |
 | `apexdoc2.engine.targetDirectory` | `string` |  Absolute path of the folder location where ApexDoc2 documentation will be generated to.| `${workspaceFolder}/apex-documentation/` |
 | `apexdoc2.engine.includes` | `string[]` | A case-sensitive array of file names and/or wildcard patterns that indicate which files in your source directory should be documented. Only simple leading and trailing wildcards are supported. E.g. `[ "NotificationsEmailer.cls", "*TriggerHandler.cls", "Contact*" ]` will result in the file 'NotificationsEmailer.cls' being processed, as well as any files that begin with 'Contact' or end with 'TriggerHandler.cls'. | `[]` |
 | `apexdoc2.engine.excludes`| `string[]` | A case-sensitive array of file names and/or wildcard patterns that indicate which files in your source directory should NOT be documented. Only simple leading and trailing wildcards are supported. E.g. `[ "NotificationsEmailer.cls", "*TriggerHandler.cls", "Contact*" ]` will result in all files being processed EXCEPT 'NotificationsEmailer.cls' and those begin with 'Contact' or end with 'TriggerHandler.cls'. **Note** that files are excluded before they are included, so keep this in mind when using 'includes' and 'excludes' together. | `[]` |
@@ -73,8 +73,9 @@ This is all that's required to run ApexDoc2. Technically, you could skip this to
 {
     // Documentation Engine Configuration
     "apexdoc2.engine.source": [{
-        // ${workspaceFolder} and below path are equivalent. Using both only for example purposes.
-        "path": "${workspaceFolder}\\force-app\\main\\default\\classes",
+        // ${workspaceFolder} and C:\\Users\\pweinberg\\Documents\\code\\my-dx-project are equivalent.
+        // Using both only for demonstration purposes.
+        "path": "${workspaceFolder}/force-app/main/default/classes",
         "sourceUrl": "https://github.com/my-username/my-dx-project/tree/master/force-app/main/default/classes"
     }, {
         "path": "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\force-app\\my-feature\\classes",
@@ -87,8 +88,8 @@ This is all that's required to run ApexDoc2. Technically, you could skip this to
         "Contact*"
     ],
     "apexdoc2.engine.excludes": [ "*Test.cls" ],
-    "apexdoc2.engine.homePagePath": "${workspaceFolder}\\assets\\Docs Home Page.html\\",
-    "apexdoc2.engine.bannerPagePath": "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\assets\\Docs Banner.html\\",
+    "apexdoc2.engine.homePagePath": "${workspaceFolder}/assets/Docs Home Page.html",
+    "apexdoc2.engine.bannerPagePath": "${workspaceFolder}/assets/Docs Banner.html",
     "apexdoc2.engine.scope": [
         "global",
         "public",
@@ -99,8 +100,8 @@ This is all that's required to run ApexDoc2. Technically, you could skip this to
     "apexdoc2.engine.showTOCSnippets": false,
     "apexdoc2.engine.sortOrder": "logical",
     "apexdoc2.engine.assets": [
-        "${workspaceFolder}\\assets\\My Project Logo.png",
-        "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\assets\\favicon.png"
+        "${workspaceFolder}/assets/My Project Logo.png",
+        "${workspaceFolder}/assets/favicon.png"
     ],
     "apexdoc2.engine.port": 5000,
     "apexdoc2.engine.cleanDir": true,

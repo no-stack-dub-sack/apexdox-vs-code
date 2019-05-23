@@ -23,13 +23,22 @@ Documentation:
             ✔ Replace 'Required' column with 'Default'  table @done(19-05-10 18:01)
             ✔ New `source` setting, reomve old settings @done(19-05-07 09:24)
             ✔ Document ${workspaceFolder} settings variable @done(19-05-10 18:19)
-            ☐ markupDescription descriptions don't show up in Contributes tab of extension info? Can we include both?
+            ✘ markupDescription descriptions don't show up in Contributes tab of extension info? Can we include both? @cancelled(19-05-22 21:36)
             ☐ Make README descriptions same as package.json descriptions
         ✔ Commands @done(19-05-11 16:17)
         ☐ Warnings?
         ☐ OG ApexDoc credits
         ☐ Example Gifs
         ☐ Example Project
+            ✔ Home Page @done(19-05-22 21:35)
+            ✔ favicon @done(19-05-22 21:35)
+            ✔ other assets @done(19-05-21 21:50)
+            ✔ include additional HTML with pages setting @done(19-05-22 21:35)
+            ✔ Group Content page @done(19-05-22 09:17)
+            ✔ various @see tag examples @done(19-05-21 21:50)
+            ✔ Deploy Exampe Project to Surge @done(19-05-22 22:13)
+            ☐ Document Example Project in ApexDoc2 README
+            ☐ Create README for Sample Project
     ☐ CHANGELOG (include major changes since ApexDoc original)
     ☐ KNOWN ISSUES
     ☐ Create sample Apex project with output documentation that shows most use cases
