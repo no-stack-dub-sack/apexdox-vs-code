@@ -39,6 +39,7 @@ Documentation:
             ✔ Deploy Exampe Project to Surge @done(19-05-22 22:13)
             ☐ Document Example Project in ApexDoc2 README
             ☐ Create README for Sample Project
+    ✔ Check [Extension Manifest](https://code.visualstudio.com/api/references/extension-manifest) for needed fields @done(19-05-23 20:56)
+    ✔ Icon! @done(19-05-23 20:56)
     ☐ CHANGELOG (include major changes since ApexDoc original)
     ☐ KNOWN ISSUES
-    ☐ Create sample Apex project with output documentation that shows most use cases

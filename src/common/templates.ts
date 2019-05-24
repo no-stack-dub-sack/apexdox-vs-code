@@ -3,7 +3,7 @@ export const PROJECT_DETAIL =
         <table>
             <tr>
                 <td>
-                    <img src="./assets/apex_doc_2_logo.png" style="height: 90px; margin-left: 5px;"/>
+                    <img src="./assets/apexdoc2_logo.png" style="height: 90px; margin-left: 5px;"/>
                 </td>
                 <td>
                     <h2 style="margin: -15px 0 0 0;">ApexDoc2 | Apex Documentation</h2>Check out the GitHub project at:<br/>

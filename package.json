@@ -1,15 +1,32 @@
 {
-	"publisher": "dubs-dev-extensions",
 	"name": "apexdoc2-vscode",
 	"displayName": "ApexDoc2 VS Code",
-	"description": "A lightweight VS Code extension that makes documenting your Salesforce Apex files an easy, integrated experience.",
 	"version": "0.0.1",
+	"publisher": "peter-weinberg",
+	"author": {
+		"name": "pweinberg"
+	},
+	"description": "A lightweight VS Code extension that makes documenting your Salesforce Apex files an easy, integrated experience.",
 	"engines": {
 		"vscode": "^1.32.0"
 	},
 	"categories": [
 		"Other"
 	],
+	"keywords": [
+		"apex",
+		"salesforce",
+		"documentation"
+	],
+	"icon": "./assets/apexdoc2_logo.png",
+	"repository": {
+		"url": "https://github.com/no-stack-dub-sack/ApexDoc2-VSCode",
+		"type": "git"
+	},
+	"bugs": {
+		"url": "https://github.com/no-stack-dub-sack/ApexDoc2-VSCode/issues"
+	},
+	"license": "SEE LICENSE IN LICENSE.txt",
 	"activationEvents": [
 		"onLanguage:apex",
 		"onCommand:apexDoc2.runApexDoc",
@@ -33,13 +50,8 @@
 		],
 		"languages": [{
 			"id": "apex",
-			"aliases": [
-				"Apex",
-				"apex"
-			],
 			"extensions": [
-				".cls",
-				".trigger"
+				".cls"
 			],
 			"configuration": "./syntaxes/language-configuration.json"
 		}],
@@ -69,12 +81,12 @@
 				"apexdoc2.engine.includes": {
 					"type": "array",
 					"default": [],
-					"markdownDescription": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. `Contact*`, or `*Test.cls`) that indicates which files in your source directory should be documented. An empty array is treated as 'include all'."
+					"markdownDescription": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. `Contact*`, or `*Test.cls`) that indicates which files in your source directory should be documented. An empty array is treated as 'include all'. Read more about this setting [here](https://github.com/no-stack-dub-sack/apexdoc2-vscode#extension-settings)."
 				},
 				"apexdoc2.engine.excludes": {
 					"type": "array",
 					"default": [],
-					"markdownDescription": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. `Contact*`, or `*Test.cls`) that indicates which files in your source directory should NOT be documented. An empty array is treated as 'do not exclude any'."
+					"markdownDescription": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. `Contact*`, or `*Test.cls`) that indicates which files in your source directory should NOT be documented. An empty array is treated as 'exclude none'. Read more about this setting [here](https://github.com/no-stack-dub-sack/apexdoc2-vscode#extension-settings)."
 				},
 				"apexdoc2.engine.homePagePath": {
 					"type": "string",
