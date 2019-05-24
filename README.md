@@ -7,14 +7,14 @@ ApexDoc2 is A fast, reliable, and configurable documentation generator for Sales
 - Run ApexDoc2 and immediately launch your docs using the extension's built-in static server.
 - Supports documenting .cls files across multiple source directories for DX projects.
 - Customizable project "Home page", banner, and Class Group pages.
-- Links class, method, prop, and enum signatures to source code hosted on GitHub.
+- Links class, interface, method, prop, and enum signatures to source code hosted on GitHub.
 - Customize the favicon, and/or use your own logo, and other static assets in your docs.
 - Produces clean, readable HTML output (complements of [pretty](https://github.com/jonschlinkert/pretty)).
 - Includes easy-to-use commands and completion items for contextually stubbing ApexDoc2 comment blocks.
 - Includes customized syntax highlighting to make your ApexDoc2 comment blocks stand out and easier to read.
 
 <p align="center">
-    <img src="./images/demo.gif" alt="ApexDoc2 Demo" height="350px" />
+    ![Demo](images/demo.gif)
 </p>
 
 ## ApexDoc2 Sample Documentation
@@ -75,59 +75,21 @@ This is all that's required to run ApexDoc2. Technically, you could skip this to
 ```
 
 ### Expanded Settings Example
-**NOTE:** that in this example '${workspaceFolder}' and 'C:\\Users\\pweinberg\\Documents\\code\\my-dx-project' are equivalent).
-
-```jsonc
-{
-    // Documentation Engine Configuration
-    "apexdoc2.engine.source": [{
-        // ${workspaceFolder} and C:\\Users\\pweinberg\\Documents\\code\\my-dx-project are equivalent.
-        // Using both only for demonstration purposes.
-        "path": "${workspaceFolder}/force-app/main/default/classes",
-        "sourceUrl": "https://github.com/my-username/my-dx-project/tree/master/force-app/main/default/classes"
-    }, {
-        "path": "C:\\Users\\pweinberg\\Documents\\code\\my-dx-project\\force-app\\my-feature\\classes",
-        "sourceUrl": "https://github.com/my-username/my-dx-project/tree/master/force-app/my-feature/classes"
-    }],
-    "apexdoc2.engine.targetDirectory": "C:\\Users\\pweinberg\\Documents\\code\\documentation\\My Salesforce Project",
-    "apexdoc2.engine.includes": [
-        "MySpecialClass.cls",
-        "*TriggerHandler.cls",
-        "Contact*"
-    ],
-    "apexdoc2.engine.excludes": [ "*Test.cls" ],
-    "apexdoc2.engine.homePagePath": "${workspaceFolder}/assets/Docs Home Page.html",
-    "apexdoc2.engine.bannerPagePath": "${workspaceFolder}/assets/Docs Banner.html",
-    "apexdoc2.engine.scope": [
-        "global",
-        "public",
-        "protected"
-        "webService"
-    ],
-    "apexdoc2.engine.title": "My DX Project",
-    "apexdoc2.engine.showTOCSnippets": false,
-    "apexdoc2.engine.sortOrder": "logical",
-    "apexdoc2.engine.assets": [
-        "${workspaceFolder}/assets/My Project Logo.png",
-        "${workspaceFolder}/assets/favicon.png"
-    ],
-    "apexdoc2.engine.port": 5000,
-    "apexdoc2.engine.cleanDir": true,
-
-    // ApexDoc2 Comment Block configuration
-    "apexdoc2.docBlock.omitDescriptionTag": false,
-    "apexdoc2.docBlock.spacious": true,
-    "apexdoc2.docBlock.alignItems": true
-}
-```
+See our [sample project's settings](https://github.com/no-stack-dub-sack/apexdoc2-sample-app/blob/master/.vscode/settings.json) for a more complex ApexDoc2 configuration.
 
 ## Documenting Class Files
-ApexDoc2 scans each class file, and looks for comment blocks with special keywords to identify the documentation to include for a given class, property, enum, or method.  The comment blocks must always begin with /** (or additional *'s) and can cover multiple lines.  Each line must start with * (or whitespace and then *).  The comment block ends with */.  Special tag are called out with @tag.
+ApexDoc2 scans each class file, and looks for comment blocks with special tags (identified by `@` similar to JS and JavaDoc), to find the documentation to include for a given class, interface, enum, method, or property. The comment blocks must always begin with `/**`, end with `*/`, and can cover multiple lines (each subsequent line must begin with `*` or whitespace and then `*`). Here's an example of the most basic ApexDoc2 comment block:
+
+```
+/**
+ * @description This is the description!
+ */
+```
 
 ### Documentation Tags
 Note that in the table below, the 'Class' column includes any top-level types that live within a .cls file, including interfaces and enums. Tags are all optional and are located in the lines above the type's declaration.
 
-| Token | Description | Class | Method | Enum | Property |
+| Tag | Description | Class | Method | Enum | Property |
 |-------|-------------|-------|--------|------|----------|
 | **@description** | A description or overview of the code you are documenting. | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | **@group** | The group to display a class under in the menu hierarchy. Un-grouped classes will be placed under 'Miscellaneous'. | :heavy_check_mark: | :x: | :x: | :x: |
