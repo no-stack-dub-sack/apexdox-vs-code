@@ -11,11 +11,9 @@ ApexDoc2 is A fast, reliable, and configurable documentation generator for Sales
 - Customize the favicon, and/or use your own logo, and other static assets in your docs.
 - Produces clean, readable HTML output (complements of [pretty](https://github.com/jonschlinkert/pretty)).
 - Includes easy-to-use commands and completion items for contextually stubbing ApexDoc2 comment blocks.
-- Includes customized syntax highlighting to make your ApexDoc2 comment blocks stand out and easier to read.
+- Includes customized syntax highlighting to make your ApexDoc2 comment blocks stand out and easy to read.
 
-<p align="center">
-    ![Demo](images/demo.gif)
-</p>
+![Demo](images/demo.gif)
 
 ## ApexDoc2 Sample Documentation
 Check out our ApexDoc2 sample docs to get a feel for what ApexDoc2 documentation looks like: https://apexdoc2-sample-docs.surge.sh. The repository that these docs were created from lives [here](https://github.com/no-stack-dub-sack/apexdoc2-sample-app). If you'd like to easily test out different settings, install the extension and clone the repo; the settings are checked-in in the `.vscode/settings.json` file. Run `ApexDoc2: Run` from the command pallette, and `ApexDoc2: Open Docs` to generate new documentation and preview your changes locally!
