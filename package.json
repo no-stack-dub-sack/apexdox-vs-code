@@ -18,7 +18,7 @@
 		"salesforce",
 		"documentation"
 	],
-	"icon": "assets/apexdoc2_logo.png",
+	"icon": "assets/apexdoc2-logo.png",
 	"repository": {
 		"url": "https://github.com/no-stack-dub-sack/ApexDoc2-VSCode",
 		"type": "git"
