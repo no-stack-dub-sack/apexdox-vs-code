@@ -108,7 +108,7 @@ class MethodStub extends DocBlockStub {
 
                 // we're looking for an exception, if we find one, we can break
                 // the loop, we already have all the info we need for the model
-                if (this.line.text.trim().toLowerCase().startsWith('throw')) {
+                if (/.*throw\s+new\s+\w+exception\s?\(/i.test(this.line.text)) {
                     throwsException = true;
                     break;
                 }
