@@ -1,7 +1,7 @@
-import ClassStub from '../docBlock/ClassStub';
-import DefaultStub from '../docBlock/DefaultStub';
-import DocBlockStub, { IStubLine, StubType } from '../docBlock/DocBlockStub';
-import MethodStub from '../docBlock/MethodStub';
+import ClassStub from '../docblock/ClassStub';
+import DefaultStub from '../docblock/DefaultStub';
+import DocBlockStub, { IStubLine, StubType } from '../docblock/DocBlockStub';
+import MethodStub from '../docblock/MethodStub';
 import {
     commands,
     CompletionItem,
@@ -14,6 +14,7 @@ import {
     TextDocument,
     window
     } from 'vscode';
+import { Option } from '../common/Utils';
 
 const COMMAND = 'apexdoc2.docBlockCompletion';
 
@@ -34,7 +35,7 @@ class ApexDocBlockCompletionProvider implements CompletionItemProvider {
     public provideCompletionItems(
         document: TextDocument,
         position: Position
-        ): Promise<CompletionItem[] | undefined>  {
+        ): Promise<Option<CompletionItem[]>>  {
 
         const line = document.lineAt(position.line).text;
 
@@ -59,10 +60,10 @@ export default function docBlockCompletion(): Disposable {
                 case StubType.METHOD:
                     stub = new MethodStub(editor, lineIdx, stubLine, true);
                     break;
-                case StubType.CLASS_INTERFACE_OR_ENUM:
+                case StubType.TOP_LEVEL_TYPE:
                     stub = new ClassStub(editor, lineIdx, stubLine, true);
                     break;
-                case StubType.PROP_OR_INNER_ENUM:
+                case StubType.PROP_OR_NESTED_TYPE:
                 default:
                     stub = new DefaultStub(editor, lineIdx, stubLine, true);
             }

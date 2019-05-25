@@ -8,7 +8,7 @@ const { resolve } = require('path');
 (function convertYamlToGrammar() {
     const SOURCE = resolve(__dirname, '..', 'syntaxes', 'apex.tmLanguage.injection.yml');
     const TARGET = resolve(__dirname, '..', 'syntaxes', 'apex.tmLanguage.injection.json');
-    console.log(SOURCE, TARGET);
+
     execSync(`yarn run js-yaml ${SOURCE} > ${TARGET}`);
     let json = readFileSync(TARGET).toString('utf8');
     json = json.slice(json.indexOf('{'));

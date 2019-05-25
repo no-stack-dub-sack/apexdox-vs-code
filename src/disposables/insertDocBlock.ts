@@ -1,7 +1,7 @@
-import ClassStub from '../docBlock/ClassStub';
-import DefaultStub from '../docBlock/DefaultStub';
-import DocBlockStub, { StubType } from '../docBlock/DocBlockStub';
-import MethodStub from '../docBlock/MethodStub';
+import ClassStub from '../docblock/ClassStub';
+import DefaultStub from '../docblock/DefaultStub';
+import DocBlockStub, { StubType } from '../docblock/DocBlockStub';
+import MethodStub from '../docblock/MethodStub';
 import { commands, window } from 'vscode';
 
 const COMMAND = 'apexDoc2.insertDocBlock';
@@ -18,10 +18,10 @@ export default function() {
                 case StubType.METHOD:
                     new MethodStub(editor, lineIdx, stubLine).insert();
                     break;
-                case StubType.CLASS_INTERFACE_OR_ENUM:
+                case StubType.TOP_LEVEL_TYPE:
                     new ClassStub(editor, lineIdx, stubLine).insert();
                     break;
-                case StubType.PROP_OR_INNER_ENUM:
+                case StubType.PROP_OR_NESTED_TYPE:
                 default:
                     new DefaultStub(editor, lineIdx, stubLine).insert();
                     break;

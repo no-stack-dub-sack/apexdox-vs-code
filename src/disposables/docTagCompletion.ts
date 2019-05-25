@@ -1,4 +1,5 @@
-import * as tags from '../models/tags';
+import * as tags from '../common/tags';
+import { Option } from '../common/Utils';
 import {
     CompletionItem,
     CompletionItemKind,
@@ -13,7 +14,7 @@ import {
 
 class ApexDocTagCompletionItem extends CompletionItem {
     constructor(tag: tags.IApexDoc2Tag) {
-        let snippetString: SnippetString | undefined;
+        let snippetString: Option<SnippetString>;
         let kind = CompletionItemKind.Text;
         let tagName = tag.label.slice(1);
 
@@ -34,7 +35,7 @@ class ApexDocTagCompletionProvider implements CompletionItemProvider {
     public provideCompletionItems(
         document: TextDocument,
         position: Position
-        ): Promise<CompletionItem[] | undefined>  {
+        ): Promise<Option<CompletionItem[]>>  {
 
         const line = document.lineAt(position.line).text.trim();
 
