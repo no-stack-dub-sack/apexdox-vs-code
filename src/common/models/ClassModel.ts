@@ -96,6 +96,17 @@ class ClassModel extends TopLevelModel {
             return nameA.localeCompare(nameB);
         });
 
+        // replace overloaded methods with their 'logical' order methods
+        // to ensure overload selectors work as expected. e.g. overloaded
+        // methods, once sorted, will appear in the order they appear in
+        // in the class's source file.
+        let methodsCopy = [...this._methods];
+        sorted.forEach((method, i, arr) => {
+            const matchingMethodIdx = methodsCopy.findIndex((m) => m.name === method.name);
+            arr[i] = methodsCopy[matchingMethodIdx];
+            methodsCopy.splice(matchingMethodIdx, 1);
+        });
+
         return sorted;
     }
 
