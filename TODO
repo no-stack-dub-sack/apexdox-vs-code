@@ -8,6 +8,9 @@ General:
     ✔ Implement our own version of `${workspaceFolder}` variable for settings.json @done(19-04-27 22:45)
     ✔ Replace get*() on models with getters, and set up backing fields so we can have more idiomatic private set, public get @done(19-05-03 20:10)
     ☐ Resolve in-code TODOs
+    ☐ Fix WebService & TestMethod filtering!
+    ✔ Fix how sort-order affects overload selectors (alpha) @done(19-05-27 11:06)
+    ☐ !DOCTYPE!
 
 Phase Two:
     ☐ "Stub All" command
@@ -37,6 +40,7 @@ Documentation:
             ✔ Group Content page @done(19-05-22 09:17)
             ✔ various @see tag examples @done(19-05-21 21:50)
             ✔ Deploy Exampe Project to Surge @done(19-05-22 22:13)
+            ☐ Top-level Enum
             ☐ Document Example Project in ApexDoc2 README
             ☐ Create README for Sample Project
     ✔ Check [Extension Manifest](https://code.visualstudio.com/api/references/extension-manifest) for needed fields @done(19-05-23 20:56)

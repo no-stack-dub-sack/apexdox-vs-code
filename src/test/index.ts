@@ -1,3 +1,4 @@
+import * as testRunner from 'vscode/lib/testrunner';
 //
 // PLEASE DO NOT MODIFY / DELETE UNLESS YOU KNOW WHAT YOU ARE DOING
 //
@@ -10,14 +11,14 @@
 // to report the results back to the caller. When the tests are finished, return
 // a possible error to the callback or null if none.
 
-import * as testRunner from 'vscode/lib/testrunner';
 
 // You can directly control Mocha options by configuring the test runner below
 // See https://github.com/mochajs/mocha/wiki/Using-mocha-programmatically#set-options
 // for more info
 testRunner.configure({
     ui: 'tdd', 		// the TDD UI is being used in extension.test.ts (suite, test, etc.)
-    useColors: true // colored output from test results
+    useColors: true,
+    useInlineDiffs: true // colored output from test results
 });
 
 module.exports = testRunner;

@@ -167,7 +167,8 @@
 		"vscode:prepublish": "webpack --mode production",
 		"compile": "webpack --mode none",
 		"watch": "webpack --mode none --watch",
-		"test-compile": "tsc -p ./",
+		"test-compile": "tsc -p ./ && yarn run test-setup",
+		"test-setup": "cp -r ./src/test/apex ./out/test/ && cp -r ./src/test/snapshot ./out/test/ && cp -r ./assets ./out/",
 		"postinstall": "node ./node_modules/vscode/bin/install",
 		"test": "yarn run test-compile && node ./node_modules/vscode/bin/test",
 		"yaml-2-grammar": "node ./scripts/convert.grammar.js"
