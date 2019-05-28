@@ -1,5 +1,5 @@
-import ApexDocError from '../common/ApexDocError';
-import { Option } from '../common/Utils';
+import ApexDocError from './ApexDocError';
+import { Option } from './Utils';
 import { readFileSync } from 'fs';
 
 /**
@@ -69,14 +69,15 @@ class LineReader {
      * @param trim A flag for determining whether or not white space
      * between lines should be trimmed before concatenating into a
      * single string.
+     * @param separator The character to join the lines by. Defaults to ''.
      */
-    public toString(trim = false): Option<string, null> {
+    public toString(trim = false, separator = ''): Option<string, null> {
         if (this.lines.length) {
             if (trim) {
                 return this.lines.reduce((a, b) => a.trim() + b.trim());
             }
 
-            return this.lines.join('');
+            return this.lines.join(separator);
         }
         return null;
     }

@@ -6,7 +6,7 @@ import ClassMarkupGenerator from './generators/models/ClassMarkupGenerator';
 import EnumMarkupGenerator from './generators/models/EnumMarkupGenerator';
 import fs from 'fs';
 import GeneratorUtils from './generators/GeneratorUtils';
-import LineReader from './LineReader';
+import LineReader from '../common/LineReader';
 import MenuGenerator from './generators/MenuGenerator';
 import path from 'path';
 import pretty from 'pretty';

@@ -1,4 +1,4 @@
-<html lang="en">
+export default `<html lang="en">
 
   <head>
     <title>My Test Docs</title>
@@ -162,24 +162,24 @@
         <td class="contentTD">
           <details class="section" open>
             <summary>
-              <h2 class="sectionTitle" id="TEST_MyRestResource">
+              <h2 class="sectionTitle" id="TEST_BotHandler">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_MyRestResource.cls#L14">
-                  TEST_MyRestResource
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotHandler.cls#L12">
+                  TEST_BotHandler
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
             </summary>
 
-            <div class="classAnnotations">@RestResource(urlMapping='/Account/*')</div>
+
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_MyRestResource.cls#L14">
-                global with sharing class TEST_MyRestResource
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotHandler.cls#L12">
+                public interface TEST_BotHandler
               </a>
             </div>
             <div class="classDetails">
-              <div class="">The <code class="inlineCode">MyRestResource</code> class. The classes in this group have been randomly gathered from various resources simply to demonstrate ApexDoc2-VSCode&#39;s multi-source directory feature aimed at Salesforce-DX projects which may have a <code class="inlineCode">main</code> folder and multipke feature directories.</div>
+              <div class="">The <code class="inlineCode">BotHandler</code> class. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad veniam, quis nostrud exercitation ullamco laboris nis.</div>
               <div class="classSubtitle ">See</div>
               <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a></div><br />Salesforce.com<br />Jul 2017
             </div>
@@ -191,46 +191,36 @@
               <div class="methodsContainer">
                 <ul class="methodTOC">
                   <li class="method undefined">
-                    <a class="methodTOCEntry " href="#TEST_MyRestResource.doDelete">
-                      doDelete
-                    </a></li>
-                  <li class="method undefined">
-                    <a class="methodTOCEntry " href="#TEST_MyRestResource.doGet">
-                      doGet
-                    </a></li>
-                  <li class="method undefined">
-                    <a class="methodTOCEntry " href="#TEST_MyRestResource.doPost">
-                      doPost
-                    </a></li>
+                    <a class="methodTOCEntry " href="#TEST_BotHandler.handle">
+                      handle
+                    </a>
+                    <div class="methodTOCDescription">The handle method for this interface which handles some stuff.</div>
+                  </li>
                 </ul>
                 <div class="method undefined">
-                  <h2 class="methodHeader " id="TEST_MyRestResource.doDelete">doDelete</h2>
-                  <div class="methodAnnotations">@HttpDelete</div>
+                  <h2 class="methodHeader " id="TEST_BotHandler.handle">handle</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_MyRestResource.cls#L17">
-                      global static void <span class="hljs-title">doDelete</span>()
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotHandler.cls#L26">
+                      BotResponse <span class="hljs-title">handle</span>(String utterance, String[] params, Map&lt;String, String&gt; session, String fileName, String fileContent)
                     </a>
                   </div>
-                </div>
-                <div class="method undefined">
-                  <h2 class="methodHeader " id="TEST_MyRestResource.doGet">doGet</h2>
-                  <div class="methodAnnotations">@HttpGet</div>
-                  <div class="methodSignature">
-
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_MyRestResource.cls#L26">
-                      global static Account <span class="hljs-title">doGet</span>()
-                    </a>
-                  </div>
-                </div>
-                <div class="method undefined">
-                  <h2 class="methodHeader " id="TEST_MyRestResource.doPost">doPost</h2>
-                  <div class="methodSignature">
-
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_MyRestResource.cls#L35">
-                      global static String <span class="hljs-title">doPost</span>(String name, String phone, String website)
-                    </a>
-                  </div>
+                  <div class="methodDescription">The handle method for this interface which handles some stuff.</div>
+                  <div class="methodSubTitle">Parameters</div>
+                  <div class="paramName">utterance</div>
+                  <div class="paramDescription">Utterance description goes here.</div>
+                  <div class="paramName">params</div>
+                  <div class="paramDescription">The params for the utterance.</div>
+                  <div class="paramName">session</div>
+                  <div class="paramDescription">Session description goes here. Occasionally descriptions are really really long and they need to go onto a second or third line. This is totally cool, no biggie.</div>
+                  <div class="paramName">fileName</div>
+                  <div class="paramDescription">Filename description.</div>
+                  <div class="paramName">fileContent</div>
+                  <div class="paramDescription">FileContent description.</div>
+                  <div class="methodSubTitle ">Returns</div>
+                  <div class="methodSubDescription">Looks like it returns a <code class="inlineCode">BotResponse</code> instance.</div>
+                  <div class="methodSubTitle ">See</div>
+                  <div class="methodSubDescription"><span title="A matching reference could not be found!">TEST_BotController.submit</span></div>
                 </div>
               </div>
             </details>
@@ -247,4 +237,4 @@
     </center>
   </body>
 
-</html>
+</html>`;

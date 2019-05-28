@@ -1,4 +1,4 @@
-<html lang="en">
+export default `<html lang="en">
 
   <head>
     <title>My Test Docs</title>
@@ -162,10 +162,10 @@
         <td class="contentTD">
           <details class="section" open>
             <summary>
-              <h2 class="sectionTitle" id="TEST_JWTBearerFlow">
+              <h2 class="sectionTitle" id="TEST_BotField">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWTBearerFlow.cls#L9">
-                  TEST_JWTBearerFlow
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotField.cls#L22">
+                  TEST_BotField
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
             </summary>
@@ -174,46 +174,95 @@
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWTBearerFlow.cls#L9">
-                public class TEST_JWTBearerFlow
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotField.cls#L22">
+                public class TEST_BotField
               </a>
             </div>
             <div class="classDetails">
-              <div class="">An JSON Web Token utility class.</div>
+              <div class="">The <code class="inlineCode">BotField</code> class. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad veniam, quis nostrud exercitation ullamco laboris nis.</div>
               <div class="classSubtitle ">See</div>
-              <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a></div><br />Salesforce.com<br />Jul 2017
+              <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a>, <span title="A matching reference could not be found!">TEST_BotController</span>, <span title="A matching reference could not be found!">TEST_BotRecord</span></div><br />Salesforce.com<br />Jul 2017<div class="classSubtitle ">Example</div>
+              <pre class="codeExample"><code> for (Dashboard d : dashboards) { 
+     List&lt;BotField&gt; fields = new List&lt;BotField&gt;(); 
+     fields.add(new BotField(&#39;Name&#39;, d.Title, &#39;/lightning/r/Dashboard/&#39; + d.Id + &#39;/view&#39;)); 
+     fields.add(new BotField(&#39;Folder&#39;, d.FolderName)); 
+     records.add(new BotRecord(fields)); 
+ }</code></pre>
             </div>
             <p />
-            <details class="subSection methods" open>
+            <details class="subSection properties" open>
               <summary>
-                <h2 class="subsectionTitle methods">Methods</h2>
+                <h2 class="subsectionTitle properties">Properties</h2>
               </summary>
-              <div class="methodsContainer">
-                <ul class="methodTOC">
-                  <li class="method undefined">
-                    <a class="methodTOCEntry " href="#TEST_JWTBearerFlow.getAccessToken">
-                      getAccessToken
-                    </a>
-                    <div class="methodTOCDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                  </li>
-                </ul>
-                <div class="method undefined">
-                  <h2 class="methodHeader " id="TEST_JWTBearerFlow.getAccessToken">getAccessToken</h2>
-                  <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWTBearerFlow.cls#L17">
-                      public static String <span class="hljs-title">getAccessToken</span>(String tokenEndpoint, JWT jwt)
-                    </a>
-                  </div>
-                  <div class="methodDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                  <div class="methodSubTitle">Parameters</div>
-                  <div class="paramName">tokenEndpoint</div>
-                  <div class="paramDescription">The Token&#39;s endpoint</div>
-                  <div class="paramName">jwt</div>
-                  <div class="paramDescription">An instance of the <code class="inlineCode">JWT</code> class</div>
-                  <div class="methodSubTitle ">Returns</div>
-                  <div class="methodSubDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
+              <div class="subsectionContainer">
+                <table class="attrTable properties">
+
+                  <tr>
+                    <th>Name</th>
+                    <th>Signature</th>
+                    <th>Annotations</th>
+
+                  </tr>
+                  <tr class="property public">
+                    <td class="attrName">linkURL</td>
+                    <td>
+                      <div class="attrSignature">
+                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotField.cls#L26">
+                          public String <span class="hljs-title">linkURL<span>
+                </a></div></td>
+                <td><div class="propAnnotations">@AuraEnabled</div></td>
+                
+            </tr>
+            <tr class="property public">
+                <td class="attrName">name</td>
+                <td><div class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotField.cls#L24">
+                    public String <span class="hljs-title">name<span>
+                </a></div></td>
+                <td><div class="propAnnotations">@AuraEnabled</div></td>
+                
+            </tr>
+            <tr class="property public">
+                <td class="attrName">value</td>
+                <td><div class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotField.cls#L25">
+                    public String <span class="hljs-title">value<span>
+                </a></div></td>
+                <td><div class="propAnnotations">@AuraEnabled</div></td>
+                
+            </tr>
+                </table>
+            </div>
+            <p />
+            </details>
+            <details class="subSection methods" open>
+                <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
+                <div class="methodsContainer">
+                <ul class="methodTOC"><li class="method undefined">
+                <a class="methodTOCEntry " href="#TEST_BotField.BotField">
+                    BotField
+                </a></li><li class="method undefined">
+                <a class="methodTOCEntry " href="#TEST_BotField.BotField_1">
+                    BotField
+                </a></li></ul>
+                <div class="method undefined"><h2 class="methodHeader " id="TEST_BotField.BotField">BotField</h2>
+            <div class="methodSignature">
+                
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotField.cls#L28">
+                    public <span class="hljs-title">BotField</span>(String name, String value)
+                        </a>
+                      </div>
+              </div>
+              <div class="method undefined">
+                <h2 class="methodHeader " id="TEST_BotField.BotField_1">BotField</h2>
+                <div class="methodSignature">
+
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotField.cls#L33">
+                    public <span class="hljs-title">BotField</span>(String name, String value, string linkURL)
+                  </a>
                 </div>
+              </div>
               </div>
             </details>
           </details>
@@ -229,4 +278,4 @@
     </center>
   </body>
 
-</html>
+</html>`;

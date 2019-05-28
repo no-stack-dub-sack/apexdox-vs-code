@@ -1,4 +1,4 @@
-<html lang="en">
+export default `<html lang="en">
 
   <head>
     <title>My Test Docs</title>
@@ -162,10 +162,10 @@
         <td class="contentTD">
           <details class="section" open>
             <summary>
-              <h2 class="sectionTitle" id="TEST_SlackOpportunityPublisher">
+              <h2 class="sectionTitle" id="TEST_LIFXController">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L12">
-                  TEST_SlackOpportunityPublisher
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_LIFXController.cls#L6">
+                  TEST_LIFXController
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
             </summary>
@@ -174,114 +174,12 @@
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L12">
-                public with sharing class TEST_SlackOpportunityPublisher
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_LIFXController.cls#L6">
+                public with sharing class TEST_LIFXController
               </a>
             </div>
             <div class="classDetails">
-              <div class="">The <code class="inlineCode">SlackOpportunityPublisher</code> class. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad veniam, quis nostrud exercitation ullamco laboris nis.</div>
-              <div class="classSubtitle ">See</div>
-              <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a></div><br />Salesforce.com<br />Jul 2017
-            </div>
-            <p />
-            <details class="subSection properties" open>
-              <summary>
-                <h2 class="subsectionTitle properties">Properties</h2>
-              </summary>
-
-              <div class="subsectionContainer">
-                <table class="attrTable properties">
-
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
-
-                    <th>Description</th>
-                  </tr>
-                  <tr class="property private">
-                    <td class="attrName">slackURL</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L17">
-                          private static final String <span class="hljs-title">slackURL<span>
-                </a></div></td>
-                
-                <td><div class="attrDescription">The slack URL to use for publishing.</div></td>
-            </tr>
-                </table>
-            </div>
-            <p />
-            </details>
-            <details class="subSection enums" open>
-                <summary><h2 class="subsectionTitle enums">Enums</h2></summary>
-                
-            <div class="subsectionContainer">
-                <table class="attrTable properties">
-                    
-            <tr>
-                <th>Name</th>
-                <th>Signature</th>
-                <th>Values</th>
-                <th>Description</th>
-            </tr>
-            <tr class="enum public">
-                <td class="attrName">SomeEnumAddedForExamplePurposes</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L40">
-                    public enum <span class="hljs-title">SomeEnumAddedForExamplePurposes<span>
-                </a></div></td>
-                <td class="enumValues">JANUARY,FEBRUARY,MARCH,APRIL,MAY,JUNE,JULY,AUGUST,SEPTEMBER,OCTOBER,NOVEMBER,DECEMBER</td>
-                <td><div class="attrDescription">An inner enum added to demonstrate how ApexDoc2-VSCode handles inner enums. They can only have description&#39;s, like properties. ApexDoc2 Should be able to handle to wonky way this enum is written in code.</div></td>
-            </tr>
-                </table>
-            </div>
-            <p/>
-            </details>
-            <details class="subSection methods" open>
-                <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
-                <div class="methodsContainer">
-                <ul class="methodTOC"><li class="method undefined">
-                <a class="methodTOCEntry " href="#TEST_SlackOpportunityPublisher.postToSlack">
-                    postToSlack
-                </a><div class="methodTOCDescription">Incididunt ut labore et dolore magna aliqua, quis autem vel eum iure reprehenderit qui incididunt.</div></li></ul>
-                <div class="method undefined"><h2 class="methodHeader " id="TEST_SlackOpportunityPublisher.postToSlack">postToSlack</h2><div class="methodAnnotations">@InvocableMethod(label='Post to Slack')</div>
-            <div class="methodSignature">
-                
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L24">
-                    public static void <span class="hljs-title">postToSlack</span>(List&lt;Id&gt; opportunityId)
-                        </a>
-                      </div>
-                      <div class="methodDescription">Incididunt ut labore et dolore magna aliqua, quis autem vel eum iure reprehenderit qui incididunt.</div>
-                      <div class="methodSubTitle">Parameters</div>
-                      <div class="paramName">opportunityId</div>
-                      <div class="paramDescription">The Id of the opportunity to post.</div>
-              </div>
-              </div>
-            </details>
-          </details>
-          <details class="section" open>
-            <summary>
-              <h2 class="sectionTitle" id="TEST_SlackOpportunityPublisher.QueueableSlackCall">
-
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L62">
-                  TEST_SlackOpportunityPublisher.QueueableSlackCall
-                </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
-              </h2>
-            </summary>
-
-
-
-            <div class="classSignature">
-
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L62">
-                public class QueueableSlackCall implements System.Queueable, Database.AllowsCallouts
-              </a>
-            </div>
-            <div class="classDetails">
-              <div class="">A good example of how ApexDoc2-VSCode handles inner classes. Inner classes / interfaces support the same tags as their top-level counterparts (i.e. top level type in a .cls file), but tags like &#39;author&#39; and &#39;since&#39; are better left to the top-level class. Just for example&#39;s sake, including an example tag here as well.</div>
-              <div class="classSubtitle ">Example</div>
-              <pre class="codeExample"><code> String body = &#39;This is a message, equeued up to be posted on Slack!&#39;; 
- System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST&#39;, body));</code></pre>
+              <div class="">The <code class="inlineCode">LIFXController</code> class. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad veniam, quis nostrud exercitation ullamco laboris nis.</div>
             </div>
             <p />
             <details class="subSection properties" open>
@@ -299,29 +197,11 @@
 
                   </tr>
                   <tr class="property private">
-                    <td class="attrName">body</td>
+                    <td class="attrName">settings</td>
                     <td>
                       <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L66">
-                          private final String <span class="hljs-title">body<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property private">
-                <td class="attrName">method</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L65">
-                    private final String <span class="hljs-title">method<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property private">
-                <td class="attrName">url</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L64">
-                    private final String <span class="hljs-title">url<span>
+                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_LIFXController.cls#L8">
+                          private static final Dreamhouse_Settings__c <span class="hljs-title">settings<span>
                 </a></div></td>
                 
                 
@@ -334,39 +214,54 @@
                 <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
                 <div class="methodsContainer">
                 <ul class="methodTOC"><li class="method undefined">
-                <a class="methodTOCEntry " href="#TEST_SlackOpportunityPublisher.QueueableSlackCall.execute">
-                    execute
-                </a><div class="methodTOCDescription">The execute method implements the <code class="inlineCode">System.Queueable</code> interface. And handle&#39;s the queueable&#39;s execution.</div></li><li class="method undefined">
-                <a class="methodTOCEntry " href="#TEST_SlackOpportunityPublisher.QueueableSlackCall.QueueableSlackCall">
-                    QueueableSlackCall.&lt;init&gt;
+                <a class="methodTOCEntry " href="#TEST_LIFXController.getLights">
+                    getLights
+                </a></li><li class="method undefined">
+                <a class="methodTOCEntry " href="#TEST_LIFXController.setBrightness">
+                    setBrightness
+                </a></li><li class="method undefined">
+                <a class="methodTOCEntry " href="#TEST_LIFXController.setPower">
+                    setPower
+                </a></li><li class="method undefined">
+                <a class="methodTOCEntry " href="#TEST_LIFXController.setState">
+                    setState
                 </a></li></ul>
-                <div class="method undefined"><h2 class="methodHeader " id="TEST_SlackOpportunityPublisher.QueueableSlackCall.execute">execute</h2>
+                <div class="method undefined"><h2 class="methodHeader " id="TEST_LIFXController.getLights">getLights</h2><div class="methodAnnotations">@AuraEnabled</div>
             <div class="methodSignature">
                 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L84">
-                    public void <span class="hljs-title">execute</span>(System.QueueableContext ctx)
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_LIFXController.cls#L11">
+                    public static String <span class="hljs-title">getLights</span>()
                         </a>
                       </div>
-                      <div class="methodDescription">The execute method implements the <code class="inlineCode">System.Queueable</code> interface. And handle&#39;s the queueable&#39;s execution.</div>
-                      <div class="methodSubTitle">Parameters</div>
-                      <div class="paramName">ctx</div>
-                      <div class="paramDescription">The <code class="inlineCode">System.QueueableContext</code> for the execute method.</div>
               </div>
               <div class="method undefined">
-                <h2 class="methodHeader " id="TEST_SlackOpportunityPublisher.QueueableSlackCall.QueueableSlackCall">QueueableSlackCall.&lt;init&gt;</h2>
+                <h2 class="methodHeader " id="TEST_LIFXController.setBrightness">setBrightness</h2>
+                <div class="methodAnnotations">@AuraEnabled</div>
                 <div class="methodSignature">
 
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L73">
-                    public <span class="hljs-title">QueueableSlackCall</span>(String url, String method, String body)
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_LIFXController.cls#L31">
+                    public static String <span class="hljs-title">setBrightness</span>(String lightId, Decimal brightness)
                   </a>
                 </div>
-                <div class="methodSubTitle">Parameters</div>
-                <div class="paramName">url</div>
-                <div class="paramDescription">The Server Url to post the message to.</div>
-                <div class="paramName">method</div>
-                <div class="paramDescription">The HTTP method to use</div>
-                <div class="paramName">body</div>
-                <div class="paramDescription">The body of the message.</div>
+              </div>
+              <div class="method undefined">
+                <h2 class="methodHeader " id="TEST_LIFXController.setPower">setPower</h2>
+                <div class="methodAnnotations">@AuraEnabled</div>
+                <div class="methodSignature">
+
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_LIFXController.cls#L26">
+                    public static String <span class="hljs-title">setPower</span>(String lightId, Boolean isOn)
+                  </a>
+                </div>
+              </div>
+              <div class="method undefined">
+                <h2 class="methodHeader " id="TEST_LIFXController.setState">setState</h2>
+                <div class="methodSignature">
+
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_LIFXController.cls#L35">
+                    public static String <span class="hljs-title">setState</span>(String lightId, String state)
+                  </a>
+                </div>
               </div>
               </div>
             </details>
@@ -383,4 +278,4 @@
     </center>
   </body>
 
-</html>
+</html>`;

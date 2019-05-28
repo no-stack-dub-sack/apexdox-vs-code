@@ -1,4 +1,4 @@
-<html lang="en">
+export default `<html lang="en">
 
   <head>
     <title>My Test Docs</title>
@@ -162,10 +162,10 @@
         <td class="contentTD">
           <details class="section" open>
             <summary>
-              <h2 class="sectionTitle" id="TEST_JWT">
+              <h2 class="sectionTitle" id="TEST_BotMessage">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L9">
-                  TEST_JWT
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L12">
+                  TEST_BotMessage
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
             </summary>
@@ -174,12 +174,12 @@
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L9">
-                public class TEST_JWT
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L12">
+                public virtual class TEST_BotMessage
               </a>
             </div>
             <div class="classDetails">
-              <div class="">An JSON Web Token utility class.</div>
+              <div class="">The <code class="inlineCode">BotMessage</code> class. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad veniam, quis nostrud exercitation ullamco laboris nis.</div>
               <div class="classSubtitle ">See</div>
               <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a></div><br />Salesforce.com<br />Jul 2017
             </div>
@@ -195,134 +195,62 @@
                   <tr>
                     <th>Name</th>
                     <th>Signature</th>
-
+                    <th>Annotations</th>
 
                   </tr>
                   <tr class="property public">
-                    <td class="attrName">alg</td>
+                    <td class="attrName">author</td>
                     <td>
                       <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L11">
-                          public String <span class="hljs-title">alg<span>
+                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L14">
+                          public String <span class="hljs-title">author<span>
                 </a></div></td>
-                
+                <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">aud</td>
+                <td class="attrName">buttons</td>
                 <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L14">
-                    public String <span class="hljs-title">aud<span>
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L18">
+                    public List&lt;BotMessageButton&gt; <span class="hljs-title">buttons<span>
                 </a></div></td>
-                
+                <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">cert</td>
+                <td class="attrName">imageURL</td>
                 <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L19">
-                    public String <span class="hljs-title">cert<span>
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L19">
+                    public String <span class="hljs-title">imageURL<span>
                 </a></div></td>
-                
+                <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">claims</td>
+                <td class="attrName">items</td>
                 <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L17">
-                    public Map&lt;String,String&gt; <span class="hljs-title">claims<span>
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L17">
+                    public List&lt;BotItem&gt; <span class="hljs-title">items<span>
                 </a></div></td>
-                
+                <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">exp</td>
+                <td class="attrName">messageText</td>
                 <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L15">
-                    public String <span class="hljs-title">exp<span>
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L15">
+                    public String <span class="hljs-title">messageText<span>
                 </a></div></td>
-                
+                <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">HS256</td>
+                <td class="attrName">records</td>
                 <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L24">
-                    public static final String <span class="hljs-title">HS256<span>
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L16">
+                    public List&lt;BotRecord&gt; <span class="hljs-title">records<span>
                 </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">iat</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L16">
-                    public String <span class="hljs-title">iat<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">iss</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L12">
-                    public String <span class="hljs-title">iss<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">NONE</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L26">
-                    public static final String <span class="hljs-title">NONE<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">pkcs8</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L20">
-                    public String <span class="hljs-title">pkcs8<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">privateKey</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L21">
-                    public String <span class="hljs-title">privateKey<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">RS256</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L25">
-                    public static final String <span class="hljs-title">RS256<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">sub</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L13">
-                    public String <span class="hljs-title">sub<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">validFor</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L18">
-                    public Integer <span class="hljs-title">validFor<span>
-                </a></div></td>
-                
+                <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
                 </table>
@@ -333,49 +261,123 @@
                 <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
                 <div class="methodsContainer">
                 <ul class="methodTOC"><li class="method undefined">
-                <a class="methodTOCEntry " href="#TEST_JWT.base64URLencode">
-                    base64URLencode
-                </a><div class="methodTOCDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div></li><li class="method undefined">
-                <a class="methodTOCEntry " href="#TEST_JWT.issue">
-                    issue
-                </a><div class="methodTOCDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div></li><li class="method undefined">
-                <a class="methodTOCEntry " href="#TEST_JWT.JWT">
-                    JWT
-                </a></li></ul>
-                <div class="method undefined"><h2 class="methodHeader " id="TEST_JWT.base64URLencode">base64URLencode</h2>
+                <a class="methodTOCEntry " href="#TEST_BotMessage.BotMessage">
+                    BotMessage
+                </a><div class="methodTOCDescription">Default constructor</div></li><li class="method undefined">
+                <a class="methodTOCEntry " href="#TEST_BotMessage.BotMessage_1">
+                    BotMessage
+                </a><div class="methodTOCDescription">Convenience constructor to create a simple bot message.</div></li><li class="method undefined">
+                <a class="methodTOCEntry " href="#TEST_BotMessage.BotMessage_2">
+                    BotMessage
+                </a><div class="methodTOCDescription">Convenience constructor to create a simple bot message.</div></li><li class="method undefined">
+                <a class="methodTOCEntry " href="#TEST_BotMessage.BotMessage_3">
+                    BotMessage
+                </a><div class="methodTOCDescription">Convenience constructor to create a simple bot message.</div></li><li class="method undefined">
+                <a class="methodTOCEntry " href="#TEST_BotMessage.BotMessage_4">
+                    BotMessage
+                </a><div class="methodTOCDescription">Convenience constructor to create a simple bot message.</div></li><li class="method undefined">
+                <a class="methodTOCEntry " href="#TEST_BotMessage.BotMessage_5">
+                    BotMessage
+                </a><div class="methodTOCDescription">Convenience constructor to create a simple bot message.</div></li></ul>
+                <div class="method undefined"><h2 class="methodHeader " id="TEST_BotMessage.BotMessage">BotMessage</h2>
             <div class="methodSignature">
                 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L92">
-                    public String <span class="hljs-title">base64URLencode</span>(Blob input)
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L24">
+                    public <span class="hljs-title">BotMessage</span>()
                         </a>
                       </div>
-                      <div class="methodDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                      <div class="methodSubTitle">Parameters</div>
-                      <div class="paramName">input</div>
-                      <div class="paramDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                      <div class="methodSubTitle ">Returns</div>
-                      <div class="methodSubDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
+                      <div class="methodDescription">Default constructor</div>
               </div>
               <div class="method undefined">
-                <h2 class="methodHeader " id="TEST_JWT.issue">issue</h2>
+                <h2 class="methodHeader " id="TEST_BotMessage.BotMessage_1">BotMessage</h2>
                 <div class="methodSignature">
 
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L38">
-                    public String <span class="hljs-title">issue</span>()
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L37">
+                    public <span class="hljs-title">BotMessage</span>(String author, String messageText)
                   </a>
                 </div>
-                <div class="methodDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                <div class="methodSubTitle ">Returns</div>
-                <div class="methodSubDescription">JSON string</div>
+                <div class="methodDescription">Convenience constructor to create a simple bot message.</div>
+                <div class="methodSubTitle">Parameters</div>
+                <div class="paramName">author</div>
+                <div class="paramDescription">Author param description</div>
+                <div class="paramName">messageText</div>
+                <div class="paramDescription">Message text param description. If you&#39;re reading this in code, the &#39;see&#39; tag below, serves no other purpose than to demonstrate using overload selectors, e.g. <code class="inlineCode">SomeClass.SomeOverloadedMethod[3]</code> to link a specific method overload in your documentation. The below example links to the 3rd overload of the <code class="inlineCode">BotResponse</code> constructor.</div>
+                <div class="methodSubTitle ">See</div>
+                <div class="methodSubDescription"><span title="A matching reference could not be found!">TEST_BotResponse.BotResponse</span></div>
               </div>
               <div class="method undefined">
-                <h2 class="methodHeader " id="TEST_JWT.JWT">JWT</h2>
+                <h2 class="methodHeader " id="TEST_BotMessage.BotMessage_2">BotMessage</h2>
                 <div class="methodSignature">
 
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L29">
-                    public <span class="hljs-title">JWT</span>(String alg)
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L49">
+                    public <span class="hljs-title">BotMessage</span>(String author, String messageText, List&lt;BotRecord&gt; records)
                   </a>
                 </div>
+                <div class="methodDescription">Convenience constructor to create a simple bot message.</div>
+                <div class="methodSubTitle">Parameters</div>
+                <div class="paramName">author</div>
+                <div class="paramDescription">Author param description</div>
+                <div class="paramName">messageText</div>
+                <div class="paramDescription">Message text param description</div>
+                <div class="paramName">records</div>
+                <div class="paramDescription">A list of <code class="inlineCode">BotRecord</code>s</div>
+                <div class="methodSubTitle ">See</div>
+                <div class="methodSubDescription"><span title="A matching reference could not be found!">TEST_BotRecord</span></div>
+              </div>
+              <div class="method undefined">
+                <h2 class="methodHeader " id="TEST_BotMessage.BotMessage_3">BotMessage</h2>
+                <div class="methodSignature">
+
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L62">
+                    public <span class="hljs-title">BotMessage</span>(String author, String messageText, List&lt;BotItem&gt; items)
+                  </a>
+                </div>
+                <div class="methodDescription">Convenience constructor to create a simple bot message.</div>
+                <div class="methodSubTitle">Parameters</div>
+                <div class="paramName">author</div>
+                <div class="paramDescription">Author param description</div>
+                <div class="paramName">messageText</div>
+                <div class="paramDescription">Message text param description</div>
+                <div class="paramName">items</div>
+                <div class="paramDescription">A list of <code class="inlineCode">BotItem</code>s</div>
+                <div class="methodSubTitle ">See</div>
+                <div class="methodSubDescription"><a href="javascript:void(0)" onclick="goToLocation('TEST_BotItem.html')">TEST_BotItem</a></div>
+              </div>
+              <div class="method undefined">
+                <h2 class="methodHeader " id="TEST_BotMessage.BotMessage_4">BotMessage</h2>
+                <div class="methodSignature">
+
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L75">
+                    public <span class="hljs-title">BotMessage</span>(String author, String messageText, List&lt;BotMessageButton&gt; buttons)
+                  </a>
+                </div>
+                <div class="methodDescription">Convenience constructor to create a simple bot message.</div>
+                <div class="methodSubTitle">Parameters</div>
+                <div class="paramName">author</div>
+                <div class="paramDescription">Author param description</div>
+                <div class="paramName">messageText</div>
+                <div class="paramDescription">Message text param description</div>
+                <div class="paramName">items</div>
+                <div class="paramDescription">A list of <code class="inlineCode">BotMessageButton</code>s</div>
+                <div class="methodSubTitle ">See</div>
+                <div class="methodSubDescription"><span title="A matching reference could not be found!">TEST_BotMessageButton</span></div>
+              </div>
+              <div class="method undefined">
+                <h2 class="methodHeader " id="TEST_BotMessage.BotMessage_5">BotMessage</h2>
+                <div class="methodSignature">
+
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L87">
+                    public <span class="hljs-title">BotMessage</span>(String author, String messageText, String imageURL)
+                  </a>
+                </div>
+                <div class="methodDescription">Convenience constructor to create a simple bot message.</div>
+                <div class="methodSubTitle">Parameters</div>
+                <div class="paramName">author</div>
+                <div class="paramDescription">Author param description</div>
+                <div class="paramName">messageText</div>
+                <div class="paramDescription">Message text param description</div>
+                <div class="paramName">imageURL</div>
+                <div class="paramDescription">ImageURL param description</div>
               </div>
               </div>
             </details>
@@ -392,4 +394,4 @@
     </center>
   </body>
 
-</html>
+</html>`;

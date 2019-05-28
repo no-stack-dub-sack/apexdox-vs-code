@@ -1,16 +1,18 @@
 import * as assert from 'assert';
 import ApexDoc from '../engine/ApexDoc';
-import fs from 'fs';
-import LineReader from '../engine/LineReader';
-import path from 'path';
+import fs, { writeFileSync } from 'fs';
+import LineReader from '../common/LineReader';
+import path, { basename } from 'path';
 import vscode from 'vscode';
 import { IApexDocConfig } from '../common/Settings';
-import { Option } from '../common/Utils';
 
 const feature1 = path.resolve(__dirname, './apex/feature1');
 const feature2 = path.resolve(__dirname, './apex/feature2');
-const targetDir = path.resolve(__dirname, './snapshot/result');
-const referenceDir = path.resolve(__dirname, './snapshot/reference');
+const targetDir = path.resolve(__dirname, './docs');
+
+console.log('feature1: ', feature1);
+console.log('feature2: ', feature2);
+console.log('targetDir: ', targetDir);
 
 const testConfig: IApexDocConfig = {
 	source: [{
@@ -42,7 +44,7 @@ const testConfig: IApexDocConfig = {
 	title: 'My Test Docs',
 	showTOCSnippets: true,
 	sortOrder: 'alpha',
-    cleanDir: true,
+    cleanDir: false, // we delete the directory & its contents in the test-setup command instead
     assets: [],
     pages: [],
     port: 8080
@@ -93,12 +95,12 @@ suite("ApexDoc2 Extension Tests", function () {
             });
         });
 
-        test("Snapshot results match references", function() {
+        test('Output docs match snapshots', function() {
             files.forEach(fileOrDirName => {
                 if (fileOrDirName !== 'assets') {
-                    let fileSnapshot = new LineReader(path.resolve(targetDir, fileOrDirName)).toString();
-                    let fileReference = new LineReader(path.resolve(referenceDir, fileOrDirName)).toString();
-                    assert.equal(fileSnapshot, fileReference, `Snapshot does not match reference: ${fileOrDirName}`);
+                    let fileSnapshot = new LineReader(path.resolve(targetDir, fileOrDirName)).toString(false, '\n');
+                    let fileReference = require('./snapshots/' + basename(fileOrDirName, '.html'));
+                    assert.equal(fileSnapshot, fileReference.default, `Snapshot does not match reference: ${fileOrDirName}`);
                 }
             });
         });

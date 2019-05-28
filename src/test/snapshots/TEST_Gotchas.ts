@@ -1,4 +1,4 @@
-<html lang="en">
+export default `<html lang="en">
 
   <head>
     <title>My Test Docs</title>
@@ -935,4 +935,4 @@
     </center>
   </body>
 
-</html>
+</html>`;
