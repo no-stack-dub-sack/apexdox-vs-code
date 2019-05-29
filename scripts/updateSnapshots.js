@@ -18,4 +18,4 @@ sourceFiles.forEach(fileOrDirName => {
     }
 });
 
-console.log('Snapshot update complete.')
+console.log('Snapshot update complete.');

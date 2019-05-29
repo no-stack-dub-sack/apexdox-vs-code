@@ -182,12 +182,12 @@ export default `<html lang="en">
               <div class="">The <code class="inlineCode">BotField</code> class. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad veniam, quis nostrud exercitation ullamco laboris nis.</div>
               <div class="classSubtitle ">See</div>
               <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a>, <span title="A matching reference could not be found!">TEST_BotController</span>, <span title="A matching reference could not be found!">TEST_BotRecord</span></div><br />Salesforce.com<br />Jul 2017<div class="classSubtitle ">Example</div>
-              <pre class="codeExample"><code> for (Dashboard d : dashboards) { 
-     List&lt;BotField&gt; fields = new List&lt;BotField&gt;(); 
-     fields.add(new BotField(&#39;Name&#39;, d.Title, &#39;/lightning/r/Dashboard/&#39; + d.Id + &#39;/view&#39;)); 
-     fields.add(new BotField(&#39;Folder&#39;, d.FolderName)); 
-     records.add(new BotRecord(fields)); 
- }</code></pre>
+              <pre class="codeExample"><code>for (Dashboard d : dashboards) { 
+List&lt;BotField&gt; fields = new List&lt;BotField&gt;(); 
+fields.add(new BotField(&#39;Name&#39;, d.Title, &#39;/lightning/r/Dashboard/&#39; + d.Id + &#39;/view&#39;)); 
+fields.add(new BotField(&#39;Folder&#39;, d.FolderName)); 
+records.add(new BotRecord(fields)); 
+}</code></pre>
             </div>
             <p />
             <details class="subSection properties" open>

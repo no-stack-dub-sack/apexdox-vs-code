@@ -244,7 +244,7 @@ ul.methodTOC {
 
 .codeExample code {
     background: var(--light-grey);
-    padding: .5em .5em .5em .2em;
+    padding: .5em .7em;
 }
 
 .paramName {

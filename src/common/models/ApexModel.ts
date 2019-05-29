@@ -55,54 +55,43 @@ abstract class ApexModel {
         return this._sourceUrl;
     }
 
+    /**
+     * Based very closely on: https://gitlab.com/StevenWCox/sfapexdoc/blob/master/src/apex/com/main/Model.java#L196
+     */
     private parseComments(comments: string[]): void {
         let currBlock: Option<string, null> = null;
         let block: Option<string, null> = null;
 
-        for (let comment of comments) {
+        for (let line of comments) {
             let newBlock = false, isBreak = false;
-            let lowerComment = comment.toLowerCase();
+            const lineLower = line.toLowerCase();
             let i: number;
 
             // skip lines that are just opening or closing comment blocks
-            if (comment.trim() === '/**' || comment.trim() === '*/') {
+            if (line.trim() === '/**' || line.trim() === '*/') {
                 continue;
             }
 
             // if we find a tag, start a new block
-            if (((i = lowerComment.indexOf(block = tags.AUTHOR.label)) >= 0)
-                || ((i = lowerComment.indexOf(block = tags.SINCE.label)) >= 0)
-                || ((i = lowerComment.indexOf(block = tags.SEE.label)) >= 0)
-                || ((i = lowerComment.indexOf(block = tags.RETURNS.label)) >= 0)
-                || ((i = lowerComment.indexOf(block = tags.PARAM.label)) >= 0)
-                || ((i = lowerComment.indexOf(block = tags.EXCEPTION.label)) >= 0)
-                || ((i = lowerComment.indexOf(block = tags.DEPRECATED.label)) >= 0)
-                || ((i = lowerComment.indexOf(block = tags.DESCRIPTION.label)) >= 0)
-                || ((i = lowerComment.indexOf(block = tags.GROUP.label)) >= 0)
-                || ((i = lowerComment.indexOf(block = tags.GROUP_CONTENT.label)) >= 0)
-                || ((i = lowerComment.indexOf(block = tags.EXAMPLE.label)) >= 0)) {
+            if (((i = lineLower.indexOf(block = tags.AUTHOR.label)) >= 0)
+                || ((i = lineLower.indexOf(block = tags.SINCE.label)) >= 0)
+                || ((i = lineLower.indexOf(block = tags.SEE.label)) >= 0)
+                || ((i = lineLower.indexOf(block = tags.RETURNS.label)) >= 0)
+                || ((i = lineLower.indexOf(block = tags.PARAM.label)) >= 0)
+                || ((i = lineLower.indexOf(block = tags.EXCEPTION.label)) >= 0)
+                || ((i = lineLower.indexOf(block = tags.DEPRECATED.label)) >= 0)
+                || ((i = lineLower.indexOf(block = tags.DESCRIPTION.label)) >= 0)
+                || ((i = lineLower.indexOf(block = tags.GROUP.label)) >= 0)
+                || ((i = lineLower.indexOf(block = tags.GROUP_CONTENT.label)) >= 0)
+                || ((i = lineLower.indexOf(block = tags.EXAMPLE.label)) >= 0)) {
 
-                comment = comment.substring(i + block.length);
+                line = line.substring(i + block.length);
                 currBlock = block;
                 newBlock = true;
             }
 
             // get everything after opening '*'s
-            let line = '';
-            comment = comment.trim();
-            for (let j = 0; j < comment.length; ++j) {
-                let ch = comment.charAt(j);
-                // skip the '/' of the opening
-                // block so comment is trimmed correctly
-                if (ch === '/' && j === 0) {
-                    continue;
-                }
-
-                if (ch !== '*') {
-                    line = comment.slice(j);
-                    break;
-                }
-            }
+            line = line.replace(/\s*\/?\*+\s*/, '').trim();
 
             // replace docBlock break marker and indicate we should break after
             // this round. Otherwise we may get some strange behavior due to

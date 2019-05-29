@@ -1,10 +1,9 @@
 import * as assert from 'assert';
 import ApexDoc from '../engine/ApexDoc';
 import createSnapshotTests from './snapshot.test';
-import LineReader from '../common/LineReader';
 import testConfig from './testConfig';
-import { basename, resolve as resolvePath } from 'path';
 import { readdirSync } from 'fs';
+import { resolve as resolvePath } from 'path';
 
 // 1) run `yarn test`
 //    - compiles project using typescript compiler - not webpack

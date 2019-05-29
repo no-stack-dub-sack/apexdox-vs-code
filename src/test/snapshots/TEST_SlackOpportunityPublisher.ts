@@ -280,8 +280,8 @@ export default `<html lang="en">
             <div class="classDetails">
               <div class="">A good example of how ApexDoc2-VSCode handles inner classes. Inner classes / interfaces support the same tags as their top-level counterparts (i.e. top level type in a .cls file), but tags like &#39;author&#39; and &#39;since&#39; are better left to the top-level class. Just for example&#39;s sake, including an example tag here as well.</div>
               <div class="classSubtitle ">Example</div>
-              <pre class="codeExample"><code> String body = &#39;This is a message, equeued up to be posted on Slack!&#39;; 
- System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST&#39;, body));</code></pre>
+              <pre class="codeExample"><code>String body = &#39;This is a message, equeued up to be posted on Slack!&#39;; 
+System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST&#39;, body));</code></pre>
             </div>
             <p />
             <details class="subSection properties" open>
