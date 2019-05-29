@@ -167,11 +167,11 @@
 		"vscode:prepublish": "webpack --mode production",
 		"compile": "webpack --mode none",
 		"watch": "webpack --mode none --watch",
-		"test-compile": "tsc -p ./ && yarn run test-setup",
-		"test-setup": "cp -r ./src/test/apex ./out/test/ && cp -r ./assets ./out/ && rm -rf ./out/test/docs",
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "yarn run test-compile && node ./node_modules/vscode/bin/test",
 		"yaml-2-grammar": "node ./scripts/convertGrammar.js",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "yarn run test-compile && yarn run test-setup && node ./node_modules/vscode/bin/test",
+		"test-setup": "cp -r ./src/test/apex ./out/test/ && cp -r ./assets ./out/ && rm -rf ./out/test/docs",
+		"test-compile": "tsc -p ./",
 		"update-snapshots": "node ./scripts/updateSnapshots.js"
 	},
 	"devDependencies": {
