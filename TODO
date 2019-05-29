@@ -10,7 +10,11 @@ General:
     ☐ Resolve in-code TODOs
     ☐ Fix WebService & TestMethod filtering!
     ✔ Fix how sort-order affects overload selectors (alpha) @done(19-05-27 11:06)
-    ☐ !DOCTYPE!
+    ✔ !DOCTYPE! @done(19-05-28 22:11)
+
+Testing:
+    ✔ Establish "Snapshot" tests to compare output docs to expected output reference files @done(19-05-28 21:25)
+    ✔ Create at least basic documentation engine tests @done(19-05-28 21:25)
 
 Phase Two:
     ☐ "Stub All" command
@@ -31,7 +35,7 @@ Documentation:
         ✔ Commands @done(19-05-11 16:17)
         ☐ Warnings?
         ☐ OG ApexDoc credits
-        ☐ Example Gifs
+        ✔ Example Gifs @done(19-05-28 21:25)
         ☐ Example Project
             ✔ Home Page @done(19-05-22 21:35)
             ✔ favicon @done(19-05-22 21:35)

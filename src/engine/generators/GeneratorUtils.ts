@@ -45,7 +45,8 @@ class GeneratorUtils {
     }
 
     private static headerOpen(documentTitle: string): string {
-        return  `<html lang="en">
+        return  `<!DOCTYPE html>
+            <html lang="en">
             <head>
                 <title>${documentTitle}</title>
                 <meta charset="UTF-8">

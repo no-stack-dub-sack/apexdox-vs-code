@@ -1,4 +1,5 @@
-export default `<html lang="en">
+export default `<!DOCTYPE html>
+<html lang="en">
 
   <head>
     <title>My Test Docs</title>
