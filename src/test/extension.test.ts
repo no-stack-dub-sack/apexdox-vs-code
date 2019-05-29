@@ -1,108 +1,83 @@
 import * as assert from 'assert';
 import ApexDoc from '../engine/ApexDoc';
-import fs, { writeFileSync } from 'fs';
+import createSnapshotTests from './snapshot.test';
 import LineReader from '../common/LineReader';
-import path, { basename } from 'path';
-import vscode from 'vscode';
-import { IApexDocConfig } from '../common/Settings';
+import testConfig from './testConfig';
+import { basename, resolve as resolvePath } from 'path';
+import { readdirSync } from 'fs';
 
-const feature1 = path.resolve(__dirname, './apex/feature1');
-const feature2 = path.resolve(__dirname, './apex/feature2');
-const targetDir = path.resolve(__dirname, './docs');
+// 1) run `yarn test`
+//    - compiles project using typescript compiler - not webpack
+//    - runs test setup to copy neccessary assets (ApexDoc2 assets and test Apex files to document)
+//      and to clean out any previous test files
+//    - instantiates vscode's test runner and runs the contents of this file
+//
+// 2) Here, before executing any mocha tests, we're manually creating an ApexDoc2 config and
+//    running the exposed `runApexDoc` method to simulate the extension's run command. We
+//    use mocha's 'delay' option and global `run` function to ensure our async operations
+//    complete before beginning any suite runs (which the built-in `suiteSetup` hook is not
+//    sufficient for). This is all essential to be able to dynamically create tests for every
+//    output HTML file for our snapshot tests and any other tests that might require this.
+//
+// 3) When ApexDoc2 finishes running, collect the output files to run assertions against and
+//    resolve the promise with them. Our `createMochaTestSuite` function awaits this promise
+//    and indicates to mocha it is OK to beginning running tests.
 
-console.log('feature1: ', feature1);
-console.log('feature2: ', feature2);
-console.log('targetDir: ', targetDir);
+const targetDir = resolvePath(__dirname, './docs');
 
-const testConfig: IApexDocConfig = {
-	source: [{
-        path: feature1,
-        sourceUrl: 'https://somefakeurl.com'
-    },{
-        path: feature2,
-        sourceUrl: 'https://somefakeurl.com'
-    }],
-	targetDirectory: targetDir,
-	includes: [
-        'IncludeTwo.cls',
-        'IncludeOne.cls',
-        'TEST_*'
-    ],
-	excludes: [
-        '*Exclude.cls',
-        '*Test.cls',
-        'TEST_ExcuseMe.cls'
-    ],
-	homePagePath: '',
-	bannerPagePath: '',
-	scope: [
-        'public',
-        'private',
-        'protected',
-        'global'
-    ],
-	title: 'My Test Docs',
-	showTOCSnippets: true,
-	sortOrder: 'alpha',
-    cleanDir: false, // we delete the directory & its contents in the test-setup command instead
-    assets: [],
-    pages: [],
-    port: 8080
+const runApexDoc = () => {
+    return new Promise((resolve: (value: string[]) => void) => {
+        ApexDoc.extensionRoot = resolvePath(__dirname, '../');
+        ApexDoc.runApexDoc(testConfig);
+        resolve(readdirSync(targetDir));
+    });
 };
 
-let files: string[];
-suite("ApexDoc2 Extension Tests", function () {
+const createMochaTestSuite = async () => {
+    const files = await runApexDoc();
 
-    suite('Documentation Engine Tests', function() {
-        setup(function() {
-            return new Promise((resolve) => {
-                // set extension context and run ApexDoc
-                ApexDoc.extensionRoot = path.resolve(__dirname, '../');
-                ApexDoc.runApexDoc(testConfig);
-                // collect output files to assert with
-                files = fs.readdirSync(targetDir);
-                resolve();
+    suite("ApexDoc2 Extension Tests", function () {
+
+        suite('Documentation Engine Tests', function() {
+
+            test("ApexDoc2 created docs", function() {
+                assert.notEqual(files.length, 0);
+            });
+
+            test("ApexDoc2 included only files included by 'includes' setting", function() {
+                files.forEach(fileOrDirName => {
+                    if (fileOrDirName !== 'assets' && fileOrDirName !== 'index.html') {
+                        assert.ok(
+                            fileOrDirName === 'IncludeOne.html' ||
+                            fileOrDirName === 'IncludeTwo.html' ||
+                            fileOrDirName.startsWith('TEST_'),
+                            `Unexpected files in target directory: ${fileOrDirName}`
+                        );
+                    }
+                });
+            });
+
+            test("ApexDoc2 excluded files excluded by 'excludes' setting", function() {
+                files.forEach(fileOrDirName => {
+                    if (fileOrDirName !== 'assets' && fileOrDirName !== 'index.html') {
+                        assert.ok(
+                            !fileOrDirName.endsWith('Exclude.html') &&
+                            !fileOrDirName.endsWith('Test.html') &&
+                            fileOrDirName !== 'TEST_ExcuseMe.html',
+                            `Unexpected files in target directory: ${fileOrDirName}`
+                        );
+                    }
+                });
             });
         });
 
-        test("ApexDoc2 created docs", function() {
-            assert.notEqual(files.length, 0);
-        });
-
-        test("ApexDoc2 included only files included by 'includes' setting", function() {
-            files.forEach(fileOrDirName => {
-                if (fileOrDirName !== 'assets' && fileOrDirName !== 'index.html') {
-                    assert.ok(
-                        fileOrDirName === 'IncludeOne.html' ||
-                        fileOrDirName === 'IncludeTwo.html' ||
-                        fileOrDirName.startsWith('TEST_'),
-                        `Unexpected files in target directory: ${fileOrDirName}`
-                    );
-                }
-            });
-        });
-
-        test("ApexDoc2 excluded files excluded by 'excludes' setting", function() {
-            files.forEach(fileOrDirName => {
-                if (fileOrDirName !== 'assets' && fileOrDirName !== 'index.html') {
-                    assert.ok(
-                        !fileOrDirName.endsWith('Exclude.html') &&
-                        !fileOrDirName.endsWith('Test.html') &&
-                        fileOrDirName !== 'TEST_ExcuseMe.html',
-                        `Unexpected files in target directory: ${fileOrDirName}`
-                    );
-                }
-            });
-        });
-
-        test('Output docs match snapshots', function() {
-            files.forEach(fileOrDirName => {
-                if (fileOrDirName !== 'assets') {
-                    let fileSnapshot = new LineReader(path.resolve(targetDir, fileOrDirName)).toString(false, '\n');
-                    let fileReference = require('./snapshots/' + basename(fileOrDirName, '.html'));
-                    assert.equal(fileSnapshot, fileReference.default, `Snapshot does not match reference: ${fileOrDirName}`);
-                }
-            });
+        // SEE: ./snapshot.test.ts
+        suite('Snapshot Tests', function() {
+            createSnapshotTests(files);
         });
     });
-});
+
+    run();
+};
+
+createMochaTestSuite();
