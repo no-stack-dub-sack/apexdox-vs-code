@@ -35,10 +35,18 @@ export default `<!DOCTYPE html>
           Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
           <label for="cbx-all">All</label>&nbsp;&nbsp;
           <input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
-          <label for="cbx-public">public</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
-          <label for="cbx-private">private</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
-          <label for="cbx-protected">protected</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
-          <label for="cbx-global">global</label>
+          <label for="cbx-public">
+            public
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+          <label for="cbx-private">
+            private
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
+          <label for="cbx-protected">
+            protected
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+          <label for="cbx-global">
+            global
+          </label>
         </td>
       </tr>
       <tr style="vertical-align:top;">
@@ -297,44 +305,44 @@ export default `<!DOCTYPE html>
             <details class="subSection methods" open>
                 <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
                 <div class="methodsContainer">
-                <ul class="methodTOC"><li class="method undefined">
+                <ul class="methodTOC"><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_StopWatch.getSplitTime">
                     getSplitTime
-                </a><div class="methodTOCDescription">Call this method to get split time.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Call this method to get split time.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_StopWatch.getStartTime">
                     getStartTime
-                </a><div class="methodTOCDescription">Call this method to get the start time.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Call this method to get the start time.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_StopWatch.getTime">
                     getTime
-                </a><div class="methodTOCDescription">Call this method to get the current time.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Call this method to get the current time.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_StopWatch.reset">
                     reset
-                </a><div class="methodTOCDescription">Call this method to reset the stopwatch.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Call this method to reset the stopwatch.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_StopWatch.resume">
                     resume
-                </a><div class="methodTOCDescription">Call this method to resume the stopwatch.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Call this method to resume the stopwatch.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_StopWatch.split">
                     split
-                </a><div class="methodTOCDescription">Call this method to split the stopwatch.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Call this method to split the stopwatch.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_StopWatch.start">
                     start
-                </a><div class="methodTOCDescription">Call this method to start the stopwatch.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Call this method to start the stopwatch.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_StopWatch.stop">
                     stop
-                </a><div class="methodTOCDescription">Call this method to stop the stopwatch.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Call this method to stop the stopwatch.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_StopWatch.suspend">
                     suspend
-                </a><div class="methodTOCDescription">Call this method to suspend the stopwatch.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Call this method to suspend the stopwatch.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_StopWatch.toSplitString">
                     toSplitString
-                </a><div class="methodTOCDescription">Call this method to get the split time as a string.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Call this method to get the split time as a string.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_StopWatch.toStr">
                     toStr
-                </a><div class="methodTOCDescription">Call this method to get the time as a string.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Call this method to get the time as a string.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_StopWatch.unsplit">
                     unsplit
                 </a><div class="methodTOCDescription">Call this method to unsplit the stopwatch.</div></li></ul>
-                <div class="method undefined"><h2 class="methodHeader " id="TEST_StopWatch.getSplitTime">getSplitTime</h2>
+                <div class="method global"><h2 class="methodHeader " id="TEST_StopWatch.getSplitTime">getSplitTime</h2>
             <div class="methodSignature">
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_StopWatch.cls#L146">
@@ -345,7 +353,7 @@ export default `<!DOCTYPE html>
                       <div class="methodSubTitle ">Exceptions</div>
                       <div class="methodSubDescription">Throws <code class="inlineCode">IllegalStateException</code></div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_StopWatch.getStartTime">getStartTime</h2>
                 <div class="methodSignature">
 
@@ -357,7 +365,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Exceptions</div>
                 <div class="methodSubDescription">Throws <code class="inlineCode">IllegalStateException</code></div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_StopWatch.getTime">getTime</h2>
                 <div class="methodSignature">
 
@@ -367,7 +375,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Call this method to get the current time.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_StopWatch.reset">reset</h2>
                 <div class="methodSignature">
 
@@ -377,7 +385,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Call this method to reset the stopwatch.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_StopWatch.resume">resume</h2>
                 <div class="methodSignature">
 
@@ -389,7 +397,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Exceptions</div>
                 <div class="methodSubDescription">Throws <code class="inlineCode">IllegalStateException</code></div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_StopWatch.split">split</h2>
                 <div class="methodSignature">
 
@@ -401,7 +409,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Exceptions</div>
                 <div class="methodSubDescription">Throws <code class="inlineCode">IllegalStateException</code></div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_StopWatch.start">start</h2>
                 <div class="methodSignature">
 
@@ -413,7 +421,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Exceptions</div>
                 <div class="methodSubDescription">Throws <code class="inlineCode">IllegalStateException</code></div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_StopWatch.stop">stop</h2>
                 <div class="methodSignature">
 
@@ -425,7 +433,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Exceptions</div>
                 <div class="methodSubDescription">Throws <code class="inlineCode">IllegalStateException</code></div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_StopWatch.suspend">suspend</h2>
                 <div class="methodSignature">
 
@@ -437,7 +445,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Exceptions</div>
                 <div class="methodSubDescription">Throws <code class="inlineCode">IllegalStateException</code></div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_StopWatch.toSplitString">toSplitString</h2>
                 <div class="methodSignature">
 
@@ -447,7 +455,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Call this method to get the split time as a string.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_StopWatch.toStr">toStr</h2>
                 <div class="methodSignature">
 
@@ -457,7 +465,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Call this method to get the time as a string.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_StopWatch.unsplit">unsplit</h2>
                 <div class="methodSignature">
 

@@ -35,10 +35,18 @@ export default `<!DOCTYPE html>
           Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
           <label for="cbx-all">All</label>&nbsp;&nbsp;
           <input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
-          <label for="cbx-public">public</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
-          <label for="cbx-private">private</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
-          <label for="cbx-protected">protected</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
-          <label for="cbx-global">global</label>
+          <label for="cbx-public">
+            public
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+          <label for="cbx-private">
+            private
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
+          <label for="cbx-protected">
+            protected
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+          <label for="cbx-global">
+            global
+          </label>
         </td>
       </tr>
       <tr style="vertical-align:top;">
@@ -191,14 +199,14 @@ export default `<!DOCTYPE html>
               </summary>
               <div class="methodsContainer">
                 <ul class="methodTOC">
-                  <li class="method undefined">
+                  <li class="method public">
                     <a class="methodTOCEntry " href="#TEST_SampleDataController.importSampleData">
                       importSampleData
                     </a>
                     <div class="methodTOCDescription">Utility method for importing sample data.</div>
                   </li>
                 </ul>
-                <div class="method undefined">
+                <div class="method public">
                   <h2 class="methodHeader " id="TEST_SampleDataController.importSampleData">importSampleData</h2>
                   <div class="methodAnnotations">@AuraEnabled</div>
                   <div class="methodSignature">

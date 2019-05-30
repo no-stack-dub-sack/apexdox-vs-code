@@ -35,10 +35,18 @@ export default `<!DOCTYPE html>
           Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
           <label for="cbx-all">All</label>&nbsp;&nbsp;
           <input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
-          <label for="cbx-public">public</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
-          <label for="cbx-private">private</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
-          <label for="cbx-protected">protected</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
-          <label for="cbx-global">global</label>
+          <label for="cbx-public">
+            public
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+          <label for="cbx-private">
+            private
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
+          <label for="cbx-protected">
+            protected
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+          <label for="cbx-global">
+            global
+          </label>
         </td>
       </tr>
       <tr style="vertical-align:top;">
@@ -225,101 +233,101 @@ export default `<!DOCTYPE html>
             <details class="subSection methods" open>
                 <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
                 <div class="methodsContainer">
-                <ul class="methodTOC"><li class="method undefined">
+                <ul class="methodTOC"><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.assertArraysAreEqual">
                     assertArraysAreEqual
-                </a><div class="methodTOCDescription">Assert that two arrays do not have equal elements</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Assert that two arrays do not have equal elements</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.assertArraysAreEqual_1">
                     assertArraysAreEqual
-                </a><div class="methodTOCDescription">Assert that two arrays do not have equal elements</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Assert that two arrays do not have equal elements</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.isEmpty">
                     isEmpty
-                </a><div class="methodTOCDescription">Returns <code class="inlineCode">true</code> if a given array is empty</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Returns <code class="inlineCode">true</code> if a given array is empty</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.isEmpty_1">
                     isEmpty
-                </a><div class="methodTOCDescription">Returns <code class="inlineCode">true</code> if a given array is empty</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Returns <code class="inlineCode">true</code> if a given array is empty</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.isNotEmpty">
                     isNotEmpty
-                </a><div class="methodTOCDescription">Returns <code class="inlineCode">true</code> if a given array is NOT empty</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Returns <code class="inlineCode">true</code> if a given array is NOT empty</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.isNotEmpty_1">
                     isNotEmpty
-                </a><div class="methodTOCDescription">Returns <code class="inlineCode">true</code> if a given array is NOT empty</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Returns <code class="inlineCode">true</code> if a given array is NOT empty</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.lowerCase">
                     lowerCase
-                </a><div class="methodTOCDescription">Lowercase each item of a string array.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Lowercase each item of a string array.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.merg">
                     merg
-                </a><div class="methodTOCDescription">Merge two lists</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Merge two lists</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.merg_1">
                     merg
-                </a><div class="methodTOCDescription">Merge two lists</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Merge two lists</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.mergex">
                     mergex
-                </a><div class="methodTOCDescription">Merge the elements of two arrays into a single array.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Merge the elements of two arrays into a single array.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.mergex_1">
                     mergex
-                </a><div class="methodTOCDescription">An overload for <code class="inlineCode">mergex</code> which handles SObjects.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">An overload for <code class="inlineCode">mergex</code> which handles SObjects.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.objectToString">
                     objectToString
-                </a><div class="methodTOCDescription">Cast a list of objects as strings and return the list.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Cast a list of objects as strings and return the list.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.pluck">
                     pluck
-                </a><div class="methodTOCDescription">Iterate over an SObject array, plucking out a given field, and returning each plucked element in an array.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Iterate over an SObject array, plucking out a given field, and returning each plucked element in an array.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.qsort">
                     qsort
-                </a><div class="methodTOCDescription">Quicksort implementation for a list of primitive Objects.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Quicksort implementation for a list of primitive Objects.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.qsort_1">
                     qsort
-                </a><div class="methodTOCDescription">Quicksort implementation for a list of primitive Objects.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Quicksort implementation for a list of primitive Objects.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.qsort_2">
                     qsort
-                </a><div class="methodTOCDescription">Quicksort implementation for a list of Objects.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Quicksort implementation for a list of Objects.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.qsort_3">
                     qsort
-                </a><div class="methodTOCDescription">Quicksort implementation for a list of Objects.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Quicksort implementation for a list of Objects.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.qsort_4">
                     qsort
-                </a><div class="methodTOCDescription">Quicksort implementation for a list of SObjects.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Quicksort implementation for a list of SObjects.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.qsort_5">
                     qsort
-                </a><div class="methodTOCDescription">Quicksort implementation for a list of SObjects.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Quicksort implementation for a list of SObjects.</div></li><li class="method private">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.qsort_6">
                     qsort
-                </a><div class="methodTOCDescription">Private helper method</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Private helper method</div></li><li class="method private">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.qsort_7">
                     qsort
-                </a><div class="methodTOCDescription">Private helper method</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Private helper method</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.reverse">
                     reverse
-                </a><div class="methodTOCDescription">Reverse an array.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Reverse an array.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.reverse_1">
                     reverse
-                </a><div class="methodTOCDescription">Reverse an array of SObjects.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Reverse an array of SObjects.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.subset">
                     subset
-                </a><div class="methodTOCDescription">Return a subset of an array.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Return a subset of an array.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.subset_1">
                     subset
-                </a><div class="methodTOCDescription">Return a subset of an array.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Return a subset of an array.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.subset_2">
                     subset
-                </a><div class="methodTOCDescription">Return a subset of an array.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Return a subset of an array.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.subset_3">
                     subset
-                </a><div class="methodTOCDescription">Return a subset of an array.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Return a subset of an array.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.toString">
                     toString
-                </a><div class="methodTOCDescription">Stringify an array.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Stringify an array.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.toString_1">
                     toString
-                </a><div class="methodTOCDescription">Stringify an array.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Stringify an array.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.trim">
                     trim
-                </a><div class="methodTOCDescription">Trim each element of a string array.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Trim each element of a string array.</div></li><li class="method global">
                 <a class="methodTOCEntry " href="#TEST_ArrayUtils.upperCase">
                     upperCase
                 </a><div class="methodTOCDescription">Uppercase each item of a string array.</div></li></ul>
-                <div class="method undefined"><h2 class="methodHeader " id="TEST_ArrayUtils.assertArraysAreEqual">assertArraysAreEqual</h2>
+                <div class="method global"><h2 class="methodHeader " id="TEST_ArrayUtils.assertArraysAreEqual">assertArraysAreEqual</h2>
             <div class="methodSignature">
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L261">
@@ -328,7 +336,7 @@ export default `<!DOCTYPE html>
                       </div>
                       <div class="methodDescription">Assert that two arrays do not have equal elements</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.assertArraysAreEqual_1">assertArraysAreEqual</h2>
                 <div class="methodSignature">
 
@@ -338,7 +346,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Assert that two arrays do not have equal elements</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.isEmpty">isEmpty</h2>
                 <div class="methodSignature">
 
@@ -348,7 +356,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Returns <code class="inlineCode">true</code> if a given array is empty</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.isEmpty_1">isEmpty</h2>
                 <div class="methodSignature">
 
@@ -358,7 +366,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Returns <code class="inlineCode">true</code> if a given array is empty</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.isNotEmpty">isNotEmpty</h2>
                 <div class="methodSignature">
 
@@ -368,7 +376,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Returns <code class="inlineCode">true</code> if a given array is NOT empty</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.isNotEmpty_1">isNotEmpty</h2>
                 <div class="methodSignature">
 
@@ -378,7 +386,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Returns <code class="inlineCode">true</code> if a given array is NOT empty</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.lowerCase">lowerCase</h2>
                 <div class="methodSignature">
 
@@ -393,7 +401,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Returns</div>
                 <div class="methodSubDescription">The list of lowercased strings.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.merg">merg</h2>
                 <div class="methodSignature">
 
@@ -403,7 +411,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Merge two lists</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.merg_1">merg</h2>
                 <div class="methodSignature">
 
@@ -413,7 +421,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Merge two lists</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.mergex">mergex</h2>
                 <div class="methodSignature">
 
@@ -430,7 +438,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Returns</div>
                 <div class="methodSubDescription">The merged array.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.mergex_1">mergex</h2>
                 <div class="methodSignature">
 
@@ -442,7 +450,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">See</div>
                 <div class="methodSubDescription"><a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html#TEST_ArrayUtils.mergex')">TEST_ArrayUtils.mergex</a></div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.objectToString">objectToString</h2>
                 <div class="methodSignature">
 
@@ -457,7 +465,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Returns</div>
                 <div class="methodSubDescription">Returns a <code class="inlineCode">List&lt;String&gt;</code> of casted objects</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.pluck">pluck</h2>
                 <div class="methodSignature">
 
@@ -474,7 +482,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Returns</div>
                 <div class="methodSubDescription">An <code class="inlineCode">object</code> array continaing the plucked elements.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.qsort">qsort</h2>
                 <div class="methodSignature">
 
@@ -484,7 +492,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Quicksort implementation for a list of primitive Objects.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.qsort_1">qsort</h2>
                 <div class="methodSignature">
 
@@ -494,7 +502,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Quicksort implementation for a list of primitive Objects.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.qsort_2">qsort</h2>
                 <div class="methodSignature">
 
@@ -504,7 +512,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Quicksort implementation for a list of Objects.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.qsort_3">qsort</h2>
                 <div class="methodSignature">
 
@@ -514,7 +522,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Quicksort implementation for a list of Objects.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.qsort_4">qsort</h2>
                 <div class="methodSignature">
 
@@ -524,7 +532,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Quicksort implementation for a list of SObjects.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.qsort_5">qsort</h2>
                 <div class="methodSignature">
 
@@ -534,7 +542,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Quicksort implementation for a list of SObjects.</div>
               </div>
-              <div class="method undefined">
+              <div class="method private">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.qsort_6">qsort</h2>
                 <div class="methodSignature">
 
@@ -544,7 +552,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Private helper method</div>
               </div>
-              <div class="method undefined">
+              <div class="method private">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.qsort_7">qsort</h2>
                 <div class="methodSignature">
 
@@ -554,7 +562,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Private helper method</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.reverse">reverse</h2>
                 <div class="methodSignature">
 
@@ -569,7 +577,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Returns</div>
                 <div class="methodSubDescription">The reversed array.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.reverse_1">reverse</h2>
                 <div class="methodSignature">
 
@@ -584,7 +592,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Returns</div>
                 <div class="methodSubDescription">The reversed array.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.subset">subset</h2>
                 <div class="methodSignature">
 
@@ -596,7 +604,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">See</div>
                 <div class="methodSubDescription"><a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html#TEST_ArrayUtils.subset_1')">TEST_ArrayUtils.subset</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html#TEST_ArrayUtils.subset_2')">TEST_ArrayUtils.subset</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html#TEST_ArrayUtils.subset_3')">TEST_ArrayUtils.subset</a></div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.subset_1">subset</h2>
                 <div class="methodSignature">
 
@@ -606,7 +614,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Return a subset of an array.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.subset_2">subset</h2>
                 <div class="methodSignature">
 
@@ -616,7 +624,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Return a subset of an array.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.subset_3">subset</h2>
                 <div class="methodSignature">
 
@@ -626,7 +634,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Return a subset of an array.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.toString">toString</h2>
                 <div class="methodSignature">
 
@@ -641,7 +649,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Returns</div>
                 <div class="methodSubDescription"><code class="inlineCode">String</code></div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.toString_1">toString</h2>
                 <div class="methodSignature">
 
@@ -656,7 +664,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Returns</div>
                 <div class="methodSubDescription"><code class="inlineCode">String</code></div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.trim">trim</h2>
                 <div class="methodSignature">
 
@@ -671,7 +679,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">Returns</div>
                 <div class="methodSubDescription">The list of trimmed strings.</div>
               </div>
-              <div class="method undefined">
+              <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.upperCase">upperCase</h2>
                 <div class="methodSignature">
 

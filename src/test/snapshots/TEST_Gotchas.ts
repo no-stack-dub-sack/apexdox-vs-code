@@ -35,10 +35,18 @@ export default `<!DOCTYPE html>
           Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
           <label for="cbx-all">All</label>&nbsp;&nbsp;
           <input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
-          <label for="cbx-public">public</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
-          <label for="cbx-private">private</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
-          <label for="cbx-protected">protected</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
-          <label for="cbx-global">global</label>
+          <label for="cbx-public">
+            public
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+          <label for="cbx-private">
+            private
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
+          <label for="cbx-protected">
+            protected
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+          <label for="cbx-global">
+            global
+          </label>
         </td>
       </tr>
       <tr style="vertical-align:top;">
@@ -311,26 +319,26 @@ export default `<!DOCTYPE html>
             <details class="subSection methods" open>
                 <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
                 <div class="methodsContainer">
-                <ul class="methodTOC"><li class="method undefined">
+                <ul class="methodTOC"><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_Gotchas.getInt">
                     getInt
-                </a></li><li class="method undefined">
+                </a></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_Gotchas.getInt_1">
                     getInt
-                </a><div class="methodTOCDescription">Static method overload 1</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Static method overload 1</div></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_Gotchas.getInt_2">
                     getInt
-                </a><div class="methodTOCDescription">Static method overload 2</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Static method overload 2</div></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_Gotchas.getInt_3">
                     getInt
-                </a><div class="methodTOCDescription">Static method overload 3</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Static method overload 3</div></li><li class="method private">
                 <a class="methodTOCEntry " href="#TEST_Gotchas.returnsAList">
                     returnsAList
-                </a><div class="methodTOCDescription">Should still be visible because line starts with a collection</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Should still be visible because line starts with a collection</div></li><li class="method private">
                 <a class="methodTOCEntry " href="#TEST_Gotchas.returnsNothing">
                     returnsNothing
                 </a><div class="methodTOCDescription">Should still be visible because line starts with a keyword</div></li></ul>
-                <div class="method undefined"><h2 class="methodHeader " id="TEST_Gotchas.getInt">getInt</h2>
+                <div class="method public"><h2 class="methodHeader " id="TEST_Gotchas.getInt">getInt</h2>
             <div class="methodSignature">
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L75">
@@ -340,7 +348,7 @@ export default `<!DOCTYPE html>
                       <div class="methodSubTitle ">See</div>
                       <div class="methodSubDescription"><span title="A matching reference could not be found!">TEST_Test.getInt</span>, <span title="A matching reference could not be found!">TEST_Test.getInt</span>, <span title="A matching reference could not be found!">TEST_Test.getInt</span></div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_Gotchas.getInt_1">getInt</h2>
                 <div class="methodSignature">
 
@@ -350,7 +358,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Static method overload 1</div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_Gotchas.getInt_2">getInt</h2>
                 <div class="methodSignature">
 
@@ -360,7 +368,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Static method overload 2</div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_Gotchas.getInt_3">getInt</h2>
                 <div class="methodSignature">
 
@@ -370,7 +378,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Static method overload 3</div>
               </div>
-              <div class="method undefined">
+              <div class="method private">
                 <h2 class="methodHeader " id="TEST_Gotchas.returnsAList">returnsAList</h2>
                 <div class="methodSignature">
 
@@ -380,7 +388,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">Should still be visible because line starts with a collection</div>
               </div>
-              <div class="method undefined">
+              <div class="method private">
                 <h2 class="methodHeader " id="TEST_Gotchas.returnsNothing">returnsNothing</h2>
                 <div class="methodSignature">
 
@@ -421,26 +429,26 @@ export default `<!DOCTYPE html>
               </summary>
               <div class="methodsContainer">
                 <ul class="methodTOC">
-                  <li class="method undefined">
+                  <li class="method private">
                     <a class="methodTOCEntry " href="#TEST_Gotchas.AbstractChildClass.abstractMethod">
                       abstractMethod
                     </a>
                     <div class="methodTOCDescription">Lorem ipsum and stuff</div>
                   </li>
-                  <li class="method undefined">
+                  <li class="method protected">
                     <a class="methodTOCEntry " href="#TEST_Gotchas.AbstractChildClass.method2">
                       method2
                     </a>
                     <div class="methodTOCDescription">Lorem ipsum and stuff</div>
                   </li>
-                  <li class="method undefined">
+                  <li class="method public">
                     <a class="methodTOCEntry " href="#TEST_Gotchas.AbstractChildClass.myMethod">
                       myMethod
                     </a>
                     <div class="methodTOCDescription">Lorem ipsum and stuff</div>
                   </li>
                 </ul>
-                <div class="method undefined">
+                <div class="method private">
                   <h2 class="methodHeader " id="TEST_Gotchas.AbstractChildClass.abstractMethod">abstractMethod</h2>
                   <div class="methodSignature">
 
@@ -450,7 +458,7 @@ export default `<!DOCTYPE html>
                   </div>
                   <div class="methodDescription">Lorem ipsum and stuff</div>
                 </div>
-                <div class="method undefined">
+                <div class="method protected">
                   <h2 class="methodHeader " id="TEST_Gotchas.AbstractChildClass.method2">method2</h2>
                   <div class="methodSignature">
 
@@ -460,7 +468,7 @@ export default `<!DOCTYPE html>
                   </div>
                   <div class="methodDescription">Lorem ipsum and stuff</div>
                 </div>
-                <div class="method undefined">
+                <div class="method public">
                   <h2 class="methodHeader " id="TEST_Gotchas.AbstractChildClass.myMethod">myMethod</h2>
                   <div class="methodSignature">
 
@@ -501,16 +509,16 @@ export default `<!DOCTYPE html>
               </summary>
               <div class="methodsContainer">
                 <ul class="methodTOC">
-                  <li class="method undefined">
+                  <li class="method private">
                     <a class="methodTOCEntry " href="#TEST_Gotchas.AnotherChildClass.AnotherChildClass">
                       AnotherChildClass.&lt;init&gt;
                     </a></li>
-                  <li class="method undefined">
+                  <li class="method private">
                     <a class="methodTOCEntry " href="#TEST_Gotchas.AnotherChildClass.myCollectionMethod">
                       myCollectionMethod
                     </a></li>
                 </ul>
-                <div class="method undefined">
+                <div class="method private">
                   <h2 class="methodHeader " id="TEST_Gotchas.AnotherChildClass.AnotherChildClass">AnotherChildClass.&lt;init&gt;</h2>
                   <div class="methodSignature">
 
@@ -519,7 +527,7 @@ export default `<!DOCTYPE html>
                     </a>
                   </div>
                 </div>
-                <div class="method undefined">
+                <div class="method private">
                   <h2 class="methodHeader " id="TEST_Gotchas.AnotherChildClass.myCollectionMethod">myCollectionMethod</h2>
                   <div class="methodSignature">
 
@@ -559,20 +567,20 @@ export default `<!DOCTYPE html>
               </summary>
               <div class="methodsContainer">
                 <ul class="methodTOC">
-                  <li class="method undefined">
+                  <li class="method private">
                     <a class="methodTOCEntry " href="#TEST_Gotchas.ConcreteChildClass.abstractMethod">
                       abstractMethod
                     </a>
                     <div class="methodTOCDescription">Our regex should detect and display this annotation in whole</div>
                   </li>
-                  <li class="method undefined">
+                  <li class="method public">
                     <a class="methodTOCEntry " href="#TEST_Gotchas.ConcreteChildClass.doSomethingUIRelated">
                       doSomethingUIRelated
                     </a>
                     <div class="methodTOCDescription">A method</div>
                   </li>
                 </ul>
-                <div class="method undefined">
+                <div class="method private">
                   <h2 class="methodHeader " id="TEST_Gotchas.ConcreteChildClass.abstractMethod">abstractMethod</h2>
                   <div class="methodAnnotations">@InvocableMethod(label='Get Account Names' description='Returns the list of account names corresponding to the specified account IDs.')</div>
                   <div class="methodSignature">
@@ -583,7 +591,7 @@ export default `<!DOCTYPE html>
                   </div>
                   <div class="methodDescription">Our regex should detect and display this annotation in whole</div>
                 </div>
-                <div class="method undefined">
+                <div class="method public">
                   <h2 class="methodHeader " id="TEST_Gotchas.ConcreteChildClass.doSomethingUIRelated">doSomethingUIRelated</h2>
                   <div class="methodAnnotations">@AuraEnabled (cacheable=true)</div>
                   <div class="methodSignature">
@@ -668,20 +676,20 @@ export default `<!DOCTYPE html>
             <details class="subSection methods" open>
                 <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
                 <div class="methodsContainer">
-                <ul class="methodTOC"><li class="method undefined">
+                <ul class="methodTOC"><li class="method private">
                 <a class="methodTOCEntry " href="#TEST_Gotchas.InnerClass.InnerClass">
                     InnerClass.&lt;init&gt;
-                </a><div class="methodTOCDescription">Explicit no argument constructor</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Explicit no argument constructor</div></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_Gotchas.InnerClass.InnerClass_1">
                     InnerClass.&lt;init&gt;
-                </a><div class="methodTOCDescription">This invokes another constructor that is defined later</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">This invokes another constructor that is defined later</div></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_Gotchas.InnerClass.method2">
                     method2
-                </a></li><li class="method undefined">
+                </a></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_Gotchas.InnerClass.myMethod">
                     myMethod
                 </a><div class="methodTOCDescription">Instance method that implements a method from MyInterface. Because it is declared virtual it can be overridden by a subclass.</div></li></ul>
-                <div class="method undefined"><h2 class="methodHeader " id="TEST_Gotchas.InnerClass.InnerClass">InnerClass.&lt;init&gt;</h2>
+                <div class="method private"><h2 class="methodHeader " id="TEST_Gotchas.InnerClass.InnerClass">InnerClass.&lt;init&gt;</h2>
             <div class="methodSignature">
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L156">
@@ -690,7 +698,7 @@ export default `<!DOCTYPE html>
                       </div>
                       <div class="methodDescription">Explicit no argument constructor</div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_Gotchas.InnerClass.InnerClass_1">InnerClass.&lt;init&gt;</h2>
                 <div class="methodSignature">
 
@@ -700,7 +708,7 @@ export default `<!DOCTYPE html>
                 </div>
                 <div class="methodDescription">This invokes another constructor that is defined later</div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_Gotchas.InnerClass.method2">method2</h2>
                 <div class="methodAnnotations">@Future @SuppressWarnings @testMethod</div>
                 <div class="methodSignature">
@@ -713,7 +721,7 @@ export default `<!DOCTYPE html>
                 <div class="paramName">i</div>
                 <div class="paramDescription">Some Param description Implementation of the second interface method above. This method references member variables (with and without the &quot;this&quot; prefix)</div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_Gotchas.InnerClass.myMethod">myMethod</h2>
                 <div class="methodSignature">
 
@@ -779,14 +787,14 @@ export default `<!DOCTYPE html>
             <details class="subSection methods" open>
                 <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
                 <div class="methodsContainer">
-                <ul class="methodTOC"><li class="method undefined">
+                <ul class="methodTOC"><li class="method protected">
                 <a class="methodTOCEntry " href="#TEST_Gotchas.MyException.doIt">
                     doIt
-                </a><div class="methodTOCDescription">Exception class method, marked as protected</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Exception class method, marked as protected</div></li><li class="method private">
                 <a class="methodTOCEntry " href="#TEST_Gotchas.MyException.MyException">
                     MyException.&lt;init&gt;
                 </a><div class="methodTOCDescription">Exception class constructor</div></li></ul>
-                <div class="method undefined"><h2 class="methodHeader " id="TEST_Gotchas.MyException.doIt">doIt</h2>
+                <div class="method protected"><h2 class="methodHeader " id="TEST_Gotchas.MyException.doIt">doIt</h2>
             <div class="methodSignature">
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L242">
@@ -795,7 +803,7 @@ export default `<!DOCTYPE html>
                       </div>
                       <div class="methodDescription">Exception class method, marked as protected</div>
               </div>
-              <div class="method undefined">
+              <div class="method private">
                 <h2 class="methodHeader " id="TEST_Gotchas.MyException.MyException">MyException.&lt;init&gt;</h2>
                 <div class="methodSignature">
 
@@ -836,14 +844,14 @@ export default `<!DOCTYPE html>
               </summary>
               <div class="methodsContainer">
                 <ul class="methodTOC">
-                  <li class="method undefined">
+                  <li class="method public">
                     <a class="methodTOCEntry " href="#TEST_Gotchas.MyInterface.myMethod">
                       myMethod
                     </a>
                     <div class="methodTOCDescription">No access modifier is necessary for interface methods - these are always public or global depending on the interface visibility</div>
                   </li>
                 </ul>
-                <div class="method undefined">
+                <div class="method public">
                   <h2 class="methodHeader " id="TEST_Gotchas.MyInterface.myMethod">myMethod</h2>
                   <div class="methodSignature">
 
@@ -907,12 +915,12 @@ export default `<!DOCTYPE html>
               </summary>
               <div class="methodsContainer">
                 <ul class="methodTOC">
-                  <li class="method undefined">
+                  <li class="method private">
                     <a class="methodTOCEntry " href="#TEST_Gotchas.MySecondInterface.method2">
                       method2
                     </a></li>
                 </ul>
-                <div class="method undefined">
+                <div class="method private">
                   <h2 class="methodHeader " id="TEST_Gotchas.MySecondInterface.method2">method2</h2>
                   <div class="methodSignature">
 

@@ -35,10 +35,18 @@ export default `<!DOCTYPE html>
           Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
           <label for="cbx-all">All</label>&nbsp;&nbsp;
           <input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
-          <label for="cbx-public">public</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
-          <label for="cbx-private">private</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
-          <label for="cbx-protected">protected</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
-          <label for="cbx-global">global</label>
+          <label for="cbx-public">
+            public
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+          <label for="cbx-private">
+            private
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
+          <label for="cbx-protected">
+            protected
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+          <label for="cbx-global">
+            global
+          </label>
         </td>
       </tr>
       <tr style="vertical-align:top;">
@@ -225,14 +233,14 @@ export default `<!DOCTYPE html>
             <details class="subSection methods" open>
                 <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
                 <div class="methodsContainer">
-                <ul class="methodTOC"><li class="method undefined">
+                <ul class="methodTOC"><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_BotItem.BotItem">
                     BotItem
-                </a><div class="methodTOCDescription">Convenience constructor to create a single item</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Convenience constructor to create a single item</div></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_BotItem.BotItem_1">
                     BotItem
                 </a><div class="methodTOCDescription">Convenience constructor to create a single item</div></li></ul>
-                <div class="method undefined"><h2 class="methodHeader " id="TEST_BotItem.BotItem">BotItem</h2>
+                <div class="method public"><h2 class="methodHeader " id="TEST_BotItem.BotItem">BotItem</h2>
             <div class="methodSignature">
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotItem.cls#L21">
@@ -244,7 +252,7 @@ export default `<!DOCTYPE html>
                       <div class="paramName">name</div>
                       <div class="paramDescription">The <code class="inlineCode">BotItem</code>s name</div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_BotItem.BotItem_1">BotItem</h2>
                 <div class="methodSignature">
 

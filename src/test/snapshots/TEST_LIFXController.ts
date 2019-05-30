@@ -35,10 +35,18 @@ export default `<!DOCTYPE html>
           Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
           <label for="cbx-all">All</label>&nbsp;&nbsp;
           <input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
-          <label for="cbx-public">public</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
-          <label for="cbx-private">private</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
-          <label for="cbx-protected">protected</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
-          <label for="cbx-global">global</label>
+          <label for="cbx-public">
+            public
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+          <label for="cbx-private">
+            private
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
+          <label for="cbx-protected">
+            protected
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+          <label for="cbx-global">
+            global
+          </label>
         </td>
       </tr>
       <tr style="vertical-align:top;">
@@ -214,20 +222,20 @@ export default `<!DOCTYPE html>
             <details class="subSection methods" open>
                 <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
                 <div class="methodsContainer">
-                <ul class="methodTOC"><li class="method undefined">
+                <ul class="methodTOC"><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_LIFXController.getLights">
                     getLights
-                </a></li><li class="method undefined">
+                </a></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_LIFXController.setBrightness">
                     setBrightness
-                </a></li><li class="method undefined">
+                </a></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_LIFXController.setPower">
                     setPower
-                </a></li><li class="method undefined">
+                </a></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_LIFXController.setState">
                     setState
                 </a></li></ul>
-                <div class="method undefined"><h2 class="methodHeader " id="TEST_LIFXController.getLights">getLights</h2><div class="methodAnnotations">@AuraEnabled</div>
+                <div class="method public"><h2 class="methodHeader " id="TEST_LIFXController.getLights">getLights</h2><div class="methodAnnotations">@AuraEnabled</div>
             <div class="methodSignature">
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_LIFXController.cls#L11">
@@ -235,7 +243,7 @@ export default `<!DOCTYPE html>
                         </a>
                       </div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_LIFXController.setBrightness">setBrightness</h2>
                 <div class="methodAnnotations">@AuraEnabled</div>
                 <div class="methodSignature">
@@ -245,7 +253,7 @@ export default `<!DOCTYPE html>
                   </a>
                 </div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_LIFXController.setPower">setPower</h2>
                 <div class="methodAnnotations">@AuraEnabled</div>
                 <div class="methodSignature">
@@ -255,7 +263,7 @@ export default `<!DOCTYPE html>
                   </a>
                 </div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_LIFXController.setState">setState</h2>
                 <div class="methodSignature">
 

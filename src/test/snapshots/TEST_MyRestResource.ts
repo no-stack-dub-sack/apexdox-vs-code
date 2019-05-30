@@ -35,10 +35,18 @@ export default `<!DOCTYPE html>
           Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
           <label for="cbx-all">All</label>&nbsp;&nbsp;
           <input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
-          <label for="cbx-public">public</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
-          <label for="cbx-private">private</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
-          <label for="cbx-protected">protected</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
-          <label for="cbx-global">global</label>
+          <label for="cbx-public">
+            public
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+          <label for="cbx-private">
+            private
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
+          <label for="cbx-protected">
+            protected
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+          <label for="cbx-global">
+            global
+          </label>
         </td>
       </tr>
       <tr style="vertical-align:top;">
@@ -191,20 +199,20 @@ export default `<!DOCTYPE html>
               </summary>
               <div class="methodsContainer">
                 <ul class="methodTOC">
-                  <li class="method undefined">
+                  <li class="method global">
                     <a class="methodTOCEntry " href="#TEST_MyRestResource.doDelete">
                       doDelete
                     </a></li>
-                  <li class="method undefined">
+                  <li class="method global">
                     <a class="methodTOCEntry " href="#TEST_MyRestResource.doGet">
                       doGet
                     </a></li>
-                  <li class="method undefined">
+                  <li class="method global">
                     <a class="methodTOCEntry " href="#TEST_MyRestResource.doPost">
                       doPost
                     </a></li>
                 </ul>
-                <div class="method undefined">
+                <div class="method global">
                   <h2 class="methodHeader " id="TEST_MyRestResource.doDelete">doDelete</h2>
                   <div class="methodAnnotations">@HttpDelete</div>
                   <div class="methodSignature">
@@ -214,7 +222,7 @@ export default `<!DOCTYPE html>
                     </a>
                   </div>
                 </div>
-                <div class="method undefined">
+                <div class="method global">
                   <h2 class="methodHeader " id="TEST_MyRestResource.doGet">doGet</h2>
                   <div class="methodAnnotations">@HttpGet</div>
                   <div class="methodSignature">
@@ -224,7 +232,7 @@ export default `<!DOCTYPE html>
                     </a>
                   </div>
                 </div>
-                <div class="method undefined">
+                <div class="method global">
                   <h2 class="methodHeader " id="TEST_MyRestResource.doPost">doPost</h2>
                   <div class="methodSignature">
 

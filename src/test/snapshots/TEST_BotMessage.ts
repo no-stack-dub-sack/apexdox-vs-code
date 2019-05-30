@@ -35,10 +35,18 @@ export default `<!DOCTYPE html>
           Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
           <label for="cbx-all">All</label>&nbsp;&nbsp;
           <input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
-          <label for="cbx-public">public</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
-          <label for="cbx-private">private</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
-          <label for="cbx-protected">protected</label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
-          <label for="cbx-global">global</label>
+          <label for="cbx-public">
+            public
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+          <label for="cbx-private">
+            private
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
+          <label for="cbx-protected">
+            protected
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+          <label for="cbx-global">
+            global
+          </label>
         </td>
       </tr>
       <tr style="vertical-align:top;">
@@ -261,26 +269,26 @@ export default `<!DOCTYPE html>
             <details class="subSection methods" open>
                 <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
                 <div class="methodsContainer">
-                <ul class="methodTOC"><li class="method undefined">
+                <ul class="methodTOC"><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_BotMessage.BotMessage">
                     BotMessage
-                </a><div class="methodTOCDescription">Default constructor</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Default constructor</div></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_BotMessage.BotMessage_1">
                     BotMessage
-                </a><div class="methodTOCDescription">Convenience constructor to create a simple bot message.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Convenience constructor to create a simple bot message.</div></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_BotMessage.BotMessage_2">
                     BotMessage
-                </a><div class="methodTOCDescription">Convenience constructor to create a simple bot message.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Convenience constructor to create a simple bot message.</div></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_BotMessage.BotMessage_3">
                     BotMessage
-                </a><div class="methodTOCDescription">Convenience constructor to create a simple bot message.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Convenience constructor to create a simple bot message.</div></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_BotMessage.BotMessage_4">
                     BotMessage
-                </a><div class="methodTOCDescription">Convenience constructor to create a simple bot message.</div></li><li class="method undefined">
+                </a><div class="methodTOCDescription">Convenience constructor to create a simple bot message.</div></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_BotMessage.BotMessage_5">
                     BotMessage
                 </a><div class="methodTOCDescription">Convenience constructor to create a simple bot message.</div></li></ul>
-                <div class="method undefined"><h2 class="methodHeader " id="TEST_BotMessage.BotMessage">BotMessage</h2>
+                <div class="method public"><h2 class="methodHeader " id="TEST_BotMessage.BotMessage">BotMessage</h2>
             <div class="methodSignature">
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L24">
@@ -289,7 +297,7 @@ export default `<!DOCTYPE html>
                       </div>
                       <div class="methodDescription">Default constructor</div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_BotMessage.BotMessage_1">BotMessage</h2>
                 <div class="methodSignature">
 
@@ -306,7 +314,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">See</div>
                 <div class="methodSubDescription"><span title="A matching reference could not be found!">TEST_BotResponse.BotResponse</span></div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_BotMessage.BotMessage_2">BotMessage</h2>
                 <div class="methodSignature">
 
@@ -325,7 +333,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">See</div>
                 <div class="methodSubDescription"><span title="A matching reference could not be found!">TEST_BotRecord</span></div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_BotMessage.BotMessage_3">BotMessage</h2>
                 <div class="methodSignature">
 
@@ -344,7 +352,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">See</div>
                 <div class="methodSubDescription"><a href="javascript:void(0)" onclick="goToLocation('TEST_BotItem.html')">TEST_BotItem</a></div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_BotMessage.BotMessage_4">BotMessage</h2>
                 <div class="methodSignature">
 
@@ -363,7 +371,7 @@ export default `<!DOCTYPE html>
                 <div class="methodSubTitle ">See</div>
                 <div class="methodSubDescription"><span title="A matching reference could not be found!">TEST_BotMessageButton</span></div>
               </div>
-              <div class="method undefined">
+              <div class="method public">
                 <h2 class="methodHeader " id="TEST_BotMessage.BotMessage_5">BotMessage</h2>
                 <div class="methodSignature">
 
