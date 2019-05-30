@@ -17,12 +17,12 @@ abstract class MarkupGenerator<T extends ApexModel> {
         return `<div class="${className}">${this.model.annotations.join(' ')}</div>`;
     }
 
-    protected description(className = ''): string {
+    protected description(className = '', tag = 'div'): string {
         if (!this.model.description) {
             return '';
         }
 
-        return `<div class="${className}">${GeneratorUtils.escapeHTML(this.model.description, true)}</div>`;
+        return `<${tag} class="${className}">${GeneratorUtils.escapeHTML(this.model.description, true)}</${tag}>`;
     }
 
     protected signatureLine(nameLine: string, memberClassName: string, highlightJSify = false): string {

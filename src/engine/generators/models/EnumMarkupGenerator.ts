@@ -37,11 +37,13 @@ class EnumMarkupGenerator extends MarkupGenerator<EnumModel> {
             <p />
             <table class="attrTable">
                 <tr><th>Values</th></tr>
-                <tr>
-                    <td class="enumValues">
-                        ${this.model.values.join(', ')}
-                    </td>
-                </tr>
+                ${GeneratorUtils.mapHTML(this.model.values, val =>
+                    `<tr>
+                        <td class="enumValues">
+                            ${val}
+                        </td>
+                    </tr>`
+                )}
             </table>`;
     }
 }

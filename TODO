@@ -16,6 +16,7 @@ Testing:
     ✔ Establish "Snapshot" tests to compare output docs to expected output reference files @done(19-05-28 21:25)
     ✔ Create at least basic documentation engine tests @done(19-05-28 21:25)
     ☐ Add .cls level enum to test Apex files
+    ☐ Add multipl enums in single file (PostPriceChangeToSlack.cls)
     ✔ Don't show diff when whitespace only in snapshot tests @done(19-05-29 21:51)
     ✔ Trim diffs so not so huge for snapshot tests @done(19-05-29 21:51)
 

@@ -81,7 +81,7 @@ body {
 /* attrTable is used to display the table of class attrTable */
 .attrTable {
     border-collapse: collapse;
-    max-width: 95%;
+    max-width: 97%;
 }
 
 .attrTable th {
@@ -118,6 +118,10 @@ most signatures will fit on a single lin */
     background: none;
     font-family: monospace;
     padding: 0;
+}
+
+.attrSignature {
+    white-space: nowrap;
 }
 
 .attrDescription {

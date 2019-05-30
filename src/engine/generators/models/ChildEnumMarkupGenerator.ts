@@ -52,19 +52,13 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
             </tr>`;
     }
 
-    protected signatureLine(memberClassName: string): string {
-        return `<div class="attrSignature">${super.signatureLine(this.model.nameLine, memberClassName, true)}</div>`;
-    }
-
     protected enumRow(memberClassName: string, hasDescriptionColumn: boolean): string {
         return `
             <tr class="enum ${this.model.scope}">
                 <td class="attrName">${this.model.name}</td>
-                <td>${this.signatureLine(memberClassName)}</td>
-                <td class="enumValues">${this.model.values.join()}</td>
-                ${hasDescriptionColumn
-                    ? '<td>' + this.description('attrDescription') + '</td>'
-                    : ''}
+                <td class="attrSignature">${this.signatureLine(this.model.nameLine, memberClassName, true)}</td>
+                <td class="enumValues">${this.model.values.join(',&nbsp;')}</td>
+                ${hasDescriptionColumn ? this.description('attrDescription', 'td') : ''}
             </tr>`;
     }
 }

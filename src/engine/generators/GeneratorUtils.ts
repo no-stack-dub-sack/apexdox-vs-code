@@ -4,6 +4,10 @@ import { Option } from '../../common/Utils';
 
 class GeneratorUtils {
 
+    public static mapHTML<T>(arr: T[], mapClb: (val: T) => string): string {
+        return arr.map(mapClb).join('');
+    }
+
     public static escapeHTML(str: string, wrapBackticks: boolean = false): string {
         let result = wrapBackticks ? this.wrapWithCode(escape(str)) : escape(str);
         // unescape <br> tags, we want to keep these
