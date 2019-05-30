@@ -1,5 +1,6 @@
 import * as assert from 'assert';
 import ApexDoc from '../engine/ApexDoc';
+import createEngineTests from './engine.test';
 import createSnapshotTests from './snapshot.test';
 import testConfig from './testConfig';
 import { readdirSync } from 'fs';
@@ -38,40 +39,12 @@ const createMochaTestSuite = async () => {
     suite("ApexDoc2 Extension Tests", function () {
 
         suite('Documentation Engine Tests', function() {
-
-            test("ApexDoc2 created docs", function() {
-                assert.notEqual(files.length, 0);
-            });
-
-            test("ApexDoc2 included only files included by 'includes' setting", function() {
-                files.forEach(fileOrDirName => {
-                    if (fileOrDirName !== 'assets' && fileOrDirName !== 'index.html') {
-                        assert.ok(
-                            fileOrDirName === 'IncludeOne.html' ||
-                            fileOrDirName === 'IncludeTwo.html' ||
-                            fileOrDirName.startsWith('TEST_'),
-                            `Unexpected files in target directory: ${fileOrDirName}`
-                        );
-                    }
-                });
-            });
-
-            test("ApexDoc2 excluded files excluded by 'excludes' setting", function() {
-                files.forEach(fileOrDirName => {
-                    if (fileOrDirName !== 'assets' && fileOrDirName !== 'index.html') {
-                        assert.ok(
-                            !fileOrDirName.endsWith('Exclude.html') &&
-                            !fileOrDirName.endsWith('Test.html') &&
-                            fileOrDirName !== 'TEST_ExcuseMe.html',
-                            `Unexpected files in target directory: ${fileOrDirName}`
-                        );
-                    }
-                });
-            });
+            createEngineTests(files);
         });
 
-        // SEE: ./snapshot.test.ts
-        createSnapshotTests(files);
+        suite('Snapshot Tests', function() {
+            createSnapshotTests(files);
+        });
     });
 
     run();
