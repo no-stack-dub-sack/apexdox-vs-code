@@ -266,16 +266,13 @@ details summary::-webkit-details-marker {
     color: black !important;
 }
 
-.contentTd details.section summary::-webkit-details-marker {
+details.section summary::-webkit-details-marker {
     color: var(--light-grey) !important;
-}
-
-.contentTd details.subSection summary::-webkit-details-marker {
-    color: black !important;
-}
-
-.contentTd details summary::-webkit-details-marker {
     margin-top: 10px;
+}
+
+details.subSection summary::-webkit-details-marker {
+    color: black !important;
 }
 
 /* SIDEBAR CSS */

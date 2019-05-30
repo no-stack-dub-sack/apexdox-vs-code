@@ -51,7 +51,8 @@
 		"languages": [{
 			"id": "apex",
 			"extensions": [
-				".cls"
+				".cls",
+				".apex"
 			],
 			"configuration": "./syntaxes/language-configuration.json"
 		}],

@@ -8,7 +8,7 @@ General:
     ✔ Implement our own version of `${workspaceFolder}` variable for settings.json @done(19-04-27 22:45)
     ✔ Replace get*() on models with getters, and set up backing fields so we can have more idiomatic private set, public get @done(19-05-03 20:10)
     ☐ Resolve in-code TODOs
-    ☐ Fix WebService & TestMethod filtering!
+    ✔ Fix WebService & TestMethod filtering! @done(19-05-29 21:50)
     ✔ Fix how sort-order affects overload selectors (alpha) @done(19-05-27 11:06)
     ✔ !DOCTYPE! @done(19-05-28 22:11)
 
@@ -16,6 +16,8 @@ Testing:
     ✔ Establish "Snapshot" tests to compare output docs to expected output reference files @done(19-05-28 21:25)
     ✔ Create at least basic documentation engine tests @done(19-05-28 21:25)
     ☐ Add .cls level enum to test Apex files
+    ✔ Don't show diff when whitespace only in snapshot tests @done(19-05-29 21:51)
+    ✔ Trim diffs so not so huge for snapshot tests @done(19-05-29 21:51)
 
 Phase Two:
     ☐ "Stub All" command
@@ -24,6 +26,7 @@ Phase Two:
     ☐ Put link to open docs in "Complete" notification if possible
     ☐ User defined CSS stylesheet that allows overriding current styles
     ☐ Trigger documentation!!
+    ☐ Global search!
 
 Documentation:
     ☐ README
@@ -32,7 +35,7 @@ Documentation:
             ✔ New `source` setting, reomve old settings @done(19-05-07 09:24)
             ✔ Document ${workspaceFolder} settings variable @done(19-05-10 18:19)
             ✘ markupDescription descriptions don't show up in Contributes tab of extension info? Can we include both? @cancelled(19-05-22 21:36)
-            ☐ Make README descriptions same as package.json descriptions
+            ✘ Make README descriptions same as package.json descriptions @cancelled(19-05-30 09:56)
         ✔ Commands @done(19-05-11 16:17)
         ☐ Warnings?
         ☐ OG ApexDoc credits
