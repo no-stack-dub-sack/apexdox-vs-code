@@ -150,22 +150,21 @@ abstract class ApexModel {
         }
     }
 
-    public static parseAnnotations(previousLine: Option<string, null>, line: string, model: ApexModel): void {
-        // If previous line is not a comment line, it could be an annotation line.
-        // Annotations may also be on the signature line, so check both for matches.
+    public parseAnnotations(line: string, previousLine: Option<string, null>): void {
         if (previousLine) {
             previousLine = previousLine.trim();
+            // if previous line is not a comment line it may contain annotations.
             if (!previousLine.startsWith('*') && /.*(@\w+\s*(\([\w=.*''/\s]+\))?)$/.test(previousLine)) {
                 line = previousLine + ' ' + line;
             }
         }
 
-        let matches: Option<RegExpMatchArray, null> = line.match(/@\w+\s*(\([\w=.*''/\s]+\))?/g);
+        const matches: Option<RegExpMatchArray, null> = line.match(/@\w+\s*(\([\w=.*''/\s]+\))?/g);
 
         if (matches !== null) {
             matches.forEach(match => {
                 if (match) {
-                    model && model.annotations.push(match.trim());
+                    this.annotations.push(match.trim());
                 }
             });
         }
@@ -173,12 +172,12 @@ abstract class ApexModel {
 
     protected parseScope(): void {
         if (this._nameLine) {
-            let _scope = Utils.containsScope(this._nameLine);
+            let _scope = Utils.getScope(this._nameLine);
             if (_scope) {
                 this._scope = _scope;
             } else {
                 // _scope is implicitly private
-                this._scope = ApexDoc.PRIVATE;
+                this._scope = 'private';
             }
         }
     }

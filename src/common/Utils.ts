@@ -10,6 +10,8 @@ export type Option<T, V = undefined> = T | V;
 export const last = <T>(arr: T[]): T => arr.length > 1 ? arr[arr.length - 1] : arr[0];
 
 class Utils {
+    private static readonly PRIVATE: string = 'private';
+    private static readonly TEST_METHOD: string = 'testmethod';
     private static COLLECTIONS: string[] = ['list', 'set', 'map'];
     private static KEYWORDS: string[] = [
         'abstract',
@@ -73,7 +75,7 @@ class Utils {
         let classNameParts = cModel && cModel.name.split('.') || [''];
         let className = last(classNameParts);
 
-        if (!this.containsScope(line) &&
+        if (!this.getScope(line) &&
             !line.toLowerCase().startsWith(ApexDoc.ENUM + " ") &&
             !line.toLowerCase().startsWith(ApexDoc.CLASS + " ") &&
             !line.toLowerCase().startsWith(ApexDoc.INTERFACE + " ") &&
@@ -87,49 +89,45 @@ class Utils {
         return false;
     }
 
-    /**
-     * See if line starts with scope keywords, if it does not, and
-     * current scope is private, see if line starts with keyword or
-     * primitive data type, or collection which would mean it is
-     * implicitly private. This only works for methods in most cases,
-     * otherwise we would be matching local variables as well. This is
-     * why we check for '('. Unfortunately, we cannot check for all data
-     * types, so if a method is not given an explicit access modifier &
-     * it doesn't start with these keywords, it will be undetectable by ApexDoc2.
-    */
-    public static containsScope(line: string): Option<string, void> {
+    /** Can match some implicitly private methods, but not all! */
+    public static getScope(line: string): Option<string, void> {
         for (let scope of ApexDoc.config.scope) {
-            scope = scope.toLowerCase();
             // if line starts with annotations, replace them, so
             // we can accurately use startsWith to match scope.
-            line = this.stripAnnotations(line);
-            line = line.toLowerCase().trim();
+            line = this.stripAnnotations(line).toLowerCase().trim();
+            scope = scope.toLowerCase();
 
-            // see if line starts with registered scopes.
+            // line starts with registered scope
             if (line.startsWith(scope + ' ')) {
                 return scope;
             }
 
-            // match implicitly private lines
-            else if (scope === ApexDoc.PRIVATE) {
-                // match static props or methods:
-                if (line.startsWith('static ')) {
-                    return ApexDoc.PRIVATE;
-                }
+            // current scope is testmethod and our line is a test method
+            if (scope === this.TEST_METHOD && line.startsWith(`static ${this.TEST_METHOD} `)) {
+                return scope;
+            }
+        }
 
-                // match methods that start with
-                // keywords or return primitive types:
-                for (let keyword of this.KEYWORDS) {
-                    if (line.startsWith(keyword + ' ') && line.includes('(')) {
-                        return ApexDoc.PRIVATE;
-                    }
-                }
+        // try to reasonably match implicitly private lines if
+        // 'private' included in user's documentable scopes list
+        if (ApexDoc.config.scope.includes(this.PRIVATE)) {
+            // match static props or methods
+            if (line.startsWith('static ') && !line.includes(` ${this.TEST_METHOD} `)) {
+                return this.PRIVATE;
+            }
 
-                // match methods that return collections:
-                for (let collection of this.COLLECTIONS) {
-                    if (new RegExp('^' + collection + '<.+>\\s.*').test(line) && line.includes('(')) {
-                        return ApexDoc.PRIVATE;
-                    }
+            // match methods that start with
+            // keywords or return primitive types
+            for (let keyword of this.KEYWORDS) {
+                if (line.startsWith(keyword + ' ') && line.includes('(')) {
+                    return this.PRIVATE;
+                }
+            }
+
+            // match methods that return collections
+            for (let collection of this.COLLECTIONS) {
+                if (new RegExp('^' + collection + '<.+>\\s.*').test(line) && line.includes('(')) {
+                    return this.PRIVATE;
                 }
             }
         }

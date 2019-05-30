@@ -65,6 +65,22 @@ class MethodModel extends ApexModel {
         return this._see;
     }
 
+    // annotations will not exist when parseScope is first called
+    // override parseAnnotations so we can call parseScope again after
+    public parseAnnotations(line: string, previousLine: Option<string, null>): void {
+        super.parseAnnotations(line, previousLine);
+        this.parseScope();
+    }
+
+    // override parseScope so we can check if method is 'isTest'.
+    // isTest methods will initially be recognized as implicitly private.
+    protected parseScope(): void {
+        super.parseScope();
+        if (this._scope === 'private' && this._annotations.map(a => a.toLowerCase()).includes('@istest')) {
+            this._scope = 'testmethod';
+        }
+    }
+
     protected setNameLine(nameLine: string, lineNum: number): void {
         // remove anything after param list
         if (nameLine) {
@@ -75,6 +91,10 @@ class MethodModel extends ApexModel {
         }
 
         super.setNameLine(nameLine, lineNum);
+    }
+
+    public get scope() {
+        return this._scope;
     }
 
     public set scope(scope: string) {

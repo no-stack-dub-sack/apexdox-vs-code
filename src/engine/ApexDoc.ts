@@ -11,22 +11,13 @@ import { window } from 'vscode';
 
 class ApexDoc {
     // constants
-    public static readonly GLOBAL: string = "global";
-    public static readonly PUBLIC: string = "public";
-    public static readonly PROTECTED: string = "protected";
-    public static readonly PRIVATE: string = "private";
-    public static readonly TEST_METHOD: string = "testMethod";
-    public static readonly WEB_SERVICE: string = "webService";
-    public static readonly SCOPES: string[] = [
-        ApexDoc.GLOBAL, ApexDoc.PUBLIC, ApexDoc.PRIVATE,
-        ApexDoc.PROTECTED, ApexDoc.WEB_SERVICE, ApexDoc.TEST_METHOD
-    ];
+    public static readonly SCOPES: string[] = ['global', 'public', 'private', 'protected', 'webservice', 'testmethod'];
 
-    public static readonly CLASS: string = "class";
-    public static readonly ENUM: string = "enum";
-    public static readonly INTERFACE: string = "interface";
-    public static readonly ORDER_ALPHA: string = "alpha";
-    public static readonly ORDER_LOGICAL: string = "logical";
+    public static readonly CLASS: string = 'class';
+    public static readonly ENUM: string = 'enum';
+    public static readonly INTERFACE: string = 'interface';
+    public static readonly ORDER_ALPHA: string = 'alpha';
+    public static readonly ORDER_LOGICAL: string = 'logical';
 
     // use special token for marking the end of a doc block
     // comment. Now that we're supporting multi-line for all
@@ -34,9 +25,9 @@ class ApexDoc {
     // must know when a block ends in order to prevent weird
     // behavior when lesser scopes than available are indicated
     // e.g. private;public when there are protected methods
-    public static readonly DOC_BLOCK_BREAK: string = "@@BREAK@@";
-    private static readonly COMMENT_CLOSE: string = "*/";
-    private static readonly COMMENT_OPEN: string = "/**";
+    public static readonly DOC_BLOCK_BREAK: string = '@@BREAK@@';
+    private static readonly COMMENT_CLOSE: string = '*/';
+    private static readonly COMMENT_OPEN: string = '/**';
 
     // static members
     public static extensionRoot: string;
@@ -228,8 +219,8 @@ class ApexDoc {
             // look for a class.
             if (Utils.isClassOrInterface(line)) {
                 // create the new class
-                let cModelNew: Models.ClassModel = new Models.ClassModel(cModelParent, comments, line, lineNum, sourceUrl);
-                ApexModel.parseAnnotations(reader.peekPrevLine(), line, cModelNew);
+                const cModelNew: Models.ClassModel = new Models.ClassModel(cModelParent, comments, line, lineNum, sourceUrl);
+                cModelNew.parseAnnotations(line, reader.peekPrevLine());
                 comments = [];
 
                 // keep track of the new class, as long as it wasn't a single liner {}
@@ -259,8 +250,8 @@ class ApexDoc {
                     lineNum++;
                 }
 
-                let eModel: Models.EnumModel = new Models.EnumModel(comments, line, startingLine, sourceUrl);
-                ApexModel.parseAnnotations(reader.peekPrevLine(), line, eModel);
+                const eModel: Models.EnumModel = new Models.EnumModel(comments, line, startingLine, sourceUrl);
+                eModel.parseAnnotations(line, reader.peekPrevLine());
 
                 // if no class models have been created, and we see an
                 // enum, we must be dealing with a class level enum and
@@ -285,16 +276,16 @@ class ApexDoc {
                     lineNum++;
                 }
 
-                let mModel: Models.MethodModel = new Models.MethodModel(comments, line, startingLine, sourceUrl);
-                ApexModel.parseAnnotations(reader.peekPrevLine(), line, mModel);
+                const mModel: Models.MethodModel = new Models.MethodModel(comments, line, startingLine, sourceUrl);
+                mModel.parseAnnotations(line, reader.peekPrevLine());
                 cModel && cModel.methods.push(mModel);
                 comments = [];
                 continue;
             }
 
             // must be a property
-            let pModel: Models.PropertyModel = new Models.PropertyModel(comments, line, lineNum, sourceUrl);
-            ApexModel.parseAnnotations(reader.peekPrevLine(), line, pModel);
+            const pModel: Models.PropertyModel = new Models.PropertyModel(comments, line, lineNum, sourceUrl);
+            pModel.parseAnnotations(line, reader.peekPrevLine());
             cModel && cModel.properties.push(pModel);
             comments = [];
             continue;

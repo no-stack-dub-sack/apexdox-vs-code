@@ -123,9 +123,9 @@ class Settings {
         config.sortOrder = Guards.sortOrder(config.sortOrder);
 
         // arrays
-        config.scope = Guards.scope(config.scope);
         config.includes = Guards.stringArray(config.includes, 'includes');
         config.excludes = Guards.stringArray(config.excludes, 'excludes');
+        config.scope = Guards.scope(config.scope).map(scope => scope.toLowerCase());
         config.assets = Guards.stringArray(config.assets, 'assets').map(path => Utils.resolveWorkspaceFolder(path));
 
         // booleans

@@ -6,8 +6,12 @@ class MenuGenerator {
     public static makeScopingPanel(): string {
         // add checkboxes for registered scopes
         const checkBoxes = ApexDoc.config.scope.map(scope =>
-            `<input type="checkbox" checked="true" id="cbx-${scope}" onclick="toggleScope('${scope}', this.checked);" />
-             <label for="cbx-${scope}">${scope}</label>`
+            `<input
+                type="checkbox" checked="true" id="cbx-${scope}"
+                onclick="toggleScope('${scope}', this.checked);" />
+            <label for="cbx-${scope}">
+                ${scope === 'testmethod' ? 'testMethod' : scope === 'webservice' ? 'webService' : scope}
+            </label>`
         );
 
         let markup = `
