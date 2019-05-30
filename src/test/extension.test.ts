@@ -71,9 +71,7 @@ const createMochaTestSuite = async () => {
         });
 
         // SEE: ./snapshot.test.ts
-        suite('Snapshot Tests', function() {
-            createSnapshotTests(files);
-        });
+        createSnapshotTests(files);
     });
 
     run();

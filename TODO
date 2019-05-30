@@ -15,6 +15,7 @@ General:
 Testing:
     ✔ Establish "Snapshot" tests to compare output docs to expected output reference files @done(19-05-28 21:25)
     ✔ Create at least basic documentation engine tests @done(19-05-28 21:25)
+    ☐ Add .cls level enum to test Apex files
 
 Phase Two:
     ☐ "Stub All" command

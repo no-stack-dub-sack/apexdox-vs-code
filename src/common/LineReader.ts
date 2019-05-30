@@ -81,6 +81,14 @@ class LineReader {
         }
         return null;
     }
+
+    public toArray(): string[] {
+        if (this.lines) {
+            return this.lines;
+        }
+
+        return [];
+    }
 }
 
 export default LineReader;

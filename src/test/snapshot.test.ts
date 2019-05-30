@@ -14,15 +14,62 @@ const targetDir = resolvePath(__dirname, './docs');
 // updated from the resulting test docs. See: ../../scripts/updateSnapshots.js.
 
 const createSnapshotTests = (files: string[]) => {
-    files.forEach(fileOrDirName => {
-        if (fileOrDirName !== 'assets') {
-            test(`${fileOrDirName} contents matches reference snapshot`, function() {
-                let fileReference = require('./snapshots/' + basename(fileOrDirName, '.html'));
-                let fileSnapshot = new LineReader(resolvePath(targetDir, fileOrDirName)).toString(false, '\n');
-                assert.equal(fileSnapshot, fileReference.default, `Snapshot does not match reference: ${fileOrDirName}`);
-            });
-        }
+    suite('Snapshot Tests', function() {
+
+        files.forEach(fileOrDirName => {
+            if (fileOrDirName !== 'assets') {
+                test(`${fileOrDirName} contents should match reference snapshot`, function() {
+                    let { default: fileReference } = require('./snapshots/' + basename(fileOrDirName, '.html'));
+                    const reader = new LineReader(resolvePath(targetDir, fileOrDirName));
+                    let fileSnapshot = <string>(reader).toString(false, '\n');
+
+                    if (fileSnapshot !== fileReference) {
+                        const referenceWhiteSpace = fileReference.replace(/[^\s]/g, '');
+                        const snapshotWhiteSpace = fileSnapshot.replace(/[^\s]/g, '');
+                        const referenceMinified = fileReference.replace(/\s/g, '');
+                        const snapshotMinified = fileSnapshot.replace(/\s/g, '');
+
+                        if (referenceMinified === snapshotMinified && snapshotWhiteSpace !== referenceWhiteSpace) {
+                            // we know the white space does not match, while everything else does. Avoid
+                            // showing a very lengthy diff that does not tell you anything in the terminail.
+                            // Instead, use another diffing tool like Meld to understand what's changed.
+                            assert.equal('', ' ', `Snapshot differs in whitespace only (diff not shown)`);
+                        }
+
+                        // remove trailing and leading chars which are identical to help isolate diffs in terminal
+                        const { finalReference, finalSnapshot } = isolateDiffs(fileReference.split('\n'), reader.toArray());
+
+                        assert.equal(finalSnapshot, finalReference, `Snapshot does not match reference`);
+                    }
+                });
+            }
+        });
     });
+};
+
+const isolateDiffs = (fileReference: string[], fileSnapshot: string[]): {
+    finalReference: string,
+    finalSnapshot: string
+} => {
+    let start = 0;
+    let end = 0;
+
+    while (fileReference[start] === fileSnapshot[start]) {
+        start++;
+    }
+
+    for (let i = fileReference.length - 1; i > 0; i--) {
+        if (fileReference[i] === fileSnapshot[i]) {
+            end--;
+        } else {
+            break;
+        }
+    }
+
+    return {
+        finalReference: fileReference.slice(start, end).join('\n'),
+        finalSnapshot: fileSnapshot.slice(start, end).join('\n')
+    };
 };
 
 export default createSnapshotTests;
