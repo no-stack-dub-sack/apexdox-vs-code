@@ -137,6 +137,9 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_PrimitiveComparator" class="navItem class global" onclick="goToLocation('TEST_PrimitiveComparator.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_PrimitiveComparator</a>
                   </li>
+                  <li id="item-TEST_Status" class="navItem class public" onclick="goToLocation('TEST_Status.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Status</a>
+                  </li>
                   <li id="item-TEST_StopWatch" class="navItem class global" onclick="goToLocation('TEST_StopWatch.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_StopWatch</a>
                   </li>
@@ -287,30 +290,30 @@ export default `<!DOCTYPE html>
             </tr>
             <tr class="enum public">
                 <td class="attrName">Numbers</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L38">
                     public enum <span class="hljs-title">Numbers<span>
-                </a></div></td>
-                <td class="enumValues">ONE,TWO,THREE,FOUR</td>
-                <td><div class="attrDescription">This will be invisible to ApexDoc2 since it is a prop without an access modifier</div></td>
+                </a></td>
+                <td class="enumValues">ONE,&nbsp;TWO,&nbsp;THREE,&nbsp;FOUR</td>
+                <td class="attrDescription">This will be invisible to ApexDoc2 since it is a prop without an access modifier</td>
             </tr>
             <tr class="enum private">
                 <td class="attrName">Randomness</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L55">
                     enum <span class="hljs-title">Randomness<span>
-                </a></div></td>
-                <td class="enumValues">STRING,INTEGER,DOUBLE,LIST,ENUM,CLASS,INTERFACE,SET,MAP,WAYNES_WORLD,EXCELLENT</td>
-                <td><div class="attrDescription">Wonky, should still be parsed correctly</div></td>
+                </a></td>
+                <td class="enumValues">STRING,&nbsp;INTEGER,&nbsp;DOUBLE,&nbsp;LIST,&nbsp;ENUM,&nbsp;CLASS,&nbsp;INTERFACE,&nbsp;SET,&nbsp;MAP,&nbsp;WAYNES_WORLD,&nbsp;EXCELLENT</td>
+                <td class="attrDescription">Wonky, should still be parsed correctly</td>
             </tr>
             <tr class="enum private">
                 <td class="attrName">Seasons</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L43">
                     private enum <span class="hljs-title">Seasons<span>
-                </a></div></td>
-                <td class="enumValues">SPRING,WINTER,SUMMER,FALL,SUMMER_FALL,FALL_SUMMER</td>
-                <td><div class="attrDescription">Some other enum.</div></td>
+                </a></td>
+                <td class="enumValues">SPRING,&nbsp;WINTER,&nbsp;SUMMER,&nbsp;FALL,&nbsp;SUMMER_FALL,&nbsp;FALL_SUMMER</td>
+                <td class="attrDescription">Some other enum.</td>
             </tr>
                 </table>
             </div>

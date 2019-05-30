@@ -172,53 +172,55 @@ export default `<!DOCTYPE html>
           </div>
         </td>
         <td class="contentTD">
-          <details class="section" open>
-            <summary>
-              <h2 class="sectionTitle" id="TEST_ISObjectComparator">
+          <h2 class="sectionTitle" id="TEST_Status">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_ISObjectComparator.cls#L25">
-                  TEST_ISObjectComparator
-                </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
-              </h2>
-            </summary>
+            <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Status.cls#L9">
+              TEST_Status
+            </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
+          </h2>
 
 
+          <div class="classSignature">
 
-            <div class="classSignature">
-
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_ISObjectComparator.cls#L25">
-                global interface TEST_ISObjectComparator
-              </a>
-            </div>
-            <div class="classDetails">
-              <div class="">The apex-lang <code class="inlineCode">ISObjectComparator</code> interface. The classes in this group have been randomly gathered from various resources simply to demonstrate ApexDoc2-VSCode&#39;s multi-source directory feature aimed at Salesforce-DX projects which may have a <code class="inlineCode">main</code> folder and multipke feature directories. <br><br> This code is part of the &#39;apex-lang&#39; open source project avaiable at: http://code.google.com/p/apex-lang/. This code is licensed under the Apache License, Version 2.0. You may obtain a copy of the License at: http://www.apache.org/licenses/LICENSE-2.0.</div>
-              <div class="classSubtitle ">See</div>
-              <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="http://code.google.com/p/apex-lang/">Source</a>, <a target="_blank" rel="noopener noreferrer" href="http://www.apache.org/licenses/LICENSE-2.0">License</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html#TEST_ArrayUtils.qsort_4')">TEST_ArrayUtils.qsort</a></div><br />Richard Vanhook<br />Dec 28, 2008
-            </div>
+            <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Status.cls#L9">
+              public enum TEST_Status
+            </a>
+          </div>
+          <div class="classDetails">
+            <div class="">Global status enum for updating the status of jobs and tasks throughout the job&#39;s lifecycle.</div>
             <p />
-            <details class="subSection methods" open>
-              <summary>
-                <h2 class="subsectionTitle methods">Methods</h2>
-              </summary>
-              <div class="methodsContainer">
-                <ul class="methodTOC">
-                  <li class="method global">
-                    <a class="methodTOCEntry " href="#TEST_ISObjectComparator.compare">
-                      compare
-                    </a></li>
-                </ul>
-                <div class="method global">
-                  <h2 class="methodHeader " id="TEST_ISObjectComparator.compare">compare</h2>
-                  <div class="methodSignature">
-
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_ISObjectComparator.cls#L26">
-                      Integer <span class="hljs-title">compare</span>(SObject record1, SObject record2)
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </details>
-          </details>
+            <table class="attrTable">
+              <tr>
+                <th>Values</th>
+              </tr>
+              <tr>
+                <td class="enumValues">
+                  QUEUED
+                </td>
+              </tr>
+              <tr>
+                <td class="enumValues">
+                  PROCESSING
+                </td>
+              </tr>
+              <tr>
+                <td class="enumValues">
+                  COMPLETE
+                </td>
+              </tr>
+              <tr>
+                <td class="enumValues">
+                  COMPLETE_WITH_ERRORS
+                </td>
+              </tr>
+              <tr>
+                <td class="enumValues">
+                  FAILED
+                </td>
+              </tr>
+            </table><br />P. Weinberg<br />2019
+          </div>
+          <p />
           </div>
         </td>
       </tr>

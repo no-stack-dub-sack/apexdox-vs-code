@@ -137,6 +137,9 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_PrimitiveComparator" class="navItem class global" onclick="goToLocation('TEST_PrimitiveComparator.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_PrimitiveComparator</a>
                   </li>
+                  <li id="item-TEST_Status" class="navItem class public" onclick="goToLocation('TEST_Status.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Status</a>
+                  </li>
                   <li id="item-TEST_StopWatch" class="navItem class global" onclick="goToLocation('TEST_StopWatch.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_StopWatch</a>
                   </li>

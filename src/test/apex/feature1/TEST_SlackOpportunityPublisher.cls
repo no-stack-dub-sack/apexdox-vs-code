@@ -31,13 +31,13 @@ public with sharing class TEST_SlackOpportunityPublisher {
         String body = JSON.serialize(msg);    
         System.enqueueJob(new QueueableSlackCall(slackURL, 'POST', body));
     }
-    
+
     /**
      * An inner enum added to demonstrate how ApexDoc2-VSCode handles inner
      * enums. They can only have description's, like properties. ApexDoc2
      * Should be able to handle to wonky way this enum is written in code.
-     */    
-    public enum SomeEnumAddedForExamplePurposes { JANUARY, FEBRUARY,
+     */
+    public enum Months { JANUARY, FEBRUARY,
         MARCH,
         APRIL,
         MAY, JUNE, JULY,
@@ -45,6 +45,39 @@ public with sharing class TEST_SlackOpportunityPublisher {
         , OCTOBER
         , NOVEMBER
         , DECEMBER
+    }
+
+    /**
+     * An inner enum added to demonstrate how ApexDoc2-VSCode handles inner
+     * enums. They will be presented in a table and can only have
+     * description's, like properties.
+     */    
+    public enum Days {
+        MONDAY,
+        TUESDAY,
+        WEDNESDAY,
+        THURSDAY,
+        FRIDAY,
+        SATURDAY,
+        SUNDAY
+    }
+
+    /**
+     * An inner enum added to demonstrate how ApexDoc2-VSCode handles inner
+     * enums. They will be presented in a table and can only have
+     * description's, like properties.
+     */    
+    public enum Numbers {
+        ONE,
+        TWO,
+        THREE,
+        FOUR,
+        FIVE,
+        SIX,
+        SEVEN,
+        EIGHT,
+        NINE,
+        TEN
     }
 
     /**

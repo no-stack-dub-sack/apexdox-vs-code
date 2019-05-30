@@ -137,6 +137,9 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_PrimitiveComparator" class="navItem class global" onclick="goToLocation('TEST_PrimitiveComparator.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_PrimitiveComparator</a>
                   </li>
+                  <li id="item-TEST_Status" class="navItem class public" onclick="goToLocation('TEST_Status.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Status</a>
+                  </li>
                   <li id="item-TEST_StopWatch" class="navItem class global" onclick="goToLocation('TEST_StopWatch.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_StopWatch</a>
                   </li>
@@ -234,13 +237,31 @@ export default `<!DOCTYPE html>
                 <th>Description</th>
             </tr>
             <tr class="enum public">
-                <td class="attrName">SomeEnumAddedForExamplePurposes</td>
-                <td><div class="attrSignature">
+                <td class="attrName">Days</td>
+                <td class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L55">
+                    public enum <span class="hljs-title">Days<span>
+                </a></td>
+                <td class="enumValues">MONDAY,&nbsp;TUESDAY,&nbsp;WEDNESDAY,&nbsp;THURSDAY,&nbsp;FRIDAY,&nbsp;SATURDAY,&nbsp;SUNDAY</td>
+                <td class="attrDescription">An inner enum added to demonstrate how ApexDoc2-VSCode handles inner enums. They will be presented in a table and can only have description&#39;s, like properties.</td>
+            </tr>
+            <tr class="enum public">
+                <td class="attrName">Months</td>
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L40">
-                    public enum <span class="hljs-title">SomeEnumAddedForExamplePurposes<span>
-                </a></div></td>
-                <td class="enumValues">JANUARY,FEBRUARY,MARCH,APRIL,MAY,JUNE,JULY,AUGUST,SEPTEMBER,OCTOBER,NOVEMBER,DECEMBER</td>
-                <td><div class="attrDescription">An inner enum added to demonstrate how ApexDoc2-VSCode handles inner enums. They can only have description&#39;s, like properties. ApexDoc2 Should be able to handle to wonky way this enum is written in code.</div></td>
+                    public enum <span class="hljs-title">Months<span>
+                </a></td>
+                <td class="enumValues">JANUARY,&nbsp;FEBRUARY,&nbsp;MARCH,&nbsp;APRIL,&nbsp;MAY,&nbsp;JUNE,&nbsp;JULY,&nbsp;AUGUST,&nbsp;SEPTEMBER,&nbsp;OCTOBER,&nbsp;NOVEMBER,&nbsp;DECEMBER</td>
+                <td class="attrDescription">An inner enum added to demonstrate how ApexDoc2-VSCode handles inner enums. They can only have description&#39;s, like properties. ApexDoc2 Should be able to handle to wonky way this enum is written in code.</td>
+            </tr>
+            <tr class="enum public">
+                <td class="attrName">Numbers</td>
+                <td class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L70">
+                    public enum <span class="hljs-title">Numbers<span>
+                </a></td>
+                <td class="enumValues">ONE,&nbsp;TWO,&nbsp;THREE,&nbsp;FOUR,&nbsp;FIVE,&nbsp;SIX,&nbsp;SEVEN,&nbsp;EIGHT,&nbsp;NINE,&nbsp;TEN</td>
+                <td class="attrDescription">An inner enum added to demonstrate how ApexDoc2-VSCode handles inner enums. They will be presented in a table and can only have description&#39;s, like properties.</td>
             </tr>
                 </table>
             </div>
@@ -272,7 +293,7 @@ export default `<!DOCTYPE html>
             <summary>
               <h2 class="sectionTitle" id="TEST_SlackOpportunityPublisher.QueueableSlackCall">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L62">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L95">
                   TEST_SlackOpportunityPublisher.QueueableSlackCall
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
@@ -282,7 +303,7 @@ export default `<!DOCTYPE html>
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L62">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L95">
                 public class QueueableSlackCall implements System.Queueable, Database.AllowsCallouts
               </a>
             </div>
@@ -311,7 +332,7 @@ System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST
                     <td class="attrName">body</td>
                     <td>
                       <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L66">
+                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L99">
                           private final String <span class="hljs-title">body<span>
                 </a></div></td>
                 
@@ -320,7 +341,7 @@ System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST
             <tr class="property private">
                 <td class="attrName">method</td>
                 <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L65">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L98">
                     private final String <span class="hljs-title">method<span>
                 </a></div></td>
                 
@@ -329,7 +350,7 @@ System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST
             <tr class="property private">
                 <td class="attrName">url</td>
                 <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L64">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L97">
                     private final String <span class="hljs-title">url<span>
                 </a></div></td>
                 
@@ -352,7 +373,7 @@ System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST
                 <div class="method public"><h2 class="methodHeader " id="TEST_SlackOpportunityPublisher.QueueableSlackCall.execute">execute</h2>
             <div class="methodSignature">
                 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L84">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L117">
                     public void <span class="hljs-title">execute</span>(System.QueueableContext ctx)
                         </a>
                       </div>
@@ -365,7 +386,7 @@ System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST
                 <h2 class="methodHeader " id="TEST_SlackOpportunityPublisher.QueueableSlackCall.QueueableSlackCall">QueueableSlackCall.&lt;init&gt;</h2>
                 <div class="methodSignature">
 
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L73">
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L106">
                     public <span class="hljs-title">QueueableSlackCall</span>(String url, String method, String body)
                   </a>
                 </div>
