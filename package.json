@@ -48,14 +48,16 @@
 				"title": "ApexDoc2: Stub Comment Block"
 			}
 		],
-		"languages": [{
-			"id": "apex",
-			"extensions": [
-				".cls",
-				".apex"
-			],
-			"configuration": "./syntaxes/language-configuration.json"
-		}],
+		"languages": [
+			{
+				"id": "apex",
+				"extensions": [
+					".cls",
+					".apex"
+				],
+				"configuration": "./syntaxes/language-configuration.json"
+			}
+		],
 		"grammars": [
 			{
 				"path": "./syntaxes/apex.tmLanguage.injection.json",
@@ -71,7 +73,11 @@
 			"properties": {
 				"apexdoc2.engine.source": {
 					"type": "array",
-					"default": [{ "path": "" }],
+					"default": [
+						{
+							"path": ""
+						}
+					],
 					"markdownDescription": "An array of 'source' objects, with the following keys:\n- `path` (string): An absolute path to a directory containing .cls files you'd like to document.\n- `sourceUrl?` (string): Optional. A URL where the .cls source files are hosted, so ApexDoc2 can provide links to your code - confirmed to work with GitHub), e.g.: `https://github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes`.\n\nDefaults to: \n```\n[{\n  \"path\": \"${workspaceFolder}/src/classes\"\n  }]\n```\nfor non-DX projects, and \n```\n[{\n  \"path\": \"${workspaceFolder}/force-app/main/default/classes\"\n  }]\n```\nfor DX."
 				},
 				"apexdoc2.engine.targetDirectory": {
@@ -176,6 +182,7 @@
 		"update-snapshots": "node ./scripts/updateSnapshots.js"
 	},
 	"devDependencies": {
+		"@types/cheerio": "^0.22.11",
 		"@types/express": "^4.16.1",
 		"@types/lodash.escape": "^4.0.6",
 		"@types/mocha": "^2.2.42",
@@ -183,6 +190,7 @@
 		"@types/open": "^6.0.0",
 		"@types/pretty": "^2.0.0",
 		"@types/rimraf": "^2.0.2",
+		"cheerio": "^1.0.0-rc.3",
 		"js-yaml": "^3.13.1",
 		"ts-loader": "^5.4.3",
 		"tslint": "^5.12.1",

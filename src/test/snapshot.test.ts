@@ -1,9 +1,10 @@
 import * as assert from 'assert';
 import LineReader from '../common/LineReader';
-import { basename, resolve as resolvePath } from 'path';
+import { basename, resolve } from 'path';
 import { isolateDiffs, isWhiteSpaceOnlyDiff } from './utils';
+import { ITestFile } from './extension.test';
 
-const targetDir = resolvePath(__dirname, './docs');
+const targetDir = resolve(__dirname, './docs');
 
 /**
  * Create a snapshot test for each file: these tests compare the output documentation with a
@@ -13,34 +14,29 @@ const targetDir = resolvePath(__dirname, './docs');
  * documentation engine, in which case, the  snapsots need to be updated. Snapshots can be
  * updated from the resulting test docs. See: ../../scripts/updateSnapshots.js.
  */
-const createSnapshotTests = (files: string[]) => {
-    files.forEach(fileOrDirName => {
-        if (fileOrDirName !== 'assets') {
-            test(`${fileOrDirName} contents should match reference snapshot`, function() {
-                let fileReference: string;
+const createSnapshotTests = (files: ITestFile[]) => {
+    files.forEach(file => {
+        test(`${file.name} contents should match reference snapshot`, function() {
+            let fileReference: string;
 
-                try {
-                    fileReference = require('./snapshots/' + basename(fileOrDirName, '.html')).default;
-                } catch (e) {
-                    assert.notEqual('', '', `No snapshot found for ${fileOrDirName}, please update reference directory if a new test file was added.`);
-                    return;
+            try {
+                fileReference = require('./snapshots/' + basename(file.name, '.html')).default;
+            } catch (e) {
+                assert.notEqual('', '', `No snapshot found for ${file.name}, please update reference directory if a new test file was added.`);
+                return;
+            }
+
+            if (fileReference !== file.snapshot) {
+                if (isWhiteSpaceOnlyDiff(fileReference, file.snapshot)) {
+                    assert.notEqual('', '', `Snapshot differs in whitespace only (diff not shown)`);
                 }
 
-                const reader = new LineReader(resolvePath(targetDir, fileOrDirName));
-                let fileSnapshot = <string>(reader).toString(false, '\n');
-
-                if (fileReference !== fileSnapshot) {
-                    if (isWhiteSpaceOnlyDiff(fileReference, fileSnapshot)) {
-                        assert.notEqual('', '', `Snapshot differs in whitespace only (diff not shown)`);
-                    }
-
-                    // we have more than just a whitespace diff, which we'd like to show in the terminal.
-                    // remove trailing and leading identical lines, however, to help consolidate diffs
-                    const { finalReference, finalSnapshot } = isolateDiffs(fileReference.split('\n'), reader.toArray());
-                    assert.equal(finalSnapshot, finalReference, `Snapshot does not match reference`);
-                }
-            });
-        }
+                // we have more than just a whitespace diff, which we'd like to show in the terminal.
+                // remove trailing and leading identical lines, however, to help consolidate diffs
+                const { finalReference, finalSnapshot } = isolateDiffs(fileReference.split('\n'), file.reader.toArray());
+                assert.equal(finalSnapshot, finalReference, `Snapshot does not match reference`);
+            }
+        });
     });
 };
 

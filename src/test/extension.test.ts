@@ -1,8 +1,10 @@
 import * as assert from 'assert';
 import ApexDoc from '../engine/ApexDoc';
+import apexDoc2TestRunSettings from './testConfig';
 import createEngineTests from './engine.test';
 import createSnapshotTests from './snapshot.test';
-import testConfig from './testConfig';
+import LineReader from '../common/LineReader';
+import { except } from '../common/Utils';
 import { readdirSync } from 'fs';
 import { resolve as resolvePath } from 'path';
 
@@ -23,13 +25,31 @@ import { resolve as resolvePath } from 'path';
 //    resolve the promise with them. Our `createMochaTestSuite` function awaits this promise
 //    and indicates to mocha it is OK to beginning running tests.
 
+export interface ITestFile {
+    reader: LineReader;
+    name: string;
+    snapshot: string;
+}
+
 const targetDir = resolvePath(__dirname, './docs');
+const runSnapshotTests = false; // easily turn off snapshot tests if desired during dev
 
 const runApexDoc = () => {
-    return new Promise((resolve: (value: string[]) => void) => {
+    return new Promise((resolve: (value: ITestFile[]) => void) => {
         ApexDoc.extensionRoot = resolvePath(__dirname, '../');
-        ApexDoc.runApexDoc(testConfig);
-        resolve(readdirSync(targetDir));
+        ApexDoc.runApexDoc(apexDoc2TestRunSettings);
+
+        const fileNames = readdirSync(targetDir);
+        const files: ITestFile[] = fileNames.filter(f => f !== 'assets').map(fileName => {
+            const reader = new LineReader(resolvePath(targetDir, fileName));
+            return {
+                reader,
+                name: fileName,
+                snapshot: <string>reader.toString(false, '\n')
+            };
+        });
+
+        resolve(files);
     });
 };
 
@@ -42,9 +62,11 @@ const createMochaTestSuite = async () => {
             createEngineTests(files);
         });
 
-        suite('Snapshot Tests', function() {
-            createSnapshotTests(files);
-        });
+        if (runSnapshotTests) {
+            suite('Snapshot Tests', function() {
+                createSnapshotTests(files);
+            });
+        }
     });
 
     run();

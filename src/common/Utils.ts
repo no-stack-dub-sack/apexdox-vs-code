@@ -5,10 +5,15 @@ import { ClassModel } from './models/ClassModel';
 import { resolve } from 'path';
 import { window, workspace, WorkspaceFolder } from 'vscode';
 
+// Util Option type
 export type Option<T, V = undefined> = T | V;
 
+// array utils
 export const last = <T>(arr: T[]): T => arr.length > 1 ? arr[arr.length - 1] : arr[0];
+export const except = (key: string, filter: string) => (o: any) => o[key] !== filter;
+export const only = (key: string, filter: string) => (o: any) => o[key] === filter;
 
+// ApexDoc2 related Utils
 class Utils {
     private static readonly PRIVATE: string = 'private';
     private static readonly TEST_METHOD: string = 'testmethod';

@@ -181,10 +181,7 @@ class FileManager {
 
     private collectApexDocAssets(): string[] {
         const files = fs.readdirSync(path.resolve(ApexDoc.extensionRoot, 'assets'));
-
-        return files
-            .map(fileName => path.resolve(ApexDoc.extensionRoot, 'assets', fileName))
-            .filter(fileName => !fileName.endsWith('.svg')); // exclude logo SVG
+        return files.map(fileName => path.resolve(ApexDoc.extensionRoot, 'assets', fileName));
     }
 
     private copyAssetsToTarget(files: string[]): void {
