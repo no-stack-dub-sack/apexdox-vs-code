@@ -1,6 +1,4 @@
 import ApexDoc from '../engine/ApexDoc';
-import GeneratorUtils from '../engine/generators/GeneratorUtils';
-import { ApexModel } from './models/ApexModel';
 import { ClassModel } from './models/ClassModel';
 import { resolve } from 'path';
 import { window, workspace, WorkspaceFolder } from 'vscode';
@@ -10,8 +8,14 @@ export type Option<T, V = undefined> = T | V;
 
 // array utils
 export const last = <T>(arr: T[]): T => arr.length > 1 ? arr[arr.length - 1] : arr[0];
-export const except = (key: string, filter: string) => (o: any) => o[key] !== filter;
-export const only = (key: string, filter: string) => (o: any) => o[key] === filter;
+
+// filter an array or array of objects by X and return only the elements that match
+export const only = <T, K extends keyof T>(arr: T[], by: T[K] | T, on?: K,) =>
+    on ? arr.filter(o => o[on] === by) : arr.filter(el => el === by);
+
+// filter an array or array of objects by X and return only the elements that DO NOT match
+export const except = <T, K extends keyof T>(arr: T[], by: T[K] | T, on?: K,) =>
+    on ? arr.filter(o => o[on] !== by) : arr.filter(el => el !== by);
 
 // ApexDoc2 related Utils
 class Utils {

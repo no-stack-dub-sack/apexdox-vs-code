@@ -154,11 +154,28 @@ public class TEST_Gotchas {
 
     /** Explicit no argument constructor */
     InnerClass() {
-       /** This invokes another constructor that is defined later */
+       // This invokes another constructor that is defined later
        this('none');
     }
 
-    /** Constructor that assigns a final variable value */
+    /**
+     * @description Works
+     * over multiple lines.
+     * @param s2 Works
+     * over multiple lines.
+     * @exception Works
+     * over multiple lines (exception).
+     * @deprecated Works
+     * over multiple lines (deprecated).
+     * @returns Works
+     * over multiple lines (returns).
+     * @author Works
+     * over multiple lines (author).
+     * @since Works
+     * over multiple lines (since).
+     * @example Works
+     * over multiple lines.
+     */
     public InnerClass(String s2) {
       this.s2 = s2;
     }

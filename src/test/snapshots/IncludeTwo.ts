@@ -194,6 +194,28 @@ export default `<!DOCTYPE html>
               <div class="">This class should be included by <code class="inlineCode">apexdoc2.engine.includes</code> setting</div><br />P. Weinberg<br />2019
             </div>
             <p />
+            <details class="subSection methods" open>
+              <summary>
+                <h2 class="subsectionTitle methods">Methods</h2>
+              </summary>
+              <div class="methodsContainer">
+                <ul class="methodTOC">
+                  <li class="method public">
+                    <a class="methodTOCEntry " href="#IncludeTwo.myFunkyMethod">
+                      myFunkyMethod
+                    </a></li>
+                </ul>
+                <div class="method public">
+                  <h2 class="methodHeader " id="IncludeTwo.myFunkyMethod">myFunkyMethod</h2>
+                  <div class="methodSignature">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/IncludeTwo.cls#L8">
+                      public static Map&lt;String, Database.DeleteResult&gt; <span class="hljs-title">myFunkyMethod</span>( String str, Map&lt;String, Map&lt;String, Map&lt;String, List&lt;Database.DeleteResult&gt;&gt;&gt;&gt; ridicMap, List&lt;Map&lt;String, Map&lt;Integer, List&lt;Database.DeleteResult&gt;&gt;&gt;&gt; ridicList, Set&lt;Map&lt;Integer, List&lt;Map&lt;String, String&gt;&gt;&gt;&gt; ridicSet)
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </details>
           </details>
           </div>
         </td>

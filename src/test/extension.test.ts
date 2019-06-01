@@ -32,7 +32,7 @@ export interface ITestFile {
 }
 
 const targetDir = resolvePath(__dirname, './docs');
-const runSnapshotTests = false; // easily turn off snapshot tests if desired during dev
+const runSnapshotTests = true; // easily turn off snapshot tests if desired during dev
 
 const runApexDoc = () => {
     return new Promise((resolve: (value: ITestFile[]) => void) => {
@@ -40,7 +40,7 @@ const runApexDoc = () => {
         ApexDoc.runApexDoc(apexDoc2TestRunSettings);
 
         const fileNames = readdirSync(targetDir);
-        const files: ITestFile[] = fileNames.filter(f => f !== 'assets').map(fileName => {
+        const files: ITestFile[] = except(fileNames, 'assets').map(fileName => {
             const reader = new LineReader(resolvePath(targetDir, fileName));
             return {
                 reader,

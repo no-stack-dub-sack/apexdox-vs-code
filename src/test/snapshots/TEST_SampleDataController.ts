@@ -206,7 +206,7 @@ export default `<!DOCTYPE html>
                     <a class="methodTOCEntry " href="#TEST_SampleDataController.importSampleData">
                       importSampleData
                     </a>
-                    <div class="methodTOCDescription">Utility method for importing sample data.</div>
+                    <div class="methodTOCDescription">Method has incorrect params. Just needed a test file with one method to test param tags.</div>
                   </li>
                 </ul>
                 <div class="method public">
@@ -214,11 +214,18 @@ export default `<!DOCTYPE html>
                   <div class="methodAnnotations">@AuraEnabled</div>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SampleDataController.cls#L17">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SampleDataController.cls#L20">
                       public static void <span class="hljs-title">importSampleData</span>()
                     </a>
                   </div>
-                  <div class="methodDescription">Utility method for importing sample data.</div>
+                  <div class="methodDescription">Method has incorrect params. Just needed a test file with one method to test param tags.</div>
+                  <div class="methodSubTitle">Parameters</div>
+                  <div class="paramName">param1</div>
+                  <div class="paramDescription">param description 1</div>
+                  <div class="paramName">param2</div>
+                  <div class="paramDescription">param description 2</div>
+                  <div class="paramName">param3</div>
+                  <div class="paramDescription">param description 3</div>
                 </div>
               </div>
             </details>

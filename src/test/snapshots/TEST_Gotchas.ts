@@ -408,7 +408,7 @@ export default `<!DOCTYPE html>
             <summary>
               <h2 class="sectionTitle" id="TEST_Gotchas.AbstractChildClass">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L184">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L201">
                   TEST_Gotchas.AbstractChildClass
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
@@ -418,7 +418,7 @@ export default `<!DOCTYPE html>
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L184">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L201">
                 public abstract class AbstractChildClass extends InnerClass
               </a>
             </div>
@@ -455,7 +455,7 @@ export default `<!DOCTYPE html>
                   <h2 class="methodHeader " id="TEST_Gotchas.AbstractChildClass.abstractMethod">abstractMethod</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L199">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L216">
                       abstract Integer <span class="hljs-title">abstractMethod</span>()
                     </a>
                   </div>
@@ -465,7 +465,7 @@ export default `<!DOCTYPE html>
                   <h2 class="methodHeader " id="TEST_Gotchas.AbstractChildClass.method2">method2</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L194">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L211">
                       protected void <span class="hljs-title">method2</span>()
                     </a>
                   </div>
@@ -475,7 +475,7 @@ export default `<!DOCTYPE html>
                   <h2 class="methodHeader " id="TEST_Gotchas.AbstractChildClass.myMethod">myMethod</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L189">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L206">
                       public override void <span class="hljs-title">myMethod</span>()
                     </a>
                   </div>
@@ -488,7 +488,7 @@ export default `<!DOCTYPE html>
             <summary>
               <h2 class="sectionTitle" id="TEST_Gotchas.AnotherChildClass">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L220">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L237">
                   TEST_Gotchas.AnotherChildClass
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
@@ -498,7 +498,7 @@ export default `<!DOCTYPE html>
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L220">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L237">
                 public class AnotherChildClass extends InnerClass
               </a>
             </div>
@@ -525,7 +525,7 @@ export default `<!DOCTYPE html>
                   <h2 class="methodHeader " id="TEST_Gotchas.AnotherChildClass.AnotherChildClass">AnotherChildClass.&lt;init&gt;</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L221">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L238">
                       <span class="hljs-title">AnotherChildClass</span>(String s)
                     </a>
                   </div>
@@ -534,7 +534,7 @@ export default `<!DOCTYPE html>
                   <h2 class="methodHeader " id="TEST_Gotchas.AnotherChildClass.myCollectionMethod">myCollectionMethod</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L226">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L243">
                       List&lt;String&gt; <span class="hljs-title">myCollectionMethod</span>()
                     </a>
                   </div>
@@ -546,7 +546,7 @@ export default `<!DOCTYPE html>
             <summary>
               <h2 class="sectionTitle" id="TEST_Gotchas.ConcreteChildClass">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L205">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L222">
                   TEST_Gotchas.ConcreteChildClass
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
@@ -556,7 +556,7 @@ export default `<!DOCTYPE html>
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L205">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L222">
                 public class ConcreteChildClass extends AbstractChildClass
               </a>
             </div>
@@ -588,7 +588,7 @@ export default `<!DOCTYPE html>
                   <div class="methodAnnotations">@InvocableMethod(label='Get Account Names' description='Returns the list of account names corresponding to the specified account IDs.')</div>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L208">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L225">
                       override Integer <span class="hljs-title">abstractMethod</span>()
                     </a>
                   </div>
@@ -599,7 +599,7 @@ export default `<!DOCTYPE html>
                   <div class="methodAnnotations">@AuraEnabled (cacheable=true)</div>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L214">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L231">
                       public static void <span class="hljs-title">doSomethingUIRelated</span>()
                     </a>
                   </div>
@@ -683,9 +683,9 @@ export default `<!DOCTYPE html>
                 <a class="methodTOCEntry " href="#TEST_Gotchas.InnerClass.InnerClass">
                     InnerClass.&lt;init&gt;
                 </a><div class="methodTOCDescription">Explicit no argument constructor</div></li><li class="method public">
-                <a class="methodTOCEntry " href="#TEST_Gotchas.InnerClass.InnerClass_1">
+                <a class="methodTOCEntry deprecated" href="#TEST_Gotchas.InnerClass.InnerClass_1">
                     InnerClass.&lt;init&gt;
-                </a><div class="methodTOCDescription">This invokes another constructor that is defined later</div></li><li class="method public">
+                </a><div class="methodTOCDescription">Works over multiple lines.</div></li><li class="method public">
                 <a class="methodTOCEntry " href="#TEST_Gotchas.InnerClass.method2">
                     method2
                 </a></li><li class="method public">
@@ -702,21 +702,37 @@ export default `<!DOCTYPE html>
                       <div class="methodDescription">Explicit no argument constructor</div>
               </div>
               <div class="method public">
-                <h2 class="methodHeader " id="TEST_Gotchas.InnerClass.InnerClass_1">InnerClass.&lt;init&gt;</h2>
+                <h2 class="methodHeader deprecated" id="TEST_Gotchas.InnerClass.InnerClass_1">InnerClass.&lt;init&gt;</h2>
                 <div class="methodSignature">
 
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L162">
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L179">
                     public <span class="hljs-title">InnerClass</span>(String s2)
                   </a>
                 </div>
-                <div class="methodDescription">This invokes another constructor that is defined later</div>
+                <div class="methodDescription">Works over multiple lines.</div>
+                <div class="methodSubTitle deprecated">Deprecated</div>
+                <div class="methodSubDescription">Works over multiple lines (deprecated).</div>
+                <div class="methodSubTitle">Parameters</div>
+                <div class="paramName">s2</div>
+                <div class="paramDescription">Works over multiple lines.</div>
+                <div class="methodSubTitle ">Returns</div>
+                <div class="methodSubDescription">Works over multiple lines (returns).</div>
+                <div class="methodSubTitle ">Exceptions</div>
+                <div class="methodSubDescription">Works over multiple lines (exception).</div>
+                <div class="methodSubTitle ">Author</div>
+                <div class="methodSubDescription">Works over multiple lines (author).</div>
+                <div class="methodSubTitle ">Since</div>
+                <div class="methodSubDescription">Works over multiple lines (since).</div>
+                <div class="methodSubTitle ">Example</div>
+                <pre class="codeExample"><code>Works 
+over multiple lines.</code></pre>
               </div>
               <div class="method public">
                 <h2 class="methodHeader " id="TEST_Gotchas.InnerClass.method2">method2</h2>
                 <div class="methodAnnotations">@Future @SuppressWarnings @testMethod</div>
                 <div class="methodSignature">
 
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L177">
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L194">
                     public Integer <span class="hljs-title">method2</span>(Integer i)
                   </a>
                 </div>
@@ -728,7 +744,7 @@ export default `<!DOCTYPE html>
                 <h2 class="methodHeader " id="TEST_Gotchas.InnerClass.myMethod">myMethod</h2>
                 <div class="methodSignature">
 
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L169">
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L186">
                     public virtual void <span class="hljs-title">myMethod</span>()
                   </a>
                 </div>
@@ -741,7 +757,7 @@ export default `<!DOCTYPE html>
             <summary>
               <h2 class="sectionTitle" id="TEST_Gotchas.MyException">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L232">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L249">
                   TEST_Gotchas.MyException
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
@@ -751,7 +767,7 @@ export default `<!DOCTYPE html>
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L232">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L249">
                 public virtual class MyException extends Exception
               </a>
             </div>
@@ -777,7 +793,7 @@ export default `<!DOCTYPE html>
                     <td class="attrName">d</td>
                     <td>
                       <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L234">
+                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L251">
                           public Double <span class="hljs-title">d<span>
                 </a></div></td>
                 
@@ -800,7 +816,7 @@ export default `<!DOCTYPE html>
                 <div class="method protected"><h2 class="methodHeader " id="TEST_Gotchas.MyException.doIt">doIt</h2>
             <div class="methodSignature">
                 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L242">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L259">
                     protected void <span class="hljs-title">doIt</span>()
                         </a>
                       </div>
@@ -810,7 +826,7 @@ export default `<!DOCTYPE html>
                 <h2 class="methodHeader " id="TEST_Gotchas.MyException.MyException">MyException.&lt;init&gt;</h2>
                 <div class="methodSignature">
 
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L237">
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L254">
                     <span class="hljs-title">MyException</span>(Double d)
                   </a>
                 </div>
@@ -871,7 +887,7 @@ export default `<!DOCTYPE html>
             <summary>
               <h2 class="sectionTitle" id="TEST_Gotchas.MySecondException">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L246">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L263">
                   TEST_Gotchas.MySecondException
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
@@ -881,7 +897,7 @@ export default `<!DOCTYPE html>
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L246">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Gotchas.cls#L263">
                 public abstract class MySecondException extends Exception implements MyInterface
               </a>
             </div>

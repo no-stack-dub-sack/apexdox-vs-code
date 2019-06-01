@@ -11,8 +11,11 @@
 public with sharing class TEST_SampleDataController {
 
     /**
-     * Utility method for importing sample data.
-     */    
+     * Method has incorrect params. Just needed a test file with one method to test param tags.
+     * @param param1 param description 1
+     * @param param2 param description 2
+     * @param param3 param description 3
+     */
     @AuraEnabled
     public static void importSampleData() {
         delete [SELECT Id from Bot_Command__c];

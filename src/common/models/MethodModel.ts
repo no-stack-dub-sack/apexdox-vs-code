@@ -1,4 +1,4 @@
-import Utils, { Option } from '../Utils';
+import Utils, { except, Option } from '../Utils';
 import { ApexModel } from './ApexModel';
 
 class MethodModel extends ApexModel {
@@ -45,14 +45,14 @@ class MethodModel extends ApexModel {
 
     public get paramsFromNameLine(): string[] {
         const nameLine = this.nameLine;
-        let params = nameLine
+        const params = nameLine
             .substring(nameLine.indexOf('(') + 1, nameLine.indexOf(')'))
             .split(',');
 
-        const result = params.map(param => {
+        const result = except(params.map(param => {
             let paramPair = param.trim().split(/\s+/);
             return paramPair.length === 2 ? paramPair[1] : null;
-        }).filter(param => param !== null);
+        }), null);
 
         return <string[]>result;
     }
