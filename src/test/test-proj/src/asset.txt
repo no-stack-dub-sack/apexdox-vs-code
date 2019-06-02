@@ -1,0 +1,2 @@
+This is a test file. The `apexdoc2.engine.assets` setting will point to
+this file, which should be copied to the output docs assets directory.

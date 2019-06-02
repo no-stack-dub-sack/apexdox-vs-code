@@ -1,6 +1,7 @@
 import GeneratorUtils from '../GeneratorUtils';
-import Utils, { last } from '../../../common/Utils';
+import Utils from '../../../common/Utils';
 import { ApexModel } from '../../../common/models';
+import { last } from '../../../common/ArrayUtils';
 
 abstract class MarkupGenerator<T extends ApexModel> {
     protected model: T;

@@ -1,5 +1,6 @@
-import Utils, { except, Option } from '../Utils';
+import Utils, { Option } from '../Utils';
 import { ApexModel } from './ApexModel';
+import { except } from '../ArrayUtils';
 
 class MethodModel extends ApexModel {
 
@@ -52,7 +53,7 @@ class MethodModel extends ApexModel {
         const result = except(params.map(param => {
             let paramPair = param.trim().split(/\s+/);
             return paramPair.length === 2 ? paramPair[1] : null;
-        }), null);
+        }), [null]);
 
         return <string[]>result;
     }

@@ -1,10 +1,7 @@
 import * as assert from 'assert';
-import LineReader from '../common/LineReader';
-import { basename, resolve } from 'path';
+import { basename } from 'path';
 import { isolateDiffs, isWhiteSpaceOnlyDiff } from './utils';
 import { ITestFile } from './extension.test';
-
-const targetDir = resolve(__dirname, './docs');
 
 /**
  * Create a snapshot test for each file: these tests compare the output documentation with a

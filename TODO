@@ -49,8 +49,8 @@ Documentation:
             ✔ Group Content page @done(19-05-22 09:17)
             ✔ various @see tag examples @done(19-05-21 21:50)
             ✔ Deploy Exampe Project to Surge @done(19-05-22 22:13)
-            ☐ Top-level Enum
-            ☐ Document Example Project in ApexDoc2 README
+            ✔ Top-level Enum @done(19-06-01 12:19)
+            ✔ Document Example Project in ApexDoc2 README @done(19-06-01 12:20)
             ☐ Create README for Sample Project
     ✔ Check [Extension Manifest](https://code.visualstudio.com/api/references/extension-manifest) for needed fields @done(19-05-23 20:56)
     ✔ Icon! @done(19-05-23 20:56)

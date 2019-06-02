@@ -23,13 +23,15 @@
 			"request": "launch",
 			"runtimeExecutable": "${execPath}",
 			"args": [
-			  "--extensionDevelopmentPath=${workspaceFolder}",
-			  "--extensionTestsPath=${workspaceFolder}/out/test"
+				"${workspaceFolder}/src/test/test-proj",
+				"--disable-extensions",
+				"--extensionDevelopmentPath=${workspaceFolder}",
+				"--extensionTestsPath=${workspaceFolder}/out/test"
 			],
 			"outFiles": [
 				"${workspaceFolder}/out/test/**/*.js"
 			],
-			"preLaunchTask": "npm: test-compile"
+			"preLaunchTask": "npm: test-setup",
 		}
 	]
 }
