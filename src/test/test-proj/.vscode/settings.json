@@ -1,0 +1,39 @@
+{
+	"apexdoc2.engine.source": [{
+        "path": "${workspaceFolder}/src/feature1",
+        "sourceUrl": "https://somefakeurl.com"
+    },{
+        "path": "${workspaceFolder}/src/feature2",
+        "sourceUrl": "https://somefakeurl.com"
+    }],
+	"apexdoc2.engine.targetDirectory": "${workspaceFolder}/docs",
+	"apexdoc2.engine.includes": [
+        "IncludeTwo.cls",
+        "IncludeOne.cls",
+        "TEST_*"
+    ],
+	"apexdoc2.engine.excludes": [
+        "*Exclude.cls",
+        "*Test.cls",
+        "TEST_ExcuseMe.cls"
+    ],
+	"apexdoc2.engine.homePagePath": "",
+	"apexdoc2.engine.bannerPagePath": "",
+	"apexdoc2.engine.scope": [
+        "public",
+        "private",
+        "protected",
+        "global"
+    ],
+	"apexdoc2.engine.title": "My Test Docs",
+	"apexdoc2.engine.showTOCSnippets": true,
+	"apexdoc2.engine.sortOrder": "alpha",
+    "apexdoc2.engine.cleanDir": false, // we delete the directory & its contents in the test-setup command instead
+    "apexdoc2.engine.assets": [
+        "${workspaceFolder}/src/asset.txt"
+    ],
+    "apexdoc2.engine.pages": [
+        "${workspaceFolder}/src/Page.html"
+    ],
+    "apexdoc2.engine.port": 8080
+}

@@ -1,12 +1,13 @@
 import * as assert from 'assert';
 import cheerio from 'cheerio';
-import { basename } from 'path';
-import { except, last, only } from '../common/Utils';
-import { ITestFile } from './extension.test';
+import { basename, resolve } from 'path';
+import { except, last, only } from '../common/ArrayUtils';
+import { existsSync } from 'fs';
+import { ITestFile, targetDir } from './extension.test';
 
 const createEngineTests = (files: ITestFile[]) => {
 
-    test('ApexDoc2 created docs', function() {
+    test('Should create docs', function() {
         assert.notEqual(files.length, 0);
     });
 
@@ -43,7 +44,7 @@ const createEngineTests = (files: ITestFile[]) => {
     });
 
     test('Should correctly set title from config', function() {
-        const indexHtml = last(only(files, 'index.html', 'name'));
+        const indexHtml = last(only(files, ['index.html'], 'name'));
         const $ = cheerio.load(indexHtml.snapshot);
 
         const title = $('title').text();
@@ -51,10 +52,10 @@ const createEngineTests = (files: ITestFile[]) => {
     });
 
     test('Should have a menu item for each file', function() {
-        const indexHtml = last(only(files, 'index.html', 'name'));
+        const indexHtml = last(only(files, ['index.html'], 'name'));
         const $ = cheerio.load(indexHtml.snapshot);
 
-        const expectedFiles = except(files, 'index.html', 'name').map(f => basename(f.name, '.html'));
+        const expectedFiles = except(files, ['index.html'], 'name').map(f => basename(f.name, '.html'));
 
         const offendingMenuItems = $('li.navItem').toArray()
             .map(el => $(el).text().trim())
@@ -64,7 +65,7 @@ const createEngineTests = (files: ITestFile[]) => {
     });
 
     test('Should correctly parse enum values (inner)', function() {
-        const testFile = last(only(files, 'TEST_SlackOpportunityPublisher.html', 'name'));
+        const testFile = last(only(files, ['TEST_SlackOpportunityPublisher.html'], 'name'));
         const $ = cheerio.load(testFile.snapshot);
 
         const monthEnumValues = $($('td.enumValues').toArray()[0]).text().split(',').map(m => m.trim());
@@ -73,7 +74,7 @@ const createEngineTests = (files: ITestFile[]) => {
     });
 
     test('Should correctly parse enum values (.cls)', function() {
-        const testFile = last(only(files, 'TEST_Status.html', 'name'));
+        const testFile = last(only(files, ['TEST_Status.html'], 'name'));
         const $ = cheerio.load(testFile.snapshot);
 
         const statusEnumValues = $('td.enumValues').toArray().map(el => $(el).text().trim());
@@ -82,7 +83,7 @@ const createEngineTests = (files: ITestFile[]) => {
     });
 
     test('Should have param for every given "@param" tag', function() {
-        const testFile = last(only(files, 'TEST_SampleDataController.html', 'name'));
+        const testFile = last(only(files, ['TEST_SampleDataController.html'], 'name'));
         const $ = cheerio.load(testFile.snapshot);
 
         const params = $('.paramName').toArray().map(el => $(el).text().trim());
@@ -91,7 +92,7 @@ const createEngineTests = (files: ITestFile[]) => {
     });
 
     test('Should have param description for every given "@param" tag', function() {
-        const testFile = last(only(files, 'TEST_SampleDataController.html', 'name'));
+        const testFile = last(only(files, ['TEST_SampleDataController.html'], 'name'));
         const $ = cheerio.load(testFile.snapshot);
 
         const descriptions = $('.paramDescription').toArray().map(el => $(el).text().trim());
@@ -99,8 +100,32 @@ const createEngineTests = (files: ITestFile[]) => {
         assert.deepEqual(descriptions, expectedDescriptions, 'Param descriptions do not match.');
     });
 
+    test('Should correctly capture method annotations over multiple lines', function() {
+        const testFile = last(only(files, ['TEST_Gotchas.html'], 'name'));
+        const $ = cheerio.load(testFile.snapshot);
+
+        const annotations = last(
+            $('.methodHeader').toArray()
+                .filter(el => $(el).text().trim() === 'annotatedMethod')
+                .map(el => $(el).next().text())
+        );
+
+        const expectedAnnotations = '@FirstAnnotation @SecondAnnotation @ThirdAnnotation';
+        assert.deepEqual(annotations, expectedAnnotations, 'Annotations do not match.');
+    });
+
+    test('Should correctly capture class annotations over multiple lines', function() {
+        const testFile = last(only(files, ['TEST_Gotchas.html'], 'name'));
+        const $ = cheerio.load(testFile.snapshot);
+
+        const annotations = $('.classAnnotations').text();
+
+        const expectedAnnotations = '@FirstAnnotation @SecondAnnotation @ThirdAnnotation';
+        assert.deepEqual(annotations, expectedAnnotations, 'Annotations do not match.');
+    });
+
     test('Should correctly link overloaded methods', function() {
-        const testFile = last(only(files, 'TEST_Gotchas.html', 'name'));
+        const testFile = last(only(files, ['TEST_Gotchas.html'], 'name'));
         let $ = cheerio.load(testFile.snapshot);
 
         const hrefs = $('a.methodTOCEntry').toArray()
@@ -119,7 +144,7 @@ const createEngineTests = (files: ITestFile[]) => {
     });
 
     test('Should capture tag values over multiple lines', function() {
-        const testFile = last(only(files, 'TEST_Gotchas.html', 'name'));
+        const testFile = last(only(files, ['TEST_Gotchas.html'], 'name'));
         let $ = cheerio.load(testFile.snapshot);
 
         const param = $('.paramDescription').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines.');
@@ -144,9 +169,13 @@ const createEngineTests = (files: ITestFile[]) => {
         assert.equal($(deprecated).text(), 'Works over multiple lines (deprecated).', 'deprecated value does not match expected multi-line value');
     });
 
-    // test('Should copy user assets defined by "assets" setting', function() {
-        
-    // });
+    test('Should copy user assets defined by "apexdoc2.engine.assets" setting', function() {
+        assert.equal(existsSync(resolve(targetDir, 'assets', 'asset.txt')), true, '"asset.txt" file not found in assets directory.');
+    });
+
+    test('Should copy user "Pages" defined by "apexdoc2.engine.pages" setting', function() {
+        assert.equal(existsSync(resolve(targetDir, 'Page.html')), true, '"Page.html" file not found in root directory.');
+    });
 };
 
 export default createEngineTests;

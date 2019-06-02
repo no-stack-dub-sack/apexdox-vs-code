@@ -3,7 +3,8 @@ import GeneratorUtils from '../GeneratorUtils';
 import MarkupGenerator from './MarkupGenerator';
 import SeeLinkGenerator from '../SeeLinkGenerator';
 import { ClassModel, MethodModel, TopLevelModel } from '../../../common/models';
-import { last, Option } from '../../../common/Utils';
+import { last } from '../../../common/ArrayUtils';
+import { Option } from '../../../common/Utils';
 
 class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
 

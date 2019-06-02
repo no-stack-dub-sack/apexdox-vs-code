@@ -9,8 +9,8 @@
  * @author P. Weinberg
  * @since 2019
  */
-@SuupressWarnings
-public class TEST_Gotchas {
+@FirstAnnotation @SecondAnnotation
+@ThirdAnnotation public class TEST_Gotchas {
 
   public Integer myNum;
   private Integer myNum2;
@@ -89,6 +89,11 @@ public class TEST_Gotchas {
     return MY_INT + int;
   }
 
+  @FirstAnnotation @SecondAnnotation
+  @ThirdAnnotation public static Integer annotatedMethod() {
+    return 1;
+  }
+
   /** Should still be visible because line starts with a collection */
   List<String> returnsAList() {
 
@@ -120,7 +125,6 @@ public class TEST_Gotchas {
   // no-argument, public constructor exists
 
   /** @description Inner Interface */
-  @AuraEnabled
   public virtual interface MyInterface {
 
     /** @description No access modifier is necessary for interface methods - these are always
@@ -190,8 +194,7 @@ public class TEST_Gotchas {
      * Implementation of the second interface method above.
      * This method references member variables (with and without the "this" prefix)
      */
-    @Future @SuppressWarnings
-    @testMethod public Integer method2(Integer i) { return this.i + s.length(); }
+    public Integer method2(Integer i) { return this.i + s.length(); }
   }
 
   /**

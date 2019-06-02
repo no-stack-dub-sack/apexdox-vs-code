@@ -1,10 +1,8 @@
-import * as assert from 'assert';
-import ApexDoc from '../engine/ApexDoc';
-import apexDoc2TestRunSettings from './testConfig';
-import createEngineTests from './engine.test';
-import createSnapshotTests from './snapshot.test';
+import * as vscode from 'vscode';
+import createEngineTests from './engineTest';
+import createSnapshotTests from './snapshotTests';
 import LineReader from '../common/LineReader';
-import { except } from '../common/Utils';
+import { except } from '../common/ArrayUtils';
 import { readdirSync } from 'fs';
 import { resolve as resolvePath } from 'path';
 
@@ -31,16 +29,15 @@ export interface ITestFile {
     snapshot: string;
 }
 
-const targetDir = resolvePath(__dirname, './docs');
+export const targetDir = resolvePath(__dirname, '../../src/test/test-proj/docs');
 const runSnapshotTests = true; // easily turn off snapshot tests if desired during dev
 
 const runApexDoc = () => {
-    return new Promise((resolve: (value: ITestFile[]) => void) => {
-        ApexDoc.extensionRoot = resolvePath(__dirname, '../');
-        ApexDoc.runApexDoc(apexDoc2TestRunSettings);
-
+    return new Promise(resolve => {
+        resolve(vscode.commands.executeCommand('apexDoc2.runApexDoc'));
+    }).then(() => {
         const fileNames = readdirSync(targetDir);
-        const files: ITestFile[] = except(fileNames, 'assets').map(fileName => {
+        const files: ITestFile[] = except(fileNames, ['assets', 'Page.html']).map(fileName => {
             const reader = new LineReader(resolvePath(targetDir, fileName));
             return {
                 reader,
@@ -49,7 +46,7 @@ const runApexDoc = () => {
             };
         });
 
-        resolve(files);
+        return files;
     });
 };
 

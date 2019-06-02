@@ -176,9 +176,10 @@
 		"watch": "webpack --mode none --watch",
 		"yaml-2-grammar": "node ./scripts/convertGrammar.js",
 		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "yarn run test-compile && yarn run test-setup && node ./node_modules/vscode/bin/test",
-		"test-setup": "cp -r ./src/test/apex ./out/test/ && cp -r ./assets ./out/ && rm -rf ./out/test/docs",
+		"test": "yarn run test-setup && node ./node_modules/vscode/bin/test",
+		"test-setup": "yarn run test-compile && yarn run test-cleanup",
 		"test-compile": "tsc -p ./",
+		"test-cleanup": "rm -rf ./src/test/test-proj/docs",
 		"update-snapshots": "node ./scripts/updateSnapshots.js"
 	},
 	"devDependencies": {
