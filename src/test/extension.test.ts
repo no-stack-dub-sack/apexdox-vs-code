@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import createEngineTests from './engineTest';
-import createSnapshotTests from './snapshotTests';
+import createEngineTests from './engine.test';
+import createSnapshotTests from './snapshot.test';
 import LineReader from '../common/LineReader';
 import { except } from '../common/ArrayUtils';
 import { readdirSync } from 'fs';
