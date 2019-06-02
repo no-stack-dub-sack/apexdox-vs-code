@@ -140,8 +140,8 @@ These are the simplest comment blocks. They only support description tags (the t
 
 <p align="center">
     <a target="_blank" rel="noopener noreferrer"
-        href="https://github.com/no-stack-dub-sack/apexdoc2-vscode/blob/master/images/prop-enum-docblock.png">
-        <img src="https://github.com/no-stack-dub-sack/apexdoc2-vscode/raw/master/images/prop-enum-docblock.png"
+        href="https://github.com/no-stack-dub-sack/apexdoc2-vscode/blob/master/images/prop-enum-docblock.PNG">
+        <img src="https://github.com/no-stack-dub-sack/apexdoc2-vscode/raw/master/images/prop-enum-docblock.PNG"
              alt="Prop / Inner Enum Comment Example" style="max-width:100%;">
     </a>
 </p>
