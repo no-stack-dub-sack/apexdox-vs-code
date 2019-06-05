@@ -5,7 +5,7 @@
  * @since Jul 2017
  * @see [License](https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE)
  * @see [Github](https://github.com/dreamhouseapp/dreamhouse-sfdx)
- * @group Dreamhouse Slack Bot
+ * @group Feature1
  */
 @isTest
 public class TEST_SlackOpportunityPublisherTest {

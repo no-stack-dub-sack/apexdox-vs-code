@@ -162,10 +162,10 @@ export default `<!DOCTYPE html>
         <td class="contentTD">
           <details class="section" open>
             <summary>
-              <h2 class="sectionTitle" id="TEST_JWT">
+              <h2 class="sectionTitle" id="TEST_Links">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L9">
-                  TEST_JWT
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Links.cls#L13">
+                  TEST_Links
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
             </summary>
@@ -174,209 +174,97 @@ export default `<!DOCTYPE html>
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L9">
-                public class TEST_JWT
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Links.cls#L13">
+                public class TEST_Links
               </a>
             </div>
             <div class="classDetails">
-              <div class="">An JSON Web Token utility class.</div>
+              <div class="">Test our see links: Markdown URL, regular URL, Class Link, Method Link, Method Link w/ Overload Selector. Also test that overloads are correctly linked within their own class, method TOC entry : correct overloaded method</div>
               <div class="classSubtitle ">See</div>
-              <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a></div><br />Salesforce.com<br />Jul 2017
+              <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="http://code.google.com/p/apex-lang/">Markdown Link</a>, <a target="_blank" rel="noopener noreferrer" href="https://www.google.com">https://www.google.com</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html')">TEST_ArrayUtils</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html#TEST_ArrayUtils.qsort')">TEST_ArrayUtils.qsort</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html#TEST_ArrayUtils.qsort_2')">TEST_ArrayUtils.qsort</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_NestedClasses.html#TEST_NestedClasses.ConcreteChildClass.overloadedmethod_1')">TEST_NestedClasses.ConcreteChildClass.overloadedmethod</a>, <span title="A matching reference could not be found!">ThisOneShouldFail</span></div>
             </div>
             <p />
-            <details class="subSection properties" open>
-              <summary>
-                <h2 class="subsectionTitle properties">Properties</h2>
-              </summary>
-
-              <div class="subsectionContainer">
-                <table class="attrTable properties">
-
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
-
-
-                  </tr>
-                  <tr class="property public">
-                    <td class="attrName">alg</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L11">
-                          public String <span class="hljs-title">alg<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">aud</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L14">
-                    public String <span class="hljs-title">aud<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">cert</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L19">
-                    public String <span class="hljs-title">cert<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">claims</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L17">
-                    public Map&lt;String,String&gt; <span class="hljs-title">claims<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">exp</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L15">
-                    public String <span class="hljs-title">exp<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">HS256</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L24">
-                    public static final String <span class="hljs-title">HS256<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">iat</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L16">
-                    public String <span class="hljs-title">iat<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">iss</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L12">
-                    public String <span class="hljs-title">iss<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">NONE</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L26">
-                    public static final String <span class="hljs-title">NONE<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">pkcs8</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L20">
-                    public String <span class="hljs-title">pkcs8<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">privateKey</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L21">
-                    public String <span class="hljs-title">privateKey<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">RS256</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L25">
-                    public static final String <span class="hljs-title">RS256<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">sub</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L13">
-                    public String <span class="hljs-title">sub<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">validFor</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L18">
-                    public Integer <span class="hljs-title">validFor<span>
-                </a></div></td>
-                
-                
-            </tr>
-                </table>
-            </div>
-            <p />
-            </details>
             <details class="subSection methods" open>
-                <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
-                <div class="methodsContainer">
-                <ul class="methodTOC"><li class="method public">
-                <a class="methodTOCEntry " href="#TEST_JWT.base64URLencode">
-                    base64URLencode
-                </a><div class="methodTOCDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div></li><li class="method public">
-                <a class="methodTOCEntry " href="#TEST_JWT.issue">
-                    issue
-                </a><div class="methodTOCDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div></li><li class="method public">
-                <a class="methodTOCEntry " href="#TEST_JWT.JWT">
-                    JWT
-                </a></li></ul>
-                <div class="method public"><h2 class="methodHeader " id="TEST_JWT.base64URLencode">base64URLencode</h2>
-            <div class="methodSignature">
-                
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L92">
-                    public String <span class="hljs-title">base64URLencode</span>(Blob input)
-                        </a>
-                      </div>
-                      <div class="methodDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                      <div class="methodSubTitle">Parameters</div>
-                      <div class="paramName">input</div>
-                      <div class="paramDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                      <div class="methodSubTitle ">Returns</div>
-                      <div class="methodSubDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-              </div>
-              <div class="method public">
-                <h2 class="methodHeader " id="TEST_JWT.issue">issue</h2>
-                <div class="methodSignature">
+              <summary>
+                <h2 class="subsectionTitle methods">Methods</h2>
+              </summary>
+              <div class="methodsContainer">
+                <ul class="methodTOC">
+                  <li class="method public">
+                    <a class="methodTOCEntry " href="#TEST_Links.getInt">
+                      getInt
+                    </a></li>
+                  <li class="method public">
+                    <a class="methodTOCEntry " href="#TEST_Links.getInt_1">
+                      getInt
+                    </a>
+                    <div class="methodTOCDescription">Static method overload 1</div>
+                  </li>
+                  <li class="method public">
+                    <a class="methodTOCEntry " href="#TEST_Links.getInt_2">
+                      getInt
+                    </a>
+                    <div class="methodTOCDescription">Static method overload 2</div>
+                  </li>
+                  <li class="method public">
+                    <a class="methodTOCEntry " href="#TEST_Links.getInt_3">
+                      getInt
+                    </a>
+                    <div class="methodTOCDescription">Static method overload 3</div>
+                  </li>
+                </ul>
+                <div class="method public">
+                  <h2 class="methodHeader " id="TEST_Links.getInt">getInt</h2>
+                  <div class="methodSignature">
 
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L38">
-                    public String <span class="hljs-title">issue</span>()
-                  </a>
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Links.cls#L18">
+                      public static Integer <span class="hljs-title">getInt</span>()
+                    </a>
+                  </div>
+                  <div class="methodSubTitle ">See</div>
+                  <div class="methodSubDescription"><span title="A matching reference could not be found!">TEST_Test.getInt</span>, <span title="A matching reference could not be found!">TEST_Test.getInt</span></div>
                 </div>
-                <div class="methodDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                <div class="methodSubTitle ">Returns</div>
-                <div class="methodSubDescription">JSON string</div>
-              </div>
-              <div class="method public">
-                <h2 class="methodHeader " id="TEST_JWT.JWT">JWT</h2>
-                <div class="methodSignature">
+                <div class="method public">
+                  <h2 class="methodHeader " id="TEST_Links.getInt_1">getInt</h2>
+                  <div class="methodSignature">
 
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L29">
-                    public <span class="hljs-title">JWT</span>(String alg)
-                  </a>
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Links.cls#L21">
+                      public static Integer <span class="hljs-title">getInt</span>(Integer int, Integer int2)
+                    </a>
+                  </div>
+                  <div class="methodDescription">Static method overload 1</div>
                 </div>
-              </div>
+                <div class="method public">
+                  <h2 class="methodHeader " id="TEST_Links.getInt_2">getInt</h2>
+                  <div class="methodSignature">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Links.cls#L26">
+                      public static Integer <span class="hljs-title">getInt</span>(Integer int, Integer int2, Integer int3)
+                    </a>
+                  </div>
+                  <div class="methodDescription">Static method overload 2</div>
+                </div>
+                <div class="method public">
+                  <h2 class="methodHeader " id="TEST_Links.getInt_3">getInt</h2>
+                  <div class="methodSignature">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Links.cls#L38">
+                      public static Integer <span class="hljs-title">getInt</span>(Integer int, Integer int2, Integer int3, Integer int4)
+                    </a>
+                  </div>
+                  <div class="methodDescription">Static method overload 3</div>
+                  <div class="methodSubTitle">Parameters</div>
+                  <div class="paramName">int</div>
+                  <div class="paramDescription">int desc</div>
+                  <div class="paramName">int2</div>
+                  <div class="paramDescription">int2 desc</div>
+                  <div class="paramName">int3</div>
+                  <div class="paramDescription">int3 desc</div>
+                  <div class="paramName">int4</div>
+                  <div class="paramDescription">int4 desc</div>
+                  <div class="methodSubTitle ">Returns</div>
+                  <div class="methodSubDescription"><code class="inlineCode">Integer</code></div>
+                </div>
               </div>
             </details>
           </details>

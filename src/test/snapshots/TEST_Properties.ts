@@ -162,10 +162,10 @@ export default `<!DOCTYPE html>
         <td class="contentTD">
           <details class="section" open>
             <summary>
-              <h2 class="sectionTitle" id="TEST_JWT">
+              <h2 class="sectionTitle" id="TEST_Properties">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L9">
-                  TEST_JWT
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L4">
+                  TEST_Properties
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
             </summary>
@@ -174,15 +174,11 @@ export default `<!DOCTYPE html>
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L9">
-                public class TEST_JWT
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L4">
+                public class TEST_Properties
               </a>
             </div>
-            <div class="classDetails">
-              <div class="">An JSON Web Token utility class.</div>
-              <div class="classSubtitle ">See</div>
-              <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a></div><br />Salesforce.com<br />Jul 2017
-            </div>
+            <div class="classDetails"></div>
             <p />
             <details class="subSection properties" open>
               <summary>
@@ -198,129 +194,129 @@ export default `<!DOCTYPE html>
 
 
                   </tr>
-                  <tr class="property public">
-                    <td class="attrName">alg</td>
+                  <tr class="property protected">
+                    <td class="attrName">eight</td>
                     <td>
                       <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L11">
-                          public String <span class="hljs-title">alg<span>
+                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L12">
+                          protected static Map&lt;String,String&gt; <span class="hljs-title">eight<span>
+                </a></div></td>
+                
+                
+            </tr>
+            <tr class="property protected">
+                <td class="attrName">eleven</td>
+                <td><div class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L15">
+                    protected Set&lt;String&gt; <span class="hljs-title">eleven<span>
+                </a></div></td>
+                
+                
+            </tr>
+            <tr class="property private">
+                <td class="attrName">five</td>
+                <td><div class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L9">
+                    private String <span class="hljs-title">five<span>
+                </a></div></td>
+                
+                
+            </tr>
+            <tr class="property private">
+                <td class="attrName">four</td>
+                <td><div class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L8">
+                    private String <span class="hljs-title">four<span>
+                </a></div></td>
+                
+                
+            </tr>
+            <tr class="property private">
+                <td class="attrName">fourteen</td>
+                <td><div class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L29">
+                    private Integer <span class="hljs-title">fourteen<span>
+                </a></div></td>
+                
+                
+            </tr>
+            <tr class="property protected">
+                <td class="attrName">nine</td>
+                <td><div class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L13">
+                    protected Map&lt;String,String&gt; <span class="hljs-title">nine<span>
                 </a></div></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">aud</td>
+                <td class="attrName">one</td>
                 <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L14">
-                    public String <span class="hljs-title">aud<span>
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L5">
+                    public String <span class="hljs-title">one<span>
+                </a></div></td>
+                
+                
+            </tr>
+            <tr class="property private">
+                <td class="attrName">seven</td>
+                <td><div class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L11">
+                    private String <span class="hljs-title">seven<span>
+                </a></div></td>
+                
+                
+            </tr>
+            <tr class="property private">
+                <td class="attrName">six</td>
+                <td><div class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L10">
+                    private String <span class="hljs-title">six<span>
+                </a></div></td>
+                
+                
+            </tr>
+            <tr class="property protected">
+                <td class="attrName">ten</td>
+                <td><div class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L14">
+                    protected List&lt;Integer&gt; <span class="hljs-title">ten<span>
+                </a></div></td>
+                
+                
+            </tr>
+            <tr class="property private">
+                <td class="attrName">thirteen</td>
+                <td><div class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L23">
+                    private String <span class="hljs-title">thirteen<span>
                 </a></div></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">cert</td>
+                <td class="attrName">three</td>
                 <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L19">
-                    public String <span class="hljs-title">cert<span>
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L7">
+                    public static String <span class="hljs-title">three<span>
+                </a></div></td>
+                
+                
+            </tr>
+            <tr class="property private">
+                <td class="attrName">twelve</td>
+                <td><div class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L17">
+                    private String <span class="hljs-title">twelve<span>
                 </a></div></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">claims</td>
+                <td class="attrName">two</td>
                 <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L17">
-                    public Map&lt;String,String&gt; <span class="hljs-title">claims<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">exp</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L15">
-                    public String <span class="hljs-title">exp<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">HS256</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L24">
-                    public static final String <span class="hljs-title">HS256<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">iat</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L16">
-                    public String <span class="hljs-title">iat<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">iss</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L12">
-                    public String <span class="hljs-title">iss<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">NONE</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L26">
-                    public static final String <span class="hljs-title">NONE<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">pkcs8</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L20">
-                    public String <span class="hljs-title">pkcs8<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">privateKey</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L21">
-                    public String <span class="hljs-title">privateKey<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">RS256</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L25">
-                    public static final String <span class="hljs-title">RS256<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">sub</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L13">
-                    public String <span class="hljs-title">sub<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">validFor</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L18">
-                    public Integer <span class="hljs-title">validFor<span>
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L6">
+                    public static final String <span class="hljs-title">two<span>
                 </a></div></td>
                 
                 
@@ -329,67 +325,14 @@ export default `<!DOCTYPE html>
             </div>
             <p />
             </details>
-            <details class="subSection methods" open>
-                <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
-                <div class="methodsContainer">
-                <ul class="methodTOC"><li class="method public">
-                <a class="methodTOCEntry " href="#TEST_JWT.base64URLencode">
-                    base64URLencode
-                </a><div class="methodTOCDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div></li><li class="method public">
-                <a class="methodTOCEntry " href="#TEST_JWT.issue">
-                    issue
-                </a><div class="methodTOCDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div></li><li class="method public">
-                <a class="methodTOCEntry " href="#TEST_JWT.JWT">
-                    JWT
-                </a></li></ul>
-                <div class="method public"><h2 class="methodHeader " id="TEST_JWT.base64URLencode">base64URLencode</h2>
-            <div class="methodSignature">
-                
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L92">
-                    public String <span class="hljs-title">base64URLencode</span>(Blob input)
-                        </a>
-                      </div>
-                      <div class="methodDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                      <div class="methodSubTitle">Parameters</div>
-                      <div class="paramName">input</div>
-                      <div class="paramDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                      <div class="methodSubTitle ">Returns</div>
-                      <div class="methodSubDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-              </div>
-              <div class="method public">
-                <h2 class="methodHeader " id="TEST_JWT.issue">issue</h2>
-                <div class="methodSignature">
-
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L38">
-                    public String <span class="hljs-title">issue</span>()
-                  </a>
-                </div>
-                <div class="methodDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                <div class="methodSubTitle ">Returns</div>
-                <div class="methodSubDescription">JSON string</div>
-              </div>
-              <div class="method public">
-                <h2 class="methodHeader " id="TEST_JWT.JWT">JWT</h2>
-                <div class="methodSignature">
-
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L29">
-                    public <span class="hljs-title">JWT</span>(String alg)
-                  </a>
-                </div>
-              </div>
-              </div>
-            </details>
-          </details>
-          </div>
-        </td>
-      </tr>
+            </details></div></td>
+            </tr>
     </table>
-    <hr />
+    <hr/>
     <center class="footer">
-      <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank" rel="noopener noreferrer">
-        Powered By ApexDoc2
-      </a>
+        <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank" rel="noopener noreferrer">
+            Powered By ApexDoc2
+        </a>
     </center>
-  </body>
-
+</body>
 </html>`;

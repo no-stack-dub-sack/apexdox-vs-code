@@ -1,5 +1,5 @@
 /**
- * The apex-lang `ISObjectComparator` interface. The classes in this group have 
+ * The apex-lang `IllegalStateException` class. The classes in this group have 
  * been randomly gathered from various resources simply to demonstrate ApexDoc2-VSCode's
  * multi-source directory feature aimed at Salesforce-DX projects which may have a `main`
  * folder and multipke feature directories.
@@ -17,11 +17,8 @@
  * 
  * @author Richard Vanhook
  * @since Dec 28, 2008
- * @group Global Utils
+ * @group Feature1
  * @see [Source](http://code.google.com/p/apex-lang/)
  * @see [License](http://www.apache.org/licenses/LICENSE-2.0)
- * @see TEST_ArrayUtils.qsort[4]
  */
-global interface TEST_ISObjectComparator{
-    Integer compare(SObject record1, SObject record2);
-}
+global class TEST_IllegalStateException extends Exception {}

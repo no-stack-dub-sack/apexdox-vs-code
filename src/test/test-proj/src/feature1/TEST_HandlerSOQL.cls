@@ -5,7 +5,7 @@
  * @since Jul 2017
  * @see [License](https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE)
  * @see [Github](https://github.com/dreamhouseapp/dreamhouse-sfdx)
- * @group Dreamhouse Bot Handlers
+ * @group Feature1
  */
 public with sharing class TEST_HandlerSOQL implements BotHandler {
     

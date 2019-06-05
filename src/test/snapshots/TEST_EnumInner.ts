@@ -162,10 +162,10 @@ export default `<!DOCTYPE html>
         <td class="contentTD">
           <details class="section" open>
             <summary>
-              <h2 class="sectionTitle" id="TEST_JWT">
+              <h2 class="sectionTitle" id="TEST_EnumInner">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L9">
-                  TEST_JWT
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_EnumInner.cls#L4">
+                  TEST_EnumInner
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
             </summary>
@@ -174,19 +174,15 @@ export default `<!DOCTYPE html>
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L9">
-                public class TEST_JWT
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_EnumInner.cls#L4">
+                public class TEST_EnumInner
               </a>
             </div>
-            <div class="classDetails">
-              <div class="">An JSON Web Token utility class.</div>
-              <div class="classSubtitle ">See</div>
-              <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a></div><br />Salesforce.com<br />Jul 2017
-            </div>
+            <div class="classDetails"></div>
             <p />
-            <details class="subSection properties" open>
+            <details class="subSection enums" open>
               <summary>
-                <h2 class="subsectionTitle properties">Properties</h2>
+                <h2 class="subsectionTitle enums">Enums</h2>
               </summary>
 
               <div class="subsectionContainer">
@@ -195,201 +191,57 @@ export default `<!DOCTYPE html>
                   <tr>
                     <th>Name</th>
                     <th>Signature</th>
-
-
+                    <th>Values</th>
+                    <th>Description</th>
                   </tr>
-                  <tr class="property public">
-                    <td class="attrName">alg</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L11">
-                          public String <span class="hljs-title">alg<span>
-                </a></div></td>
-                
-                
+                  <tr class="enum public">
+                    <td class="attrName">Days</td>
+                    <td class="attrSignature">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_EnumInner.cls#L21">
+                        public enum <span class="hljs-title">Days<span>
+                </a></td>
+                <td class="enumValues">MONDAY,&nbsp;TUESDAY,&nbsp;WEDNESDAY,&nbsp;THURSDAY,&nbsp;FRIDAY,&nbsp;SATURDAY,&nbsp;SUNDAY</td>
+                <td class="attrDescription">Documentation Engine should parse inner enum values.</td>
             </tr>
-            <tr class="property public">
-                <td class="attrName">aud</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L14">
-                    public String <span class="hljs-title">aud<span>
-                </a></div></td>
-                
-                
+            <tr class="enum public">
+                <td class="attrName">Months</td>
+                <td class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_EnumInner.cls#L8">
+                    public enum <span class="hljs-title">Months<span>
+                </a></td>
+                <td class="enumValues">JAN,&nbsp;FEB,&nbsp;MAR,&nbsp;APR,&nbsp;MAY,&nbsp;JUN,&nbsp;JUL,&nbsp;AUG,&nbsp;SEP,&nbsp;OCT,&nbsp;NOV,&nbsp;DEC</td>
+                <td class="attrDescription">Documentation Engine should parse inner enum values.</td>
             </tr>
-            <tr class="property public">
-                <td class="attrName">cert</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L19">
-                    public String <span class="hljs-title">cert<span>
-                </a></div></td>
-                
-                
+            <tr class="enum public">
+                <td class="attrName">Numbers</td>
+                <td class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_EnumInner.cls#L29">
+                    public enum <span class="hljs-title">Numbers<span>
+                </a></td>
+                <td class="enumValues">ONE,&nbsp;TWO,&nbsp;THREE,&nbsp;FOUR,&nbsp;FIVE</td>
+                <td class="attrDescription">Documentation Engine should parse inner enum values.</td>
             </tr>
-            <tr class="property public">
-                <td class="attrName">claims</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L17">
-                    public Map&lt;String,String&gt; <span class="hljs-title">claims<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">exp</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L15">
-                    public String <span class="hljs-title">exp<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">HS256</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L24">
-                    public static final String <span class="hljs-title">HS256<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">iat</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L16">
-                    public String <span class="hljs-title">iat<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">iss</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L12">
-                    public String <span class="hljs-title">iss<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">NONE</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L26">
-                    public static final String <span class="hljs-title">NONE<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">pkcs8</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L20">
-                    public String <span class="hljs-title">pkcs8<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">privateKey</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L21">
-                    public String <span class="hljs-title">privateKey<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">RS256</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L25">
-                    public static final String <span class="hljs-title">RS256<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">sub</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L13">
-                    public String <span class="hljs-title">sub<span>
-                </a></div></td>
-                
-                
-            </tr>
-            <tr class="property public">
-                <td class="attrName">validFor</td>
-                <td><div class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L18">
-                    public Integer <span class="hljs-title">validFor<span>
-                </a></div></td>
-                
-                
+            <tr class="enum public">
+                <td class="attrName">Rgb</td>
+                <td class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_EnumInner.cls#L40">
+                    public enum <span class="hljs-title">Rgb<span>
+                </a></td>
+                <td class="enumValues">RED,&nbsp;GREEN,&nbsp;BLUE</td>
+                <td class="attrDescription">Documentation Engine should parse inner enum values.</td>
             </tr>
                 </table>
             </div>
-            <p />
+            <p/>
             </details>
-            <details class="subSection methods" open>
-                <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
-                <div class="methodsContainer">
-                <ul class="methodTOC"><li class="method public">
-                <a class="methodTOCEntry " href="#TEST_JWT.base64URLencode">
-                    base64URLencode
-                </a><div class="methodTOCDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div></li><li class="method public">
-                <a class="methodTOCEntry " href="#TEST_JWT.issue">
-                    issue
-                </a><div class="methodTOCDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div></li><li class="method public">
-                <a class="methodTOCEntry " href="#TEST_JWT.JWT">
-                    JWT
-                </a></li></ul>
-                <div class="method public"><h2 class="methodHeader " id="TEST_JWT.base64URLencode">base64URLencode</h2>
-            <div class="methodSignature">
-                
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L92">
-                    public String <span class="hljs-title">base64URLencode</span>(Blob input)
-                        </a>
-                      </div>
-                      <div class="methodDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                      <div class="methodSubTitle">Parameters</div>
-                      <div class="paramName">input</div>
-                      <div class="paramDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                      <div class="methodSubTitle ">Returns</div>
-                      <div class="methodSubDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-              </div>
-              <div class="method public">
-                <h2 class="methodHeader " id="TEST_JWT.issue">issue</h2>
-                <div class="methodSignature">
-
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L38">
-                    public String <span class="hljs-title">issue</span>()
-                  </a>
-                </div>
-                <div class="methodDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                <div class="methodSubTitle ">Returns</div>
-                <div class="methodSubDescription">JSON string</div>
-              </div>
-              <div class="method public">
-                <h2 class="methodHeader " id="TEST_JWT.JWT">JWT</h2>
-                <div class="methodSignature">
-
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L29">
-                    public <span class="hljs-title">JWT</span>(String alg)
-                  </a>
-                </div>
-              </div>
-              </div>
-            </details>
-          </details>
-          </div>
-        </td>
-      </tr>
+            </details></div></td>
+            </tr>
     </table>
-    <hr />
+    <hr/>
     <center class="footer">
-      <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank" rel="noopener noreferrer">
-        Powered By ApexDoc2
-      </a>
+        <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank" rel="noopener noreferrer">
+            Powered By ApexDoc2
+        </a>
     </center>
-  </body>
-
+</body>
 </html>`;

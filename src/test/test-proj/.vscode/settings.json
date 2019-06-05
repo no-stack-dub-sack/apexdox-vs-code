@@ -15,7 +15,7 @@
 	"apexdoc2.engine.excludes": [
         "*Exclude.cls",
         "*Test.cls",
-        "TEST_ExcuseMe.cls"
+        "TEST_ExcludeMe.cls"
     ],
 	"apexdoc2.engine.homePagePath": "",
 	"apexdoc2.engine.bannerPagePath": "",
@@ -30,7 +30,7 @@
 	"apexdoc2.engine.sortOrder": "alpha",
     "apexdoc2.engine.cleanDir": false, // we delete the directory & its contents in the test-setup command instead
     "apexdoc2.engine.assets": [
-        "${workspaceFolder}/src/asset.txt"
+        "${workspaceFolder}/src/info.md"
     ],
     "apexdoc2.engine.pages": [
         "${workspaceFolder}/src/Page.html"

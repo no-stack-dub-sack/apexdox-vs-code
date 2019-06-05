@@ -17,11 +17,11 @@
  * 
  * @author Richard Vanhook
  * @since Dec 28, 2008
- * @group Global Utils
+ * @group Feature1
  * @see [Source](http://code.google.com/p/apex-lang/)
  * @see [License](http://www.apache.org/licenses/LICENSE-2.0)
- * @see TEST_ArrayUtils.qsort[2]
+ * @see TEST_ArrayUtils.qsort[4]
  */
-global interface TEST_IObjectComparator {
-    Integer compare(Object object1, Object object2);
+global interface TEST_ISObjectComparator{
+    Integer compare(SObject record1, SObject record2);
 }

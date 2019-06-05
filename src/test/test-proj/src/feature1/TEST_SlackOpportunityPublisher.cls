@@ -7,7 +7,7 @@
  * @since Jul 2017
  * @see [License](https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE)
  * @see [Github](https://github.com/dreamhouseapp/dreamhouse-sfdx)
- * @group Dreamhouse Slack Bot
+ * @group Feature1
  */
 public with sharing class TEST_SlackOpportunityPublisher {
     
@@ -52,15 +52,10 @@ public with sharing class TEST_SlackOpportunityPublisher {
      * enums. They will be presented in a table and can only have
      * description's, like properties.
      */    
-    public enum Days {
-        MONDAY,
-        TUESDAY,
+    public enum Days { MONDAY, TUESDAY,
         WEDNESDAY,
         THURSDAY,
-        FRIDAY,
-        SATURDAY,
-        SUNDAY
-    }
+        FRIDAY, SATURDAY, SUNDAY }
 
     /**
      * An inner enum added to demonstrate how ApexDoc2-VSCode handles inner
@@ -72,13 +67,15 @@ public with sharing class TEST_SlackOpportunityPublisher {
         TWO,
         THREE,
         FOUR,
-        FIVE,
-        SIX,
-        SEVEN,
-        EIGHT,
-        NINE,
-        TEN
+        FIVE
     }
+
+    /**
+     * An inner enum added to demonstrate how ApexDoc2-VSCode handles inner
+     * enums. They will be presented in a table and can only have
+     * description's, like properties.
+     */
+    public enum Rgb { RED, GREEN, BLUE }
 
     /**
      * A good example of how ApexDoc2-VSCode handles inner classes.

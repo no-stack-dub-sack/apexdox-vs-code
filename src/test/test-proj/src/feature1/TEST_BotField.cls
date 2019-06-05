@@ -7,9 +7,9 @@
  * @since Jul 2017
  * @see [License](https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE)
  * @see [Github](https://github.com/dreamhouseapp/dreamhouse-sfdx)
- * @group Dreamhouse Bot
  * @see TEST_BotController
  * @see TEST_BotRecord
+ * @group Feature1
  * 
  * @example 
  * for (Dashboard d : dashboards) {

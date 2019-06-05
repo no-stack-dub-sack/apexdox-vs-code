@@ -8,7 +8,7 @@
  * @since Jul 2017
  * @see [License](https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE)
  * @see [Github](https://github.com/dreamhouseapp/dreamhouse-sfdx)
- * @group Global Utils
+ * @group Feature1
  */
 @RestResource(urlMapping='/Account/*')
 global with sharing class TEST_MyRestResource {
@@ -21,7 +21,7 @@ global with sharing class TEST_MyRestResource {
         Account account = [SELECT Id FROM Account WHERE Id = :accountId];
         delete account;
     }
-  
+
     @HttpGet
     global static Account doGet() {
         RestRequest req = RestContext.request;
@@ -30,8 +30,8 @@ global with sharing class TEST_MyRestResource {
         Account result = [SELECT Id, Name, Phone, Website FROM Account WHERE Id = :accountId];
         return result;
     }
-  
-  @HttpPost
+
+    @HttpPost
     global static String doPost(String name,
         String phone, String website) {
         Account account = new Account();

@@ -57,12 +57,47 @@ export default `<!DOCTYPE html>
               <a class="navHeader" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">
                 Home
               </a>
-              <details id="Dreamhouse_Bot" class="groupName">
-                <summary onclick="toggleActiveClass(this);" id="header-Dreamhouse_Bot" class="navHeader">
-                  <span>Dreamhouse Bot</span>
+              <details id="Assertions" class="groupName">
+                <summary onclick="toggleActiveClass(this);" id="header-Assertions" class="navHeader">
+                  <span>Assertions</span>
                 </summary>
                 <ul>
                   <!-- menu items will be appended here -->
+                  <li id="item-TEST_Annotations" class="navItem class public" onclick="goToLocation('TEST_Annotations.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Annotations</a>
+                  </li>
+                  <li id="item-TEST_EnumClass" class="navItem class public" onclick="goToLocation('TEST_EnumClass.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_EnumClass</a>
+                  </li>
+                  <li id="item-TEST_EnumInner" class="navItem class public" onclick="goToLocation('TEST_EnumInner.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_EnumInner</a>
+                  </li>
+                  <li id="item-TEST_InterfaceClass" class="navItem class global" onclick="goToLocation('TEST_InterfaceClass.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_InterfaceClass</a>
+                  </li>
+                  <li id="item-TEST_Links" class="navItem class public" onclick="goToLocation('TEST_Links.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
+                  </li>
+                  <li id="item-TEST_MultiLineTagValues" class="navItem class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
+                  </li>
+                  <li id="item-TEST_NestedClasses" class="navItem class public" onclick="goToLocation('TEST_NestedClasses.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_NestedClasses</a>
+                  </li>
+                  <li id="item-TEST_Properties" class="navItem class public" onclick="goToLocation('TEST_Properties.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Properties</a>
+                  </li>
+                </ul>
+              </details>
+              <details id="Feature1" class="groupName">
+                <summary onclick="toggleActiveClass(this);" id="header-Feature1" class="navHeader">
+                  <span>Feature1</span>
+                </summary>
+                <ul>
+                  <!-- menu items will be appended here -->
+                  <li id="item-TEST_ArrayUtils" class="navItem class global" onclick="goToLocation('TEST_ArrayUtils.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_ArrayUtils</a>
+                  </li>
                   <li id="item-TEST_BotField" class="navItem class public" onclick="goToLocation('TEST_BotField.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_BotField</a>
                   </li>
@@ -75,61 +110,20 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_BotMessage" class="navItem class public" onclick="goToLocation('TEST_BotMessage.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_BotMessage</a>
                   </li>
-                </ul>
-              </details>
-              <details id="Dreamhouse_Bot_Handlers" class="groupName">
-                <summary onclick="toggleActiveClass(this);" id="header-Dreamhouse_Bot_Handlers" class="navHeader">
-                  <span>Dreamhouse Bot Handlers</span>
-                </summary>
-                <ul>
-                  <!-- menu items will be appended here -->
                   <li id="item-TEST_HandlerSOQL" class="navItem class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
-                  </li>
-                </ul>
-              </details>
-              <details id="Dreamhouse_Slack_Bot" class="groupName">
-                <summary onclick="toggleActiveClass(this);" id="header-Dreamhouse_Slack_Bot" class="navHeader">
-                  <span>Dreamhouse Slack Bot</span>
-                </summary>
-                <ul>
-                  <!-- menu items will be appended here -->
-                  <li id="item-TEST_SlackOpportunityPublisher" class="navItem class public" onclick="goToLocation('TEST_SlackOpportunityPublisher.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_SlackOpportunityPublisher</a>
-                  </li>
-                </ul>
-              </details>
-              <details id="Dreamhouse_Utils" class="groupName">
-                <summary onclick="toggleActiveClass(this);" id="header-Dreamhouse_Utils" class="navHeader">
-                  <span>Dreamhouse Utils</span>
-                </summary>
-                <ul>
-                  <!-- menu items will be appended here -->
-                  <li id="item-TEST_JWT" class="navItem class public" onclick="goToLocation('TEST_JWT.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
-                  </li>
-                  <li id="item-TEST_JWTBearerFlow" class="navItem class public" onclick="goToLocation('TEST_JWTBearerFlow.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_JWTBearerFlow</a>
-                  </li>
-                </ul>
-              </details>
-              <details id="Global_Utils" class="groupName">
-                <summary onclick="toggleActiveClass(this);" id="header-Global_Utils" class="navHeader">
-                  <span>Global Utils</span>
-                </summary>
-                <ul>
-                  <!-- menu items will be appended here -->
-                  <li id="item-TEST_ArrayUtils" class="navItem class global" onclick="goToLocation('TEST_ArrayUtils.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_ArrayUtils</a>
                   </li>
                   <li id="item-TEST_IllegalStateException" class="navItem class global" onclick="goToLocation('TEST_IllegalStateException.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
                   </li>
-                  <li id="item-TEST_IObjectComparator" class="navItem class global" onclick="goToLocation('TEST_IObjectComparator.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_IObjectComparator</a>
-                  </li>
                   <li id="item-TEST_ISObjectComparator" class="navItem class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
+                  </li>
+                  <li id="item-TEST_JWT" class="navItem class public" onclick="goToLocation('TEST_JWT.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
+                  </li>
+                  <li id="item-TEST_LIFXController" class="navItem class public" onclick="goToLocation('TEST_LIFXController.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_LIFXController</a>
                   </li>
                   <li id="item-TEST_MyRestResource" class="navItem class global" onclick="goToLocation('TEST_MyRestResource.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_MyRestResource</a>
@@ -137,8 +131,11 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_PrimitiveComparator" class="navItem class global" onclick="goToLocation('TEST_PrimitiveComparator.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_PrimitiveComparator</a>
                   </li>
-                  <li id="item-TEST_Status" class="navItem class public" onclick="goToLocation('TEST_Status.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_Status</a>
+                  <li id="item-TEST_SampleDataController" class="navItem class public" onclick="goToLocation('TEST_SampleDataController.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_SampleDataController</a>
+                  </li>
+                  <li id="item-TEST_SlackOpportunityPublisher" class="navItem class public" onclick="goToLocation('TEST_SlackOpportunityPublisher.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_SlackOpportunityPublisher</a>
                   </li>
                   <li id="item-TEST_StopWatch" class="navItem class global" onclick="goToLocation('TEST_StopWatch.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_StopWatch</a>
@@ -154,17 +151,8 @@ export default `<!DOCTYPE html>
                   <li id="item-IncludeOne" class="navItem class public" onclick="goToLocation('IncludeOne.html');">
                     <a tabindex="1" href="javascript:void(0)">IncludeOne</a>
                   </li>
-                  <li id="item-TEST_LIFXController" class="navItem class public" onclick="goToLocation('TEST_LIFXController.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_LIFXController</a>
-                  </li>
-                  <li id="item-TEST_SampleDataController" class="navItem class public" onclick="goToLocation('TEST_SampleDataController.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_SampleDataController</a>
-                  </li>
                   <li id="item-IncludeTwo" class="navItem class public" onclick="goToLocation('IncludeTwo.html');">
                     <a tabindex="1" href="javascript:void(0)">IncludeTwo</a>
-                  </li>
-                  <li id="item-TEST_Gotchas" class="navItem class public" onclick="goToLocation('TEST_Gotchas.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_Gotchas</a>
                   </li>
                 </ul>
               </details>
@@ -174,10 +162,10 @@ export default `<!DOCTYPE html>
         <td class="contentTD">
           <details class="section" open>
             <summary>
-              <h2 class="sectionTitle" id="TEST_JWTBearerFlow">
+              <h2 class="sectionTitle" id="TEST_InterfaceClass">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWTBearerFlow.cls#L9">
-                  TEST_JWTBearerFlow
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L4">
+                  TEST_InterfaceClass
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
             </summary>
@@ -186,15 +174,11 @@ export default `<!DOCTYPE html>
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWTBearerFlow.cls#L9">
-                public class TEST_JWTBearerFlow
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L4">
+                global interface TEST_InterfaceClass
               </a>
             </div>
-            <div class="classDetails">
-              <div class="">An JSON Web Token utility class.</div>
-              <div class="classSubtitle ">See</div>
-              <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a></div><br />Salesforce.com<br />Jul 2017
-            </div>
+            <div class="classDetails"></div>
             <p />
             <details class="subSection methods" open>
               <summary>
@@ -202,29 +186,45 @@ export default `<!DOCTYPE html>
               </summary>
               <div class="methodsContainer">
                 <ul class="methodTOC">
-                  <li class="method public">
-                    <a class="methodTOCEntry " href="#TEST_JWTBearerFlow.getAccessToken">
-                      getAccessToken
-                    </a>
-                    <div class="methodTOCDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                  </li>
+                  <li class="method global">
+                    <a class="methodTOCEntry " href="#TEST_InterfaceClass.doIt">
+                      doIt
+                    </a></li>
+                  <li class="method global">
+                    <a class="methodTOCEntry " href="#TEST_InterfaceClass.doSomething">
+                      doSomething
+                    </a></li>
+                  <li class="method global">
+                    <a class="methodTOCEntry " href="#TEST_InterfaceClass.doSomethingElse">
+                      doSomethingElse
+                    </a></li>
                 </ul>
-                <div class="method public">
-                  <h2 class="methodHeader " id="TEST_JWTBearerFlow.getAccessToken">getAccessToken</h2>
+                <div class="method global">
+                  <h2 class="methodHeader " id="TEST_InterfaceClass.doIt">doIt</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWTBearerFlow.cls#L17">
-                      public static String <span class="hljs-title">getAccessToken</span>(String tokenEndpoint, JWT jwt)
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L5">
+                      Integer <span class="hljs-title">doIt</span>(Object object1, Object object2)
                     </a>
                   </div>
-                  <div class="methodDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                  <div class="methodSubTitle">Parameters</div>
-                  <div class="paramName">tokenEndpoint</div>
-                  <div class="paramDescription">The Token&#39;s endpoint</div>
-                  <div class="paramName">jwt</div>
-                  <div class="paramDescription">An instance of the <code class="inlineCode">JWT</code> class</div>
-                  <div class="methodSubTitle ">Returns</div>
-                  <div class="methodSubDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
+                </div>
+                <div class="method global">
+                  <h2 class="methodHeader " id="TEST_InterfaceClass.doSomething">doSomething</h2>
+                  <div class="methodSignature">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L7">
+                      Integer <span class="hljs-title">doSomething</span>(Object object1, Object object2)
+                    </a>
+                  </div>
+                </div>
+                <div class="method global">
+                  <h2 class="methodHeader " id="TEST_InterfaceClass.doSomethingElse">doSomethingElse</h2>
+                  <div class="methodSignature">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L9">
+                      Integer <span class="hljs-title">doSomethingElse</span>(Integer myInt, String myString)
+                    </a>
+                  </div>
                 </div>
               </div>
             </details>

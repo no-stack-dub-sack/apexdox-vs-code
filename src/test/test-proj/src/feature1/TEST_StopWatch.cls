@@ -17,7 +17,7 @@
  * 
  * @author Richard Vanhook
  * @since Dec 28, 2008
- * @group Global Utils
+ * @group Feature1
  * @see [Source](http://code.google.com/p/apex-lang/)
  * @see [License](http://www.apache.org/licenses/LICENSE-2.0)
  */

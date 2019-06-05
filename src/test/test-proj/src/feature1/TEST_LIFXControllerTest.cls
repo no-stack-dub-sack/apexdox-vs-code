@@ -1,5 +1,6 @@
 /**
  * The `LIFXController` test class.
+ * @group Feature1
  */
 @isTest
 public class TEST_LIFXControllerTest {
