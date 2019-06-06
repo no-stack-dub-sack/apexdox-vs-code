@@ -165,10 +165,10 @@ export default `<!DOCTYPE html>
         <td class="contentTD">
           <details class="section" open>
             <summary>
-              <h2 class="sectionTitle" id="TEST_PrimitiveComparator">
+              <h2 class="sectionTitle" id="TEST_Methods">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L25">
-                  TEST_PrimitiveComparator
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Methods.cls#L5">
+                  TEST_Methods
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
             </summary>
@@ -177,14 +177,12 @@ export default `<!DOCTYPE html>
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L25">
-                global class TEST_PrimitiveComparator implements ObjectComparator
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Methods.cls#L5">
+                public class TEST_Methods
               </a>
             </div>
             <div class="classDetails">
-              <div class="">The apex-lang <code class="inlineCode">PrimitiveComparator</code> class. The classes in this group have been randomly gathered from various resources simply to demonstrate ApexDoc2-VSCode&#39;s multi-source directory feature aimed at Salesforce-DX projects which may have a <code class="inlineCode">main</code> folder and multipke feature directories. <br><br> This code is part of the &#39;apex-lang&#39; open source project avaiable at: http://code.google.com/p/apex-lang/. This code is licensed under the Apache License, Version 2.0. You may obtain a copy of the License at: http://www.apache.org/licenses/LICENSE-2.0.</div>
-              <div class="classSubtitle ">See</div>
-              <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="http://code.google.com/p/apex-lang/">Source</a>, <a target="_blank" rel="noopener noreferrer" href="http://www.apache.org/licenses/LICENSE-2.0">License</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html#TEST_ArrayUtils.qsort')">TEST_ArrayUtils.qsort</a></div><br />Richard Vanhook<br />Dec 28, 2008
+              <div class="">Test for method parsing / visibility.</div>
             </div>
             <p />
             <details class="subSection methods" open>
@@ -193,123 +191,138 @@ export default `<!DOCTYPE html>
               </summary>
               <div class="methodsContainer">
                 <ul class="methodTOC">
-                  <li class="method global">
-                    <a class="methodTOCEntry " href="#TEST_PrimitiveComparator.compare">
-                      compare
+                  <li class="method public">
+                    <a class="methodTOCEntry " href="#TEST_Methods.method1">
+                      method1
+                    </a></li>
+                  <li class="method private">
+                    <a class="methodTOCEntry " href="#TEST_Methods.method2">
+                      method2
+                    </a></li>
+                  <li class="method protected">
+                    <a class="methodTOCEntry " href="#TEST_Methods.method3">
+                      method3
                     </a></li>
                   <li class="method global">
-                    <a class="methodTOCEntry " href="#TEST_PrimitiveComparator.compare_1">
-                      compare
+                    <a class="methodTOCEntry " href="#TEST_Methods.method4">
+                      method4
                     </a></li>
-                  <li class="method global">
-                    <a class="methodTOCEntry " href="#TEST_PrimitiveComparator.compare_2">
-                      compare
-                    </a></li>
-                  <li class="method global">
-                    <a class="methodTOCEntry " href="#TEST_PrimitiveComparator.compare_3">
-                      compare
-                    </a></li>
-                  <li class="method global">
-                    <a class="methodTOCEntry " href="#TEST_PrimitiveComparator.compare_4">
-                      compare
-                    </a></li>
-                  <li class="method global">
-                    <a class="methodTOCEntry " href="#TEST_PrimitiveComparator.compare_5">
-                      compare
-                    </a></li>
-                  <li class="method global">
-                    <a class="methodTOCEntry " href="#TEST_PrimitiveComparator.compare_6">
-                      compare
-                    </a></li>
-                  <li class="method global">
-                    <a class="methodTOCEntry " href="#TEST_PrimitiveComparator.compare_7">
-                      compare
-                    </a></li>
-                  <li class="method global">
-                    <a class="methodTOCEntry " href="#TEST_PrimitiveComparator.compare_8">
-                      compare
-                    </a></li>
+                  <li class="method private">
+                    <a class="methodTOCEntry " href="#TEST_Methods.method5">
+                      method5
+                    </a>
+                    <div class="methodTOCDescription">visible because starts with known keyword, despite implicit privacy</div>
+                  </li>
+                  <li class="method private">
+                    <a class="methodTOCEntry " href="#TEST_Methods.method6">
+                      method6
+                    </a>
+                    <div class="methodTOCDescription">visible because starts with known keyword, despite implicit privacy</div>
+                  </li>
+                  <li class="method private">
+                    <a class="methodTOCEntry " href="#TEST_Methods.method7">
+                      method7
+                    </a>
+                    <div class="methodTOCDescription">visible because starts with known keyword, despite implicit privacy</div>
+                  </li>
+                  <li class="method private">
+                    <a class="methodTOCEntry " href="#TEST_Methods.method8">
+                      method8
+                    </a>
+                    <div class="methodTOCDescription">visible because starts with known keyword, despite implicit privacy</div>
+                  </li>
+                  <li class="method private">
+                    <a class="methodTOCEntry " href="#TEST_Methods.method9">
+                      method9
+                    </a>
+                    <div class="methodTOCDescription">visible because starts with known keyword, despite implicit privacy</div>
+                  </li>
                 </ul>
-                <div class="method global">
-                  <h2 class="methodHeader " id="TEST_PrimitiveComparator.compare">compare</h2>
+                <div class="method public">
+                  <h2 class="methodHeader " id="TEST_Methods.method1">method1</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L27">
-                      global Integer <span class="hljs-title">compare</span>(Object object1, Object object2)
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Methods.cls#L6">
+                      public static String <span class="hljs-title">method1</span>()
+                    </a>
+                  </div>
+                </div>
+                <div class="method private">
+                  <h2 class="methodHeader " id="TEST_Methods.method2">method2</h2>
+                  <div class="methodSignature">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Methods.cls#L10">
+                      private static String <span class="hljs-title">method2</span>()
+                    </a>
+                  </div>
+                </div>
+                <div class="method protected">
+                  <h2 class="methodHeader " id="TEST_Methods.method3">method3</h2>
+                  <div class="methodSignature">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Methods.cls#L14">
+                      protected static String <span class="hljs-title">method3</span>()
                     </a>
                   </div>
                 </div>
                 <div class="method global">
-                  <h2 class="methodHeader " id="TEST_PrimitiveComparator.compare_1">compare</h2>
+                  <h2 class="methodHeader " id="TEST_Methods.method4">method4</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L55">
-                      global Integer <span class="hljs-title">compare</span>(Boolean b1, Boolean b2)
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Methods.cls#L18">
+                      global static String <span class="hljs-title">method4</span>()
                     </a>
                   </div>
                 </div>
-                <div class="method global">
-                  <h2 class="methodHeader " id="TEST_PrimitiveComparator.compare_2">compare</h2>
+                <div class="method private">
+                  <h2 class="methodHeader " id="TEST_Methods.method5">method5</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L61">
-                      global Integer <span class="hljs-title">compare</span>(Date d1, Date d2)
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Methods.cls#L23">
+                      String <span class="hljs-title">method5</span>()
                     </a>
                   </div>
+                  <div class="methodDescription">visible because starts with known keyword, despite implicit privacy</div>
                 </div>
-                <div class="method global">
-                  <h2 class="methodHeader " id="TEST_PrimitiveComparator.compare_3">compare</h2>
+                <div class="method private">
+                  <h2 class="methodHeader " id="TEST_Methods.method6">method6</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L67">
-                      global Integer <span class="hljs-title">compare</span>(Datetime d1, Datetime d2)
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Methods.cls#L28">
+                      Integer <span class="hljs-title">method6</span>()
                     </a>
                   </div>
+                  <div class="methodDescription">visible because starts with known keyword, despite implicit privacy</div>
                 </div>
-                <div class="method global">
-                  <h2 class="methodHeader " id="TEST_PrimitiveComparator.compare_4">compare</h2>
+                <div class="method private">
+                  <h2 class="methodHeader " id="TEST_Methods.method7">method7</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L73">
-                      global Integer <span class="hljs-title">compare</span>(Double d1, Double d2)
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Methods.cls#L33">
+                      Set&lt;String&gt; <span class="hljs-title">method7</span>()
                     </a>
                   </div>
+                  <div class="methodDescription">visible because starts with known keyword, despite implicit privacy</div>
                 </div>
-                <div class="method global">
-                  <h2 class="methodHeader " id="TEST_PrimitiveComparator.compare_5">compare</h2>
+                <div class="method private">
+                  <h2 class="methodHeader " id="TEST_Methods.method8">method8</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L79">
-                      global Integer <span class="hljs-title">compare</span>(Integer i1, Integer i2)
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Methods.cls#L38">
+                      List&lt;String&gt; <span class="hljs-title">method8</span>()
                     </a>
                   </div>
+                  <div class="methodDescription">visible because starts with known keyword, despite implicit privacy</div>
                 </div>
-                <div class="method global">
-                  <h2 class="methodHeader " id="TEST_PrimitiveComparator.compare_6">compare</h2>
+                <div class="method private">
+                  <h2 class="methodHeader " id="TEST_Methods.method9">method9</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L85">
-                      global Integer <span class="hljs-title">compare</span>(Long l1, Long l2)
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Methods.cls#L43">
+                      Map&lt;String, String&gt; <span class="hljs-title">method9</span>()
                     </a>
                   </div>
-                </div>
-                <div class="method global">
-                  <h2 class="methodHeader " id="TEST_PrimitiveComparator.compare_7">compare</h2>
-                  <div class="methodSignature">
-
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L91">
-                      global Integer <span class="hljs-title">compare</span>(String s1, String s2)
-                    </a>
-                  </div>
-                </div>
-                <div class="method global">
-                  <h2 class="methodHeader " id="TEST_PrimitiveComparator.compare_8">compare</h2>
-                  <div class="methodSignature">
-
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L97">
-                      global Integer <span class="hljs-title">compare</span>(Time t1, Time t2)
-                    </a>
-                  </div>
+                  <div class="methodDescription">visible because starts with known keyword, despite implicit privacy</div>
                 </div>
               </div>
             </details>

@@ -78,6 +78,9 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_Links" class="navItem class public" onclick="goToLocation('TEST_Links.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
                   </li>
+                  <li id="item-TEST_Methods" class="navItem class public" onclick="goToLocation('TEST_Methods.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
+                  </li>
                   <li id="item-TEST_MultiLineTagValues" class="navItem class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
                   </li>
@@ -220,7 +223,7 @@ export default `<!DOCTYPE html>
                   <div class="methodSubTitle ">Returns</div>
                   <div class="methodSubDescription">Looks like it returns a <code class="inlineCode">BotResponse</code> instance.</div>
                   <div class="methodSubTitle ">See</div>
-                  <div class="methodSubDescription"><span title="A matching reference could not be found!">TEST_BotController.submit</span></div>
+                  <div class="methodSubDescription"><span title="A valid link could not be created with this identifier.">TEST_BotController.submit</span></div>
                 </div>
               </div>
             </details>

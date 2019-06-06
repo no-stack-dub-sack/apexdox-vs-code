@@ -78,6 +78,9 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_Links" class="navItem class public" onclick="goToLocation('TEST_Links.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
                   </li>
+                  <li id="item-TEST_Methods" class="navItem class public" onclick="goToLocation('TEST_Methods.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
+                  </li>
                   <li id="item-TEST_MultiLineTagValues" class="navItem class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
                   </li>

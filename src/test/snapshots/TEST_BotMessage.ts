@@ -78,6 +78,9 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_Links" class="navItem class public" onclick="goToLocation('TEST_Links.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
                   </li>
+                  <li id="item-TEST_Methods" class="navItem class public" onclick="goToLocation('TEST_Methods.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
+                  </li>
                   <li id="item-TEST_MultiLineTagValues" class="navItem class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
                   </li>
@@ -184,7 +187,7 @@ export default `<!DOCTYPE html>
               <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a></div><br />Salesforce.com<br />Jul 2017
             </div>
             <p />
-            <details class="subSection properties" open>
+            <details class="subSection properties TEST_BotMessage" open>
               <summary>
                 <h2 class="subsectionTitle properties">Properties</h2>
               </summary>
@@ -200,56 +203,55 @@ export default `<!DOCTYPE html>
                   </tr>
                   <tr class="property public">
                     <td class="attrName">author</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L14">
-                          public String <span class="hljs-title">author<span>
-                </a></div></td>
+                    <td class="attrSignature">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L14">
+                        public String <span class="hljs-title">author<span>
+                </a></td>
                 <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
             <tr class="property public">
                 <td class="attrName">buttons</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L18">
                     public List&lt;BotMessageButton&gt; <span class="hljs-title">buttons<span>
-                </a></div></td>
+                </a></td>
                 <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
             <tr class="property public">
                 <td class="attrName">imageURL</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L19">
                     public String <span class="hljs-title">imageURL<span>
-                </a></div></td>
+                </a></td>
                 <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
             <tr class="property public">
                 <td class="attrName">items</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L17">
                     public List&lt;BotItem&gt; <span class="hljs-title">items<span>
-                </a></div></td>
+                </a></td>
                 <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
             <tr class="property public">
                 <td class="attrName">messageText</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L15">
                     public String <span class="hljs-title">messageText<span>
-                </a></div></td>
+                </a></td>
                 <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
             <tr class="property public">
                 <td class="attrName">records</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L16">
                     public List&lt;BotRecord&gt; <span class="hljs-title">records<span>
-                </a></div></td>
+                </a></td>
                 <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
@@ -284,9 +286,9 @@ export default `<!DOCTYPE html>
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotMessage.cls#L24">
                     public <span class="hljs-title">BotMessage</span>()
-                        </a>
-                      </div>
-                      <div class="methodDescription">Default constructor</div>
+                      </a>
+              </div>
+              <div class="methodDescription">Default constructor</div>
               </div>
               <div class="method public">
                 <h2 class="methodHeader " id="TEST_BotMessage.BotMessage_1">BotMessage</h2>
@@ -303,7 +305,7 @@ export default `<!DOCTYPE html>
                 <div class="paramName">messageText</div>
                 <div class="paramDescription">Message text param description. If you&#39;re reading this in code, the &#39;see&#39; tag below, serves no other purpose than to demonstrate using overload selectors, e.g. <code class="inlineCode">SomeClass.SomeOverloadedMethod[3]</code> to link a specific method overload in your documentation. The below example links to the 3rd overload of the <code class="inlineCode">BotResponse</code> constructor.</div>
                 <div class="methodSubTitle ">See</div>
-                <div class="methodSubDescription"><span title="A matching reference could not be found!">TEST_BotResponse.BotResponse</span></div>
+                <div class="methodSubDescription"><span title="A valid link could not be created with this identifier.">TEST_BotResponse.BotResponse</span></div>
               </div>
               <div class="method public">
                 <h2 class="methodHeader " id="TEST_BotMessage.BotMessage_2">BotMessage</h2>
@@ -322,7 +324,7 @@ export default `<!DOCTYPE html>
                 <div class="paramName">records</div>
                 <div class="paramDescription">A list of <code class="inlineCode">BotRecord</code>s</div>
                 <div class="methodSubTitle ">See</div>
-                <div class="methodSubDescription"><span title="A matching reference could not be found!">TEST_BotRecord</span></div>
+                <div class="methodSubDescription"><span title="A valid link could not be created with this identifier.">TEST_BotRecord</span></div>
               </div>
               <div class="method public">
                 <h2 class="methodHeader " id="TEST_BotMessage.BotMessage_3">BotMessage</h2>
@@ -360,7 +362,7 @@ export default `<!DOCTYPE html>
                 <div class="paramName">items</div>
                 <div class="paramDescription">A list of <code class="inlineCode">BotMessageButton</code>s</div>
                 <div class="methodSubTitle ">See</div>
-                <div class="methodSubDescription"><span title="A matching reference could not be found!">TEST_BotMessageButton</span></div>
+                <div class="methodSubDescription"><span title="A valid link could not be created with this identifier.">TEST_BotMessageButton</span></div>
               </div>
               <div class="method public">
                 <h2 class="methodHeader " id="TEST_BotMessage.BotMessage_5">BotMessage</h2>

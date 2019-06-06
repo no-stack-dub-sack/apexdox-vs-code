@@ -1,5 +1,9 @@
 export const last = <T>(arr: T[]): T => arr.length > 1 ? arr[arr.length - 1] : arr[0];
 
+export const head = <T>(arr: T[]): T => arr[0];
+
+export const tail = <T>(arr: T[]): T[] => arr.length > 1 ? arr.slice(1) : arr;
+
 interface IOnlyExcept {
     <T>(arr: T[], by: T[]): T[];
     <T, K extends keyof T>(arr: T[], by: T[K][], on: K): T[];

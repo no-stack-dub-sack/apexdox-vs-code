@@ -78,6 +78,9 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_Links" class="navItem class public" onclick="goToLocation('TEST_Links.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
                   </li>
+                  <li id="item-TEST_Methods" class="navItem class public" onclick="goToLocation('TEST_Methods.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
+                  </li>
                   <li id="item-TEST_MultiLineTagValues" class="navItem class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
                   </li>
@@ -184,7 +187,7 @@ export default `<!DOCTYPE html>
               <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="http://code.google.com/p/apex-lang/">Source</a>, <a target="_blank" rel="noopener noreferrer" href="http://www.apache.org/licenses/LICENSE-2.0">License</a></div><br />Richard Vanhook<br />Dec 28, 2008
             </div>
             <p />
-            <details class="subSection properties" open>
+            <details class="subSection properties TEST_StopWatch" open>
               <summary>
                 <h2 class="subsectionTitle properties">Properties</h2>
               </summary>
@@ -200,92 +203,91 @@ export default `<!DOCTYPE html>
                   </tr>
                   <tr class="property private">
                     <td class="attrName">runningState</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_StopWatch.cls#L36">
-                          private Integer <span class="hljs-title">runningState<span>
-                </a></div></td>
+                    <td class="attrSignature">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_StopWatch.cls#L36">
+                        private Integer <span class="hljs-title">runningState<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
                 <td class="attrName">splitState</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_StopWatch.cls#L37">
                     private Integer <span class="hljs-title">splitState<span>
-                </a></div></td>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
                 <td class="attrName">startTime</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_StopWatch.cls#L38">
                     private Long <span class="hljs-title">startTime<span>
-                </a></div></td>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
                 <td class="attrName">STATE_RUNNING</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_StopWatch.cls#L28">
                     private static final Integer <span class="hljs-title">STATE_RUNNING<span>
-                </a></div></td>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
                 <td class="attrName">STATE_SPLIT</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_StopWatch.cls#L34">
                     private static final Integer <span class="hljs-title">STATE_SPLIT<span>
-                </a></div></td>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
                 <td class="attrName">STATE_STOPPED</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_StopWatch.cls#L29">
                     private static final Integer <span class="hljs-title">STATE_STOPPED<span>
-                </a></div></td>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
                 <td class="attrName">STATE_SUSPENDED</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_StopWatch.cls#L30">
                     private static final Integer <span class="hljs-title">STATE_SUSPENDED<span>
-                </a></div></td>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
                 <td class="attrName">STATE_UNSPLIT</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_StopWatch.cls#L33">
                     private static final Integer <span class="hljs-title">STATE_UNSPLIT<span>
-                </a></div></td>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
                 <td class="attrName">STATE_UNSTARTED</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_StopWatch.cls#L27">
                     private static final Integer <span class="hljs-title">STATE_UNSTARTED<span>
-                </a></div></td>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
                 <td class="attrName">stopTime</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_StopWatch.cls#L39">
                     private Long <span class="hljs-title">stopTime<span>
-                </a></div></td>
+                </a></td>
                 
                 
             </tr>
@@ -338,11 +340,11 @@ export default `<!DOCTYPE html>
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_StopWatch.cls#L146">
                     global Long <span class="hljs-title">getSplitTime</span>()
-                        </a>
-                      </div>
-                      <div class="methodDescription">Call this method to get split time.</div>
-                      <div class="methodSubTitle ">Exceptions</div>
-                      <div class="methodSubDescription">Throws <code class="inlineCode">IllegalStateException</code></div>
+                      </a>
+              </div>
+              <div class="methodDescription">Call this method to get split time.</div>
+              <div class="methodSubTitle ">Exceptions</div>
+              <div class="methodSubDescription">Throws <code class="inlineCode">IllegalStateException</code></div>
               </div>
               <div class="method global">
                 <h2 class="methodHeader " id="TEST_StopWatch.getStartTime">getStartTime</h2>

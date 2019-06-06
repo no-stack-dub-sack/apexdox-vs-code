@@ -78,6 +78,9 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_Links" class="navItem class public" onclick="goToLocation('TEST_Links.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
                   </li>
+                  <li id="item-TEST_Methods" class="navItem class public" onclick="goToLocation('TEST_Methods.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
+                  </li>
                   <li id="item-TEST_MultiLineTagValues" class="navItem class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
                   </li>
@@ -184,7 +187,7 @@ export default `<!DOCTYPE html>
               <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="http://code.google.com/p/apex-lang/">Source</a>, <a target="_blank" rel="noopener noreferrer" href="http://www.apache.org/licenses/LICENSE-2.0">License</a></div><br />Richard Vanhook<br />Dec 28, 2008
             </div>
             <p />
-            <details class="subSection properties" open>
+            <details class="subSection properties TEST_ArrayUtils" open>
               <summary>
                 <h2 class="subsectionTitle properties">Properties</h2>
               </summary>
@@ -200,20 +203,19 @@ export default `<!DOCTYPE html>
                   </tr>
                   <tr class="property global">
                     <td class="attrName">EMPTY_STRING_ARRAY</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L26">
-                          global static String[] <span class="hljs-title">EMPTY_STRING_ARRAY<span>
-                </a></div></td>
+                    <td class="attrSignature">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L26">
+                        global static String[] <span class="hljs-title">EMPTY_STRING_ARRAY<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property global">
                 <td class="attrName">MAX_NUMBER_OF_ELEMENTS_IN_LIST</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L27">
                     global static Integer <span class="hljs-title">MAX_NUMBER_OF_ELEMENTS_IN_LIST<span>
-                </a></div></td>
+                </a></td>
                 
                 
             </tr>
@@ -323,9 +325,9 @@ export default `<!DOCTYPE html>
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L261">
                     global static void <span class="hljs-title">assertArraysAreEqual</span>(Object[] expected, Object[] actual)
-                        </a>
-                      </div>
-                      <div class="methodDescription">Assert that two arrays do not have equal elements</div>
+                      </a>
+              </div>
+              <div class="methodDescription">Assert that two arrays do not have equal elements</div>
               </div>
               <div class="method global">
                 <h2 class="methodHeader " id="TEST_ArrayUtils.assertArraysAreEqual_1">assertArraysAreEqual</h2>

@@ -1,9 +1,7 @@
 import * as Models from '../common/models';
 import FileManager from './FileManager';
-import GeneratorUtils from './generators/GeneratorUtils';
 import LineReader from '../common/LineReader';
 import Utils, { Option } from '../common/Utils';
-import { ApexModel } from '../common/models';
 import { basename } from 'path';
 import { IApexDocConfig } from '../common/Settings';
 import { last } from '../common/ArrayUtils';

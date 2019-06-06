@@ -78,6 +78,9 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_Links" class="navItem class public" onclick="goToLocation('TEST_Links.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
                   </li>
+                  <li id="item-TEST_Methods" class="navItem class public" onclick="goToLocation('TEST_Methods.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
+                  </li>
                   <li id="item-TEST_MultiLineTagValues" class="navItem class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
                   </li>
@@ -180,7 +183,7 @@ export default `<!DOCTYPE html>
             </div>
             <div class="classDetails"></div>
             <p />
-            <details class="subSection properties" open>
+            <details class="subSection properties TEST_Properties" open>
               <summary>
                 <h2 class="subsectionTitle properties">Properties</h2>
               </summary>
@@ -195,130 +198,354 @@ export default `<!DOCTYPE html>
 
                   </tr>
                   <tr class="property protected">
-                    <td class="attrName">eight</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L12">
-                          protected static Map&lt;String,String&gt; <span class="hljs-title">eight<span>
-                </a></div></td>
+                    <td class="attrName">outer_eight</td>
+                    <td class="attrSignature">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L12">
+                        protected static Map&lt;String,String&gt; <span class="hljs-title">outer_eight<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property protected">
-                <td class="attrName">eleven</td>
-                <td><div class="attrSignature">
+                <td class="attrName">outer_eleven</td>
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L15">
-                    protected Set&lt;String&gt; <span class="hljs-title">eleven<span>
-                </a></div></td>
+                    protected Set&lt;String&gt; <span class="hljs-title">outer_eleven<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
-                <td class="attrName">five</td>
-                <td><div class="attrSignature">
+                <td class="attrName">outer_five</td>
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L9">
-                    private String <span class="hljs-title">five<span>
-                </a></div></td>
+                    private String <span class="hljs-title">outer_five<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
-                <td class="attrName">four</td>
-                <td><div class="attrSignature">
+                <td class="attrName">outer_four</td>
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L8">
-                    private String <span class="hljs-title">four<span>
-                </a></div></td>
+                    private String <span class="hljs-title">outer_four<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
-                <td class="attrName">fourteen</td>
-                <td><div class="attrSignature">
+                <td class="attrName">outer_fourteen</td>
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L29">
-                    private Integer <span class="hljs-title">fourteen<span>
-                </a></div></td>
+                    private Integer <span class="hljs-title">outer_fourteen<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property protected">
-                <td class="attrName">nine</td>
-                <td><div class="attrSignature">
+                <td class="attrName">outer_nine</td>
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L13">
-                    protected Map&lt;String,String&gt; <span class="hljs-title">nine<span>
-                </a></div></td>
+                    protected Map&lt;String,String&gt; <span class="hljs-title">outer_nine<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">one</td>
-                <td><div class="attrSignature">
+                <td class="attrName">outer_one</td>
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L5">
-                    public String <span class="hljs-title">one<span>
-                </a></div></td>
+                    public String <span class="hljs-title">outer_one<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
-                <td class="attrName">seven</td>
-                <td><div class="attrSignature">
+                <td class="attrName">outer_seven</td>
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L11">
-                    private String <span class="hljs-title">seven<span>
-                </a></div></td>
+                    private String <span class="hljs-title">outer_seven<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
-                <td class="attrName">six</td>
-                <td><div class="attrSignature">
+                <td class="attrName">outer_six</td>
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L10">
-                    private String <span class="hljs-title">six<span>
-                </a></div></td>
+                    private String <span class="hljs-title">outer_six<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property protected">
-                <td class="attrName">ten</td>
-                <td><div class="attrSignature">
+                <td class="attrName">outer_ten</td>
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L14">
-                    protected List&lt;Integer&gt; <span class="hljs-title">ten<span>
-                </a></div></td>
+                    protected List&lt;Integer&gt; <span class="hljs-title">outer_ten<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
-                <td class="attrName">thirteen</td>
-                <td><div class="attrSignature">
+                <td class="attrName">outer_thirteen</td>
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L23">
-                    private String <span class="hljs-title">thirteen<span>
-                </a></div></td>
+                    private String <span class="hljs-title">outer_thirteen<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">three</td>
-                <td><div class="attrSignature">
+                <td class="attrName">outer_three</td>
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L7">
-                    public static String <span class="hljs-title">three<span>
-                </a></div></td>
+                    public static String <span class="hljs-title">outer_three<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
-                <td class="attrName">twelve</td>
-                <td><div class="attrSignature">
+                <td class="attrName">outer_twelve</td>
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L17">
-                    private String <span class="hljs-title">twelve<span>
-                </a></div></td>
+                    private String <span class="hljs-title">outer_twelve<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">two</td>
-                <td><div class="attrSignature">
+                <td class="attrName">outer_two</td>
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L6">
-                    public static final String <span class="hljs-title">two<span>
-                </a></div></td>
+                    public static final String <span class="hljs-title">outer_two<span>
+                </a></td>
                 
+                
+            </tr>
+                </table>
+            </div>
+            <p />
+            </details>
+            </details>
+            <details class="section" open>
+                <summary>
+            <h2 class="sectionTitle" id="TEST_Properties.InnerOne">
+                
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L41">
+                    TEST_Properties.InnerOne
+                </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
+                        </h2>
+                        </summary>
+
+
+
+                        <div class="classSignature">
+
+                          <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L41">
+                            public class InnerOne
+                          </a>
+                        </div>
+                        <div class="classDetails"></div>
+                        <p />
+                        <details class="subSection properties TEST_Properties_InnerOne" open>
+                          <summary>
+                            <h2 class="subsectionTitle properties">Properties</h2>
+                          </summary>
+
+                          <div class="subsectionContainer">
+                            <table class="attrTable properties">
+
+                              <tr>
+                                <th>Name</th>
+                                <th>Signature</th>
+
+                                <th>Description</th>
+                              </tr>
+                              <tr class="property private">
+                                <td class="attrName">inner_four</td>
+                                <td class="attrSignature">
+                                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L46">
+                                    private String <span class="hljs-title">inner_four<span>
+                </a></td>
+                
+                <td class="attrDescription"></td>
+            </tr>
+            <tr class="property public">
+                <td class="attrName">inner_one</td>
+                <td class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L43">
+                    public String <span class="hljs-title">inner_one<span>
+                </a></td>
+                
+                <td class="attrDescription">Description for inner_one</td>
+            </tr>
+            <tr class="property public">
+                <td class="attrName">inner_three</td>
+                <td class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L45">
+                    public static String <span class="hljs-title">inner_three<span>
+                </a></td>
+                
+                <td class="attrDescription"></td>
+            </tr>
+            <tr class="property public">
+                <td class="attrName">inner_two</td>
+                <td class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L44">
+                    public static final String <span class="hljs-title">inner_two<span>
+                </a></td>
+                
+                <td class="attrDescription"></td>
+            </tr>
+                </table>
+            </div>
+            <p />
+            </details>
+            </details>
+            <details class="section" open>
+                <summary>
+            <h2 class="sectionTitle" id="TEST_Properties.InnerThree">
+                
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L57">
+                    TEST_Properties.InnerThree
+                </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
+                                    </h2>
+                                    </summary>
+
+
+
+                                    <div class="classSignature">
+
+                                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L57">
+                                        public class InnerThree
+                                      </a>
+                                    </div>
+                                    <div class="classDetails"></div>
+                                    <p />
+                                    <details class="subSection properties TEST_Properties_InnerThree" open>
+                                      <summary>
+                                        <h2 class="subsectionTitle properties">Properties</h2>
+                                      </summary>
+
+                                      <div class="subsectionContainer">
+                                        <table class="attrTable properties">
+
+                                          <tr>
+                                            <th>Name</th>
+                                            <th>Signature</th>
+                                            <th>Annotations</th>
+                                            <th>Description</th>
+                                          </tr>
+                                          <tr class="property private">
+                                            <td class="attrName">inner_four</td>
+                                            <td class="attrSignature">
+                                              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L63">
+                                                private String <span class="hljs-title">inner_four<span>
+                </a></td>
+                <td></td>
+                <td class="attrDescription"></td>
+            </tr>
+            <tr class="property public">
+                <td class="attrName">inner_one</td>
+                <td class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L59">
+                    public String <span class="hljs-title">inner_one<span>
+                </a></td>
+                <td></td>
+                <td class="attrDescription">Description for inner_one</td>
+            </tr>
+            <tr class="property public">
+                <td class="attrName">inner_three</td>
+                <td class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L62">
+                    public static String <span class="hljs-title">inner_three<span>
+                </a></td>
+                <td></td>
+                <td class="attrDescription"></td>
+            </tr>
+            <tr class="property public">
+                <td class="attrName">inner_two</td>
+                <td class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L61">
+                    public static final String <span class="hljs-title">inner_two<span>
+                </a></td>
+                <td><div class="propAnnotations">@TestVisible</div></td>
+                <td class="attrDescription"></td>
+            </tr>
+                </table>
+            </div>
+            <p />
+            </details>
+            </details>
+            <details class="section" open>
+                <summary>
+            <h2 class="sectionTitle" id="TEST_Properties.InnerTwo">
+                
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L49">
+                    TEST_Properties.InnerTwo
+                </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
+                                                </h2>
+                                                </summary>
+
+
+
+                                                <div class="classSignature">
+
+                                                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L49">
+                                                    public class InnerTwo
+                                                  </a>
+                                                </div>
+                                                <div class="classDetails"></div>
+                                                <p />
+                                                <details class="subSection properties TEST_Properties_InnerTwo" open>
+                                                  <summary>
+                                                    <h2 class="subsectionTitle properties">Properties</h2>
+                                                  </summary>
+
+                                                  <div class="subsectionContainer">
+                                                    <table class="attrTable properties">
+
+                                                      <tr>
+                                                        <th>Name</th>
+                                                        <th>Signature</th>
+                                                        <th>Annotations</th>
+
+                                                      </tr>
+                                                      <tr class="property private">
+                                                        <td class="attrName">inner_four</td>
+                                                        <td class="attrSignature">
+                                                          <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L54">
+                                                            private String <span class="hljs-title">inner_four<span>
+                </a></td>
+                <td></td>
+                
+            </tr>
+            <tr class="property public">
+                <td class="attrName">inner_one</td>
+                <td class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L51">
+                    public String <span class="hljs-title">inner_one<span>
+                </a></td>
+                <td><div class="propAnnotations">@TestVisible</div></td>
+                
+            </tr>
+            <tr class="property public">
+                <td class="attrName">inner_three</td>
+                <td class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L53">
+                    public static String <span class="hljs-title">inner_three<span>
+                </a></td>
+                <td></td>
+                
+            </tr>
+            <tr class="property public">
+                <td class="attrName">inner_two</td>
+                <td class="attrSignature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_Properties.cls#L52">
+                    public static final String <span class="hljs-title">inner_two<span>
+                </a></td>
+                <td></td>
                 
             </tr>
                 </table>

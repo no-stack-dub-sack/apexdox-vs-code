@@ -78,6 +78,9 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_Links" class="navItem class public" onclick="goToLocation('TEST_Links.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
                   </li>
+                  <li id="item-TEST_Methods" class="navItem class public" onclick="goToLocation('TEST_Methods.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
+                  </li>
                   <li id="item-TEST_MultiLineTagValues" class="navItem class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
                   </li>
@@ -184,7 +187,7 @@ export default `<!DOCTYPE html>
               <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a></div><br />Salesforce.com<br />Jul 2017
             </div>
             <p />
-            <details class="subSection properties" open>
+            <details class="subSection properties TEST_BotItem" open>
               <summary>
                 <h2 class="subsectionTitle properties">Properties</h2>
               </summary>
@@ -200,20 +203,19 @@ export default `<!DOCTYPE html>
                   </tr>
                   <tr class="property public">
                     <td class="attrName">linkURL</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotItem.cls#L15">
-                          public String <span class="hljs-title">linkURL<span>
-                </a></div></td>
+                    <td class="attrSignature">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotItem.cls#L15">
+                        public String <span class="hljs-title">linkURL<span>
+                </a></td>
                 <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
             <tr class="property public">
                 <td class="attrName">name</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotItem.cls#L14">
                     public String <span class="hljs-title">name<span>
-                </a></div></td>
+                </a></td>
                 <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
@@ -236,12 +238,12 @@ export default `<!DOCTYPE html>
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotItem.cls#L21">
                     public <span class="hljs-title">BotItem</span>(String name)
-                        </a>
-                      </div>
-                      <div class="methodDescription">Convenience constructor to create a single item</div>
-                      <div class="methodSubTitle">Parameters</div>
-                      <div class="paramName">name</div>
-                      <div class="paramDescription">The <code class="inlineCode">BotItem</code>s name</div>
+                      </a>
+              </div>
+              <div class="methodDescription">Convenience constructor to create a single item</div>
+              <div class="methodSubTitle">Parameters</div>
+              <div class="paramName">name</div>
+              <div class="paramDescription">The <code class="inlineCode">BotItem</code>s name</div>
               </div>
               <div class="method public">
                 <h2 class="methodHeader " id="TEST_BotItem.BotItem_1">BotItem</h2>

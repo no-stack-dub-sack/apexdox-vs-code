@@ -78,6 +78,9 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_Links" class="navItem class public" onclick="goToLocation('TEST_Links.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
                   </li>
+                  <li id="item-TEST_Methods" class="navItem class public" onclick="goToLocation('TEST_Methods.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
+                  </li>
                   <li id="item-TEST_MultiLineTagValues" class="navItem class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
                   </li>
@@ -182,7 +185,7 @@ export default `<!DOCTYPE html>
               <div class="">The <code class="inlineCode">LIFXController</code> class. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad veniam, quis nostrud exercitation ullamco laboris nis.</div>
             </div>
             <p />
-            <details class="subSection properties" open>
+            <details class="subSection properties TEST_LIFXController" open>
               <summary>
                 <h2 class="subsectionTitle properties">Properties</h2>
               </summary>
@@ -198,11 +201,10 @@ export default `<!DOCTYPE html>
                   </tr>
                   <tr class="property private">
                     <td class="attrName">settings</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_LIFXController.cls#L9">
-                          private static final Dreamhouse_Settings__c <span class="hljs-title">settings<span>
-                </a></div></td>
+                    <td class="attrSignature">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_LIFXController.cls#L9">
+                        private static final Dreamhouse_Settings__c <span class="hljs-title">settings<span>
+                </a></td>
                 
                 
             </tr>
@@ -231,8 +233,8 @@ export default `<!DOCTYPE html>
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_LIFXController.cls#L12">
                     public static String <span class="hljs-title">getLights</span>()
-                        </a>
-                      </div>
+                      </a>
+              </div>
               </div>
               <div class="method public">
                 <h2 class="methodHeader " id="TEST_LIFXController.setBrightness">setBrightness</h2>

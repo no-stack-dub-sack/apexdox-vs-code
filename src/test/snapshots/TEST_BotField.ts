@@ -78,6 +78,9 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_Links" class="navItem class public" onclick="goToLocation('TEST_Links.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
                   </li>
+                  <li id="item-TEST_Methods" class="navItem class public" onclick="goToLocation('TEST_Methods.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
+                  </li>
                   <li id="item-TEST_MultiLineTagValues" class="navItem class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
                   </li>
@@ -181,7 +184,7 @@ export default `<!DOCTYPE html>
             <div class="classDetails">
               <div class="">The <code class="inlineCode">BotField</code> class. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad veniam, quis nostrud exercitation ullamco laboris nis.</div>
               <div class="classSubtitle ">See</div>
-              <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a>, <span title="A matching reference could not be found!">TEST_BotController</span>, <span title="A matching reference could not be found!">TEST_BotRecord</span></div><br />Salesforce.com<br />Jul 2017<div class="classSubtitle ">Example</div>
+              <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a>, <span title="A valid link could not be created with this identifier.">TEST_BotController</span>, <span title="A valid link could not be created with this identifier.">TEST_BotRecord</span></div><br />Salesforce.com<br />Jul 2017<div class="classSubtitle ">Example</div>
               <pre class="codeExample"><code>for (Dashboard d : dashboards) { 
 List&lt;BotField&gt; fields = new List&lt;BotField&gt;(); 
 fields.add(new BotField(&#39;Name&#39;, d.Title, &#39;/lightning/r/Dashboard/&#39; + d.Id + &#39;/view&#39;)); 
@@ -190,7 +193,7 @@ records.add(new BotRecord(fields));
 }</code></pre>
             </div>
             <p />
-            <details class="subSection properties" open>
+            <details class="subSection properties TEST_BotField" open>
               <summary>
                 <h2 class="subsectionTitle properties">Properties</h2>
               </summary>
@@ -206,29 +209,28 @@ records.add(new BotRecord(fields));
                   </tr>
                   <tr class="property public">
                     <td class="attrName">linkURL</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotField.cls#L26">
-                          public String <span class="hljs-title">linkURL<span>
-                </a></div></td>
+                    <td class="attrSignature">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotField.cls#L26">
+                        public String <span class="hljs-title">linkURL<span>
+                </a></td>
                 <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
             <tr class="property public">
                 <td class="attrName">name</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotField.cls#L24">
                     public String <span class="hljs-title">name<span>
-                </a></div></td>
+                </a></td>
                 <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
             <tr class="property public">
                 <td class="attrName">value</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotField.cls#L25">
                     public String <span class="hljs-title">value<span>
-                </a></div></td>
+                </a></td>
                 <td><div class="propAnnotations">@AuraEnabled</div></td>
                 
             </tr>
@@ -251,8 +253,8 @@ records.add(new BotRecord(fields));
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_BotField.cls#L28">
                     public <span class="hljs-title">BotField</span>(String name, String value)
-                        </a>
-                      </div>
+                      </a>
+              </div>
               </div>
               <div class="method public">
                 <h2 class="methodHeader " id="TEST_BotField.BotField_1">BotField</h2>

@@ -149,7 +149,7 @@ class SeeLinkGenerator {
             if (foundMatch) {
                 link = `<a href="javascript:void(0)" onclick="goToLocation('${href}')">${qualifier}</a>`;
             } else {
-                link = `<span title="A matching reference could not be found!">${qualifier}</span>`;
+                link = `<span title="A valid link could not be created with this identifier.">${qualifier}</span>`;
             }
 
             links.push(link);

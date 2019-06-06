@@ -2,31 +2,31 @@
  * @group Assertions
  */
 public class TEST_Properties {
-    public String one {get;set;}
-    public static final String two { get; set; }
-    public static String three { get; }
-    private String four { set; }
-    private String five {get; }
-    private String six {set;}
-    private String seven;
-    protected static Map<String,String> eight {get;set;}
-    protected Map<String,String> nine = new Map<String, String>();
-    protected List<Integer> ten = new List<Integer>();
-    protected Set<String> eleven {get;set;}
+    public String outer_one {get;set;}
+    public static final String outer_two { get; set; }
+    public static String outer_three { get; }
+    private String outer_four { set; }
+    private String outer_five {get; }
+    private String outer_six {set;}
+    private String outer_seven;
+    protected static Map<String,String> outer_eight {get;set;}
+    protected Map<String,String> outer_nine = new Map<String, String>();
+    protected List<Integer> outer_ten = new List<Integer>();
+    protected Set<String> outer_eleven {get;set;}
 
-    private String twelve {
+    private String outer_twelve {
         set {
             twelve = 'twelve';
         }
     }
 
-    private String thirteen {
+    private String outer_thirteen {
         get {
             return 'thirteen';
         }
     }
 
-    private Integer fourteen {
+    private Integer outer_fourteen {
         get {
             return 4;
         }
@@ -35,5 +35,31 @@ public class TEST_Properties {
         }
     }
 
-    Integer String invisible = 'invisible'; // not visible since prop w/o access modifer
+    // not visible since prop w/o access modifer
+    Integer String invisible = 'invisible';
+
+    public class InnerOne {
+        /** Description for inner_one */
+        public String inner_one;
+        public static final String inner_two;
+        public static String inner_three;
+        private String inner_four;
+    }
+
+    public class InnerTwo {
+        @TestVisible
+        public String inner_one;
+        public static final String inner_two;
+        public static String inner_three;
+        private String inner_four;
+    }
+
+    public class InnerThree {
+        /** Description for inner_one */
+        public String inner_one;
+        @TestVisible
+        public static final String inner_two;
+        public static String inner_three;
+        private String inner_four;
+    }
 }

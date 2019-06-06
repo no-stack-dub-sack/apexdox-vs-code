@@ -78,6 +78,9 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_Links" class="navItem class public" onclick="goToLocation('TEST_Links.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
                   </li>
+                  <li id="item-TEST_Methods" class="navItem class public" onclick="goToLocation('TEST_Methods.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
+                  </li>
                   <li id="item-TEST_MultiLineTagValues" class="navItem class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
                   </li>
@@ -182,7 +185,7 @@ export default `<!DOCTYPE html>
               <div class="">Testing that nested classes are properly documented.</div>
             </div>
             <p />
-            <details class="subSection properties" open>
+            <details class="subSection properties TEST_NestedClasses" open>
               <summary>
                 <h2 class="subsectionTitle properties">Properties</h2>
               </summary>
@@ -198,31 +201,30 @@ export default `<!DOCTYPE html>
                   </tr>
                   <tr class="property private">
                     <td class="attrName">m</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L25">
-                          private final String <span class="hljs-title">m<span>
-                </a></div></td>
+                    <td class="attrSignature">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L25">
+                        private final String <span class="hljs-title">m<span>
+                </a></td>
                 
-                <td><div class="attrDescription">Member variable for outer class</div></td>
+                <td class="attrDescription">Member variable for outer class</td>
             </tr>
             <tr class="property private">
                 <td class="attrName">MY_INT</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L8">
                     private static final Integer <span class="hljs-title">MY_INT<span>
-                </a></div></td>
+                </a></td>
                 
-                <td><div class="attrDescription">Static final variable (constant) – outer class level only</div></td>
+                <td class="attrDescription">Static final variable (constant) – outer class level only</td>
             </tr>
             <tr class="property public">
                 <td class="attrName">sharedState</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L14">
                     public static String <span class="hljs-title">sharedState<span>
-                </a></div></td>
+                </a></td>
                 
-                <td><div class="attrDescription">Non-final static variable - use this to communicate state across triggers within a single request)</div></td>
+                <td class="attrDescription">Non-final static variable - use this to communicate state across triggers within a single request)</td>
             </tr>
                 </table>
             </div>
@@ -240,9 +242,9 @@ export default `<!DOCTYPE html>
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L17">
                     public static Integer <span class="hljs-title">getInt</span>()
-                        </a>
-                      </div>
-                      <div class="methodDescription">Static method - outer class level only</div>
+                      </a>
+              </div>
+              <div class="methodDescription">Static method - outer class level only</div>
               </div>
               </div>
             </details>
@@ -468,7 +470,7 @@ export default `<!DOCTYPE html>
               <div class="">Inner class - because it is virtual it can be extended. This class implements an interface that, in turn, extends another interface. Consequently the class must implement all methods.</div>
             </div>
             <p />
-            <details class="subSection properties" open>
+            <details class="subSection properties TEST_NestedClasses_InnerClass" open>
               <summary>
                 <h2 class="subsectionTitle properties">Properties</h2>
               </summary>
@@ -484,31 +486,30 @@ export default `<!DOCTYPE html>
                   </tr>
                   <tr class="property private">
                     <td class="attrName">i</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L67">
-                          private final Integer <span class="hljs-title">i<span>
-                </a></div></td>
+                    <td class="attrSignature">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L67">
+                        private final Integer <span class="hljs-title">i<span>
+                </a></td>
                 
-                <td><div class="attrDescription">Inline initialization (happens after the block above executes)</div></td>
+                <td class="attrDescription">Inline initialization (happens after the block above executes)</td>
             </tr>
             <tr class="property private">
                 <td class="attrName">s</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L58">
                     private final String <span class="hljs-title">s<span>
-                </a></div></td>
+                </a></td>
                 
-                <td></td>
+                <td class="attrDescription"></td>
             </tr>
             <tr class="property private">
                 <td class="attrName">s2</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L59">
                     private final String <span class="hljs-title">s2<span>
-                </a></div></td>
+                </a></td>
                 
-                <td></td>
+                <td class="attrDescription"></td>
             </tr>
                 </table>
             </div>
@@ -535,9 +536,9 @@ export default `<!DOCTYPE html>
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L70">
                     <span class="hljs-title">InnerClass</span>()
-                        </a>
-                      </div>
-                      <div class="methodDescription">Explicit no argument constructor</div>
+                      </a>
+              </div>
+              <div class="methodDescription">Explicit no argument constructor</div>
               </div>
               <div class="method public">
                 <h2 class="methodHeader " id="TEST_NestedClasses.InnerClass.InnerClass_1">InnerClass.&lt;init&gt;</h2>
@@ -596,7 +597,7 @@ export default `<!DOCTYPE html>
               <div class="">Exception inner class</div>
             </div>
             <p />
-            <details class="subSection properties" open>
+            <details class="subSection properties TEST_NestedClasses_MyException" open>
               <summary>
                 <h2 class="subsectionTitle properties">Properties</h2>
               </summary>
@@ -612,13 +613,12 @@ export default `<!DOCTYPE html>
                   </tr>
                   <tr class="property public">
                     <td class="attrName">d</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L138">
-                          public Double <span class="hljs-title">d<span>
-                </a></div></td>
+                    <td class="attrSignature">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L138">
+                        public Double <span class="hljs-title">d<span>
+                </a></td>
                 
-                <td><div class="attrDescription">Exception class member variable</div></td>
+                <td class="attrDescription">Exception class member variable</td>
             </tr>
                 </table>
             </div>
@@ -639,9 +639,9 @@ export default `<!DOCTYPE html>
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L146">
                     protected void <span class="hljs-title">doIt</span>()
-                        </a>
-                      </div>
-                      <div class="methodDescription">Exception class method, marked as protected</div>
+                      </a>
+              </div>
+              <div class="methodDescription">Exception class method, marked as protected</div>
               </div>
               <div class="method private">
                 <h2 class="methodHeader " id="TEST_NestedClasses.MyException.MyException">MyException.&lt;init&gt;</h2>

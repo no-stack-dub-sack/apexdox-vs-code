@@ -78,6 +78,9 @@ export default `<!DOCTYPE html>
                   <li id="item-TEST_Links" class="navItem class public" onclick="goToLocation('TEST_Links.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
                   </li>
+                  <li id="item-TEST_Methods" class="navItem class public" onclick="goToLocation('TEST_Methods.html');">
+                    <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
+                  </li>
                   <li id="item-TEST_MultiLineTagValues" class="navItem class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
                   </li>
@@ -184,7 +187,7 @@ export default `<!DOCTYPE html>
               <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a></div><br />Salesforce.com<br />Jul 2017
             </div>
             <p />
-            <details class="subSection properties" open>
+            <details class="subSection properties TEST_SlackOpportunityPublisher" open>
               <summary>
                 <h2 class="subsectionTitle properties">Properties</h2>
               </summary>
@@ -200,13 +203,12 @@ export default `<!DOCTYPE html>
                   </tr>
                   <tr class="property private">
                     <td class="attrName">slackURL</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L17">
-                          private static final String <span class="hljs-title">slackURL<span>
-                </a></div></td>
+                    <td class="attrSignature">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L17">
+                        private static final String <span class="hljs-title">slackURL<span>
+                </a></td>
                 
-                <td><div class="attrDescription">The slack URL to use for publishing.</div></td>
+                <td class="attrDescription">The slack URL to use for publishing.</td>
             </tr>
                 </table>
             </div>
@@ -276,12 +278,12 @@ export default `<!DOCTYPE html>
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L24">
                     public static void <span class="hljs-title">postToSlack</span>(List&lt;Id&gt; opportunityId)
-                        </a>
-                      </div>
-                      <div class="methodDescription">Incididunt ut labore et dolore magna aliqua, quis autem vel eum iure reprehenderit qui incididunt.</div>
-                      <div class="methodSubTitle">Parameters</div>
-                      <div class="paramName">opportunityId</div>
-                      <div class="paramDescription">The Id of the opportunity to post.</div>
+                      </a>
+              </div>
+              <div class="methodDescription">Incididunt ut labore et dolore magna aliqua, quis autem vel eum iure reprehenderit qui incididunt.</div>
+              <div class="methodSubTitle">Parameters</div>
+              <div class="paramName">opportunityId</div>
+              <div class="paramDescription">The Id of the opportunity to post.</div>
               </div>
               </div>
             </details>
@@ -311,7 +313,7 @@ export default `<!DOCTYPE html>
 System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST&#39;, body));</code></pre>
             </div>
             <p />
-            <details class="subSection properties" open>
+            <details class="subSection properties TEST_SlackOpportunityPublisher_QueueableSlackCall" open>
               <summary>
                 <h2 class="subsectionTitle properties">Properties</h2>
               </summary>
@@ -327,29 +329,28 @@ System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST
                   </tr>
                   <tr class="property private">
                     <td class="attrName">body</td>
-                    <td>
-                      <div class="attrSignature">
-                        <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L96">
-                          private final String <span class="hljs-title">body<span>
-                </a></div></td>
+                    <td class="attrSignature">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L96">
+                        private final String <span class="hljs-title">body<span>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
                 <td class="attrName">method</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L95">
                     private final String <span class="hljs-title">method<span>
-                </a></div></td>
+                </a></td>
                 
                 
             </tr>
             <tr class="property private">
                 <td class="attrName">url</td>
-                <td><div class="attrSignature">
+                <td class="attrSignature">
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L94">
                     private final String <span class="hljs-title">url<span>
-                </a></div></td>
+                </a></td>
                 
                 
             </tr>
@@ -372,12 +373,12 @@ System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST
                 
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L114">
                     public void <span class="hljs-title">execute</span>(System.QueueableContext ctx)
-                        </a>
-                      </div>
-                      <div class="methodDescription">The execute method implements the <code class="inlineCode">System.Queueable</code> interface. And handle&#39;s the queueable&#39;s execution.</div>
-                      <div class="methodSubTitle">Parameters</div>
-                      <div class="paramName">ctx</div>
-                      <div class="paramDescription">The <code class="inlineCode">System.QueueableContext</code> for the execute method.</div>
+                      </a>
+              </div>
+              <div class="methodDescription">The execute method implements the <code class="inlineCode">System.Queueable</code> interface. And handle&#39;s the queueable&#39;s execution.</div>
+              <div class="methodSubTitle">Parameters</div>
+              <div class="paramName">ctx</div>
+              <div class="paramDescription">The <code class="inlineCode">System.QueueableContext</code> for the execute method.</div>
               </div>
               <div class="method public">
                 <h2 class="methodHeader " id="TEST_SlackOpportunityPublisher.QueueableSlackCall.QueueableSlackCall">QueueableSlackCall.&lt;init&gt;</h2>
