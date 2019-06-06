@@ -18,8 +18,8 @@ abstract class MarkupGenerator<T extends ApexModel> {
         return `<div class="${className}">${this.model.annotations.join(' ')}</div>`;
     }
 
-    protected description(className = '', tag = 'div'): string {
-        if (!this.model.description) {
+    protected description(className = '', tag = 'div', override = false): string {
+        if (!this.model.description && !override) {
             return '';
         }
 

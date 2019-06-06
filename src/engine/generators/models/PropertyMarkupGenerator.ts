@@ -31,7 +31,7 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
             </div>
             <p />`;
 
-        return GeneratorUtils.wrapWithDetail(markup, '<h2 class="subsectionTitle properties">Properties</h2>', 'subSection properties');
+        return GeneratorUtils.wrapWithDetail(markup, '<h2 class="subsectionTitle properties">Properties</h2>', `subSection properties ${cModel.name.replace('.', '_')}`);
     }
 
     protected static hasDescriptionColumn(headerRow: string): boolean {
@@ -59,20 +59,16 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
     }
 
     protected signatureLine(memberClassName: string): string {
-        return `<div class="attrSignature">${super.signatureLine(this.model.nameLine, memberClassName, true)}</div>`;
+        return `<td class="attrSignature">${super.signatureLine(this.model.nameLine, memberClassName, true)}</td>`;
     }
 
     protected propRow(memberClassName: string, hasAnnotationsColumn: boolean, hasDescriptionColumn: boolean): string {
         return `
             <tr class="property ${this.model.scope}">
                 <td class="attrName">${this.model.name}</td>
-                <td>${this.signatureLine(memberClassName)}</td>
-                ${hasAnnotationsColumn
-                    ? '<td>' + this.annotations('propAnnotations') + '</td>'
-                    : ''}
-                ${hasDescriptionColumn
-                    ? '<td>' + this.description('attrDescription') + '</td>'
-                    : ''}
+                ${this.signatureLine(memberClassName)}
+                ${hasAnnotationsColumn ? '<td>' + this.annotations('propAnnotations') + '</td>' : ''}
+                ${hasDescriptionColumn ? this.description('attrDescription', 'td', true) : ''}
             </tr>`;
     }
 }
