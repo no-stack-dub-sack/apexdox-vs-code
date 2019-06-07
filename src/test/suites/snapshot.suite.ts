@@ -11,7 +11,7 @@ import { ITestFile } from '../extension.test';
  * documentation engine, in which case, the  snapsots need to be updated. Snapshots can be
  * updated from the resulting test docs. See: ../../scripts/updateSnapshots.js.
  */
-const createSnapshotSuite = (files: ITestFile[]) => {
+export const createSnapshotSuite = (files: ITestFile[]) => {
     suite('Snapshot Tests', function() {
         files.forEach(file => {
             test(`${file.name} contents should match reference snapshot`, function() {
@@ -38,5 +38,3 @@ const createSnapshotSuite = (files: ITestFile[]) => {
         });
     });
 };
-
-export default createSnapshotSuite;

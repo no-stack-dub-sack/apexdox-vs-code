@@ -5,13 +5,12 @@ import { except, last, only } from '../common/ArrayUtils';
 import { ITestFile } from './extension.test';
 
 // TODO:
-// - interfaces
 // - menu links
-// - classes / nested classes
 
 const createEngineTests = (files: ITestFile[]) => {
 
     suite('Core Engine', () => {
+
         test('Should correctly set title from config', function() {
             const indexHtml = last(only(files, ['index.html'], 'name'));
             const $ = cheerio.load(indexHtml.snapshot);
@@ -57,78 +56,6 @@ const createEngineTests = (files: ITestFile[]) => {
                 .filter(item => expectedFiles.indexOf(item) === -1);
 
             assert.equal(offendingMenuItems.length, 0, `Unexpected menu items found: ${offendingMenuItems.join(', ')}`);
-        });
-
-        test('Should correctly parse enum values (inner)', function() {
-            const testFile = last(only(files, ['TEST_EnumInner.html'], 'name'));
-            const $ = cheerio.load(testFile.snapshot);
-
-            const enums = $('td.enumValues').toArray();
-            const days = $(enums[0]).text().split(',').map(m => m.trim());
-            const months = $(enums[1]).text().split(',').map(m => m.trim());
-            const numbers = $(enums[2]).text().split(',').map(m => m.trim());
-            const rgb = $(enums[3]).text().split(',').map(m => m.trim());
-
-            const expectedMonths = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-            const expectedDays = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
-            const expectedNumbers = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
-            const expectedRgb = ['RED', 'GREEN', 'BLUE'];
-
-            assert.deepEqual(months, expectedMonths, 'Enum values do not match.');
-            assert.deepEqual(days, expectedDays, 'Enum values do not match.');
-            assert.deepEqual(numbers, expectedNumbers, 'Enum values do not match.');
-            assert.deepEqual(rgb, expectedRgb, 'Enum values do not match.');
-        });
-
-        test('Should correctly parse enum values (.cls)', function() {
-            const testFile = last(only(files, ['TEST_EnumClass.html'], 'name'));
-            const $ = cheerio.load(testFile.snapshot);
-
-            const statuses = $('td.enumValues').toArray().map(el => $(el).text().trim());
-            const expectedStatuses = ['QUEUED','PROCESSING','COMPLETE','COMPLETE_WITH_ERRORS','FAILED'];
-            assert.deepEqual(statuses, expectedStatuses, 'Enum values do not match.');
-        });
-
-        test('Should correctly capture method annotations over multiple lines', function() {
-            const testFile = last(only(files, ['TEST_Annotations.html'], 'name'));
-            const $ = cheerio.load(testFile.snapshot);
-
-            const annotations = last(
-                $('.methodHeader').toArray()
-                    .filter(el => $(el).text().trim() === 'method1')
-                    .map(el => $(el).next().text())
-            );
-
-            const expectedAnnotations = '@FirstAnnotation @SecondAnnotation @ThirdAnnotation';
-            assert.deepEqual(annotations, expectedAnnotations, 'Annotations do not match.');
-        });
-
-        test('Should correctly capture class annotations over multiple lines', function() {
-            const testFile = last(only(files, ['TEST_Annotations.html'], 'name'));
-            const $ = cheerio.load(testFile.snapshot);
-
-            const annotations = $('.classAnnotations').text();
-
-            const expectedAnnotations = `@FirstAnnotation(param=true) @SecondAnnotation(paramWithValue='/value/*') @ThirdAnnotation`;
-            assert.deepEqual(annotations, expectedAnnotations, 'Annotations do not match.');
-        });
-
-        test('Should correctly capture annotations with params', function() {
-            const testFile = last(only(files, ['TEST_Annotations.html'], 'name'));
-            const $ = cheerio.load(testFile.snapshot);
-
-            const methods = $('.methodHeader').toArray();
-            const annotations1 = last(methods.filter(el => $(el).text().trim() === 'method2').map(el => $(el).next().text()));
-            const annotations2 = last(methods.filter(el => $(el).text().trim() === 'method3').map(el => $(el).next().text()));
-            const annotations3 = last(methods.filter(el => $(el).text().trim() === 'method4').map(el => $(el).next().text()));
-
-            const expected1 = `@InvocableMethod(label='Get Account Names' description='Returns the list of account names corresponding to the specified account IDs.')`;
-            const expected2 = `@AuraEnabled(cacheable=true)`;
-            const expected3 = `@AuraEnabled (cacheable=true)`;
-
-            assert.deepEqual(annotations1, expected1, 'Annotation does not match.');
-            assert.deepEqual(annotations2, expected2, 'Annotation does not match.');
-            assert.deepEqual(annotations3, expected3, 'Annotation does not match.');
         });
 
         test('Should capture tag values over multiple lines', function() {

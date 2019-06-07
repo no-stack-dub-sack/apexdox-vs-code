@@ -1,10 +1,6 @@
+import * as suites from './suites';
 import * as vscode from 'vscode';
 import createEngineTests from './engine.test';
-import createFilesAndAssetsSuite from './suites/filesAndAssets.suite';
-import createMethodsSuite from './suites/methods.suite';
-import createPropertiesSuite from './suites/properties.suite';
-import createSeeLinkSuite from './suites/seeLink.suite';
-import createSnapshotSuite from './suites/snapshot.suite';
 import LineReader from '../common/LineReader';
 import { except } from '../common/ArrayUtils';
 import { readdirSync } from 'fs';
@@ -46,16 +42,19 @@ const createMochaTestSuite = async () => {
         if (runEngineTests) {
             suite('Documentation Engine Tests', function() {
                 createEngineTests(files);
-                createFilesAndAssetsSuite(files);
-                createMethodsSuite(files);
-                createPropertiesSuite(files);
-                createSeeLinkSuite(files);
+                suites.createFilesAndAssetsSuite(files);
+                suites.createClassesSuite(files);
+                suites.createMethodsSuite(files);
+                suites.createPropertiesSuite(files);
+                suites.createEnumsSuite(files);
+                suites.createAnnotationsSuite(files);
+                suites.createSeeLinkSuite(files);
             });
 
         }
 
         if (runSnapshotTests) {
-            createSnapshotSuite(files);
+            suites.createSnapshotSuite(files);
         }
     });
 

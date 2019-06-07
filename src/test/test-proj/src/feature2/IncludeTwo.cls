@@ -3,7 +3,8 @@
  * @author P. Weinberg
  * @since 2019
  */
-public class IncludeTwo {
+@isTest
+class IncludeTwo {
     // use this at some point to test paramsFromNameLine method model getter
     public static Map<String, Database.DeleteResult> myFunkyMethod(
         String str,

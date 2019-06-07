@@ -154,7 +154,7 @@ export default `<!DOCTYPE html>
                   <li id="item-IncludeOne" class="navItem class public" onclick="goToLocation('IncludeOne.html');">
                     <a tabindex="1" href="javascript:void(0)">IncludeOne</a>
                   </li>
-                  <li id="item-IncludeTwo" class="navItem class public" onclick="goToLocation('IncludeTwo.html');">
+                  <li id="item-IncludeTwo" class="navItem class private" onclick="goToLocation('IncludeTwo.html');">
                     <a tabindex="1" href="javascript:void(0)">IncludeTwo</a>
                   </li>
                 </ul>
@@ -216,7 +216,7 @@ export default `<!DOCTYPE html>
                   <div class="methodSignature">
 
                     <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L7">
-                      Integer <span class="hljs-title">doSomething</span>(Object object1, Object object2)
+                      MyCustomClass.MyInnerClass <span class="hljs-title">doSomething</span>(Object object1, Object object2)
                     </a>
                   </div>
                 </div>
@@ -225,7 +225,7 @@ export default `<!DOCTYPE html>
                   <div class="methodSignature">
 
                     <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L9">
-                      Integer <span class="hljs-title">doSomethingElse</span>(Integer myInt, String myString)
+                      Map&lt;String, Map&lt;String, List&lt;String&gt;&gt;&gt; <span class="hljs-title">doSomethingElse</span>(Integer myInt, String myString)
                     </a>
                   </div>
                 </div>

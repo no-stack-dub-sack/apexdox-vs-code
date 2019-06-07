@@ -154,7 +154,7 @@ export default `<!DOCTYPE html>
                   <li id="item-IncludeOne" class="navItem class public" onclick="goToLocation('IncludeOne.html');">
                     <a tabindex="1" href="javascript:void(0)">IncludeOne</a>
                   </li>
-                  <li id="item-IncludeTwo" class="navItem class public" onclick="goToLocation('IncludeTwo.html');">
+                  <li id="item-IncludeTwo" class="navItem class private" onclick="goToLocation('IncludeTwo.html');">
                     <a tabindex="1" href="javascript:void(0)">IncludeTwo</a>
                   </li>
                 </ul>
@@ -432,7 +432,7 @@ export default `<!DOCTYPE html>
                   <div class="methodSignature">
 
                     <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L123">
-                      public static Integer <span class="hljs-title">overloadedMethod</span>()
+                      public Integer <span class="hljs-title">overloadedMethod</span>()
                     </a>
                   </div>
                 </div>
@@ -441,7 +441,7 @@ export default `<!DOCTYPE html>
                   <div class="methodSignature">
 
                     <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_NestedClasses.cls#L124">
-                      public static Integer <span class="hljs-title">overloadedMethod</span>(Integer int)
+                      public Integer <span class="hljs-title">overloadedMethod</span>(Integer someInt)
                     </a>
                   </div>
                 </div>

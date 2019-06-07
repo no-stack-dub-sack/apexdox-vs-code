@@ -3,7 +3,7 @@ import cheerio from 'cheerio';
 import { ITestFile } from '../extension.test';
 import { last, only } from '../../common/ArrayUtils';
 
-const createPropertiesSuite = (files: ITestFile[]) => {
+export const createPropertiesSuite = (files: ITestFile[]) => {
     suite('Properties', function() {
         test('Should correctly parse all varieties of non-implicitly private properties', function() {
             const testFile = last(only(files, ['TEST_Properties.html'], 'name'));
@@ -63,5 +63,3 @@ const createPropertiesSuite = (files: ITestFile[]) => {
         });
     });
 };
-
-export default createPropertiesSuite;

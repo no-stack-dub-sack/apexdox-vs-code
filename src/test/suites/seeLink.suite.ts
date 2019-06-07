@@ -3,7 +3,7 @@ import cheerio from 'cheerio';
 import { head, last, only } from '../../common/ArrayUtils';
 import { ITestFile } from '../extension.test';
 
-const createSeeLinkSuite = (files: ITestFile[]) => {
+export const createSeeLinkSuite = (files: ITestFile[]) => {
     suite('See Links', function() {
         test('Should correctly parse and link "@see" markdown syntax', function() {
             const testFile = last(only(files, ['TEST_Links.html'], 'name'));
@@ -87,5 +87,3 @@ const createSeeLinkSuite = (files: ITestFile[]) => {
         });
     });
 };
-
-export default createSeeLinkSuite;

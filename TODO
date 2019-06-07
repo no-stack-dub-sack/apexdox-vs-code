@@ -28,6 +28,8 @@ Phase Two:
     ☐ User defined CSS stylesheet that allows overriding current styles
     ☐ Trigger documentation!!
     ☐ Global search!
+    ☐ Method & Props headers should hide on a per class basis when filters toggled leave no methods or props left in that class. Currently, all methods or props of a given scope must be hidden (throughout all parent and child classes) before the header will hide itself.
+    ☐ Child classes are not subject to scope filtering. Should private inner classes be hidden when private scope is un-checked?
 
 Documentation:
     ☐ README

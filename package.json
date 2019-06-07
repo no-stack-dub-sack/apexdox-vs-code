@@ -179,7 +179,7 @@
 		"test": "yarn run test-setup && node ./node_modules/vscode/bin/test",
 		"test-setup": "yarn run test-compile && yarn run test-cleanup",
 		"test-compile": "tsc -p ./",
-		"test-cleanup": "rm -r ./src/test/test-proj/docs/*",
+		"test-cleanup": "rm -rf ./src/test/test-proj/docs",
 		"update-snapshots": "rm ./src/test/snapshots/* && node ./scripts/updateSnapshots.js"
 	},
 	"devDependencies": {

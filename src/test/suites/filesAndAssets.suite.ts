@@ -3,7 +3,7 @@ import { existsSync } from 'fs';
 import { ITestFile, targetDir } from '../extension.test';
 import { resolve } from 'path';
 
-const createFilesAndAssetsSuite = (files: ITestFile[]) => {
+export const createFilesAndAssetsSuite = (files: ITestFile[]) => {
     suite('Files and Assets', function() {
         test('Should create docs', function() {
             assert.notEqual(files.length, 0);
@@ -50,5 +50,3 @@ const createFilesAndAssetsSuite = (files: ITestFile[]) => {
         });
     });
 };
-
-export default createFilesAndAssetsSuite;

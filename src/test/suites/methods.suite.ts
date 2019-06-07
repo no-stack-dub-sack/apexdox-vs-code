@@ -8,7 +8,7 @@ import {
     } from '../../common/ArrayUtils';
 import { ITestFile } from '../extension.test';
 
-const createMethodsSuite = (files: ITestFile[]) => {
+export const createMethodsSuite = (files: ITestFile[]) => {
     suite('Methods', function() {
         test('Should correctly parse public methods', function() {
             const testFile = last(only(files, ['TEST_Methods.html'], 'name'));
@@ -95,5 +95,3 @@ const createMethodsSuite = (files: ITestFile[]) => {
         });
     });
 };
-
-export default createMethodsSuite;

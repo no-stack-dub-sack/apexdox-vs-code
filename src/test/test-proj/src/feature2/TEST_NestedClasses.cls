@@ -120,8 +120,8 @@ public class TEST_NestedClasses {
      */
     public override Integer abstractMethod() { return 5; }
 
-    public static Integer overloadedMethod() { return 1; }
-    public static Integer overloadedMethod(Integer int) { return 1 + int; }
+    public Integer overloadedMethod() { return 1; }
+    public Integer overloadedMethod(Integer someInt) { return 1 + someInt; }
   }
 
   /** A second sub-class of the original InnerClass */

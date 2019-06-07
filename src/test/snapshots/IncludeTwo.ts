@@ -154,7 +154,7 @@ export default `<!DOCTYPE html>
                   <li id="item-IncludeOne" class="navItem class public" onclick="goToLocation('IncludeOne.html');">
                     <a tabindex="1" href="javascript:void(0)">IncludeOne</a>
                   </li>
-                  <li id="item-IncludeTwo" class="navItem class public" onclick="goToLocation('IncludeTwo.html');">
+                  <li id="item-IncludeTwo" class="navItem class private" onclick="goToLocation('IncludeTwo.html');">
                     <a tabindex="1" href="javascript:void(0)">IncludeTwo</a>
                   </li>
                 </ul>
@@ -167,18 +167,18 @@ export default `<!DOCTYPE html>
             <summary>
               <h2 class="sectionTitle" id="IncludeTwo">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/IncludeTwo.cls#L6">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/IncludeTwo.cls#L7">
                   IncludeTwo
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
             </summary>
 
-
+            <div class="classAnnotations">@isTest</div>
 
             <div class="classSignature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/IncludeTwo.cls#L6">
-                public class IncludeTwo
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/IncludeTwo.cls#L7">
+                class IncludeTwo
               </a>
             </div>
             <div class="classDetails">
@@ -200,7 +200,7 @@ export default `<!DOCTYPE html>
                   <h2 class="methodHeader " id="IncludeTwo.myFunkyMethod">myFunkyMethod</h2>
                   <div class="methodSignature">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/IncludeTwo.cls#L8">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/IncludeTwo.cls#L9">
                       public static Map&lt;String, Database.DeleteResult&gt; <span class="hljs-title">myFunkyMethod</span>( String str, Map&lt;String, Map&lt;String, Map&lt;String, List&lt;Database.DeleteResult&gt;&gt;&gt;&gt; ridicMap, List&lt;Map&lt;String, Map&lt;Integer, List&lt;Database.DeleteResult&gt;&gt;&gt;&gt; ridicList, Set&lt;Map&lt;Integer, List&lt;Map&lt;String, String&gt;&gt;&gt;&gt; ridicSet)
                     </a>
                   </div>
