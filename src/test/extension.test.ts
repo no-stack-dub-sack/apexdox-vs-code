@@ -1,7 +1,7 @@
 import * as suites from './suites';
-import * as vscode from 'vscode';
-import createEngineTests from './engine.test';
 import LineReader from '../common/LineReader';
+import { commands } from 'vscode';
+import { createSnapshotSuite } from './suites/snapshot.suite';
 import { except } from '../common/ArrayUtils';
 import { readdirSync } from 'fs';
 import { resolve as resolvePath } from 'path';
@@ -13,12 +13,15 @@ export interface ITestFile {
 }
 
 export const targetDir = resolvePath(__dirname, '../../src/test/test-proj/docs');
-const runSnapshotTests = true; // easily turn off snapshot tests if desired during dev
-const runEngineTests = true; // easily turn off engine tests if desired during dev
+const testSuites : { [index: string] : (files: ITestFile[]) => void } = suites;
+
+// turn off engine or snapshot tests during test dev
+const runSnapshotTests = true;
+const runEngineTests = true;
 
 const runApexDoc = () => {
     return new Promise(resolve => {
-        resolve(vscode.commands.executeCommand('apexDoc2.runApexDoc'));
+        resolve(commands.executeCommand('apexDoc2.runApexDoc'));
     }).then(() => {
         const fileNames = readdirSync(targetDir);
         const files: ITestFile[] = except(fileNames, ['assets', 'Page.html']).map(fileName => {
@@ -34,31 +37,29 @@ const runApexDoc = () => {
     });
 };
 
-const createMochaTestSuite = async () => {
+const runTests = async () => {
     const files = await runApexDoc();
 
-    suite("ApexDoc2 Extension Tests", function () {
+    suite('ApexDoc2 Extension Tests', function () {
 
         if (runEngineTests) {
             suite('Documentation Engine Tests', function() {
-                createEngineTests(files);
-                suites.createFilesAndAssetsSuite(files);
-                suites.createClassesSuite(files);
-                suites.createMethodsSuite(files);
-                suites.createPropertiesSuite(files);
-                suites.createEnumsSuite(files);
-                suites.createAnnotationsSuite(files);
-                suites.createSeeLinkSuite(files);
+                const suiteNames = Object.keys(testSuites);
+                suiteNames.forEach(suiteName => {
+                    if (suiteName !== 'createSnapshotSuite') {
+                        const createSuite = testSuites[suiteName];
+                        createSuite(files);
+                    }
+                });
             });
-
         }
 
         if (runSnapshotTests) {
-            suites.createSnapshotSuite(files);
+            createSnapshotSuite(files);
         }
     });
 
     run();
 };
 
-createMochaTestSuite();
+runTests();

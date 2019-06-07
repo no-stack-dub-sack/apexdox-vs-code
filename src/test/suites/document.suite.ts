@@ -1,16 +1,11 @@
 import * as assert from 'assert';
 import cheerio from 'cheerio';
 import { basename } from 'path';
-import { except, last, only } from '../common/ArrayUtils';
-import { ITestFile } from './extension.test';
+import { except, last, only } from '../../common/ArrayUtils';
+import { ITestFile } from '../extension.test';
 
-// TODO:
-// - menu links
-
-const createEngineTests = (files: ITestFile[]) => {
-
-    suite('Core Engine', () => {
-
+export const createDocumentSuite = (files: ITestFile[]) => {
+    suite('Document', () => {
         test('Should correctly set title from config', function() {
             const indexHtml = last(only(files, ['index.html'], 'name'));
             const $ = cheerio.load(indexHtml.snapshot);
@@ -58,6 +53,21 @@ const createEngineTests = (files: ITestFile[]) => {
             assert.equal(offendingMenuItems.length, 0, `Unexpected menu items found: ${offendingMenuItems.join(', ')}`);
         });
 
+        test('Should correctly link each menu item to its corresponding doc page', function() {
+            const indexHtml = last(only(files, ['index.html'], 'name'));
+            const $ = cheerio.load(indexHtml.snapshot);
+
+            $('li.navItem')
+                .toArray()
+                .map(el => ({
+                    text: $(el).text().trim(),
+                    onclick: $(el).attr('onclick')
+                }))
+                .forEach(menuObj => {
+                    assert.ok(menuObj.onclick.includes(menuObj.text + '.html'), "Menu item's onclick attribute does not link to correct file.");
+                });
+        });
+
         test('Should capture tag values over multiple lines', function() {
             const testFile = last(only(files, ['TEST_MultiLineTagValues.html'], 'name'));
             let $ = cheerio.load(testFile.snapshot);
@@ -85,5 +95,3 @@ const createEngineTests = (files: ITestFile[]) => {
         });
     });
 };
-
-export default createEngineTests;

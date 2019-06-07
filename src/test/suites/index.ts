@@ -1,5 +1,6 @@
 export * from './annotations.suite';
 export * from './classes.suite';
+export * from './document.suite';
 export * from './enums.suite';
 export * from './filesAndAssets.suite';
 export * from './methods.suite';
