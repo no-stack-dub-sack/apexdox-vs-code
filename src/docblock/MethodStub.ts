@@ -178,14 +178,33 @@ class MethodStub extends DocBlockStub {
      * @param method The method to get the return type for
      */
     private getReturnType(method: MethodModel): string {
+        const PRECEDING_WORDS = ['public','private','protected','global','static','virtual','testMethod','override'];
         const name = method.name, nameLine = method.nameLine;
-        const prevWord = Utils.previousWord(nameLine, nameLine.indexOf(name));
-
+        let prevWord = Utils.previousWord(nameLine, nameLine.indexOf(name));
+        let returnType = '';
+        // if prev word is access modifier on first run
+        // we are dealing with a constructor. Treat as void.
         if (ApexDoc.SCOPES.includes(prevWord)) {
             return 'void';
         }
+        // handle both simple return types like `Integer` or `List<String>`
+        // and return types containing spaces, like `Map<String, String>`.
+        // Basically, just keep adding previous word to the front until
+        // we hit a keyword which indicates it's no longer part of the
+        // type or until we hit the beginning of the line (in the case of
+        // an implicitly privacy where start of the sig is return type).
+        else if (prevWord) {
+            returnType += prevWord;
+            while ((prevWord = Utils.previousWord(nameLine, nameLine.indexOf(returnType)))) {
+                if (PRECEDING_WORDS.includes(prevWord)) {
+                    break;
+                } else {
+                    returnType = `${prevWord} ${returnType}`;
+                }
+            }
+        }
 
-        return prevWord || 'void';
+        return returnType || 'void';
     }
 
     /**

@@ -69,8 +69,10 @@ class ClassModel extends TopLevelModel {
     }
 
     public get methods(): Array<MethodModel> {
-        // ensure interface methods take the
-        // scope of their defining type
+        // interface methods do not have access modifiers.
+        // ensure that they take the scope of their defining
+        // type and are not treated as private which is the
+        // default for methods w/o access mods
         if (this._isInterface) {
             for (let method of this._methods) {
                 method.scope = this._scope;
