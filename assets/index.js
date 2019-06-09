@@ -1,10 +1,12 @@
-// #region Global vars / Life-Cycle Functions
+import searchIdx from './search-idx.js';
+
+// #region Constants / Life-Cycle Hooks
 /***********************************************************************
 ***********************************************************************/
-const SCOPES = ['global', 'public', 'private', 'protected', 'testMethod', 'webService'];
-const APEX_DOC_MENU = 'APEX_DOC_2_MENU';
-const APEX_DOC_ACTIVE_EL = 'APEX_DOC_2_ACTIVE_EL';
-const APEX_DOC_SCOPE = 'APEX_DOC_2_SCOPE';
+const SCOPES = ['global', 'public', 'private', 'protected', 'testMethod', 'webService'],
+	  APEX_DOC_MENU = 'APEX_DOC_2_MENU',
+	  APEX_DOC_ACTIVE_EL = 'APEX_DOC_2_ACTIVE_EL',
+	  APEX_DOC_SCOPE = 'APEX_DOC_2_SCOPE';
 
 // document ready function - removes jQuery dependency
 document.addEventListener("DOMContentLoaded", () => {
@@ -23,6 +25,7 @@ window.onbeforeunload = () => {
 	updateActiveElement();
 }
 // #endregion
+
 
 // #region Initialization & Menu Utils
 /***********************************************************************
@@ -225,22 +228,6 @@ function shouldCheckAll(list) {
 	}
 }
 
-function toggleAllScopes(isShow) {
-	const checkboxes = document.querySelectorAll('input[type=checkbox]');
-	// NOTE: for some reason, just checking or un-checking the checkboxes
-	// via attribute and then using hideAllScopes or showAllScopes wasn't
-	// working as expected, use click() to trigger the onclick funcs instead.
-	checkboxes.forEach(checkbox => {
-		if (checkbox.id !== 'cbx-all') {
-			if (isShow && !checkbox.checked) {
-				checkbox.click();
-			} else if (!isShow && checkbox.checked) {
-				checkbox.click();
-			}
-		}
-	});
-}
-
 function toggleScope(scope, isShow) {
 	setScope();
 
@@ -300,12 +287,7 @@ function maybeHideElement(toHide, itemSelector) {
 		toggleVisibility(container, false);
 	}
 }
-// #endregion
 
-
-// #region Navigation utils
-/***********************************************************************
-***********************************************************************/
 function toggleActiveClass(elem) {
 	// remove isActive from current active element
 	let item = document.querySelector('.active');
@@ -314,8 +296,13 @@ function toggleActiveClass(elem) {
 	// add to new active element
 	elem.classList.add('active');
 }
+// #endregion
 
-function goToLocation(url) {
+
+// #Global Functions, called from HTML
+/***********************************************************************
+***********************************************************************/
+window.goToLocation = (url) => {
 	// prevent collapsing / expanding menu when clicking on Class Group link
 	event.preventDefault();
 	toggleActiveClass(event.currentTarget);
@@ -323,4 +310,21 @@ function goToLocation(url) {
 		document.location.href = url;
 	}
 }
+
+window.toggleAllScopes = (isShow) => {
+	const checkboxes = document.querySelectorAll('input[type=checkbox]');
+	// NOTE: for some reason, just checking or un-checking the checkboxes
+	// via attribute and then using hideAllScopes or showAllScopes wasn't
+	// working as expected, use click() to trigger the onclick funcs instead.
+	checkboxes.forEach(checkbox => {
+		if (checkbox.id !== 'cbx-all') {
+			if (isShow && !checkbox.checked) {
+				checkbox.click();
+			} else if (!isShow && checkbox.checked) {
+				checkbox.click();
+			}
+		}
+	});
+}
+
 // #endregion

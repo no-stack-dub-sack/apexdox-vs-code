@@ -2,6 +2,7 @@ import * as Models from '../common/models';
 import * as templates from '../common/templates';
 import ApexDoc from './ApexDoc';
 import ApexDocError from '../common/ApexDocError';
+import cheerio from 'cheerio';
 import ClassMarkupGenerator from './generators/models/ClassMarkupGenerator';
 import EnumMarkupGenerator from './generators/models/EnumMarkupGenerator';
 import fs from 'fs';
@@ -14,6 +15,12 @@ import rimraf from 'rimraf';
 import { ISourceEntry } from '../common/Settings';
 import { Option } from '../common/Utils';
 import { window } from 'vscode';
+
+interface ILunrDocument {
+    title: string;
+    fileName: string;
+    text: string;
+}
 
 class FileManager {
     private path: string;
@@ -124,11 +131,10 @@ class FileManager {
         // if they don't exist yet, then create our HTML files.
         // Lastly, copy our assets, ours first, then the users.
         // If they're using a favicon this will override ours.
-        const assets = this.collectApexDocAssets();
-
         this.makeDirs();
         this.createHTMLFiles(fileMap);
-        this.copyAssetsToTarget(assets);
+        this.createSearchIndex(fileMap);
+        this.copyAssetsToTarget(this.collectApexDocAssets());
         this.copyAssetsToTarget(this.userAssets);
     }
 
@@ -177,6 +183,31 @@ class FileManager {
             let fullyQualifiedFileName = path.resolve(this.path, fileName + '.html');
             fs.writeFileSync(fullyQualifiedFileName, contents);
         }
+    }
+
+    private createSearchIndex(fileMap: Map<string, string>): void {
+        const searchIndex: ILunrDocument[] = [];
+        fileMap.forEach((contents, fileName) => {
+            const $ = cheerio.load(contents);
+
+            const plainText = $('.contentTD')
+                .text()
+                .split('\n')
+                .map(line => line.trim())
+                .filter(line => !!line)
+                .join(' ');
+
+            searchIndex.push({
+                title: fileName === 'index' ? 'Home' : fileName,
+                fileName: fileName + '.html',
+                text: plainText
+            });
+        });
+
+        fs.writeFileSync(
+            path.resolve(this.path, 'assets', 'search-idx.js'),
+            `export default ${JSON.stringify(searchIndex, null, 4)};\n`
+        );
     }
 
     private collectApexDocAssets(): string[] {

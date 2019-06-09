@@ -54,8 +54,9 @@ class GeneratorUtils {
             <head>
                 <title>${documentTitle}</title>
                 <meta charset="UTF-8">
-                <script type="text/javascript" src="./assets/index.js"></script>
+                <script type="module" src="./assets/index.js"></script>
                 <script charset="UTF-8" src="./assets/highlight.js"></script>
+                <script type="module" src="./assets/search-idx.js"></script>
                 <link rel="stylesheet" href="./assets/highlight.css" />
                 <link rel="stylesheet" type="text/css" href="./assets/index.css" />
                 <link rel="shortcut icon" type="image/png" href="./assets/favicon.png"/>
