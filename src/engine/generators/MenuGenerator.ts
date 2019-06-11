@@ -1,5 +1,6 @@
 import * as Models from '../../common/models';
 import ApexDoc from '../ApexDoc';
+import { SEARCH_ICON } from '../../common/templates';
 
 class MenuGenerator {
 
@@ -82,8 +83,12 @@ class MenuGenerator {
         // 3) iterate over map's values and concat each menu item with the
         // opening markup, closing each UL and details tag along the way
         let markup =
-            `<!-- 22% width accommodates 40 char class names -->
-            <td width="22%" vertical-align="top">
+            `<div id="side-bar" vertical-align="top">
+                <div id="search-wrapper">
+                    <span>${SEARCH_ICON}</span>
+                    <input id="search-input" type="text" placeholder="Search...">
+                </div>
+                <ul id="search-results" class=""></ul>
                 <div class="navbar">
                     <nav role="navigation">
                         <a class="navHeader" id="home" href="javascript:void(0)"
@@ -94,7 +99,7 @@ class MenuGenerator {
                             .reduce((acc, menuItem) => acc += (menuItem + '</ul></details>'), '')}
                     </nav>
                 </div>
-            </td>`;
+            </div>`;
 
         return markup;
     }

@@ -116,10 +116,11 @@ class FileManager {
         // make the menu and the scoping panel
         // and initialize our main file map
         const fileMap = new Map<string, string>();
-        const links = `<table width="100%">
+        const links = `
+            ${MenuGenerator.makeMenu(groupNameMap, models)}
+            <table width="100%">
             ${MenuGenerator.makeScopingPanel()}
-            <tr style="vertical-align:top;">
-            ${MenuGenerator.makeMenu(groupNameMap, models)}`;
+            <tr style="vertical-align:top;">`;
 
         // create the markup for our different varieties of HTML pages
         // and add to our file map. HTML files will be created from this map.
@@ -188,19 +189,21 @@ class FileManager {
     private createSearchIndex(fileMap: Map<string, string>): void {
         const searchIndex: ILunrDocument[] = [];
         fileMap.forEach((contents, fileName) => {
-            const $ = cheerio.load(contents);
+            let $ = cheerio.load(contents.replace(/(<\/\w+>)/g, '$1 '));
 
-            const plainText = $('.contentTD')
+            const plainText = $('#content')
                 .text()
+                .replace(/\s\(/g, '(')
                 .split('\n')
                 .map(line => line.trim())
-                .filter(line => !!line)
-                .join(' ');
+                .filter(line => !!line);
+
+            console.log(plainText);
 
             searchIndex.push({
                 title: fileName === 'index' ? 'Home' : fileName,
                 fileName: fileName + '.html',
-                text: plainText
+                text: plainText.join(' ')
             });
         });
 
@@ -229,8 +232,8 @@ class FileManager {
     // #region Document Generators
     private makePage(contents: string, banner: Option<string, void>, links: string, title?: string) {
         title = title ? `<h2 class='sectionTitle'>${title}</h2>` : '';
-        return `${GeneratorUtils.makeHeader(banner, this.documentTitle)}
-            ${links}<td class="contentTD">${title + contents}</td>
+        return `${GeneratorUtils.makeHeader(this.documentTitle)}
+            ${links}<td id="content">${title + contents}</td>
             ${templates.FOOTER}`;
     }
 

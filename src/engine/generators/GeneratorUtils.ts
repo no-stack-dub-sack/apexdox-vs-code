@@ -36,27 +36,30 @@ class GeneratorUtils {
             </details>`;
     }
 
-    public static makeHeader(bannerPage: Option<string, void>, documentTitle: string): string {
-        let header: string;
+    // public static makeHeader(bannerPage: Option<string, void>, documentTitle: string): string {
+    //     let header: string;
 
-        if (bannerPage) {
-            header = this.headerOpen(documentTitle) + bannerPage;
-        } else {
-            header = this.headerOpen(documentTitle) + templates.PROJECT_DETAIL + templates.HEADER_CLOSE;
-        }
+    //     if (bannerPage) {
+    //         header = this.headerOpen(documentTitle) + bannerPage;
+    //     } else {
+    //         header = this.headerOpen(documentTitle) + templates.PROJECT_DETAIL + templates.HEADER_CLOSE;
+    //     }
 
-        return header;
-    }
+    //     return header;
+    // }
 
-    private static headerOpen(documentTitle: string): string {
+    public static makeHeader(documentTitle: string): string {
         return  `<!DOCTYPE html>
             <html lang="en">
             <head>
                 <title>${documentTitle}</title>
                 <meta charset="UTF-8">
                 <script type="module" src="./assets/index.js"></script>
-                <script charset="UTF-8" src="./assets/highlight.js"></script>
                 <script type="module" src="./assets/search-idx.js"></script>
+                <script type="module" src="./assets/search.js"></script>
+                <script charset="UTF-8" src="./assets/highlight.js"></script>
+                <script charset="UTF-8" src="./assets/mark.js"></script>
+                <script charset="UTF-8" src="./assets/lunr.js"></script>
                 <link rel="stylesheet" href="./assets/highlight.css" />
                 <link rel="stylesheet" type="text/css" href="./assets/index.css" />
                 <link rel="shortcut icon" type="image/png" href="./assets/favicon.png"/>

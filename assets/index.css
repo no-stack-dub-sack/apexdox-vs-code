@@ -16,12 +16,57 @@ body {
     padding: 0px;
 }
 
+#side-bar {
+    height: 100vh;
+    overflow-y: auto;
+    position: fixed;
+    top: -1px;
+    width: 22%;
+}
+
+.search-icon {
+    height: 15px;
+    margin: 0 2px 0 5px;
+    vertical-align: middle;
+}
+
+#search-wrapper {
+    border-bottom: 1px solid lightgrey;
+    margin: 10px 0 5px 10px;
+    padding-bottom: 5px;
+}
+
+#search-input {
+    border: none;
+    outline: none;
+    width: 90%;
+}
+
+#search-results {
+    height: 0;
+    margin: 0;
+    transition: height .3s, margin .3s;
+}
+
+#search-results.visible {
+    height: 30%;
+    list-style: none;
+    margin-bottom: 5px;
+    overflow-y: scroll;
+    padding-left: 12px;
+}
+
+.search-result:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 /* the top page banner  */
 .topsection {
     background-color: var(--dark-blue);
-    width: 100%;
-    height: 110px;
     color: var(--white);
+    height: 110px;
+    width: 100%;
 }
 
 .topsection td {
@@ -34,11 +79,11 @@ body {
 }
 
 /* the area that holds the documentation on the right of the page */
-.contentTD {
-    font-size: 100%;
-    width: 80%;
+#content {
+    float: right;
     padding-left: 10px;
     vertical-align: top;
+    width: 77%;
 }
 
 /* the horizontal section headers that declares the Class name */
@@ -47,8 +92,8 @@ body {
     color: var(--white);
     font-size: 100%;
     font-weight: bold;
-    padding: 5px 5px 5px 14px;
     margin: 0 0 5px 0;
+    padding: 5px 5px 5px 14px;
 }
 
 .sectionTitle a {
@@ -57,23 +102,23 @@ body {
 
 /* the horizontal section headers that declares the Methods & Properties subsections */
 .subsectionTitle {
-    color: var(--grey-blue);
     border-top: 1px solid var(--grey-blue);
+    color: var(--grey-blue);
     font-size: 120%;
-    padding: 2px;
     margin: 0;
+    padding: 2px;
 }
 
 .subsectionContainer {
-    padding: 0 0 0 14px;
     margin-top: 10px;
+    padding: 0 0 0 14px;
 }
 
 /* the horizontal header for each Method */
 .methodHeader {
-    font-size: 1em;
-    color: var(--grey-blue);
     border-top: 1px solid var(--grey-blue);
+    color: var(--grey-blue);
+    font-size: 1em;
     margin: 20px 0 0 0;
     padding: 4px 0 2px 0;
 }
@@ -85,16 +130,16 @@ body {
 }
 
 .attrTable th {
-    text-align: left;
     background: #547499;
     color: var(--white);
+    text-align: left;
 }
 
 .attrTable th,
 .attrTable td {
-    padding: 5px;
     border: 1px solid #d6d4d4;
     font-size: .9em;
+    padding: 5px;
 }
 
 .attrTable tr:nth-child(odd) {
@@ -142,8 +187,8 @@ most signatures will fit on a single lin */
     font-family: monospace;
     font-size: 1.05em;
     font-weight: normal;
-    text-indent: -15px;
     padding: 0 0 4px 15px;
+    text-indent: -15px;
 }
 
 /* the class's Annotation line */
@@ -170,8 +215,8 @@ most signatures will fit on a single lin */
 
 /* signatures of methods and attrTable */
 .hostedSourceLink {
-    text-decoration: initial;
     color: var(--med-blue);
+    text-decoration: initial;
 }
 
 .hostedSourceLink:hover {
@@ -188,13 +233,13 @@ ul.methodTOC {
 }
 
 .methodTOCEntry {
-    font-size: .9em;
     color: var(--med-blue);
+    font-size: .9em;
 }
 
 .methodTOCEntry:visited {
-    font-size: .9em;
     color: purple;
+    font-size: .9em;
 }
 
 .methodTOCEntry.deprecated {
@@ -202,16 +247,16 @@ ul.methodTOC {
 }
 
 .methodTOCEntry.deprecated:visited {
-    font-size: .9em;
     color: var(--dark-red);
+    font-size: .9em;
 }
 
 .methodTOCDescription {
     font-size: .9em;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    line-height: 1em;
     height: 1em;
+    line-height: 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
     width: 500px;
 }
@@ -221,8 +266,8 @@ ul.methodTOC {
 .methodAnnotations {
     font-family: monospace;
     font-size: 1em;
-    text-indent: -15px;
     padding: 0 0 0 15px;
+    text-indent: -15px;
 }
 
 .methodDescription {
@@ -236,8 +281,8 @@ ul.methodTOC {
 }
 
 .methodSubTitle {
-    font-size: .9em;
     color: var(--grey-blue);
+    font-size: .9em;
     font-weight: bold;
     margin: .7em 0 0 0;
 }
@@ -253,8 +298,8 @@ ul.methodTOC {
 
 .paramName {
     font-size: .9em;
-    font-weight: bold;
     font-style: italic;
+    font-weight: bold;
     margin: 0 0 0 .5em;
 }
 
@@ -265,9 +310,9 @@ ul.methodTOC {
 
 /* Style Details Caret Element */
 details summary::-webkit-details-marker {
+    color: black !important;
     float: right;
     margin-top: 5px;
-    color: black !important;
 }
 
 details.section summary::-webkit-details-marker {
@@ -285,20 +330,20 @@ details.subSection summary::-webkit-details-marker {
 }
 
 .navbar li {
-    height: 25px;
-    padding: 6px 0 2px 40px;
-    margin: 0;
     background: var(--med-grey);
     border-top: 1px solid #d1d1d1;
     cursor: pointer;
+    height: 25px;
+    margin: 0;
+    padding: 6px 0 2px 40px;
     user-select: none;
 }
 
 .navbar ul {
+    background: var(--med-grey);
     list-style: none;
     margin: 0;
     padding: 0;
-    background: var(--med-grey);
 }
 
 .navbar .navItem.active,
@@ -318,12 +363,12 @@ details.subSection summary::-webkit-details-marker {
 }
 
 .navHeader {
-    height: 25px;
     background: var(--light-grey);
-    border: 1px solid #dce4e7;
     border-top-color: var(--white);
-    padding: 6px 0 0 6px;
+    border: 1px solid #dce4e7;
     cursor: pointer;
+    height: 25px;
+    padding: 6px 0 0 6px;
     user-select: none;
 }
 
@@ -338,8 +383,8 @@ a.navHeader {
 
 .navHeader a:focus,
 .navHeader:focus {
-    outline: none;
     color: var(--med-blue);
+    outline: none;
 }
 
 /* Hmm not sure if we want this anymore... */
@@ -377,14 +422,15 @@ details[open] .navHeader.active {
 }
 
 .footer {
-    font-size:.8em;
+    font-size: .8em;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .externalLink {
-    margin: 0 5px;
-    height: 10px;
     fill: var(--light-grey);
+    height: 10px;
+    margin: 0 5px;
 }
 
 .hide {

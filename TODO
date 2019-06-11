@@ -11,6 +11,14 @@ General:
     ✔ Fix WebService & TestMethod filtering! @done(19-05-29 21:50)
     ✔ Fix how sort-order affects overload selectors (alpha) @done(19-05-27 11:06)
     ✔ !DOCTYPE! @done(19-05-28 22:11)
+    ☐ Add new logo section
+    ☐ Remove bannerPage everything, instead give logo / caption option
+    ☐ modernize styles
+    ☐ Global search!
+    ☐ No topsection option
+    ☐ Menu should be sticky / not scroll
+    ☐ Move scope filters to left panel?
+    ☐ Add type to param documentation
 
 Testing:
     ✔ Establish "Snapshot" tests to compare output docs to expected output reference files @done(19-05-28 21:25)
@@ -27,10 +35,6 @@ Phase Two:
     ☐ Put link to open docs in "Complete" notification if possible
     ☐ User defined CSS stylesheet that allows overriding current styles
     ☐ Trigger documentation!!
-    ☐ Global search!
-    ☐ Better looking styles
-    ☐ No topsection option
-    ☐ Menu should be sticky / not scroll
     ☐ Dark / Light themes?
     ☐ Method & Props headers should hide on a per class basis when filters toggled leave no methods or props left in that class. Currently, all methods or props of a given scope must be hidden (throughout all parent and child classes) before the header will hide itself.
     ☐ Child classes are not subject to scope filtering. Should private inner classes be hidden when private scope is un-checked?
