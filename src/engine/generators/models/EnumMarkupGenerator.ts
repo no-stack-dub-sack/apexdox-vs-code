@@ -27,7 +27,7 @@ class EnumMarkupGenerator extends MarkupGenerator<EnumModel> {
 
     protected header(memberClassName: string) {
         return `
-            <h2 class="sectionTitle" id="${this.model.name}">
+            <h2 class="section-title top-level-type" id="${this.model.name}">
                 ${this.signatureLine(memberClassName)}
             </h2>`;
     }

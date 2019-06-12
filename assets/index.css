@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Barlow|Nanum+Gothic&display=swap');
+
 :root {
     --dark-blue: #003672;
     --grey-blue: #51638A;
@@ -9,9 +11,7 @@
 }
 
 body {
-    font-family: "ProximaNovaSoft-Regular", Calibri, "Gill Sans",
-        "Gill Sans MT", Candara, Segoe, "Segoe UI", Arial, sans-serif;
-    font-size: 100%;
+    font-family: 'Barlow', sans-serif;
     margin: 0px;
     padding: 0px;
 }
@@ -39,7 +39,7 @@ body {
 #search-input {
     border: none;
     outline: none;
-    width: 90%;
+    width: 80%;
 }
 
 #search-results {
@@ -61,21 +61,12 @@ body {
     text-decoration: underline;
 }
 
-/* the top page banner  */
-.topsection {
-    background-color: var(--dark-blue);
-    color: var(--white);
-    height: 110px;
-    width: 100%;
-}
-
-.topsection td {
-    color: var(--white);
+.scoping-panel {
+    background: white;
     padding: 8px;
-}
-
-.topsection a {
-    color: var(--white);
+    position: sticky;
+    text-align: center;
+    top: -1px;
 }
 
 /* the area that holds the documentation on the right of the page */
@@ -83,28 +74,27 @@ body {
     float: right;
     padding-left: 10px;
     vertical-align: top;
-    width: 77%;
+    width: 78%;
 }
 
 /* the horizontal section headers that declares the Class name */
-.sectionTitle {
-    background-color: var(--dark-blue); /* rgb(155,203,236); */
-    color: var(--white);
-    font-size: 100%;
-    font-weight: bold;
-    margin: 0 0 5px 0;
-    padding: 5px 5px 5px 14px;
+.section-title {
+     color: var(--grey-blue);
+     font-weight: bold;
+     margin: 0 0 5px 0;
+     padding: 5px 5px 5px 0px;
+     font-family: 'Nanum Gothic';
 }
 
-.sectionTitle a {
-    color: var(--white);
+.section-title a {
+    color: var(--grey-blue);
 }
 
 /* the horizontal section headers that declares the Methods & Properties subsections */
-.subsectionTitle {
+.subsection-title {
     border-top: 1px solid var(--grey-blue);
+    font-family: 'Nanum Gothic';
     color: var(--grey-blue);
-    font-size: 120%;
     margin: 0;
     padding: 2px;
 }
@@ -296,16 +286,17 @@ ul.methodTOC {
     padding: .5em .7em;
 }
 
-.paramName {
+.param-name {
     font-size: .9em;
     font-style: italic;
     font-weight: bold;
     margin: 0 0 0 .5em;
 }
 
-.paramDescription {
+.param-type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ,
+.param-description {
     font-size: .9em;
-    margin: 0 0 0 1em;
+    margin: .3em .3em .3em 1em;
 }
 
 /* Style Details Caret Element */

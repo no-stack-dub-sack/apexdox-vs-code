@@ -30,7 +30,7 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
             </div>
             <p/>`;
 
-        return GeneratorUtils.wrapWithDetail(markup, '<h2 class="subsectionTitle enums">Enums</h2>', 'subSection enums');
+        return GeneratorUtils.wrapWithDetail(markup, '<h3 class="subsection-title enums">Enums</h2>', 'subSection enums');
     }
 
     protected static hasDescriptionColumn(headerRow: string): boolean {

@@ -16,13 +16,15 @@ export const HEADER_CLOSE = `</td></tr></table></div>`;
 
 export const FOOTER =
         `</tr>
+        <tr>
+            <td class="footer">
+                <hr />
+                <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank" rel="noopener noreferrer">
+                Powered By ApexDoc2
+                </a>
+            </td>
+        </tr>
     </table>
-    <hr/>
-    <center class="footer">
-        <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank" rel="noopener noreferrer">
-            Powered By ApexDoc2
-        </a>
-    </center>
 </body>
 </html>`;
 

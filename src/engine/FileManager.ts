@@ -118,7 +118,7 @@ class FileManager {
         const fileMap = new Map<string, string>();
         const links = `
             ${MenuGenerator.makeMenu(groupNameMap, models)}
-            <table width="100%">
+            <table id="content">
             ${MenuGenerator.makeScopingPanel()}
             <tr style="vertical-align:top;">`;
 
@@ -231,9 +231,9 @@ class FileManager {
 
     // #region Document Generators
     private makePage(contents: string, banner: Option<string, void>, links: string, title?: string) {
-        title = title ? `<h2 class='sectionTitle'>${title}</h2>` : '';
+        title = title ? `<h2 class='section-title'>${title}</h2>` : '';
         return `${GeneratorUtils.makeHeader(this.documentTitle)}
-            ${links}<td id="content">${title + contents}</td>
+            ${links}<td>${title + contents}</td>
             ${templates.FOOTER}`;
     }
 

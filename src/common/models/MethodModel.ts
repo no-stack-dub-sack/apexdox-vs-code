@@ -1,6 +1,13 @@
+import GeneratorUtils from '../../engine/generators/GeneratorUtils';
 import Utils, { Option } from '../Utils';
 import { ApexModel } from './ApexModel';
 import { except } from '../ArrayUtils';
+
+interface IParamModel {
+    name: string;
+    type: string;
+    description: string;
+}
 
 class MethodModel extends ApexModel {
 
@@ -40,8 +47,37 @@ class MethodModel extends ApexModel {
         return '';
     }
 
-    public get params(): string[] {
-        return this._params;
+    public get params(): Array<IParamModel> {
+        const params = new Array<IParamModel>();
+        for (let paramSignature of this._params) {
+            const param = {} as IParamModel;
+            paramSignature = GeneratorUtils.escapeHTML(paramSignature, true).trim();
+            if (paramSignature) {
+                const match: Option<RegExpExecArray, null> = /\s/.exec(paramSignature);
+
+                if (match !== null) {
+                    const idx = match.index;
+                    param.name = paramSignature.substring(0, idx);
+                    param.description = paramSignature.substring(idx + 1);
+                } else {
+                    param.name = paramSignature;
+                    param.description = '';
+                }
+
+                let type = '';
+                const re = new RegExp(`[A-Za-z0-9_.<>,\\s]+\\s+${param.name}`, 'g');
+                const typeMatcher = this.nameLine.match(re);
+
+                if (typeMatcher) {
+                    type = typeMatcher[0].split(' ').slice(0, -1).join(' ');
+                }
+
+                param.type = type;
+                params.push(param);
+            }
+        }
+
+        return params;
     }
 
     public get paramsFromNameLine(): string[] {

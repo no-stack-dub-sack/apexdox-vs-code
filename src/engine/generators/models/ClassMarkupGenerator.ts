@@ -41,7 +41,7 @@ class ClassMarkupGenerator extends MarkupGenerator<ClassModel> {
 
     protected header(memberClassName: string) {
         return `
-            <h2 class="sectionTitle" id="${this.model.name}">
+            <h2 class="section-title ${this.model.name === memberClassName ? 'top-level-type' : ''}" id="${this.model.name}">
                 ${this.signatureLine(memberClassName)}
             </h2>`;
     }

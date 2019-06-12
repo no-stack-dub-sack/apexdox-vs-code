@@ -41,7 +41,7 @@ input.addEventListener('keyup', e => {
 });
 
 function search(e) {
-    const highlighter = new Mark(document.querySelector('.contentTD'));
+    const highlighter = new Mark(document.querySelector('#content'));
     const searchInput = document.querySelector('#search-input');
 
     searchResults.classList.add('visible');

@@ -31,7 +31,7 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
             </div>
             <p />`;
 
-        return GeneratorUtils.wrapWithDetail(markup, '<h2 class="subsectionTitle properties">Properties</h2>', `subSection properties ${cModel.name.replace('.', '_')}`);
+        return GeneratorUtils.wrapWithDetail(markup, '<h3 class="subsection-title properties">Properties</h2>', `subSection properties ${cModel.name.replace('.', '_')}`);
     }
 
     protected static hasDescriptionColumn(headerRow: string): boolean {

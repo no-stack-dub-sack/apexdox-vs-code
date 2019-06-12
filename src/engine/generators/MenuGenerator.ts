@@ -17,7 +17,7 @@ class MenuGenerator {
 
         let markup = `
             <tr>
-                <td colspan="2" style="text-align: center;">
+                <td class="scoping-panel">
                     Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
                     <label for="cbx-all">All</label>&nbsp;&nbsp;
                     ${checkBoxes.join('&nbsp;&nbsp;')}

@@ -65,11 +65,11 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
                 ${methodsMarkup}
             </div>`;
 
-        return GeneratorUtils.wrapWithDetail(markup, '<h2 class="subsectionTitle methods">Methods</h2>', 'subSection methods');
+        return GeneratorUtils.wrapWithDetail(markup, '<h3 class="subsection-title methods">Methods</h2>', 'subSection methods');
     }
 
     private markupTemplate(label: string, contents: string, titleClass = '', contentClass = 'methodSubDescription', tag = 'div') {
-        return `<div class="methodSubTitle ${titleClass}">${label}</div>
+        return `<div class="method-subtitle ${titleClass}">${label}</div>
                 <${tag} class="${contentClass}">${contents}</${tag}>`;
     }
 
@@ -140,28 +140,13 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
     protected params(): string {
         let markup = '';
         if (this.model.params.length) {
-            markup += '<div class="methodSubTitle">Parameters</div>';
-            for (let param of this.model.params) {
-                param = GeneratorUtils.escapeHTML(param, true).trim();
-                if (param) {
-                    let paramName: string;
-                    let paramDescription: string;
-                    const match: Option<RegExpExecArray, null> = /\s/.exec(param);
+            markup += '<div class="method-subtitle">Parameters</div>';
+            for (let { name, description, type } of this.model.params) {
+                markup += `<div class="param=name">${name}</div>`;
 
-                    if (match !== null) {
-                        const idx = match.index;
-                        paramName = param.substring(0, idx);
-                        paramDescription = param.substring(idx + 1);
-                    } else {
-                        paramName = param;
-                        paramDescription = '';
-                    }
-
-                    markup += `<div class="paramName">${paramName}</div>`;
-
-                    if (paramDescription) {
-                        markup += `<div class="paramDescription">${paramDescription}</div>`;
-                    }
+                if (description) {
+                    markup += `<div class="param-description">Type: ${type}</div>`;
+                    markup += `<div class="param-description">${description}</div>`;
                 }
             }
         }
