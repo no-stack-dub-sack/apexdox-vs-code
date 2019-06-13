@@ -16,9 +16,13 @@ General:
     ☐ modernize styles
     ☐ Global search!
     ☐ No topsection option
-    ☐ Menu should be sticky / not scroll
-    ☐ Move scope filters to left panel?
-    ☐ Add type to param documentation
+    ✔ Menu should be sticky / not scroll @done(19-06-12 23:19)
+    ✘ Move scope filters to left panel? @cancelled(19-06-12 23:19)
+    ✔ Add type to param documentation @done(19-06-12 23:19)
+    ☐ Namespace tag (and global setting?)
+    ✔ Separate methods & constructors @done(19-06-12 23:18)
+    ✔ Method name line should show params even if not annotated @done(19-06-12 23:18)
+    ☐ Why don't annoations highlight.js anymore?
 
 Testing:
     ✔ Establish "Snapshot" tests to compare output docs to expected output reference files @done(19-05-28 21:25)

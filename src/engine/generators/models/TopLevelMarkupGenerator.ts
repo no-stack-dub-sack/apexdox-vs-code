@@ -24,16 +24,16 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         markup += generator.example();
 
         markup = `
-            ${generator.annotations('classAnnotations')}
+            ${generator.annotations('class-annotations')}
             ${generator.signatureLine(className)}
-            <div class="classDetails">${markup}</div>
+            <div class="class-details">${markup}</div>
             <p/>`;
 
         return markup;
     }
 
-    private markupTemplate(label: string, contents: string, titleClass = '', contentClass = 'classSubDescription', tag = 'div') {
-        return `<div class="classSubtitle ${titleClass}">${label}</div>
+    private markupTemplate(label: string, contents: string, titleClass = '', contentClass = 'class-subtitle-description', tag = 'div') {
+        return `<div class="class-subtitle ${titleClass}">${label}</div>
                 <${tag} class="${contentClass}">${contents}</${tag}>`;
     }
 
@@ -88,7 +88,7 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
 
     protected signatureLine(memberClassName: string): string {
         return `
-            <div class="classSignature">
+            <div class="class-signature">
                 ${super.signatureLine(GeneratorUtils.escapeHTML(this.model.nameLine), memberClassName)}
             </div>`;
     }

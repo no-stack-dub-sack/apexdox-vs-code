@@ -33,16 +33,10 @@ class ClassMarkupGenerator extends MarkupGenerator<ClassModel> {
         return GeneratorUtils.wrapWithDetail(contents, header, 'section');
     }
 
-    protected signatureLine(memberClassName: string) {
-        const hasSource = this.model.sourceUrl;
-        const sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : '';
-        return super.signatureLine(GeneratorUtils.escapeHTML(this.model.name), memberClassName) + sourceLinkIcon;
-    }
-
     protected header(memberClassName: string) {
         return `
             <h2 class="section-title ${this.model.name === memberClassName ? 'top-level-type' : ''}" id="${this.model.name}">
-                ${this.signatureLine(memberClassName)}
+                ${super.signatureLine(GeneratorUtils.escapeHTML(this.model.name), memberClassName)}
             </h2>`;
     }
 }

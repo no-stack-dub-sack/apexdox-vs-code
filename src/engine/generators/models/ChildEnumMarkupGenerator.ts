@@ -23,14 +23,14 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
         }
 
         markup = `
-            <div class="subsectionContainer">
-                <table class="attrTable properties">
+            <div class="subsection-container">
+                <table class="attributes-table properties">
                     ${markup}
                 </table>
             </div>
             <p/>`;
 
-        return GeneratorUtils.wrapWithDetail(markup, '<h3 class="subsection-title enums">Enums</h2>', 'subSection enums');
+        return GeneratorUtils.wrapWithDetail(markup, '<h3 class="subsection-title enums">Enums</h2>', 'subsection enums');
     }
 
     protected static hasDescriptionColumn(headerRow: string): boolean {
@@ -55,10 +55,10 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
     protected enumRow(memberClassName: string, hasDescriptionColumn: boolean): string {
         return `
             <tr class="enum ${this.model.scope}">
-                <td class="attrName">${this.model.name}</td>
-                <td class="attrSignature">${this.signatureLine(this.model.nameLine, memberClassName, true)}</td>
+                <td class="attribute-name">${this.model.name}</td>
+                <td class="attribute-signature">${this.signatureLine(this.model.nameLine, memberClassName, true)}</td>
                 <td class="enumValues">${this.model.values.join(',&nbsp;')}</td>
-                ${hasDescriptionColumn ? this.description('attrDescription', 'td') : ''}
+                ${hasDescriptionColumn ? this.description('attribute-description', 'td') : ''}
             </tr>`;
     }
 }

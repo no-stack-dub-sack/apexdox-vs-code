@@ -19,23 +19,17 @@ class EnumMarkupGenerator extends MarkupGenerator<EnumModel> {
         return markup;
     }
 
-    protected signatureLine(memberClassName: string) {
-        const hasSource = this.model.sourceUrl;
-        const sourceLinkIcon = hasSource ? `<span>${templates.EXTERNAL_LINK}</span>` : '';
-        return super.signatureLine(GeneratorUtils.escapeHTML(this.model.name), memberClassName) + sourceLinkIcon;
-    }
-
     protected header(memberClassName: string) {
         return `
             <h2 class="section-title top-level-type" id="${this.model.name}">
-                ${this.signatureLine(memberClassName)}
+                ${super.signatureLine(GeneratorUtils.escapeHTML(this.model.name), memberClassName)}
             </h2>`;
     }
 
     protected valuesTable(): string {
         return `
             <p />
-            <table class="attrTable">
+            <table class="attributes-table">
                 <tr><th>Values</th></tr>
                 ${GeneratorUtils.mapHTML(this.model.values, val =>
                     `<tr>

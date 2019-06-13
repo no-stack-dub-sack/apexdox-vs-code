@@ -1,19 +1,22 @@
 import GeneratorUtils from '../../engine/generators/GeneratorUtils';
 import Utils, { Option } from '../Utils';
 import { ApexModel } from './ApexModel';
-import { except } from '../ArrayUtils';
+import { except, last } from '../ArrayUtils';
 
 interface IParamModel {
     name: string;
-    type: string;
+    type?: string;
     description: string;
 }
 
 class MethodModel extends ApexModel {
 
-    public constructor(comments: string[], nameLine: string, lineNum: number, sourceUrl?: Option<string>) {
+    private _isConstructor: boolean;
+
+    public constructor(comments: string[], nameLine: string, lineNum: number, className = '', sourceUrl?: Option<string>) {
         super(comments, sourceUrl);
         this.setNameLine(nameLine, lineNum);
+        this._isConstructor = this.name.toLowerCase() === last(className.split('.')).toLowerCase();
     }
 
     public get author(): string {
@@ -34,6 +37,10 @@ class MethodModel extends ApexModel {
         return this._exception;
     }
 
+    public get isConstructor(): boolean {
+        return this._isConstructor;
+    }
+
     public get name(): string {
         let nameLine = this.nameLine;
         if (nameLine) {
@@ -49,6 +56,8 @@ class MethodModel extends ApexModel {
 
     public get params(): Array<IParamModel> {
         const params = new Array<IParamModel>();
+        const typeMap = this.typesFromNameLine;
+
         for (let paramSignature of this._params) {
             const param = {} as IParamModel;
             paramSignature = GeneratorUtils.escapeHTML(paramSignature, true).trim();
@@ -64,20 +73,43 @@ class MethodModel extends ApexModel {
                     param.description = '';
                 }
 
-                let type = '';
-                const re = new RegExp(`[A-Za-z0-9_.<>,\\s]+\\s+${param.name}`, 'g');
-                const typeMatcher = this.nameLine.match(re);
+                const type = typeMap.get(param.name);
+                param.type = type ? GeneratorUtils.escapeHTML(type) : type;
 
-                if (typeMatcher) {
-                    type = typeMatcher[0].split(' ').slice(0, -1).join(' ');
-                }
-
-                param.type = type;
                 params.push(param);
             }
         }
 
         return params;
+    }
+
+    public get typesFromNameLine(): Map<string, string> {
+        const params = this.paramsFromNameLine;
+        const paramToType = new Map<string, string>();
+
+        for (let i = 0; i < params.length; i++) {
+            const param = params[i];
+            const prevParam = params[i-1];
+
+            let type = '', sliceStart = 0;
+            let reString = `[A-Za-z0-9_.<>,\\s]+\\s+${param}`;
+
+            if (prevParam) {
+                sliceStart = 1;
+                reString = `${prevParam}\\s*,${reString}`;
+            }
+
+            const re = new RegExp(reString, 'g');
+            const typeMatcher = this.nameLine.match(re);
+
+            if (typeMatcher) {
+                type = typeMatcher[0].split(' ').slice(sliceStart, -1).join(' ');
+            }
+
+            paramToType.set(param, type);
+        }
+
+        return paramToType;
     }
 
     public get paramsFromNameLine(): string[] {

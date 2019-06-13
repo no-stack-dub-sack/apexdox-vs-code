@@ -46,7 +46,7 @@ export const createDocumentSuite = (files: ITestFile[]) => {
 
             const expectedFiles = except(files, ['index.html'], 'name').map(f => basename(f.name, '.html'));
 
-            const offendingMenuItems = $('li.navItem').toArray()
+            const offendingMenuItems = $('li.nav-item').toArray()
                 .map(el => $(el).text().trim())
                 .filter(item => expectedFiles.indexOf(item) === -1);
 
@@ -57,7 +57,7 @@ export const createDocumentSuite = (files: ITestFile[]) => {
             const indexHtml = last(only(files, ['index.html'], 'name'));
             const $ = cheerio.load(indexHtml.snapshot);
 
-            $('li.navItem')
+            $('li.nav-item')
                 .toArray()
                 .map(el => ({
                     text: $(el).text().trim(),
@@ -75,22 +75,22 @@ export const createDocumentSuite = (files: ITestFile[]) => {
             const param = $('.paramDescription').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines.');
             assert.equal($(param).text(), 'Works over multiple lines.', 'param description value does not match expected multi-line value.');
 
-            const description = $('.methodDescription').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines.');
+            const description = $('.method-description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines.');
             assert.equal($(description).text(), 'Works over multiple lines.', 'description value does not match expected multi-line value');
 
-            const author = $('.methodSubDescription').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (author).');
+            const author = $('.method-subtitle__description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (author).');
             assert.equal($(author).text(), 'Works over multiple lines (author).', 'author value does not match expected multi-line value');
 
-            const since = $('.methodSubDescription').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (since).');
+            const since = $('.method-subtitle__description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (since).');
             assert.equal($(since).text(), 'Works over multiple lines (since).', 'since value does not match expected multi-line value');
 
-            const returns = $('.methodSubDescription').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (returns).');
+            const returns = $('.method-subtitle__description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (returns).');
             assert.equal($(returns).text(), 'Works over multiple lines (returns).', 'returns value does not match expected multi-line value');
 
-            const exception = $('.methodSubDescription').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (exception).');
+            const exception = $('.method-subtitle__description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (exception).');
             assert.equal($(exception).text(), 'Works over multiple lines (exception).', 'exception value does not match expected multi-line value');
 
-            const deprecated = $('.methodSubDescription').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (deprecated).');
+            const deprecated = $('.method-subtitle__description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (deprecated).');
             assert.equal($(deprecated).text(), 'Works over multiple lines (deprecated).', 'deprecated value does not match expected multi-line value');
         });
     });

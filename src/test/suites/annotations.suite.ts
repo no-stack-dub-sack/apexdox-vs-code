@@ -10,7 +10,7 @@ export const createAnnotationsSuite = (files: ITestFile[]) => {
             const $ = cheerio.load(testFile.snapshot);
 
             const annotations = last(
-                $('.methodHeader').toArray()
+                $('.method-header').toArray()
                     .filter(el => $(el).text().trim() === 'method1')
                     .map(el => $(el).next().text())
             );
@@ -23,7 +23,7 @@ export const createAnnotationsSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_Annotations.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const annotations = $('.classAnnotations').text();
+            const annotations = $('.class-annotations').text();
 
             const expectedAnnotations = `@FirstAnnotation(param=true) @SecondAnnotation(paramWithValue='/value/*') @ThirdAnnotation`;
             assert.deepEqual(annotations, expectedAnnotations, 'Annotations do not match.');
@@ -33,7 +33,7 @@ export const createAnnotationsSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_Annotations.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const methods = $('.methodHeader').toArray();
+            const methods = $('.method-header').toArray();
             const annotations1 = last(methods.filter(el => $(el).text().trim() === 'method2').map(el => $(el).next().text()));
             const annotations2 = last(methods.filter(el => $(el).text().trim() === 'method3').map(el => $(el).next().text()));
             const annotations3 = last(methods.filter(el => $(el).text().trim() === 'method4').map(el => $(el).next().text()));

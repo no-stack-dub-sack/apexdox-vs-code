@@ -275,7 +275,8 @@ class ApexDoc {
                     lineNum++;
                 }
 
-                const mModel: Models.MethodModel = new Models.MethodModel(comments, line, startingLine, sourceUrl);
+                const className = cModel ? cModel.name : '';
+                const mModel: Models.MethodModel = new Models.MethodModel(comments, line, startingLine, className, sourceUrl);
                 mModel.parseAnnotations(line, reader.peekPrevLine());
                 cModel && cModel.methods.push(mModel);
                 comments = [];

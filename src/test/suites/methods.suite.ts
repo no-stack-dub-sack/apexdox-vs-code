@@ -61,11 +61,11 @@ export const createMethodsSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_Links.html'], 'name'));
             let $ = cheerio.load(testFile.snapshot);
 
-            const hrefs = $('a.methodTOCEntry').toArray()
+            const hrefs = $('a.methods-toc__entry').toArray()
                 .filter(el => $(el).text().trim() === 'getInt')
                 .map(el => $(el).attr('href'));
 
-            const ids = $('h2.methodHeader').toArray()
+            const ids = $('h2.method-header').toArray()
                 .filter(el => $(el).text().trim() === 'getInt')
                 .map(el => $(el).attr('id'));
 

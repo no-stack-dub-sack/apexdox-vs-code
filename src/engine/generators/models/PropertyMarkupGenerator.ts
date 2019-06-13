@@ -24,14 +24,14 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
         }
 
         markup = `
-            <div class="subsectionContainer">
-                <table class="attrTable properties">
+            <div class="subsection-container">
+                <table class="attributes-table properties">
                     ${markup}
                 </table>
             </div>
             <p />`;
 
-        return GeneratorUtils.wrapWithDetail(markup, '<h3 class="subsection-title properties">Properties</h2>', `subSection properties ${cModel.name.replace('.', '_')}`);
+        return GeneratorUtils.wrapWithDetail(markup, `<h3 class="subsection-title properties">${cModel.name} Properties</h2>`, `subsection properties ${cModel.name.replace('.', '_')}`);
     }
 
     protected static hasDescriptionColumn(headerRow: string): boolean {
@@ -59,16 +59,16 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
     }
 
     protected signatureLine(memberClassName: string): string {
-        return `<td class="attrSignature">${super.signatureLine(this.model.nameLine, memberClassName, true)}</td>`;
+        return `<td class="attribute-signature">${super.signatureLine(this.model.nameLine, memberClassName, true)}</td>`;
     }
 
     protected propRow(memberClassName: string, hasAnnotationsColumn: boolean, hasDescriptionColumn: boolean): string {
         return `
             <tr class="property ${this.model.scope}">
-                <td class="attrName">${this.model.name}</td>
+                <td class="attribute-name">${this.model.name}</td>
                 ${this.signatureLine(memberClassName)}
-                ${hasAnnotationsColumn ? '<td>' + this.annotations('propAnnotations') + '</td>' : ''}
-                ${hasDescriptionColumn ? this.description('attrDescription', 'td', true) : ''}
+                ${hasAnnotationsColumn ? '<td>' + this.annotations('prop-annotations') + '</td>' : ''}
+                ${hasDescriptionColumn ? this.description('attribute-description', 'td', true) : ''}
             </tr>`;
     }
 }

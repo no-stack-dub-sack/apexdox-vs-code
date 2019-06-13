@@ -54,7 +54,7 @@ class MenuGenerator {
                 `<details id="${groupId}" class="groupName">
                     <summary onclick="toggleActiveClass(this);"
                             id="header-${groupId}"
-                            class="navHeader">
+                            class="nav-header">
                     ${label}
                     </summary>
                     <ul>
@@ -71,7 +71,7 @@ class MenuGenerator {
             if (model.nameLine) {
                 const fileName = model.name
                     , markup =
-                        `<li id="item-${fileName}" class="navItem class ${model.scope}"
+                        `<li id="item-${fileName}" class="nav-item class ${model.scope}"
                             onclick="goToLocation('${fileName}.html');">
                             <a tabindex="1" href="javascript:void(0)">${fileName}</a>
                         </li>`;
@@ -91,7 +91,7 @@ class MenuGenerator {
                 <ul id="search-results" class=""></ul>
                 <div class="navbar">
                     <nav role="navigation">
-                        <a class="navHeader" id="home" href="javascript:void(0)"
+                        <a class="nav-header" id="home" href="javascript:void(0)"
                             onclick="goToLocation('index.html');">
                             Home
                         </a>

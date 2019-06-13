@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Barlow|Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Barlow:400,400i|Nanum+Gothic&display=swap');
 
 :root {
     --dark-blue: #003672;
@@ -69,7 +69,6 @@ body {
     top: -1px;
 }
 
-/* the area that holds the documentation on the right of the page */
 #content {
     float: right;
     padding-left: 10px;
@@ -77,7 +76,6 @@ body {
     width: 78%;
 }
 
-/* the horizontal section headers that declares the Class name */
 .section-title {
      color: var(--grey-blue);
      font-weight: bold;
@@ -90,90 +88,82 @@ body {
     color: var(--grey-blue);
 }
 
-/* the horizontal section headers that declares the Methods & Properties subsections */
 .subsection-title {
-    border-top: 1px solid var(--grey-blue);
+    /* border-top: 1px solid var(--grey-blue); */
     font-family: 'Nanum Gothic';
     color: var(--grey-blue);
     margin: 0;
     padding: 2px;
 }
 
-.subsectionContainer {
+.subsection-container {
     margin-top: 10px;
     padding: 0 0 0 14px;
 }
 
-/* the horizontal header for each Method */
-.methodHeader {
-    border-top: 1px solid var(--grey-blue);
+.method-header {
+    /* border-top: 1px solid var(--grey-blue); */
     color: var(--grey-blue);
     font-size: 1em;
     margin: 20px 0 0 0;
     padding: 4px 0 2px 0;
 }
 
-/* attrTable is used to display the table of class attrTable */
-.attrTable {
+.attributes-table {
     border-collapse: collapse;
     max-width: 97%;
 }
 
-.attrTable th {
+.attributes-table th {
     background: #547499;
     color: var(--white);
     text-align: left;
 }
 
-.attrTable th,
-.attrTable td {
+.attributes-table th,
+.attributes-table td {
     border: 1px solid #d6d4d4;
     font-size: .9em;
     padding: 5px;
 }
 
-.attrTable tr:nth-child(odd) {
+.attributes-table tr:nth-child(odd) {
     background: var(--light-grey);
 }
 
 /* restrict width of enum value column so
 most signatures will fit on a single lin */
-.attrTable .enumValues {
+.attributes-table .enumValues {
     max-width: 300px;
     overflow-wrap: break-word;
 }
 
-.attrName {
+.attribute-name {
     font-size: .9em;
     font-weight: bold;
 }
 
-.propAnnotations,
-.attrSignature {
+.prop-annotations,
+.attribute-signature {
     background: none;
     font-family: monospace;
     padding: 0;
 }
 
-.attrSignature {
+.attribute-signature {
     white-space: nowrap;
 }
 
-.attrDescription {
+.attribute-description {
     font-weight: normal;
 }
 
-.attrDescription.hasDescription {
+.attribute-description.has-description {
     height: 1em;
 }
 
-.propDescriptionWrapper {
-    margin-top: 15px;
-}
-
-/* the class's signature line */
-.classAnnotations,
-.classSignature {
+.class-annotations,
+.class-signature {
     font-family: monospace;
     font-size: 1.05em;
     font-weight: normal;
@@ -181,67 +171,63 @@ most signatures will fit on a single lin */
     text-indent: -15px;
 }
 
-/* the class's Annotation line */
-.classAnnotations {
+.class-annotations {
     padding: 0 0 0 15px;
 }
 
-/* the description, author, date and other class attributes */
-.classDetails {
+.class-details {
     font-size: .9em;
 }
 
-.classSubtitle {
+.class-subtitle {
     color: var(--grey-blue);
     font-size: 1em;
     font-weight: bold;
     margin: .7em 0 0 0;
 }
 
-.classSubDescription {
+.class-subtitle-description {
     font-size: 1em;
     margin: 0 0 0 1em;
 }
 
-/* signatures of methods and attrTable */
-.hostedSourceLink {
+.source-link {
     color: var(--med-blue);
     text-decoration: initial;
 }
 
-.hostedSourceLink:hover {
+.source-link:hover {
     text-decoration: underline;
 }
 
-/* method table of contents related classes */
-.methodsContainer {
+.methods-container {
     margin-bottom: 10px;
 }
 
-ul.methodTOC {
+ul.methods-toc {
     margin-top: 0;
 }
 
-.methodTOCEntry {
+.methods-toc__entry {
     color: var(--med-blue);
     font-size: .9em;
 }
 
-.methodTOCEntry:visited {
+.methods-toc__entry:visited {
     color: purple;
     font-size: .9em;
 }
 
-.methodTOCEntry.deprecated {
+.methods-toc__entry.deprecated {
     font-weight: inherit;
 }
 
-.methodTOCEntry.deprecated:visited {
+.methods-toc__entry.deprecated:visited {
     color: var(--dark-red);
     font-size: .9em;
 }
 
-.methodTOCDescription {
+.methods-toc__description {
     font-size: .9em;
     height: 1em;
     line-height: 1em;
@@ -251,26 +237,25 @@ ul.methodTOC {
     width: 500px;
 }
 
-/* method listing related classes */
-.methodSignature,
-.methodAnnotations {
+.method-signature,
+.method-annotations {
     font-family: monospace;
     font-size: 1em;
     padding: 0 0 0 15px;
     text-indent: -15px;
 }
 
-.methodDescription {
+.method-description {
     font-size: .9em;
     margin: .5em 0 0 0;
 }
 
-.methodSubDescription {
+.method-subtitle__description {
     font-size: .9em;
     margin: 0 0 0 1em;
 }
 
-.methodSubTitle {
+.method-subtitle {
     color: var(--grey-blue);
     font-size: .9em;
     font-weight: bold;
@@ -311,7 +296,7 @@ details.section summary::-webkit-details-marker {
     margin-top: 10px;
 }
 
-details.subSection summary::-webkit-details-marker {
+details.subsection summary::-webkit-details-marker {
     color: black !important;
 }
 
@@ -337,23 +322,23 @@ details.subSection summary::-webkit-details-marker {
     padding: 0;
 }
 
-.navbar .navItem.active,
-.navbar .navItem:hover {
+.navbar .nav-item.active,
+.navbar .nav-item:hover {
     background: #d9d9d9;
 }
 
-.navbar .navItem a {
+.navbar .nav-item a {
     color: black;
     text-decoration: none;
 }
 
-.navbar .navItem a:focus,
-.navbar .navItem:hover a {
+.navbar .nav-item a:focus,
+.navbar .nav-item:hover a {
     color: var(--med-blue);
     outline: none;
 }
 
-.navHeader {
+.nav-header {
     background: var(--light-grey);
     border-top-color: var(--white);
     border: 1px solid #dce4e7;
@@ -363,44 +348,44 @@ details.subSection summary::-webkit-details-marker {
     user-select: none;
 }
 
-a.navHeader {
+a.nav-header {
     display: block;
 }
 
-.navHeader,
-.navHeader a {
+.nav-header,
+.nav-header a {
     color: black;
 }
 
-.navHeader a:focus,
-.navHeader:focus {
+.nav-header a:focus,
+.nav-header:focus {
     color: var(--med-blue);
     outline: none;
 }
 
 /* Hmm not sure if we want this anymore... */
-/* a.navHeader.active {
+/* a.nav-header.active {
     background: #cfcdcd;
 }
 
-details[open] .navHeader.active {
+details[open] .nav-header.active {
     background: #cfcdcd;
 } */
 
-.navHeader:hover,
-.navHeader:hover a {
+.nav-header:hover,
+.nav-header:hover a {
     background: #cfcdcd;
     color: var(--med-blue);
 }
 
 /* accents */
-/* .classAnnotations,
+/* .class-annotations,
 .methodAnnotations {
     color: var(--dark-blue);
     font-weight: 600;
 } */
 
-.inlineCode {
+.inline-code {
     background-color: var(--light-grey);
     color: var(--dark-red);
     font-family: monospace;
@@ -416,12 +401,6 @@ details[open] .navHeader.active {
     font-size: .8em;
     margin-bottom: 10px;
     text-align: center;
-}
-
-.externalLink {
-    fill: var(--light-grey);
-    height: 10px;
-    margin: 0 5px;
 }
 
 .hide {

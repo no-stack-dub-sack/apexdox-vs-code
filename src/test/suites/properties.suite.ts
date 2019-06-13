@@ -9,7 +9,7 @@ export const createPropertiesSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_Properties.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const props = $('.attrName', '.subSection.properties.TEST_Properties');
+            const props = $('.attribute-name', '.subsection.properties.TEST_Properties');
             assert.equal(props.length, 14, 'All fourteen test properties not found');
         });
 
@@ -17,7 +17,7 @@ export const createPropertiesSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_Properties.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const props = $('.attrName', '.subSection.properties.TEST_Properties').toArray().filter(el => $(el).text() === 'invisible');
+            const props = $('.attribute-name', '.subsection.properties.TEST_Properties').toArray().filter(el => $(el).text() === 'invisible');
             assert.equal(props.length, 0, '"TEST_Properties.invisible" property detected');
         });
 
@@ -25,7 +25,7 @@ export const createPropertiesSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_Properties.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const descriptionHeader = $('th', '.subSection.properties.TEST_Properties_InnerTwo').toArray().filter(el => $(el).text() === 'Description');
+            const descriptionHeader = $('th', '.subsection.properties.TEST_Properties_InnerTwo').toArray().filter(el => $(el).text() === 'Description');
             assert.equal(descriptionHeader.length, 0, 'Description column found in properties table');
         });
 
@@ -33,7 +33,7 @@ export const createPropertiesSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_Properties.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const descriptionHeader = $('th', '.subSection.properties.TEST_Properties_InnerOne').toArray().filter(el => $(el).text() === 'Description');
+            const descriptionHeader = $('th', '.subsection.properties.TEST_Properties_InnerOne').toArray().filter(el => $(el).text() === 'Description');
             assert.equal(descriptionHeader.length, 1, 'Description column not found in properties table');
         });
 
@@ -41,7 +41,7 @@ export const createPropertiesSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_Properties.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const annotationHeader = $('th', '.subSection.properties.TEST_Properties_InnerOne').toArray().filter(el => $(el).text() === 'Annotations');
+            const annotationHeader = $('th', '.subsection.properties.TEST_Properties_InnerOne').toArray().filter(el => $(el).text() === 'Annotations');
             assert.equal(annotationHeader.length, 0, 'Annotation column found in properties table');
         });
 
@@ -49,7 +49,7 @@ export const createPropertiesSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_Properties.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const annotationHeader = $('th', '.subSection.properties.TEST_Properties_InnerTwo').toArray().filter(el => $(el).text() === 'Annotations');
+            const annotationHeader = $('th', '.subsection.properties.TEST_Properties_InnerTwo').toArray().filter(el => $(el).text() === 'Annotations');
             assert.equal(annotationHeader.length, 1, 'Annotation column not found in properties table');
         });
 
@@ -57,8 +57,8 @@ export const createPropertiesSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_Properties.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const annotationHeader = $('th', '.subSection.properties.TEST_Properties_InnerThree').toArray().filter(el => $(el).text() === 'Annotations');
-            const descriptionHeader = $('th', '.subSection.properties.TEST_Properties_InnerThree').toArray().filter(el => $(el).text() === 'Description');
+            const annotationHeader = $('th', '.subsection.properties.TEST_Properties_InnerThree').toArray().filter(el => $(el).text() === 'Annotations');
+            const descriptionHeader = $('th', '.subsection.properties.TEST_Properties_InnerThree').toArray().filter(el => $(el).text() === 'Description');
             assert.equal(annotationHeader.length + descriptionHeader.length, 2, 'Annotation or Description column not found in properties table');
         });
     });

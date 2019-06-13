@@ -20,7 +20,7 @@ class GeneratorUtils {
         const codeWords: Option<RegExpMatchArray, null> = html.match(/(`|&#96;).+?(`|&#96;)/g);
         if (codeWords) {
             codeWords.forEach(word => {
-                let codeWord = word.replace(/&#96;|`/, `<code class="inlineCode">`);
+                let codeWord = word.replace(/&#96;|`/, `<code class="inline-code">`);
                 codeWord = codeWord.replace(/&#96;|`/, '</code>');
                 html = html.replace(word, codeWord);
             });
