@@ -22,7 +22,9 @@ General:
     ☐ Namespace tag (and global setting?)
     ✔ Separate methods & constructors @done(19-06-12 23:18)
     ✔ Method name line should show params even if not annotated @done(19-06-12 23:18)
-    ☐ Why don't annoations highlight.js anymore?
+    ✔ Why don't annoations highlight.js anymore? @done(19-06-13 09:26)
+    ☐ In-comment see links / links / markdown links
+    ☐ Method, Interface, Enum menu hierarchy
 
 Testing:
     ✔ Establish "Snapshot" tests to compare output docs to expected output reference files @done(19-05-28 21:25)

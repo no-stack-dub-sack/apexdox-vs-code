@@ -65,7 +65,7 @@ export const createMethodsSuite = (files: ITestFile[]) => {
                 .filter(el => $(el).text().trim() === 'getInt')
                 .map(el => $(el).attr('href'));
 
-            const ids = $('h2.method-header').toArray()
+            const ids = $('h2.method-title').toArray()
                 .filter(el => $(el).text().trim() === 'getInt')
                 .map(el => $(el).attr('id'));
 

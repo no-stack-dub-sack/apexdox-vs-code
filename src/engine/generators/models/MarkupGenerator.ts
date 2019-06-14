@@ -26,21 +26,21 @@ abstract class MarkupGenerator<T extends ApexModel> {
         return `<${tag} class="${className}">${GeneratorUtils.escapeHTML(this.model.description, true)}</${tag}>`;
     }
 
-    protected signatureLine(nameLine: string, memberClassName: string, highlightJSify = false): string {
-        let signature = highlightJSify ? this.highlightSignature(nameLine) : nameLine;
+    protected linkToSource(nameOrSignature: string, topmostTypeName: string, highlightJSify = false): string {
+        nameOrSignature = highlightJSify ? this.highlightSignature(nameOrSignature) : nameOrSignature;
         let sourceUrl = this.model.sourceUrl;
         if (sourceUrl) {
             // if user leaves off trailing slash, save the day!
             if (!sourceUrl.endsWith('/')) {
                 sourceUrl += '/';
             }
-            let href = sourceUrl + memberClassName + '.cls#L' + this.model.lineNum;
+            let href = sourceUrl + topmostTypeName + '.cls#L' + this.model.lineNum;
             return `
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="${href}">
-                    ${signature}
+                    ${nameOrSignature}
                 </a>`;
         } else {
-            return `<span>${signature}</span>`;
+            return `<span>${nameOrSignature}</span>`;
         }
     }
 

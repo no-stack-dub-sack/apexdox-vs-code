@@ -14,16 +14,17 @@ class EnumMarkupGenerator extends MarkupGenerator<EnumModel> {
         let markup = generator.header(eModel.name);
         let values = generator.valuesTable();
 
-        markup += TopLevelMarkupGenerator.generate(eModel, modelMap, eModel.name, values);
+        markup += TopLevelMarkupGenerator.generate(eModel, modelMap, values);
 
         return markup;
     }
 
-    protected header(memberClassName: string) {
+    protected header(topmostTypeName: string) {
         return `
-            <h2 class="section-title top-level-type" id="${this.model.name}">
-                ${super.signatureLine(GeneratorUtils.escapeHTML(this.model.name), memberClassName)}
-            </h2>`;
+            <h2 class="class-title top-level-type" id="${this.model.name}">
+                ${super.linkToSource(GeneratorUtils.escapeHTML(this.model.name), topmostTypeName)}
+            </h2>`
+        ;
     }
 
     protected valuesTable(): string {
@@ -38,7 +39,8 @@ class EnumMarkupGenerator extends MarkupGenerator<EnumModel> {
                         </td>
                     </tr>`
                 )}
-            </table>`;
+            </table>`
+        ;
     }
 }
 

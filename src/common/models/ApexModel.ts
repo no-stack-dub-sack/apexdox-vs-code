@@ -91,7 +91,7 @@ abstract class ApexModel {
             }
 
             // get everything after opening '*'s
-            line = line.replace(/\s*\/?\*+\s*/, '').trim();
+            line = line.replace(/\s*\/?\*+/, '');
 
             // replace docBlock break marker and indicate we should break after
             // this round. Otherwise we may get some strange behavior due to

@@ -31,7 +31,7 @@ export const FOOTER =
 export const DEFAULT_HOME_CONTENTS =
     `<h2>Project Home</h2>
     <p>
-        Use the <code class="inline-code">apexdoc2.homePagePath</code> setting to point to an HTML file that contains details about your project.
+        Use the <code class="code-inline">apexdoc2.homePagePath</code> setting to point to an HTML file that contains details about your project.
         The body of the HTML will show up here instead of this default!
     </p>`;
 

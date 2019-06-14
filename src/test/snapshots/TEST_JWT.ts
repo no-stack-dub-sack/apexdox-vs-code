@@ -54,107 +54,107 @@ export default `<!DOCTYPE html>
         <td width="22%" vertical-align="top">
           <div class="navbar">
             <nav role="navigation">
-              <a class="navHeader" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">
+              <a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">
                 Home
               </a>
               <details id="Assertions" class="groupName">
-                <summary onclick="toggleActiveClass(this);" id="header-Assertions" class="navHeader">
+                <summary onclick="toggleActiveClass(this);" id="header-Assertions" class="nav-header">
                   <span>Assertions</span>
                 </summary>
                 <ul>
                   <!-- menu items will be appended here -->
-                  <li id="item-TEST_Annotations" class="navItem class public" onclick="goToLocation('TEST_Annotations.html');">
+                  <li id="item-TEST_Annotations" class="nav-item class public" onclick="goToLocation('TEST_Annotations.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Annotations</a>
                   </li>
-                  <li id="item-TEST_EnumClass" class="navItem class public" onclick="goToLocation('TEST_EnumClass.html');">
+                  <li id="item-TEST_EnumClass" class="nav-item class public" onclick="goToLocation('TEST_EnumClass.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_EnumClass</a>
                   </li>
-                  <li id="item-TEST_EnumInner" class="navItem class public" onclick="goToLocation('TEST_EnumInner.html');">
+                  <li id="item-TEST_EnumInner" class="nav-item class public" onclick="goToLocation('TEST_EnumInner.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_EnumInner</a>
                   </li>
-                  <li id="item-TEST_InterfaceClass" class="navItem class global" onclick="goToLocation('TEST_InterfaceClass.html');">
+                  <li id="item-TEST_InterfaceClass" class="nav-item class global" onclick="goToLocation('TEST_InterfaceClass.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_InterfaceClass</a>
                   </li>
-                  <li id="item-TEST_Links" class="navItem class public" onclick="goToLocation('TEST_Links.html');">
+                  <li id="item-TEST_Links" class="nav-item class public" onclick="goToLocation('TEST_Links.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
                   </li>
-                  <li id="item-TEST_Methods" class="navItem class public" onclick="goToLocation('TEST_Methods.html');">
+                  <li id="item-TEST_Methods" class="nav-item class public" onclick="goToLocation('TEST_Methods.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
                   </li>
-                  <li id="item-TEST_MultiLineTagValues" class="navItem class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
+                  <li id="item-TEST_MultiLineTagValues" class="nav-item class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
                   </li>
-                  <li id="item-TEST_NestedClasses" class="navItem class public" onclick="goToLocation('TEST_NestedClasses.html');">
+                  <li id="item-TEST_NestedClasses" class="nav-item class public" onclick="goToLocation('TEST_NestedClasses.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_NestedClasses</a>
                   </li>
-                  <li id="item-TEST_Properties" class="navItem class public" onclick="goToLocation('TEST_Properties.html');">
+                  <li id="item-TEST_Properties" class="nav-item class public" onclick="goToLocation('TEST_Properties.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_Properties</a>
                   </li>
                 </ul>
               </details>
               <details id="Feature1" class="groupName">
-                <summary onclick="toggleActiveClass(this);" id="header-Feature1" class="navHeader">
+                <summary onclick="toggleActiveClass(this);" id="header-Feature1" class="nav-header">
                   <span>Feature1</span>
                 </summary>
                 <ul>
                   <!-- menu items will be appended here -->
-                  <li id="item-TEST_ArrayUtils" class="navItem class global" onclick="goToLocation('TEST_ArrayUtils.html');">
+                  <li id="item-TEST_ArrayUtils" class="nav-item class global" onclick="goToLocation('TEST_ArrayUtils.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_ArrayUtils</a>
                   </li>
-                  <li id="item-TEST_BotField" class="navItem class public" onclick="goToLocation('TEST_BotField.html');">
+                  <li id="item-TEST_BotField" class="nav-item class public" onclick="goToLocation('TEST_BotField.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_BotField</a>
                   </li>
-                  <li id="item-TEST_BotHandler" class="navItem class public" onclick="goToLocation('TEST_BotHandler.html');">
+                  <li id="item-TEST_BotHandler" class="nav-item class public" onclick="goToLocation('TEST_BotHandler.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_BotHandler</a>
                   </li>
-                  <li id="item-TEST_BotItem" class="navItem class public" onclick="goToLocation('TEST_BotItem.html');">
+                  <li id="item-TEST_BotItem" class="nav-item class public" onclick="goToLocation('TEST_BotItem.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_BotItem</a>
                   </li>
-                  <li id="item-TEST_BotMessage" class="navItem class public" onclick="goToLocation('TEST_BotMessage.html');">
+                  <li id="item-TEST_BotMessage" class="nav-item class public" onclick="goToLocation('TEST_BotMessage.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_BotMessage</a>
                   </li>
-                  <li id="item-TEST_HandlerSOQL" class="navItem class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
+                  <li id="item-TEST_HandlerSOQL" class="nav-item class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
                   </li>
-                  <li id="item-TEST_IllegalStateException" class="navItem class global" onclick="goToLocation('TEST_IllegalStateException.html');">
+                  <li id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
                   </li>
-                  <li id="item-TEST_ISObjectComparator" class="navItem class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
+                  <li id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
                   </li>
-                  <li id="item-TEST_JWT" class="navItem class public" onclick="goToLocation('TEST_JWT.html');">
+                  <li id="item-TEST_JWT" class="nav-item class public" onclick="goToLocation('TEST_JWT.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
                   </li>
-                  <li id="item-TEST_LIFXController" class="navItem class public" onclick="goToLocation('TEST_LIFXController.html');">
+                  <li id="item-TEST_LIFXController" class="nav-item class public" onclick="goToLocation('TEST_LIFXController.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_LIFXController</a>
                   </li>
-                  <li id="item-TEST_MyRestResource" class="navItem class global" onclick="goToLocation('TEST_MyRestResource.html');">
+                  <li id="item-TEST_MyRestResource" class="nav-item class global" onclick="goToLocation('TEST_MyRestResource.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_MyRestResource</a>
                   </li>
-                  <li id="item-TEST_PrimitiveComparator" class="navItem class global" onclick="goToLocation('TEST_PrimitiveComparator.html');">
+                  <li id="item-TEST_PrimitiveComparator" class="nav-item class global" onclick="goToLocation('TEST_PrimitiveComparator.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_PrimitiveComparator</a>
                   </li>
-                  <li id="item-TEST_SampleDataController" class="navItem class public" onclick="goToLocation('TEST_SampleDataController.html');">
+                  <li id="item-TEST_SampleDataController" class="nav-item class public" onclick="goToLocation('TEST_SampleDataController.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_SampleDataController</a>
                   </li>
-                  <li id="item-TEST_SlackOpportunityPublisher" class="navItem class public" onclick="goToLocation('TEST_SlackOpportunityPublisher.html');">
+                  <li id="item-TEST_SlackOpportunityPublisher" class="nav-item class public" onclick="goToLocation('TEST_SlackOpportunityPublisher.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_SlackOpportunityPublisher</a>
                   </li>
-                  <li id="item-TEST_StopWatch" class="navItem class global" onclick="goToLocation('TEST_StopWatch.html');">
+                  <li id="item-TEST_StopWatch" class="nav-item class global" onclick="goToLocation('TEST_StopWatch.html');">
                     <a tabindex="1" href="javascript:void(0)">TEST_StopWatch</a>
                   </li>
                 </ul>
               </details>
               <details id="Miscellaneous" class="groupName">
-                <summary onclick="toggleActiveClass(this);" id="header-Miscellaneous" class="navHeader">
+                <summary onclick="toggleActiveClass(this);" id="header-Miscellaneous" class="nav-header">
                   <span>Miscellaneous</span>
                 </summary>
                 <ul>
                   <!-- menu items will be appended here -->
-                  <li id="item-IncludeOne" class="navItem class public" onclick="goToLocation('IncludeOne.html');">
+                  <li id="item-IncludeOne" class="nav-item class public" onclick="goToLocation('IncludeOne.html');">
                     <a tabindex="1" href="javascript:void(0)">IncludeOne</a>
                   </li>
-                  <li id="item-IncludeTwo" class="navItem class private" onclick="goToLocation('IncludeTwo.html');">
+                  <li id="item-IncludeTwo" class="nav-item class private" onclick="goToLocation('IncludeTwo.html');">
                     <a tabindex="1" href="javascript:void(0)">IncludeTwo</a>
                   </li>
                 </ul>
@@ -167,7 +167,7 @@ export default `<!DOCTYPE html>
             <summary>
               <h2 class="sectionTitle" id="TEST_JWT">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L9">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L9">
                   TEST_JWT
                 </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
               </h2>
@@ -175,25 +175,25 @@ export default `<!DOCTYPE html>
 
 
 
-            <div class="classSignature">
+            <div class="class-signature">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L9">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L9">
                 public class TEST_JWT
               </a>
             </div>
-            <div class="classDetails">
+            <div class="class-details">
               <div class="">An JSON Web Token utility class.</div>
-              <div class="classSubtitle ">See</div>
-              <div class="classSubDescription"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a></div><br />Salesforce.com<br />Jul 2017
+              <div class="class-subtitle ">See</div>
+              <div class="class-subtitle-description"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a></div><br />Salesforce.com<br />Jul 2017
             </div>
             <p />
-            <details class="subSection properties TEST_JWT" open>
+            <details class="subsection properties TEST_JWT" open>
               <summary>
                 <h2 class="subsectionTitle properties">Properties</h2>
               </summary>
 
-              <div class="subsectionContainer">
-                <table class="attrTable properties">
+              <div class="subsection-container">
+                <table class="attributes-table properties">
 
                   <tr>
                     <th>Name</th>
@@ -202,126 +202,126 @@ export default `<!DOCTYPE html>
 
                   </tr>
                   <tr class="property public">
-                    <td class="attrName">alg</td>
-                    <td class="attrSignature">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L11">
+                    <td class="attribute-name">alg</td>
+                    <td class="attribute-signature">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L11">
                         public String <span class="hljs-title">alg<span>
                 </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">aud</td>
-                <td class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L14">
+                <td class="attribute-name">aud</td>
+                <td class="attribute-signature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L14">
                     public String <span class="hljs-title">aud<span>
                 </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">cert</td>
-                <td class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L19">
+                <td class="attribute-name">cert</td>
+                <td class="attribute-signature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L19">
                     public String <span class="hljs-title">cert<span>
                 </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">claims</td>
-                <td class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L17">
+                <td class="attribute-name">claims</td>
+                <td class="attribute-signature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L17">
                     public Map&lt;String,String&gt; <span class="hljs-title">claims<span>
                 </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">exp</td>
-                <td class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L15">
+                <td class="attribute-name">exp</td>
+                <td class="attribute-signature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L15">
                     public String <span class="hljs-title">exp<span>
                 </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">HS256</td>
-                <td class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L24">
+                <td class="attribute-name">HS256</td>
+                <td class="attribute-signature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L24">
                     public static final String <span class="hljs-title">HS256<span>
                 </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">iat</td>
-                <td class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L16">
+                <td class="attribute-name">iat</td>
+                <td class="attribute-signature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L16">
                     public String <span class="hljs-title">iat<span>
                 </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">iss</td>
-                <td class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L12">
+                <td class="attribute-name">iss</td>
+                <td class="attribute-signature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L12">
                     public String <span class="hljs-title">iss<span>
                 </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">NONE</td>
-                <td class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L26">
+                <td class="attribute-name">NONE</td>
+                <td class="attribute-signature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L26">
                     public static final String <span class="hljs-title">NONE<span>
                 </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">pkcs8</td>
-                <td class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L20">
+                <td class="attribute-name">pkcs8</td>
+                <td class="attribute-signature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L20">
                     public String <span class="hljs-title">pkcs8<span>
                 </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">privateKey</td>
-                <td class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L21">
+                <td class="attribute-name">privateKey</td>
+                <td class="attribute-signature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L21">
                     public String <span class="hljs-title">privateKey<span>
                 </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">RS256</td>
-                <td class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L25">
+                <td class="attribute-name">RS256</td>
+                <td class="attribute-signature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L25">
                     public static final String <span class="hljs-title">RS256<span>
                 </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">sub</td>
-                <td class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L13">
+                <td class="attribute-name">sub</td>
+                <td class="attribute-signature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L13">
                     public String <span class="hljs-title">sub<span>
                 </a></td>
                 
                 
             </tr>
             <tr class="property public">
-                <td class="attrName">validFor</td>
-                <td class="attrSignature">
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L18">
+                <td class="attribute-name">validFor</td>
+                <td class="attribute-signature">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L18">
                     public Integer <span class="hljs-title">validFor<span>
                 </a></td>
                 
@@ -331,50 +331,50 @@ export default `<!DOCTYPE html>
             </div>
             <p />
             </details>
-            <details class="subSection methods" open>
+            <details class="subsection methods" open>
                 <summary><h2 class="subsectionTitle methods">Methods</h2></summary>
-                <div class="methodsContainer">
-                <ul class="methodTOC"><li class="method public">
-                <a class="methodTOCEntry " href="#TEST_JWT.base64URLencode">
+                <div class="methods-container">
+                <ul class="methods-toc"><li class="method public">
+                <a class="methods-toc__entry " href="#TEST_JWT.base64URLencode">
                     base64URLencode
-                </a><div class="methodTOCDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div></li><li class="method public">
-                <a class="methodTOCEntry " href="#TEST_JWT.issue">
+                </a><div class="methods-toc__description">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div></li><li class="method public">
+                <a class="methods-toc__entry " href="#TEST_JWT.issue">
                     issue
-                </a><div class="methodTOCDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div></li><li class="method public">
-                <a class="methodTOCEntry " href="#TEST_JWT.JWT">
+                </a><div class="methods-toc__description">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div></li><li class="method public">
+                <a class="methods-toc__entry " href="#TEST_JWT.JWT">
                     JWT
                 </a></li></ul>
-                <div class="method public"><h2 class="methodHeader " id="TEST_JWT.base64URLencode">base64URLencode</h2>
-            <div class="methodSignature">
+                <div class="method public"><h2 class="method-title " id="TEST_JWT.base64URLencode">base64URLencode</h2>
+            <div class="method-signature">
                 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L92">
+                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L92">
                     public String <span class="hljs-title">base64URLencode</span>(Blob input)
                       </a>
               </div>
-              <div class="methodDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-              <div class="methodSubTitle">Parameters</div>
+              <div class="method-description">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
+              <div class="method-subtitle">Parameters</div>
               <div class="paramName">input</div>
               <div class="paramDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-              <div class="methodSubTitle ">Returns</div>
-              <div class="methodSubDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
+              <div class="method-subtitle ">Returns</div>
+              <div class="method-subtitle-description">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
               </div>
               <div class="method public">
-                <h2 class="methodHeader " id="TEST_JWT.issue">issue</h2>
-                <div class="methodSignature">
+                <h2 class="method-title " id="TEST_JWT.issue">issue</h2>
+                <div class="method-signature">
 
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L38">
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L38">
                     public String <span class="hljs-title">issue</span>()
                   </a>
                 </div>
-                <div class="methodDescription">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
-                <div class="methodSubTitle ">Returns</div>
-                <div class="methodSubDescription">JSON string</div>
+                <div class="method-description">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</div>
+                <div class="method-subtitle ">Returns</div>
+                <div class="method-subtitle-description">JSON string</div>
               </div>
               <div class="method public">
-                <h2 class="methodHeader " id="TEST_JWT.JWT">JWT</h2>
-                <div class="methodSignature">
+                <h2 class="method-title " id="TEST_JWT.JWT">JWT</h2>
+                <div class="method-signature">
 
-                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="hostedSourceLink" href="https://somefakeurl.com/TEST_JWT.cls#L29">
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L29">
                     public <span class="hljs-title">JWT</span>(String alg)
                   </a>
                 </div>

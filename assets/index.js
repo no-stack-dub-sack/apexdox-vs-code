@@ -30,8 +30,8 @@ window.onbeforeunload = () => {
 ***********************************************************************/
 function initHighlightJs() {
 	const selectors = [
-		'pre code', '.methodAnnotations', '.classSignature',
-		'.classAnnotations', '.propAnnotations'
+		'pre code', '.method-annotations', '.class-signature', '.attribute-signature',
+		'.method-signature', '.class-annotations', '.prop-annotations'
 	];
 	// initialize highlighting for code examples and
 	// signatures for methods, classes, props and enums

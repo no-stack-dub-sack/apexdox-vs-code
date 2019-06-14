@@ -16,7 +16,7 @@ class ClassMarkupGenerator extends MarkupGenerator<ClassModel> {
         const generator = new ClassMarkupGenerator(cModel);
         const header = generator.header(cModel.topMostClassName);
 
-        let contents = TopLevelMarkupGenerator.generate(cModel, modelMap, cModel.topMostClassName, '');
+        let contents = TopLevelMarkupGenerator.generate(cModel, modelMap, '');
 
         if (cModel.properties.length) {
             contents += PropertyMarkupGenerator.generate(cModel);
@@ -33,11 +33,12 @@ class ClassMarkupGenerator extends MarkupGenerator<ClassModel> {
         return GeneratorUtils.wrapWithDetail(contents, header, 'section');
     }
 
-    protected header(memberClassName: string) {
+    protected header(topmostTypeName: string) {
         return `
-            <h2 class="section-title ${this.model.name === memberClassName ? 'top-level-type' : ''}" id="${this.model.name}">
-                ${super.signatureLine(GeneratorUtils.escapeHTML(this.model.name), memberClassName)}
-            </h2>`;
+            <h2 class="class-title ${this.model.name === topmostTypeName ? 'top-level-type' : ''}" id="${this.model.name}">
+                ${super.linkToSource(GeneratorUtils.escapeHTML(this.model.name), topmostTypeName)}
+            </h2>`
+        ;
     }
 }
 

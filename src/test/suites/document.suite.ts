@@ -78,19 +78,19 @@ export const createDocumentSuite = (files: ITestFile[]) => {
             const description = $('.method-description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines.');
             assert.equal($(description).text(), 'Works over multiple lines.', 'description value does not match expected multi-line value');
 
-            const author = $('.method-subtitle__description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (author).');
+            const author = $('.method-subtitle-description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (author).');
             assert.equal($(author).text(), 'Works over multiple lines (author).', 'author value does not match expected multi-line value');
 
-            const since = $('.method-subtitle__description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (since).');
+            const since = $('.method-subtitle-description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (since).');
             assert.equal($(since).text(), 'Works over multiple lines (since).', 'since value does not match expected multi-line value');
 
-            const returns = $('.method-subtitle__description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (returns).');
+            const returns = $('.method-subtitle-description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (returns).');
             assert.equal($(returns).text(), 'Works over multiple lines (returns).', 'returns value does not match expected multi-line value');
 
-            const exception = $('.method-subtitle__description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (exception).');
+            const exception = $('.method-subtitle-description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (exception).');
             assert.equal($(exception).text(), 'Works over multiple lines (exception).', 'exception value does not match expected multi-line value');
 
-            const deprecated = $('.method-subtitle__description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (deprecated).');
+            const deprecated = $('.method-subtitle-description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (deprecated).');
             assert.equal($(deprecated).text(), 'Works over multiple lines (deprecated).', 'deprecated value does not match expected multi-line value');
         });
     });

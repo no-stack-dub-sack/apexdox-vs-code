@@ -58,15 +58,15 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
             </tr>`;
     }
 
-    protected signatureLine(memberClassName: string): string {
-        return `<td class="attribute-signature">${super.signatureLine(this.model.nameLine, memberClassName, true)}</td>`;
-    }
-
-    protected propRow(memberClassName: string, hasAnnotationsColumn: boolean, hasDescriptionColumn: boolean): string {
+    protected propRow(topmostTypeName: string, hasAnnotationsColumn: boolean, hasDescriptionColumn: boolean): string {
         return `
             <tr class="property ${this.model.scope}">
-                <td class="attribute-name">${this.model.name}</td>
-                ${this.signatureLine(memberClassName)}
+                <td class="attribute-name">${super.linkToSource(this.model.name, topmostTypeName)}</td>
+                <td>
+                    <div class="attribute-signature">
+                        ${GeneratorUtils.escapeHTML(this.model.nameLine)}
+                    </div>
+                </td>
                 ${hasAnnotationsColumn ? '<td>' + this.annotations('prop-annotations') + '</td>' : ''}
                 ${hasDescriptionColumn ? this.description('attribute-description', 'td', true) : ''}
             </tr>`;

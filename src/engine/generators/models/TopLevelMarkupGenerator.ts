@@ -8,14 +8,15 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         super(model);
     }
 
-    public static generate(model: TopLevelModel, modelMap: Map<string, TopLevelModel>, className: string, additionalContent = ''): string {
+    public static generate(model: TopLevelModel, modelMap: Map<string, TopLevelModel>, additionalContent = ''): string {
         const generator = new TopLevelMarkupGenerator(model);
 
         let markup = '';
 
         // add any additional content passed in from the caller. currently, only
         // use case is the values table used when documenting class-level enums
-        markup += generator.description();
+        markup += generator.description('class-description');
+        markup += generator.signature();
         markup += additionalContent;
         markup += generator.deprecated();
         markup += generator.see(modelMap);
@@ -24,17 +25,24 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         markup += generator.example();
 
         markup = `
-            ${generator.annotations('class-annotations')}
-            ${generator.signatureLine(className)}
-            <div class="class-details">${markup}</div>
-            <p/>`;
+            <div class="class-details">
+                ${markup}
+            </div>
+            <p/>`
+        ;
 
         return markup;
     }
 
     private markupTemplate(label: string, contents: string, titleClass = '', contentClass = 'class-subtitle-description', tag = 'div') {
-        return `<div class="class-subtitle ${titleClass}">${label}</div>
-                <${tag} class="${contentClass}">${contents}</${tag}>`;
+        return `
+            <div class="class-subtitle ${titleClass}">
+                ${label}
+            </div>
+            <${tag} class="${contentClass}">
+                ${contents}
+            </${tag}>`
+        ;
     }
 
     protected author() {
@@ -56,7 +64,7 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
                 'Example',
                 `<code>${GeneratorUtils.escapeHTML(this.model.example.trimRight())}</code>`,
                 '',
-                'codeExample',
+                'code-example',
                 'pre'
             );
         }
@@ -86,11 +94,16 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         }
     }
 
-    protected signatureLine(memberClassName: string): string {
+    protected signature(): string {
         return `
+            <div class="class-subtitle">
+                Signature
+            </div>
+            ${this.annotations('class-annotations')}
             <div class="class-signature">
-                ${super.signatureLine(GeneratorUtils.escapeHTML(this.model.nameLine), memberClassName)}
-            </div>`;
+                ${GeneratorUtils.escapeHTML(this.model.nameLine)}
+            </div>`
+        ;
     }
 }
 

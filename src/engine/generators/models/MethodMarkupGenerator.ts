@@ -59,14 +59,13 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
             const methodId = generator.generateMethodId(idCountMap, cModel);
 
             // make our TOC entry, we'll concat this with the rest of the markup in the proper order later
-            tocMarkup += generator.getTOCEntry(ApexDoc.config.showTOCSnippets, method.name, methodId);
+            tocMarkup += generator.getTOCEntry(ApexDoc.config.showTOCSnippets, methodId);
 
             // run our generators in the desired order
             let methodMarkup = '';
-            methodMarkup += generator.header(methodId, method.name);
-            methodMarkup += generator.annotations('method-annotations');
-            methodMarkup += generator.signatureLine(cModel.topMostClassName);
+            methodMarkup += generator.header(methodId, cModel.topMostClassName);
             methodMarkup += generator.description('method-description');
+            methodMarkup += generator.signature();
             methodMarkup += generator.deprecated();
             methodMarkup += generator.params();
             methodMarkup += generator.returns();
@@ -90,21 +89,10 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         return GeneratorUtils.wrapWithDetail(markup, `<h3 class="subsection-title methods">${cModel.name} ${section}</h2>`, 'subsection methods');
     }
 
-    private markupTemplate(label: string, contents: string, titleClass = '', contentClass = 'method-subtitle__description', tag = 'div') {
+    private markupTemplate(label: string, contents: string, titleClass = '', contentClass = 'method-subtitle-description', tag = 'div') {
         return `<div class="method-subtitle ${titleClass}">${label}</div>
                 <${tag} class="${contentClass}">${contents}</${tag}>`;
     }
-
-    // protected formatConstructorName(classModel: ClassModel): string {
-    //     let methodName = this.model.name;
-    //     // split class model name on '.' and take last, in case class is inner. otherwise
-    //     // we'd be comparing a to its fully qualified class name, e.g. MyClass.SomeMethod
-    //     if (methodName.toLowerCase() === last(classModel.name.split('.')).toLowerCase()) {
-    //         methodName += '.&lt;init&gt;';
-    //     }
-
-    //     return methodName;
-    // }
 
     protected author(): string {
         if (!this.model.author) {
@@ -114,11 +102,12 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         }
     }
 
-    protected header(id: string, name: string): string {
+    protected header(id: string, topmostTypeName: string): string {
         return `
-            <h2 class="method-header ${(this.model.deprecated ? 'deprecated' : '')}" id="${id}">
-                ${name} (${this.model.paramsFromNameLine.join(', ')})
-            </h2>`;
+            <h4 class="method-title ${(this.model.deprecated ? 'deprecated' : '')}" id="${id}">
+                ${super.linkToSource(`${this.model.name}(${this.model.paramsFromNameLine.join(', ')})`, topmostTypeName)}
+            </h4>`
+        ;
     }
 
     protected since(): string {
@@ -148,7 +137,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
                 'Example',
                 `<code>${GeneratorUtils.escapeHTML(this.model.example.trimRight())}</code>`,
                 '',
-                'codeExample',
+                'code-example',
                 'pre'
             );
         }
@@ -172,7 +161,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
                 if (type) {
                     markup +=
                     `<div class="param-description">
-                        Type: <code class="inline-code">${type}</code>
+                        Type: <code class="code-inline">${type}</code>
                     </div>`;
                 }
 
@@ -201,11 +190,11 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         }
     }
 
-    protected getTOCEntry(showTOCSnippets: boolean, name: string, id: string): string {
+    protected getTOCEntry(showTOCSnippets: boolean, id: string): string {
         let entry =
             `<li class="method ${this.model.scope}">
                 <a class="methods-toc__entry ${(this.model.deprecated ? 'deprecated' : '')}" href="#${id}">
-                    ${name}
+                    ${this.model.name} (${this.model.paramsFromNameLine.join(', ')})
                 </a>`;
 
         if (showTOCSnippets && this.model.description) {
@@ -215,11 +204,16 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         return entry += '</li>';
     }
 
-    protected signatureLine(memberClassName: string): string {
+    protected signature(): string {
         return `
+            <div class="method-subtitle">
+                Signature
+            </div>
+            ${this.annotations('method-annotations')}
             <div class="method-signature">
-                ${super.signatureLine(GeneratorUtils.escapeHTML(this.model.nameLine), memberClassName, true)}
-            </div>`;
+                ${GeneratorUtils.escapeHTML(this.model.nameLine)}
+            </div>`
+        ;
     }
 
     /**
