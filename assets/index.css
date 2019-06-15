@@ -90,6 +90,10 @@ body {
     color: var(--grey-blue);
 }
 
+.subsection {
+    margin-bottom: 10px;
+}
+
 .subsection-title {
     font-family: 'Nanum Gothic';
     color: var(--grey-blue);
@@ -103,6 +107,7 @@ body {
 }
 
 .attributes-table {
+    margin-top: 10px;
     border-collapse: collapse;
     max-width: 97%;
 }
@@ -164,9 +169,9 @@ most signatures will fit on a single lin */
     font-weight: normal;
 }
 
-/* .class-details {
-    font-size: 15px;
-} */
+.class-details {
+    margin-bottom: 10px
+}
 
 .class-subtitle,
 .method-subtitle {
@@ -186,7 +191,7 @@ most signatures will fit on a single lin */
 }
 
 .source-link:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .methods-container {

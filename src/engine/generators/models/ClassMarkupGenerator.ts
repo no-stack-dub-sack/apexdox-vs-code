@@ -30,7 +30,12 @@ class ClassMarkupGenerator extends MarkupGenerator<ClassModel> {
             contents += MethodMarkupGenerator.generate(cModel, modelMap);
         }
 
-        return GeneratorUtils.wrapWithDetail(contents, header, 'section');
+        return `
+            <div class="section">
+                ${header}
+                ${contents}
+            </div>
+        `;
     }
 
     protected header(topmostTypeName: string) {

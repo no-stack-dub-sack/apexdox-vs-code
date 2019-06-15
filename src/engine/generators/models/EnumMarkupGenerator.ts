@@ -29,7 +29,6 @@ class EnumMarkupGenerator extends MarkupGenerator<EnumModel> {
 
     protected valuesTable(): string {
         return `
-            <p />
             <table class="attributes-table">
                 <tr><th>Values</th></tr>
                 ${GeneratorUtils.mapHTML(this.model.values, val =>

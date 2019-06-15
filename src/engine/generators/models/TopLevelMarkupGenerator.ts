@@ -24,12 +24,10 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         markup += generator.since();
         markup += generator.example();
 
-        markup = `
-            <div class="class-details">
+        markup = 
+            `<div class="class-details">
                 ${markup}
-            </div>
-            <p/>`
-        ;
+            </div>`;
 
         return markup;
     }

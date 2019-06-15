@@ -23,15 +23,17 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
             markup += generator.propRow(cModel.topMostClassName, hasAnnotations, hasDescription);
         }
 
-        markup = `
-            <div class="subsection-container">
-                <table class="attributes-table properties">
-                    ${markup}
-                </table>
-            </div>
-            <p />`;
+        markup =
+            `<div class="subsection properties ${cModel.name.replace('.', '_')}">
+                <h3 class="subsection-title properties">${cModel.name} Properties</h2>
+                <div class="subsection-container">
+                    <table class="attributes-table properties">
+                        ${markup}
+                    </table>
+                </div>
+            </div>`;
 
-        return GeneratorUtils.wrapWithDetail(markup, `<h3 class="subsection-title properties">${cModel.name} Properties</h2>`, `subsection properties ${cModel.name.replace('.', '_')}`);
+        return markup;
     }
 
     protected static hasDescriptionColumn(headerRow: string): boolean {

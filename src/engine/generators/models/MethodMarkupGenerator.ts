@@ -81,12 +81,15 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
 
         // concat and close TOC and full methods display HTML
         const markup =
-            `<div class="methods-container">
-                <ul class="methods-toc">${tocMarkup}</ul>
-                ${methodsMarkup}
+            `<div class="subsection methods">
+                <h3 class="subsection-title methods">${cModel.name} ${section}</h3>
+                <div class="methods-container">
+                    <ul class="methods-toc">${tocMarkup}</ul>
+                    ${methodsMarkup}
+                </div>
             </div>`;
 
-        return GeneratorUtils.wrapWithDetail(markup, `<h3 class="subsection-title methods">${cModel.name} ${section}</h2>`, 'subsection methods');
+        return markup;
     }
 
     private markupTemplate(label: string, contents: string, titleClass = '', contentClass = 'method-subtitle-description', tag = 'div') {
