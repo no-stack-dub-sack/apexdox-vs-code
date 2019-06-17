@@ -22,14 +22,12 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
             markup += generator.enumRow(cModel.topMostClassName, hasDescription);
         }
 
-        markup = 
+        markup =
             `<div class="subsection enums">
                 <h3 class="subsection-title enums">Enums</h2>
-                <div class="subsection-container">
-                    <table class="attributes-table properties">
-                        ${markup}
-                    </table>
-                </div>
+                <table class="attributes-table properties">
+                    ${markup}
+                </table>
             </div>`;
 
         return markup;

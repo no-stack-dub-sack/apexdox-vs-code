@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Barlow:400,400i|Nanum+Gothic&display=swap');
 
 :root {
-    --dark-blue: #003672;
-    --grey-blue: #51638A;
+    --grey-blue-tx: #51638A;
+    --grey-blue-bg: #547499;
     --light-grey: #f7f7f7;
-    --med-grey: #e7e7e7;
-    --med-blue: #00f;
     --white: #fff;
     --dark-red: #a31515;
 }
@@ -16,53 +14,8 @@ body {
     padding: 0px;
 }
 
-#side-bar {
-    height: 100vh;
-    overflow-y: auto;
-    position: fixed;
-    top: -1px;
-    width: 22%;
-}
-
-.search-icon {
-    height: 15px;
-    margin: 0 2px 0 5px;
-    vertical-align: middle;
-}
-
-#search-wrapper {
-    border-bottom: 1px solid lightgrey;
-    margin: 10px 0 5px 10px;
-    padding-bottom: 5px;
-}
-
-#search-input {
-    border: none;
-    outline: none;
-    width: 80%;
-}
-
-#search-results {
-    height: 0;
-    margin: 0;
-    transition: height .3s, margin .3s;
-}
-
-#search-results.visible {
-    height: 30%;
-    list-style: none;
-    margin-bottom: 5px;
-    overflow-y: scroll;
-    padding-left: 12px;
-}
-
-.search-result:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
 .scoping-panel {
-    background: white;
+    background: var(--white);
     padding: 8px;
     position: sticky;
     text-align: center;
@@ -72,13 +25,12 @@ body {
 #content {
     float: right;
     padding-left: 10px;
-    vertical-align: top;
     width: 78%;
 }
 
 .class-title,
 .section-title {
-     color: var(--grey-blue);
+     color: var(--grey-blue-tx);
      font-weight: bold;
      margin: 0 0 5px 0;
      padding: 5px 5px 5px 0px;
@@ -87,23 +39,20 @@ body {
 
 .class-title a,
 .section-title a {
-    color: var(--grey-blue);
+    color: var(--grey-blue-tx);
 }
 
-.subsection {
+.subsection,
+.class-container,
+.methods-container {
     margin-bottom: 10px;
 }
 
 .subsection-title {
     font-family: 'Nanum Gothic';
-    color: var(--grey-blue);
+    color: var(--grey-blue-tx);
     margin: 0;
     padding: 2px;
-}
-
-.subsection-container {
-    margin-top: 10px;
-    padding: 0 0 0 14px;
 }
 
 .attributes-table {
@@ -113,7 +62,7 @@ body {
 }
 
 .attributes-table th {
-    background: #547499;
+    background: var(--grey-blue-bg);
     color: var(--white);
     text-align: left;
 }
@@ -155,9 +104,9 @@ most signatures will fit on a single lin */
     font-weight: normal;
 }
 
-.attribute-description.has-description {
+/* .attribute-description.has-description {
     height: 1em;
-}
+} what was this for? */
 
 .method-signature,
 .method-annotations,
@@ -169,13 +118,9 @@ most signatures will fit on a single lin */
     font-weight: normal;
 }
 
-.class-details {
-    margin-bottom: 10px
-}
-
 .class-subtitle,
 .method-subtitle {
-    color: var(--grey-blue);
+    color: var(--grey-blue-tx);
     font-size: 16px;
     font-weight: bold;
     margin: 15px 0 2px 0;
@@ -192,10 +137,6 @@ most signatures will fit on a single lin */
 
 .source-link:hover {
     text-decoration: none;
-}
-
-.methods-container {
-    margin-bottom: 10px;
 }
 
 .methods-toc {
@@ -218,7 +159,6 @@ most signatures will fit on a single lin */
 }
 
 .methods-toc__description {
-    /* font-size: .9em; */
     height: 1em;
     line-height: 1em;
     overflow: hidden;
@@ -227,13 +167,9 @@ most signatures will fit on a single lin */
     width: 500px;
 }
 
-.method-description {
-    margin: .5em 0 0 0;
-}
-
 .method-title {
-    color: var(--dark-blue);
-    margin: 15px 0 0 0;
+    color: #003672;
+    margin: 15px 0 5px 0;
     font-family: monospace;
     font-size: 16px;
 }
@@ -265,60 +201,67 @@ most signatures will fit on a single lin */
     margin: 5px 5px 5px 16px;
 }
 
-/* Style Details Caret Element */
+/* summary/details caret element */
 details summary::-webkit-details-marker {
-    color: black !important;
+    color: #e7e7e7 !important;
     float: right;
     margin-top: 5px;
 }
 
-details.section summary::-webkit-details-marker {
-    color: var(--light-grey) !important;
-    margin-top: 10px;
+/* sidebar styles */
+#side-bar {
+    height: 100vh;
+    overflow-y: auto;
+    position: fixed;
+    top: -1px;
+    width: 22%;
 }
 
-details.subsection summary::-webkit-details-marker {
-    color: black !important;
+.search-icon {
+    height: 15px;
+    margin: 0 2px 0 5px;
+    vertical-align: middle;
 }
 
-/* SIDEBAR CSS */
-.navbar li {
-    background: var(--med-grey);
-    border-top: 1px solid #d1d1d1;
-    cursor: pointer;
-    height: 25px;
+#search-wrapper {
+    border-bottom: 1px solid lightgrey;
+    margin: 10px 10px 5px 10px;
+    padding-bottom: 5px;
+}
+
+#search-input {
+    border: none;
+    outline: none;
+    width: 80%;
+}
+
+#search-results {
+    height: 0;
     margin: 0;
-    padding: 6px 0 2px 40px;
-    user-select: none;
+    transition: height .3s, margin .3s;
 }
 
+#search-results.visible {
+    height: 30%;
+    list-style: none;
+    margin-bottom: 5px;
+    overflow-y: scroll;
+    padding-left: 12px;
+}
+
+.search-result:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* nav styles */
 .navbar ul {
-    background: var(--med-grey);
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.navbar .nav-item.active,
-.navbar .nav-item:hover {
-    background: #d9d9d9;
-}
-
-.navbar .nav-item a {
-    color: black;
-    text-decoration: none;
-}
-
-.navbar .nav-item a:focus,
-.navbar .nav-item:hover a {
-    color: var(--med-blue);
-    outline: none;
-}
-
 .nav-header {
-    background: var(--light-grey);
-    border-top-color: var(--white);
-    border: 1px solid #dce4e7;
     cursor: pointer;
     height: 25px;
     padding: 6px 0 0 6px;
@@ -329,39 +272,45 @@ a.nav-header {
     display: block;
 }
 
-.nav-header,
-.nav-header a {
-    color: black;
+.nav-item {
+    cursor: pointer;
+    height: 25px;
+    margin: 0;
+    padding: 6px 0 2px 40px;
+    user-select: none;
 }
 
 .nav-header a:focus,
-.nav-header:focus {
-    color: var(--med-blue);
+.nav-header:focus,
+.nav-item a:focus,
+.nav-item:hover a {
     outline: none;
+    color: #2AAAE0;
 }
 
-/* Hmm not sure if we want this anymore... */
-/* a.nav-header.active {
-    background: #cfcdcd;
+.nav-item a,
+.nav-header,
+.nav-header a {
+    color: var(--grey-blue-tx);
+    font-weight: bold;
 }
-
-details[open] .nav-header.active {
-    background: #cfcdcd;
-} */
 
 .nav-header:hover,
-.nav-header:hover a {
-    background: #cfcdcd;
-    color: var(--med-blue);
+.nav-header:hover a,
+.nav-item.active,
+.nav-item.active a,
+.nav-item:hover,
+.nav-item:hover a {
+    background: var(--grey-blue-bg);
+    color: var(--white);
 }
 
-/* accents */
-/* .class-annotations,
-.methodAnnotations {
-    color: var(--dark-blue);
-    font-weight: 600;
-} */
+.nav-item a {
+    text-decoration: none;
+}
 
+
+/* Accent styles */
 .code-inline {
     background-color: var(--light-grey);
     color: var(--dark-red);
@@ -376,10 +325,27 @@ details[open] .nav-header.active {
 
 .footer {
     font-size: .8em;
-    margin-bottom: 10px;
     text-align: center;
+}
+
+.footer a {
+    padding-bottom: 10px;
 }
 
 .hide {
     display: none;
+}
+
+/* Scroll bar styles */
+::-webkit-scrollbar {
+    width: 1em;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }
