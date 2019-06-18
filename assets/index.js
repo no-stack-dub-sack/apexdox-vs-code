@@ -1,41 +1,55 @@
-// #region Constants / Life-Cycle Hooks
-/***********************************************************************
-***********************************************************************/
-const SCOPES = ['global', 'public', 'private', 'protected', 'testMethod', 'webService'],
-	  APEX_DOC_MENU = 'APEX_DOC_2_MENU',
-	  APEX_DOC_ACTIVE_EL = 'APEX_DOC_2_ACTIVE_EL',
-	  APEX_DOC_SCOPE = 'APEX_DOC_2_SCOPE';
+// #region Constants / DOM lifecycle hooks
+const
+	SCOPES = ['global', 'public', 'private', 'protected', 'testMethod', 'webService'],
+	MENU_STATE_KEY = 'APEX_DOC_2_MENU',
+	ACTIVE_EL_STATE_KEY = 'APEX_DOC_2_ACTIVE_EL',
+	SCOPE_STATE_KEY = 'APEX_DOC_2_SCOPE',
+	SEARCH_STATE_KEY = 'APEX_DOC_2_SEARCH_RESULTS';
 
-// document ready function - removes jQuery dependency
-document.addEventListener("DOMContentLoaded", () => {
-	initMenu();
-	initHighlightJs();
-	renderMenuFromState();
-	setActiveElement();
-	readScope();
-	hideAllScopes();
-	showScopes();
+const highlightJsSelectors = [
+	'pre code',
+	'.method-annotations',
+	'.class-signature',
+	'.attribute-signature',
+	'.method-signature',
+	'.class-annotations',
+	'.prop-annotations'
+];
+
+const initializers = [
+	initMenu,
+	initHighlightJs,
+	renderMenuFromState,
+	setActiveElement,
+	renderSearchFromState,
+	readScope,
+	hideAllScopes,
+	showScopes
+];
+
+const persisters = [
+	persistMenuState,
+	persistActiveElement,
+	persistSearchState
+];
+
+const executeAll = funcs => funcs.forEach(func => func());
+
+document.addEventListener('DOMContentLoaded', () => {
+	executeAll(initializers);
 });
 
-// fire un-mounting functions
 window.onbeforeunload = () => {
-	updateMenuState();
-	updateActiveElement();
+	executeAll(persisters);
 }
 // #endregion
 
 
-// #region Initialization & Menu Utils
-/***********************************************************************
-***********************************************************************/
+// #region Initialization & Menu Utils, local state
 function initHighlightJs() {
-	const selectors = [
-		'pre code', '.method-annotations', '.class-signature', '.attribute-signature',
-		'.method-signature', '.class-annotations', '.prop-annotations'
-	];
 	// initialize highlighting for code examples and
 	// signatures for methods, classes, props and enums
-	selectors.forEach(selector => {
+	highlightJsSelectors.forEach(selector => {
 		document.querySelectorAll(selector).forEach(block => {
 			hljs.highlightBlock(block);
 		});
@@ -45,8 +59,8 @@ function initHighlightJs() {
 // create session storage object for menu state
 // and/or update state with any new menu items
 function initMenu() {
-	const hasState = sessionStorage.getItem(APEX_DOC_MENU);
-	let items = document.querySelectorAll('.groupName');
+	const hasState = sessionStorage.getItem(MENU_STATE_KEY);
+	let items = document.querySelectorAll('.group-name');
 	let state = !hasState ? {} : JSON.parse(hasState);
 
 	if (!hasState) {
@@ -60,14 +74,14 @@ function initMenu() {
 	}
 
 	// finally, update sessionStorage with latest state
-	sessionStorage.setItem(APEX_DOC_MENU, JSON.stringify(state));
+	sessionStorage.setItem(MENU_STATE_KEY, JSON.stringify(state));
 }
 
 function updateMenuModel(items, state) {
 	// 1) get keys currently in state object
 	let keys = Object.keys(state);
 
-	// 2) get ids from each .groupName <details> element
+	// 2) get ids from each .group-name <details> element
 	let groups = Array.prototype.map.call(items, item => ({
 		id: item.id,
 		isOpen: item.getAttribute('open')
@@ -96,39 +110,46 @@ function updateMenuModel(items, state) {
 }
 
 function renderMenuFromState() {
-	let state = JSON.parse(sessionStorage.getItem(APEX_DOC_MENU));
-	for (let group in state) {
-		let item = document.getElementById(group);
-		if (state[group]) {
-			console.log('ApexDoc2: Opening ' + group + ' section');
-			item.setAttribute('open', '');
+	let state = JSON.parse(sessionStorage.getItem(MENU_STATE_KEY));
+	if (state) {
+		for (let group in state) {
+			let item = document.getElementById(group);
+			if (state[group]) {
+				console.log('ApexDoc2: Opening ' + group + ' section');
+				item.setAttribute('open', '');
+			}
 		}
 	}
 }
 
 // save menu state before each unload so that state is
 // preserved when changing files or when reloading the page.
-function updateMenuState() {
-	let items = document.querySelectorAll('.groupName');
-	let state = JSON.parse(sessionStorage.getItem(APEX_DOC_MENU));
+function persistMenuState() {
+	let items = document.querySelectorAll('.group-name');
+	let state = JSON.parse(sessionStorage.getItem(MENU_STATE_KEY));
 
 	items.forEach(item => {
 		let isOpen = item.getAttribute('open');
+		console.log(isOpen);
 		state[item.id] = isOpen === '' && true;
 	});
 
-	sessionStorage.setItem(APEX_DOC_MENU, JSON.stringify(state));
+	sessionStorage.setItem(MENU_STATE_KEY, JSON.stringify(state));
 }
 
 // preserve active menu item across loads
-function updateActiveElement() {
+function persistActiveElement() {
 	let active = document.querySelector('.active');
-	active && sessionStorage.setItem(APEX_DOC_ACTIVE_EL, active.id);
+	if (active) {
+		sessionStorage.setItem(ACTIVE_EL_STATE_KEY, active.id);
+	} else {
+		sessionStorage.removeItem(ACTIVE_EL_STATE_KEY);
+	}
 }
 
 // set active element from storage
 function setActiveElement() {
-	const id = sessionStorage.getItem(APEX_DOC_ACTIVE_EL);
+	const id = sessionStorage.getItem(ACTIVE_EL_STATE_KEY);
 	if (id) {
 		var item = document.getElementById(id);
 		item.classList.add('active');
@@ -141,12 +162,45 @@ function setActiveElement() {
 		}
 	}
 }
+
+// persist any search results across loads
+function persistSearchState() {
+	const searchTerm = document.querySelector('#search-input').value;
+	const resultsMarkup = document.querySelector('#search-results').innerHTML
+
+	if (searchTerm.length > 1) {
+		const searchState = JSON.stringify({
+			searchTerm,
+			resultsMarkup
+		});
+
+		sessionStorage.setItem(SEARCH_STATE_KEY, searchState);
+	} else {
+		sessionStorage.removeItem(SEARCH_STATE_KEY);
+	}
+}
+
+// preserve active menu item across loads
+function renderSearchFromState() {
+	const state = JSON.parse(sessionStorage.getItem(SEARCH_STATE_KEY));
+
+	if (state) {
+		const searchResults = document.querySelector('#search-results');
+		const searchInput = document.querySelector('#search-input');
+
+		searchInput.value = state.searchTerm;
+		searchResults.classList.add('visible');
+		searchResults.classList.add('no-transition');
+		searchResults.innerHTML = state.resultsMarkup;
+
+		// remove class which prevents transition on page move
+		setTimeout(() => searchResults.classList.remove('no-transition'), 100);
+	}
+}
 // #endregion
 
 
 // #region Scope Utils
-/***********************************************************************
-***********************************************************************/
 function getListScope() {
 	let list = [];
 	let checkboxes = document.querySelectorAll('input[type=checkbox]');
@@ -182,7 +236,7 @@ function hideAllScopes() {
 function setScope() {
 	const list = getListScope();
 	const scopes = list.join(',');
-	sessionStorage.setItem(APEX_DOC_SCOPE, scopes);
+	sessionStorage.setItem(SCOPE_STATE_KEY, scopes);
 	shouldCheckAll(list);
 }
 
@@ -210,7 +264,7 @@ function readScope() {
 }
 
 function getScope() {
-	const scope = sessionStorage.getItem(APEX_DOC_SCOPE);
+	const scope = sessionStorage.getItem(SCOPE_STATE_KEY);
 	return scope ? scope : '';
 }
 
@@ -229,34 +283,27 @@ function shouldCheckAll(list) {
 function toggleScope(scope, isShow) {
 	setScope();
 
-	let enumTable = document.querySelectorAll('.properties');
-	let propTable = document.querySelectorAll('.enums');
-	let methodsH2 = document.querySelectorAll('.methods');
+	const enumTable = document.querySelectorAll('.properties');
+	const propTable = document.querySelectorAll('.enums');
+	const methodsH2 = document.querySelectorAll('.methods');
 
-	let props = document.querySelectorAll('.property.' + scope);
-	let enums = document.querySelectorAll('.enum.' + scope);
-	let methods = document.querySelectorAll('.method.' + scope);
-	let classes = document.querySelectorAll('.class.' + scope);
+	const props = document.querySelectorAll('.property.' + scope);
+	const enums = document.querySelectorAll('.enum.' + scope);
+	const methods = document.querySelectorAll('.method.' + scope);
+	const classes = document.querySelectorAll('.class.' + scope);
+	const all = [...props, ...enums, ...methods, ...classes];
 
 	// show or hide all props, classes, & methods of a given scope
 	if (isShow === true) {
-		// show tables if they've been hidden and rows to show
+		// show tables if they've been hidden
 		props.length && toggleVisibility(enumTable, true);
 		enums.length && toggleVisibility(propTable, true);
 		methods.length && toggleVisibility(methodsH2, true);
-
-		toggleVisibility(props, true);
-		toggleVisibility(enums, true);
-		toggleVisibility(methods, true);
-		toggleVisibility(classes, true);
+		toggleVisibility(all, true);
 	}
 
 	else {
-		toggleVisibility(props, false);
-		toggleVisibility(enums, false);
-		toggleVisibility(methods, false);
-		toggleVisibility(classes, false);
-
+		toggleVisibility(all, false);
 		// hide props tables if all rows have been hidden
 		maybeHideElement('.properties', '.property');
 		maybeHideElement('.methods', '.method');
@@ -292,18 +339,40 @@ function toggleActiveClass(elem) {
 	item && item.classList.remove('active');
 
 	// add to new active element
-	elem.classList.add('active');
+	elem && elem.classList.add('active');
 }
 // #endregion
 
 
-// #Global Functions, called from HTML
-/***********************************************************************
-***********************************************************************/
+// #region Global Functions, called from HTML
 window.goToLocation = (url) => {
-	// prevent collapsing / expanding menu when clicking on Class Group link
+	// prevent collapsing / expanding menu
+	// when clicking on Class Group link
 	event.preventDefault();
-	toggleActiveClass(event.currentTarget);
+
+	if (event.currentTarget.classList.contains('nav-item')) {
+		toggleActiveClass(event.currentTarget);
+	} else {
+		const target = document.querySelector(`#item-${url.replace('.html', '')}`);
+		if (target) {
+			toggleActiveClass(target);
+			const details = document.querySelectorAll('details');
+			const parentDetail = target.parentNode.previousElementSibling.parentNode;
+
+			// when navigating from search, open target
+			// details element and close all the others.
+			for (let detail of details) {
+				if (detail !== parentDetail) {
+					detail.removeAttribute('open');
+				} else {
+					parentDetail.setAttribute('open', ''); // same as true
+				}
+			}
+		} else {
+			toggleActiveClass();
+		}
+	}
+
 	if (document.location.href.toLowerCase().indexOf(url.toLowerCase()) === -1) {
 		document.location.href = url;
 	}
@@ -325,4 +394,7 @@ window.toggleAllScopes = (isShow) => {
 	});
 }
 
+window.toggleScope = (scope, isShow) => {
+	toggleScope(scope, isShow);
+}
 // #endregion

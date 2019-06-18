@@ -51,11 +51,9 @@ class MenuGenerator {
             }
 
             const markup =
-                `<details id="${groupId}" class="groupName">
-                    <summary onclick="toggleActiveClass(this);"
-                            id="header-${groupId}"
-                            class="nav-header">
-                    ${label}
+                `<details id="${groupId}" class="group-name">
+                    <summary id="header-${groupId}" class="nav-header">
+                        ${label}
                     </summary>
                     <ul>
                     <!-- menu items will be appended here -->`;
@@ -71,7 +69,7 @@ class MenuGenerator {
             if (model.nameLine) {
                 const fileName = model.name
                     , markup =
-                        `<li id="item-${fileName}" class="nav-item class ${model.scope}"
+                        `<li title="${fileName}" id="item-${fileName}" class="nav-item class ${model.scope}"
                             onclick="goToLocation('${fileName}.html');">
                             <a tabindex="1" href="javascript:void(0)">${fileName}</a>
                         </li>`;
@@ -86,7 +84,7 @@ class MenuGenerator {
             `<div id="side-bar" vertical-align="top">
                 <div id="search-wrapper">
                     <span>${SEARCH_ICON}</span>
-                    <input id="search-input" type="text" placeholder="Search...">
+                    <input id="search-input" type="text" autocomplete="off" placeholder="Search...">
                 </div>
                 <ul id="search-results" class=""></ul>
                 <div class="navbar">

@@ -4,6 +4,7 @@
     --grey-blue-tx: #51638A;
     --grey-blue-bg: #547499;
     --light-grey: #f7f7f7;
+    --dark-grey: #c6c6c6;
     --white: #fff;
     --dark-red: #a31515;
 }
@@ -203,13 +204,14 @@ most signatures will fit on a single lin */
 
 /* summary/details caret element */
 details summary::-webkit-details-marker {
-    color: #e7e7e7 !important;
+    color: var(--dark-grey) !important;
     float: right;
     margin-top: 5px;
 }
 
 /* sidebar styles */
 #side-bar {
+    background: aliceblue;
     height: 100vh;
     overflow-y: auto;
     position: fixed;
@@ -230,6 +232,7 @@ details summary::-webkit-details-marker {
 }
 
 #search-input {
+    background: aliceblue;
     border: none;
     outline: none;
     width: 80%;
@@ -245,16 +248,27 @@ details summary::-webkit-details-marker {
     height: 30%;
     list-style: none;
     margin-bottom: 5px;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding-left: 12px;
 }
 
-.search-result:hover {
+#search-results.visible.no-transition {
+    transition: none;
+}
+
+.search-result {
     cursor: pointer;
-    text-decoration: underline;
+    height: 25px;
+    padding: 6px 0 2px 10px;
+    user-select: none;
+    margin-right: 5px;
 }
 
 /* nav styles */
+nav {
+    padding: 0 5px 0 10px;
+}
+
 .navbar ul {
     list-style: none;
     margin: 0;
@@ -266,6 +280,18 @@ details summary::-webkit-details-marker {
     height: 25px;
     padding: 6px 0 0 6px;
     user-select: none;
+}
+
+.nav-header,
+.nav-header a,
+.nav-header span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.nav-header:focus {
+    outline-color: #2AAAE0;
 }
 
 a.nav-header {
@@ -280,8 +306,10 @@ a.nav-header {
     user-select: none;
 }
 
-.nav-header a:focus,
-.nav-header:focus,
+.nav-header a:focus {
+    outline: none;
+}
+
 .nav-item a:focus,
 .nav-item:hover a {
     outline: none;
@@ -295,14 +323,13 @@ a.nav-header {
     font-weight: bold;
 }
 
-.nav-header:hover,
-.nav-header:hover a,
+.search-result:hover,
 .nav-item.active,
 .nav-item.active a,
 .nav-item:hover,
 .nav-item:hover a {
     background: var(--grey-blue-bg);
-    color: var(--white);
+    color: var(--white) !important;
 }
 
 .nav-item a {
