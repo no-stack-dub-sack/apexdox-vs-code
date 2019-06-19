@@ -73,6 +73,7 @@ function search(e) {
             });
         } else {
             searchResults.innerHTML = `<li>No Results Found for: ${searchInput.value}</li>`;
+            highlighter.unmark();
         }
     } else {
         highlighter.unmark();

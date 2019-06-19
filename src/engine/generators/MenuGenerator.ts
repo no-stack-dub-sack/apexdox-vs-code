@@ -1,10 +1,10 @@
 import * as Models from '../../common/models';
 import ApexDoc from '../ApexDoc';
-import { SEARCH_ICON } from '../../common/templates';
+import GeneratorUtils from './GeneratorUtils';
 
 class MenuGenerator {
 
-    public static makeScopingPanel(): string {
+    public static makeScopeMenu(): string {
         // add checkboxes for registered scopes
         const checkBoxes = ApexDoc.config.scope.map(scope =>
             `<input
@@ -15,14 +15,10 @@ class MenuGenerator {
             </label>`
         );
 
-        let markup = `
-            <tr>
-                <td class="scoping-panel">
-                    Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
-                    <label for="cbx-all">All</label>&nbsp;&nbsp;
-                    ${checkBoxes.join('&nbsp;&nbsp;')}
-                </td>
-            </tr>`;
+        let markup =
+            `Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
+             <label for="cbx-all">All</label>&nbsp;&nbsp;
+             ${checkBoxes.join('&nbsp;&nbsp;')}`;
 
         return markup;
     }
@@ -81,9 +77,10 @@ class MenuGenerator {
         // 3) iterate over map's values and concat each menu item with the
         // opening markup, closing each UL and details tag along the way
         let markup =
-            `<div id="side-bar" vertical-align="top">
+            `<div id="side-bar">
+                ${GeneratorUtils.makeProjectSplash()}
                 <div id="search-wrapper">
-                    <span>${SEARCH_ICON}</span>
+                    <div class="search-icon"></div>
                     <input id="search-input" type="text" autocomplete="off" placeholder="Search...">
                 </div>
                 <ul id="search-results" class=""></ul>

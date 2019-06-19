@@ -18,7 +18,7 @@
 		"salesforce",
 		"documentation"
 	],
-	"icon": "assets/apexdoc2-logo.png",
+	"icon": "assets/logo.png",
 	"repository": {
 		"url": "https://github.com/no-stack-dub-sack/ApexDoc2-VSCode",
 		"type": "git"
@@ -108,7 +108,12 @@
 				"apexdoc2.engine.title": {
 					"type": "string",
 					"default": "Apex Documentation",
-					"markdownDescription": "The value for the output HTML `<title>` attribute. Defaults to 'Apex Documentation'."
+					"markdownDescription": "The value for the output HTML's `<title>` attribute, as well as the header text for the sidebar's banner / logo section. Defaults to 'Apex Documentation'."
+				},
+				"apexdoc2.engine.subtitle": {
+					"type": "string",
+					"default": "Powered by <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://github.com/no-stack-dub-sack/apexdoc2-vscode\">ApexDoc2</a>",
+					"markdownDescription": "The subtitle for the sidebar's banner / logo section. Defaults to 'Powered by ApexDoc2'."
 				},
 				"apexdoc2.engine.scope": {
 					"type": "array",

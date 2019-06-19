@@ -1,4 +1,3 @@
-import * as templates from '../../../common/templates';
 import ChildEnumMarkupGenerator from './ChildEnumMarkupGenerator';
 import GeneratorUtils from '../GeneratorUtils';
 import MarkupGenerator from './MarkupGenerator';

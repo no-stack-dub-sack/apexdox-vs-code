@@ -1,4 +1,3 @@
-import * as templates from '../../../common/templates';
 import GeneratorUtils from '../GeneratorUtils';
 import MarkupGenerator from './MarkupGenerator';
 import TopLevelMarkupGenerator from './TopLevelMarkupGenerator';

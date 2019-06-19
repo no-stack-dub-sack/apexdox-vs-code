@@ -18,9 +18,9 @@ export interface IApexDocConfig {
 	includes: string[];
 	excludes: string[];
 	homePagePath: string;
-	bannerPagePath: string;
 	scope: string[];
 	title: string;
+	subtitle: string;
 	showTOCSnippets: boolean;
 	sortOrder: string;
     cleanDir: boolean;
@@ -121,6 +121,7 @@ class Settings {
         // misc. strings
         config.title = Guards.title(config.title);
         config.sortOrder = Guards.sortOrder(config.sortOrder);
+        config.subtitle = Guards.typeGuard('string', config.subtitle, 'subtitle') ? config.subtitle : '';
 
         // arrays
         config.includes = Guards.stringArray(config.includes, 'includes');
@@ -135,7 +136,6 @@ class Settings {
         // directories: don't you wish TypeScript had a |> operator!
         config.targetDirectory = this.resolveDirectory(config.targetDirectory);
         config.homePagePath = this.resolveDirectory(config.homePagePath, 'homePagePath', '.html');
-        config.bannerPagePath = this.resolveDirectory(config.bannerPagePath, 'bannerPagePath', '.html');
         config.pages = config.pages.map(pagePath => this.resolveDirectory(pagePath, 'pages', '.html'));
 
         config.source = config.source.map(src => ({

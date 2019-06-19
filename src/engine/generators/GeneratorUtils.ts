@@ -1,4 +1,4 @@
-import * as templates from '../../common/templates';
+import ApexDoc from '../ApexDoc';
 import escape from 'lodash.escape';
 import { Option } from '../../common/Utils';
 
@@ -28,29 +28,8 @@ class GeneratorUtils {
         return html;
     }
 
-    public static wrapWithDetail(contents: string, header: string, className: string): string {
-        return `
-            <details class="${className}" open>
-                <summary>${header}</summary>
-                ${contents}
-            </details>`;
-    }
-
-    // public static makeHeader(bannerPage: Option<string, void>, documentTitle: string): string {
-    //     let header: string;
-
-    //     if (bannerPage) {
-    //         header = this.headerOpen(documentTitle) + bannerPage;
-    //     } else {
-    //         header = this.headerOpen(documentTitle) + templates.PROJECT_DETAIL + templates.HEADER_CLOSE;
-    //     }
-
-    //     return header;
-    // }
-
-    public static makeHeader(documentTitle: string): string {
-        return  `<!DOCTYPE html>
-            <html lang="en">
+    public static makeHead(documentTitle: string): string {
+        return  `
             <head>
                 <title>${documentTitle}</title>
                 <meta charset="UTF-8">
@@ -63,8 +42,44 @@ class GeneratorUtils {
                 <link rel="stylesheet" href="./assets/highlight.css" />
                 <link rel="stylesheet" type="text/css" href="./assets/index.css" />
                 <link rel="shortcut icon" type="image/png" href="./assets/favicon.png"/>
-            </head>
-            <body>`;
+            </head>`
+        ;
+    }
+
+    public static makeProjectSplash(): string {
+        return `
+            <div id="logo-container">
+                <div class="title">
+                    ${ApexDoc.config.title}
+                </div>
+                <img src="assets/logo.png" />
+                <div class="subtitle">
+                    ${ApexDoc.config.subtitle}
+                </div>
+            </div>`
+        ;
+    }
+
+    public static get footer(): string {
+        return `
+            <hr />
+            <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank" rel="noopener noreferrer">
+                Powered By ApexDoc2
+            </a>`
+        ;
+    }
+
+    public static get defaultHomePage(): string {
+        return `
+            <h2>
+                Project Home
+            </h2>
+            <p>
+                Use the <code class="code-inline">apexdoc2.homePagePath</code> setting
+                to point to an HTML file that contains details about your project.
+                The body of the HTML will show up here instead of this default!
+            </p>`
+        ;
     }
 }
 
