@@ -48,6 +48,14 @@ function search(e) {
 
     // begin searching when query is 2 chars
     if (searchInput.value.length > 1) {
+
+        // highlight search terms on current page
+        highlighter.unmark({
+            done: function(){
+                highlighter.mark(searchInput.value);
+            }
+        });
+
         const results = index.search(searchInput.value).filter(function (r) {
             return r.score > 0.0001;
         });
@@ -64,16 +72,8 @@ function search(e) {
 
             // set results list HTML
             searchResults.innerHTML = resultsList;
-
-            // highlight search terms on current page
-            highlighter.unmark({
-                done: function(){
-                    highlighter.mark(searchInput.value);
-              }
-            });
         } else {
             searchResults.innerHTML = `<li>No Results Found for: ${searchInput.value}</li>`;
-            highlighter.unmark();
         }
     } else {
         highlighter.unmark();

@@ -4,12 +4,13 @@ ApexDoc2 is A fast, reliable, and configurable documentation generator for Sales
 ## Features
 - Run ApexDoc2 and immediately launch your docs using the extension's built-in static server.
 - Supports documenting .cls files across multiple source directories for DX projects.
-- Customizable project "Home page", banner, and Class Group pages.
+- Customizable project "Home page", "project splash" section, and Class Group pages.
 - Links class, interface, method, prop, and enum signatures to source code hosted on GitHub.
 - Customize the favicon, and/or use your own logo, and other static assets in your docs.
 - Produces clean, readable HTML output (complements of [pretty](https://github.com/jonschlinkert/pretty)).
 - Includes easy-to-use commands and completion items for contextually stubbing ApexDoc2 comment blocks.
 - Includes customized syntax highlighting to make your ApexDoc2 comment blocks stand out and easy to read.
+- Generated documentation is fully searchable, powered by [Lunr](https://lunrjs.com) (supports wildcard searches using the `*` character and searching by page title using `title:<search-term>` syntax).
 
 <p align="center">
     <a target="_blank" rel="noopener noreferrer"
