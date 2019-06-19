@@ -189,10 +189,10 @@
 	},
 	"devDependencies": {
 		"@types/cheerio": "^0.22.11",
-		"@types/express": "^4.16.1",
 		"@types/lodash.escape": "^4.0.6",
 		"@types/mocha": "^2.2.42",
 		"@types/node": "^10.12.21",
+		"@types/node-static": "^0.7.3",
 		"@types/open": "^6.0.0",
 		"@types/pretty": "^2.0.0",
 		"@types/rimraf": "^2.0.2",
@@ -206,8 +206,8 @@
 		"webpack-cli": "^3.3.1"
 	},
 	"dependencies": {
-		"express": "^4.16.4",
 		"lodash.escape": "^4.0.1",
+		"node-static": "^0.7.11",
 		"open": "^6.0.0",
 		"pretty": "^2.0.0",
 		"rimraf": "^2.6.3"
