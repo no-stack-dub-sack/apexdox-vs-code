@@ -1,3 +1,8 @@
+<p align="center">
+    <img src="https://github.com/no-stack-dub-sack/apexdoc2-vscode/raw/master/images/logo.png"
+         alt="ApexDoc2 Logo" style="max-width:100%;">
+</p>
+
 # ApexDoc2 VS Code
 ApexDoc2 is A fast, reliable, and configurable documentation generator for Salesforce Apex .cls files, that works with both DX and non-DX projects. ApexDoc2 uses a JSDoc-like inline comment syntax. Simply tell ApexDoc2 where your class files are, and it will generate a set of static HTML pages that fully document each class, including its properties, methods, enums, and annotations.
 

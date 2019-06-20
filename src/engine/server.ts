@@ -15,14 +15,15 @@ const error = (dir: string) =>  `No index.html file to serve in directory: ${dir
 
 export default async function createDocServer(targetDirectory: string, docsTitle: string, port: number) {
     const resolvedTarget = Utils.resolveWorkspaceFolder(targetDirectory);
+
     if (existsSync(resolve(resolvedTarget, 'index.html'))) {
-        closeServer();
-        const file = new _static.Server(resolvedTarget);
-        server = http.createServer((request, response) => {
+
+        const file = new _static.Server(resolvedTarget, { cache: false }); // do not cache files
+        closeServer() && (server = http.createServer((request, response) => {
             request.addListener('end', () => {
                 file.serve(request, response);
             }).resume();
-        }).listen(port);
+        }).listen(port));
 
         console.info(listening(port));
         await open(`http://localhost:${port}/index.html`);
@@ -37,4 +38,6 @@ export function closeServer() {
         console.info(closing());
         server.close();
     }
+
+    return true;
 }
