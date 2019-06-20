@@ -2,7 +2,7 @@ import createDocServer from '../engine/server';
 import Guards from '../common/Guards';
 import Settings, { Feature } from '../common/Settings';
 import { commands, window } from 'vscode';
-import { IApexDocConfig } from '../common/Settings';
+import { IApexDocConfig } from '../common/models/settings';
 
 const COMMAND = 'apexDoc2.serveDocs';
 

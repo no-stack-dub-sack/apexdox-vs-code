@@ -1,39 +1,11 @@
-import ApexDoc from '../engine/ApexDoc';
 import ApexDocError from './ApexDocError';
-import Guards from './Guards';
-import Utils, { Option } from './Utils';
-import { existsSync } from 'fs';
+import Utils from './Utils';
+import Validator from './Guards';
+import { ApexDocConfig, IApexDocConfig, IDocBlockConfig } from './models/settings';
+import { existsSync, readFileSync } from 'fs';
 import { EXTENSION } from '../extension';
 import { resolve } from 'path';
 import { workspace, WorkspaceFolder } from 'vscode';
-
-export interface ISourceEntry {
-    path: string;
-    sourceUrl?: string;
-}
-
-export interface IApexDocConfig {
-	source: ISourceEntry[];
-	targetDirectory: string;
-	includes: string[];
-	excludes: string[];
-	homePagePath: string;
-	scope: string[];
-	title: string;
-	subtitle: string;
-	showTOCSnippets: boolean;
-	sortOrder: string;
-    cleanDir: boolean;
-    assets: string[];
-    pages: string[];
-    port: number;
-}
-
-export interface IDocBlockConfig {
-	alignItems: boolean;
-	omitDescriptionTag: boolean;
-	spacious: boolean;
-}
 
 export enum Feature {
     ENGINE,
@@ -42,14 +14,36 @@ export enum Feature {
 
 class Settings {
 
+    // this should be a safe cast. If running this tool, workspace folders should always exist.
+    private static projectRoot = (<WorkspaceFolder[]>workspace.workspaceFolders)[0].uri.fsPath;
+
     /**
      * Fetch user's config settings and set defaults where needed.
      */
     public static getConfig<T extends IApexDocConfig | IDocBlockConfig>(type: Feature): T {
+
         if (type === Feature.ENGINE) {
-            return <T>this.setEngineDefaults(<IApexDocConfig>
-                workspace.getConfiguration(EXTENSION).get<IApexDocConfig>('engine')
-            );
+            const rcPath = resolve(this.projectRoot, '.apexdoc2rc');
+            let config: IApexDocConfig;
+
+            // first look for .apexdoc2rc file
+            if (existsSync(rcPath)) {
+                try {
+                    const defaults = new ApexDocConfig();
+                    const rcConfig = <IApexDocConfig>JSON.parse(readFileSync(rcPath).toString());
+                     // we may end up with superfluous fields here. with the RC file, the onus
+                     // is completely on the user to ensure their config takes the right shape.
+                    config = { ...defaults, ...rcConfig };
+                } catch (e) {
+                    throw new ApexDocError('Failed to parse .apexdoc2rc!');
+                }
+            } else {
+                // if no .apexdoc2rc file found, get config from settings.json
+                config = <IApexDocConfig>workspace.getConfiguration(EXTENSION).get('engine');
+            }
+
+            // pass result of either to defaulter
+            return <T>this.setEngineDirectoryDefaults(config);
         }
 
         else if (type === Feature.DOC_BLOCK) {
@@ -60,26 +54,28 @@ class Settings {
     }
 
     /**
-     * Source and Target Directory settings are dynamic and determined at runtime. If user
-     * omits these settings, overwrite the default empty string with correct default settings.
-     * @param config The `IApexDocConfig` instance fetched from the user's settings.json file.
+     * Source and Target Dir default settings are dynamic and determined at runtime. If user
+     * omits these settings or provides invalid values, overwrite with default settings.
+     * @param config The `IApexDocConfig` instance fetched from the user's settings.json or .apexdoc2rc file.
      */
-    private static setEngineDefaults(config: IApexDocConfig): IApexDocConfig {
-        // this should be safe to cast as not-undefined.
-        // If running this tool, workspace folders should always exist.
-        const projectRoot = (<WorkspaceFolder[]>workspace.workspaceFolders)[0].uri.fsPath;
+    private static setEngineDirectoryDefaults(config: IApexDocConfig): IApexDocConfig {
 
-        // establish defaults
-        const defaultSource = [{ path: this.getDefaultDir(projectRoot) }];
-        const defaultTarget = resolve(projectRoot, 'apex-documentation');
+        const defaultSource = [{ path: this.getDefaultDir(this.projectRoot) }];
+        const defaultTarget = resolve(this.projectRoot, 'apex-documentation');
 
-        return {
-            ...config,
-            // if config.source has only one entry and path is '', its prob our default, even if it's
-            // not, it's an invalid configuration, so replace with our defaultSource variable
-            source: config.source.length === 1 && !config.source[0].path ? defaultSource : config.source,
-            targetDirectory: !config.targetDirectory ? defaultTarget : config.targetDirectory
-        };
+        if (
+            !config.source ||
+            (Array.isArray(config.source) && !config.source.length) ||
+            (config.source.length === 1 && !config.source[0].path)
+        ) {
+            config.source = defaultSource;
+        }
+
+        if (!config.targetDirectory) {
+            config.targetDirectory = defaultTarget;
+        }
+
+        return config;
     }
 
     /**
@@ -103,7 +99,7 @@ class Settings {
         if (
             existsSync(resolve(projectRoot, 'force-app')) &&
             !existsSync(resolve(projectRoot, 'src'))
-            ) {
+        ) {
             return true;
         }
 
@@ -112,51 +108,26 @@ class Settings {
 
     /**
      * Provide additional type checking and defaults where VSCode may not be able to
-     * provide the defaults we need (also, vscode did not seem to provide the setting
-     * default during development, so this felt like the safest bet).
+     * provide the defaults we need.
      *
      * @param config An instance of `IApexDocConfig`.
      */
     public static validateEngineConfig(config: IApexDocConfig): void {
-        // misc. strings
-        config.title = Guards.title(config.title);
-        config.sortOrder = Guards.sortOrder(config.sortOrder);
-        config.subtitle = Guards.typeGuard('string', config.subtitle, 'subtitle') ? config.subtitle : '';
-
-        // arrays
-        config.includes = Guards.stringArray(config.includes, 'includes');
-        config.excludes = Guards.stringArray(config.excludes, 'excludes');
-        config.scope = Guards.scope(config.scope).map(scope => scope.toLowerCase());
-        config.assets = Guards.stringArray(config.assets, 'assets').map(path => Utils.resolveWorkspaceFolder(path));
-
-        // booleans
-        config.cleanDir = Guards.boolGuard(config.cleanDir, false);
-        config.showTOCSnippets = Guards.boolGuard(config.showTOCSnippets, true);
-
-        // directories: don't you wish TypeScript had a |> operator!
-        config.targetDirectory = this.resolveDirectory(config.targetDirectory);
-        config.homePagePath = this.resolveDirectory(config.homePagePath, 'homePagePath', '.html');
-        config.pages = config.pages.map(pagePath => this.resolveDirectory(pagePath, 'pages', '.html'));
-
-        config.source = config.source.map(src => ({
-            path: this.resolveDirectory(src.path, 'source.path'),
-            sourceUrl: Guards.sourceUrl(src.sourceUrl)
-        }));
-    }
-
-    /**
-     * A utility function to wrap the composition of resolve and guard calls.
-     * Not super necessary, but keeps things neater up above.
-     *
-     * @param path The directory to attempt to resolve
-     * @param param The setting name for this path. e.g. 'homePagePath'
-     */
-    private static resolveDirectory(path: string, param?: string, extension?: string): string {
-        if (param) {
-            return Guards.directory(Utils.resolveWorkspaceFolder(path), param, extension);
-        } else {
-            return Guards.targetDirectory(Utils.resolveWorkspaceFolder(path));
-        }
+        const validator = new Validator(config);
+        validator.validate();
+        // validator.scope(config.scope);
+        // validator.title(config.title);
+        // validator.source(config.source);
+        // validator.assets(config.assets);
+        // validator.pages(config.pages);
+        // validator.sortOrder(config.sortOrder);
+        // validator.stringArray(config.includes, 'includes');
+        // validator.stringArray(config.excludes, 'excludes');
+        // validator.boolGuard(config.cleanDir, 'cleanDir', false);
+        // validator.boolGuard(config.showTOCSnippets, 'showTOCSnippets', true);
+        // validator.targetDirectory(config.targetDirectory);
+        // validator.homePagePath(config.homePagePath);
+        // validator.typeGuard('string', config.subtitle, 'subtitle');
     }
 }
 
