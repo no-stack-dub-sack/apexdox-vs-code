@@ -7,7 +7,7 @@ import {
     PARAM,
     RETURNS
     } from '../common/tags';
-import { IDocBlockConfig } from '../common/Settings';
+import { IDocBlockConfig } from '../common/models/settings';
 import { MethodModel } from '../common/models/MethodModel';
 import { TextEditor } from 'vscode';
 

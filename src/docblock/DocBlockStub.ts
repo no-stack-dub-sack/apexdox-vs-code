@@ -1,14 +1,13 @@
 import ApexDoc from '../engine/ApexDoc';
-import Settings, { Feature, IDocBlockConfig } from '../common/Settings';
+import Settings, { Feature } from '../common/Settings';
 import Utils from '../common/Utils';
-import { EXTENSION } from '../extension';
+import { IDocBlockConfig } from '../common/models/settings';
 import {
     Position,
     SnippetString,
     TextDocument,
     TextEditor,
-    TextLine,
-    workspace
+    TextLine
     } from 'vscode';
 
 export interface IStubLine {

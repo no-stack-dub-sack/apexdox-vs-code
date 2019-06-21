@@ -56,6 +56,12 @@
 					".apex"
 				],
 				"configuration": "./syntaxes/language-configuration.json"
+			},
+			{
+				"id": "json",
+				"extensions": [
+					".apexdoc2rc"
+				]
 			}
 		],
 		"grammars": [

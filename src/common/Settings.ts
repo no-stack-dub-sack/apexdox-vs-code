@@ -1,7 +1,13 @@
 import ApexDocError from './ApexDocError';
-import Utils from './Utils';
-import Validator from './Guards';
-import { ApexDocConfig, IApexDocConfig, IDocBlockConfig } from './models/settings';
+import Utils, { Option } from './Utils';
+import Validator from './Validator';
+import {
+    ApexDocConfig,
+    DocBlockConfig,
+    IApexDocConfig,
+    IApexDocRC,
+    IDocBlockConfig
+    } from './models/settings';
 import { existsSync, readFileSync } from 'fs';
 import { EXTENSION } from '../extension';
 import { resolve } from 'path';
@@ -17,37 +23,68 @@ class Settings {
     // this should be a safe cast. If running this tool, workspace folders should always exist.
     private static projectRoot = (<WorkspaceFolder[]>workspace.workspaceFolders)[0].uri.fsPath;
 
+    private static getRcFile(): Option<IApexDocRC, void> {
+        const rcPath = resolve(this.projectRoot, '.apexdoc2rc');
+
+        if (existsSync(rcPath)) {
+            try {
+                return <IApexDocRC>JSON.parse(readFileSync(rcPath).toString());
+            } catch (e) {
+                throw new ApexDocError('Failed to parse .apexdoc2rc!');
+            }
+        }
+    }
+
     /**
      * Fetch user's config settings and set defaults where needed.
+     * First try to get rc file. If it exists, we'll use it's config over any
+     * config found in settings.json. For rc files config, we need to establish
+     * defaults since we're bypassing VS Code, we don't get that for free anymore.
+     *
+     * Also, rc files do not have any intellisense, so the onus is completely on
+     * the user to provide accurate fields. Any superfluous config settings should
+     * be safely and silently ignored, however. Invalid JSON will throw an error.
+     *
+     * NOTE: this will require maintaining defaults in models/settings.ts as well
+     * as in package.json, which is sort of a bummer.
      */
     public static getConfig<T extends IApexDocConfig | IDocBlockConfig>(type: Feature): T {
+        const rcConfig = this.getRcFile();
 
+        // getting engine config
         if (type === Feature.ENGINE) {
-            const rcPath = resolve(this.projectRoot, '.apexdoc2rc');
             let config: IApexDocConfig;
-
-            // first look for .apexdoc2rc file
-            if (existsSync(rcPath)) {
-                try {
-                    const defaults = new ApexDocConfig();
-                    const rcConfig = <IApexDocConfig>JSON.parse(readFileSync(rcPath).toString());
-                     // we may end up with superfluous fields here. with the RC file, the onus
-                     // is completely on the user to ensure their config takes the right shape.
-                    config = { ...defaults, ...rcConfig };
-                } catch (e) {
-                    throw new ApexDocError('Failed to parse .apexdoc2rc!');
+            if (rcConfig) {
+                if (rcConfig.engine) {
+                    config = {
+                        ...new ApexDocConfig(),
+                        ...rcConfig.engine
+                    };
+                } else {
+                    throw new ApexDocError(`You provided an .apexdoc2rc file, but no 'engine' config was found.`);
                 }
             } else {
                 // if no .apexdoc2rc file found, get config from settings.json
                 config = <IApexDocConfig>workspace.getConfiguration(EXTENSION).get('engine');
             }
-
             // pass result of either to defaulter
-            return <T>this.setEngineDirectoryDefaults(config);
+            return <T>new Validator(this.setEngineDirectoryDefaults(config)).validate();
         }
 
+        // getting docBlock config
         else if (type === Feature.DOC_BLOCK) {
-            return <T>workspace.getConfiguration(EXTENSION).get<IDocBlockConfig>('docBlock');
+            if (rcConfig) {
+                if (rcConfig.docBlock) {
+                    return <T>{
+                        ...new DocBlockConfig(),
+                        ...rcConfig.docBlock
+                    };
+                } else {
+                    throw new ApexDocError(`You provided an .apexdoc2rc file, but no 'docBlock' config was found.`);
+                }
+            } else {
+                return <T>workspace.getConfiguration(EXTENSION).get<IDocBlockConfig>('docBlock');
+            }
         }
 
         throw new ApexDocError('Unrecognized Config Section!');
@@ -104,30 +141,6 @@ class Settings {
         }
 
         return false;
-    }
-
-    /**
-     * Provide additional type checking and defaults where VSCode may not be able to
-     * provide the defaults we need.
-     *
-     * @param config An instance of `IApexDocConfig`.
-     */
-    public static validateEngineConfig(config: IApexDocConfig): void {
-        const validator = new Validator(config);
-        validator.validate();
-        // validator.scope(config.scope);
-        // validator.title(config.title);
-        // validator.source(config.source);
-        // validator.assets(config.assets);
-        // validator.pages(config.pages);
-        // validator.sortOrder(config.sortOrder);
-        // validator.stringArray(config.includes, 'includes');
-        // validator.stringArray(config.excludes, 'excludes');
-        // validator.boolGuard(config.cleanDir, 'cleanDir', false);
-        // validator.boolGuard(config.showTOCSnippets, 'showTOCSnippets', true);
-        // validator.targetDirectory(config.targetDirectory);
-        // validator.homePagePath(config.homePagePath);
-        // validator.typeGuard('string', config.subtitle, 'subtitle');
     }
 }
 

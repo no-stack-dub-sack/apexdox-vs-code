@@ -49,3 +49,14 @@ export interface IDocBlockConfig {
 	omitDescriptionTag: boolean;
 	spacious: boolean;
 }
+
+export class DocBlockConfig implements IDocBlockConfig {
+	public alignItems = false;
+	public omitDescriptionTag = true;
+	public spacious = false;
+}
+
+export interface IApexDocRC {
+	engine: IApexDocConfig;
+	docBlock: IDocBlockConfig;
+}

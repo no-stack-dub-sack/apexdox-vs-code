@@ -14,8 +14,6 @@ export default function(context: ExtensionContext): Disposable {
     return commands.registerCommand(COMMAND, () => {
         try {
             const config = Settings.getConfig<IApexDocConfig>(Feature.ENGINE);
-            Settings.validateEngineConfig(config);
-
             ApexDoc.extensionRoot = context.extensionPath;
             ApexDoc.runApexDoc(config);
         } catch (e) {
