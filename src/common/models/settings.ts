@@ -1,3 +1,5 @@
+import { REPOSITORY } from '../../extension';
+
 export interface ISourceEntry {
     path: string;
     sourceUrl?: string;
@@ -35,7 +37,7 @@ export class ApexDocConfig implements IApexDocConfig {
         'webService'
     ];
 	public title = 'Apex Documentation';
-	public subtitle = 'Powered by <a target="_blank" rel="noopener noreferrer" href="https://github.com/no-stack-dub-sack/apexdoc2-vscode">ApexDoc2</a>';
+	public subtitle = `Powered by <a target="_blank" rel="noopener noreferrer" href="${REPOSITORY}">ApexDoc2</a>'`;
 	public showTOCSnippets = true;
 	public sortOrder = 'alpha';
     public cleanDir = false;

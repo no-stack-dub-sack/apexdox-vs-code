@@ -1,6 +1,7 @@
 import ApexDoc from '../ApexDoc';
 import escape from 'lodash.escape';
 import { Option } from '../../common/Utils';
+import { REPOSITORY } from '../../extension';
 
 class GeneratorUtils {
 
@@ -63,7 +64,7 @@ class GeneratorUtils {
     public static get footer(): string {
         return `
             <hr />
-            <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank" rel="noopener noreferrer">
+            <a href="${REPOSITORY}" target="_blank" rel="noopener noreferrer">
                 Powered By ApexDoc2
             </a>`
         ;

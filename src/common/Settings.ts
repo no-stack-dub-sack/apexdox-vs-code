@@ -1,4 +1,5 @@
 import ApexDocError from './ApexDocError';
+import LineReader from './LineReader';
 import Utils, { Option } from './Utils';
 import Validator from './Validator';
 import {
@@ -11,6 +12,7 @@ import {
 import { existsSync, readFileSync } from 'fs';
 import { EXTENSION } from '../extension';
 import { resolve } from 'path';
+import { safeLoad as yamlToJson } from 'js-yaml';
 import { workspace, WorkspaceFolder } from 'vscode';
 
 export enum Feature {
@@ -23,30 +25,55 @@ class Settings {
     // this should be a safe cast. If running this tool, workspace folders should always exist.
     private static projectRoot = (<WorkspaceFolder[]>workspace.workspaceFolders)[0].uri.fsPath;
 
+    /**
+     * Note that casting user provided configs as ApexDoc configs
+     * can potentially result in run-time errors. The onus is on
+     * the user to ensure the correct shape of their config files,
+     * however, the app should fail loudly and gracefully if the
+     * user provides an invalid config.
+     */
     private static getRcFile(): Option<IApexDocRC, void> {
-        const rcPath = resolve(this.projectRoot, '.apexdoc2rc');
+        const rcJsonPath = resolve(this.projectRoot, '.apexdoc2rc');
+        const rcYamlPath = resolve(this.projectRoot, 'apexdoc2.yaml');
+        const rcYmlPath = resolve(this.projectRoot, 'apexdoc2.yml');
+        let fileName = '';
 
-        if (existsSync(rcPath)) {
-            try {
-                return <IApexDocRC>JSON.parse(readFileSync(rcPath).toString());
-            } catch (e) {
-                throw new ApexDocError('Failed to parse .apexdoc2rc!');
+        try {
+            // apexdoc.yaml
+            if (existsSync(rcYamlPath)) {
+                fileName = 'apexdoc2.yaml';
+                const rcConfig = yamlToJson(readFileSync(rcYamlPath, 'utf8'));
+                return <IApexDocRC>rcConfig;
             }
+            // apexdoc2.yml
+            else if (existsSync(rcYmlPath)) {
+                fileName = 'apexdoc2.yml';
+                const rcConfig = yamlToJson(readFileSync(rcYmlPath, 'utf8'));
+                return <IApexDocRC>rcConfig;
+            }
+            // .apexdoc2rc (json)
+            else if (existsSync(rcJsonPath)) {
+                fileName = '.apexdoc2rc';
+                const rcString = new LineReader(rcJsonPath).toString();
+                return <IApexDocRC>JSON.parse(rcString);
+            }
+        } catch (e) {
+            throw new ApexDocError(ApexDocError.CONFIG_PARSE_ERROR(fileName));
         }
     }
 
     /**
-     * Fetch user's config settings and set defaults where needed.
-     * First try to get rc file. If it exists, we'll use it's config over any
-     * config found in settings.json. For rc files config, we need to establish
-     * defaults since we're bypassing VS Code, we don't get that for free anymore.
+     * Get user's ApexDoc2 config and set defaults where needed.
+     * Order of preference for config files is listed below. If more than one
+     * config file is present, this is the order that will be honored by ApexDoc2.
      *
-     * Also, rc files do not have any intellisense, so the onus is completely on
-     * the user to provide accurate fields. Any superfluous config settings should
-     * be safely and silently ignored, however. Invalid JSON will throw an error.
+     *  1. apexdoc2.yaml
+     *  2. apexdoc2.yml
+     *  3. .apexdoc2rc
+     *  4. settings.json
      *
-     * NOTE: this will require maintaining defaults in models/settings.ts as well
-     * as in package.json, which is sort of a bummer.
+     * NOTE: since we're supporting .rc and yaml config files, we'll need to
+     * maintain defaults in model/settings.ts as well as in package.json.
      */
     public static getConfig<T extends IApexDocConfig | IDocBlockConfig>(type: Feature): T {
         const rcConfig = this.getRcFile();
@@ -61,13 +88,13 @@ class Settings {
                         ...rcConfig.engine
                     };
                 } else {
-                    throw new ApexDocError(`You provided an .apexdoc2rc file, but no 'engine' config was found.`);
+                    throw new ApexDocError(ApexDocError.INVALID_CONFIG_FILE('engine'));
                 }
             } else {
                 // if no .apexdoc2rc file found, get config from settings.json
                 config = <IApexDocConfig>workspace.getConfiguration(EXTENSION).get('engine');
             }
-            // pass result of either to defaulter
+            // pass result of either to directory defaulter and validate
             return <T>new Validator(this.setEngineDirectoryDefaults(config)).validate();
         }
 
@@ -80,7 +107,7 @@ class Settings {
                         ...rcConfig.docBlock
                     };
                 } else {
-                    throw new ApexDocError(`You provided an .apexdoc2rc file, but no 'docBlock' config was found.`);
+                    throw new ApexDocError(ApexDocError.INVALID_CONFIG_FILE('docBlock'));
                 }
             } else {
                 return <T>workspace.getConfiguration(EXTENSION).get<IDocBlockConfig>('docBlock');

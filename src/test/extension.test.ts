@@ -29,7 +29,7 @@ const runApexDoc = () => {
             return {
                 reader,
                 name: fileName,
-                snapshot: <string>reader.toString(false, '\n')
+                snapshot: reader.toString(false, '\n')
             };
         });
 

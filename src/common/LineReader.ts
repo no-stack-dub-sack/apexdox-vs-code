@@ -71,7 +71,7 @@ class LineReader {
      * single string.
      * @param separator The character to join the lines by. Defaults to ''.
      */
-    public toString(trim = false, separator = ''): Option<string, null> {
+    public toString(trim = false, separator = ''): string {
         if (this.lines.length) {
             if (trim) {
                 return this.lines.reduce((a, b) => a.trim() + b.trim());
@@ -79,7 +79,7 @@ class LineReader {
 
             return this.lines.join(separator);
         }
-        return null;
+        return '';
     }
 
     public toArray(): string[] {

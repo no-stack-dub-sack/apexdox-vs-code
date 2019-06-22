@@ -1,3 +1,5 @@
+import { REPOSITORY } from '../extension';
+
 class ApexDocError extends Error {
     public static INVALID_SCOPE = 'Please provide an array of valid scopes. Valid scopes include: global, public, protected, private, testMethod, and webService';
     public static SCOPE_ENTRIES_MAX = `scope' parameter has too many entries. ${ApexDocError.INVALID_SCOPE}`;
@@ -38,6 +40,12 @@ class ApexDocError extends Error {
     public static INVALID_SEE_QUALIFIER =
         'The value for each @see tag must be a URL, markdown URL or fully qualified class or method name ' +
         '(e.g. MyClass, MyClass.MyMethod, MyClass.MyInnerClass.MyInnerClassMethod).';
+
+    public static CONFIG_PARSE_ERROR = (fileName: string) =>
+        `Failed to parse ${fileName}. Check for syntax errors. See the [documentation](${REPOSITORY}) for more information on ${fileName} config files.`
+
+    public static INVALID_CONFIG_FILE = (missingKey: string) =>
+        `You provided an .rc or yaml config file, but no '${missingKey}' config was found.`
 }
 
 export default ApexDocError;

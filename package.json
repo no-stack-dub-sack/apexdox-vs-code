@@ -16,7 +16,8 @@
 	"keywords": [
 		"apex",
 		"salesforce",
-		"documentation"
+		"documentation",
+		"documentation generator"
 	],
 	"icon": "assets/logo.png",
 	"repository": {
@@ -54,8 +55,7 @@
 				"extensions": [
 					".cls",
 					".apex"
-				],
-				"configuration": "./syntaxes/language-configuration.json"
+				]
 			},
 			{
 				"id": "json",
@@ -195,6 +195,7 @@
 	},
 	"devDependencies": {
 		"@types/cheerio": "^0.22.11",
+		"@types/js-yaml": "^3.12.1",
 		"@types/lodash.escape": "^4.0.6",
 		"@types/mocha": "^2.2.42",
 		"@types/node": "^10.12.21",
@@ -203,7 +204,6 @@
 		"@types/pretty": "^2.0.0",
 		"@types/rimraf": "^2.0.2",
 		"cheerio": "^1.0.0-rc.3",
-		"js-yaml": "^3.13.1",
 		"ts-loader": "^5.4.3",
 		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
@@ -212,6 +212,7 @@
 		"webpack-cli": "^3.3.1"
 	},
 	"dependencies": {
+		"js-yaml": "^3.13.1",
 		"lodash.escape": "^4.0.1",
 		"node-static": "^0.7.11",
 		"open": "^6.0.0",
