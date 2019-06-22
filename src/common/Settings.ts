@@ -1,7 +1,7 @@
 import ApexDocError from './ApexDocError';
+import DocblockValidator from './ValidatorDocblock';
+import EngineValidator from './ValidatorEngine';
 import LineReader from './LineReader';
-import Utils, { Option } from './Utils';
-import Validator from './Validator';
 import {
     ApexDocConfig,
     DocBlockConfig,
@@ -11,6 +11,7 @@ import {
     } from './models/settings';
 import { existsSync, readFileSync } from 'fs';
 import { EXTENSION } from '../extension';
+import { Option } from './Utils';
 import { resolve } from 'path';
 import { safeLoad as yamlToJson } from 'js-yaml';
 import { workspace, WorkspaceFolder } from 'vscode';
@@ -82,39 +83,34 @@ class Settings {
         if (type === Feature.ENGINE) {
             let config: IApexDocConfig;
             if (rcConfig) {
-                if (rcConfig.engine) {
-                    config = {
-                        ...new ApexDocConfig(),
-                        ...rcConfig.engine
-                    };
-                } else {
-                    throw new ApexDocError(ApexDocError.INVALID_CONFIG_FILE('engine'));
-                }
+                config = {
+                    ...new ApexDocConfig(),
+                    ...rcConfig.engine || {}
+                };
             } else {
                 // if no .apexdoc2rc file found, get config from settings.json
                 config = <IApexDocConfig>workspace.getConfiguration(EXTENSION).get('engine');
             }
             // pass result of either to directory defaulter and validate
-            return <T>new Validator(this.setEngineDirectoryDefaults(config)).validate();
+            return <T>new EngineValidator(this.setEngineDirectoryDefaults(config)).validate();
         }
 
         // getting docBlock config
         else if (type === Feature.DOC_BLOCK) {
+            let config: IDocBlockConfig;
             if (rcConfig) {
-                if (rcConfig.docBlock) {
-                    return <T>{
-                        ...new DocBlockConfig(),
-                        ...rcConfig.docBlock
-                    };
-                } else {
-                    throw new ApexDocError(ApexDocError.INVALID_CONFIG_FILE('docBlock'));
-                }
+                config = {
+                    ...new DocBlockConfig(),
+                    ...rcConfig.docBlock || {}
+                };
             } else {
-                return <T>workspace.getConfiguration(EXTENSION).get<IDocBlockConfig>('docBlock');
+                config = <IDocBlockConfig>workspace.getConfiguration(EXTENSION).get<IDocBlockConfig>('docBlock');
             }
+
+            return <T>new DocblockValidator(config).validate();
         }
 
-        throw new ApexDocError('Unrecognized Config Section!');
+        throw new ApexDocError('Feature type not supported!');
     }
 
     /**

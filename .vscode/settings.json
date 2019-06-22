@@ -16,5 +16,8 @@
             "useShortcut": false,
             "silent": false
         }]
-    }
+    },
+    "cSpell.words": [
+        "Docblock"
+    ]
 }

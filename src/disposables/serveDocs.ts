@@ -1,6 +1,6 @@
 import createDocServer from '../engine/server';
 import Settings, { Feature } from '../common/Settings';
-import Validator from '../common/Validator';
+import Validator from '../common/ValidatorEngine';
 import { commands, window } from 'vscode';
 import { IApexDocConfig } from '../common/models/settings';
 

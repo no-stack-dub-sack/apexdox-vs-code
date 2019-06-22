@@ -201,6 +201,15 @@ class Utils {
 
         return path;
     }
+
+    // common guard utility for Validator classes
+    public static boolGuard(bool: boolean, defaultValue: boolean): boolean {
+        if (typeof bool !== 'boolean') {
+            return defaultValue;
+        }
+
+        return bool;
+    }
 }
 
 export default Utils;

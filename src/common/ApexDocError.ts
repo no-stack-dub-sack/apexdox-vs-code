@@ -43,9 +43,6 @@ class ApexDocError extends Error {
 
     public static CONFIG_PARSE_ERROR = (fileName: string) =>
         `Failed to parse ${fileName}. Check for syntax errors. See the [documentation](${REPOSITORY}) for more information on ${fileName} config files.`
-
-    public static INVALID_CONFIG_FILE = (missingKey: string) =>
-        `You provided an .rc or yaml config file, but no '${missingKey}' config was found.`
 }
 
 export default ApexDocError;
