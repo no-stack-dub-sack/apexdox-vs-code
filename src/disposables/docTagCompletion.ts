@@ -1,5 +1,5 @@
 import * as tags from '../common/tags';
-import { Option } from '../common/Utils';
+import { IApexDocTag, Option } from '..';
 import {
     CompletionItem,
     CompletionItemKind,
@@ -13,7 +13,7 @@ import {
     } from 'vscode';
 
 class ApexDocTagCompletionItem extends CompletionItem {
-    constructor(tag: tags.IApexDoc2Tag) {
+    constructor(tag: IApexDocTag) {
         let snippetString: Option<SnippetString>;
         let kind = CompletionItemKind.Text;
         let tagName = tag.label.slice(1);

@@ -1,15 +1,16 @@
 import ApexDoc from '../engine/ApexDoc';
 import ApexDocError from './ApexDocError';
-import Utils, { Option } from './Utils';
+import EngineConfig from './models/EngineConfig';
+import Utils from './Utils';
 import Validator from './Validator';
-import { ApexDocConfig, IApexDocConfig } from './models/settings';
 import { existsSync } from 'fs';
+import { IEngineConfig, Option } from '../index';
 
-class ValidatorEngine extends Validator<IApexDocConfig> {
+class ValidatorEngine extends Validator<IEngineConfig> {
 
-    public constructor(config: IApexDocConfig) {
+    public constructor(config: IEngineConfig) {
         super(config);
-        this.validFields = Object.keys(new ApexDocConfig());
+        this.validFields = Object.keys(new EngineConfig());
     }
 
     // #region Engine Field Validators / Instance Methods

@@ -1,12 +1,7 @@
 import * as Models from '../../common/models';
 import ApexDocError from '../../common/ApexDocError';
 import Utils from '../../common/Utils';
-
-interface IMatchResult {
-    foundMatch: boolean;
-    selector: string;
-    methodName: string;
-}
+import { IMethodMatch } from '../..';
 
 class SeeLinkGenerator {
 
@@ -168,7 +163,7 @@ class SeeLinkGenerator {
      * @param matcher The user provided qualifier to match against a method name
      * @param overloadSelector The user provided indicator of the method overload number
      */
-    private static methodMatcher(methods: Models.MethodModel[], matcher: string, overloadSelector: number): IMatchResult {
+    private static methodMatcher(methods: Models.MethodModel[], matcher: string, overloadSelector: number): IMethodMatch {
         let methodNum = 0;
         let foundMatch = false;
         let selector = '', methodName = '';

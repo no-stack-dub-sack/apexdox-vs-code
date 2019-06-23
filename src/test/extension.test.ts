@@ -3,16 +3,12 @@ import LineReader from '../common/LineReader';
 import { commands } from 'vscode';
 import { createSnapshotSuite } from './suites/snapshot.suite';
 import { except } from '../common/ArrayUtils';
+import { ITestFile } from '..';
 import { readdirSync } from 'fs';
 import { resolve as resolvePath } from 'path';
 
-export interface ITestFile {
-    reader: LineReader;
-    name: string;
-    snapshot: string;
-}
-
 export const targetDir = resolvePath(__dirname, '../../src/test/test-proj/docs');
+
 const testSuites : { [index: string] : (files: ITestFile[]) => void } = suites;
 
 // turn off engine or snapshot tests during test dev

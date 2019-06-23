@@ -1,6 +1,6 @@
 import * as tags from '../tags';
 import ApexDoc from '../../engine/ApexDoc';
-import Utils, { Option } from '../Utils';
+import Utils from '../Utils';
 import { existsSync } from 'fs';
 import { resolve } from 'path';
 import { window, workspace, WorkspaceFolder } from 'vscode';
@@ -93,7 +93,7 @@ abstract class ApexModel {
             // get everything after opening '*'s
             line = line.replace(/\s*\/?\*+/, '');
 
-            // replace docBlock break marker and indicate we should break after
+            // replace docblock break marker and indicate we should break after
             // this round. Otherwise we may get some strange behavior due to
             // multi-line support and this common parser for all models
             if (line.includes(ApexDoc.DOC_BLOCK_BREAK)) {

@@ -1,7 +1,7 @@
 import ApexDoc from '../engine/ApexDoc';
 import Settings, { Feature } from '../common/Settings';
 import Utils from '../common/Utils';
-import { IDocBlockConfig } from '../common/models/settings';
+import { IDocblockConfig, IStubLine } from '..';
 import {
     Position,
     SnippetString,
@@ -9,14 +9,6 @@ import {
     TextEditor,
     TextLine
     } from 'vscode';
-
-export interface IStubLine {
-    insertNewLine: boolean;
-    line: TextLine;
-    lineIndex: number;
-    type: StubType;
-    indent: number;
-}
 
 export enum StubType {
     TOP_LEVEL_TYPE,
@@ -26,7 +18,7 @@ export enum StubType {
 
 abstract class DocBlockStub {
     public contents: string = '';
-    protected config: IDocBlockConfig;
+    protected config: IDocblockConfig;
     protected editor: TextEditor;
     protected line: TextLine;
     protected lineIndex: number;
@@ -52,7 +44,7 @@ abstract class DocBlockStub {
         this.blockOpen = isCompletion ? '\n' : `${this.lineIndent}/**\n`;
         this.blockClose = `${isCompletion ? '' : this.lineIndent + ' */'}${stubLine.insertNewLine ? '\n' : ''}`;
 
-        this.config = Settings.getConfig<IDocBlockConfig>(Feature.DOC_BLOCK);
+        this.config = Settings.getConfig<IDocblockConfig>(Feature.DOC_BLOCK);
         this.make();
     }
 

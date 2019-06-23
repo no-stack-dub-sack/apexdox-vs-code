@@ -2,7 +2,7 @@ import ApexDoc from '../../engine/ApexDoc';
 import { EnumModel } from './EnumModel';
 import { MethodModel } from './MethodModel';
 import { ModelType, TopLevelModel } from './TopLevelModel';
-import { Option } from '../Utils';
+import { Option } from '../..';
 import { PropertyModel } from './PropertyModel';
 
 class ClassModel extends TopLevelModel {

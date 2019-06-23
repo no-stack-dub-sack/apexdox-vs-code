@@ -1,5 +1,5 @@
 import ApexDocError from './ApexDocError';
-import { Option } from './Utils';
+import { Option } from '../index';
 import { readFileSync } from 'fs';
 
 /**

@@ -1,13 +1,8 @@
 import GeneratorUtils from '../../engine/generators/GeneratorUtils';
-import Utils, { Option } from '../Utils';
+import Utils from '../Utils';
 import { ApexModel } from './ApexModel';
 import { except, last } from '../ArrayUtils';
-
-interface IParamModel {
-    name: string;
-    type?: string;
-    description: string;
-}
+import { IMethodParam, Option } from '../..';
 
 class MethodModel extends ApexModel {
 
@@ -54,12 +49,12 @@ class MethodModel extends ApexModel {
         return '';
     }
 
-    public get params(): Array<IParamModel> {
-        const params = new Array<IParamModel>();
+    public get params(): Array<IMethodParam> {
+        const params = new Array<IMethodParam>();
         const typeMap = this.typesFromNameLine;
 
         for (let paramSignature of this._params) {
-            const param = {} as IParamModel;
+            const param = {} as IMethodParam;
             paramSignature = GeneratorUtils.escapeHTML(paramSignature, true).trim();
             if (paramSignature) {
                 const match: Option<RegExpExecArray, null> = /\s/.exec(paramSignature);

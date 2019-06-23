@@ -1,13 +1,10 @@
 import ApexDoc from '../engine/ApexDoc';
 import { ClassModel } from './models/ClassModel';
 import { last } from './ArrayUtils';
+import { Option } from '..';
 import { resolve } from 'path';
 import { window, workspace, WorkspaceFolder } from 'vscode';
 
-// Util Option type
-export type Option<T, V = undefined> = T | V;
-
-// ApexDoc2 related Utils
 class Utils {
     private static readonly PRIVATE: string = 'private';
     private static readonly TEST_METHOD: string = 'testmethod';

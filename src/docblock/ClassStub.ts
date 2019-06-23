@@ -1,5 +1,6 @@
-import DocBlockStub, { IStubLine } from './DocBlockStub';
+import DocBlockStub from './DocBlockStub';
 import { AUTHOR, DESCRIPTION, SINCE } from '../common/tags';
+import { IStubLine } from '..';
 import { TextEditor } from 'vscode';
 
 class ClassStub extends DocBlockStub {

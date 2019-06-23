@@ -1,12 +1,13 @@
+import DocblockConfig from './models/DocblockConfig';
 import Utils from './Utils';
 import Validator from './Validator';
-import { DocBlockConfig, IDocBlockConfig } from './models/settings';
+import { IDocblockConfig } from '..';
 
-class ValidatorDocblock extends Validator<IDocBlockConfig> {
+class ValidatorDocblock extends Validator<IDocblockConfig> {
 
-    public constructor(config: IDocBlockConfig) {
+    public constructor(config: IDocblockConfig) {
         super(config);
-        this.validFields = Object.keys(new DocBlockConfig());
+        this.validFields = Object.keys(new DocblockConfig());
     }
 
 	private alignItems() {

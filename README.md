@@ -69,9 +69,9 @@ Use these settings to configure the appearance of ApexDoc2 comment block stubs (
 
 | Setting | Type | Description | Default |
 |---------|------|-------------|---------|
-| `apexdoc2.docBlock.alignItems` | `boolean` | Vertically align anything after an ApexDoc2 @tag. | `false` |
-| `apexdoc2.docBlock.omitDescriptionTag` | `boolean` | ApexDoc2 `@description` tags are optional. Set this to `false` to include them in the comment block stub. | `true` |
-| `apexdoc2.docBlock.spacious` | `boolean` | When set to `true` ApexDoc2 comment block stubs will add an empty line after the description line and before the next tag. | `false` |
+| `apexdoc2.docblock.alignItems` | `boolean` | Vertically align anything after an ApexDoc2 @tag. | `false` |
+| `apexdoc2.docblock.omitDescriptionTag` | `boolean` | ApexDoc2 `@description` tags are optional. Set this to `false` to include them in the comment block stub. | `true` |
+| `apexdoc2.docblock.spacious` | `boolean` | When set to `true` ApexDoc2 comment block stubs will add an empty line after the description line and before the next tag. | `false` |
 
 ### Minimum Settings Example
 This is all that's required to run ApexDoc2. Technically, you could skip this too, and if your project is a standard DX or Salesforce project, the defaults should pick up your source files, but it's better to be explicit.

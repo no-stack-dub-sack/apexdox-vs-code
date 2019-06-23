@@ -1,9 +1,9 @@
 import * as Models from '../common/models';
 import FileManager from './FileManager';
 import LineReader from '../common/LineReader';
-import Utils, { Option } from '../common/Utils';
+import Utils from '../common/Utils';
 import { basename } from 'path';
-import { IApexDocConfig } from '../common/models/settings';
+import { IEngineConfig, Option } from '..';
 import { last } from '../common/ArrayUtils';
 import { performance } from 'perf_hooks';
 import { window } from 'vscode';
@@ -31,7 +31,7 @@ class ApexDoc {
     // static members
     public static extensionRoot: string;
     public static currentFile: string;
-    public static config: IApexDocConfig;
+    public static config: IEngineConfig;
 
     // flag will be set to true when we're
     // running the comment stubbing command
@@ -43,7 +43,7 @@ class ApexDoc {
      * @param config The configuration collected from the users config,
      * supplemented with any defaults if user did not include them.
      */
-    public static runApexDoc(config: IApexDocConfig): void {
+    public static runApexDoc(config: IEngineConfig): void {
         try {
             // time ApexDoc2
             const beginElapsed = performance.now();

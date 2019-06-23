@@ -11,20 +11,7 @@ import MenuGenerator from './generators/MenuGenerator';
 import path from 'path';
 import pretty from 'pretty';
 import rimraf from 'rimraf';
-import { ISourceEntry } from '../common/models/settings';
-import { Option } from '../common/Utils';
 import { window } from 'vscode';
-
-interface ILunrDocument {
-    title: string;
-    fileName: string;
-    text: string;
-}
-
-interface IApexDocMenus {
-    class: string;
-    scope: string;
-}
 
 class FileManager {
     private path: string;

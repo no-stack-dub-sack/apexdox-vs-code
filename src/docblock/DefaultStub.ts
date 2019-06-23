@@ -1,4 +1,5 @@
-import DocBlockStub, { IStubLine } from './DocBlockStub';
+import DocBlockStub from './DocBlockStub';
+import { IStubLine } from '..';
 import { TextEditor } from 'vscode';
 
 class DefaultStub extends DocBlockStub {

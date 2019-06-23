@@ -4,7 +4,7 @@ import MarkupGenerator from './MarkupGenerator';
 import SeeLinkGenerator from '../SeeLinkGenerator';
 import { ClassModel, MethodModel, TopLevelModel } from '../../../common/models';
 import { last } from '../../../common/ArrayUtils';
-import { Option } from '../../../common/Utils';
+import { Option } from '../../..';
 
 class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
 

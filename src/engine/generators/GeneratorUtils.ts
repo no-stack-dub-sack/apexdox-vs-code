@@ -1,6 +1,6 @@
 import ApexDoc from '../ApexDoc';
 import escape from 'lodash.escape';
-import { Option } from '../../common/Utils';
+import { Option } from '../..';
 import { REPOSITORY } from '../../extension';
 
 class GeneratorUtils {

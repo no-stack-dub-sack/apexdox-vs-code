@@ -1,17 +1,17 @@
 import ApexDocError from './ApexDocError';
+import DocblockConfig from './models/DocblockConfig';
 import DocblockValidator from './ValidatorDocblock';
+import EngineConfig from './models/EngineConfig';
 import EngineValidator from './ValidatorEngine';
 import LineReader from './LineReader';
-import {
-    ApexDocConfig,
-    DocBlockConfig,
-    IApexDocConfig,
-    IApexDocRC,
-    IDocBlockConfig
-    } from './models/settings';
 import { existsSync, readFileSync } from 'fs';
 import { EXTENSION } from '../extension';
-import { Option } from './Utils';
+import {
+    IApexDocRC,
+    IDocblockConfig,
+    IEngineConfig,
+    Option
+    } from '..';
 import { resolve } from 'path';
 import { safeLoad as yamlToJson } from 'js-yaml';
 import { workspace, WorkspaceFolder } from 'vscode';
@@ -76,35 +76,35 @@ class Settings {
      * NOTE: since we're supporting .rc and yaml config files, we'll need to
      * maintain defaults in model/settings.ts as well as in package.json.
      */
-    public static getConfig<T extends IApexDocConfig | IDocBlockConfig>(type: Feature): T {
+    public static getConfig<T extends IEngineConfig | IDocblockConfig>(type: Feature): T {
         const rcConfig = this.getRcFile();
 
         // getting engine config
         if (type === Feature.ENGINE) {
-            let config: IApexDocConfig;
+            let config: IEngineConfig;
             if (rcConfig) {
                 config = {
-                    ...new ApexDocConfig(),
+                    ...new EngineConfig(),
                     ...rcConfig.engine || {}
                 };
             } else {
                 // if no .apexdoc2rc file found, get config from settings.json
-                config = <IApexDocConfig>workspace.getConfiguration(EXTENSION).get('engine');
+                config = <IEngineConfig>workspace.getConfiguration(EXTENSION).get('engine');
             }
             // pass result of either to directory defaulter and validate
             return <T>new EngineValidator(this.setEngineDirectoryDefaults(config)).validate();
         }
 
-        // getting docBlock config
+        // getting docblock config
         else if (type === Feature.DOC_BLOCK) {
-            let config: IDocBlockConfig;
+            let config: IDocblockConfig;
             if (rcConfig) {
                 config = {
-                    ...new DocBlockConfig(),
-                    ...rcConfig.docBlock || {}
+                    ...new DocblockConfig(),
+                    ...rcConfig.docblock || {}
                 };
             } else {
-                config = <IDocBlockConfig>workspace.getConfiguration(EXTENSION).get<IDocBlockConfig>('docBlock');
+                config = <IDocblockConfig>workspace.getConfiguration(EXTENSION).get('docblock');
             }
 
             return <T>new DocblockValidator(config).validate();
@@ -116,9 +116,9 @@ class Settings {
     /**
      * Source and Target Dir default settings are dynamic and determined at runtime. If user
      * omits these settings or provides invalid values, overwrite with default settings.
-     * @param config The `IApexDocConfig` instance fetched from the user's settings.json or .apexdoc2rc file.
+     * @param config The `IEngineConfig` instance fetched from the user's settings.json or .apexdoc2rc file.
      */
-    private static setEngineDirectoryDefaults(config: IApexDocConfig): IApexDocConfig {
+    private static setEngineDirectoryDefaults(config: IEngineConfig): IEngineConfig {
 
         const defaultSource = [{ path: this.getDefaultDir(this.projectRoot) }];
         const defaultTarget = resolve(this.projectRoot, 'apex-documentation');

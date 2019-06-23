@@ -6,14 +6,14 @@ import {
     ExtensionContext,
     window
     } from 'vscode';
-import { IApexDocConfig } from '../common/models/settings';
+import { IEngineConfig } from '..';
 
 const COMMAND = 'apexDoc2.runApexDoc';
 
 export default function(context: ExtensionContext): Disposable {
     return commands.registerCommand(COMMAND, () => {
         try {
-            const config = Settings.getConfig<IApexDocConfig>(Feature.ENGINE);
+            const config = Settings.getConfig<IEngineConfig>(Feature.ENGINE);
             ApexDoc.extensionRoot = context.extensionPath;
             ApexDoc.runApexDoc(config);
         } catch (e) {

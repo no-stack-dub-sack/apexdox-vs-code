@@ -1,5 +1,5 @@
 import { ApexModel } from './ApexModel';
-import { Option } from '../Utils';
+import { Option } from '../..';
 
 export enum ModelType {
     CLASS,

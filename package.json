@@ -163,17 +163,17 @@
 					"default": [],
 					"markdownDescription": "An array of absolute paths of non-ApexDoc2 generated HTML files that you'd like to be available to your documentation. These files will be placed in your target directory alongside generated HTML files. For example, if you'd like to link to a page from your project's home page or from one of it's class group pages, include that page here. If your file's name is `MyCoolPage.html`, you can then link to it with `href=\"./MyCoolPage.html\"`."
 				},
-				"apexdoc2.docBlock.alignItems": {
+				"apexdoc2.docblock.alignItems": {
 					"type": "boolean",
 					"default": false,
 					"markdownDescription": "Vertically align anything after an ApexDoc2 @tag. E.g.:\n```\n/**\n * @description         Some description\n * @param myParam       Param description\n * @param anotherParam  Another param description\n */\n```\nDefaults to `false`."
 				},
-				"apexdoc2.docBlock.omitDescriptionTag": {
+				"apexdoc2.docblock.omitDescriptionTag": {
 					"type": "boolean",
 					"default": true,
 					"markdownDescription": "ApexDoc2 `@description` tags are optional. Set this to `false` to include them. Defaults to `true`."
 				},
-				"apexdoc2.docBlock.spacious": {
+				"apexdoc2.docblock.spacious": {
 					"type": "boolean",
 					"default": false,
 					"markdownDescription": "When set to `true` ApexDoc2 comment block stubs will add an empty line after the description line and before the next tag. Defaults to `false`."
