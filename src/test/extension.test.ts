@@ -12,7 +12,7 @@ export const targetDir = resolvePath(__dirname, '../../src/test/test-proj/docs')
 const testSuites : { [index: string] : (files: ITestFile[]) => void } = suites;
 
 // turn off engine or snapshot tests during test dev
-const runSnapshotTests = true;
+const runSnapshotTests = false;
 const runEngineTests = true;
 
 const runApexDoc = () => {

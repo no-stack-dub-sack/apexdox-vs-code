@@ -6,7 +6,7 @@ import {
     only,
     tail
     } from '../../common/ArrayUtils';
-import { ITestFile } from '../extension.test';
+import { ITestFile } from '../..';
 
 export const createMethodsSuite = (files: ITestFile[]) => {
     suite('Methods', function() {

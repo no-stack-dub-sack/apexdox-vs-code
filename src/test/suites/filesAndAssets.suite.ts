@@ -1,7 +1,8 @@
 import * as assert from 'assert';
 import { existsSync } from 'fs';
-import { ITestFile, targetDir } from '../extension.test';
+import { targetDir } from '../extension.test';
 import { resolve } from 'path';
+import { ITestFile } from '../..';
 
 export const createFilesAndAssetsSuite = (files: ITestFile[]) => {
     suite('Files and Assets', function() {

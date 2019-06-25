@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import cheerio from 'cheerio';
 import { head, last, only } from '../../common/ArrayUtils';
-import { ITestFile } from '../extension.test';
+import { ITestFile } from '../..';
 
 export const createSeeLinkSuite = (files: ITestFile[]) => {
     suite('See Links', function() {

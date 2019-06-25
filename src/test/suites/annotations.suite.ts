@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import cheerio from 'cheerio';
-import { ITestFile } from '../extension.test';
+import { ITestFile } from '../..';
 import { last, only } from '../../common/ArrayUtils';
 
 export const createAnnotationsSuite = (files: ITestFile[]) => {

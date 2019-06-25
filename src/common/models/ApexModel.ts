@@ -4,6 +4,7 @@ import Utils from '../Utils';
 import { existsSync } from 'fs';
 import { resolve } from 'path';
 import { window, workspace, WorkspaceFolder } from 'vscode';
+import { Option } from '../..';
 
 abstract class ApexModel {
 

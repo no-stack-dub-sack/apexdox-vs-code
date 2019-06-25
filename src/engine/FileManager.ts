@@ -12,6 +12,7 @@ import path from 'path';
 import pretty from 'pretty';
 import rimraf from 'rimraf';
 import { window } from 'vscode';
+import { ISourceEntry, Option, ILunrDocument, IApexDocMenus } from '..';
 
 class FileManager {
     private path: string;
