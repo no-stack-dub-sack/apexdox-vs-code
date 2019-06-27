@@ -24,26 +24,12 @@ abstract class TopLevelModel extends ApexModel {
         return this._since;
     }
 
-    public get deprecated(): string {
-        return this._deprecated;
-    }
-
-    public get example(): string {
-        // remove trailing white space which may have built
-        // up due to the allowance of preserving white pace
-        return this._example.trimRight();
-    }
-
     public get groupContentPath(): string {
         return this._groupContentPath;
     }
 
     public get modelType(): ModelType {
         return this._modelType;
-    }
-
-    public get see(): string[] {
-        return this._see;
     }
 }
 

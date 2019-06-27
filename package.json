@@ -181,6 +181,9 @@
 			}
 		}
 	},
+	"extensionDependencies": [
+		"salesforce.salesforcedx-vscode-apex"
+	],
 	"scripts": {
 		"vscode:prepublish": "webpack --mode production",
 		"compile": "webpack --mode none",

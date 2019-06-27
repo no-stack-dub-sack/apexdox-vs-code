@@ -18,16 +18,6 @@ class MethodModel extends ApexModel {
         return this._author;
     }
 
-    public get deprecated(): string {
-        return this._deprecated;
-    }
-
-    public get example(): string {
-        // remove trailing white space which may have built
-        // up due to the allowance of preserving white space
-        return this._example.trimRight();
-    }
-
     public get exception(): string {
         return this._exception;
     }
@@ -55,7 +45,7 @@ class MethodModel extends ApexModel {
 
         for (let paramSignature of this._params) {
             const param = {} as IMethodParam;
-            paramSignature = GeneratorUtils.escapeHTML(paramSignature, true).trim();
+            paramSignature = GeneratorUtils.encodeText(paramSignature, true).trim();
             if (paramSignature) {
                 const match: Option<RegExpExecArray, null> = /\s/.exec(paramSignature);
 
@@ -69,7 +59,7 @@ class MethodModel extends ApexModel {
                 }
 
                 const type = typeMap.get(param.name);
-                param.type = type ? GeneratorUtils.escapeHTML(type) : type;
+                param.type = type ? GeneratorUtils.encodeText(type) : type;
 
                 params.push(param);
             }
@@ -123,10 +113,6 @@ class MethodModel extends ApexModel {
 
     public get returns(): string {
         return this._returns;
-    }
-
-    public get see(): string[] {
-        return this._see;
     }
 
     // annotations will not exist when parseScope is first called

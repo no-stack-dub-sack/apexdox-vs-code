@@ -1,13 +1,31 @@
 import GeneratorUtils from '../GeneratorUtils';
 import Utils from '../../../common/Utils';
-import { ApexModel } from '../../../common/models';
+import { ApexModel, TopLevelModel } from '../../../common/models';
 import { last } from '../../../common/ArrayUtils';
+import SeeLinkGenerator from '../SeeLinkGenerator';
 
+/**
+ * This class is the base markup generation class and is not instantiated directly. It
+ * includes markup generation methods that are common to all ApexModels, and some that
+ * are common only to TopLevelModel and MethodModel, so be careful when calling these
+ * methods that they correctly correspond to the model you are generating markup for.
+ */
 abstract class MarkupGenerator<T extends ApexModel> {
-    protected model: T;
 
-    protected constructor(model: T) {
+    protected constructor(protected model: T, protected models: Map<string, TopLevelModel>) {
         this.model = model;
+        this.models = models;
+    }
+
+    protected markupTemplate(label: string, contents: string, titleClass = '', contentClass = '', tag = 'div') {
+        return `
+            <div class="${titleClass}">
+                ${label}
+            </div>
+            <${tag} class="${contentClass}">
+                ${contents}
+            </${tag}>`
+        ;
     }
 
     protected annotations(className: string): string {
@@ -18,12 +36,61 @@ abstract class MarkupGenerator<T extends ApexModel> {
         return `<div class="${className}">${this.model.annotations.join(' ')}</div>`;
     }
 
+    protected deprecated(): string {
+        if (!this.model.deprecated) {
+            return '';
+        } else {
+            return this.markupTemplate('Deprecated', GeneratorUtils.encodeText(this.model.deprecated, true, this.models), 'deprecated');
+        }
+    }
+
     protected description(className = '', tag = 'div', override = false): string {
         if (!this.model.description && !override) {
             return '';
         }
 
-        return `<${tag} class="${className}">${GeneratorUtils.escapeHTML(this.model.description, true)}</${tag}>`;
+        return `
+            <${tag} class="${className}">
+                ${GeneratorUtils.encodeText(this.model.description, true, this.models)}
+            </${tag}>`
+        ;
+    }
+
+    protected example(): string {
+        // return example and remove trailing white space which
+        // may have built up due to the allowance of preserving
+        // white pace in complex code example blocks for methods
+        if (!this.model.example) {
+            return '';
+        } else {
+            return this.markupTemplate(
+                'Example',
+                `<code>${GeneratorUtils.encodeText(this.model.example)}</code>`,
+                '',
+                'code-example',
+                'pre'
+            );
+        }
+    }
+
+    protected see(): string {
+        if (!this.model.see.length) {
+            return '';
+        } else {
+            return this.markupTemplate('See', SeeLinkGenerator.makeLinks(this.models, this.model.see).join(', '));
+        }
+    }
+
+    protected signature(signatureType: 'method' | 'class'): string {
+        return `
+            <div class="${signatureType}-subtitle">
+                Signature
+            </div>
+            ${this.annotations(`${signatureType}-annotations`)}
+            <div class="${signatureType}-signature">
+                ${GeneratorUtils.encodeText(this.model.nameLine)}
+            </div>`
+        ;
     }
 
     protected linkToSource(nameOrSignature: string, topmostTypeName: string, highlightJSify = false): string {
@@ -53,7 +120,7 @@ abstract class MarkupGenerator<T extends ApexModel> {
             const name = Utils.previousWord(nameLine, nameLine.indexOf('('));
             return nameLine.replace(name, `<span class="hljs-title">${name}</span>`);
         } else {
-            const words = GeneratorUtils.escapeHTML(nameLine, false).split(' ');
+            const words = GeneratorUtils.encodeText(nameLine, false).split(' ');
             words[words.length - 1] = `<span class="hljs-title">${last(words)}<span>`;
             return words.join(' ');
         }

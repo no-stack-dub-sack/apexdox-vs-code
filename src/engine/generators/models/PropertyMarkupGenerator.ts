@@ -1,15 +1,15 @@
 import ApexDoc from '../../ApexDoc';
 import GeneratorUtils from '../GeneratorUtils';
 import MarkupGenerator from './MarkupGenerator';
-import { ClassModel, PropertyModel } from '../../../common/models';
+import { ClassModel, PropertyModel, TopLevelModel } from '../../../common/models';
 
 class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
 
-    protected constructor(model: PropertyModel) {
-        super(model);
+    protected constructor(model: PropertyModel, models: Map<string, TopLevelModel>) {
+        super(model, models);
     }
 
-    public static generate(cModel: ClassModel): string {
+    public static generate(cModel: ClassModel, models: Map<string, TopLevelModel>): string {
         const properties = ApexDoc.config.sortOrder === ApexDoc.ORDER_ALPHA
             ? cModel.propertiesSorted
             : cModel.properties;
@@ -19,7 +19,7 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
         const hasDescription = PropertyMarkupGenerator.hasDescriptionColumn(markup);
 
         for (let prop of properties) {
-            const generator = new PropertyMarkupGenerator(prop);
+            const generator = new PropertyMarkupGenerator(prop, models);
             markup += generator.propRow(cModel.topMostClassName, hasAnnotations, hasDescription);
         }
 
@@ -64,7 +64,7 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
                 <td class="attribute-name">${super.linkToSource(this.model.name, topmostTypeName)}</td>
                 <td>
                     <div class="attribute-signature">
-                        ${GeneratorUtils.escapeHTML(this.model.nameLine)}
+                        ${GeneratorUtils.encodeText(this.model.nameLine)}
                     </div>
                 </td>
                 ${hasAnnotationsColumn ? '<td>' + this.annotations('prop-annotations') + '</td>' : ''}

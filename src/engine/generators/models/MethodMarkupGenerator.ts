@@ -1,18 +1,16 @@
 import ApexDoc from '../../ApexDoc';
 import GeneratorUtils from '../GeneratorUtils';
 import MarkupGenerator from './MarkupGenerator';
-import SeeLinkGenerator from '../SeeLinkGenerator';
 import { ClassModel, MethodModel, TopLevelModel } from '../../../common/models';
-import { last } from '../../../common/ArrayUtils';
 import { Option } from '../../..';
 
 class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
 
-    protected constructor(model: MethodModel) {
-        super(model);
+    protected constructor(model: MethodModel, models: Map<string, TopLevelModel>) {
+        super(model, models);
     }
 
-    public static generate(cModel: ClassModel, modelMap: Map<string, TopLevelModel>): string {
+    public static generate(cModel: ClassModel, models: Map<string, TopLevelModel>): string {
         // retrieve methods to work with in the order user specifies
         const allMethods = ApexDoc.config.sortOrder === ApexDoc.ORDER_ALPHA
             ? cModel.methodsSorted
@@ -23,10 +21,10 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
 
         const constructorsMarkup = constructors.length
             ? this.generateSection(
-                'Contructors',
+                'Constructors',
                 constructors,
                 cModel,
-                modelMap
+                models
             ) : '';
 
         const methodsMarkup = methods.length
@@ -34,13 +32,13 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
                 'Methods',
                 methods,
                 cModel,
-                modelMap
+                models
             ) : '';
 
         return constructorsMarkup + methodsMarkup;
     }
 
-    private static generateSection(section: string, methods: Array<MethodModel>, cModel: ClassModel, modelMap: Map<string, TopLevelModel>) {
+    private static generateSection(section: string, methods: Array<MethodModel>, cModel: ClassModel, models: Map<string, TopLevelModel>) {
         // track Ids used to make sure we're not generating duplicate
         // ids within this class and so that overloaded methods each
         // have their own unique anchor to link to in the TOC.
@@ -53,7 +51,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         // full method display
         for (let method of methods) {
             // instantiate our markup generator
-            const generator = new MethodMarkupGenerator(method);
+            const generator = new MethodMarkupGenerator(method, models);
 
             // generate unique method id
             const methodId = generator.generateMethodId(idCountMap, cModel);
@@ -65,12 +63,12 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
             let methodMarkup = '';
             methodMarkup += generator.header(methodId, cModel.topMostClassName);
             methodMarkup += generator.description('method-description');
-            methodMarkup += generator.signature();
+            methodMarkup += generator.signature('method');
             methodMarkup += generator.deprecated();
             methodMarkup += generator.params();
             methodMarkup += generator.returns();
             methodMarkup += generator.exception();
-            methodMarkup += generator.see(modelMap);
+            methodMarkup += generator.see();
             methodMarkup += generator.author();
             methodMarkup += generator.since();
             methodMarkup += generator.example();
@@ -92,16 +90,16 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         return markup;
     }
 
-    private markupTemplate(label: string, contents: string, titleClass = '', contentClass = 'method-subtitle-description', tag = 'div') {
-        return `<div class="method-subtitle ${titleClass}">${label}</div>
-                <${tag} class="${contentClass}">${contents}</${tag}>`;
+    protected markupTemplate(label: string, contents: string, titleClass = '', contentClass = 'method-subtitle-description', tag = 'div') {
+        titleClass = titleClass ? `method-subtitle ${titleClass}` : 'method-subtitle';
+        return super.markupTemplate(label, contents, titleClass, contentClass, tag);
     }
 
     protected author(): string {
         if (!this.model.author) {
             return '';
         } else {
-            return this.markupTemplate('Author', GeneratorUtils.escapeHTML(this.model.author));
+            return this.markupTemplate('Author', GeneratorUtils.encodeText(this.model.author, true, this.models));
         }
     }
 
@@ -117,32 +115,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         if (!this.model.since) {
             return '';
         } else {
-            return this.markupTemplate('Since', GeneratorUtils.escapeHTML(this.model.since));
-        }
-    }
-
-    protected deprecated(): string {
-        if (!this.model.deprecated) {
-            return '';
-        } else {
-            return this.markupTemplate('Deprecated', GeneratorUtils.escapeHTML(this.model.deprecated, true), 'deprecated');
-        }
-    }
-
-    protected example(): string {
-        // return example and remove trailing white space which
-        // may have built up due to the allowance of preserving
-        // white pace in complex code example blocks for methods
-        if (!this.model.example) {
-            return '';
-        } else {
-            return this.markupTemplate(
-                'Example',
-                `<code>${GeneratorUtils.escapeHTML(this.model.example.trimRight())}</code>`,
-                '',
-                'code-example',
-                'pre'
-            );
+            return this.markupTemplate('Since', GeneratorUtils.encodeText(this.model.since, true, this.models));
         }
     }
 
@@ -150,7 +123,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         if (!this.model.exception) {
             return '';
         } else {
-            return this.markupTemplate('Exceptions', GeneratorUtils.escapeHTML(this.model.exception, true));
+            return this.markupTemplate('Exceptions', GeneratorUtils.encodeText(this.model.exception, true, this.models));
         }
     }
 
@@ -181,15 +154,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         if (!this.model.returns) {
             return '';
         } else {
-            return this.markupTemplate('Returns', GeneratorUtils.escapeHTML(this.model.returns, true));
-        }
-    }
-
-    protected see(models: Map<string, TopLevelModel>): string {
-        if (!this.model.see.length) {
-            return '';
-        } else {
-            return this.markupTemplate('See', SeeLinkGenerator.makeLinks(models, this.model.see));
+            return this.markupTemplate('Returns', GeneratorUtils.encodeText(this.model.returns, true, this.models));
         }
     }
 
@@ -205,18 +170,6 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         }
 
         return entry += '</li>';
-    }
-
-    protected signature(): string {
-        return `
-            <div class="method-subtitle">
-                Signature
-            </div>
-            ${this.annotations('method-annotations')}
-            <div class="method-signature">
-                ${GeneratorUtils.escapeHTML(this.model.nameLine)}
-            </div>`
-        ;
     }
 
     /**

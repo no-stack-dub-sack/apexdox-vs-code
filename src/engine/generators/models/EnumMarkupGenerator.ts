@@ -4,16 +4,16 @@ import TopLevelMarkupGenerator from './TopLevelMarkupGenerator';
 import { EnumModel, TopLevelModel } from '../../../common/models';
 
 class EnumMarkupGenerator extends MarkupGenerator<EnumModel> {
-    protected constructor(model: EnumModel) {
-        super(model);
+    protected constructor(model: EnumModel, models: Map<string, TopLevelModel>) {
+        super(model, models);
     }
 
-    public static generate(eModel: EnumModel, modelMap: Map<string, TopLevelModel>): string {
-        const generator = new EnumMarkupGenerator(eModel);
+    public static generate(eModel: EnumModel, models: Map<string, TopLevelModel>): string {
+        const generator = new EnumMarkupGenerator(eModel, models);
         let markup = generator.header(eModel.name);
         let values = generator.valuesTable();
 
-        markup += TopLevelMarkupGenerator.generate(eModel, modelMap, values);
+        markup += TopLevelMarkupGenerator.generate(eModel, models, values);
 
         return markup;
     }
@@ -21,7 +21,7 @@ class EnumMarkupGenerator extends MarkupGenerator<EnumModel> {
     protected header(topmostTypeName: string) {
         return `
             <h2 class="class-title top-level-type" id="${this.model.name}">
-                ${super.linkToSource(GeneratorUtils.escapeHTML(this.model.name), topmostTypeName)}
+                ${super.linkToSource(GeneratorUtils.encodeText(this.model.name), topmostTypeName)}
             </h2>`
         ;
     }

@@ -16,7 +16,7 @@ body {
 }
 
 #logo-container {
-    height: 120px;
+    height: 130px;
     text-align: center;
 }
 
@@ -33,7 +33,7 @@ body {
 }
 
 #logo-container img {
-    height: 50px;
+    height: 70px;
     margin: 0 auto;
     display: block;
 }

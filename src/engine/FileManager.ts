@@ -98,7 +98,7 @@ class FileManager {
      * pages that a user has included, e.g. home page, class group, supplementary.
      *
      * @param groupNameMap Map of our class group names to their ClassGroup instances
-     * @param modelMap Map of our model names to their TopLevelModel instances
+     * @param models Map of our model names to their TopLevelModel instances
      * @param pages Any additional pages, including the project home page, the user has included
      */
     public createDocs(groupNameMap: Map<string, Models.ClassGroup>, models: Map<string, Models.TopLevelModel>, pages: string[]): void {
@@ -277,16 +277,16 @@ class FileManager {
             if (cg && cg.contentSource) {
                 const cgContent = this.parseHTMLFile(cg.contentSource);
                 if (cgContent) {
-                    let markup = this.makePage(cgContent, menus, GeneratorUtils.escapeHTML(cg.name, false));
+                    let markup = this.makePage(cgContent, menus, GeneratorUtils.encodeText(cg.name, false));
                     fileMap.set(cg.contentFileName, markup);
                 }
             }
         }
     }
 
-    public makeDocumentationPages(fileMap: Map<string, string>, menus: IApexDocMenus, modelMap: Map<string, Models.TopLevelModel>): void {
+    public makeDocumentationPages(fileMap: Map<string, string>, menus: IApexDocMenus, models: Map<string, Models.TopLevelModel>): void {
 
-        for (let model of modelMap.values()) {
+        for (let model of models.values()) {
             let fileName = '';
             let contents = '';
             if (model.nameLine) {
@@ -295,7 +295,7 @@ class FileManager {
                 if (model.modelType === Models.ModelType.CLASS) {
 
                     const cModel = <Models.ClassModel>model;
-                    contents += ClassMarkupGenerator.generate(cModel, modelMap);
+                    contents += ClassMarkupGenerator.generate(cModel, models);
 
                     // get child classes to work with in the order user specifies
                     const childClasses = ApexDoc.config.sortOrder === ApexDoc.ORDER_ALPHA
@@ -304,11 +304,11 @@ class FileManager {
 
                     // map over child classes, creating HTML, and concat result
                     contents += childClasses.map(cmChild =>
-                        ClassMarkupGenerator.generate(cmChild, modelMap)).join('');
+                        ClassMarkupGenerator.generate(cmChild, models)).join('');
 
                 } else if (model.modelType === Models.ModelType.ENUM) {
                     const eModel = <Models.EnumModel>model;
-                    contents += EnumMarkupGenerator.generate(eModel, modelMap);
+                    contents += EnumMarkupGenerator.generate(eModel, models);
                 }
 
             } else {

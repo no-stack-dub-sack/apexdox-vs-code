@@ -1,15 +1,17 @@
 import ApexDoc from '../../ApexDoc';
 import GeneratorUtils from '../GeneratorUtils';
 import MarkupGenerator from './MarkupGenerator';
-import { ClassModel, EnumModel } from '../../../common/models';
+import { ClassModel, EnumModel, TopLevelModel } from '../../../common/models';
+
+// models not needed!
 
 class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
 
-    public constructor(model: EnumModel) {
-        super(model);
+    public constructor(model: EnumModel, models: Map<string, TopLevelModel>) {
+        super(model, models);
     }
 
-    public static generate(cModel: ClassModel): string {
+    public static generate(cModel: ClassModel, models: Map<string, TopLevelModel>): string {
         const enums = ApexDoc.config.sortOrder === ApexDoc.ORDER_ALPHA
             ? cModel.enumsSorted
             : cModel.enums;
@@ -18,7 +20,7 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
         const hasDescription = ChildEnumMarkupGenerator.hasDescriptionColumn(markup);
 
         for (let Enum of enums) {
-            const generator = new ChildEnumMarkupGenerator(Enum);
+            const generator = new ChildEnumMarkupGenerator(Enum, models);
             markup += generator.enumRow(cModel.topMostClassName, hasDescription);
         }
 
@@ -39,9 +41,12 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
 
     protected static headerRow(enums: Array<EnumModel>): string {
         let descriptionCol = '';
-        enums.forEach(_enum => {
-            _enum.description && (descriptionCol = '<th>Description</th>');
-        });
+        for (let Enum of enums) {
+            if (Enum.description) {
+                descriptionCol = '<th>Description</th>';
+                break;
+            }
+        }
 
         return `
             <tr>
@@ -58,7 +63,7 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
                 <td class="attribute-name">${super.linkToSource(this.model.name, topmostTypeName)}</td>
                 <td>
                     <div class="attribute-signature">
-                        ${GeneratorUtils.escapeHTML(this.model.nameLine)}
+                        ${GeneratorUtils.encodeText(this.model.nameLine)}
                     </div>
                 </td>
                 <td class="enumValues">${this.model.values.join(',&nbsp;')}</td>

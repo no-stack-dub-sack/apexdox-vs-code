@@ -20,7 +20,7 @@ class SeeLinkGenerator {
             : `<span title="URL is invalid!">${linkName}</span>`;
     }
 
-    public static makeLinks(modelMap: Map<string, Models.TopLevelModel>, qualifiers: string[]): string {
+    public static makeLinks(models: Map<string, Models.TopLevelModel>, qualifiers: string[]): string[] {
         // initialize list to store created links
         const links = new Array<string>();
 
@@ -77,7 +77,7 @@ class SeeLinkGenerator {
 
             // 4.A) if first qualifier matches class name, begin search: We've
             // made the model map in all lowercase to avoid case mis-matching
-            const model = modelMap.get(parts[0]);
+            const model = models.get(parts[0]);
 
             if (model) {
                 // if only a single qualifier, stop here
@@ -150,8 +150,8 @@ class SeeLinkGenerator {
             links.push(link);
         }
 
-        // 6) collect links / spans and join back into a single string
-        return links.join(', ');
+        // 6) collect links / spans and return
+        return links;
     }
 
     /**

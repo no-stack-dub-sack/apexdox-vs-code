@@ -2,6 +2,8 @@ import ApexDoc from '../ApexDoc';
 import escape from 'lodash.escape';
 import { Option } from '../..';
 import { REPOSITORY } from '../../extension';
+import { TopLevelModel } from '../../common/models';
+import SeeLinkGenerator from './SeeLinkGenerator';
 
 class GeneratorUtils {
 
@@ -9,12 +11,35 @@ class GeneratorUtils {
         return arr.map(mapClb).join('');
     }
 
-    public static escapeHTML(str: string, wrapBackticks: boolean = false): string {
-        let result = wrapBackticks ? this.wrapWithCode(escape(str)) : escape(str);
+    public static encodeText(str: string, convertBackticksToCode = false, models?: Map<string, TopLevelModel>): string {
+        let result = str;
+
+        if (convertBackticksToCode) {
+            result = this.wrapWithCode(escape(result));
+        } else {
+            result = escape(result);
+        }
+
+        if (models) {
+            result = this.resolveInlineLinks(str, models);
+        }
+
         // unescape <br> tags, we want to keep these
         result = result.replace(/&lt;br\s?\/?&gt;/g, '<br>');
 
         return result;
+    }
+
+    static resolveInlineLinks(str: string, models: Map<string, TopLevelModel>): any {
+        const linkMatches = str.match(/\{@link.*?\}/g);
+        if (linkMatches) {
+            const linkContents = linkMatches.map(match => match.slice(6, -1).trim());
+            const resolvedLinks = SeeLinkGenerator.makeLinks(models, linkContents);
+            linkMatches.forEach((match, i) => (str = str.replace(match, resolvedLinks[i])));
+            return str;
+        } else {
+            return str;
+        }
     }
 
     private static wrapWithCode(html: string): string {
