@@ -79,7 +79,7 @@
           }
         },
         {
-          "match": "(?x)\n(?:\n  ((@)see)\\b\\s*\n  # match dot notation name path\n  (\n    [._[:alnum:]]*\n    # match overload link syntax, e.g. Class.Method[4]\n    (\n      (\\[)\n        [[:digit:]]+\n      (\\])\n    )?\n  )\n  |\n  (\n    # match URLs\n    (?=https?://)\n    (?:[^\\s*]|\\*[^/])+\n  )\n  |\n  (?:\n    # match markdown style URLs\n    (\n      (\\[)\n        [._\\s[:alnum:]]*\n      (\\])\n    )\n    (\n      (\\()\n        (?=https?://)\n        (?:[^\\s*]|\\*[^/])+\n      (\\))\n    )\n  )\n)\n(?=\\s+)",
+          "match": "(?x)\n(?:\n  ((@)see|@link)\\b\\s*\n  # match dot notation name path\n  (\n    [._[:alnum:]]*\n    # match overload link syntax, e.g. Class.Method[4]\n    (\n      (\\[)\n        [[:digit:]]+\n      (\\])\n    )?\n  )\n  |\n  (\n    # match URLs\n    (?=https?://)\n    (?:[^\\s*]|\\*[^/])+\n  )\n  |\n  (?:\n    # match markdown style URLs\n    (\n      (\\[)\n        [._\\s[:alnum:]]*\n      (\\])\n    )\n    (\n      (\\()\n        (?=https?://)\n        (?:[^\\s*]|\\*[^/])+\n      (\\))\n    )\n  )\n)\n(?=\\s+|\\}\\.?)",
           "captures": {
             "1": {
               "name": "storage.type.annotation.apex"

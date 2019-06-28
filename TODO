@@ -25,6 +25,9 @@ General:
     ☐ Resolve in-code TODOs
     ☐ Review badges, galleryBanner, Marketplace Presentation, etc.
     ✔ In-comment see links / links / markdown links @done(19-06-26 22:58)
+    ☐ Remove ClassName Constructors, Properties and Methods titles
+    ☐ Add margin above subtitle-header class
+    ☐ write regexp to remove space between pre and code tags, then give pre propper margin
 
     Testing:
     ✔ Establish "Snapshot" tests to compare output docs to expected output reference files @done(19-05-28 21:25)

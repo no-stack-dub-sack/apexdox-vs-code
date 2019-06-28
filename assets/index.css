@@ -75,7 +75,7 @@ body {
 .subsection-title {
     font-family: 'Nanum Gothic';
     color: var(--grey-blue-tx);
-    margin: 0;
+    margin: 20px 0 0 0;
     padding: 2px;
 }
 
