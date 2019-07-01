@@ -44,6 +44,36 @@ public class TEST_Methods {
         return new Map<String, String>();
     }
 
+    /**
+     * @param int a
+     * @param int2 b
+     * @param int3 c
+     * @param int4 d
+     */
+    public static Integer method10(Integer int, String int2, Double int3, Set<String> int4) {
+        return MY_INT + int;
+    }
+
+    /**
+     * @param crazyType a
+     * @param int2 b
+     * @param int3 c
+     * @param int22 d
+     * @returns `Integer`
+     */
+    private static Integer method11(Map<String, Map<SomeCustomClass.InnerClass, Map<Int, List<Map<String, Integer>>>>> crazyType, List<String> int2, OuterClass.InnerType int3, Integer int22) {
+        return MY_INT + int;
+    }
+
+    /**
+     * @param crazyType a
+     * @param int22 d
+     * @returns `Integer`
+     */
+    protected static Integer method12(Map<String, Map<SomeCustomClass.InnerClass, Map<Int, List<Map<String, Integer>>>>> crazyType, List<String> int2, OuterClass.InnerType int3, Integer int22) {
+        return MY_INT + int;
+    }
+
     // this method will be invisible
     // since it is implicitly private
     // and does not start with a known keyword

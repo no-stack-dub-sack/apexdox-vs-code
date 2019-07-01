@@ -28,6 +28,7 @@ General:
     ☐ Remove ClassName Constructors, Properties and Methods titles
     ☐ Add margin above subtitle-header class
     ☐ write regexp to remove space between pre and code tags, then give pre propper margin
+    ☐ Fix "includes" code. Try including Test.cls - should only act as wildcard when wildcard char present
 
     Testing:
     ✔ Establish "Snapshot" tests to compare output docs to expected output reference files @done(19-05-28 21:25)

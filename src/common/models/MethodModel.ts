@@ -77,7 +77,7 @@ class MethodModel extends ApexModel {
             const prevParam = params[i-1];
 
             let type = '', sliceStart = 0;
-            let reString = `[A-Za-z0-9_.<>,\\s]+\\s+${param}`;
+            let reString = `[A-Za-z0-9_.<>,\\s]+?\\s+${param}`;
 
             if (prevParam) {
                 sliceStart = 1;

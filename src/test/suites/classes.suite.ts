@@ -16,7 +16,7 @@ export const createClassesSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_NestedClasses.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const innerClasses = $('h2.sectionTitle')
+            const innerClasses = $('h2.class-title')
                 .toArray()
                 .map(el => $(el).attr('id'))
                 .filter(id => id.startsWith('TEST_NestedClasses.'));
@@ -53,7 +53,7 @@ export const createClassesSuite = (files: ITestFile[]) => {
             const $ = cheerio.load(testFile.snapshot);
 
             const methods = $('.methods-toc__entry').toArray().map(el => $(el).text().trim());
-            const expectedMethods = ['doIt', 'doSomething', 'doSomethingElse'];
+            const expectedMethods = ['doIt (object1, object2)', 'doSomething (object1, object2)', 'doSomethingElse (myInt, myString)'];
 
             assert.deepEqual(methods, expectedMethods, 'Unexpected interface methods found.');
         });

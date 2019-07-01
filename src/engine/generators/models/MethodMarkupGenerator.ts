@@ -136,7 +136,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
 
                 if (type) {
                     markup +=
-                    `<div class="param-description">
+                    `<div class="param-type">
                         Type: <code class="code-inline">${type}</code>
                     </div>`;
                 }

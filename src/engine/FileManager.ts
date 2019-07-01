@@ -189,8 +189,6 @@ class FileManager {
                 .map(line => line.trim())
                 .filter(line => !!line);
 
-            console.log(plainText);
-
             searchIndex.push({
                 title: fileName === 'index' ? 'Home' : fileName,
                 fileName: fileName + '.html',
@@ -315,10 +313,7 @@ class FileManager {
                 continue;
             }
 
-            contents += `</div>
-                        <!-- where's your patnah?! -->`;
-            contents = this.makePage(contents, menus);
-            fileMap.set(fileName, contents);
+            fileMap.set(fileName, this.makePage(contents, menus));
         }
     }
     // #endregion

@@ -15,7 +15,7 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         // add any additional content passed in from the caller. currently, only
         // use case is the values table used when documenting class-level enums
         markup += generator.description('class-description');
-        markup += generator.signature('method');
+        markup += generator.signature('class');
         markup += additionalContent;
         markup += generator.deprecated();
         markup += generator.see();

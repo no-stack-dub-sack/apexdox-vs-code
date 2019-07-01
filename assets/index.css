@@ -198,6 +198,18 @@ most signatures will fit on a single lin */
     font-size: 16px;
 }
 
+.method-title:target {
+    margin-top: -12px;
+    padding-top: 60px;
+}
+
+.method-title:target:before {
+    content: " ";
+    background-clip: padding-box;
+    position: absolute;
+    top: 24px;
+}
+
 .method-subtitle {
     font-size: 15px;
 }
