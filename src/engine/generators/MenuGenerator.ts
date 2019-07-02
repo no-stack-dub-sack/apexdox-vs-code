@@ -52,7 +52,7 @@ class MenuGenerator {
                         ${label}
                     </summary>
                     <ul>
-                    <!-- menu items will be appended here -->`;
+                    <!-- menu items -->`;
 
             menuMarkupMap.set(group, markup);
         }

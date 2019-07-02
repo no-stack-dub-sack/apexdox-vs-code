@@ -21,7 +21,7 @@ class GeneratorUtils {
         }
 
         if (models) {
-            result = this.resolveInlineLinks(str, models);
+            result = this.resolveInlineLinks(result, models);
         }
 
         // unescape <br> tags, we want to keep these

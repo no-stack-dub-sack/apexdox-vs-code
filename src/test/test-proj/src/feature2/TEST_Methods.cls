@@ -7,7 +7,7 @@ public class TEST_Methods {
         return '';
     }
 
-    private static String method2() {
+    String method2() {
         return '';
     }
 
@@ -61,7 +61,7 @@ public class TEST_Methods {
      * @param int22 d
      * @returns `Integer`
      */
-    private static Integer method11(Map<String, Map<SomeCustomClass.InnerClass, Map<Int, List<Map<String, Integer>>>>> crazyType, List<String> int2, OuterClass.InnerType int3, Integer int22) {
+    private Integer method11(Map<String, Map<SomeCustomClass.InnerClass, Map<Int, List<Map<String, Integer>>>>> crazyType, List<String> int2, OuterClass.InnerType int3, Integer int22) {
         return MY_INT + int;
     }
 

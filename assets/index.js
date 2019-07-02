@@ -296,8 +296,8 @@ function toggleScope(scope, isShow) {
 	// show or hide all props, classes, & methods of a given scope
 	if (isShow === true) {
 		// show tables if they've been hidden
-		props.length && toggleVisibility(enumTable, true);
-		enums.length && toggleVisibility(propTable, true);
+		props.length && toggleVisibility(propTable, true);
+		enums.length && toggleVisibility(enumTable, true);
 		methods.length && toggleVisibility(methodsH2, true);
 		toggleVisibility(all, true);
 	}

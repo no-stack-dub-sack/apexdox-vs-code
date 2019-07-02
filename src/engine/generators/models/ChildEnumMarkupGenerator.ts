@@ -27,7 +27,7 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
         markup =
             `<div class="subsection enums">
                 <h3 class="subsection-title enums">Enums</h2>
-                <table class="attributes-table properties">
+                <table class="attributes-table enums">
                     ${markup}
                 </table>
             </div>`;
@@ -66,7 +66,7 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
                         ${GeneratorUtils.encodeText(this.model.nameLine)}
                     </div>
                 </td>
-                <td class="enumValues">${this.model.values.join(',&nbsp;')}</td>
+                <td class="enum-values">${this.model.values.join(',&nbsp;')}</td>
                 ${hasDescriptionColumn ? this.description('attribute-description', 'td') : ''}
             </tr>`;
     }

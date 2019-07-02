@@ -4,34 +4,147 @@ export default `<!DOCTYPE html>
   <head>
     <title>My Test Docs</title>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="./assets/index.js"></script>
+    <script type="module" src="./assets/index.js"></script>
+    <script type="module" src="./assets/search-idx.js"></script>
+    <script type="module" src="./assets/search.js"></script>
     <script charset="UTF-8" src="./assets/highlight.js"></script>
+    <script charset="UTF-8" src="./assets/mark.js"></script>
+    <script charset="UTF-8" src="./assets/lunr.js"></script>
     <link rel="stylesheet" href="./assets/highlight.css" />
     <link rel="stylesheet" type="text/css" href="./assets/index.css" />
     <link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
   </head>
 
   <body>
-    <div class="topsection">
-      <table>
-        <tr>
-          <td>
-            <img src="./assets/apexdoc2-logo.png" style="height: 90px; margin-left: 5px;" />
-          </td>
-          <td>
-            <h2 style="margin: -15px 0 0 0;">ApexDoc2 | Apex Documentation</h2>Check out the GitHub project at:<br />
-            <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode">
-              https://github.com/no-stack-dub-sack/ApexDoc2-VSCode
-            </a>
-            <br />
-          </td>
-        </tr>
-      </table>
-    </div>
-    <table width="100%">
+    <div id="side-bar">
 
+      <div id="logo-container">
+        <div class="title">
+          My Test Docs
+        </div>
+        <img src="assets/logo.png" />
+        <div class="subtitle">
+          Powered by <a target="_blank" rel="noopener noreferrer" href="https://github.com/no-stack-dub-sack/apexdoc2-vscode">ApexDoc2</a>
+        </div>
+      </div>
+      <div id="search-wrapper">
+        <div class="search-icon"></div>
+        <input id="search-input" type="text" autocomplete="off" placeholder="Search...">
+      </div>
+      <ul id="search-results" class=""></ul>
+      <div class="navbar">
+        <nav role="navigation">
+          <a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">
+            Home
+          </a>
+          <details id="Assertions" class="group-name">
+            <summary id="header-Assertions" class="nav-header">
+              <span>Assertions</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="TEST_Annotations" id="item-TEST_Annotations" class="nav-item class public" onclick="goToLocation('TEST_Annotations.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_Annotations</a>
+              </li>
+              <li title="TEST_EnumClass" id="item-TEST_EnumClass" class="nav-item class public" onclick="goToLocation('TEST_EnumClass.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_EnumClass</a>
+              </li>
+              <li title="TEST_EnumInner" id="item-TEST_EnumInner" class="nav-item class public" onclick="goToLocation('TEST_EnumInner.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_EnumInner</a>
+              </li>
+              <li title="TEST_InterfaceClass" id="item-TEST_InterfaceClass" class="nav-item class global" onclick="goToLocation('TEST_InterfaceClass.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_InterfaceClass</a>
+              </li>
+              <li title="TEST_Links" id="item-TEST_Links" class="nav-item class public" onclick="goToLocation('TEST_Links.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
+              </li>
+              <li title="TEST_Methods" id="item-TEST_Methods" class="nav-item class public" onclick="goToLocation('TEST_Methods.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
+              </li>
+              <li title="TEST_MultiLineTagValues" id="item-TEST_MultiLineTagValues" class="nav-item class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
+              </li>
+              <li title="TEST_NestedClasses" id="item-TEST_NestedClasses" class="nav-item class public" onclick="goToLocation('TEST_NestedClasses.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_NestedClasses</a>
+              </li>
+              <li title="TEST_Properties" id="item-TEST_Properties" class="nav-item class public" onclick="goToLocation('TEST_Properties.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_Properties</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Feature1" class="group-name">
+            <summary id="header-Feature1" class="nav-header">
+              <span>Feature1</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="TEST_ArrayUtils" id="item-TEST_ArrayUtils" class="nav-item class global" onclick="goToLocation('TEST_ArrayUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_ArrayUtils</a>
+              </li>
+              <li title="TEST_BotField" id="item-TEST_BotField" class="nav-item class public" onclick="goToLocation('TEST_BotField.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_BotField</a>
+              </li>
+              <li title="TEST_BotHandler" id="item-TEST_BotHandler" class="nav-item class public" onclick="goToLocation('TEST_BotHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_BotHandler</a>
+              </li>
+              <li title="TEST_BotItem" id="item-TEST_BotItem" class="nav-item class public" onclick="goToLocation('TEST_BotItem.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_BotItem</a>
+              </li>
+              <li title="TEST_BotMessage" id="item-TEST_BotMessage" class="nav-item class public" onclick="goToLocation('TEST_BotMessage.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_BotMessage</a>
+              </li>
+              <li title="TEST_HandlerSOQL" id="item-TEST_HandlerSOQL" class="nav-item class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
+              </li>
+              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
+              </li>
+              <li title="TEST_ISObjectComparator" id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
+              </li>
+              <li title="TEST_JWT" id="item-TEST_JWT" class="nav-item class public" onclick="goToLocation('TEST_JWT.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
+              </li>
+              <li title="TEST_LIFXController" id="item-TEST_LIFXController" class="nav-item class public" onclick="goToLocation('TEST_LIFXController.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_LIFXController</a>
+              </li>
+              <li title="TEST_MyRestResource" id="item-TEST_MyRestResource" class="nav-item class global" onclick="goToLocation('TEST_MyRestResource.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_MyRestResource</a>
+              </li>
+              <li title="TEST_PrimitiveComparator" id="item-TEST_PrimitiveComparator" class="nav-item class global" onclick="goToLocation('TEST_PrimitiveComparator.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_PrimitiveComparator</a>
+              </li>
+              <li title="TEST_SampleDataController" id="item-TEST_SampleDataController" class="nav-item class public" onclick="goToLocation('TEST_SampleDataController.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_SampleDataController</a>
+              </li>
+              <li title="TEST_SlackOpportunityPublisher" id="item-TEST_SlackOpportunityPublisher" class="nav-item class public" onclick="goToLocation('TEST_SlackOpportunityPublisher.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_SlackOpportunityPublisher</a>
+              </li>
+              <li title="TEST_StopWatch" id="item-TEST_StopWatch" class="nav-item class global" onclick="goToLocation('TEST_StopWatch.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_StopWatch</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Miscellaneous" class="group-name">
+            <summary id="header-Miscellaneous" class="nav-header">
+              <span>Miscellaneous</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="IncludeOne" id="item-IncludeOne" class="nav-item class public" onclick="goToLocation('IncludeOne.html');">
+                <a tabindex="1" href="javascript:void(0)">IncludeOne</a>
+              </li>
+              <li title="IncludeTwo" id="item-IncludeTwo" class="nav-item class private" onclick="goToLocation('IncludeTwo.html');">
+                <a tabindex="1" href="javascript:void(0)">IncludeTwo</a>
+              </li>
+            </ul>
+          </details>
+        </nav>
+      </div>
+    </div>
+    <table id="content">
       <tr>
-        <td colspan="2" style="text-align: center;">
+        <td class="scoping-panel">
           Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
           <label for="cbx-all">All</label>&nbsp;&nbsp;
           <input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
@@ -49,205 +162,120 @@ export default `<!DOCTYPE html>
           </label>
         </td>
       </tr>
-      <tr style="vertical-align:top;">
-        <!-- 22% width accommodates 40 char class names -->
-        <td width="22%" vertical-align="top">
-          <div class="navbar">
-            <nav role="navigation">
-              <a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">
-                Home
-              </a>
-              <details id="Assertions" class="groupName">
-                <summary onclick="toggleActiveClass(this);" id="header-Assertions" class="nav-header">
-                  <span>Assertions</span>
-                </summary>
-                <ul>
-                  <!-- menu items will be appended here -->
-                  <li id="item-TEST_Annotations" class="nav-item class public" onclick="goToLocation('TEST_Annotations.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_Annotations</a>
-                  </li>
-                  <li id="item-TEST_EnumClass" class="nav-item class public" onclick="goToLocation('TEST_EnumClass.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_EnumClass</a>
-                  </li>
-                  <li id="item-TEST_EnumInner" class="nav-item class public" onclick="goToLocation('TEST_EnumInner.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_EnumInner</a>
-                  </li>
-                  <li id="item-TEST_InterfaceClass" class="nav-item class global" onclick="goToLocation('TEST_InterfaceClass.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_InterfaceClass</a>
-                  </li>
-                  <li id="item-TEST_Links" class="nav-item class public" onclick="goToLocation('TEST_Links.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
-                  </li>
-                  <li id="item-TEST_Methods" class="nav-item class public" onclick="goToLocation('TEST_Methods.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
-                  </li>
-                  <li id="item-TEST_MultiLineTagValues" class="nav-item class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
-                  </li>
-                  <li id="item-TEST_NestedClasses" class="nav-item class public" onclick="goToLocation('TEST_NestedClasses.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_NestedClasses</a>
-                  </li>
-                  <li id="item-TEST_Properties" class="nav-item class public" onclick="goToLocation('TEST_Properties.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_Properties</a>
-                  </li>
-                </ul>
-              </details>
-              <details id="Feature1" class="groupName">
-                <summary onclick="toggleActiveClass(this);" id="header-Feature1" class="nav-header">
-                  <span>Feature1</span>
-                </summary>
-                <ul>
-                  <!-- menu items will be appended here -->
-                  <li id="item-TEST_ArrayUtils" class="nav-item class global" onclick="goToLocation('TEST_ArrayUtils.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_ArrayUtils</a>
-                  </li>
-                  <li id="item-TEST_BotField" class="nav-item class public" onclick="goToLocation('TEST_BotField.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_BotField</a>
-                  </li>
-                  <li id="item-TEST_BotHandler" class="nav-item class public" onclick="goToLocation('TEST_BotHandler.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_BotHandler</a>
-                  </li>
-                  <li id="item-TEST_BotItem" class="nav-item class public" onclick="goToLocation('TEST_BotItem.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_BotItem</a>
-                  </li>
-                  <li id="item-TEST_BotMessage" class="nav-item class public" onclick="goToLocation('TEST_BotMessage.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_BotMessage</a>
-                  </li>
-                  <li id="item-TEST_HandlerSOQL" class="nav-item class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
-                  </li>
-                  <li id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
-                  </li>
-                  <li id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
-                  </li>
-                  <li id="item-TEST_JWT" class="nav-item class public" onclick="goToLocation('TEST_JWT.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
-                  </li>
-                  <li id="item-TEST_LIFXController" class="nav-item class public" onclick="goToLocation('TEST_LIFXController.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_LIFXController</a>
-                  </li>
-                  <li id="item-TEST_MyRestResource" class="nav-item class global" onclick="goToLocation('TEST_MyRestResource.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_MyRestResource</a>
-                  </li>
-                  <li id="item-TEST_PrimitiveComparator" class="nav-item class global" onclick="goToLocation('TEST_PrimitiveComparator.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_PrimitiveComparator</a>
-                  </li>
-                  <li id="item-TEST_SampleDataController" class="nav-item class public" onclick="goToLocation('TEST_SampleDataController.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_SampleDataController</a>
-                  </li>
-                  <li id="item-TEST_SlackOpportunityPublisher" class="nav-item class public" onclick="goToLocation('TEST_SlackOpportunityPublisher.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_SlackOpportunityPublisher</a>
-                  </li>
-                  <li id="item-TEST_StopWatch" class="nav-item class global" onclick="goToLocation('TEST_StopWatch.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_StopWatch</a>
-                  </li>
-                </ul>
-              </details>
-              <details id="Miscellaneous" class="groupName">
-                <summary onclick="toggleActiveClass(this);" id="header-Miscellaneous" class="nav-header">
-                  <span>Miscellaneous</span>
-                </summary>
-                <ul>
-                  <!-- menu items will be appended here -->
-                  <li id="item-IncludeOne" class="nav-item class public" onclick="goToLocation('IncludeOne.html');">
-                    <a tabindex="1" href="javascript:void(0)">IncludeOne</a>
-                  </li>
-                  <li id="item-IncludeTwo" class="nav-item class private" onclick="goToLocation('IncludeTwo.html');">
-                    <a tabindex="1" href="javascript:void(0)">IncludeTwo</a>
-                  </li>
-                </ul>
-              </details>
-            </nav>
-          </div>
-        </td>
-        <td class="contentTD">
-          <details class="section" open>
-            <summary>
-              <h2 class="sectionTitle" id="TEST_MyRestResource">
+      <tr>
+        <td class="doc-page">
 
-                <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_MyRestResource.cls#L14">
-                  TEST_MyRestResource
-                </a><span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="externalLink"><path d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z" class="externalLink"></path></svg></span>
-              </h2>
-            </summary>
+          <div class="section">
 
-            <div class="class-annotations">@RestResource(urlMapping='/Account/*')</div>
-
-            <div class="class-signature">
+            <h2 class="class-title top-level-type" id="TEST_MyRestResource">
 
               <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_MyRestResource.cls#L14">
-                global with sharing class TEST_MyRestResource
+                TEST_MyRestResource
               </a>
+            </h2>
+            <div class="class-container">
+
+              <div class="class-description">
+                The <code class="code-inline">MyRestResource</code> class. The classes in this group have been randomly gathered from various resources simply to demonstrate ApexDoc2-VSCode&#39;s multi-source directory feature aimed at Salesforce-DX projects which may have a <code class="code-inline">main</code> folder and multipke feature directories.
+              </div>
+              <div class="class-subtitle">
+                Signature
+              </div>
+              <div class="class-annotations">@RestResource(urlMapping='/Account/*')</div>
+              <div class="class-signature">
+                global with sharing class TEST_MyRestResource
+              </div>
+              <div class="class-subtitle">
+                See
+              </div>
+              <div class="class-subtitle-description">
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a>
+              </div><br />Salesforce.com<br />Jul 2017
             </div>
-            <div class="class-details">
-              <div class="">The <code class="code-inline">MyRestResource</code> class. The classes in this group have been randomly gathered from various resources simply to demonstrate ApexDoc2-VSCode&#39;s multi-source directory feature aimed at Salesforce-DX projects which may have a <code class="code-inline">main</code> folder and multipke feature directories.</div>
-              <div class="class-subtitle ">See</div>
-              <div class="class-subtitle-description"><a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a></div><br />Salesforce.com<br />Jul 2017
-            </div>
-            <p />
-            <details class="subsection methods" open>
-              <summary>
-                <h2 class="subsectionTitle methods">Methods</h2>
-              </summary>
+            <div class="subsection methods">
+              <h3 class="subsection-title methods">TEST_MyRestResource Methods</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
                   <li class="method global">
                     <a class="methods-toc__entry " href="#TEST_MyRestResource.doDelete">
-                      doDelete
-                    </a></li>
+                      doDelete ()
+                    </a>
+
+                  </li>
                   <li class="method global">
                     <a class="methods-toc__entry " href="#TEST_MyRestResource.doGet">
-                      doGet
-                    </a></li>
+                      doGet ()
+                    </a>
+
+                  </li>
                   <li class="method global">
                     <a class="methods-toc__entry " href="#TEST_MyRestResource.doPost">
-                      doPost
-                    </a></li>
+                      doPost (name, phone, website)
+                    </a>
+
+                  </li>
                 </ul>
                 <div class="method global">
-                  <h2 class="method-title " id="TEST_MyRestResource.doDelete">doDelete</h2>
-                  <div class="method-annotations">@HttpDelete</div>
-                  <div class="method-signature">
+                  <h4 class="method-title " id="TEST_MyRestResource.doDelete">
 
                     <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_MyRestResource.cls#L17">
-                      global static void <span class="hljs-title">doDelete</span>()
+                      doDelete()
                     </a>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+                  <div class="method-annotations">@HttpDelete</div>
+                  <div class="method-signature">
+                    global static void doDelete()
                   </div>
                 </div>
                 <div class="method global">
-                  <h2 class="method-title " id="TEST_MyRestResource.doGet">doGet</h2>
-                  <div class="method-annotations">@HttpGet</div>
-                  <div class="method-signature">
+                  <h4 class="method-title " id="TEST_MyRestResource.doGet">
 
                     <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_MyRestResource.cls#L26">
-                      global static Account <span class="hljs-title">doGet</span>()
+                      doGet()
                     </a>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+                  <div class="method-annotations">@HttpGet</div>
+                  <div class="method-signature">
+                    global static Account doGet()
                   </div>
                 </div>
                 <div class="method global">
-                  <h2 class="method-title " id="TEST_MyRestResource.doPost">doPost</h2>
-                  <div class="method-signature">
+                  <h4 class="method-title " id="TEST_MyRestResource.doPost">
 
                     <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_MyRestResource.cls#L35">
-                      global static String <span class="hljs-title">doPost</span>(String name, String phone, String website)
+                      doPost(name, phone, website)
                     </a>
+                  </h4>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    global static String doPost(String name, String phone, String website)
                   </div>
                 </div>
               </div>
-            </details>
-          </details>
+            </div>
           </div>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="footer">
+
+          <hr />
+          <a href="https://github.com/no-stack-dub-sack/apexdoc2-vscode" target="_blank" rel="noopener noreferrer">
+            Powered By ApexDoc2
+          </a>
         </td>
       </tr>
     </table>
-    <hr />
-    <center class="footer">
-      <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank" rel="noopener noreferrer">
-        Powered By ApexDoc2
-      </a>
-    </center>
   </body>
 
 </html>`;

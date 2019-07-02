@@ -163,13 +163,11 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
             `<li class="method ${this.model.scope}">
                 <a class="methods-toc__entry ${(this.model.deprecated ? 'deprecated' : '')}" href="#${id}">
                     ${this.model.name} (${this.model.paramsFromNameLine.join(', ')})
-                </a>`;
+                </a>
+                ${showTOCSnippets && this.model.description ? this.description('methods-toc__description') : ''}
+            </li>`;
 
-        if (showTOCSnippets && this.model.description) {
-            entry += this.description('methods-toc__description');
-        }
-
-        return entry += '</li>';
+        return entry;
     }
 
     /**

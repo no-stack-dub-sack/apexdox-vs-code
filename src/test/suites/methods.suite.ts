@@ -14,16 +14,16 @@ export const createMethodsSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_Methods.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const methodNames = tail($('li.method.public').children('a').toArray().map(el => $(el).text().trim()));
-            assert.equal(methodNames, ['method1 ()', 'method10 (int, int2, int3, int4)'], 'Incorrect public method names found');
+            const methodNames = $('li.method.public').children('a').toArray().map(el => $(el).text().trim());
+            assert.deepEqual(methodNames, ['method1 ()', 'method10 (int, int2, int3, int4)'], 'Incorrect public method names found');
         });
 
         test('Should correctly parse protected methods', function() {
             const testFile = last(only(files, ['TEST_Methods.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const methodNames = tail($('li.method.protected').children('a').toArray().map(el => $(el).text().trim()));
-            assert.equal(methodNames, ['method3 ()', 'method12 (crazyType, int2, int3, int22)'], 'Incorrect public method names found');
+            const methodNames = $('li.method.protected').children('a').toArray().map(el => $(el).text().trim());
+            assert.deepEqual(methodNames, ['method12 (crazyType, int2, int3, int22)', 'method3 ()'], 'Incorrect public method names found');
         });
 
         test('Should correctly parse global methods', function() {
@@ -36,21 +36,13 @@ export const createMethodsSuite = (files: ITestFile[]) => {
             assert.equal(methodName, 'method4 ()', 'Incorrect global method name found');
         });
 
-        test('Should correctly parse explicitly private methods', function() {
+        test('Should correctly parse explicitly private methods and implicitly private methods whose signatures start with known keywords/collections', function() {
             const testFile = last(only(files, ['TEST_Methods.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const methodName = head($('li.method.private').children('a').toArray().map(el => $(el).text().trim()));
-            assert.equal(methodName, 'method2 ()', 'Incorrect private method name found');
-        });
-
-        test('Should correctly parse implicitly private methods whose signatures start with known keywords/collections', function() {
-            const testFile = last(only(files, ['TEST_Methods.html'], 'name'));
-            const $ = cheerio.load(testFile.snapshot);
-
-            const methodNames = tail($('li.method.private').children('a').toArray().map(el => $(el).text().trim()));
-            const expectedMethodNames = ['method5 ()', 'method6 ()', 'method7 ()', 'method8 ()', 'method9 ()'];
-            assert.deepEqual(methodNames, expectedMethodNames, 'Incorrect implicitly private method names found');
+            const methodNames = $('li.method.private').children('a').toArray().map(el => $(el).text().trim());
+            const expectedMethodNames = ['method11 (crazyType, int2, int3, int22)', 'method2 ()','method5 ()','method6 ()','method7 ()','method8 ()','method9 ()'];
+            assert.deepEqual(methodNames, expectedMethodNames, 'Incorrect private method name found');
         });
 
         test('Should correctly link overloaded methods', function() {
@@ -94,13 +86,33 @@ export const createMethodsSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_Methods.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const types = $('.method-public .param-type').toArray().map(el => $(el).text().trim());
+            const types = $('.method.public .param-type').toArray().map(el => $(el).text().trim());
+            const expectedTypes = ['Type: Integer','Type: String','Type: Double','Type: Set<String>'];
+
+            assert.deepEqual(types, expectedTypes, 'Param types do not match.');
+        });
+
+        test('Should correctly document complex, nested, and custom types for every given "@param" tag', function() {
+            const testFile = last(only(files, ['TEST_Methods.html'], 'name'));
+            const $ = cheerio.load(testFile.snapshot);
+
+            const types = $('.method.private .param-type').toArray().map(el => $(el).text().trim());
             const expectedTypes = [
-                'Type: <code class="code-inline">Integer</code>',
-                'Type: <code class="code-inline">String</code>',
-                'Type: <code class="code-inline">Double</code>',
-                'Type: <code class="code-inline">Set&gt;String&lt;</code>',
-            ];
+                'Type: Map<String, Map<SomeCustomClass.InnerClass, Map<Int, List<Map<String, Integer>>>>>',
+                'Type: List<String>',
+                'Type: OuterClass.InnerType',
+                'Type: Integer'];
+
+            assert.deepEqual(types, expectedTypes, 'Param types do not match.');
+        });
+
+        test('Should correctly document types ONLY for given "@param" tags', function() {
+            const testFile = last(only(files, ['TEST_Methods.html'], 'name'));
+            const $ = cheerio.load(testFile.snapshot);
+
+            const types = $('.method.protected .param-type').toArray().map(el => $(el).text().trim());
+            const expectedTypes = ['Type: Map<String, Map<SomeCustomClass.InnerClass, Map<Int, List<Map<String, Integer>>>>>','Type: Integer'];
+
             assert.deepEqual(types, expectedTypes, 'Param types do not match.');
         });
     });

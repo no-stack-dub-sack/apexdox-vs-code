@@ -4,34 +4,147 @@ export default `<!DOCTYPE html>
   <head>
     <title>My Test Docs</title>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="./assets/index.js"></script>
+    <script type="module" src="./assets/index.js"></script>
+    <script type="module" src="./assets/search-idx.js"></script>
+    <script type="module" src="./assets/search.js"></script>
     <script charset="UTF-8" src="./assets/highlight.js"></script>
+    <script charset="UTF-8" src="./assets/mark.js"></script>
+    <script charset="UTF-8" src="./assets/lunr.js"></script>
     <link rel="stylesheet" href="./assets/highlight.css" />
     <link rel="stylesheet" type="text/css" href="./assets/index.css" />
     <link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
   </head>
 
   <body>
-    <div class="topsection">
-      <table>
-        <tr>
-          <td>
-            <img src="./assets/apexdoc2-logo.png" style="height: 90px; margin-left: 5px;" />
-          </td>
-          <td>
-            <h2 style="margin: -15px 0 0 0;">ApexDoc2 | Apex Documentation</h2>Check out the GitHub project at:<br />
-            <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode">
-              https://github.com/no-stack-dub-sack/ApexDoc2-VSCode
-            </a>
-            <br />
-          </td>
-        </tr>
-      </table>
-    </div>
-    <table width="100%">
+    <div id="side-bar">
 
+      <div id="logo-container">
+        <div class="title">
+          My Test Docs
+        </div>
+        <img src="assets/logo.png" />
+        <div class="subtitle">
+          Powered by <a target="_blank" rel="noopener noreferrer" href="https://github.com/no-stack-dub-sack/apexdoc2-vscode">ApexDoc2</a>
+        </div>
+      </div>
+      <div id="search-wrapper">
+        <div class="search-icon"></div>
+        <input id="search-input" type="text" autocomplete="off" placeholder="Search...">
+      </div>
+      <ul id="search-results" class=""></ul>
+      <div class="navbar">
+        <nav role="navigation">
+          <a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">
+            Home
+          </a>
+          <details id="Assertions" class="group-name">
+            <summary id="header-Assertions" class="nav-header">
+              <span>Assertions</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="TEST_Annotations" id="item-TEST_Annotations" class="nav-item class public" onclick="goToLocation('TEST_Annotations.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_Annotations</a>
+              </li>
+              <li title="TEST_EnumClass" id="item-TEST_EnumClass" class="nav-item class public" onclick="goToLocation('TEST_EnumClass.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_EnumClass</a>
+              </li>
+              <li title="TEST_EnumInner" id="item-TEST_EnumInner" class="nav-item class public" onclick="goToLocation('TEST_EnumInner.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_EnumInner</a>
+              </li>
+              <li title="TEST_InterfaceClass" id="item-TEST_InterfaceClass" class="nav-item class global" onclick="goToLocation('TEST_InterfaceClass.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_InterfaceClass</a>
+              </li>
+              <li title="TEST_Links" id="item-TEST_Links" class="nav-item class public" onclick="goToLocation('TEST_Links.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
+              </li>
+              <li title="TEST_Methods" id="item-TEST_Methods" class="nav-item class public" onclick="goToLocation('TEST_Methods.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
+              </li>
+              <li title="TEST_MultiLineTagValues" id="item-TEST_MultiLineTagValues" class="nav-item class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
+              </li>
+              <li title="TEST_NestedClasses" id="item-TEST_NestedClasses" class="nav-item class public" onclick="goToLocation('TEST_NestedClasses.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_NestedClasses</a>
+              </li>
+              <li title="TEST_Properties" id="item-TEST_Properties" class="nav-item class public" onclick="goToLocation('TEST_Properties.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_Properties</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Feature1" class="group-name">
+            <summary id="header-Feature1" class="nav-header">
+              <span>Feature1</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="TEST_ArrayUtils" id="item-TEST_ArrayUtils" class="nav-item class global" onclick="goToLocation('TEST_ArrayUtils.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_ArrayUtils</a>
+              </li>
+              <li title="TEST_BotField" id="item-TEST_BotField" class="nav-item class public" onclick="goToLocation('TEST_BotField.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_BotField</a>
+              </li>
+              <li title="TEST_BotHandler" id="item-TEST_BotHandler" class="nav-item class public" onclick="goToLocation('TEST_BotHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_BotHandler</a>
+              </li>
+              <li title="TEST_BotItem" id="item-TEST_BotItem" class="nav-item class public" onclick="goToLocation('TEST_BotItem.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_BotItem</a>
+              </li>
+              <li title="TEST_BotMessage" id="item-TEST_BotMessage" class="nav-item class public" onclick="goToLocation('TEST_BotMessage.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_BotMessage</a>
+              </li>
+              <li title="TEST_HandlerSOQL" id="item-TEST_HandlerSOQL" class="nav-item class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
+              </li>
+              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
+              </li>
+              <li title="TEST_ISObjectComparator" id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
+              </li>
+              <li title="TEST_JWT" id="item-TEST_JWT" class="nav-item class public" onclick="goToLocation('TEST_JWT.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
+              </li>
+              <li title="TEST_LIFXController" id="item-TEST_LIFXController" class="nav-item class public" onclick="goToLocation('TEST_LIFXController.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_LIFXController</a>
+              </li>
+              <li title="TEST_MyRestResource" id="item-TEST_MyRestResource" class="nav-item class global" onclick="goToLocation('TEST_MyRestResource.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_MyRestResource</a>
+              </li>
+              <li title="TEST_PrimitiveComparator" id="item-TEST_PrimitiveComparator" class="nav-item class global" onclick="goToLocation('TEST_PrimitiveComparator.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_PrimitiveComparator</a>
+              </li>
+              <li title="TEST_SampleDataController" id="item-TEST_SampleDataController" class="nav-item class public" onclick="goToLocation('TEST_SampleDataController.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_SampleDataController</a>
+              </li>
+              <li title="TEST_SlackOpportunityPublisher" id="item-TEST_SlackOpportunityPublisher" class="nav-item class public" onclick="goToLocation('TEST_SlackOpportunityPublisher.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_SlackOpportunityPublisher</a>
+              </li>
+              <li title="TEST_StopWatch" id="item-TEST_StopWatch" class="nav-item class global" onclick="goToLocation('TEST_StopWatch.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_StopWatch</a>
+              </li>
+            </ul>
+          </details>
+          <details id="Miscellaneous" class="group-name">
+            <summary id="header-Miscellaneous" class="nav-header">
+              <span>Miscellaneous</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="IncludeOne" id="item-IncludeOne" class="nav-item class public" onclick="goToLocation('IncludeOne.html');">
+                <a tabindex="1" href="javascript:void(0)">IncludeOne</a>
+              </li>
+              <li title="IncludeTwo" id="item-IncludeTwo" class="nav-item class private" onclick="goToLocation('IncludeTwo.html');">
+                <a tabindex="1" href="javascript:void(0)">IncludeTwo</a>
+              </li>
+            </ul>
+          </details>
+        </nav>
+      </div>
+    </div>
+    <table id="content">
       <tr>
-        <td colspan="2" style="text-align: center;">
+        <td class="scoping-panel">
           Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
           <label for="cbx-all">All</label>&nbsp;&nbsp;
           <input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
@@ -49,135 +162,29 @@ export default `<!DOCTYPE html>
           </label>
         </td>
       </tr>
-      <tr style="vertical-align:top;">
-        <!-- 22% width accommodates 40 char class names -->
-        <td width="22%" vertical-align="top">
-          <div class="navbar">
-            <nav role="navigation">
-              <a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">
-                Home
-              </a>
-              <details id="Assertions" class="groupName">
-                <summary onclick="toggleActiveClass(this);" id="header-Assertions" class="nav-header">
-                  <span>Assertions</span>
-                </summary>
-                <ul>
-                  <!-- menu items will be appended here -->
-                  <li id="item-TEST_Annotations" class="nav-item class public" onclick="goToLocation('TEST_Annotations.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_Annotations</a>
-                  </li>
-                  <li id="item-TEST_EnumClass" class="nav-item class public" onclick="goToLocation('TEST_EnumClass.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_EnumClass</a>
-                  </li>
-                  <li id="item-TEST_EnumInner" class="nav-item class public" onclick="goToLocation('TEST_EnumInner.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_EnumInner</a>
-                  </li>
-                  <li id="item-TEST_InterfaceClass" class="nav-item class global" onclick="goToLocation('TEST_InterfaceClass.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_InterfaceClass</a>
-                  </li>
-                  <li id="item-TEST_Links" class="nav-item class public" onclick="goToLocation('TEST_Links.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_Links</a>
-                  </li>
-                  <li id="item-TEST_Methods" class="nav-item class public" onclick="goToLocation('TEST_Methods.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_Methods</a>
-                  </li>
-                  <li id="item-TEST_MultiLineTagValues" class="nav-item class public" onclick="goToLocation('TEST_MultiLineTagValues.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_MultiLineTagValues</a>
-                  </li>
-                  <li id="item-TEST_NestedClasses" class="nav-item class public" onclick="goToLocation('TEST_NestedClasses.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_NestedClasses</a>
-                  </li>
-                  <li id="item-TEST_Properties" class="nav-item class public" onclick="goToLocation('TEST_Properties.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_Properties</a>
-                  </li>
-                </ul>
-              </details>
-              <details id="Feature1" class="groupName">
-                <summary onclick="toggleActiveClass(this);" id="header-Feature1" class="nav-header">
-                  <span>Feature1</span>
-                </summary>
-                <ul>
-                  <!-- menu items will be appended here -->
-                  <li id="item-TEST_ArrayUtils" class="nav-item class global" onclick="goToLocation('TEST_ArrayUtils.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_ArrayUtils</a>
-                  </li>
-                  <li id="item-TEST_BotField" class="nav-item class public" onclick="goToLocation('TEST_BotField.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_BotField</a>
-                  </li>
-                  <li id="item-TEST_BotHandler" class="nav-item class public" onclick="goToLocation('TEST_BotHandler.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_BotHandler</a>
-                  </li>
-                  <li id="item-TEST_BotItem" class="nav-item class public" onclick="goToLocation('TEST_BotItem.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_BotItem</a>
-                  </li>
-                  <li id="item-TEST_BotMessage" class="nav-item class public" onclick="goToLocation('TEST_BotMessage.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_BotMessage</a>
-                  </li>
-                  <li id="item-TEST_HandlerSOQL" class="nav-item class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
-                  </li>
-                  <li id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
-                  </li>
-                  <li id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
-                  </li>
-                  <li id="item-TEST_JWT" class="nav-item class public" onclick="goToLocation('TEST_JWT.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
-                  </li>
-                  <li id="item-TEST_LIFXController" class="nav-item class public" onclick="goToLocation('TEST_LIFXController.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_LIFXController</a>
-                  </li>
-                  <li id="item-TEST_MyRestResource" class="nav-item class global" onclick="goToLocation('TEST_MyRestResource.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_MyRestResource</a>
-                  </li>
-                  <li id="item-TEST_PrimitiveComparator" class="nav-item class global" onclick="goToLocation('TEST_PrimitiveComparator.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_PrimitiveComparator</a>
-                  </li>
-                  <li id="item-TEST_SampleDataController" class="nav-item class public" onclick="goToLocation('TEST_SampleDataController.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_SampleDataController</a>
-                  </li>
-                  <li id="item-TEST_SlackOpportunityPublisher" class="nav-item class public" onclick="goToLocation('TEST_SlackOpportunityPublisher.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_SlackOpportunityPublisher</a>
-                  </li>
-                  <li id="item-TEST_StopWatch" class="nav-item class global" onclick="goToLocation('TEST_StopWatch.html');">
-                    <a tabindex="1" href="javascript:void(0)">TEST_StopWatch</a>
-                  </li>
-                </ul>
-              </details>
-              <details id="Miscellaneous" class="groupName">
-                <summary onclick="toggleActiveClass(this);" id="header-Miscellaneous" class="nav-header">
-                  <span>Miscellaneous</span>
-                </summary>
-                <ul>
-                  <!-- menu items will be appended here -->
-                  <li id="item-IncludeOne" class="nav-item class public" onclick="goToLocation('IncludeOne.html');">
-                    <a tabindex="1" href="javascript:void(0)">IncludeOne</a>
-                  </li>
-                  <li id="item-IncludeTwo" class="nav-item class private" onclick="goToLocation('IncludeTwo.html');">
-                    <a tabindex="1" href="javascript:void(0)">IncludeTwo</a>
-                  </li>
-                </ul>
-              </details>
-            </nav>
-          </div>
-        </td>
-        <td class="contentTD">
-          <h2 class='sectionTitle'>Home</h2>
-          <h2>Project Home</h2>
+      <tr>
+        <td class="doc-page">
+          <h2 class='section-title'>Home</h2>
+          <h2>
+            Project Home
+          </h2>
           <p>
-            Use the <code class="code-inline">apexdoc2.homePagePath</code> setting to point to an HTML file that contains details about your project.
+            Use the <code class="code-inline">apexdoc2.homePagePath</code> setting
+            to point to an HTML file that contains details about your project.
             The body of the HTML will show up here instead of this default!
           </p>
         </td>
       </tr>
+      <tr>
+        <td class="footer">
+
+          <hr />
+          <a href="https://github.com/no-stack-dub-sack/apexdoc2-vscode" target="_blank" rel="noopener noreferrer">
+            Powered By ApexDoc2
+          </a>
+        </td>
+      </tr>
     </table>
-    <hr />
-    <center class="footer">
-      <a href="https://github.com/no-stack-dub-sack/ApexDoc2-VSCode" target="_blank" rel="noopener noreferrer">
-        Powered By ApexDoc2
-      </a>
-    </center>
   </body>
 
 </html>`;

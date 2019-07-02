@@ -104,7 +104,7 @@ body {
 
 /* restrict width of enum value column so
 most signatures will fit on a single lin */
-.attributes-table .enumValues {
+.attributes-table .enum-values {
     max-width: 300px;
     overflow-wrap: break-word;
 }

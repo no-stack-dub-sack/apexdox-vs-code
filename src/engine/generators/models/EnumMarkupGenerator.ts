@@ -32,7 +32,7 @@ class EnumMarkupGenerator extends MarkupGenerator<EnumModel> {
                 <tr><th>Values</th></tr>
                 ${GeneratorUtils.mapHTML(this.model.values, val =>
                     `<tr>
-                        <td class="enumValues">
+                        <td class="enum-values">
                             ${val}
                         </td>
                     </tr>`
