@@ -19,7 +19,7 @@ class ValidatorEngine extends Validator<IEngineConfig> {
     }
 
     private excludes() {
-        ValidatorEngine.stringArray(this.config.includes, 'excludes');
+        ValidatorEngine.stringArray(this.config.excludes, 'excludes');
     }
 
     private cleanDir() {
