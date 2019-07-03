@@ -5,6 +5,11 @@ let timeoutHandle = 0;
 const input = document.querySelector('#search-input');
 const searchResults = document.querySelector('#search-results');
 
+/** ==================================================================
+ *  Create Lunr search index
+ *  ==================================================================
+ */
+
 const index = lunr(function () {
 	this.ref('fileName');
 	this.field('title', { boost: 10 });
@@ -15,13 +20,10 @@ const index = lunr(function () {
     });
 });
 
-function determineSearchDelay() {
-    if (index.tokenSet.toArray().length > 5000) {
-        searchDelay = 300;
-    } else {
-        searchDelay = 0;
-    }
-}
+/** ==================================================================
+ *  Attach event listener to input
+ *  ==================================================================
+ */
 
 input.addEventListener('keyup', e => {
     if (searchDelay === null) {
@@ -39,6 +41,19 @@ input.addEventListener('keyup', e => {
         search(e);
     }, searchDelay);
 });
+
+/** ==================================================================
+ *  Search
+ *  ==================================================================
+ */
+
+function determineSearchDelay() {
+    if (index.tokenSet.toArray().length > 5000) {
+        searchDelay = 300;
+    } else {
+        searchDelay = 0;
+    }
+}
 
 function search(e) {
     const highlighter = new Mark(document.querySelector('#content'));

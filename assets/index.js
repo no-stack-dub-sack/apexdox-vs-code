@@ -1,4 +1,7 @@
+// ==================================================================
 // #region Constants / DOM lifecycle hooks
+// ==================================================================
+
 const
 	SCOPES = ['global', 'public', 'private', 'protected', 'testMethod', 'webService'],
 	MENU_STATE_KEY = 'APEX_DOC_2_MENU',
@@ -42,10 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
 window.onbeforeunload = () => {
 	executeAll(persisters);
 }
+
 // #endregion
+// ==================================================================
 
 
+// ==================================================================
 // #region Initialization & Menu Utils, local state
+// ==================================================================
+
 function initHighlightJs() {
 	// initialize highlighting for code examples and
 	// signatures for methods, classes, props and enums
@@ -197,10 +205,15 @@ function renderSearchFromState() {
 		setTimeout(() => searchResults.classList.remove('no-transition'), 100);
 	}
 }
+
 // #endregion
+// ==================================================================
 
 
+// ==================================================================
 // #region Scope Utils
+// ==================================================================
+
 function getListScope() {
 	let list = [];
 	let checkboxes = document.querySelectorAll('input[type=checkbox]');
@@ -333,10 +346,15 @@ function toggleActiveClass(elem) {
 	// add to new active element
 	elem && elem.classList.add('active');
 }
+
 // #endregion
+// ==================================================================
 
 
-// #region Global Functions, called from HTML
+// ==================================================================
+// #region Global Functions
+// ==================================================================
+
 window.goToLocation = (url) => {
 	// prevent collapsing / expanding menu
 	// when clicking on Class Group link
@@ -389,4 +407,6 @@ window.toggleAllScopes = (isShow) => {
 window.toggleScope = (scope, isShow) => {
 	toggleScope(scope, isShow);
 }
+
 // #endregion
+// ==================================================================

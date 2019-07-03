@@ -7,6 +7,8 @@
     --dark-grey: #c6c6c6;
     --white: #fff;
     --dark-red: #a31515;
+    --title-font: 'Nanum Gothic';
+    --code-font: monospace;
 }
 
 body {
@@ -15,28 +17,10 @@ body {
     padding: 0px;
 }
 
-#logo-container {
-    height: 130px;
-    text-align: center;
-}
-
-#logo-container .title {
-    font-family: 'Nanum Gothic';
-    margin: 15px auto 10px auto;
-}
-
-#logo-container .subtitle {
-    font-size: 14px;
-    text-align: center;
-    width: 80%;
-    margin: 5px auto 0 auto;
-}
-
-#logo-container img {
-    height: 70px;
-    margin: 0 auto;
-    display: block;
-}
+/** ==================================================================
+ *  Top Panel
+ *  ==================================================================
+ */
 
 .scoping-panel {
     background: var(--white);
@@ -45,6 +29,11 @@ body {
     text-align: center;
     top: -1px;
 }
+
+/** ==================================================================
+ *  Main: Classes, Methods, Enums, etc.
+ *  ==================================================================
+ */
 
 #content {
     float: right;
@@ -58,7 +47,7 @@ body {
      font-weight: bold;
      margin: 0 0 5px 0;
      padding: 5px 5px 5px 0px;
-     font-family: 'Nanum Gothic';
+     font-family: var(--title-font);
 }
 
 .class-title a,
@@ -73,7 +62,7 @@ body {
 }
 
 .subsection-title {
-    font-family: 'Nanum Gothic';
+    font-family: var(--title-font);
     color: var(--grey-blue-tx);
     margin: 20px 0 0 0;
     padding: 2px;
@@ -116,7 +105,7 @@ most signatures will fit on a single lin */
 .prop-annotations,
 .attribute-signature {
     background: none;
-    font-family: monospace;
+    font-family: var(--code-font);
     padding: 0;
 }
 
@@ -128,16 +117,12 @@ most signatures will fit on a single lin */
     font-weight: normal;
 }
 
-/* .attribute-description.has-description {
-    height: 1em;
-} what was this for? */
-
 .method-signature,
 .method-annotations,
 .class-annotations,
 .class-signature {
     padding: 3px 0 0 0;
-    font-family: monospace;
+    font-family: var(--code-font);
     font-size: 13.5px;
     font-weight: normal;
 }
@@ -194,7 +179,7 @@ most signatures will fit on a single lin */
 .method-title {
     color: #003672;
     margin: 15px 0 5px 0;
-    font-family: monospace;
+    font-family: var(--code-font);
     font-size: 16px;
 }
 
@@ -237,14 +222,11 @@ most signatures will fit on a single lin */
     margin: 5px 5px 5px 16px;
 }
 
-/* summary/details caret element */
-details summary::-webkit-details-marker {
-    color: var(--dark-grey) !important;
-    float: right;
-    margin-top: 5px;
-}
+/** ==================================================================
+ *  Side Bar: Search, Nav
+ *  ==================================================================
+ */
 
-/* sidebar styles */
 #side-bar {
     background: aliceblue;
     height: 100vh;
@@ -252,6 +234,29 @@ details summary::-webkit-details-marker {
     position: fixed;
     top: -1px;
     width: 22%;
+}
+
+#logo-container {
+    height: 130px;
+    text-align: center;
+}
+
+#logo-container .title {
+    font-family: var(--title-font);
+    margin: 15px auto 10px auto;
+}
+
+#logo-container .subtitle {
+    font-size: 14px;
+    text-align: center;
+    width: 80%;
+    margin: 5px auto 0 auto;
+}
+
+#logo-container img {
+    height: 70px;
+    margin: 0 auto;
+    display: block;
 }
 
 #search-wrapper {
@@ -293,7 +298,6 @@ details summary::-webkit-details-marker {
     margin-right: 5px;
 }
 
-/* nav styles */
 nav {
     padding: 0 5px 0 10px;
 }
@@ -365,11 +369,21 @@ a.nav-header {
     text-decoration: none;
 }
 
-/* accent styles */
+details summary::-webkit-details-marker {
+    color: var(--dark-grey) !important;
+    float: right;
+    margin-top: 5px;
+}
+
+/** ==================================================================
+ *  Accents
+ *  ==================================================================
+ */
+
 .code-inline {
     background-color: var(--light-grey);
     color: var(--dark-red);
-    font-family: monospace;
+    font-family: var(--code-font);
     padding: 1px 5px;
 }
 
@@ -391,13 +405,17 @@ a.nav-header {
     display: none;
 }
 
-/* Scroll bar styles */
+/** ==================================================================
+ *  Scroll Bar
+ *  ==================================================================
+ */
+
 ::-webkit-scrollbar {
     width: 1em;
 }
 
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -405,7 +423,11 @@ a.nav-header {
   outline: 1px solid slategrey;
 }
 
-/* svg icons */
+/** ==================================================================
+ *  Icons
+ *  ==================================================================
+ */
+
 .search-icon {
     display: inline-block;
     height: 15px;
