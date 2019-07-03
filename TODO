@@ -21,7 +21,6 @@ General:
     ✔ Separate methods & constructors @done(19-06-12 23:18)
     ✔ Method name line should show params even if not annotated @done(19-06-12 23:18)
     ✔ Why don't annoations highlight.js anymore? @done(19-06-13 09:26)
-    ☐ Namespace tag (and global setting?)
     ☐ Resolve in-code TODOs
     ☐ Review badges, galleryBanner, Marketplace Presentation, etc.
     ✔ In-comment see links / links / markdown links @done(19-06-26 22:58)
@@ -30,7 +29,7 @@ General:
     ☐ write regexp to remove space between pre and code tags, then give pre propper margin
     ☐ Fix "includes" code. Try including Test.cls - should only act as wildcard when wildcard char present
 
-    Testing:
+Testing:
     ✔ Establish "Snapshot" tests to compare output docs to expected output reference files @done(19-05-28 21:25)
     ✔ Create at least basic documentation engine tests @done(19-05-28 21:25)
     ✔ Add .cls level enum to test Apex files @done(19-05-30 19:49)
@@ -38,7 +37,8 @@ General:
     ✔ Don't show diff when whitespace only in snapshot tests @done(19-05-29 21:51)
     ✔ Trim diffs so not so huge for snapshot tests @done(19-05-29 21:51)
 
-    Phase Two:
+Phase Two:
+    ☐ Namespace tag (and global setting?)
     ☐ "Stub All" command
     ☐ Method, Interface, Enum menu hierarchy
     ☐ Configuration options for comment stubs (default tags for methods / classes)

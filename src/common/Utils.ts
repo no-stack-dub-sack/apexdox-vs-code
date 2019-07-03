@@ -199,6 +199,18 @@ class Utils {
         return path;
     }
 
+    public static isIncludeExcludeMatch(entry: string, fileName: string): boolean {
+        if (
+            fileName === entry ||
+            entry.startsWith('*') && fileName.endsWith(entry.slice(1)) ||
+            entry.endsWith('*') && fileName.startsWith(entry.slice(0, -1))
+        )  {
+            return true;
+        }
+
+        return false;
+    }
+
     // common guard utility for Validator classes
     public static boolGuard(bool: boolean, defaultValue: boolean): boolean {
         if (typeof bool !== 'boolean') {

@@ -25,7 +25,9 @@ class FileManager {
         this.projectTitle = projectTitle;
     }
 
+    // ===========================================================================
     // #region Public API Methods
+    // ===========================================================================
 
     /**
      * Collects the Apex .cls files the user has indicated they'd like to document via config settings.
@@ -38,20 +40,23 @@ class FileManager {
         const filesToCopy = new Array<ISourceEntry>()
             , noneFound = new Array<string>();
 
+        const isEntryMatch = (entry: string, fileName: string) => fileName === entry ||
+            entry.startsWith('*') && fileName.endsWith(entry.slice(1)) ||
+            entry.endsWith('*') && fileName.startsWith(entry.slice(0, -1));
+
         for (let src of sources) {
             const files = fs.readdirSync(src.path);
 
             if (files && files.some(file => file.endsWith('cls'))) {
                 files.forEach(fileName => {
-                    // make sure entry is a file and is an apex cl
+                    // make sure entry is a file and is an apex class
                     if (!fileName.endsWith('.cls')) {
                         return;
                     }
 
+                    // if file is explicitly excluded or matches wildcard, return early
                     for (let entry of excludes) {
-                        entry = entry.trim().replace('*', '');
-                        // file is explicitly excluded or matches wildcard, return early
-                        if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
+                        if (isEntryMatch(entry, fileName))  {
                             return;
                         }
                     }
@@ -67,9 +72,8 @@ class FileManager {
 
                     // there are includes params, only include files that pass test
                     for (let entry of includes) {
-                        entry = entry.trim().replace('*', '');
                         // file matches explicitly matches or matches wildcard
-                        if (fileName.startsWith(entry) || fileName.endsWith(entry))  {
+                        if (isEntryMatch(entry, fileName))  {
                             filesToCopy.push({
                                 path: path.resolve(src.path, fileName),
                                 sourceUrl: src.sourceUrl
@@ -84,10 +88,12 @@ class FileManager {
         }
 
         if (!filesToCopy.length) {
+            // no .cls files found at all, or all .cls files have been excluded, throw error
             const sourceDirs = sources.map(src => src.path).join(',');
             throw new ApexDocError(ApexDocError.NO_FILES_FOUND(sourceDirs));
         } else if (noneFound.length) {
-            window.showWarningMessage(`No .cls files found in ${noneFound.join(',')}`);
+            // no .cls files found in one or more (but not all) of given source dirs, show warning
+            window.showWarningMessage(`No matching .cls files found in ${noneFound.join(',')}`);
         }
 
         return filesToCopy;
@@ -151,8 +157,13 @@ class FileManager {
             }
         }
     }
+    // #endregion
+    // ===========================================================================
 
+    // ===========================================================================
     // #region FS Utils
+    // ===========================================================================
+
     private makeDirs(): void {
         const root = this.path;
         const assets = path.resolve(root, 'assets');
@@ -216,9 +227,14 @@ class FileManager {
             }
         });
     }
-    // #endregion
 
+    // #endregion
+    // ===========================================================================
+
+    // ===========================================================================
     // #region Document Generators
+    // ===========================================================================
+
     private makePage(contents: string, menus: IApexDocMenus, title = '') {
         const pageTitle = title
             ? `<h2 class='section-title'>${title}</h2>`
@@ -269,7 +285,6 @@ class FileManager {
     }
 
     private makeClassGroupPages(fileMap: Map<string, string>, menus: IApexDocMenus, classGroupMap: Map<string, Models.ClassGroup>): void {
-
         for (let group of classGroupMap.keys()) {
             const cg = classGroupMap.get(group);
             if (cg && cg.contentSource) {
@@ -283,7 +298,6 @@ class FileManager {
     }
 
     public makeDocumentationPages(fileMap: Map<string, string>, menus: IApexDocMenus, models: Map<string, Models.TopLevelModel>): void {
-
         for (let model of models.values()) {
             let fileName = '';
             let contents = '';
@@ -316,7 +330,10 @@ class FileManager {
             fileMap.set(fileName, this.makePage(contents, menus));
         }
     }
+
     // #endregion
+    // ===========================================================================
+
 }
 
 export default FileManager;
