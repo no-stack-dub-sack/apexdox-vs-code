@@ -282,32 +282,24 @@ function shouldCheckAll(list) {
 
 function toggleScope(scope, isShow) {
 	setScope();
+	toggleTypeScope(scope, '.properties', '.property', isShow);
+	toggleTypeScope(scope, '.enums', '.enum', isShow);
+	toggleTypeScope(scope, '.methods', '.method', isShow);
+	toggleTypeScope(scope, null, '.class', isShow);
+}
 
-	const enumTable = document.querySelectorAll('.properties');
-	const propTable = document.querySelectorAll('.enums');
-	const methodsH2 = document.querySelectorAll('.methods');
+function toggleTypeScope(scope, tableSelector, itemSelector, isShow) {
+	const tables = tableSelector ? document.querySelectorAll(tableSelector) : null;
+	const items = document.querySelectorAll(`${itemSelector}.${scope}`);
 
-	const props = document.querySelectorAll('.property.' + scope);
-	const enums = document.querySelectorAll('.enum.' + scope);
-	const methods = document.querySelectorAll('.method.' + scope);
-	const classes = document.querySelectorAll('.class.' + scope);
-	const all = [...props, ...enums, ...methods, ...classes];
-
-	// show or hide all props, classes, & methods of a given scope
 	if (isShow === true) {
-		// show tables if they've been hidden
-		props.length && toggleVisibility(propTable, true);
-		enums.length && toggleVisibility(enumTable, true);
-		methods.length && toggleVisibility(methodsH2, true);
-		toggleVisibility(all, true);
-	}
-
-	else {
-		toggleVisibility(all, false);
-		// hide props tables if all rows have been hidden
-		maybeHideElement('.properties', '.property');
-		maybeHideElement('.methods', '.method');
-		maybeHideElement('.enums', '.enum');
+		if (tables && items.length) { // show tables if they've been hidden
+			toggleVisibility(tables, true);
+		}
+		toggleVisibility(items, true);
+	} else {
+		toggleVisibility(items, false);
+		maybeHideElement(tableSelector, itemSelector); // hide tables if all its rows have been hidden
 	}
 }
 
