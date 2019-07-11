@@ -24,10 +24,10 @@ General:
     ☐ Resolve in-code TODOs
     ☐ Review badges, galleryBanner, Marketplace Presentation, etc.
     ✔ In-comment see links / links / markdown links @done(19-06-26 22:58)
-    ☐ Remove ClassName Constructors, Properties and Methods titles
+    ✘ Remove ClassName Constructors, Properties and Methods titles @cancelled(19-07-02 21:53)
     ☐ Add margin above subtitle-header class
-    ☐ write regexp to remove space between pre and code tags, then give pre propper margin
-    ☐ Fix "includes" code. Try including Test.cls - should only act as wildcard when wildcard char present
+    ✔ write regexp to remove space between pre and code tags, then give pre propper margin @done(19-07-10 22:51)
+    ✔ Fix "includes" code. Try including Test.cls - should only act as wildcard when wildcard char present @done(19-07-02 21:53)
 
 Testing:
     ✔ Establish "Snapshot" tests to compare output docs to expected output reference files @done(19-05-28 21:25)

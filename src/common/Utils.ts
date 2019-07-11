@@ -169,8 +169,6 @@ class Utils {
             return false;
         }
 
-        // TODO: consider all cases. Should we just use Validator?
-        // Definitely if there are other validation cases which call for another method from it.
         return /^(https?):\/\/[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]/.test(str.trim());
     }
 
@@ -199,18 +197,6 @@ class Utils {
         return path;
     }
 
-    public static isIncludeExcludeMatch(entry: string, fileName: string): boolean {
-        if (
-            fileName === entry ||
-            entry.startsWith('*') && fileName.endsWith(entry.slice(1)) ||
-            entry.endsWith('*') && fileName.startsWith(entry.slice(0, -1))
-        )  {
-            return true;
-        }
-
-        return false;
-    }
-
     // common guard utility for Validator classes
     public static boolGuard(bool: boolean, defaultValue: boolean): boolean {
         if (typeof bool !== 'boolean') {
@@ -218,6 +204,22 @@ class Utils {
         }
 
         return bool;
+    }
+
+    /**
+     * We use the plugin `pretty` to make the output HTML more readable. As a side effect
+     * there is whitespace between the pre and code tags which causes unwanted space in the HTML
+     * document. Here, we're removing that space so pre and code tags do not have space between them.
+     * @param html The html string to make replacements on.
+     */
+    public static preCodeTrim(html: string) {
+        if (!/<pre/.test(html)) {
+            return html;
+        }
+
+        html = html.replace(/<pre class="([a-z\-]+)">\s+<code>/g, '<pre class="$1"><code>');
+        html = html.replace(/<\/code>\s+<\/pre>/g, '</code></pre>');
+        return html;
     }
 }
 

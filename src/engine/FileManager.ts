@@ -13,6 +13,7 @@ import pretty from 'pretty';
 import rimraf from 'rimraf';
 import { window } from 'vscode';
 import { ISourceEntry, Option, ILunrDocument, IApexDocMenus } from '..';
+import Utils from '../common/Utils';
 
 class FileManager {
     private path: string;
@@ -180,7 +181,7 @@ class FileManager {
 
     private createHTMLFiles(fileMap: Map<string, string>): void {
         for (let fileName of fileMap.keys()) {
-            let contents = pretty(<string>fileMap.get(fileName));
+            let contents = Utils.preCodeTrim(pretty(<string>fileMap.get(fileName)));
             let fullyQualifiedFileName = path.resolve(this.path, fileName + '.html');
             fs.writeFileSync(fullyQualifiedFileName, contents);
         }
@@ -227,7 +228,6 @@ class FileManager {
             }
         });
     }
-
     // #endregion
     // ===========================================================================
 
@@ -330,10 +330,8 @@ class FileManager {
             fileMap.set(fileName, this.makePage(contents, menus));
         }
     }
-
     // #endregion
     // ===========================================================================
-
 }
 
 export default FileManager;
