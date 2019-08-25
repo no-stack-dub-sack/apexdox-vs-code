@@ -30,7 +30,7 @@ class GeneratorUtils {
         return result;
     }
 
-    static resolveInlineLinks(str: string, models: Map<string, TopLevelModel>): any {
+    public static resolveInlineLinks(str: string, models: Map<string, TopLevelModel>): any {
         const linkMatches = str.match(/\{@link.*?\}/g);
         if (linkMatches) {
             const linkContents = linkMatches.map(match => match.slice(6, -1).trim());

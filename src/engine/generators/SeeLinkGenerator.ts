@@ -169,7 +169,8 @@ class SeeLinkGenerator {
         let selector = '', methodName = '';
 
         for (let method of methods) {
-            if ((methodName = method.name.toLowerCase()) === matcher) {
+            if (method.name.toLowerCase() === matcher) {
+                methodName = method.name;
                 // no overload selector, we've made a match!
                 if (overloadSelector === 0) {
                     foundMatch = true;

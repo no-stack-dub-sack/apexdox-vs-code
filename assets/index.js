@@ -360,6 +360,7 @@ window.goToLocation = (url) => {
 	// when clicking on Class Group link
 	event.preventDefault();
 
+	// handle menu navigation
 	if (event.currentTarget.classList.contains('nav-item')) {
 		toggleActiveClass(event.currentTarget);
 	} else {
@@ -383,9 +384,7 @@ window.goToLocation = (url) => {
 		}
 	}
 
-	if (document.location.href.toLowerCase().indexOf(url.toLowerCase()) === -1) {
-		document.location.href = url;
-	}
+	document.location.href = url;
 }
 
 window.toggleAllScopes = (isShow) => {

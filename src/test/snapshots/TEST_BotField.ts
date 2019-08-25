@@ -194,14 +194,12 @@ export default `<!DOCTYPE html>
               <div class="class-subtitle">
                 Example
               </div>
-              <pre class="code-example">
-                <code> for (Dashboard d : dashboards) { 
+              <pre class="code-example"><code> for (Dashboard d : dashboards) { 
      List&lt;BotField&gt; fields = new List&lt;BotField&gt;(); 
      fields.add(new BotField(&#39;Name&#39;, d.Title, &#39;/lightning/r/Dashboard/&#39; + d.Id + &#39;/view&#39;)); 
      fields.add(new BotField(&#39;Folder&#39;, d.FolderName)); 
      records.add(new BotRecord(fields)); 
- }</code>
-            </pre>
+ }</code></pre>
             </div>
             <div class="subsection properties TEST_BotField">
               <h3 class="subsection-title properties">TEST_BotField Properties</h2>

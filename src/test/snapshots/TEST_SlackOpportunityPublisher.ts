@@ -361,10 +361,8 @@ export default `<!DOCTYPE html>
               <div class="class-subtitle">
                 Example
               </div>
-              <pre class="code-example">
-                <code> String body = &#39;This is a message, equeued up to be posted on Slack!&#39;; 
- System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST&#39;, body));</code>
-            </pre>
+              <pre class="code-example"><code> String body = &#39;This is a message, equeued up to be posted on Slack!&#39;; 
+ System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST&#39;, body));</code></pre>
             </div>
             <div class="subsection properties TEST_SlackOpportunityPublisher_QueueableSlackCall">
               <h3 class="subsection-title properties">TEST_SlackOpportunityPublisher.QueueableSlackCall Properties</h2>
