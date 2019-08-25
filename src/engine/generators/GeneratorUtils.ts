@@ -88,7 +88,6 @@ class GeneratorUtils {
 
     public static get footer(): string {
         return `
-            <hr />
             <a href="${REPOSITORY}" target="_blank" rel="noopener noreferrer">
                 Powered By ApexDoc2
             </a>`
