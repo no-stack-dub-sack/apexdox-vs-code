@@ -102,9 +102,9 @@ engine:
 {
   "engine": {
     "targetDirectory": "${workspaceFolder}/documentation",
-	  "source": [{
+    "source": [{
       "path": "${workspaceFolder}/src/classes"
-	}]
+    }]
   }
 }
 ```
