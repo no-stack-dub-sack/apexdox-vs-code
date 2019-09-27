@@ -58,8 +58,10 @@ Documentation:
             ✔ Document ${workspaceFolder} settings variable @done(19-05-10 18:19)
             ✘ markupDescription descriptions don't show up in Contributes tab of extension info? Can we include both? @cancelled(19-05-22 21:36)
             ✘ Make README descriptions same as package.json descriptions @cancelled(19-05-30 09:56)
+            ✔ Document .apexdoc2rc and apexdoc2.yml config files @done(19-09-26 21:38)
+            ✔ Document {@link } syntax @done(19-09-26 21:51)
         ✔ Commands @done(19-05-11 16:17)
-        ☐ Warnings?
+        ✘ Warnings? @cancelled(19-09-26 17:01)
         ☐ OG ApexDoc credits
         ✔ Example Gifs @done(19-05-28 21:25)
         ☐ Example Project

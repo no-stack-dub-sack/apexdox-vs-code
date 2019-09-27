@@ -267,36 +267,6 @@ class FileManager {
         return html;
     }
 
-    private makeSupplementaryPages(fileMap: Map<string, string>, menus: IApexDocMenus, pages: string[]): void {
-        pages.forEach((pagePath, i) => {
-            if (i === 0) {
-                // our home page is always the first index
-                const homePageContents = this.parseHTMLFile(pagePath);
-                const markup = this.makePage(homePageContents || GeneratorUtils.defaultHomePage, menus, 'Home');
-                fileMap.set('index', markup);
-            } else {
-                const contents = this.parseHTMLFile(pagePath);
-                if (contents) {
-                    const markup = this.makePage(contents, menus);
-                    fileMap.set(path.basename(pagePath.substring(0, pagePath.lastIndexOf('.'))), markup);
-                }
-            }
-        });
-    }
-
-    private makeClassGroupPages(fileMap: Map<string, string>, menus: IApexDocMenus, classGroupMap: Map<string, Models.ClassGroup>): void {
-        for (let group of classGroupMap.keys()) {
-            const cg = classGroupMap.get(group);
-            if (cg && cg.contentSource) {
-                const cgContent = this.parseHTMLFile(cg.contentSource);
-                if (cgContent) {
-                    let markup = this.makePage(cgContent, menus, GeneratorUtils.encodeText(cg.name, false));
-                    fileMap.set(cg.contentFileName, markup);
-                }
-            }
-        }
-    }
-
     public makeDocumentationPages(fileMap: Map<string, string>, menus: IApexDocMenus, models: Map<string, Models.TopLevelModel>): void {
         for (let model of models.values()) {
             let fileName = '';
@@ -330,6 +300,37 @@ class FileManager {
             fileMap.set(fileName, this.makePage(contents, menus));
         }
     }
+
+    private makeSupplementaryPages(fileMap: Map<string, string>, menus: IApexDocMenus, pages: string[]): void {
+        pages.forEach((pagePath, i) => {
+            if (i === 0) {
+                // our home page is always the first index
+                const homePageContents = this.parseHTMLFile(pagePath);
+                const markup = this.makePage(homePageContents || GeneratorUtils.defaultHomePage, menus, 'Home');
+                fileMap.set('index', markup);
+            } else {
+                const contents = this.parseHTMLFile(pagePath);
+                if (contents) {
+                    const markup = this.makePage(contents, menus);
+                    fileMap.set(path.basename(pagePath.substring(0, pagePath.lastIndexOf('.'))), markup);
+                }
+            }
+        });
+    }
+
+    private makeClassGroupPages(fileMap: Map<string, string>, menus: IApexDocMenus, classGroupMap: Map<string, Models.ClassGroup>): void {
+        for (let group of classGroupMap.keys()) {
+            const cg = classGroupMap.get(group);
+            if (cg && cg.contentSource) {
+                const cgContent = this.parseHTMLFile(cg.contentSource);
+                if (cgContent) {
+                    let markup = this.makePage(cgContent, menus, GeneratorUtils.encodeText(cg.name, false));
+                    fileMap.set(cg.contentFileName, markup);
+                }
+            }
+        }
+    }
+
     // #endregion
     // ===========================================================================
 }
