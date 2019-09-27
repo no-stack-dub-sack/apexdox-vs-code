@@ -21,14 +21,15 @@ General:
     ✔ Separate methods & constructors @done(19-06-12 23:18)
     ✔ Method name line should show params even if not annotated @done(19-06-12 23:18)
     ✔ Why don't annoations highlight.js anymore? @done(19-06-13 09:26)
-    ☐ Resolve in-code TODOs
-    ☐ Review badges, galleryBanner, Marketplace Presentation, etc.
+    ✔ Resolve in-code TODOs @done(19-09-27 18:12)
     ✔ In-comment see links / links / markdown links @done(19-06-26 22:58)
     ✘ Remove ClassName Constructors, Properties and Methods titles @cancelled(19-07-02 21:53)
-    ☐ Add margin above subtitle-header class
+    ✘ Add margin above subtitle-header class @cancelled(19-09-27 17:35)
     ✔ write regexp to remove space between pre and code tags, then give pre propper margin @done(19-07-10 22:51)
     ✔ Fix "includes" code. Try including Test.cls - should only act as wildcard when wildcard char present @done(19-07-02 21:53)
-    ☐ Completion item for {@link}
+    ✘ Completion item for {@link} @cancelled(19-09-27 17:39)
+    ✔ Review badges, galleryBanner, Marketplace Presentation, etc. @done(19-09-27 19:51)
+    ☐ Add LICENSE file!! Research what license should be taking into account original ApexDoc
 
 Testing:
     ✔ Establish "Snapshot" tests to compare output docs to expected output reference files @done(19-05-28 21:25)
@@ -63,20 +64,21 @@ Documentation:
             ✔ Document {@link } syntax @done(19-09-26 21:51)
         ✔ Commands @done(19-05-11 16:17)
         ✘ Warnings? @cancelled(19-09-26 17:01)
-        ☐ OG ApexDoc credits
+        ✔ OG ApexDoc credits @done(19-09-27 18:01)
         ✔ Example Gifs @done(19-05-28 21:25)
-        ☐ Example Project
-            ✔ Home Page @done(19-05-22 21:35)
-            ✔ favicon @done(19-05-22 21:35)
-            ✔ other assets @done(19-05-21 21:50)
-            ✔ include additional HTML with pages setting @done(19-05-22 21:35)
-            ✔ Group Content page @done(19-05-22 09:17)
-            ✔ various @see tag examples @done(19-05-21 21:50)
-            ✔ Deploy Exampe Project to Surge @done(19-05-22 22:13)
-            ✔ Top-level Enum @done(19-06-01 12:19)
-            ✔ Document Example Project in ApexDoc2 README @done(19-06-01 12:20)
-            ☐ Create README for Sample Project
+        ☐ Final Review
+    ✔ Example Project @done(19-09-27 19:27)
+        ✔ Home Page @done(19-05-22 21:35)
+        ✔ favicon @done(19-05-22 21:35)
+        ✔ other assets @done(19-05-21 21:50)
+        ✔ include additional HTML with pages setting @done(19-05-22 21:35)
+        ✔ Group Content page @done(19-05-22 09:17)
+        ✔ various @see tag examples @done(19-05-21 21:50)
+        ✔ Deploy Exampe Project to Surge @done(19-05-22 22:13)
+        ✔ Top-level Enum @done(19-06-01 12:19)
+        ✔ Document Example Project in ApexDoc2 README @done(19-06-01 12:20)
+        ✔ Create README for Sample Project @done(19-09-27 19:27)
     ✔ Check [Extension Manifest](https://code.visualstudio.com/api/references/extension-manifest) for needed fields @done(19-05-23 20:56)
     ✔ Icon! @done(19-05-23 20:56)
-    ☐ CHANGELOG (include major changes since ApexDoc original)
-    ☐ KNOWN ISSUES
+    ☐ CHANGELOG
+    ✔ KNOWN ISSUES @done(19-09-27 18:02)

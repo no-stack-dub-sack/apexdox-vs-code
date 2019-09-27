@@ -6,7 +6,7 @@
 	"author": {
 		"name": "pweinberg"
 	},
-	"description": "A lightweight VS Code extension that makes documenting your Salesforce Apex files an easy, integrated experience.",
+	"description": "A lightweight VS Code extension that makes creating and generating static documentation for your Salesforce Apex files an easy, integrated experience.",
 	"engines": {
 		"vscode": "^1.32.0"
 	},
@@ -17,9 +17,15 @@
 		"apex",
 		"salesforce",
 		"documentation",
-		"documentation generator"
+		"documentation generator",
+		"documentation generation"
 	],
 	"icon": "assets/logo.png",
+	"galleryBanner": {
+		"color": "#F0F8FF",
+		"theme": "dark"
+	},
+	"homepage": "https://github.com/no-stack-dub-sack/apexdoc2-vscode/blob/master/README.md",
 	"repository": {
 		"url": "https://github.com/no-stack-dub-sack/ApexDoc2-VSCode",
 		"type": "git"

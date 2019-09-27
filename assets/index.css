@@ -177,15 +177,6 @@ most signatures will fit on a single lin */
     color: var(--dark-red);
 }
 
-.methods-toc__description {
-    height: 1em;
-    line-height: 1em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 500px;
-}
-
 .method-title {
     color: #003672;
     margin: 15px 0 5px 0;

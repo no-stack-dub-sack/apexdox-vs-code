@@ -120,10 +120,10 @@ class ClassModel extends TopLevelModel {
             nameLine = nameLine.trim();
         }
 
-        if (nameLine && nameLine.trim().length > 0) {
+        if (nameLine && nameLine.length > 0) {
             let keywordAt = nameLine.toLowerCase().indexOf(ApexDoc.CLASS + ' ');
-
             let offset = 6;
+
             if (keywordAt === -1) {
                 keywordAt = nameLine.toLowerCase().indexOf(ApexDoc.INTERFACE + ' ');
                 offset = 10;
@@ -138,7 +138,6 @@ class ClassModel extends TopLevelModel {
                 return parent + nameLine;
             }
 
-            // TODO: come back to this. Does this work as expected? Is it needed?
             try {
                 let name = nameLine.substring(0, spaceAt);
                 return (parent + name).trim();

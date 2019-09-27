@@ -206,7 +206,6 @@ abstract class ApexModel {
         }
     }
 
-    // TODO: update README about where content path is relative to
     private resolveContentPath(contentPath: string): Option<string, null> {
         // If running this tool, workspace folders should always exist, okay to cast.
         const projectRoot = (<WorkspaceFolder[]>workspace.workspaceFolders)[0].uri.fsPath;
