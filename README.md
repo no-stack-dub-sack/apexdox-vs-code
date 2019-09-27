@@ -100,14 +100,12 @@ engine:
 **.apexdoc2rc**:
 ```jsonc
 {
-	"engine": {
-		"targetDirectory": "${workspaceFolder}/documentation",
-		"source": [
-			{
-				"path": "${workspaceFolder}/src/classes"
-			}
-		]
-	}
+  "engine": {
+    "targetDirectory": "${workspaceFolder}/documentation",
+	  "source": [{
+      "path": "${workspaceFolder}/src/classes"
+	}]
+  }
 }
 ```
 
@@ -145,7 +143,7 @@ In addition to the `@tag`s listed above, there are a few other special tokens to
 
 | Token | Description |
 |-------|-------------|
-| `{@link }` | Unlike the `@see` tag, this syntax can be used in the text of any other tag to create inline links throughout your documentation. It accepts the same kinds of links as the `@see` tag (URL, markdown URL, or fully qualified class or method name; see `@see` description above), e.g. `{@link MyClass.MyInnerClass.MyOverloadedMethod[3]}` |
+| `{@link}` | Unlike the `@see` tag, this syntax can be used in the text of any other tag to create inline links throughout your documentation. It accepts the same kinds of links as the `@see` tag (URL, markdown URL, or fully qualified class or method name; see `@see` description above), e.g. `{@link MyClass.MyInnerClass.MyOverloadedMethod[3]}` |
 | \` \` | Backticks, \` \`, can be used to indicate inline code within your ApexDoc2 comments. E.g. \`String cool = 'cool!';\` &mdash; the expression within the backticks will be formatted as code. |
 | &lt;br&gt; | The &lt;br&gt; tag can be used to render line breaks in your comments when more complex formatting is needed. &lt;br /&gt; is also acceptable. |
 

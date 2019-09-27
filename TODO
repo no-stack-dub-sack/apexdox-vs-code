@@ -28,6 +28,7 @@ General:
     ☐ Add margin above subtitle-header class
     ✔ write regexp to remove space between pre and code tags, then give pre propper margin @done(19-07-10 22:51)
     ✔ Fix "includes" code. Try including Test.cls - should only act as wildcard when wildcard char present @done(19-07-02 21:53)
+    ☐ Completion item for {@link}
 
 Testing:
     ✔ Establish "Snapshot" tests to compare output docs to expected output reference files @done(19-05-28 21:25)
