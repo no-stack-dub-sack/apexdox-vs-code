@@ -39,7 +39,7 @@ You can launch the following commands via the command pallette (<kbd>Ctrl/Cmd</k
 To use your own favicon and logo (for the sidebar's 'Project Splash'), include files named `logo.png` and `favicon.png` in the `apexdoc2.engine.assets` array in `.vscode/settings.json`. This will overwrite the existing files. You can read more about this and other ApexDoc2 settings below.
 
 ## Extension Settings
-The extension's settings can be configured using .vscode/settings.json. Alternatively, if you would like to check your config into source control, and minimize the risk of sharing unwanted VSCode settings across users, you can also use an .apexdocrc (JSON) or apexdoc.yml (YAML) file. If multiple configuration files happen to be present, the order of precedence is as follows:
+The extension's settings can be configured using .vscode/settings.json, which optimally takes advantage of built-in VSCode intellisense. Alternatively, if you would like to check your config into source control, and minimize the risk of sharing unwanted VSCode settings across users, you can also use an .apexdocrc (JSON) or apexdoc.yml (YAML) file. If multiple configuration files happen to be present, the order of precedence is as follows:
 1. apexdoc2.yml
 2. .apexdoc2rc
 3. settings.json
