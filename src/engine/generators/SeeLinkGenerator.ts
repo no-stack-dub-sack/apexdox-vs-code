@@ -1,12 +1,7 @@
 import * as Models from '../../common/models';
 import ApexDocError from '../../common/ApexDocError';
 import Utils from '../../common/Utils';
-
-interface IMatchResult {
-    foundMatch: boolean;
-    selector: string;
-    methodName: string;
-}
+import { IMethodMatch } from '../..';
 
 class SeeLinkGenerator {
 
@@ -25,7 +20,7 @@ class SeeLinkGenerator {
             : `<span title="URL is invalid!">${linkName}</span>`;
     }
 
-    public static makeLinks(modelMap: Map<string, Models.TopLevelModel>, qualifiers: string[]): string {
+    public static makeLinks(models: Map<string, Models.TopLevelModel>, qualifiers: string[]): string[] {
         // initialize list to store created links
         const links = new Array<string>();
 
@@ -82,7 +77,7 @@ class SeeLinkGenerator {
 
             // 4.A) if first qualifier matches class name, begin search: We've
             // made the model map in all lowercase to avoid case mis-matching
-            const model = modelMap.get(parts[0]);
+            const model = models.get(parts[0]);
 
             if (model) {
                 // if only a single qualifier, stop here
@@ -155,8 +150,8 @@ class SeeLinkGenerator {
             links.push(link);
         }
 
-        // 6) collect links / spans and join back into a single string
-        return links.join(', ');
+        // 6) collect links / spans and return
+        return links;
     }
 
     /**
@@ -168,13 +163,14 @@ class SeeLinkGenerator {
      * @param matcher The user provided qualifier to match against a method name
      * @param overloadSelector The user provided indicator of the method overload number
      */
-    private static methodMatcher(methods: Models.MethodModel[], matcher: string, overloadSelector: number): IMatchResult {
+    private static methodMatcher(methods: Models.MethodModel[], matcher: string, overloadSelector: number): IMethodMatch {
         let methodNum = 0;
         let foundMatch = false;
         let selector = '', methodName = '';
 
         for (let method of methods) {
-            if ((methodName = method.name.toLowerCase()) === matcher) {
+            if (method.name.toLowerCase() === matcher) {
+                methodName = method.name;
                 // no overload selector, we've made a match!
                 if (overloadSelector === 0) {
                     foundMatch = true;

@@ -6,7 +6,7 @@
 	"author": {
 		"name": "pweinberg"
 	},
-	"description": "A lightweight VS Code extension that makes documenting your Salesforce Apex files an easy, integrated experience.",
+	"description": "A lightweight VS Code extension that makes creating and generating static documentation for your Salesforce Apex files an easy, integrated experience.",
 	"engines": {
 		"vscode": "^1.32.0"
 	},
@@ -16,9 +16,16 @@
 	"keywords": [
 		"apex",
 		"salesforce",
-		"documentation"
+		"documentation",
+		"documentation generator",
+		"documentation generation"
 	],
-	"icon": "assets/apexdoc2-logo.png",
+	"icon": "assets/logo.png",
+	"galleryBanner": {
+		"color": "#F0F8FF",
+		"theme": "dark"
+	},
+	"homepage": "https://github.com/no-stack-dub-sack/apexdoc2-vscode/blob/master/README.md",
 	"repository": {
 		"url": "https://github.com/no-stack-dub-sack/ApexDoc2-VSCode",
 		"type": "git"
@@ -54,8 +61,13 @@
 				"extensions": [
 					".cls",
 					".apex"
-				],
-				"configuration": "./syntaxes/language-configuration.json"
+				]
+			},
+			{
+				"id": "json",
+				"extensions": [
+					".apexdoc2rc"
+				]
 			}
 		],
 		"grammars": [
@@ -108,7 +120,12 @@
 				"apexdoc2.engine.title": {
 					"type": "string",
 					"default": "Apex Documentation",
-					"markdownDescription": "The value for the output HTML `<title>` attribute. Defaults to 'Apex Documentation'."
+					"markdownDescription": "The value for the output HTML's `<title>` attribute, as well as the header text for the sidebar's banner / logo section. Defaults to 'Apex Documentation'."
+				},
+				"apexdoc2.engine.subtitle": {
+					"type": "string",
+					"default": "Powered by <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://github.com/no-stack-dub-sack/apexdoc2-vscode\">ApexDoc2</a>",
+					"markdownDescription": "The subtitle for the sidebar's banner / logo section. Defaults to 'Powered by ApexDoc2'."
 				},
 				"apexdoc2.engine.scope": {
 					"type": "array",
@@ -152,17 +169,17 @@
 					"default": [],
 					"markdownDescription": "An array of absolute paths of non-ApexDoc2 generated HTML files that you'd like to be available to your documentation. These files will be placed in your target directory alongside generated HTML files. For example, if you'd like to link to a page from your project's home page or from one of it's class group pages, include that page here. If your file's name is `MyCoolPage.html`, you can then link to it with `href=\"./MyCoolPage.html\"`."
 				},
-				"apexdoc2.docBlock.alignItems": {
+				"apexdoc2.docblock.alignItems": {
 					"type": "boolean",
 					"default": false,
 					"markdownDescription": "Vertically align anything after an ApexDoc2 @tag. E.g.:\n```\n/**\n * @description         Some description\n * @param myParam       Param description\n * @param anotherParam  Another param description\n */\n```\nDefaults to `false`."
 				},
-				"apexdoc2.docBlock.omitDescriptionTag": {
+				"apexdoc2.docblock.omitDescriptionTag": {
 					"type": "boolean",
 					"default": true,
 					"markdownDescription": "ApexDoc2 `@description` tags are optional. Set this to `false` to include them. Defaults to `true`."
 				},
-				"apexdoc2.docBlock.spacious": {
+				"apexdoc2.docblock.spacious": {
 					"type": "boolean",
 					"default": false,
 					"markdownDescription": "When set to `true` ApexDoc2 comment block stubs will add an empty line after the description line and before the next tag. Defaults to `false`."
@@ -184,15 +201,15 @@
 	},
 	"devDependencies": {
 		"@types/cheerio": "^0.22.11",
-		"@types/express": "^4.16.1",
+		"@types/js-yaml": "^3.12.1",
 		"@types/lodash.escape": "^4.0.6",
 		"@types/mocha": "^2.2.42",
 		"@types/node": "^10.12.21",
+		"@types/node-static": "^0.7.3",
 		"@types/open": "^6.0.0",
 		"@types/pretty": "^2.0.0",
 		"@types/rimraf": "^2.0.2",
 		"cheerio": "^1.0.0-rc.3",
-		"js-yaml": "^3.13.1",
 		"ts-loader": "^5.4.3",
 		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
@@ -201,8 +218,9 @@
 		"webpack-cli": "^3.3.1"
 	},
 	"dependencies": {
-		"express": "^4.16.4",
+		"js-yaml": "^3.13.1",
 		"lodash.escape": "^4.0.1",
+		"node-static": "^0.7.11",
 		"open": "^6.0.0",
 		"pretty": "^2.0.0",
 		"rimraf": "^2.6.3"

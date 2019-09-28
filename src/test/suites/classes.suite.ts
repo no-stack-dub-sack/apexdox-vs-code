@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import cheerio from 'cheerio';
-import { ITestFile } from '../extension.test';
+import { ITestFile } from '../..';
 import { last, only } from '../../common/ArrayUtils';
 
 export const createClassesSuite = (files: ITestFile[]) => {
@@ -16,7 +16,7 @@ export const createClassesSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_NestedClasses.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const innerClasses = $('h2.sectionTitle')
+            const innerClasses = $('h2.class-title')
                 .toArray()
                 .map(el => $(el).attr('id'))
                 .filter(id => id.startsWith('TEST_NestedClasses.'));
@@ -39,7 +39,7 @@ export const createClassesSuite = (files: ITestFile[]) => {
             const $ = cheerio.load(testFile.snapshot);
             let foundMethods = false;
 
-            $('.methodTOCEntry').parent().toArray().forEach(el => {
+            $('.methods-toc__entry').parent().toArray().forEach(el => {
                 foundMethods = true;
                 let classNames = $(el).attr('class');
                 assert.equal(classNames, 'method global', 'Interface methods not inheriting access modifier from parent type.');
@@ -52,8 +52,8 @@ export const createClassesSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_InterfaceClass.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const methods = $('.methodTOCEntry').toArray().map(el => $(el).text().trim());
-            const expectedMethods = ['doIt', 'doSomething', 'doSomethingElse'];
+            const methods = $('.methods-toc__entry').toArray().map(el => $(el).text().trim());
+            const expectedMethods = ['doIt (object1, object2)', 'doSomething (object1, object2)', 'doSomethingElse (myInt, myString)'];
 
             assert.deepEqual(methods, expectedMethods, 'Unexpected interface methods found.');
         });

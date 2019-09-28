@@ -1,18 +1,18 @@
 import createDocServer from '../engine/server';
-import Guards from '../common/Guards';
 import Settings, { Feature } from '../common/Settings';
+import Validator from '../common/ValidatorEngine';
 import { commands, window } from 'vscode';
-import { IApexDocConfig } from '../common/Settings';
+import { IEngineConfig } from '..';
 
 const COMMAND = 'apexDoc2.serveDocs';
 
 export default function() {
     return commands.registerCommand(COMMAND, () => {
         try {
-            const config = Settings.getConfig<IApexDocConfig>(Feature.ENGINE);
-            createDocServer(config.targetDirectory, config.title, Guards.port(config.port));
+            const config = Settings.getConfig<IEngineConfig>(Feature.ENGINE);
+            createDocServer(config.targetDirectory, config.title, Validator.port(config.port));
         } catch (e) {
-            console.log(e);
+            console.error(e);
             window.showErrorMessage(e.message);
         }
     });

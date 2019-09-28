@@ -1,27 +1,48 @@
 import ApexDoc from '../../ApexDoc';
 import GeneratorUtils from '../GeneratorUtils';
 import MarkupGenerator from './MarkupGenerator';
-import SeeLinkGenerator from '../SeeLinkGenerator';
 import { ClassModel, MethodModel, TopLevelModel } from '../../../common/models';
-import { last } from '../../../common/ArrayUtils';
-import { Option } from '../../../common/Utils';
+import { Option } from '../../..';
 
 class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
 
-    protected constructor(model: MethodModel) {
-        super(model);
+    protected constructor(model: MethodModel, models: Map<string, TopLevelModel>) {
+        super(model, models);
     }
 
-    public static generate(cModel: ClassModel, modelMap: Map<string, TopLevelModel>): string {
+    public static generate(cModel: ClassModel, models: Map<string, TopLevelModel>): string {
+        // retrieve methods to work with in the order user specifies
+        const allMethods = ApexDoc.config.sortOrder === ApexDoc.ORDER_ALPHA
+            ? cModel.methodsSorted
+            : cModel.methods;
+
+        const constructors = allMethods.filter(m => m.isConstructor);
+        const methods = allMethods.filter(m => !m.isConstructor);
+
+        const constructorsMarkup = constructors.length
+            ? this.generateSection(
+                'Constructors',
+                constructors,
+                cModel,
+                models
+            ) : '';
+
+        const methodsMarkup = methods.length
+            ? this.generateSection(
+                'Methods',
+                methods,
+                cModel,
+                models
+            ) : '';
+
+        return constructorsMarkup + methodsMarkup;
+    }
+
+    private static generateSection(section: string, methods: Array<MethodModel>, cModel: ClassModel, models: Map<string, TopLevelModel>) {
         // track Ids used to make sure we're not generating duplicate
         // ids within this class and so that overloaded methods each
         // have their own unique anchor to link to in the TOC.
         const idCountMap = new Map<string, number>();
-
-        // retrieve methods to work with in the order user specifies
-        const methods = ApexDoc.config.sortOrder === ApexDoc.ORDER_ALPHA
-            ? cModel.methodsSorted
-            : cModel.methods;
 
         // initialize a couple of strings to house our markup
         let tocMarkup = '';
@@ -30,26 +51,24 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         // full method display
         for (let method of methods) {
             // instantiate our markup generator
-            const generator = new MethodMarkupGenerator(method);
+            const generator = new MethodMarkupGenerator(method, models);
 
-            // get some variables we'll reuse a couple of times
+            // generate unique method id
             const methodId = generator.generateMethodId(idCountMap, cModel);
-            const methodName = generator.formatConstructorName(cModel);
 
             // make our TOC entry, we'll concat this with the rest of the markup in the proper order later
-            tocMarkup += generator.getTOCEntry(ApexDoc.config.showTOCSnippets, methodName, methodId);
+            tocMarkup += generator.getTOCEntry(ApexDoc.config.showTOCSnippets, methodId);
 
             // run our generators in the desired order
             let methodMarkup = '';
-            methodMarkup += generator.header(methodId, methodName);
-            methodMarkup += generator.annotations('methodAnnotations');
-            methodMarkup += generator.signatureLine(cModel.topMostClassName);
-            methodMarkup += generator.description('methodDescription');
+            methodMarkup += generator.header(methodId, cModel.topMostClassName);
+            methodMarkup += generator.description('method-description');
+            methodMarkup += generator.signature('method');
             methodMarkup += generator.deprecated();
             methodMarkup += generator.params();
             methodMarkup += generator.returns();
             methodMarkup += generator.exception();
-            methodMarkup += generator.see(modelMap);
+            methodMarkup += generator.see();
             methodMarkup += generator.author();
             methodMarkup += generator.since();
             methodMarkup += generator.example();
@@ -60,72 +79,43 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
 
         // concat and close TOC and full methods display HTML
         const markup =
-            `<div class="methodsContainer">
-                <ul class="methodTOC">${tocMarkup}</ul>
-                ${methodsMarkup}
+            `<div class="subsection methods">
+                <h3 class="subsection-title methods">${cModel.name} ${section}</h3>
+                <div class="methods-container">
+                    <ul class="methods-toc">${tocMarkup}</ul>
+                    ${methodsMarkup}
+                </div>
             </div>`;
 
-        return GeneratorUtils.wrapWithDetail(markup, '<h2 class="subsectionTitle methods">Methods</h2>', 'subSection methods');
+        return markup;
     }
 
-    private markupTemplate(label: string, contents: string, titleClass = '', contentClass = 'methodSubDescription', tag = 'div') {
-        return `<div class="methodSubTitle ${titleClass}">${label}</div>
-                <${tag} class="${contentClass}">${contents}</${tag}>`;
-    }
-
-    protected formatConstructorName(classModel: ClassModel): string {
-        let methodName = this.model.name;
-        // split class model name on '.' and take last, in case class is inner. otherwise
-        // we'd be comparing a to its fully qualified class name, e.g. MyClass.SomeMethod
-        if (methodName.toLowerCase() === last(classModel.name.split('.')).toLowerCase()) {
-            methodName += '.&lt;init&gt;';
-        }
-
-        return methodName;
+    protected markupTemplate(label: string, contents: string, titleClass = '', contentClass = 'method-subtitle-description', tag = 'div') {
+        titleClass = titleClass ? `method-subtitle ${titleClass}` : 'method-subtitle';
+        return super.markupTemplate(label, contents, titleClass, contentClass, tag);
     }
 
     protected author(): string {
         if (!this.model.author) {
             return '';
         } else {
-            return this.markupTemplate('Author', GeneratorUtils.escapeHTML(this.model.author));
+            return this.markupTemplate('Author', GeneratorUtils.encodeText(this.model.author, true, this.models));
         }
     }
 
-    protected header(id: string, name: string): string {
-       return  `<h2 class="methodHeader ${(this.model.deprecated ? 'deprecated' : '')}" id="${id}">${name}</h2>`;
+    protected header(id: string, topmostTypeName: string): string {
+        return `
+            <h4 class="method-title ${(this.model.deprecated ? 'deprecated' : '')}" id="${id}">
+                ${super.linkToSource(`${this.model.name}(${this.model.paramsFromNameLine.join(', ')})`, topmostTypeName)}
+            </h4>`
+        ;
     }
 
     protected since(): string {
         if (!this.model.since) {
             return '';
         } else {
-            return this.markupTemplate('Since', GeneratorUtils.escapeHTML(this.model.since));
-        }
-    }
-
-    protected deprecated(): string {
-        if (!this.model.deprecated) {
-            return '';
-        } else {
-            return this.markupTemplate('Deprecated', GeneratorUtils.escapeHTML(this.model.deprecated, true), 'deprecated');
-        }
-    }
-
-    protected example(): string {
-        // return example and remove trailing white space which
-        // may have built up due to the allowance of preserving
-        // white pace in complex code example blocks for methods
-        if (!this.model.example) {
-            return '';
-        } else {
-            return this.markupTemplate(
-                'Example',
-                `<code>${GeneratorUtils.escapeHTML(this.model.example.trimRight())}</code>`,
-                '',
-                'codeExample',
-                'pre'
-            );
+            return this.markupTemplate('Since', GeneratorUtils.encodeText(this.model.since, true, this.models));
         }
     }
 
@@ -133,35 +123,26 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         if (!this.model.exception) {
             return '';
         } else {
-            return this.markupTemplate('Exceptions', GeneratorUtils.escapeHTML(this.model.exception, true));
+            return this.markupTemplate('Exceptions', GeneratorUtils.encodeText(this.model.exception, true, this.models));
         }
     }
 
     protected params(): string {
         let markup = '';
         if (this.model.params.length) {
-            markup += '<div class="methodSubTitle">Parameters</div>';
-            for (let param of this.model.params) {
-                param = GeneratorUtils.escapeHTML(param, true).trim();
-                if (param) {
-                    let paramName: string;
-                    let paramDescription: string;
-                    const match: Option<RegExpExecArray, null> = /\s/.exec(param);
+            markup += '<div class="method-subtitle">Parameters</div>';
+            for (let { name, description, type } of this.model.params) {
+                markup += `<div class="param-name">${name}</div>`;
 
-                    if (match !== null) {
-                        const idx = match.index;
-                        paramName = param.substring(0, idx);
-                        paramDescription = param.substring(idx + 1);
-                    } else {
-                        paramName = param;
-                        paramDescription = '';
-                    }
+                if (type) {
+                    markup +=
+                    `<div class="param-type">
+                        Type: <code class="code-inline">${type}</code>
+                    </div>`;
+                }
 
-                    markup += `<div class="paramName">${paramName}</div>`;
-
-                    if (paramDescription) {
-                        markup += `<div class="paramDescription">${paramDescription}</div>`;
-                    }
+                if (description) {
+                    markup += `<div class="param-description">${description}</div>`;
                 }
             }
         }
@@ -173,37 +154,20 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         if (!this.model.returns) {
             return '';
         } else {
-            return this.markupTemplate('Returns', GeneratorUtils.escapeHTML(this.model.returns, true));
+            return this.markupTemplate('Returns', GeneratorUtils.encodeText(this.model.returns, true, this.models));
         }
     }
 
-    protected see(models: Map<string, TopLevelModel>): string {
-        if (!this.model.see.length) {
-            return '';
-        } else {
-            return this.markupTemplate('See', SeeLinkGenerator.makeLinks(models, this.model.see));
-        }
-    }
-
-    protected getTOCEntry(showTOCSnippets: boolean, name: string, id: string): string {
+    protected getTOCEntry(showTOCSnippets: boolean, id: string): string {
         let entry =
             `<li class="method ${this.model.scope}">
-                <a class="methodTOCEntry ${(this.model.deprecated ? 'deprecated' : '')}" href="#${id}">
-                    ${name}
-                </a>`;
+                <a class="methods-toc__entry ${(this.model.deprecated ? 'deprecated' : '')}" href="#${id}">
+                    ${this.model.name} (${this.model.paramsFromNameLine.join(', ')})
+                </a>
+                ${showTOCSnippets && this.model.description ? this.description('methods-toc__description') : ''}
+            </li>`;
 
-        if (showTOCSnippets && this.model.description) {
-            entry += this.description('methodTOCDescription');
-        }
-
-        return entry += '</li>';
-    }
-
-    protected signatureLine(memberClassName: string): string {
-        return `
-            <div class="methodSignature">
-                ${super.signatureLine(GeneratorUtils.escapeHTML(this.model.nameLine), memberClassName, true)}
-            </div>`;
+        return entry;
     }
 
     /**

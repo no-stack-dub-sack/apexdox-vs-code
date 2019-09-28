@@ -1,373 +1,395 @@
+@import url('https://fonts.googleapis.com/css?family=Barlow:400,400i|Nanum+Gothic&display=swap');
+
 :root {
-    --dark-blue: #003672;
-    --grey-blue: #51638A;
+    --grey-blue-tx: #51638A;
+    --grey-blue-bg: #547499;
     --light-grey: #f7f7f7;
-    --med-grey: #e7e7e7;
-    --med-blue: #00f;
+    --dark-grey: #c6c6c6;
     --white: #fff;
     --dark-red: #a31515;
+    --title-font: 'Nanum Gothic';
+    --code-font: monospace;
 }
 
 body {
-    font-family: "ProximaNovaSoft-Regular", Calibri, "Gill Sans",
-        "Gill Sans MT", Candara, Segoe, "Segoe UI", Arial, sans-serif;
-    font-size: 100%;
+    font-family: 'Barlow', sans-serif;
     margin: 0px;
     padding: 0px;
 }
 
-/* the top page banner  */
-.topsection {
-    background-color: var(--dark-blue);
-    width: 100%;
-    height: 110px;
-    color: var(--white);
-}
+/** ==================================================================
+ *  Top Panel
+ *  ==================================================================
+ */
 
-.topsection td {
-    color: var(--white);
+.scoping-panel {
+    background: var(--white);
     padding: 8px;
+    position: sticky;
+    text-align: center;
+    top: -1px;
 }
 
-.topsection a {
-    color: var(--white);
-}
+/** ==================================================================
+ *  Main: Classes, Methods, Enums, etc.
+ *  ==================================================================
+ */
 
-/* the area that holds the documentation on the right of the page */
-.contentTD {
-    font-size: 100%;
-    width: 80%;
+#content {
+    float: right;
     padding-left: 10px;
-    vertical-align: top;
+    width: 78%;
 }
 
-/* the horizontal section headers that declares the Class name */
-.sectionTitle {
-    background-color: var(--dark-blue); /* rgb(155,203,236); */
-    color: var(--white);
-    font-size: 100%;
-    font-weight: bold;
-    padding: 5px 5px 5px 14px;
-    margin: 0 0 5px 0;
+.section {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-right: 10px;
 }
 
-.sectionTitle a {
-    color: var(--white);
+.section:not(:last-of-type) {
+    border-bottom: 1px solid black;
 }
 
-/* the horizontal section headers that declares the Methods & Properties subsections */
-.subsectionTitle {
-    color: var(--grey-blue);
-    border-top: 1px solid var(--grey-blue);
-    font-size: 120%;
-    padding: 2px;
-    margin: 0;
+.class-title,
+.section-title {
+     color: var(--grey-blue-tx);
+     font-weight: bold;
+     margin: 0 0 5px 0;
+     padding: 5px 5px 5px 0px;
+     font-family: var(--title-font);
 }
 
-.subsectionContainer {
-    padding: 0 0 0 14px;
-    margin-top: 10px;
+.class-title a,
+.section-title a {
+    color: var(--grey-blue-tx);
 }
 
-/* the horizontal header for each Method */
-.methodHeader {
-    font-size: 1em;
-    color: var(--grey-blue);
-    border-top: 1px solid var(--grey-blue);
+.subsection,
+.class-container,
+.methods-container {
+    margin-bottom: 10px;
+}
+
+.subsection-title {
+    font-family: var(--title-font);
+    color: var(--grey-blue-tx);
     margin: 20px 0 0 0;
-    padding: 4px 0 2px 0;
+    padding: 2px;
 }
 
-/* attrTable is used to display the table of class attrTable */
-.attrTable {
+.attributes-table {
+    margin-top: 10px;
     border-collapse: collapse;
     max-width: 97%;
 }
 
-.attrTable th {
-    text-align: left;
-    background: #547499;
+.attributes-table th {
+    background: var(--grey-blue-bg);
     color: var(--white);
+    text-align: left;
 }
 
-.attrTable th,
-.attrTable td {
-    padding: 5px;
+.attributes-table th,
+.attributes-table td {
     border: 1px solid #d6d4d4;
-    font-size: .9em;
+    font-size: 14px;
+    padding: 5px;
 }
 
-.attrTable tr:nth-child(odd) {
+.attributes-table tr:nth-child(odd) {
     background: var(--light-grey);
 }
 
 /* restrict width of enum value column so
 most signatures will fit on a single lin */
-.attrTable .enumValues {
+.attributes-table .enum-values {
     max-width: 300px;
     overflow-wrap: break-word;
 }
 
-.attrName {
-    font-size: .9em;
+.attribute-name {
     font-weight: bold;
 }
 
-.propAnnotations,
-.attrSignature {
+.prop-annotations,
+.attribute-signature {
     background: none;
-    font-family: monospace;
+    font-family: var(--code-font);
     padding: 0;
 }
 
-.attrSignature {
+.attribute-signature {
     white-space: nowrap;
 }
 
-.attrDescription {
+.attribute-description {
     font-weight: normal;
 }
 
-.attrDescription.hasDescription {
-    height: 1em;
-}
-
-.propDescriptionWrapper {
-    margin-top: 15px;
-}
-
-/* the class's signature line */
-.classAnnotations,
-.classSignature {
-    font-family: monospace;
-    font-size: 1.05em;
+.method-signature,
+.method-annotations,
+.class-annotations,
+.class-signature {
+    padding: 3px 0 0 0;
+    font-family: var(--code-font);
+    font-size: 13.5px;
     font-weight: normal;
-    text-indent: -15px;
-    padding: 0 0 4px 15px;
 }
 
-/* the class's Annotation line */
-.classAnnotations {
-    padding: 0 0 0 15px;
-}
-
-/* the description, author, date and other class attributes */
-.classDetails {
-    font-size: .9em;
-}
-
-.classSubtitle {
-    color: var(--grey-blue);
-    font-size: 1em;
+.class-subtitle,
+.method-subtitle {
+    color: var(--grey-blue-tx);
+    font-size: 16px;
     font-weight: bold;
-    margin: .7em 0 0 0;
+    margin: 15px 0 2px 0;
 }
 
-.classSubDescription {
-    font-size: 1em;
-    margin: 0 0 0 1em;
+.class-subtitle-description {
+    margin-left: 15px;
 }
 
-/* signatures of methods and attrTable */
-.hostedSourceLink {
-    text-decoration: initial;
-    color: var(--med-blue);
+.source-link {
+    color: inherit;
+    text-decoration: none;
 }
 
-.hostedSourceLink:hover {
-    text-decoration: underline;
+.source-link:hover {
+    text-decoration: none;
 }
 
-/* method table of contents related classes */
-.methodsContainer {
-    margin-bottom: 10px;
-}
-
-ul.methodTOC {
+.methods-toc {
     margin-top: 0;
 }
 
-.methodTOCEntry {
-    font-size: .9em;
-    color: var(--med-blue);
+.methods-toc li {
+    margin-top: 5px;
 }
 
-.methodTOCEntry:visited {
-    font-size: .9em;
-    color: purple;
+.methods-toc__entry {
+    color: #2AAAE0;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
 }
 
-.methodTOCEntry.deprecated {
-    font-weight: inherit;
-}
-
-.methodTOCEntry.deprecated:visited {
-    font-size: .9em;
+.methods-toc__entry.deprecated {
     color: var(--dark-red);
 }
 
-.methodTOCDescription {
-    font-size: .9em;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    line-height: 1em;
-    height: 1em;
-    white-space: nowrap;
-    width: 500px;
+.method-title {
+    color: #003672;
+    margin: 15px 0 5px 0;
+    font-family: var(--code-font);
+    font-size: 16px;
 }
 
-/* method listing related classes */
-.methodSignature,
-.methodAnnotations {
-    font-family: monospace;
-    font-size: 1em;
-    text-indent: -15px;
-    padding: 0 0 0 15px;
+.method-title:target {
+    margin-top: -12px;
+    padding-top: 60px;
 }
 
-.methodDescription {
-    font-size: .9em;
-    margin: .5em 0 0 0;
+.method-title:target:before {
+    content: " ";
+    background-clip: padding-box;
+    position: absolute;
+    top: 24px;
 }
 
-.methodSubDescription {
-    font-size: .9em;
-    margin: 0 0 0 1em;
+.method-subtitle {
+    font-size: 15px;
 }
 
-.methodSubTitle {
-    font-size: .9em;
-    color: var(--grey-blue);
-    font-weight: bold;
-    margin: .7em 0 0 0;
+.method-subtitle-description {
+    margin: 0 0 0 16px;
 }
 
-.codeExample {
-    margin: 0 5px 0 0;
+div.method:not(:last-of-type) {
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
 }
 
-.codeExample code {
+.code-example {
+    margin: 10px 5px 10px 0;
+}
+
+.code-example code {
     background: var(--light-grey);
-    padding: .5em .7em;
+    padding: 7px 10px;
 }
 
-.paramName {
-    font-size: .9em;
-    font-weight: bold;
+.param-name {
     font-style: italic;
-    margin: 0 0 0 .5em;
+    margin-left: 8px;
 }
 
-.paramDescription {
-    font-size: .9em;
-    margin: 0 0 0 1em;
+.param-type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ,
+.param-description {
+    margin: 5px 5px 5px 16px;
 }
 
-/* Style Details Caret Element */
-details summary::-webkit-details-marker {
-    float: right;
-    margin-top: 5px;
-    color: black !important;
+/** ==================================================================
+ *  Side Bar: Search, Nav
+ *  ==================================================================
+ */
+
+#side-bar {
+    background: aliceblue;
+    height: 100vh;
+    overflow-y: auto;
+    position: fixed;
+    top: -1px;
+    width: 22%;
 }
 
-details.section summary::-webkit-details-marker {
-    color: var(--light-grey) !important;
-    margin-top: 10px;
+#logo-container {
+    height: 130px;
+    text-align: center;
 }
 
-details.subSection summary::-webkit-details-marker {
-    color: black !important;
+#logo-container .title {
+    font-family: var(--title-font);
+    margin: 15px auto 10px auto;
 }
 
-/* SIDEBAR CSS */
-.navbar {
-    font-size: .95em;
+#logo-container .subtitle {
+    font-size: 14px;
+    text-align: center;
+    width: 80%;
+    margin: 5px auto 0 auto;
 }
 
-.navbar li {
-    height: 25px;
-    padding: 6px 0 2px 40px;
+#logo-container img {
+    height: 70px;
+    margin: 0 auto;
+    display: block;
+}
+
+#search-wrapper {
+    border-bottom: 1px solid lightgrey;
+    margin: 10px 10px 5px 10px;
+    padding-bottom: 5px;
+}
+
+#search-input {
+    background: aliceblue;
+    border: none;
+    outline: none;
+    width: 80%;
+}
+
+#search-results {
+    height: 0;
     margin: 0;
-    background: var(--med-grey);
-    border-top: 1px solid #d1d1d1;
+    transition: height .3s, margin .3s;
+}
+
+#search-results.visible {
+    height: 30%;
+    list-style: none;
+    margin-bottom: 5px;
+    overflow-y: auto;
+    padding-left: 12px;
+}
+
+#search-results.visible.no-transition {
+    transition: none;
+}
+
+.search-result {
     cursor: pointer;
+    height: 25px;
+    padding: 6px 0 2px 10px;
     user-select: none;
+    margin-right: 5px;
+}
+
+nav {
+    padding: 0 5px 0 10px;
 }
 
 .navbar ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    background: var(--med-grey);
 }
 
-.navbar .navItem.active,
-.navbar .navItem:hover {
-    background: #d9d9d9;
-}
-
-.navbar .navItem a {
-    color: black;
-    text-decoration: none;
-}
-
-.navbar .navItem a:focus,
-.navbar .navItem:hover a {
-    color: var(--med-blue);
-    outline: none;
-}
-
-.navHeader {
-    height: 25px;
-    background: var(--light-grey);
-    border: 1px solid #dce4e7;
-    border-top-color: var(--white);
-    padding: 6px 0 0 6px;
+.nav-header {
     cursor: pointer;
+    height: 25px;
+    padding: 6px 0 0 6px;
     user-select: none;
 }
 
-a.navHeader {
+.nav-header,
+.nav-header a,
+.nav-header span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.nav-header:focus {
+    outline-color: #2AAAE0;
+}
+
+a.nav-header {
     display: block;
 }
 
-.navHeader,
-.navHeader a {
-    color: black;
+.nav-item {
+    cursor: pointer;
+    height: 25px;
+    margin: 0;
+    padding: 6px 0 2px 40px;
+    user-select: none;
 }
 
-.navHeader a:focus,
-.navHeader:focus {
+.nav-header a:focus {
     outline: none;
-    color: var(--med-blue);
 }
 
-/* Hmm not sure if we want this anymore... */
-/* a.navHeader.active {
-    background: #cfcdcd;
+.nav-item a:focus,
+.nav-item:hover a {
+    outline: none;
+    color: #2AAAE0;
 }
 
-details[open] .navHeader.active {
-    background: #cfcdcd;
-} */
-
-.navHeader:hover,
-.navHeader:hover a {
-    background: #cfcdcd;
-    color: var(--med-blue);
+.nav-item a,
+.nav-header,
+.nav-header a {
+    color: var(--grey-blue-tx);
+    font-weight: bold;
 }
 
-/* accents */
-/* .classAnnotations,
-.methodAnnotations {
-    color: var(--dark-blue);
-    font-weight: 600;
-} */
+.search-result:hover,
+.nav-item.active,
+.nav-item.active a,
+.nav-item:hover,
+.nav-item:hover a {
+    background: var(--grey-blue-bg);
+    color: var(--white) !important;
+}
 
-.inlineCode {
+.nav-item a {
+    text-decoration: none;
+}
+
+details summary::-webkit-details-marker {
+    color: var(--dark-grey) !important;
+    float: right;
+    margin-top: 5px;
+}
+
+/** ==================================================================
+ *  Accents
+ *  ==================================================================
+ */
+
+.code-inline {
     background-color: var(--light-grey);
     color: var(--dark-red);
-    font-family: monospace;
+    font-family: var(--code-font);
     padding: 1px 5px;
 }
 
@@ -377,16 +399,50 @@ details[open] .navHeader.active {
 }
 
 .footer {
-    font-size:.8em;
-    margin-bottom: 10px;
+    font-size: .8em;
+    text-align: center;
+    padding-right: 10px;
 }
 
-.externalLink {
-    margin: 0 5px;
-    height: 10px;
-    fill: var(--light-grey);
+.footer a {
+    padding-bottom: 10px;
+    display: block;
+    border-top: 1px solid;
+    padding-top: 10px;
 }
 
 .hide {
     display: none;
+}
+
+/** ==================================================================
+ *  Scroll Bar
+ *  ==================================================================
+ */
+
+::-webkit-scrollbar {
+    width: 1em;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+/** ==================================================================
+ *  Icons
+ *  ==================================================================
+ */
+
+.search-icon {
+    display: inline-block;
+    height: 15px;
+    margin: 0 5px 0 2px;
+    vertical-align: middle;
+    width: 15px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 512 512"><path fill="gray" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>');
 }

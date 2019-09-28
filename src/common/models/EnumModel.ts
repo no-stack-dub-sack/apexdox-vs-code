@@ -1,6 +1,6 @@
 import ApexDoc from '../../engine/ApexDoc';
 import { ModelType, TopLevelModel } from './TopLevelModel';
-import { Option } from '../Utils';
+import { Option } from '../..';
 
 class EnumModel extends TopLevelModel {
 

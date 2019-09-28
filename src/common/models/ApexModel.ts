@@ -1,9 +1,10 @@
 import * as tags from '../tags';
 import ApexDoc from '../../engine/ApexDoc';
-import Utils, { Option } from '../Utils';
+import Utils from '../Utils';
 import { existsSync } from 'fs';
 import { resolve } from 'path';
 import { window, workspace, WorkspaceFolder } from 'vscode';
+import { Option } from '../..';
 
 abstract class ApexModel {
 
@@ -55,6 +56,29 @@ abstract class ApexModel {
         return this._sourceUrl;
     }
 
+    /* ===================================================================================================
+     * NOTE: Ideally, we should only expose those getters on this class that are shared amongst all
+     * ApexModel descendants. The following three break this convention. 'Example,' 'Deprecated,' and
+     * 'See' are only available to MethodModel and TopLevelModel, however it aids us in reducing repetitive
+     * code in their respective markup generators to expose these getters here. This way, we can write the
+     * markup generation code for these attributes only once on the base MarkupGenerator class, rather than
+     * repeating the same of very similar code on both MethodMarkupGenerator and TopLevelMarkupGenerator.
+     * ===================================================================================================
+     */
+    public get example(): string {
+        // remove trailing white space which may have built
+        // up due to the allowance of preserving white space
+        return this._example.trimRight();
+    }
+
+    public get deprecated(): string {
+        return this._deprecated;
+    }
+
+    public get see(): string[] {
+        return this._see;
+    }
+
     /**
      * Based very closely on: https://gitlab.com/StevenWCox/sfapexdoc/blob/master/src/apex/com/main/Model.java#L196
      */
@@ -91,9 +115,9 @@ abstract class ApexModel {
             }
 
             // get everything after opening '*'s
-            line = line.replace(/\s*\/?\*+\s*/, '').trim();
+            line = line.replace(/\s*\/?\*+/, '');
 
-            // replace docBlock break marker and indicate we should break after
+            // replace docblock break marker and indicate we should break after
             // this round. Otherwise we may get some strange behavior due to
             // multi-line support and this common parser for all models
             if (line.includes(ApexDoc.DOC_BLOCK_BREAK)) {
@@ -182,7 +206,6 @@ abstract class ApexModel {
         }
     }
 
-    // TODO: update README about where content path is relative to
     private resolveContentPath(contentPath: string): Option<string, null> {
         // If running this tool, workspace folders should always exist, okay to cast.
         const projectRoot = (<WorkspaceFolder[]>workspace.workspaceFolders)[0].uri.fsPath;

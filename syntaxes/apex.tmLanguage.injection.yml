@@ -47,11 +47,11 @@ repository:
           '2': { name: punctuation.accessor.apex }
           '3': { name: storage.type.annotation.apex }
           '4': { name: keyword.other.class.apex }
-      # @see URL, Markdown URL, or namePath
+      # @see or @link URL, Markdown URL, or namePath
       - match: |-
           (?x)
           (?:
-            ((@)see)\b\s*
+            ((@)see|@link)\b\s*
             # match dot notation name path
             (
               [._[:alnum:]]*
@@ -84,7 +84,7 @@ repository:
               )
             )
           )
-          (?=\s+)
+          (?=\s+|\}\.?)
         captures:
           '1': { name: storage.type.annotation.apex }
           '2': { name: punctuation.accessor.apex }

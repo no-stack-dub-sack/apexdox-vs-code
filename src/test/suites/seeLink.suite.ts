@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import cheerio from 'cheerio';
 import { head, last, only } from '../../common/ArrayUtils';
-import { ITestFile } from '../extension.test';
+import { ITestFile } from '../..';
 
 export const createSeeLinkSuite = (files: ITestFile[]) => {
     suite('See Links', function() {
@@ -63,18 +63,18 @@ export const createSeeLinkSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_Links.html'], 'name'));
             let $ = cheerio.load(testFile.snapshot);
 
-            const onclick = head($('a').toArray().filter(el => $(el).text() === 'TEST_NestedClasses.ConcreteChildClass.overloadedmethod').map(el => $(el).attr('onclick')));
+            const onclick = head($('a').toArray().filter(el => $(el).text() === 'TEST_NestedClasses.ConcreteChildClass.overloadedMethod').map(el => $(el).attr('onclick')));
 
-            assert.equal(onclick, "goToLocation('TEST_NestedClasses.html#TEST_NestedClasses.ConcreteChildClass.overloadedmethod')", '@see tag incorrectly parsed child class method link.');
+            assert.equal(onclick, "goToLocation('TEST_NestedClasses.html#TEST_NestedClasses.ConcreteChildClass.overloadedMethod')", '@see tag incorrectly parsed child class method link.');
         });
 
         test('Should correctly parse and link "@see" child-class method-link overload-selector syntax', function() {
             const testFile = last(only(files, ['TEST_Links.html'], 'name'));
             let $ = cheerio.load(testFile.snapshot);
 
-            const onclick = last($('a').toArray().filter(el => $(el).text() === 'TEST_NestedClasses.ConcreteChildClass.overloadedmethod').map(el => $(el).attr('onclick')));
+            const onclick = last($('a').toArray().filter(el => $(el).text() === 'TEST_NestedClasses.ConcreteChildClass.overloadedMethod').map(el => $(el).attr('onclick')));
 
-            assert.equal(onclick, "goToLocation('TEST_NestedClasses.html#TEST_NestedClasses.ConcreteChildClass.overloadedmethod_1')", '@see tag incorrectly parsed child class method link (overload).');
+            assert.equal(onclick, "goToLocation('TEST_NestedClasses.html#TEST_NestedClasses.ConcreteChildClass.overloadedMethod_1')", '@see tag incorrectly parsed child class method link (overload).');
         });
 
         test('Should correctly handle "@see" link with invalid identifier', function() {
@@ -84,6 +84,16 @@ export const createSeeLinkSuite = (files: ITestFile[]) => {
             const tooltip = last($('span').toArray().filter(el => $(el).text() === 'ThisOneShouldFail').map(el => $(el).attr('title')));
 
             assert.equal(tooltip, 'A valid link could not be created with this identifier.', '@see tag incorrectly handled broken link.');
+        });
+
+        test('Should correctly handle "{@link ... }" syntax', function() {
+            const testFile = last(only(files, ['TEST_Links.html'], 'name'));
+            let $ = cheerio.load(testFile.snapshot);
+
+            const links = $('.class-description a').toArray().map(el => $(el).attr('href') === 'javascript:void(0)' ? $(el).attr('onclick') : $(el).attr('href'));
+            const expectedLinks = ["goToLocation('TEST_Links.html#TEST_Links.getInt')", "goToLocation('TEST_Methods.html#TEST_Methods.method10')", "http://code.google.com/p/apex-lang/", "https://www.google.com"]
+
+            assert.deepEqual(links, expectedLinks, '@see tag incorrectly handled broken link.');
         });
     });
 };

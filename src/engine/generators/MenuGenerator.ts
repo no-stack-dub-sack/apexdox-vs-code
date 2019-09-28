@@ -1,9 +1,10 @@
 import * as Models from '../../common/models';
 import ApexDoc from '../ApexDoc';
+import GeneratorUtils from './GeneratorUtils';
 
 class MenuGenerator {
 
-    public static makeScopingPanel(): string {
+    public static makeScopeMenu(): string {
         // add checkboxes for registered scopes
         const checkBoxes = ApexDoc.config.scope.map(scope =>
             `<input
@@ -14,14 +15,10 @@ class MenuGenerator {
             </label>`
         );
 
-        let markup = `
-            <tr>
-                <td colspan="2" style="text-align: center;">
-                    Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
-                    <label for="cbx-all">All</label>&nbsp;&nbsp;
-                    ${checkBoxes.join('&nbsp;&nbsp;')}
-                </td>
-            </tr>`;
+        let markup =
+            `Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
+             <label for="cbx-all">All</label>&nbsp;&nbsp;
+             ${checkBoxes.join('&nbsp;&nbsp;')}`;
 
         return markup;
     }
@@ -50,14 +47,12 @@ class MenuGenerator {
             }
 
             const markup =
-                `<details id="${groupId}" class="groupName">
-                    <summary onclick="toggleActiveClass(this);"
-                            id="header-${groupId}"
-                            class="navHeader">
-                    ${label}
+                `<details id="${groupId}" class="group-name">
+                    <summary id="header-${groupId}" class="nav-header">
+                        ${label}
                     </summary>
                     <ul>
-                    <!-- menu items will be appended here -->`;
+                    <!-- menu items -->`;
 
             menuMarkupMap.set(group, markup);
         }
@@ -70,7 +65,7 @@ class MenuGenerator {
             if (model.nameLine) {
                 const fileName = model.name
                     , markup =
-                        `<li id="item-${fileName}" class="navItem class ${model.scope}"
+                        `<li title="${fileName}" id="item-${fileName}" class="nav-item class ${model.scope}"
                             onclick="goToLocation('${fileName}.html');">
                             <a tabindex="1" href="javascript:void(0)">${fileName}</a>
                         </li>`;
@@ -82,11 +77,16 @@ class MenuGenerator {
         // 3) iterate over map's values and concat each menu item with the
         // opening markup, closing each UL and details tag along the way
         let markup =
-            `<!-- 22% width accommodates 40 char class names -->
-            <td width="22%" vertical-align="top">
+            `<div id="side-bar">
+                ${GeneratorUtils.makeProjectSplash()}
+                <div id="search-wrapper">
+                    <div class="search-icon"></div>
+                    <input id="search-input" type="text" autocomplete="off" placeholder="Search...">
+                </div>
+                <ul id="search-results" class=""></ul>
                 <div class="navbar">
                     <nav role="navigation">
-                        <a class="navHeader" id="home" href="javascript:void(0)"
+                        <a class="nav-header" id="home" href="javascript:void(0)"
                             onclick="goToLocation('index.html');">
                             Home
                         </a>
@@ -94,7 +94,7 @@ class MenuGenerator {
                             .reduce((acc, menuItem) => acc += (menuItem + '</ul></details>'), '')}
                     </nav>
                 </div>
-            </td>`;
+            </div>`;
 
         return markup;
     }

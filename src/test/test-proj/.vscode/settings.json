@@ -18,7 +18,6 @@
         "TEST_ExcludeMe.cls"
     ],
 	"apexdoc2.engine.homePagePath": "",
-	"apexdoc2.engine.bannerPagePath": "",
 	"apexdoc2.engine.scope": [
         "public",
         "private",

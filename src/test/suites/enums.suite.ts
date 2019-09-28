@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import cheerio from 'cheerio';
-import { ITestFile } from '../extension.test';
+import { ITestFile } from '../..';
 import { last, only } from '../../common/ArrayUtils';
 
 export const createEnumsSuite = (files: ITestFile[]) => {
@@ -9,7 +9,7 @@ export const createEnumsSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_EnumInner.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const enums = $('td.enumValues').toArray();
+            const enums = $('td.enum-values').toArray();
             const days = $(enums[0]).text().split(',').map(m => m.trim());
             const months = $(enums[1]).text().split(',').map(m => m.trim());
             const numbers = $(enums[2]).text().split(',').map(m => m.trim());
@@ -30,7 +30,7 @@ export const createEnumsSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_EnumClass.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            const statuses = $('td.enumValues').toArray().map(el => $(el).text().trim());
+            const statuses = $('td.enum-values').toArray().map(el => $(el).text().trim());
             const expectedStatuses = ['QUEUED','PROCESSING','COMPLETE','COMPLETE_WITH_ERRORS','FAILED'];
             assert.deepEqual(statuses, expectedStatuses, 'Enum values do not match.');
         });

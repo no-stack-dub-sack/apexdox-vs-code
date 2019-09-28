@@ -1,39 +1,20 @@
-import ApexDoc from '../engine/ApexDoc';
 import ApexDocError from './ApexDocError';
-import Guards from './Guards';
-import Utils, { Option } from './Utils';
-import { existsSync } from 'fs';
+import DocblockConfig from './models/DocblockConfig';
+import DocblockValidator from './ValidatorDocblock';
+import EngineConfig from './models/EngineConfig';
+import EngineValidator from './ValidatorEngine';
+import LineReader from './LineReader';
+import { existsSync, readFileSync } from 'fs';
 import { EXTENSION } from '../extension';
+import {
+    IApexDocRC,
+    IDocblockConfig,
+    IEngineConfig,
+    Option
+    } from '..';
 import { resolve } from 'path';
+import { safeLoad as yamlToJson } from 'js-yaml';
 import { workspace, WorkspaceFolder } from 'vscode';
-
-export interface ISourceEntry {
-    path: string;
-    sourceUrl?: string;
-}
-
-export interface IApexDocConfig {
-	source: ISourceEntry[];
-	targetDirectory: string;
-	includes: string[];
-	excludes: string[];
-	homePagePath: string;
-	bannerPagePath: string;
-	scope: string[];
-	title: string;
-	showTOCSnippets: boolean;
-	sortOrder: string;
-    cleanDir: boolean;
-    assets: string[];
-    pages: string[];
-    port: number;
-}
-
-export interface IDocBlockConfig {
-	alignItems: boolean;
-	omitDescriptionTag: boolean;
-	spacious: boolean;
-}
 
 export enum Feature {
     ENGINE,
@@ -42,44 +23,119 @@ export enum Feature {
 
 class Settings {
 
+    // this should be a safe cast. If running this tool, workspace folders should always exist.
+    private static projectRoot = (<WorkspaceFolder[]>workspace.workspaceFolders)[0].uri.fsPath;
+
     /**
-     * Fetch user's config settings and set defaults where needed.
+     * Note that casting user provided configs as ApexDoc configs
+     * can potentially result in run-time errors. The onus is on
+     * the user to ensure the correct shape of their config files,
+     * however, the app should fail loudly and gracefully if the
+     * user provides an invalid config.
      */
-    public static getConfig<T extends IApexDocConfig | IDocBlockConfig>(type: Feature): T {
-        if (type === Feature.ENGINE) {
-            return <T>this.setEngineDefaults(<IApexDocConfig>
-                workspace.getConfiguration(EXTENSION).get<IApexDocConfig>('engine')
-            );
-        }
+    private static getRcFile(): Option<IApexDocRC, void> {
+        const rcJsonPath = resolve(this.projectRoot, '.apexdoc2rc');
+        const rcYamlPath = resolve(this.projectRoot, 'apexdoc2.yaml');
+        const rcYmlPath = resolve(this.projectRoot, 'apexdoc2.yml');
+        let fileName = '';
 
-        else if (type === Feature.DOC_BLOCK) {
-            return <T>workspace.getConfiguration(EXTENSION).get<IDocBlockConfig>('docBlock');
+        try {
+            // apexdoc.yaml
+            if (existsSync(rcYamlPath)) {
+                fileName = 'apexdoc2.yaml';
+                const rcConfig = yamlToJson(readFileSync(rcYamlPath, 'utf8'));
+                return <IApexDocRC>rcConfig;
+            }
+            // apexdoc2.yml
+            else if (existsSync(rcYmlPath)) {
+                fileName = 'apexdoc2.yml';
+                const rcConfig = yamlToJson(readFileSync(rcYmlPath, 'utf8'));
+                return <IApexDocRC>rcConfig;
+            }
+            // .apexdoc2rc (json)
+            else if (existsSync(rcJsonPath)) {
+                fileName = '.apexdoc2rc';
+                const rcString = new LineReader(rcJsonPath).toString();
+                return <IApexDocRC>JSON.parse(rcString);
+            }
+        } catch (e) {
+            throw new ApexDocError(ApexDocError.CONFIG_PARSE_ERROR(fileName));
         }
-
-        throw new ApexDocError('Unrecognized Config Section!');
     }
 
     /**
-     * Source and Target Directory settings are dynamic and determined at runtime. If user
-     * omits these settings, overwrite the default empty string with correct default settings.
-     * @param config The `IApexDocConfig` instance fetched from the user's settings.json file.
+     * Get user's ApexDoc2 config and set defaults where needed.
+     * Order of preference for config files is listed below. If more than one
+     * config file is present, this is the order that will be honored by ApexDoc2.
+     *
+     *  1. apexdoc2.yaml
+     *  2. apexdoc2.yml
+     *  3. .apexdoc2rc
+     *  4. settings.json
+     *
+     * NOTE: since we're supporting .rc and yaml config files, we'll need to
+     * maintain defaults in model/settings.ts as well as in package.json.
      */
-    private static setEngineDefaults(config: IApexDocConfig): IApexDocConfig {
-        // this should be safe to cast as not-undefined.
-        // If running this tool, workspace folders should always exist.
-        const projectRoot = (<WorkspaceFolder[]>workspace.workspaceFolders)[0].uri.fsPath;
+    public static getConfig<T extends IEngineConfig | IDocblockConfig>(type: Feature): T {
+        const rcConfig = this.getRcFile();
 
-        // establish defaults
-        const defaultSource = [{ path: this.getDefaultDir(projectRoot) }];
-        const defaultTarget = resolve(projectRoot, 'apex-documentation');
+        // getting engine config
+        if (type === Feature.ENGINE) {
+            let config: IEngineConfig;
+            if (rcConfig) {
+                config = {
+                    ...new EngineConfig(),
+                    ...rcConfig.engine || {}
+                };
+            } else {
+                // if no .apexdoc2rc file found, get config from settings.json
+                config = <IEngineConfig>workspace.getConfiguration(EXTENSION).get('engine');
+            }
+            // pass result of either to directory defaulter and validate
+            return <T>new EngineValidator(this.setEngineDirectoryDefaults(config)).validate();
+        }
 
-        return {
-            ...config,
-            // if config.source has only one entry and path is '', its prob our default, even if it's
-            // not, it's an invalid configuration, so replace with our defaultSource variable
-            source: config.source.length === 1 && !config.source[0].path ? defaultSource : config.source,
-            targetDirectory: !config.targetDirectory ? defaultTarget : config.targetDirectory
-        };
+        // getting docblock config
+        else if (type === Feature.DOC_BLOCK) {
+            let config: IDocblockConfig;
+            if (rcConfig) {
+                config = {
+                    ...new DocblockConfig(),
+                    ...rcConfig.docblock || {}
+                };
+            } else {
+                config = <IDocblockConfig>workspace.getConfiguration(EXTENSION).get('docblock');
+            }
+
+            return <T>new DocblockValidator(config).validate();
+        }
+
+        throw new ApexDocError('Feature type not supported!');
+    }
+
+    /**
+     * Source and Target Dir default settings are dynamic and determined at runtime. If user
+     * omits these settings or provides invalid values, overwrite with default settings.
+     * @param config The `IEngineConfig` instance fetched from the user's settings.json or .apexdoc2rc file.
+     */
+    private static setEngineDirectoryDefaults(config: IEngineConfig): IEngineConfig {
+
+        const defaultSource = [{ path: this.getDefaultDir(this.projectRoot) }];
+        const defaultTarget = resolve(this.projectRoot, 'apex-documentation');
+
+        if (
+            !config.source ||
+            (Array.isArray(config.source) && !config.source.length) ||
+            (config.source.length === 1 && !config.source[0].path)
+        ) {
+            config.source = defaultSource;
+        }
+
+        if (!config.targetDirectory) {
+            config.targetDirectory = defaultTarget;
+        }
+
+        return config;
     }
 
     /**
@@ -103,60 +159,11 @@ class Settings {
         if (
             existsSync(resolve(projectRoot, 'force-app')) &&
             !existsSync(resolve(projectRoot, 'src'))
-            ) {
+        ) {
             return true;
         }
 
         return false;
-    }
-
-    /**
-     * Provide additional type checking and defaults where VSCode may not be able to
-     * provide the defaults we need (also, vscode did not seem to provide the setting
-     * default during development, so this felt like the safest bet).
-     *
-     * @param config An instance of `IApexDocConfig`.
-     */
-    public static validateEngineConfig(config: IApexDocConfig): void {
-        // misc. strings
-        config.title = Guards.title(config.title);
-        config.sortOrder = Guards.sortOrder(config.sortOrder);
-
-        // arrays
-        config.includes = Guards.stringArray(config.includes, 'includes');
-        config.excludes = Guards.stringArray(config.excludes, 'excludes');
-        config.scope = Guards.scope(config.scope).map(scope => scope.toLowerCase());
-        config.assets = Guards.stringArray(config.assets, 'assets').map(path => Utils.resolveWorkspaceFolder(path));
-
-        // booleans
-        config.cleanDir = Guards.boolGuard(config.cleanDir, false);
-        config.showTOCSnippets = Guards.boolGuard(config.showTOCSnippets, true);
-
-        // directories: don't you wish TypeScript had a |> operator!
-        config.targetDirectory = this.resolveDirectory(config.targetDirectory);
-        config.homePagePath = this.resolveDirectory(config.homePagePath, 'homePagePath', '.html');
-        config.bannerPagePath = this.resolveDirectory(config.bannerPagePath, 'bannerPagePath', '.html');
-        config.pages = config.pages.map(pagePath => this.resolveDirectory(pagePath, 'pages', '.html'));
-
-        config.source = config.source.map(src => ({
-            path: this.resolveDirectory(src.path, 'source.path'),
-            sourceUrl: Guards.sourceUrl(src.sourceUrl)
-        }));
-    }
-
-    /**
-     * A utility function to wrap the composition of resolve and guard calls.
-     * Not super necessary, but keeps things neater up above.
-     *
-     * @param path The directory to attempt to resolve
-     * @param param The setting name for this path. e.g. 'homePagePath'
-     */
-    private static resolveDirectory(path: string, param?: string, extension?: string): string {
-        if (param) {
-            return Guards.directory(Utils.resolveWorkspaceFolder(path), param, extension);
-        } else {
-            return Guards.targetDirectory(Utils.resolveWorkspaceFolder(path));
-        }
     }
 }
 

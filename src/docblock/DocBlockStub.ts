@@ -1,23 +1,14 @@
 import ApexDoc from '../engine/ApexDoc';
-import Settings, { Feature, IDocBlockConfig } from '../common/Settings';
+import Settings, { Feature } from '../common/Settings';
 import Utils from '../common/Utils';
-import { EXTENSION } from '../extension';
+import { IDocblockConfig, IStubLine } from '..';
 import {
     Position,
     SnippetString,
     TextDocument,
     TextEditor,
-    TextLine,
-    workspace
+    TextLine
     } from 'vscode';
-
-export interface IStubLine {
-    insertNewLine: boolean;
-    line: TextLine;
-    lineIndex: number;
-    type: StubType;
-    indent: number;
-}
 
 export enum StubType {
     TOP_LEVEL_TYPE,
@@ -27,7 +18,7 @@ export enum StubType {
 
 abstract class DocBlockStub {
     public contents: string = '';
-    protected config: IDocBlockConfig;
+    protected config: IDocblockConfig;
     protected editor: TextEditor;
     protected line: TextLine;
     protected lineIndex: number;
@@ -53,7 +44,7 @@ abstract class DocBlockStub {
         this.blockOpen = isCompletion ? '\n' : `${this.lineIndent}/**\n`;
         this.blockClose = `${isCompletion ? '' : this.lineIndent + ' */'}${stubLine.insertNewLine ? '\n' : ''}`;
 
-        this.config = Settings.getConfig<IDocBlockConfig>(Feature.DOC_BLOCK);
+        this.config = Settings.getConfig<IDocblockConfig>(Feature.DOC_BLOCK);
         this.make();
     }
 
@@ -69,7 +60,6 @@ abstract class DocBlockStub {
      */
     public insert(): void {
         // TODO: if contents are empty, do we want to do nothing, or insert empty block comment?
-        // Think about the cases where contents may end up being empty, are there any right now?
         if (this.contents) {
             const position = new Position(this.activeLine, 0);
             this.editor.insertSnippet(new SnippetString(this.contents), position);
@@ -153,7 +143,7 @@ abstract class DocBlockStub {
         }
 
         // TODO: equals sign is how we're avoiding confusing methods
-        // and properties. Can we think of a better way or will this do?
+        // and properties. Can we think of a better wsay or will this do?
         else if (lineText.includes('(') && !lineText.includes('=')) {
             return StubType.METHOD;
         }

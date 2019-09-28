@@ -1,9 +1,9 @@
 import * as Models from '../common/models';
 import FileManager from './FileManager';
 import LineReader from '../common/LineReader';
-import Utils, { Option } from '../common/Utils';
+import Utils from '../common/Utils';
 import { basename } from 'path';
-import { IApexDocConfig } from '../common/Settings';
+import { IEngineConfig, Option } from '..';
 import { last } from '../common/ArrayUtils';
 import { performance } from 'perf_hooks';
 import { window } from 'vscode';
@@ -31,7 +31,7 @@ class ApexDoc {
     // static members
     public static extensionRoot: string;
     public static currentFile: string;
-    public static config: IApexDocConfig;
+    public static config: IEngineConfig;
 
     // flag will be set to true when we're
     // running the comment stubbing command
@@ -43,7 +43,7 @@ class ApexDoc {
      * @param config The configuration collected from the users config,
      * supplemented with any defaults if user did not include them.
      */
-    public static runApexDoc(config: IApexDocConfig): void {
+    public static runApexDoc(config: IEngineConfig): void {
         try {
             // time ApexDoc2
             const beginElapsed = performance.now();
@@ -69,12 +69,11 @@ class ApexDoc {
             });
 
             // load up optional templates and create class groups for menu
-            const bannerContents = fileManager.parseHTMLFile(config.bannerPagePath);
             const supplementaryPages = [config.homePagePath, ...config.pages];
             const classGroupMap = this.createClassGroupMap(models);
 
             // run our documentation engine and create set of HTML files
-            fileManager.createDocs(classGroupMap, models, bannerContents, supplementaryPages);
+            fileManager.createDocs(classGroupMap, models, supplementaryPages);
 
             // we are done!
             const endElapsed = performance.now();
@@ -275,7 +274,8 @@ class ApexDoc {
                     lineNum++;
                 }
 
-                const mModel: Models.MethodModel = new Models.MethodModel(comments, line, startingLine, sourceUrl);
+                const className = cModel ? cModel.name : '';
+                const mModel: Models.MethodModel = new Models.MethodModel(comments, line, startingLine, className, sourceUrl);
                 mModel.parseAnnotations(line, reader.peekPrevLine());
                 cModel && cModel.methods.push(mModel);
                 comments = [];

@@ -1,3 +1,5 @@
+import { REPOSITORY } from '../extension';
+
 class ApexDocError extends Error {
     public static INVALID_SCOPE = 'Please provide an array of valid scopes. Valid scopes include: global, public, protected, private, testMethod, and webService';
     public static SCOPE_ENTRIES_MAX = `scope' parameter has too many entries. ${ApexDocError.INVALID_SCOPE}`;
@@ -27,7 +29,7 @@ class ApexDocError extends Error {
     public static INVALID_TYPE = (arg: string, type: string) =>
         `Value for '${arg}' parameter is incorrect type. Expected '${type}'`
 
-    public static NO_FILES_FOUND = (sourceDirs: string) => `No .cls files found in ${sourceDirs}`;
+    public static NO_FILES_FOUND = (sourceDirs: string) => `No matching .cls files found in ${sourceDirs}`;
 
     public static ASSET_NOT_FOUND = (asset: string) =>
         `Asset '${asset}' could not be copied to the target directory. Did you provide a fully qualified file name?`
@@ -38,6 +40,9 @@ class ApexDocError extends Error {
     public static INVALID_SEE_QUALIFIER =
         'The value for each @see tag must be a URL, markdown URL or fully qualified class or method name ' +
         '(e.g. MyClass, MyClass.MyMethod, MyClass.MyInnerClass.MyInnerClassMethod).';
+
+    public static CONFIG_PARSE_ERROR = (fileName: string) =>
+        `Failed to parse ${fileName}. Check for syntax errors. See the [documentation](${REPOSITORY}) for more information on ${fileName} config files.`
 }
 
 export default ApexDocError;

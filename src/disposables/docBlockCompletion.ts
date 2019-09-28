@@ -1,6 +1,6 @@
 import ClassStub from '../docblock/ClassStub';
 import DefaultStub from '../docblock/DefaultStub';
-import DocBlockStub, { IStubLine, StubType } from '../docblock/DocBlockStub';
+import DocBlockStub, { StubType } from '../docblock/DocBlockStub';
 import MethodStub from '../docblock/MethodStub';
 import {
     commands,
@@ -14,7 +14,7 @@ import {
     TextDocument,
     window
     } from 'vscode';
-import { Option } from '../common/Utils';
+import { IStubLine, Option } from '..';
 
 const COMMAND = 'apexdoc2.docBlockCompletion';
 

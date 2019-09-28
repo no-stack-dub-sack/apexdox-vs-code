@@ -1,15 +1,22 @@
+<p align="center">
+    <img src="https://github.com/no-stack-dub-sack/apexdoc2-vscode/raw/master/images/logo.png"
+         alt="ApexDoc2 Logo" style="max-width:100%;">
+</p>
+
 # ApexDoc2 VS Code
-ApexDoc2 is A fast, reliable, and configurable documentation generator for Salesforce Apex .cls files, that works with both DX and non-DX projects. ApexDoc2 uses a JSDoc-like inline comment syntax. Simply tell ApexDoc2 where your class files are, and it will generate a set of static HTML pages that fully document each class, including its properties, methods, enums, and annotations.
+ApexDoc2 is A fast, reliable, and configurable documentation generator for Salesforce Apex .cls files, that works with both DX and non-DX projects. ApexDoc2 uses a JSDoc-like inline comment syntax. Simply tell ApexDoc2 where your class files are, and it will generate a set of static HTML pages that fully document each class/class file, including its properties, methods, enums, and annotations.
 
 ## Features
 - Run ApexDoc2 and immediately launch your docs using the extension's built-in static server.
 - Supports documenting .cls files across multiple source directories for DX projects.
-- Customizable project "Home page", banner, and Class Group pages.
+- Customizable project "Home page", "project splash" section, and Class Group pages.
 - Links class, interface, method, prop, and enum signatures to source code hosted on GitHub.
 - Customize the favicon, and/or use your own logo, and other static assets in your docs.
 - Produces clean, readable HTML output (complements of [pretty](https://github.com/jonschlinkert/pretty)).
 - Includes easy-to-use commands and completion items for contextually stubbing ApexDoc2 comment blocks.
 - Includes customized syntax highlighting to make your ApexDoc2 comment blocks stand out and easy to read.
+- Generated documentation is fully searchable, powered by [Lunr](https://lunrjs.com) (supports wildcard searches using the `*` character and searching by page title using `title:<search-term>` syntax).
+- Easily configurable using VSCode settings.json file or, for more safely checking configs into source control, using an .apexdoc2rc (JSON) or apexdoc2.yml (YAML) file, depending on you and your team's preference (see examples in the [sample app repo](https://github.com/no-stack-dub-sack/apexdoc2-sample-app)).
 
 <p align="center">
     <a target="_blank" rel="noopener noreferrer"
@@ -20,7 +27,7 @@ ApexDoc2 is A fast, reliable, and configurable documentation generator for Sales
 </p>
 
 ## ApexDoc2 Sample Documentation
-Check out our ApexDoc2 sample docs to get a feel for what ApexDoc2 documentation looks like: https://apexdoc2-sample-docs.surge.sh. The repository that these docs were created from lives [here](https://github.com/no-stack-dub-sack/apexdoc2-sample-app). If you'd like to easily test out different settings, install the extension and clone the repo; the settings are checked-in in the `.vscode/settings.json` file. Run `ApexDoc2: Run` from the command pallette, and `ApexDoc2: Open Docs` to generate new documentation and preview your changes locally!
+Check out our ApexDoc2 sample docs to get a feel for what ApexDoc2 documentation looks like: https://apexdoc2-sample-docs.surge.sh. The repository that these docs were created from lives [here](https://github.com/no-stack-dub-sack/apexdoc2-sample-app). If you'd like to easily test out different settings, install the extension and clone the repo; the settings are checked-in in the `.vscode/settings.json` file. Run `ApexDoc2: Run` from the command pallette, and `ApexDoc2: Open Docs` to generate new documentation and preview your changes locally.
 
 ## Commands
 You can launch the following commands via the command pallette (<kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>):
@@ -28,7 +35,14 @@ You can launch the following commands via the command pallette (<kbd>Ctrl/Cmd</k
 - **ApexDoc2: Open Docs**: Launch a server on localhost and open the generated documentation.
 - **ApexDoc2: Stub Comment Block**: On the line above a method, class/interface, property, or enum, invoke this command to stub an ApexDoc2 comment based on the current context. This command can also be invoked by completion item: type `/**` and press <kbd>Tab</kbd> when prompted. The appearance / style of comment stubs can be configured using the settings below.
 
+## Favicon & Logo Customization
+To use your own favicon and logo (for the sidebar's 'Project Splash'), include files named `logo.png` and `favicon.png` in the `apexdoc2.engine.assets` array in `.vscode/settings.json`. This will overwrite the existing files. You can read more about this and other ApexDoc2 settings below.
+
 ## Extension Settings
+The extension's settings can be configured using .vscode/settings.json, which optimally takes advantage of built-in VSCode intellisense. Alternatively, if you would like to check your config into source control, and minimize the risk of sharing unwanted VSCode settings across users, you can also use an .apexdocrc (JSON) or apexdoc.yml (YAML) file. If multiple configuration files happen to be present, the order of precedence is as follows:
+1. apexdoc2.yml
+2. .apexdoc2rc
+3. settings.json
 
 ### The ${workspaceFolder} variable
 For any setting that refers to a path on your file system, you can use the variable `${workspaceFolder}` to refer to the root folder of your project. If you have a multi-root setup, you can use `${workspaceFolder:directory-name}` to indicate the correct directory.
@@ -45,9 +59,9 @@ Use these settings to configure the ApexDoc2 documentation engine.
 | `apexdoc2.engine.includes` | `string[]` | A case-sensitive array of file names and/or wildcard patterns that indicate which files in your source directory should be documented. Only simple leading and trailing wildcards are supported. E.g. `[ "NotificationsEmailer.cls", "*TriggerHandler.cls", "Contact*" ]` will result in the file 'NotificationsEmailer.cls' being processed, as well as any files that begin with 'Contact' or end with 'TriggerHandler.cls'. An empty array is treated as 'include all'. | `[]` |
 | `apexdoc2.engine.excludes`| `string[]` | A case-sensitive array of file names and/or wildcard patterns that indicate which files in your source directory should NOT be documented. Only simple leading and trailing wildcards are supported. E.g. `[ "NotificationsEmailer.cls", "*TriggerHandler.cls", "Contact*" ]` will result in all files being processed EXCEPT 'NotificationsEmailer.cls' and those begin with 'Contact' or end with 'TriggerHandler.cls'. **Note** that files are excluded before they are included, so keep this in mind when using 'includes' and 'excludes' together. An empty array is treated as 'exclude none'. | `[]` |
 | `apexdoc2.engine.homePagePath` | `string` | An absolute path of an HTML file that contains the project's 'home page' markup. Only the markup inside the `<body>` tags will be used, or if the file contains only a partial HTML page, e.g. `<h2>Cool!</h2>`, the entire contents will be used. | |
-| `apexdoc2.engine.bannerPagePath` | `string` | An absolute path of an html file that contains the content for the banner section of each generated page.| |
 | `apexdoc2.engine.scope` | `string[]` | An array of access modifier scopes to document. | `[ 'global', 'public', 'protected', 'private', 'testMethod', 'webService' ]` |
-| `apexdoc2.engine.title` | `string` | The value for the HTML document's &lt;title&gt; attribute. | `Apex Documentation` |
+| `apexdoc2.engine.title` | `string` | The value for the output HTML's `<title>` attribute, as well as the header text for the sidebar's banner / logo section. | `Apex Documentation` |
+| `apexdoc2.engine.subtitle` | `string` | The subtitle for the sidebar's banner / logo section. | `Powered by ApexDoc2` |
 | `apexdoc2.engine.showTOCSnippets` | `boolean` | If set to `false`, ApexDoc2 will hide the method's description snippet in the class's table of contents. | `true` |
 | `apexdoc2.engine.sortOrder` | `'logical' \| 'alpha'` | The order in which class methods, properties, and inner classes are presented to the user in your documentation. Either 'logical', the order they appear in the source file, or 'alpha', alphabetically.| `alpha` |
 | `apexdoc2.engine.assets` | `string[]` | An array of absolute paths of files you would like to be included in the target directory's 'assets' folder (this is where ApexDoc2 keeps its JavaScript, CSS, and images). For instance, if you'd like to include images in your banner, home page, or class group HTML files, include their path's here, and set the `<img>` tag's `src` attribute to be `./assets/yourImage.png`. If you'd like to override the default favicon, include a file named `favicon.png` in your assets array. | `[]` |
@@ -60,24 +74,43 @@ Use these settings to configure the appearance of ApexDoc2 comment block stubs (
 
 | Setting | Type | Description | Default |
 |---------|------|-------------|---------|
-| `apexdoc2.docBlock.alignItems` | `boolean` | Vertically align anything after an ApexDoc2 @tag. | `false` |
-| `apexdoc2.docBlock.omitDescriptionTag` | `boolean` | ApexDoc2 `@description` tags are optional. Set this to `false` to include them in the comment block stub. | `true` |
-| `apexdoc2.docBlock.spacious` | `boolean` | When set to `true` ApexDoc2 comment block stubs will add an empty line after the description line and before the next tag. | `false` |
+| `apexdoc2.docblock.alignItems` | `boolean` | Vertically align anything after an ApexDoc2 @tag. | `false` |
+| `apexdoc2.docblock.omitDescriptionTag` | `boolean` | ApexDoc2 `@description` tags are optional. Set this to `false` to include them in the comment block stub. | `true` |
+| `apexdoc2.docblock.spacious` | `boolean` | When set to `true` ApexDoc2 comment block stubs will add an empty line after the description line and before the next tag. | `false` |
 
 ### Minimum Settings Example
 This is all that's required to run ApexDoc2. Technically, you could skip this too, and if your project is a standard DX or Salesforce project, the defaults should pick up your source files, but it's better to be explicit.
 
+**settings.json**:
 ```jsonc
 {
-    "apexdoc2.engine.targetDirectory": "C:\\Users\\pweinberg\\Documents\\code\\documentation\\My Salesforce Project",
+    "apexdoc2.engine.targetDirectory": "${workspaceFolder}\\documentation",
     "apexdoc2.engine.source": [{
-        "path": "C:\\Users\\pweinberg\\Documents\\code\\Salesforce\\src\\classes"
+        "path": "${workspaceFolder}\\src\\classes"
     }]
+}
+```
+**apexdoc2.yaml**:
+```yaml
+engine:
+  targetDirectory: "${workspaceFolder}/documentation"
+  source:
+    - path: "${workspaceFolder}/src/classes"
+```
+**.apexdoc2rc**:
+```jsonc
+{
+  "engine": {
+    "targetDirectory": "${workspaceFolder}/documentation",
+    "source": [{
+      "path": "${workspaceFolder}/src/classes"
+    }]
+  }
 }
 ```
 
 ### Expanded Settings Example
-See our [sample project's settings](https://github.com/no-stack-dub-sack/apexdoc2-sample-app/blob/master/.vscode/settings.json) for a more complex ApexDoc2 configuration.
+See our [sample project](https://github.com/no-stack-dub-sack/apexdoc2-sample-app) for more complex configuration examples of all three config file flavors.
 
 ## Documenting Class Files
 ApexDoc2 scans each class file, and looks for comment blocks with special tags (identified by `@` similar to JS and JavaDoc), to find the documentation to include for a given class, interface, enum, method, or property. The comment blocks must always begin with `/**`, end with `*/`, and can cover multiple lines (each subsequent line must begin with `*` or whitespace and then `*`). Here's an example of the most basic ApexDoc2 comment block:
@@ -110,6 +143,7 @@ In addition to the `@tag`s listed above, there are a few other special tokens to
 
 | Token | Description |
 |-------|-------------|
+| `{@link}` | Unlike the `@see` tag, this syntax can be used in the text of any other tag to create inline links throughout your documentation. It accepts the same kinds of links as the `@see` tag (URL, markdown URL, or fully qualified class or method name; see `@see` description above), e.g. `{@link MyClass.MyInnerClass.MyOverloadedMethod[3]}` or `{@link https://github.com/no-stack-dub-sack/apexdoc2-vscode}` |
 | \` \` | Backticks, \` \`, can be used to indicate inline code within your ApexDoc2 comments. E.g. \`String cool = 'cool!';\` &mdash; the expression within the backticks will be formatted as code. |
 | &lt;br&gt; | The &lt;br&gt; tag can be used to render line breaks in your comments when more complex formatting is needed. &lt;br /&gt; is also acceptable. |
 
@@ -154,8 +188,7 @@ These are the simplest comment blocks. They only support description tags (the t
 ## Known Issues
 ApexDox2 uses some modern HTML5 tags and JavaScript features, so unfortunately Internet Explorer is not supported. If IE supported the HTML5 tags we use (namely `<summary>` and `<details>` for easy, script-less collapsible menus and sections), I would have made an effort to keep the JS supportable by IE, but since IE doesn't support the basic building blocks of the documentation, it made no sense to hold back on the JavaScript, even though there's very little of it.
 
-## Release Notes
-Placeholder
+## History
+ApexDoc2 VSCode is a complete TypeScript re-write of the [original ApexDoc project](https://github.com/SalesforceFoundation/ApexDoc), written in Java. After spending a considerable amount of time [enhancing the Java project](https://github.com/no-stack-dub-sack/ApexDoc2/blob/master/CHANGELOG.md), originally intended for re-release as ApexDoc2 (a command line tool) I decided that given the current state of Apex/Salesforce development, abandoning that in favor of a VSCode extension made much more sense. That being said, TypeScript was the obvious choice. In addition to re-writing (and in many cases modifying, and hopefully improving!) all of the program's core logic, several major enhancements to the original have been made, including new features that take advantage of the VSCode eco-system.
 
-### 1.0.0
-Initial release of ...
+I hope you enjoy the new and improved ApexDoc2 VSCode!

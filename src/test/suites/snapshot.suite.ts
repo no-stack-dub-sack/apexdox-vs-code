@@ -1,14 +1,14 @@
 import * as assert from 'assert';
 import { basename } from 'path';
 import { isolateDiffs, isWhiteSpaceOnlyDiff } from '../utils';
-import { ITestFile } from '../extension.test';
+import { ITestFile } from '../..';
 
 /**
  * Create a snapshot test for each file: these tests compare the output documentation with a
  * reference string that we have on file. These reference files represent the expected output,
  *  and if a test fails, the diff needs to be assessed. Two possible outcomes are that code
  * needs to be corrected, or that a change made to code alters the expected output of the
- * documentation engine, in which case, the  snapsots need to be updated. Snapshots can be
+ * documentation engine, in which case, the  snapshots need to be updated. Snapshots can be
  * updated from the resulting test docs. See: ../../scripts/updateSnapshots.js.
  */
 export const createSnapshotSuite = (files: ITestFile[]) => {

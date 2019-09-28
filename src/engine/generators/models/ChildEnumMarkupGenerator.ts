@@ -1,15 +1,17 @@
 import ApexDoc from '../../ApexDoc';
 import GeneratorUtils from '../GeneratorUtils';
 import MarkupGenerator from './MarkupGenerator';
-import { ClassModel, EnumModel } from '../../../common/models';
+import { ClassModel, EnumModel, TopLevelModel } from '../../../common/models';
+
+// models not needed!
 
 class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
 
-    public constructor(model: EnumModel) {
-        super(model);
+    public constructor(model: EnumModel, models: Map<string, TopLevelModel>) {
+        super(model, models);
     }
 
-    public static generate(cModel: ClassModel): string {
+    public static generate(cModel: ClassModel, models: Map<string, TopLevelModel>): string {
         const enums = ApexDoc.config.sortOrder === ApexDoc.ORDER_ALPHA
             ? cModel.enumsSorted
             : cModel.enums;
@@ -18,19 +20,19 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
         const hasDescription = ChildEnumMarkupGenerator.hasDescriptionColumn(markup);
 
         for (let Enum of enums) {
-            const generator = new ChildEnumMarkupGenerator(Enum);
+            const generator = new ChildEnumMarkupGenerator(Enum, models);
             markup += generator.enumRow(cModel.topMostClassName, hasDescription);
         }
 
-        markup = `
-            <div class="subsectionContainer">
-                <table class="attrTable properties">
+        markup =
+            `<div class="subsection enums">
+                <h3 class="subsection-title enums">Enums</h2>
+                <table class="attributes-table enums">
                     ${markup}
                 </table>
-            </div>
-            <p/>`;
+            </div>`;
 
-        return GeneratorUtils.wrapWithDetail(markup, '<h2 class="subsectionTitle enums">Enums</h2>', 'subSection enums');
+        return markup;
     }
 
     protected static hasDescriptionColumn(headerRow: string): boolean {
@@ -39,9 +41,12 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
 
     protected static headerRow(enums: Array<EnumModel>): string {
         let descriptionCol = '';
-        enums.forEach(_enum => {
-            _enum.description && (descriptionCol = '<th>Description</th>');
-        });
+        for (let Enum of enums) {
+            if (Enum.description) {
+                descriptionCol = '<th>Description</th>';
+                break;
+            }
+        }
 
         return `
             <tr>
@@ -52,13 +57,17 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
             </tr>`;
     }
 
-    protected enumRow(memberClassName: string, hasDescriptionColumn: boolean): string {
+    protected enumRow(topmostTypeName: string, hasDescriptionColumn: boolean): string {
         return `
             <tr class="enum ${this.model.scope}">
-                <td class="attrName">${this.model.name}</td>
-                <td class="attrSignature">${this.signatureLine(this.model.nameLine, memberClassName, true)}</td>
-                <td class="enumValues">${this.model.values.join(',&nbsp;')}</td>
-                ${hasDescriptionColumn ? this.description('attrDescription', 'td') : ''}
+                <td class="attribute-name">${super.linkToSource(this.model.name, topmostTypeName)}</td>
+                <td>
+                    <div class="attribute-signature">
+                        ${GeneratorUtils.encodeText(this.model.nameLine)}
+                    </div>
+                </td>
+                <td class="enum-values">${this.model.values.join(',&nbsp;')}</td>
+                ${hasDescriptionColumn ? this.description('attribute-description', 'td') : ''}
             </tr>`;
     }
 }

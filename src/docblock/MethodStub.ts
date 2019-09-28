@@ -1,5 +1,5 @@
 import ApexDoc from '../engine/ApexDoc';
-import DocBlockStub, { IStubLine } from './DocBlockStub';
+import DocBlockStub from './DocBlockStub';
 import Utils from '../common/Utils';
 import {
     DESCRIPTION,
@@ -7,23 +7,14 @@ import {
     PARAM,
     RETURNS
     } from '../common/tags';
-import { IDocBlockConfig } from '../common/Settings';
+import {
+    IDocblockConfig,
+    IPairCount,
+    IParsedMethod,
+    IStubLine
+    } from '..';
 import { MethodModel } from '../common/models/MethodModel';
 import { TextEditor } from 'vscode';
-
-interface IParsedMethod {
-    name: string;
-    params: string[];
-    returnType: string;
-    throwsException: boolean;
-}
-
-interface IPairCount {
-    openCurlies: number;
-    closeCurlies: number;
-    openParens: number;
-    closeParens: number;
-}
 
 class MethodStub extends DocBlockStub {
 
@@ -216,7 +207,7 @@ class MethodStub extends DocBlockStub {
      * @param params The method's params
      * @param throwsEx Whether or not the method throws
      */
-    private getMaxLength(config: IDocBlockConfig, returnType: string, params: string[], throwsEx: boolean): number {
+    private getMaxLength(config: IDocblockConfig, returnType: string, params: string[], throwsEx: boolean): number {
         // establish lengths of tags and params
         const returnTag = returnType && returnType !== 'void' ? RETURNS.label.length : 0;
         const descriptionTag = config.omitDescriptionTag ? 0 : DESCRIPTION.label.length;

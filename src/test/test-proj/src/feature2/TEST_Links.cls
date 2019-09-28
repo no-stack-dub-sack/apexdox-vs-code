@@ -1,6 +1,8 @@
 /**
  * Test our see links: Markdown URL, regular URL, Class Link, Method Link, Method Link w/ Overload Selector.
- * Also test that overloads are correctly linked within their own class, method TOC entry : correct overloaded method
+ * Also test that overloads are correctly linked within their own class, method TOC entry : correct overloaded method.
+ * Test inline link syntax: {@link TEST_Links.getInt}, and another one: {@link TEST_Methods.method10},
+ * and markdown link: {@link [Markdown Link](http://code.google.com/p/apex-lang/)}, and regular link: {@link https://www.google.com }
  * @see [Markdown Link](http://code.google.com/p/apex-lang/)
  * @see https://www.google.com
  * @see TEST_ARRAYUTILS
@@ -14,8 +16,8 @@
  */
 public class TEST_Links {
     /**
-     * @see TEST_Test.getInt[1]
-     * @see TEST_Test.getInt[3]
+     * @see TEST_Links.getInt[1]
+     * @see TEST_Links.getInt[3]
      */
     public static Integer getInt() { return MY_INT; }
 

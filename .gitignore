@@ -8,3 +8,4 @@ src/test/test-proj/docs
 node_modules
 .vscode-test/
 *.vsix
+*.log
