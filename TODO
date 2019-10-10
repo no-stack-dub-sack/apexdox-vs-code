@@ -29,6 +29,7 @@ General:
     ✔ Fix "includes" code. Try including Test.cls - should only act as wildcard when wildcard char present @done(19-07-02 21:53)
     ✘ Completion item for {@link} @cancelled(19-09-27 17:39)
     ✔ Review badges, galleryBanner, Marketplace Presentation, etc. @done(19-09-27 19:51)
+    ☐ Remove this file from git tracking
     ☐ Add LICENSE file!! Research what license should be taking into account original ApexDoc
 
 Testing:
@@ -66,6 +67,8 @@ Documentation:
         ✘ Warnings? @cancelled(19-09-26 17:01)
         ✔ OG ApexDoc credits @done(19-09-27 18:01)
         ✔ Example Gifs @done(19-05-28 21:25)
+        ☐ Redo main demo gif
+        ☐ Docs TOC
         ☐ Final Review
     ✔ Example Project @done(19-09-27 19:27)
         ✔ Home Page @done(19-05-22 21:35)

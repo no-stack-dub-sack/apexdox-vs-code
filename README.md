@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/no-stack-dub-sack/apexdoc2-vscode/raw/master/images/logo.png"
+    <img src="https://github.com/no-stack-dub-sack/apexdoc2-vscode/raw/master/assets/logo.png"
          alt="ApexDoc2 Logo" style="max-width:100%;">
 </p>
 
@@ -7,16 +7,16 @@
 ApexDoc2 is A fast, reliable, and configurable documentation generator for Salesforce Apex .cls files, that works with both DX and non-DX projects. ApexDoc2 uses a JSDoc-like inline comment syntax. Simply tell ApexDoc2 where your class files are, and it will generate a set of static HTML pages that fully document each class/class file, including its properties, methods, enums, and annotations.
 
 ## Features
-- Run ApexDoc2 and immediately launch your docs using the extension's built-in static server.
-- Supports documenting .cls files across multiple source directories for DX projects.
-- Customizable project "Home page", "project splash" section, and Class Group pages.
-- Links class, interface, method, prop, and enum signatures to source code hosted on GitHub.
-- Customize the favicon, and/or use your own logo, and other static assets in your docs.
-- Produces clean, readable HTML output (complements of [pretty](https://github.com/jonschlinkert/pretty)).
-- Includes easy-to-use commands and completion items for contextually stubbing ApexDoc2 comment blocks.
-- Includes customized syntax highlighting to make your ApexDoc2 comment blocks stand out and easy to read.
-- Generated documentation is fully searchable, powered by [Lunr](https://lunrjs.com) (supports wildcard searches using the `*` character and searching by page title using `title:<search-term>` syntax).
-- Easily configurable using VSCode settings.json file or, for more safely checking configs into source control, using an .apexdoc2rc (JSON) or apexdoc2.yml (YAML) file, depending on you and your team's preference (see examples in the [sample app repo](https://github.com/no-stack-dub-sack/apexdoc2-sample-app)).
+- Run ApexDoc2 and immediately launch your docs using the extension's built-in static server
+- Supports documenting .cls files across multiple source directories for DX projects
+- Includes easy-to-use commands and completion items for contextually auto-stubbing ApexDoc2 comment blocks
+- Customizable project "Home page", "project splash" section, and Class Group pages
+- Links class, interface, method, prop, and enum signatures to source code hosted on GitHub
+- Customize the favicon, and/or use your own logo, and other static assets in your docs
+- Produces clean, readable HTML output (complements of [pretty](https://github.com/jonschlinkert/pretty))
+- Includes customized syntax highlighting to make your ApexDoc2 comment blocks stand out and easy to read
+- Generated documentation is fully searchable, powered by [Lunr](https://lunrjs.com) (supports wildcard searches using the `*` character and searching by page title using `title:<search-term>` syntax)
+- Easily configurable using VSCode settings.json file or, for more safely checking configs into source control, using an .apexdoc2rc (JSON) or apexdoc2.yml (YAML) file, depending on you and your team's preference (see examples in the [sample app repo](https://github.com/no-stack-dub-sack/apexdoc2-sample-app))
 
 <p align="center">
     <a target="_blank" rel="noopener noreferrer"
@@ -31,9 +31,16 @@ Check out our ApexDoc2 sample docs to get a feel for what ApexDoc2 documentation
 
 ## Commands
 You can launch the following commands via the command pallette (<kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>):
+
+### Create/Preview Docs
 - **ApexDoc2: Run**: Run ApexDoc2. Many aspects of how this command behaves can be configured using the settings below.
 - **ApexDoc2: Open Docs**: Launch a server on localhost and open the generated documentation.
-- **ApexDoc2: Stub Comment Block**: On the line above a method, class/interface, property, or enum, invoke this command to stub an ApexDoc2 comment based on the current context. This command can also be invoked by completion item: type `/**` and press <kbd>Tab</kbd> when prompted. The appearance / style of comment stubs can be configured using the settings below.
+
+### Auto-Stub Comment Blocks
+Auto-stubbing comment blocks allows you to quickly document your class files with minimal effort. The appearance/style of comment stubs can be configured using the settings described in the [next section](#comment-block-settings). Auto-stub commands can be invoked in two ways:
+
+- **ApexDoc2: Stub Comment Block**: Invoke this command on the line above a method, class/interface, property, or enum to stub an ApexDoc2 comment based on the current context.
+- **/\*\***: Same as `ApexDoc2: Stub Comment Block`, but as a Completion Item. Simply type `/**` and press <kbd>Tab</kbd> when prompted. See demos [here](#class-comments-includes-class-level-interfaces-and-enums) and [here](#method-comments).
 
 ## Favicon & Logo Customization
 To use your own favicon and logo (for the sidebar's 'Project Splash'), include files named `logo.png` and `favicon.png` in the `apexdoc2.engine.assets` array in `.vscode/settings.json`. This will overwrite the existing files. You can read more about this and other ApexDoc2 settings below.
