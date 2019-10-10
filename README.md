@@ -43,10 +43,10 @@ Auto-stubbing comment blocks allows you to quickly document your class files wit
 - **/\*\***: Same as `ApexDoc2: Stub Comment Block`, but as a Completion Item. Simply type `/**` and press <kbd>Tab</kbd> when prompted. See demos [here](#class-comments-includes-class-level-interfaces-and-enums) and [here](#method-comments).
 
 ## Favicon & Logo Customization
-To use your own favicon and logo (for the sidebar's 'Project Splash'), include files named `logo.png` and `favicon.png` in the `apexdoc2.engine.assets` array in `.vscode/settings.json`. This will overwrite the existing files. You can read more about this and other ApexDoc2 settings below.
+To use your own favicon and logo (for the sidebar's 'Project Splash'), include files named `logo.png` and `favicon.png` in the `apexdoc2.engine.assets` array in `.vscode/settings.json` (or in the corresponding array of either `.apexdoc2rc` or `apexdoc2.yml`). This will overwrite the existing files. You can read more about this and other ApexDoc2 settings in the next section.
 
 ## Extension Settings
-The extension's settings can be configured using .vscode/settings.json, which optimally takes advantage of built-in VSCode intellisense. Alternatively, if you would like to check your config into source control, and minimize the risk of sharing unwanted VSCode settings across users, you can also use an .apexdocrc (JSON) or apexdoc.yml (YAML) file. If multiple configuration files happen to be present, the order of precedence is as follows:
+The extension's settings can be configured using `.vscode/settings.json`, which optimally takes advantage of built-in VSCode intellisense. Alternatively, if you would like to check your config into source control, and minimize the risk of sharing unwanted VSCode settings across users, you can also use an `.apexdoc2rc` (JSON) or `apexdoc.yml` (YAML) file. If multiple configuration files happen to be present, the order of precedence is as follows:
 1. apexdoc2.yml
 2. .apexdoc2rc
 3. settings.json
@@ -54,7 +54,7 @@ The extension's settings can be configured using .vscode/settings.json, which op
 ### The ${workspaceFolder} variable
 For any setting that refers to a path on your file system, you can use the variable `${workspaceFolder}` to refer to the root folder of your project. If you have a multi-root setup, you can use `${workspaceFolder:directory-name}` to indicate the correct directory.
 
-To avoid confusion, **please note** that this **_is not_** a supported VS Code feature. VS Code does support this and other variables in other settings files, however, in this case, ApexDoc2-VSCode handles the necessary replacements in settings.json to make checking this config into source control and sharing across machines easier.
+To avoid confusion, **please note** that this **_is not_** a supported VS Code feature. VS Code does support this and other variables in other settings files, however, in this case, ApexDoc2-VSCode handles the necessary replacements in `settings.json`, `.apexdoc2rc` and in `apexdoc.yml` to make checking config into source control and sharing across machines easier.
 
 ### Documentation Engine Settings
 Use these settings to configure the ApexDoc2 documentation engine.
