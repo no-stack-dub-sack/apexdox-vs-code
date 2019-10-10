@@ -26,6 +26,25 @@ ApexDoc2 is A fast, reliable, and configurable documentation generator for Sales
     </a>
 </p>
 
+## Table of Contents
+- [ApexDoc2 Sample Documentation](#apexdoc2-sample-documentation)
+- [Commands](#commands)
+- [Favicon & Logo Customization](#favicon--logo-customization)
+- [Extension Settings](#extension-settings)
+    - [The ${workspaceFolder} Variable](#the-workspacefolder-variable)
+    - [Documentation Engine Settings](#documentation-engine-settings)
+    - [Comment Block Settings](#comment-block-settings)
+    - [Examples](#minimum-settings-example)
+- [Documenting Class Files](#documenting-class-files)
+    - [Documentation @ Tags](#documentation-tags)
+    - [Special Tokens](#special-tokens)
+    - [Class Comments](#class-comments-includes-class-level-interfaces-and-enums)
+    - [Method Comments](#method-comments)
+    - [Property and Inner Enum Comments](#property-and-inner-enum-comments)
+- [Tips](#tips)
+- [Known Issues](#known-issues)
+- [History](#history)
+
 ## ApexDoc2 Sample Documentation
 Check out our ApexDoc2 sample docs to get a feel for what ApexDoc2 documentation looks like: https://apexdoc2-sample-docs.surge.sh. The repository that these docs were created from lives [here](https://github.com/no-stack-dub-sack/apexdoc2-sample-app). If you'd like to easily test out different settings, install the extension and clone the repo; the settings are checked-in in the `.vscode/settings.json` file. Run `ApexDoc2: Run` from the command pallette, and `ApexDoc2: Open Docs` to generate new documentation and preview your changes locally.
 
@@ -51,7 +70,7 @@ The extension's settings can be configured using `.vscode/settings.json`, which 
 2. .apexdoc2rc
 3. settings.json
 
-### The ${workspaceFolder} variable
+### The ${workspaceFolder} Variable
 For any setting that refers to a path on your file system, you can use the variable `${workspaceFolder}` to refer to the root folder of your project. If you have a multi-root setup, you can use `${workspaceFolder:directory-name}` to indicate the correct directory.
 
 To avoid confusion, **please note** that this **_is not_** a supported VS Code feature. VS Code does support this and other variables in other settings files, however, in this case, ApexDoc2-VSCode handles the necessary replacements in `settings.json`, `.apexdoc2rc` and in `apexdoc.yml` to make checking config into source control and sharing across machines easier.
