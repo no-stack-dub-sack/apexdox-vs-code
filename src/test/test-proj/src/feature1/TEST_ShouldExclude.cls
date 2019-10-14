@@ -1,5 +1,5 @@
 /**
- * This class should be Excluded by the `apexdoc2.engine.excludes` setting
+ * This class should be Excluded by the `apexdox.engine.excludes` setting
  * @author P. Weinberg
  * @since 2019
  * @group Feature1

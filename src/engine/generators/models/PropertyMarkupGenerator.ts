@@ -1,4 +1,4 @@
-import ApexDoc from '../../ApexDoc';
+import ApexDox from '../../ApexDox';
 import GeneratorUtils from '../GeneratorUtils';
 import MarkupGenerator from './MarkupGenerator';
 import { ClassModel, PropertyModel, TopLevelModel } from '../../../common/models';
@@ -10,7 +10,7 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
     }
 
     public static generate(cModel: ClassModel, models: Map<string, TopLevelModel>): string {
-        const properties = ApexDoc.config.sortOrder === ApexDoc.ORDER_ALPHA
+        const properties = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA
             ? cModel.propertiesSorted
             : cModel.properties;
 

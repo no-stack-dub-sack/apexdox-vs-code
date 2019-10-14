@@ -42,11 +42,11 @@ export const createFilesAndAssetsSuite = (files: ITestFile[]) => {
             });
         });
 
-        test('Should copy user assets defined by "apexdoc2.engine.assets" setting', function() {
+        test('Should copy user assets defined by "apexdox.engine.assets" setting', function() {
             assert.equal(existsSync(resolve(targetDir, 'assets', 'info.md')), true, '"info.md" file not found in assets directory.');
         });
 
-        test('Should copy user "Pages" defined by "apexdoc2.engine.pages" setting', function() {
+        test('Should copy user "Pages" defined by "apexdox.engine.pages" setting', function() {
             assert.equal(existsSync(resolve(targetDir, 'Page.html')), true, '"Page.html" file not found in root directory.');
         });
     });

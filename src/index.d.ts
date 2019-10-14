@@ -2,7 +2,7 @@ import LineReader from './common/LineReader';
 import { StubType } from './docblock/DocBlockStub';
 import { TextLine } from 'vscode';
 
-declare namespace ApexDoc2 {
+declare namespace ApexDox {
 
     /** ============================================================
      *  Config / Settings Types
@@ -36,7 +36,7 @@ declare namespace ApexDoc2 {
         spacious: boolean;
     }
 
-    interface IApexDocRC {
+    interface IApexDoxRc {
         engine: IEngineConfig;
         docblock: IDocblockConfig;
     }
@@ -64,7 +64,7 @@ declare namespace ApexDoc2 {
         text: string;
     }
 
-    interface IApexDocMenus {
+    interface IApexDoxMenus {
         class: string;
         scope: string;
     }
@@ -94,7 +94,7 @@ declare namespace ApexDoc2 {
         closeParens: number;
     }
 
-    interface IApexDocTag {
+    interface IApexDoxTag {
         label: string;
         documentation: string;
         snippet: string;
@@ -119,4 +119,4 @@ declare namespace ApexDoc2 {
 
 }
 
-export = ApexDoc2;
+export = ApexDox;

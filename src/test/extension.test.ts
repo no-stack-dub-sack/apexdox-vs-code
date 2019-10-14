@@ -15,9 +15,9 @@ const testSuites : { [index: string] : (files: ITestFile[]) => void } = suites;
 const runSnapshotTests = true;
 const runEngineTests = true;
 
-const runApexDoc = () => {
+const runApexDox = () => {
     return new Promise(resolve => {
-        resolve(commands.executeCommand('apexDoc2.runApexDoc'));
+        resolve(commands.executeCommand('apexdox.run'));
     }).then(() => {
         const fileNames = readdirSync(targetDir);
         const files: ITestFile[] = except(fileNames, ['assets', 'Page.html']).map(fileName => {
@@ -34,9 +34,9 @@ const runApexDoc = () => {
 };
 
 const runTests = async () => {
-    const files = await runApexDoc();
+    const files = await runApexDox();
 
-    suite('ApexDoc2 Extension Tests', function () {
+    suite('ApexDox Extension Tests', function () {
 
         if (runEngineTests) {
             suite('Documentation Engine Tests', function() {

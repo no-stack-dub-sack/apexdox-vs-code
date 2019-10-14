@@ -4,7 +4,7 @@ import Validator from '../common/ValidatorEngine';
 import { commands, window } from 'vscode';
 import { IEngineConfig } from '..';
 
-const COMMAND = 'apexDoc2.serveDocs';
+const COMMAND = 'apexdox.serveDocs';
 
 export default function() {
     return commands.registerCommand(COMMAND, () => {

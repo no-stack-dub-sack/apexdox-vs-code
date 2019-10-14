@@ -1,9 +1,9 @@
 import { REPOSITORY } from '../extension';
 
-class ApexDocError extends Error {
+class ApexDoxError extends Error {
     public static INVALID_SCOPE = 'Please provide an array of valid scopes. Valid scopes include: global, public, protected, private, testMethod, and webService';
-    public static SCOPE_ENTRIES_MAX = `scope' parameter has too many entries. ${ApexDocError.INVALID_SCOPE}`;
-    public static SCOPE_ENTRIES_MIN = `'scope' parameter must have at least one entry. ${ApexDocError.INVALID_SCOPE}`;
+    public static SCOPE_ENTRIES_MAX = `scope' parameter has too many entries. ${ApexDoxError.INVALID_SCOPE}`;
+    public static SCOPE_ENTRIES_MIN = `'scope' parameter must have at least one entry. ${ApexDoxError.INVALID_SCOPE}`;
 
     public static INVALID_DIRECTORY = (arg: string, path: string) =>
         `Value for '${arg}' parameter: '${path}' is invalid. Please provide a valid directory.`
@@ -24,7 +24,7 @@ class ApexDocError extends Error {
     public static ONLY_STRINGS = (arg: string) => `'${arg}' parameter's array may only contain strings.`;
 
     public static SCOPE_ENTRY_INVALID = (entry: string) =>
-        `Entry for 'scope' parameter: '${entry}' is invalid. ${ApexDocError.INVALID_SCOPE}`
+        `Entry for 'scope' parameter: '${entry}' is invalid. ${ApexDoxError.INVALID_SCOPE}`
 
     public static INVALID_TYPE = (arg: string, type: string) =>
         `Value for '${arg}' parameter is incorrect type. Expected '${type}'`
@@ -45,4 +45,4 @@ class ApexDocError extends Error {
         `Failed to parse ${fileName}. Check for syntax errors. See the [documentation](${REPOSITORY}) for more information on ${fileName} config files.`
 }
 
-export default ApexDocError;
+export default ApexDoxError;

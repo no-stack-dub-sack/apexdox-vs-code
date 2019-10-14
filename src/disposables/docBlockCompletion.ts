@@ -16,15 +16,18 @@ import {
     } from 'vscode';
 import { IStubLine, Option } from '..';
 
-const COMMAND = 'apexdoc2.docBlockCompletion';
+// TODO: change docblock nomenclature to comment, e.g. apexdox.commentCompletion
+// this will make more sense and be more consistent overall. Will need to change
+// commands and settings names as well.
+const COMMAND = 'apexdox.docBlockCompletion';
 
 class ApexDocBlockCompletionItem extends CompletionItem {
     constructor(position: Position) {
         super('/** */', CompletionItemKind.Snippet);
-        this.detail = 'ApexDoc2 Comment';
+        this.detail = 'ApexDox Comment';
         this.insertText = '';
         this.command = {
-            title: 'ApexDoc2 Comment',
+            title: 'ApexDox Comment',
             command: COMMAND,
             arguments: [position]
         };

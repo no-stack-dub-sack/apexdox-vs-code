@@ -1,6 +1,6 @@
-import { IApexDocTag } from '..';
+import { IApexDoxTag } from '..';
 
-export const AUTHOR: IApexDocTag = {
+export const AUTHOR: IApexDoxTag = {
     label: '@author',
     snippet: `author \${1:}`,
     documentation:
@@ -11,7 +11,7 @@ export const AUTHOR: IApexDocTag = {
 \`\`\``
 };
 
-export const SINCE: IApexDocTag = {
+export const SINCE: IApexDoxTag = {
     label: '@since',
     snippet: `since \${1:}`,
     documentation:
@@ -22,7 +22,7 @@ export const SINCE: IApexDocTag = {
 \`\`\``
 };
 
-export const DEPRECATED: IApexDocTag = {
+export const DEPRECATED: IApexDoxTag = {
     label: '@deprecated',
     snippet: `deprecated \${1:}`,
     documentation:
@@ -33,7 +33,7 @@ export const DEPRECATED: IApexDocTag = {
 \`\`\``
 };
 
-export const DESCRIPTION: IApexDocTag = {
+export const DESCRIPTION: IApexDoxTag = {
     label: '@description',
     snippet: `description \${1:}`,
     documentation:
@@ -44,7 +44,7 @@ export const DESCRIPTION: IApexDocTag = {
 \`\`\``
 };
 
-export const EXAMPLE: IApexDocTag = {
+export const EXAMPLE: IApexDoxTag = {
     label: '@example',
     snippet: `example \${1:}`,
     documentation:
@@ -57,7 +57,7 @@ Starts on the line below the tag]
 \`\`\``
 };
 
-export const EXCEPTION: IApexDocTag = {
+export const EXCEPTION: IApexDoxTag = {
     label: '@exception',
     snippet: `exception \${1:}`,
     documentation:
@@ -68,7 +68,7 @@ export const EXCEPTION: IApexDocTag = {
 \`\`\``
 };
 
-export const GROUP: IApexDocTag = {
+export const GROUP: IApexDoxTag = {
     label: '@group ',  // needed to include space to not match group-content
     snippet: `group \${1:}`,
     documentation:
@@ -79,7 +79,7 @@ export const GROUP: IApexDocTag = {
 \`\`\``
 };
 
-export const GROUP_CONTENT: IApexDocTag = {
+export const GROUP_CONTENT: IApexDoxTag = {
     label: '@group-content',
     snippet: `group-content \${1:}`,
     documentation:
@@ -90,7 +90,7 @@ export const GROUP_CONTENT: IApexDocTag = {
 \`\`\``
 };
 
-export const PARAM: IApexDocTag = {
+export const PARAM: IApexDoxTag = {
     label: '@param',
     snippet: `param \${1:paramName} \${2:description}`,
     documentation:
@@ -101,7 +101,7 @@ export const PARAM: IApexDocTag = {
 \`\`\``
 };
 
-export const RETURNS: IApexDocTag = {
+export const RETURNS: IApexDoxTag = {
     label: '@returns',
     snippet: `returns \${1:}`,
     documentation:
@@ -112,7 +112,7 @@ export const RETURNS: IApexDocTag = {
 \`\`\``
 };
 
-export const SEE: IApexDocTag = {
+export const SEE: IApexDoxTag = {
     label: '@see',
     snippet: `see \${1:}`,
     documentation:

@@ -1,4 +1,4 @@
-import ApexDocError from './ApexDocError';
+import ApexDoxError from './ApexDoxError';
 import DocblockConfig from './models/DocblockConfig';
 import DocblockValidator from './ValidatorDocblock';
 import EngineConfig from './models/EngineConfig';
@@ -7,7 +7,7 @@ import LineReader from './LineReader';
 import { existsSync, readFileSync } from 'fs';
 import { EXTENSION } from '../extension';
 import {
-    IApexDocRC,
+    IApexDoxRc,
     IDocblockConfig,
     IEngineConfig,
     Option
@@ -27,50 +27,50 @@ class Settings {
     private static projectRoot = (<WorkspaceFolder[]>workspace.workspaceFolders)[0].uri.fsPath;
 
     /**
-     * Note that casting user provided configs as ApexDoc configs
+     * Note that casting user provided configs as ApexDox configs
      * can potentially result in run-time errors. The onus is on
      * the user to ensure the correct shape of their config files,
      * however, the app should fail loudly and gracefully if the
      * user provides an invalid config.
      */
-    private static getRcFile(): Option<IApexDocRC, void> {
-        const rcJsonPath = resolve(this.projectRoot, '.apexdoc2rc');
-        const rcYamlPath = resolve(this.projectRoot, 'apexdoc2.yaml');
-        const rcYmlPath = resolve(this.projectRoot, 'apexdoc2.yml');
+    private static getRcFile(): Option<IApexDoxRc, void> {
+        const rcJsonPath = resolve(this.projectRoot, '.apexdoxrc');
+        const rcYamlPath = resolve(this.projectRoot, 'apexdox.yaml');
+        const rcYmlPath = resolve(this.projectRoot, 'apexdox.yml');
         let fileName = '';
 
         try {
-            // apexdoc.yaml
+            // apexdox.yaml
             if (existsSync(rcYamlPath)) {
-                fileName = 'apexdoc2.yaml';
+                fileName = 'apexdox.yaml';
                 const rcConfig = yamlToJson(readFileSync(rcYamlPath, 'utf8'));
-                return <IApexDocRC>rcConfig;
+                return <IApexDoxRc>rcConfig;
             }
-            // apexdoc2.yml
+            // apexdox.yml
             else if (existsSync(rcYmlPath)) {
-                fileName = 'apexdoc2.yml';
+                fileName = 'apexdox.yml';
                 const rcConfig = yamlToJson(readFileSync(rcYmlPath, 'utf8'));
-                return <IApexDocRC>rcConfig;
+                return <IApexDoxRc>rcConfig;
             }
-            // .apexdoc2rc (json)
+            // .apexdoxrc (json)
             else if (existsSync(rcJsonPath)) {
-                fileName = '.apexdoc2rc';
+                fileName = '.apexdoxrc';
                 const rcString = new LineReader(rcJsonPath).toString();
-                return <IApexDocRC>JSON.parse(rcString);
+                return <IApexDoxRc>JSON.parse(rcString);
             }
         } catch (e) {
-            throw new ApexDocError(ApexDocError.CONFIG_PARSE_ERROR(fileName));
+            throw new ApexDoxError(ApexDoxError.CONFIG_PARSE_ERROR(fileName));
         }
     }
 
     /**
-     * Get user's ApexDoc2 config and set defaults where needed.
+     * Get user's ApexDox config and set defaults where needed.
      * Order of preference for config files is listed below. If more than one
-     * config file is present, this is the order that will be honored by ApexDoc2.
+     * config file is present, this is the order that will be honored by ApexDox.
      *
-     *  1. apexdoc2.yaml
-     *  2. apexdoc2.yml
-     *  3. .apexdoc2rc
+     *  1. apexdox.yaml
+     *  2. apexdox.yml
+     *  3. .apexdoxrc
      *  4. settings.json
      *
      * NOTE: since we're supporting .rc and yaml config files, we'll need to
@@ -88,7 +88,7 @@ class Settings {
                     ...rcConfig.engine || {}
                 };
             } else {
-                // if no .apexdoc2rc file found, get config from settings.json
+                // if no .apexdoxrc file found, get config from settings.json
                 config = <IEngineConfig>workspace.getConfiguration(EXTENSION).get('engine');
             }
             // pass result of either to directory defaulter and validate
@@ -110,13 +110,13 @@ class Settings {
             return <T>new DocblockValidator(config).validate();
         }
 
-        throw new ApexDocError('Feature type not supported!');
+        throw new ApexDoxError('Feature type not supported!');
     }
 
     /**
      * Source and Target Dir default settings are dynamic and determined at runtime. If user
      * omits these settings or provides invalid values, overwrite with default settings.
-     * @param config The `IEngineConfig` instance fetched from the user's settings.json or .apexdoc2rc file.
+     * @param config The `IEngineConfig` instance fetched from the user's settings.json or .apexdoxrc file.
      */
     private static setEngineDirectoryDefaults(config: IEngineConfig): IEngineConfig {
 

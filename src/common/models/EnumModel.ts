@@ -1,4 +1,4 @@
-import ApexDoc from '../../engine/ApexDoc';
+import ApexDox from '../../engine/ApexDox';
 import { ModelType, TopLevelModel } from './TopLevelModel';
 import { Option } from '../..';
 
@@ -18,8 +18,8 @@ class EnumModel extends TopLevelModel {
 
     public get name(): string {
         let nameLine = this.nameLine;
-        let i = nameLine.indexOf(ApexDoc.ENUM);
-        return nameLine.slice(i + ApexDoc.ENUM.length).trim();
+        let i = nameLine.indexOf(ApexDox.ENUM);
+        return nameLine.slice(i + ApexDox.ENUM.length).trim();
     }
 
     public get values(): string[] {

@@ -73,7 +73,7 @@ function initMenu() {
 
 	if (!hasState) {
 		// initialize menu state
-		console.log('ApexDoc2: initializing menu state');
+		console.log('ApexDox: initializing menu state');
 		items.forEach(item => state[item.id] = false);
 	} else {
 		// If already init, add any new class groups since last load.
@@ -106,13 +106,13 @@ function updateMenuModel(items, state) {
 		deletedKeys.forEach(key => {
 			delete state[key];
 		});
-		console.log('ApexDoc2: Stale menu keys found, deleting from session storage:');
+		console.log('ApexDox: Stale menu keys found, deleting from session storage:');
 		console.log(deletedKeys);
 	}
 
 	if (newKeys.length > 0) {
 		newKeys.forEach(item => state[item.id] = item.isOpen === '' && true);
-		console.log('ApexDoc2: New menu keys found, adding to session storage:');
+		console.log('ApexDox: New menu keys found, adding to session storage:');
 		console.log(newKeys.map(function(g) { return g.id }));
 	}
 }
@@ -123,7 +123,7 @@ function renderMenuFromState() {
 		for (let group in state) {
 			let item = document.getElementById(group);
 			if (state[group]) {
-				console.log('ApexDoc2: Opening ' + group + ' section');
+				console.log('ApexDox: Opening ' + group + ' section');
 				item.setAttribute('open', '');
 			}
 		}

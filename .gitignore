@@ -2,7 +2,7 @@
 out/
 dist/
 
-# ApexDoc2 docs created during testing
+# sample docs created during testing
 src/test/test-proj/docs
 
 node_modules

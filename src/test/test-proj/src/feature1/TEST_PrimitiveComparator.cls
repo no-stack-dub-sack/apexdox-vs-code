@@ -1,6 +1,6 @@
 /**
  * The apex-lang `PrimitiveComparator` class. The classes in this group have 
- * been randomly gathered from various resources simply to demonstrate ApexDoc2-VSCode's
+ * been randomly gathered from various resources simply to demonstrate ApexDox VS Code's
  * multi-source directory feature aimed at Salesforce-DX projects which may have a `main`
  * folder and multipke feature directories.
  * 

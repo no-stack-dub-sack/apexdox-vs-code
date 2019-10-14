@@ -8,7 +8,7 @@ import { last } from '../common/ArrayUtils';
 import { performance } from 'perf_hooks';
 import { window } from 'vscode';
 
-class ApexDoc {
+class ApexDox {
     // constants
     public static readonly SCOPES: string[] = ['global', 'public', 'private', 'protected', 'webservice', 'testmethod'];
 
@@ -43,9 +43,8 @@ class ApexDoc {
      * @param config The configuration collected from the users config,
      * supplemented with any defaults if user did not include them.
      */
-    public static runApexDoc(config: IEngineConfig): void {
+    public static run(config: IEngineConfig): void {
         try {
-            // time ApexDoc2
             const beginElapsed = performance.now();
 
             this.config = config;
@@ -78,7 +77,7 @@ class ApexDoc {
             // we are done!
             const endElapsed = performance.now();
             const elapsed = ((endElapsed - beginElapsed) / 1000).toFixed(2);
-            window.showInformationMessage(`ApexDoc2 complete! ${numProcessed} Apex files documented in ${elapsed}s.`);
+            window.showInformationMessage(`ApexDox VS Code complete! ${numProcessed} Apex files documented in ${elapsed}s.`);
         } catch (err) {
             throw err;
         }
@@ -108,7 +107,7 @@ class ApexDoc {
     }
 
     /**
-     * The main routine for parsing our Apex files. Here we collect ApexDoc comments, and create
+     * The main routine for parsing our Apex files. Here we collect ApexDox comments, and create
      * models of our top-level types (Classes and Enums) and their members (Enum values, Methods,
      * Properties, Inner Classes, etc.).
      *
@@ -134,7 +133,7 @@ class ApexDoc {
             }
 
             // ignore anything after // style comments. this allows hiding
-            // of tags from ApexDoc. However, don't ignore when line
+            // of tags from ApexDox. However, don't ignore when line
             // doesn't start with //, we want to preserve comments within
             // @example code examples
             let offset = line.indexOf('//');
@@ -294,4 +293,4 @@ class ApexDoc {
     }
 }
 
-export default ApexDoc;
+export default ApexDox;

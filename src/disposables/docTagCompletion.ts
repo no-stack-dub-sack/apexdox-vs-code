@@ -1,5 +1,5 @@
 import * as tags from '../common/tags';
-import { IApexDocTag, Option } from '..';
+import { IApexDoxTag, Option } from '..';
 import {
     CompletionItem,
     CompletionItemKind,
@@ -12,8 +12,8 @@ import {
     MarkdownString,
     } from 'vscode';
 
-class ApexDocTagCompletionItem extends CompletionItem {
-    constructor(tag: IApexDocTag) {
+class ApexDoxTagCompletionItem extends CompletionItem {
+    constructor(tag: IApexDoxTag) {
         let snippetString: Option<SnippetString>;
         let kind = CompletionItemKind.Text;
         let tagName = tag.label.slice(1);
@@ -25,13 +25,13 @@ class ApexDocTagCompletionItem extends CompletionItem {
 
         super(tagName, kind);
         this.label = tagName;
-        this.detail = `@${tagName} ApexDoc2 Tag`;
+        this.detail = `@${tagName} ApexDox Tag`;
         this.insertText = snippetString || tagName;
         this.documentation = new MarkdownString(tag.documentation);
     }
 }
 
-class ApexDocTagCompletionProvider implements CompletionItemProvider {
+class ApexDoxTagCompletionProvider implements CompletionItemProvider {
     public provideCompletionItems(
         document: TextDocument,
         position: Position
@@ -44,12 +44,12 @@ class ApexDocTagCompletionProvider implements CompletionItemProvider {
         }
 
         const tagCompletionItems = Object.values(tags)
-            .map(tag => new ApexDocTagCompletionItem(tag));
+            .map(tag => new ApexDoxTagCompletionItem(tag));
 
         return Promise.resolve(tagCompletionItems);
     }
 }
 
 export default function docTagCompletion(): Disposable {
-    return languages.registerCompletionItemProvider('apex', new ApexDocTagCompletionProvider(), '@');
+    return languages.registerCompletionItemProvider('apex', new ApexDoxTagCompletionProvider(), '@');
 }

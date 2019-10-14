@@ -9,7 +9,7 @@ abstract class Validator<T> {
     }
 
     /**
-     * Since we're allowing .rc and yaml config files, we need to carefully validate configs coming in.
+     * Since we're allowing rc and yaml config files, we need to carefully validate configs coming in.
      * This method will match each config key to an instance method which validates that key. For engine
      * configs, the 'port' setting is the exception which will be validated only at serveDocs runtime.
      * This will also take care of deleting any unexpected, rogue config keys.
@@ -19,7 +19,7 @@ abstract class Validator<T> {
             if (this.validFields.includes(field)) {
                 this[field] && this[field]();
             } else {
-                // @ts-ignore: delete rogue keys found in .rc/yaml config
+                // @ts-ignore: delete rogue keys found in rc/yaml config
                 delete this.config[field];
             }
         }

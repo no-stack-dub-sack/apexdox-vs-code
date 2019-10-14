@@ -4,7 +4,7 @@ import DocBlockStub, { StubType } from '../docblock/DocBlockStub';
 import MethodStub from '../docblock/MethodStub';
 import { commands, window } from 'vscode';
 
-const COMMAND = 'apexDoc2.insertDocBlock';
+const COMMAND = 'apexdox.insertDocBlock';
 
 export default function() {
     return commands.registerCommand(COMMAND, () => {

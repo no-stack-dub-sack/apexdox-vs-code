@@ -1,4 +1,4 @@
-import ApexDocError from './ApexDocError';
+import ApexDoxError from './ApexDoxError';
 import { Option } from '../index';
 import { readFileSync } from 'fs';
 
@@ -22,7 +22,7 @@ class LineReader {
             this.lines = readFileSync(filePath).toString('utf8').split(EOL);
             this.end = this.lines.length;
         } catch (e) {
-            throw new ApexDocError(e);
+            throw new ApexDoxError(e);
         }
     }
 

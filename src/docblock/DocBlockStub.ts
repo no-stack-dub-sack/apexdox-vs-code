@@ -1,4 +1,4 @@
-import ApexDoc from '../engine/ApexDoc';
+import ApexDox from '../engine/ApexDox';
 import Settings, { Feature } from '../common/Settings';
 import Utils from '../common/Utils';
 import { IDocblockConfig, IStubLine } from '..';
@@ -31,7 +31,7 @@ abstract class DocBlockStub {
     public constructor(editor: TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
 		// set this flag to true so MethodModel does not call
 		// functions in the constructor that we don't care about
-        ApexDoc.isStub = true;
+        ApexDox.isStub = true;
 
         this.editor = editor;
         this.line = stubLine.line;
@@ -155,7 +155,7 @@ abstract class DocBlockStub {
 
     /**
      * Determines the right-padding needed for a comment
-     * line if apexdoc2.stubs.alignItems is set to true.
+     * line if apexdox.stubs.alignItems is set to true.
      *
      * @param alignItems If false, do not calculate padding.
      * @param length Length of the element (tag + value if param).

@@ -1,5 +1,5 @@
 import * as Models from '../../common/models';
-import ApexDocError from '../../common/ApexDocError';
+import ApexDoxError from '../../common/ApexDoxError';
 import Utils from '../../common/Utils';
 import { IMethodMatch } from '../..';
 
@@ -69,7 +69,7 @@ class SeeLinkGenerator {
             const parts = qualifier.split('.').map(p => p.toLowerCase());
 
             if (!parts.length || parts.length > 3) {
-                throw new ApexDocError(`Qualifier '${qualifier}' is invalid. ${ApexDocError.INVALID_SEE_QUALIFIER}`);
+                throw new ApexDoxError(`Qualifier '${qualifier}' is invalid. ${ApexDoxError.INVALID_SEE_QUALIFIER}`);
             }
 
             let href = '';
@@ -106,7 +106,7 @@ class SeeLinkGenerator {
                     // 4.C) if after searching methods a match hasn't been found
                     // yet see if child class name matches the second qualifier.
                     if (!foundMatch) {
-                        // ApexDoc2 stores child class name as 'OuterClass.InnerClass'
+                        // ApexDox stores child class name as 'OuterClass.InnerClass'
                         // recreate that format below to try to make the match with
                         const maybeChildClassName = parts[0] + '.' + parts[1];
                         const childClass = childClasses.get(maybeChildClassName);

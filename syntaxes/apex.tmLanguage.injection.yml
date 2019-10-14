@@ -20,7 +20,7 @@ repository:
 
   apex-doc-tags:
     patterns:
-      # standard ApexDoc tags
+      # standard ApexDox tags
       - match: >-
           ((@)(author|deprecated|description|exception|group|group-content|returns|since))(?=\s+)
         captures:

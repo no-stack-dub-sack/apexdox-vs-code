@@ -8,10 +8,10 @@ import { window } from 'vscode';
 
 let server: Server;
 
-const closing = () => `ApexDoc2 server shutting down...`;
+const closing = () => `ApexDox VS Code server shutting down...`;
 const success = (title: string) => `${title} opened in default browser!`;
-const listening = (port: number) => `ApexDoc2 server listening on port ${port}`;
-const error = (dir: string) =>  `No index.html file to serve in directory: ${dir}. Did you run ApexDoc2 first?`;
+const listening = (port: number) => `ApexDox VS Code server listening on port ${port}`;
+const error = (dir: string) =>  `No index.html file to serve in directory: ${dir}. Did you run 'ApexDox: Run' first?`;
 
 export default async function createDocServer(targetDirectory: string, docsTitle: string, port: number) {
     const resolvedTarget = Utils.resolveWorkspaceFolder(targetDirectory);

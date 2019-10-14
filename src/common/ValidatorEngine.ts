@@ -1,5 +1,5 @@
-import ApexDoc from '../engine/ApexDoc';
-import ApexDocError from './ApexDocError';
+import ApexDox from '../engine/ApexDox';
+import ApexDoxError from './ApexDoxError';
 import EngineConfig from './models/EngineConfig';
 import Utils from './Utils';
 import Validator from './Validator';
@@ -51,7 +51,7 @@ class ValidatorEngine extends Validator<IEngineConfig> {
         if (path && path.length > 0) {
             this.config.targetDirectory = Utils.resolveWorkspaceFolder(path);
         } else {
-            throw new ApexDocError(ApexDocError.INVALID_TARGET_DIRECTORY(path));
+            throw new ApexDoxError(ApexDoxError.INVALID_TARGET_DIRECTORY(path));
         }
     }
 
@@ -64,10 +64,10 @@ class ValidatorEngine extends Validator<IEngineConfig> {
         let sortOrder = this.config.sortOrder;
         ValidatorEngine.typeGuard('string', sortOrder, 'sortOrder');
         sortOrder = sortOrder.toLowerCase();
-        if (sortOrder === ApexDoc.ORDER_LOGICAL || sortOrder === ApexDoc.ORDER_ALPHA) {
+        if (sortOrder === ApexDox.ORDER_LOGICAL || sortOrder === ApexDox.ORDER_ALPHA) {
             this.config.sortOrder = sortOrder;
         } else {
-            throw new ApexDocError(ApexDocError.INVALID_SORT_ORDER(sortOrder));
+            throw new ApexDoxError(ApexDoxError.INVALID_SORT_ORDER(sortOrder));
         }
     }
 
@@ -81,23 +81,23 @@ class ValidatorEngine extends Validator<IEngineConfig> {
         ValidatorEngine.typeGuard('array', scopes, 'scope');
 
         if (scopes.length > 6) {
-            throw new ApexDocError(ApexDocError.SCOPE_ENTRIES_MAX);
+            throw new ApexDoxError(ApexDoxError.SCOPE_ENTRIES_MAX);
         }
 
         if (scopes.length === 0) {
-            throw new ApexDocError(ApexDocError.SCOPE_ENTRIES_MIN);
+            throw new ApexDoxError(ApexDoxError.SCOPE_ENTRIES_MIN);
         }
 
         let registeredScopes = new Array<string>();
 
         scopes.forEach(scope => {
             if (typeof scope !== 'string') {
-                throw new ApexDocError(ApexDocError.ONLY_STRINGS('scope'));
+                throw new ApexDoxError(ApexDoxError.ONLY_STRINGS('scope'));
             }
 
             let foundScope = false;
             scope = scope.toLowerCase().trim();
-            ApexDoc.SCOPES.forEach(s => {
+            ApexDox.SCOPES.forEach(s => {
                 if (s.toLowerCase() === scope) {
                     registeredScopes.push(s.toLowerCase());
                     foundScope = true;
@@ -105,7 +105,7 @@ class ValidatorEngine extends Validator<IEngineConfig> {
             });
 
             if (!foundScope) {
-                throw new ApexDocError(ApexDocError.SCOPE_ENTRY_INVALID(scope));
+                throw new ApexDoxError(ApexDoxError.SCOPE_ENTRY_INVALID(scope));
             }
         });
 
@@ -125,7 +125,7 @@ class ValidatorEngine extends Validator<IEngineConfig> {
         this.typeGuard('number', port, 'port');
         // only allows integers between 0-65535 as port numbers
         if (!/^([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$/.test(String(port))) {
-            throw new ApexDocError(ApexDocError.INVALID_PORT(port));
+            throw new ApexDoxError(ApexDoxError.INVALID_PORT(port));
         }
 
         return port;
@@ -140,11 +140,11 @@ class ValidatorEngine extends Validator<IEngineConfig> {
         path = Utils.resolveWorkspaceFolder(path);
         if (path === '' || existsSync(path)) {
             if (path && extension && !path.endsWith(extension)) {
-                throw new ApexDocError(ApexDocError.INVALID_EXTENSION(arg, path, extension));
+                throw new ApexDoxError(ApexDoxError.INVALID_EXTENSION(arg, path, extension));
             }
             return path;
         } else {
-            throw new ApexDocError(ApexDocError.INVALID_DIRECTORY(arg, path));
+            throw new ApexDoxError(ApexDoxError.INVALID_DIRECTORY(arg, path));
         }
     }
 
@@ -157,7 +157,7 @@ class ValidatorEngine extends Validator<IEngineConfig> {
         if (Utils.isURL(str)) {
             return str.trim();
         } else {
-            throw new ApexDocError(ApexDocError.INVALID_SOURCE_URL(str));
+            throw new ApexDoxError(ApexDoxError.INVALID_SOURCE_URL(str));
         }
     }
 
@@ -165,7 +165,7 @@ class ValidatorEngine extends Validator<IEngineConfig> {
         this.typeGuard('array', arr, argName);
         arr.forEach(item => {
             if (typeof item !== 'string') {
-                throw new ApexDocError(ApexDocError.ONLY_STRINGS(argName));
+                throw new ApexDoxError(ApexDoxError.ONLY_STRINGS(argName));
             }
         });
 
@@ -176,7 +176,7 @@ class ValidatorEngine extends Validator<IEngineConfig> {
         if ((type === 'array' && Array.isArray(value)) || typeof value === type) {
             return true;
         } else {
-            throw new ApexDocError(ApexDocError.INVALID_TYPE(arg, type));
+            throw new ApexDoxError(ApexDoxError.INVALID_TYPE(arg, type));
         }
     }
     // #endregion

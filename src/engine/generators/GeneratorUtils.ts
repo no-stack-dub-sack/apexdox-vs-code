@@ -1,4 +1,4 @@
-import ApexDoc from '../ApexDoc';
+import ApexDox from '../ApexDox';
 import escape from 'lodash.escape';
 import { Option } from '../..';
 import { REPOSITORY } from '../../extension';
@@ -76,11 +76,11 @@ class GeneratorUtils {
         return `
             <div id="logo-container">
                 <div class="title">
-                    ${ApexDoc.config.title}
+                    ${ApexDox.config.title}
                 </div>
                 <img src="assets/logo.png" />
                 <div class="subtitle">
-                    ${ApexDoc.config.subtitle}
+                    ${ApexDox.config.subtitle}
                 </div>
             </div>`
         ;
@@ -89,7 +89,7 @@ class GeneratorUtils {
     public static get footer(): string {
         return `
             <a href="${REPOSITORY}" target="_blank" rel="noopener noreferrer">
-                Powered By ApexDoc2
+                Powered By ApexDox VS Code
             </a>`
         ;
     }
@@ -100,7 +100,7 @@ class GeneratorUtils {
                 Project Home
             </h2>
             <p>
-                Use the <code class="code-inline">apexdoc2.homePagePath</code> setting
+                Use the <code class="code-inline">apexdox.homePagePath</code> setting
                 to point to an HTML file that contains details about your project.
                 The body of the HTML will show up here instead of this default!
             </p>`

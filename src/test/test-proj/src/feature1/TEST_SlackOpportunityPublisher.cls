@@ -33,7 +33,7 @@ public with sharing class TEST_SlackOpportunityPublisher {
     }
 
     /**
-     * An inner enum added to demonstrate how ApexDoc2-VSCode handles inner
+     * An inner enum added to demonstrate how ApexDox VS Code handles inner
      * enums. They can only have description's, like properties. ApexDoc2
      * Should be able to handle to wonky way this enum is written in code.
      */
@@ -48,7 +48,7 @@ public with sharing class TEST_SlackOpportunityPublisher {
     }
 
     /**
-     * An inner enum added to demonstrate how ApexDoc2-VSCode handles inner
+     * An inner enum added to demonstrate how ApexDox VS Code handles inner
      * enums. They will be presented in a table and can only have
      * description's, like properties.
      */    
@@ -58,7 +58,7 @@ public with sharing class TEST_SlackOpportunityPublisher {
         FRIDAY, SATURDAY, SUNDAY }
 
     /**
-     * An inner enum added to demonstrate how ApexDoc2-VSCode handles inner
+     * An inner enum added to demonstrate how ApexDox VS Code handles inner
      * enums. They will be presented in a table and can only have
      * description's, like properties.
      */    
@@ -71,14 +71,14 @@ public with sharing class TEST_SlackOpportunityPublisher {
     }
 
     /**
-     * An inner enum added to demonstrate how ApexDoc2-VSCode handles inner
+     * An inner enum added to demonstrate how ApexDox VS Code handles inner
      * enums. They will be presented in a table and can only have
      * description's, like properties.
      */
     public enum Rgb { RED, GREEN, BLUE }
 
     /**
-     * A good example of how ApexDoc2-VSCode handles inner classes.
+     * A good example of how ApexDox VS Code handles inner classes.
      * Inner classes / interfaces support the same tags as their top-level
      * counterparts (i.e. top level type in a .cls file), but tags like 'author'
      * and 'since' are better left to the top-level class. Just for example's sake,
