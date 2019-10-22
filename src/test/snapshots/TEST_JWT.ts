@@ -24,7 +24,7 @@ export default `<!DOCTYPE html>
         </div>
         <img src="assets/logo.png" />
         <div class="subtitle">
-          Powered by <a target="_blank" rel="noopener noreferrer" href="https://github.com/no-stack-dub-sack/apexdox-vscode">ApexDox</a>
+          Powered by <a target="_blank" rel="noopener noreferrer" href="https://github.com/no-stack-dub-sack/apexdox-vs-code">ApexDox VS Code</a>
         </div>
       </div>
       <div id="search-wrapper">
@@ -493,9 +493,11 @@ export default `<!DOCTYPE html>
       <tr>
         <td class="footer">
 
-          <a href="https://github.com/no-stack-dub-sack/apexdox-vscode" target="_blank" rel="noopener noreferrer">
-            Powered By ApexDox VS Code
-          </a>
+          <div>
+            <a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">
+              Powered By ApexDox VS Code
+            </a>
+          </div>
         </td>
       </tr>
     </table>
