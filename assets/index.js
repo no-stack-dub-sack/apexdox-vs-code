@@ -4,10 +4,10 @@
 
 const
 	SCOPES = ['global', 'public', 'private', 'protected', 'testMethod', 'webService'],
-	MENU_STATE_KEY = 'APEX_DOC_2_MENU',
-	ACTIVE_EL_STATE_KEY = 'APEX_DOC_2_ACTIVE_EL',
-	SCOPE_STATE_KEY = 'APEX_DOC_2_SCOPE',
-	SEARCH_STATE_KEY = 'APEX_DOC_2_SEARCH_RESULTS';
+	MENU_STATE_KEY = 'APEXDOX_MENU',
+	ACTIVE_EL_STATE_KEY = 'APEXDOX_ACTIVE_EL',
+	SCOPE_STATE_KEY = 'APEXDOX_SCOPE',
+	SEARCH_STATE_KEY = 'APEXDOX_SEARCH_RESULTS';
 
 const highlightJsSelectors = [
 	'pre code',

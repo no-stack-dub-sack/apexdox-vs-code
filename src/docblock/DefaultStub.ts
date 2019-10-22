@@ -1,8 +1,8 @@
-import DocBlockStub from './DocBlockStub';
+import StubBase from './StubBase';
 import { IStubLine } from '..';
 import { TextEditor } from 'vscode';
 
-class DefaultStub extends DocBlockStub {
+class DefaultStub extends StubBase {
     public constructor(editor: TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
         super(editor, activeLine, stubLine, isCompletion);
     }

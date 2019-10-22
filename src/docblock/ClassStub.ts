@@ -1,9 +1,9 @@
-import DocBlockStub from './DocBlockStub';
+import StubBase from './StubBase';
 import { AUTHOR, DESCRIPTION, SINCE } from '../common/tags';
 import { IStubLine } from '..';
 import { TextEditor } from 'vscode';
 
-class ClassStub extends DocBlockStub {
+class ClassStub extends StubBase {
     public constructor(editor: TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
         super(editor, activeLine, stubLine, isCompletion);
     }

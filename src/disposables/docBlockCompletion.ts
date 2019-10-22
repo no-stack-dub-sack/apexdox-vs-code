@@ -1,6 +1,6 @@
 import ClassStub from '../docblock/ClassStub';
 import DefaultStub from '../docblock/DefaultStub';
-import DocBlockStub, { StubType } from '../docblock/DocBlockStub';
+import StubBase, { StubType } from '../docblock/StubBase';
 import MethodStub from '../docblock/MethodStub';
 import {
     commands,
@@ -21,7 +21,7 @@ import { IStubLine, Option } from '..';
 // commands and settings names as well.
 const COMMAND = 'apexdox.docBlockCompletion';
 
-class ApexDocBlockCompletionItem extends CompletionItem {
+class DocBlockCompletionItem extends CompletionItem {
     constructor(position: Position) {
         super('/** */', CompletionItemKind.Snippet);
         this.detail = 'ApexDox Comment';
@@ -34,7 +34,7 @@ class ApexDocBlockCompletionItem extends CompletionItem {
     }
 }
 
-class ApexDocBlockCompletionProvider implements CompletionItemProvider {
+class DocBlockCompletionProvider implements CompletionItemProvider {
     public provideCompletionItems(
         document: TextDocument,
         position: Position
@@ -46,7 +46,7 @@ class ApexDocBlockCompletionProvider implements CompletionItemProvider {
             return Promise.resolve(undefined);
         }
 
-        return Promise.resolve([new ApexDocBlockCompletionItem(position)]);
+        return Promise.resolve([new DocBlockCompletionItem(position)]);
     }
 }
 
@@ -56,9 +56,9 @@ export default function docBlockCompletion(): Disposable {
 
         if (editor) {
             const lineIdx = editor.selection.active.line;
-            const stubLine: IStubLine = DocBlockStub.getLineAndType(editor.document, lineIdx, true);
+            const stubLine: IStubLine = StubBase.getLineAndType(editor.document, lineIdx, true);
 
-            let stub: DocBlockStub;
+            let stub: StubBase;
             switch (stubLine.type) {
                 case StubType.METHOD:
                     stub = new MethodStub(editor, lineIdx, stubLine, true);
@@ -76,5 +76,5 @@ export default function docBlockCompletion(): Disposable {
         }
     });
 
-    return languages.registerCompletionItemProvider('apex', new ApexDocBlockCompletionProvider(), '*');
+    return languages.registerCompletionItemProvider('apex', new DocBlockCompletionProvider(), '*');
 }

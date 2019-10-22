@@ -1,5 +1,5 @@
 import ApexDox from '../engine/ApexDox';
-import DocBlockStub from './DocBlockStub';
+import StubBase from './StubBase';
 import Utils from '../common/Utils';
 import {
     DESCRIPTION,
@@ -16,7 +16,7 @@ import {
 import { MethodModel } from '../common/models/MethodModel';
 import { TextEditor } from 'vscode';
 
-class MethodStub extends DocBlockStub {
+class MethodStub extends StubBase {
 
     public constructor(editor: TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
         super(editor, activeLine, stubLine, isCompletion);

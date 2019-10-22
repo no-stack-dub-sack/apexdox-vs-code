@@ -30,7 +30,7 @@ General:
     ✘ Completion item for {@link} @cancelled(19-09-27 17:39)
     ✔ Review badges, galleryBanner, Marketplace Presentation, etc. @done(19-09-27 19:51)
     ☐ Remove this file from git tracking
-    ☐ Add LICENSE file!! Research what license should be taking into account original ApexDoc
+    ✔ Add LICENSE file!! Research what license should be taking into account original ApexDoc @done(19-10-22 16:41)
 
 Testing:
     ✔ Establish "Snapshot" tests to compare output docs to expected output reference files @done(19-05-28 21:25)
@@ -81,10 +81,10 @@ Documentation:
         ✔ Top-level Enum @done(19-06-01 12:19)
         ✔ Document Example Project in ApexDox README @done(19-06-01 12:20)
         ✔ Create README for Sample Project @done(19-09-27 19:27)
-        ☐ Change ApexDoc2 references to ApexDox
-        ☐ Re-deploy sample docs to: https://apexdox-sample-docs.surge.sh
-        ☐ Change name of sample app repo to: apexdox-sample-app
-        ☐ update relevant settings files with new names
+        ✔ Change ApexDoc2 references to ApexDox @done(19-10-22 16:41)
+        ✔ Re-deploy sample docs to: https://apexdox-sample-docs.surge.sh @done(19-10-22 16:41)
+        ✔ Change name of sample app repo to: apexdox-sample-app @done(19-10-22 16:41)
+        ✔ update relevant settings files with new names @done(19-10-22 16:41)
     ✔ Check [Extension Manifest](https://code.visualstudio.com/api/references/extension-manifest) for needed fields @done(19-05-23 20:56)
     ✔ Icon! @done(19-05-23 20:56)
     ☐ CHANGELOG

@@ -1,5 +1,5 @@
 import LineReader from './common/LineReader';
-import { StubType } from './docblock/DocBlockStub';
+import { StubType } from './docblock/StubBase';
 import { TextLine } from 'vscode';
 
 declare namespace ApexDox {

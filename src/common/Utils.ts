@@ -197,6 +197,10 @@ class Utils {
         return path;
     }
 
+    public static escapeRegExp(str: string): string {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
     // common guard utility for Validator classes
     public static boolGuard(bool: boolean, defaultValue: boolean): boolean {
         if (typeof bool !== 'boolean') {

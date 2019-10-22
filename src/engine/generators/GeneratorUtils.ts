@@ -88,9 +88,11 @@ class GeneratorUtils {
 
     public static get footer(): string {
         return `
-            <a href="${REPOSITORY}" target="_blank" rel="noopener noreferrer">
-                Powered By ApexDox VS Code
-            </a>`
+            <div>
+                <a href="${REPOSITORY}" target="_blank" rel="noopener noreferrer">
+                    Powered By ApexDox VS Code
+                </a>
+            </div>`
         ;
     }
 

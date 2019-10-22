@@ -16,7 +16,7 @@ export enum StubType {
     METHOD
 }
 
-abstract class DocBlockStub {
+abstract class StubBase {
     public contents: string = '';
     protected config: IDocblockConfig;
     protected editor: TextEditor;
@@ -170,7 +170,7 @@ abstract class DocBlockStub {
         return '';
     }
 
-    // #region DocBlockStub Templates
+    // #region StubBase Templates
     protected tagTemplate(tag: string, value: string, indent: string, tabIndex: number, placeholder = ''): string {
         return `${indent} * ${tag} ${value}\${${tabIndex}:${placeholder}}\n`;
     }
@@ -181,4 +181,4 @@ abstract class DocBlockStub {
     // #endregion
 }
 
-export default DocBlockStub;
+export default StubBase;

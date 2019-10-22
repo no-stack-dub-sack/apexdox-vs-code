@@ -1,5 +1,5 @@
 {
-	"name": "apexdox-vscode",
+	"name": "apexdox-vs-code",
 	"displayName": "ApexDox VS Code",
 	"version": "0.0.1",
 	"publisher": "WeinbergWorks",
@@ -25,13 +25,13 @@
 		"color": "#F0F8FF",
 		"theme": "dark"
 	},
-	"homepage": "https://github.com/no-stack-dub-sack/ApexDox-vscode/blob/master/README.md",
+	"homepage": "https://github.com/no-stack-dub-sack/apexdox-vs-code/blob/master/README.md",
 	"repository": {
-		"url": "https://github.com/no-stack-dub-sack/ApexDox-VSCode",
+		"url": "https://github.com/no-stack-dub-sack/apexdox-vs-code",
 		"type": "git"
 	},
 	"bugs": {
-		"url": "https://github.com/no-stack-dub-sack/ApexDox-VSCode/issues"
+		"url": "https://github.com/no-stack-dub-sack/apexdox-vs-code/issues"
 	},
 	"license": "SEE LICENSE IN LICENSE.txt",
 	"activationEvents": [
@@ -100,12 +100,12 @@
 				"apexdox.engine.includes": {
 					"type": "array",
 					"default": [],
-					"markdownDescription": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. `Contact*`, or `*Test.cls`) that indicates which files in your source directory should be documented. An empty array is treated as 'include all'. Read more about this setting [here](https://github.com/no-stack-dub-sack/apexdox-vscode#extension-settings)."
+					"markdownDescription": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. `Contact*`, or `*Test.cls`) that indicates which files in your source directory should be documented. An empty array is treated as 'include all'. Read more about this setting [here](https://github.com/no-stack-dub-sack/apexdox-vs-code#extension-settings)."
 				},
 				"apexdox.engine.excludes": {
 					"type": "array",
 					"default": [],
-					"markdownDescription": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. `Contact*`, or `*Test.cls`) that indicates which files in your source directory should NOT be documented. An empty array is treated as 'exclude none'. Read more about this setting [here](https://github.com/no-stack-dub-sack/apexdox-vscode#extension-settings)."
+					"markdownDescription": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. `Contact*`, or `*Test.cls`) that indicates which files in your source directory should NOT be documented. An empty array is treated as 'exclude none'. Read more about this setting [here](https://github.com/no-stack-dub-sack/apexdox-vs-code#extension-settings)."
 				},
 				"apexdox.engine.homePagePath": {
 					"type": "string",
@@ -124,8 +124,8 @@
 				},
 				"apexdox.engine.subtitle": {
 					"type": "string",
-					"default": "Powered by <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://github.com/no-stack-dub-sack/apexdox-vscode\">ApexDox</a>",
-					"markdownDescription": "The subtitle for the sidebar's banner / logo section. Defaults to 'Powered by ApexDox'."
+					"default": "Powered by <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://github.com/no-stack-dub-sack/apexdox-vs-code\">ApexDox VS Code</a>",
+					"markdownDescription": "The subtitle for the sidebar's banner / logo section. Defaults to 'Powered by ApexDox VS Code'."
 				},
 				"apexdox.engine.scope": {
 					"type": "array",
@@ -157,7 +157,7 @@
 				"apexdox.engine.assets": {
 					"type": "array",
 					"default": [],
-					"markdownDescription": "An array of absolute paths of files you would like to be included in the target directory's 'assets' folder. This is where ApexDox keeps JavaScript, CSS, and images. Read mode about this setting [here](https://github.com/no-stack-dub-sack/ApexDox-VSCode#extension-settings)."
+					"markdownDescription": "An array of absolute paths of files you would like to be included in the target directory's 'assets' folder. This is where ApexDox keeps JavaScript, CSS, and images. Read mode about this setting [here](https://github.com/no-stack-dub-sack/apexdox-vs-code#extension-settings)."
 				},
 				"apexdox.engine.cleanDir": {
 					"type": "boolean",

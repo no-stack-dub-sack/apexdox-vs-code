@@ -3,7 +3,7 @@ import { closeServer } from './engine/server';
 import { ExtensionContext } from 'vscode';
 
 export const EXTENSION = 'apexdox';
-export const REPOSITORY = 'https://github.com/no-stack-dub-sack/apexdox-vscode';
+export const REPOSITORY = 'https://github.com/no-stack-dub-sack/apexdox-vs-code';
 
 export function activate(context: ExtensionContext) {
 	disposables.forEach((cmd: ApexDoxCommand) => {

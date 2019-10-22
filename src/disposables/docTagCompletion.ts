@@ -12,7 +12,7 @@ import {
     MarkdownString,
     } from 'vscode';
 
-class ApexDoxTagCompletionItem extends CompletionItem {
+class DocTagCompletionItem extends CompletionItem {
     constructor(tag: IApexDoxTag) {
         let snippetString: Option<SnippetString>;
         let kind = CompletionItemKind.Text;
@@ -31,7 +31,7 @@ class ApexDoxTagCompletionItem extends CompletionItem {
     }
 }
 
-class ApexDoxTagCompletionProvider implements CompletionItemProvider {
+class DocTagCompletionProvider implements CompletionItemProvider {
     public provideCompletionItems(
         document: TextDocument,
         position: Position
@@ -44,12 +44,12 @@ class ApexDoxTagCompletionProvider implements CompletionItemProvider {
         }
 
         const tagCompletionItems = Object.values(tags)
-            .map(tag => new ApexDoxTagCompletionItem(tag));
+            .map(tag => new DocTagCompletionItem(tag));
 
         return Promise.resolve(tagCompletionItems);
     }
 }
 
 export default function docTagCompletion(): Disposable {
-    return languages.registerCompletionItemProvider('apex', new ApexDoxTagCompletionProvider(), '@');
+    return languages.registerCompletionItemProvider('apex', new DocTagCompletionProvider(), '@');
 }
