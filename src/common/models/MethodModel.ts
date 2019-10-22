@@ -77,11 +77,11 @@ class MethodModel extends ApexModel {
             const prevParam = params[i-1];
 
             let type = '', sliceStart = 0;
-            let reString = `[A-Za-z0-9_.<>,\\s]+?\\s+${param}`;
+            let reString = `[A-Za-z0-9_.<>,\\s]+?\\s+${Utils.escapeRegExp(param)}`;
 
             if (prevParam) {
                 sliceStart = 1;
-                reString = `${prevParam}\\s*,${reString}`;
+                reString = `${Utils.escapeRegExp(prevParam)}\\s*,${reString}`;
             }
 
             const re = new RegExp(reString, 'g');

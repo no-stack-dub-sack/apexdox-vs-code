@@ -1,6 +1,6 @@
 {
-	"name": "apexdoc2-vscode",
-	"displayName": "ApexDoc2 VS Code",
+	"name": "apexdox-vs-code",
+	"displayName": "ApexDox VS Code",
 	"version": "0.0.1",
 	"publisher": "WeinbergWorks",
 	"author": {
@@ -25,34 +25,34 @@
 		"color": "#F0F8FF",
 		"theme": "dark"
 	},
-	"homepage": "https://github.com/no-stack-dub-sack/apexdoc2-vscode/blob/master/README.md",
+	"homepage": "https://github.com/no-stack-dub-sack/apexdox-vs-code/blob/master/README.md",
 	"repository": {
-		"url": "https://github.com/no-stack-dub-sack/ApexDoc2-VSCode",
+		"url": "https://github.com/no-stack-dub-sack/apexdox-vs-code",
 		"type": "git"
 	},
 	"bugs": {
-		"url": "https://github.com/no-stack-dub-sack/ApexDoc2-VSCode/issues"
+		"url": "https://github.com/no-stack-dub-sack/apexdox-vs-code/issues"
 	},
 	"license": "SEE LICENSE IN LICENSE.txt",
 	"activationEvents": [
 		"onLanguage:apex",
-		"onCommand:apexDoc2.runApexDoc",
-		"onCommand:apexDoc2.serveDocs"
+		"onCommand:apexdox.run",
+		"onCommand:apexdox.serveDocs"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "apexDoc2.runApexDoc",
-				"title": "ApexDoc2: Run"
+				"command": "apexdox.run",
+				"title": "ApexDox: Run"
 			},
 			{
-				"command": "apexDoc2.serveDocs",
-				"title": "ApexDoc2: Open Docs"
+				"command": "apexdox.serveDocs",
+				"title": "ApexDox: Open Docs"
 			},
 			{
-				"command": "apexDoc2.insertDocBlock",
-				"title": "ApexDoc2: Stub Comment Block"
+				"command": "apexdox.insertDocBlock",
+				"title": "ApexDox: Stub Comment Block"
 			}
 		],
 		"languages": [
@@ -66,7 +66,7 @@
 			{
 				"id": "json",
 				"extensions": [
-					".apexdoc2rc"
+					".apexdoxrc"
 				]
 			}
 		],
@@ -81,53 +81,53 @@
 		],
 		"configuration": {
 			"type": "object",
-			"title": "ApexDoc2 VS Code Configuration",
+			"title": "ApexDox VS Code Configuration",
 			"properties": {
-				"apexdoc2.engine.source": {
+				"apexdox.engine.source": {
 					"type": "array",
 					"default": [
 						{
 							"path": ""
 						}
 					],
-					"markdownDescription": "An array of 'source' objects, with the following keys:\n- `path` (string): An absolute path to a directory containing .cls files you'd like to document.\n- `sourceUrl?` (string): Optional. A URL where the .cls source files are hosted, so ApexDoc2 can provide links to your code - confirmed to work with GitHub), e.g.: `https://github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes`.\n\nDefaults to: \n```\n[{\n  \"path\": \"${workspaceFolder}/src/classes\"\n  }]\n```\nfor non-DX projects, and \n```\n[{\n  \"path\": \"${workspaceFolder}/force-app/main/default/classes\"\n  }]\n```\nfor DX."
+					"markdownDescription": "An array of 'source' objects, with the following keys:\n- `path` (string): An absolute path to a directory containing .cls files you'd like to document.\n- `sourceUrl?` (string): Optional. A URL where the .cls source files are hosted, so ApexDox can provide links to your code - confirmed to work with GitHub), e.g.: `https://github.com/no-stack-dub-sack/MyFakeSFProject/tree/master/src/classes`.\n\nDefaults to: \n```\n[{\n  \"path\": \"${workspaceFolder}/src/classes\"\n  }]\n```\nfor non-DX projects, and \n```\n[{\n  \"path\": \"${workspaceFolder}/force-app/main/default/classes\"\n  }]\n```\nfor DX."
 				},
-				"apexdoc2.engine.targetDirectory": {
+				"apexdox.engine.targetDirectory": {
 					"type": "string",
 					"default": "${workspaceFolder}/apex-documentation/",
 					"description": "The target directory for the output documentation. The directory you specified will be created if it does not exist. Defaults to `${workspaceFolder}/apex-documentation`."
 				},
-				"apexdoc2.engine.includes": {
+				"apexdox.engine.includes": {
 					"type": "array",
 					"default": [],
-					"markdownDescription": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. `Contact*`, or `*Test.cls`) that indicates which files in your source directory should be documented. An empty array is treated as 'include all'. Read more about this setting [here](https://github.com/no-stack-dub-sack/apexdoc2-vscode#extension-settings)."
+					"markdownDescription": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. `Contact*`, or `*Test.cls`) that indicates which files in your source directory should be documented. An empty array is treated as 'include all'. Read more about this setting [here](https://github.com/no-stack-dub-sack/apexdox-vs-code#extension-settings)."
 				},
-				"apexdoc2.engine.excludes": {
+				"apexdox.engine.excludes": {
 					"type": "array",
 					"default": [],
-					"markdownDescription": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. `Contact*`, or `*Test.cls`) that indicates which files in your source directory should NOT be documented. An empty array is treated as 'exclude none'. Read more about this setting [here](https://github.com/no-stack-dub-sack/apexdoc2-vscode#extension-settings)."
+					"markdownDescription": "A case-sensitive array of file names and/or simple wildcard patterns (e.g. `Contact*`, or `*Test.cls`) that indicates which files in your source directory should NOT be documented. An empty array is treated as 'exclude none'. Read more about this setting [here](https://github.com/no-stack-dub-sack/apexdox-vs-code#extension-settings)."
 				},
-				"apexdoc2.engine.homePagePath": {
+				"apexdox.engine.homePagePath": {
 					"type": "string",
 					"default": "",
 					"markdownDescription": "An absolute path of an HTML file that contains the project's 'home page' markup. Only the markup inside the `<body>` tags will be used, or if the file contains only a partial HTML page, e.g. `<h2>Cool!</h2>`, the entire contents will be used."
 				},
-				"apexdoc2.engine.bannerPagePath": {
+				"apexdox.engine.bannerPagePath": {
 					"type": "string",
 					"default": "",
 					"markdownDescription": "An absolute path of an HTML file that contains the project's 'banner' markup. Only the markup inside the `<body>` tags will be used, or if the file contains only a partial HTML page, e.g. `<h2>Cool!</h2>`, the entire contents will be used."
 				},
-				"apexdoc2.engine.title": {
+				"apexdox.engine.title": {
 					"type": "string",
 					"default": "Apex Documentation",
 					"markdownDescription": "The value for the output HTML's `<title>` attribute, as well as the header text for the sidebar's banner / logo section. Defaults to 'Apex Documentation'."
 				},
-				"apexdoc2.engine.subtitle": {
+				"apexdox.engine.subtitle": {
 					"type": "string",
-					"default": "Powered by <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://github.com/no-stack-dub-sack/apexdoc2-vscode\">ApexDoc2</a>",
-					"markdownDescription": "The subtitle for the sidebar's banner / logo section. Defaults to 'Powered by ApexDoc2'."
+					"default": "Powered by <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://github.com/no-stack-dub-sack/apexdox-vs-code\">ApexDox VS Code</a>",
+					"markdownDescription": "The subtitle for the sidebar's banner / logo section. Defaults to 'Powered by ApexDox VS Code'."
 				},
-				"apexdoc2.engine.scope": {
+				"apexdox.engine.scope": {
 					"type": "array",
 					"default": [
 						"global",
@@ -139,50 +139,50 @@
 					],
 					"description": "An array of scopes to document. Default includes all scopes: 'global', 'public', 'protected', 'private', 'testMethod', 'webService'."
 				},
-				"apexdoc2.engine.showTOCSnippets": {
+				"apexdox.engine.showTOCSnippets": {
 					"type": "boolean",
 					"default": true,
-					"markdownDescription": "If set to `false`, ApexDoc2 will hide methods' description snippet in the class's table of contents. Defaults to `true`."
+					"markdownDescription": "If set to `false`, ApexDox will hide methods' description snippet in the class's table of contents. Defaults to `true`."
 				},
-				"apexdoc2.engine.sortOrder": {
+				"apexdox.engine.sortOrder": {
 					"type": "string",
 					"default": "alpha",
 					"description": "The order in which class methods, properties, and inner classes are presented to the user in your documentation. Either 'logical', the order they appear in the source file, or 'alpha', alphabetically. Defaults to 'alpha'."
 				},
-				"apexdoc2.engine.port": {
+				"apexdox.engine.port": {
 					"type": "number",
 					"default": 8080,
-					"markdownDescription": "The port number that the `ApexDoc2: Open Docs` command will serve your docs on. Defaults to `8080`."
+					"markdownDescription": "The port number that the `ApexDox: Open Docs` command will serve your docs on. Defaults to `8080`."
 				},
-				"apexdoc2.engine.assets": {
+				"apexdox.engine.assets": {
 					"type": "array",
 					"default": [],
-					"markdownDescription": "An array of absolute paths of files you would like to be included in the target directory's 'assets' folder. This is where ApexDoc2 keeps JavaScript, CSS, and images. Read mode about this setting [here](https://github.com/no-stack-dub-sack/ApexDoc2-VSCode#extension-settings)."
+					"markdownDescription": "An array of absolute paths of files you would like to be included in the target directory's 'assets' folder. This is where ApexDox keeps JavaScript, CSS, and images. Read mode about this setting [here](https://github.com/no-stack-dub-sack/apexdox-vs-code#extension-settings)."
 				},
-				"apexdoc2.engine.cleanDir": {
+				"apexdox.engine.cleanDir": {
 					"type": "boolean",
 					"default": false,
-					"markdownDescription": "If set to `true`, ApexDoc2 will use rimraf to remove any files or folders in your target directory before creating your docs. Useful for keeping a continuously growing project's documentation folder clean. Defaults to `false`."
+					"markdownDescription": "If set to `true`, ApexDox will use rimraf to remove any files or folders in your target directory before creating your docs. Useful for keeping a continuously growing project's documentation folder clean. Defaults to `false`."
 				},
-				"apexdoc2.engine.pages": {
+				"apexdox.engine.pages": {
 					"type": "array",
 					"default": [],
-					"markdownDescription": "An array of absolute paths of non-ApexDoc2 generated HTML files that you'd like to be available to your documentation. These files will be placed in your target directory alongside generated HTML files. For example, if you'd like to link to a page from your project's home page or from one of it's class group pages, include that page here. If your file's name is `MyCoolPage.html`, you can then link to it with `href=\"./MyCoolPage.html\"`."
+					"markdownDescription": "An array of absolute paths of non-ApexDox generated HTML files that you'd like to be available to your documentation. These files will be placed in your target directory alongside generated HTML files. For example, if you'd like to link to a page from your project's home page or from one of it's class group pages, include that page here. If your file's name is `MyCoolPage.html`, you can then link to it with `href=\"./MyCoolPage.html\"`."
 				},
-				"apexdoc2.docblock.alignItems": {
+				"apexdox.docblock.alignItems": {
 					"type": "boolean",
 					"default": false,
-					"markdownDescription": "Vertically align anything after an ApexDoc2 @tag. E.g.:\n```\n/**\n * @description         Some description\n * @param myParam       Param description\n * @param anotherParam  Another param description\n */\n```\nDefaults to `false`."
+					"markdownDescription": "Vertically align anything after an ApexDox @tag. E.g.:\n```\n/**\n * @description         Some description\n * @param myParam       Param description\n * @param anotherParam  Another param description\n */\n```\nDefaults to `false`."
 				},
-				"apexdoc2.docblock.omitDescriptionTag": {
+				"apexdox.docblock.omitDescriptionTag": {
 					"type": "boolean",
 					"default": true,
-					"markdownDescription": "ApexDoc2 `@description` tags are optional. Set this to `false` to include them. Defaults to `true`."
+					"markdownDescription": "ApexDox `@description` tags are optional. Set this to `false` to include them. Defaults to `true`."
 				},
-				"apexdoc2.docblock.spacious": {
+				"apexdox.docblock.spacious": {
 					"type": "boolean",
 					"default": false,
-					"markdownDescription": "When set to `true` ApexDoc2 comment block stubs will add an empty line after the description line and before the next tag. Defaults to `false`."
+					"markdownDescription": "When set to `true` ApexDox comment block stubs will add an empty line after the description line and before the next tag. Defaults to `false`."
 				}
 			}
 		}

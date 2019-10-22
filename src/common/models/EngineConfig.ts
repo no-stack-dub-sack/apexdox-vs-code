@@ -16,7 +16,7 @@ class EngineConfig implements IEngineConfig {
         'webService'
     ];
 	public title = 'Apex Documentation';
-	public subtitle = `Powered by <a target="_blank" rel="noopener noreferrer" href="${REPOSITORY}">ApexDoc2</a>'`;
+	public subtitle = `Powered by <a target="_blank" rel="noopener noreferrer" href="${REPOSITORY}">ApexDox VS Code</a>'`;
 	public showTOCSnippets = true;
 	public sortOrder = 'alpha';
     public cleanDir = false;

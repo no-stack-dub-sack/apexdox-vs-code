@@ -1,5 +1,5 @@
-import ApexDoc from '../engine/ApexDoc';
-import DocBlockStub from './DocBlockStub';
+import ApexDox from '../engine/ApexDox';
+import StubBase from './StubBase';
 import Utils from '../common/Utils';
 import {
     DESCRIPTION,
@@ -16,7 +16,7 @@ import {
 import { MethodModel } from '../common/models/MethodModel';
 import { TextEditor } from 'vscode';
 
-class MethodStub extends DocBlockStub {
+class MethodStub extends StubBase {
 
     public constructor(editor: TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
         super(editor, activeLine, stubLine, isCompletion);
@@ -175,7 +175,7 @@ class MethodStub extends DocBlockStub {
         let returnType = '';
         // if prev word is access modifier on first run
         // we are dealing with a constructor. Treat as void.
-        if (ApexDoc.SCOPES.includes(prevWord)) {
+        if (ApexDox.SCOPES.includes(prevWord)) {
             return 'void';
         }
         // handle both simple return types like `Integer` or `List<String>`
@@ -200,9 +200,9 @@ class MethodStub extends DocBlockStub {
 
     /**
      * Takes the length of all tags and prams and determines the longest, to assist in
-     * determining right-padding if user has apexdoc2.stubs.alignItems set to true.
+     * determining right-padding if user has apexdox.stubs.alignItems set to true.
      *
-     * @param config The user's ApexDoc2 Stubs config object
+     * @param config The user's ApexDox Stubs config object
      * @param returnType The method's return type
      * @param params The method's params
      * @param throwsEx Whether or not the method throws

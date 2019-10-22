@@ -404,10 +404,9 @@ details summary::-webkit-details-marker {
     padding-right: 10px;
 }
 
-.footer a {
+.footer div {
+    border-top: 1px solid black;
     padding-bottom: 10px;
-    display: block;
-    border-top: 1px solid;
     padding-top: 10px;
 }
 

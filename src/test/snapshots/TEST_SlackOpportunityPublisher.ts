@@ -24,7 +24,7 @@ export default `<!DOCTYPE html>
         </div>
         <img src="assets/logo.png" />
         <div class="subtitle">
-          Powered by <a target="_blank" rel="noopener noreferrer" href="https://github.com/no-stack-dub-sack/apexdoc2-vscode">ApexDoc2</a>
+          Powered by <a target="_blank" rel="noopener noreferrer" href="https://github.com/no-stack-dub-sack/apexdox-vs-code">ApexDox VS Code</a>
         </div>
       </div>
       <div id="search-wrapper">
@@ -243,7 +243,7 @@ export default `<!DOCTYPE html>
                     <td class="enum-values">MONDAY,&nbsp;TUESDAY,&nbsp;WEDNESDAY,&nbsp;THURSDAY,&nbsp;FRIDAY,&nbsp;SATURDAY,&nbsp;SUNDAY</td>
 
                     <td class="attribute-description">
-                      An inner enum added to demonstrate how ApexDoc2-VSCode handles inner enums. They will be presented in a table and can only have description&#39;s, like properties.
+                      An inner enum added to demonstrate how ApexDox VS Code handles inner enums. They will be presented in a table and can only have description&#39;s, like properties.
                     </td>
                   </tr>
                   <tr class="enum public">
@@ -259,7 +259,7 @@ export default `<!DOCTYPE html>
                     <td class="enum-values">JANUARY,&nbsp;FEBRUARY,&nbsp;MARCH,&nbsp;APRIL,&nbsp;MAY,&nbsp;JUNE,&nbsp;JULY,&nbsp;AUGUST,&nbsp;SEPTEMBER,&nbsp;OCTOBER,&nbsp;NOVEMBER,&nbsp;DECEMBER</td>
 
                     <td class="attribute-description">
-                      An inner enum added to demonstrate how ApexDoc2-VSCode handles inner enums. They can only have description&#39;s, like properties. ApexDoc2 Should be able to handle to wonky way this enum is written in code.
+                      An inner enum added to demonstrate how ApexDox VS Code handles inner enums. They can only have description&#39;s, like properties. ApexDoc2 Should be able to handle to wonky way this enum is written in code.
                     </td>
                   </tr>
                   <tr class="enum public">
@@ -275,7 +275,7 @@ export default `<!DOCTYPE html>
                     <td class="enum-values">ONE,&nbsp;TWO,&nbsp;THREE,&nbsp;FOUR,&nbsp;FIVE</td>
 
                     <td class="attribute-description">
-                      An inner enum added to demonstrate how ApexDoc2-VSCode handles inner enums. They will be presented in a table and can only have description&#39;s, like properties.
+                      An inner enum added to demonstrate how ApexDox VS Code handles inner enums. They will be presented in a table and can only have description&#39;s, like properties.
                     </td>
                   </tr>
                   <tr class="enum public">
@@ -291,7 +291,7 @@ export default `<!DOCTYPE html>
                     <td class="enum-values">RED,&nbsp;GREEN,&nbsp;BLUE</td>
 
                     <td class="attribute-description">
-                      An inner enum added to demonstrate how ApexDoc2-VSCode handles inner enums. They will be presented in a table and can only have description&#39;s, like properties.
+                      An inner enum added to demonstrate how ApexDox VS Code handles inner enums. They will be presented in a table and can only have description&#39;s, like properties.
                     </td>
                   </tr>
                 </table>
@@ -349,7 +349,7 @@ export default `<!DOCTYPE html>
             <div class="class-container">
 
               <div class="class-description">
-                A good example of how ApexDoc2-VSCode handles inner classes. Inner classes / interfaces support the same tags as their top-level counterparts (i.e. top level type in a .cls file), but tags like &#39;author&#39; and &#39;since&#39; are better left to the top-level class. Just for example&#39;s sake, including an example tag here as well.
+                A good example of how ApexDox VS Code handles inner classes. Inner classes / interfaces support the same tags as their top-level counterparts (i.e. top level type in a .cls file), but tags like &#39;author&#39; and &#39;since&#39; are better left to the top-level class. Just for example&#39;s sake, including an example tag here as well.
               </div>
               <div class="class-subtitle">
                 Signature
@@ -506,10 +506,11 @@ export default `<!DOCTYPE html>
       <tr>
         <td class="footer">
 
-          <hr />
-          <a href="https://github.com/no-stack-dub-sack/apexdoc2-vscode" target="_blank" rel="noopener noreferrer">
-            Powered By ApexDoc2
-          </a>
+          <div>
+            <a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">
+              Powered By ApexDox VS Code
+            </a>
+          </div>
         </td>
       </tr>
     </table>

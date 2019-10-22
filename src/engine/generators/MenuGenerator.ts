@@ -1,12 +1,12 @@
 import * as Models from '../../common/models';
-import ApexDoc from '../ApexDoc';
+import ApexDox from '../ApexDox';
 import GeneratorUtils from './GeneratorUtils';
 
 class MenuGenerator {
 
     public static makeScopeMenu(): string {
         // add checkboxes for registered scopes
-        const checkBoxes = ApexDoc.config.scope.map(scope =>
+        const checkBoxes = ApexDox.config.scope.map(scope =>
             `<input
                 type="checkbox" checked="true" id="cbx-${scope}"
                 onclick="toggleScope('${scope}', this.checked);" />

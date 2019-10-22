@@ -1,4 +1,4 @@
-import ApexDoc from '../../ApexDoc';
+import ApexDox from '../../ApexDox';
 import GeneratorUtils from '../GeneratorUtils';
 import MarkupGenerator from './MarkupGenerator';
 import { ClassModel, MethodModel, TopLevelModel } from '../../../common/models';
@@ -12,7 +12,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
 
     public static generate(cModel: ClassModel, models: Map<string, TopLevelModel>): string {
         // retrieve methods to work with in the order user specifies
-        const allMethods = ApexDoc.config.sortOrder === ApexDoc.ORDER_ALPHA
+        const allMethods = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA
             ? cModel.methodsSorted
             : cModel.methods;
 
@@ -57,7 +57,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
             const methodId = generator.generateMethodId(idCountMap, cModel);
 
             // make our TOC entry, we'll concat this with the rest of the markup in the proper order later
-            tocMarkup += generator.getTOCEntry(ApexDoc.config.showTOCSnippets, methodId);
+            tocMarkup += generator.getTOCEntry(ApexDox.config.showTOCSnippets, methodId);
 
             // run our generators in the desired order
             let methodMarkup = '';

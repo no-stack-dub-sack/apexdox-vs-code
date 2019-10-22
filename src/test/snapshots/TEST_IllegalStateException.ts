@@ -24,7 +24,7 @@ export default `<!DOCTYPE html>
         </div>
         <img src="assets/logo.png" />
         <div class="subtitle">
-          Powered by <a target="_blank" rel="noopener noreferrer" href="https://github.com/no-stack-dub-sack/apexdoc2-vscode">ApexDoc2</a>
+          Powered by <a target="_blank" rel="noopener noreferrer" href="https://github.com/no-stack-dub-sack/apexdox-vs-code">ApexDox VS Code</a>
         </div>
       </div>
       <div id="search-wrapper">
@@ -176,7 +176,7 @@ export default `<!DOCTYPE html>
             <div class="class-container">
 
               <div class="class-description">
-                The apex-lang <code class="code-inline">IllegalStateException</code> class. The classes in this group have been randomly gathered from various resources simply to demonstrate ApexDoc2-VSCode&#39;s multi-source directory feature aimed at Salesforce-DX projects which may have a <code class="code-inline">main</code> folder and multipke feature directories. <br><br> This code is part of the &#39;apex-lang&#39; open source project avaiable at: http://code.google.com/p/apex-lang/. This code is licensed under the Apache License, Version 2.0. You may obtain a copy of the License at: http://www.apache.org/licenses/LICENSE-2.0.
+                The apex-lang <code class="code-inline">IllegalStateException</code> class. The classes in this group have been randomly gathered from various resources simply to demonstrate ApexDox VS Code&#39;s multi-source directory feature aimed at Salesforce-DX projects which may have a <code class="code-inline">main</code> folder and multipke feature directories. <br><br> This code is part of the &#39;apex-lang&#39; open source project avaiable at: http://code.google.com/p/apex-lang/. This code is licensed under the Apache License, Version 2.0. You may obtain a copy of the License at: http://www.apache.org/licenses/LICENSE-2.0.
               </div>
               <div class="class-subtitle">
                 Signature
@@ -199,10 +199,11 @@ export default `<!DOCTYPE html>
       <tr>
         <td class="footer">
 
-          <hr />
-          <a href="https://github.com/no-stack-dub-sack/apexdoc2-vscode" target="_blank" rel="noopener noreferrer">
-            Powered By ApexDoc2
-          </a>
+          <div>
+            <a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">
+              Powered By ApexDox VS Code
+            </a>
+          </div>
         </td>
       </tr>
     </table>

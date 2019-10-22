@@ -1,5 +1,5 @@
 import * as tags from '../tags';
-import ApexDoc from '../../engine/ApexDoc';
+import ApexDox from '../../engine/ApexDox';
 import Utils from '../Utils';
 import { existsSync } from 'fs';
 import { resolve } from 'path';
@@ -62,7 +62,7 @@ abstract class ApexModel {
      * 'See' are only available to MethodModel and TopLevelModel, however it aids us in reducing repetitive
      * code in their respective markup generators to expose these getters here. This way, we can write the
      * markup generation code for these attributes only once on the base MarkupGenerator class, rather than
-     * repeating the same of very similar code on both MethodMarkupGenerator and TopLevelMarkupGenerator.
+     * repeating the same or very similar code on both MethodMarkupGenerator and TopLevelMarkupGenerator.
      * ===================================================================================================
      */
     public get example(): string {
@@ -80,7 +80,7 @@ abstract class ApexModel {
     }
 
     /**
-     * Based very closely on: https://gitlab.com/StevenWCox/sfapexdoc/blob/master/src/apex/com/main/Model.java#L196
+     * This method is based closely on: https://gitlab.com/StevenWCox/sfapexdoc/blob/master/src/apex/com/main/Model.java#L196
      */
     private parseComments(comments: string[]): void {
         let currBlock: Option<string, null> = null;
@@ -120,8 +120,8 @@ abstract class ApexModel {
             // replace docblock break marker and indicate we should break after
             // this round. Otherwise we may get some strange behavior due to
             // multi-line support and this common parser for all models
-            if (line.includes(ApexDoc.DOC_BLOCK_BREAK)) {
-                line = line.replace(ApexDoc.DOC_BLOCK_BREAK, '');
+            if (line.includes(ApexDox.DOC_BLOCK_BREAK)) {
+                line = line.replace(ApexDox.DOC_BLOCK_BREAK, '');
                 isBreak = true;
             }
 
@@ -216,7 +216,7 @@ abstract class ApexModel {
         }
 
         const warningMessage =
-            `@group-content path '${contentPath.trim()}' in file '${ApexDoc.currentFile}' is invalid! ` +
+            `@group-content path '${contentPath.trim()}' in file '${ApexDox.currentFile}' is invalid! ` +
             `You may want to update this tag's value to a valid HTML file path.`;
 
         window.showWarningMessage(warningMessage);
@@ -230,7 +230,7 @@ abstract class ApexModel {
         this._lineNum = _lineNum;
         // if we're running the stub command
         // we don't care about _scope
-        if (!ApexDoc.isStub) {
+        if (!ApexDox.isStub) {
             this.parseScope();
         }
     }

@@ -1,38 +1,38 @@
 {
-	"apexdoc2.engine.source": [{
+	"apexdox.engine.source": [{
         "path": "${workspaceFolder}/src/feature1",
         "sourceUrl": "https://somefakeurl.com"
     },{
         "path": "${workspaceFolder}/src/feature2",
         "sourceUrl": "https://somefakeurl.com"
     }],
-	"apexdoc2.engine.targetDirectory": "${workspaceFolder}/docs",
-	"apexdoc2.engine.includes": [
+	"apexdox.engine.targetDirectory": "${workspaceFolder}/docs",
+	"apexdox.engine.includes": [
         "IncludeTwo.cls",
         "IncludeOne.cls",
         "TEST_*"
     ],
-	"apexdoc2.engine.excludes": [
+	"apexdox.engine.excludes": [
         "*Exclude.cls",
         "*Test.cls",
         "TEST_ExcludeMe.cls"
     ],
-	"apexdoc2.engine.homePagePath": "",
-	"apexdoc2.engine.scope": [
+	"apexdox.engine.homePagePath": "",
+	"apexdox.engine.scope": [
         "public",
         "private",
         "protected",
         "global"
     ],
-	"apexdoc2.engine.title": "My Test Docs",
-	"apexdoc2.engine.showTOCSnippets": true,
-	"apexdoc2.engine.sortOrder": "alpha",
-    "apexdoc2.engine.cleanDir": false, // we delete the directory & its contents in the test-setup command instead
-    "apexdoc2.engine.assets": [
+	"apexdox.engine.title": "My Test Docs",
+	"apexdox.engine.showTOCSnippets": true,
+	"apexdox.engine.sortOrder": "alpha",
+    "apexdox.engine.cleanDir": false, // we delete the directory & its contents in the test-setup command instead
+    "apexdox.engine.assets": [
         "${workspaceFolder}/src/info.md"
     ],
-    "apexdoc2.engine.pages": [
+    "apexdox.engine.pages": [
         "${workspaceFolder}/src/Page.html"
     ],
-    "apexdoc2.engine.port": 8080
+    "apexdox.engine.port": 8080
 }

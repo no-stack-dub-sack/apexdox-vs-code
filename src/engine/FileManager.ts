@@ -1,6 +1,6 @@
 import * as Models from '../common/models';
-import ApexDoc from './ApexDoc';
-import ApexDocError from '../common/ApexDocError';
+import ApexDox from './ApexDox';
+import ApexDoxError from '../common/ApexDoxError';
 import cheerio from 'cheerio';
 import ClassMarkupGenerator from './generators/models/ClassMarkupGenerator';
 import EnumMarkupGenerator from './generators/models/EnumMarkupGenerator';
@@ -12,7 +12,7 @@ import path from 'path';
 import pretty from 'pretty';
 import rimraf from 'rimraf';
 import { window } from 'vscode';
-import { ISourceEntry, Option, ILunrDocument, IApexDocMenus } from '..';
+import { ISourceEntry, Option, ILunrDocument, IApexDoxMenus } from '..';
 import Utils from '../common/Utils';
 
 class FileManager {
@@ -91,7 +91,7 @@ class FileManager {
         if (!filesToCopy.length) {
             // no .cls files found at all, or all .cls files have been excluded, throw error
             const sourceDirs = sources.map(src => src.path).join(',');
-            throw new ApexDocError(ApexDocError.NO_FILES_FOUND(sourceDirs));
+            throw new ApexDoxError(ApexDoxError.NO_FILES_FOUND(sourceDirs));
         } else if (noneFound.length) {
             // no .cls files found in one or more (but not all) of given source dirs, show warning
             window.showWarningMessage(`No matching .cls files found in ${noneFound.join(',')}`);
@@ -131,7 +131,7 @@ class FileManager {
         this.makeDirs();
         this.createHTMLFiles(fileMap);
         this.createSearchIndex(fileMap);
-        this.copyAssetsToTarget(this.collectApexDocAssets());
+        this.copyAssetsToTarget(this.collectApexDoxAssets());
         this.copyAssetsToTarget(this.userAssets);
     }
 
@@ -170,7 +170,7 @@ class FileManager {
         const assets = path.resolve(root, 'assets');
 
         // clean directory first if user specified this
-        ApexDoc.config.cleanDir && rimraf.sync(root);
+        ApexDox.config.cleanDir && rimraf.sync(root);
 
         if (!fs.existsSync(root)) {
             [root, assets].forEach(path => fs.mkdirSync(path));
@@ -214,9 +214,9 @@ class FileManager {
         );
     }
 
-    private collectApexDocAssets(): string[] {
-        const files = fs.readdirSync(path.resolve(ApexDoc.extensionRoot, 'assets'));
-        return files.map(fileName => path.resolve(ApexDoc.extensionRoot, 'assets', fileName));
+    private collectApexDoxAssets(): string[] {
+        const files = fs.readdirSync(path.resolve(ApexDox.extensionRoot, 'assets'));
+        return files.map(fileName => path.resolve(ApexDox.extensionRoot, 'assets', fileName));
     }
 
     private copyAssetsToTarget(files: string[]): void {
@@ -224,7 +224,7 @@ class FileManager {
             if (fs.existsSync(file)) {
                 fs.copyFileSync(file, path.resolve(this.path, 'assets', path.basename(file)));
             } else {
-                window.showWarningMessage(ApexDocError.ASSET_NOT_FOUND(file));
+                window.showWarningMessage(ApexDoxError.ASSET_NOT_FOUND(file));
             }
         });
     }
@@ -235,7 +235,7 @@ class FileManager {
     // #region Document Generators
     // ===========================================================================
 
-    private makePage(contents: string, menus: IApexDocMenus, title = '') {
+    private makePage(contents: string, menus: IApexDoxMenus, title = '') {
         const pageTitle = title
             ? `<h2 class='section-title'>${title}</h2>`
             : '';
@@ -267,7 +267,7 @@ class FileManager {
         return html;
     }
 
-    public makeDocumentationPages(fileMap: Map<string, string>, menus: IApexDocMenus, models: Map<string, Models.TopLevelModel>): void {
+    public makeDocumentationPages(fileMap: Map<string, string>, menus: IApexDoxMenus, models: Map<string, Models.TopLevelModel>): void {
         for (let model of models.values()) {
             let fileName = '';
             let contents = '';
@@ -280,7 +280,7 @@ class FileManager {
                     contents += ClassMarkupGenerator.generate(cModel, models);
 
                     // get child classes to work with in the order user specifies
-                    const childClasses = ApexDoc.config.sortOrder === ApexDoc.ORDER_ALPHA
+                    const childClasses = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA
                         ? cModel.childClassesSorted
                         : cModel.childClasses;
 
@@ -301,7 +301,7 @@ class FileManager {
         }
     }
 
-    private makeSupplementaryPages(fileMap: Map<string, string>, menus: IApexDocMenus, pages: string[]): void {
+    private makeSupplementaryPages(fileMap: Map<string, string>, menus: IApexDoxMenus, pages: string[]): void {
         pages.forEach((pagePath, i) => {
             if (i === 0) {
                 // our home page is always the first index
@@ -318,7 +318,7 @@ class FileManager {
         });
     }
 
-    private makeClassGroupPages(fileMap: Map<string, string>, menus: IApexDocMenus, classGroupMap: Map<string, Models.ClassGroup>): void {
+    private makeClassGroupPages(fileMap: Map<string, string>, menus: IApexDoxMenus, classGroupMap: Map<string, Models.ClassGroup>): void {
         for (let group of classGroupMap.keys()) {
             const cg = classGroupMap.get(group);
             if (cg && cg.contentSource) {

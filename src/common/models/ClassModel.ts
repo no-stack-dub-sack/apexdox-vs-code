@@ -1,4 +1,4 @@
-import ApexDoc from '../../engine/ApexDoc';
+import ApexDox from '../../engine/ApexDox';
 import { EnumModel } from './EnumModel';
 import { MethodModel } from './MethodModel';
 import { ModelType, TopLevelModel } from './TopLevelModel';
@@ -121,11 +121,11 @@ class ClassModel extends TopLevelModel {
         }
 
         if (nameLine && nameLine.length > 0) {
-            let keywordAt = nameLine.toLowerCase().indexOf(ApexDoc.CLASS + ' ');
+            let keywordAt = nameLine.toLowerCase().indexOf(ApexDox.CLASS + ' ');
             let offset = 6;
 
             if (keywordAt === -1) {
-                keywordAt = nameLine.toLowerCase().indexOf(ApexDoc.INTERFACE + ' ');
+                keywordAt = nameLine.toLowerCase().indexOf(ApexDox.INTERFACE + ' ');
                 offset = 10;
             }
 

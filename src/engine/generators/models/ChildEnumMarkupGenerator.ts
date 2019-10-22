@@ -1,4 +1,4 @@
-import ApexDoc from '../../ApexDoc';
+import ApexDox from '../../ApexDox';
 import GeneratorUtils from '../GeneratorUtils';
 import MarkupGenerator from './MarkupGenerator';
 import { ClassModel, EnumModel, TopLevelModel } from '../../../common/models';
@@ -12,7 +12,7 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
     }
 
     public static generate(cModel: ClassModel, models: Map<string, TopLevelModel>): string {
-        const enums = ApexDoc.config.sortOrder === ApexDoc.ORDER_ALPHA
+        const enums = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA
             ? cModel.enumsSorted
             : cModel.enums;
 

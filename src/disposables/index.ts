@@ -2,17 +2,17 @@ import docBlockCompletion from './docBlockCompletion';
 import docTagCompletion from './docTagCompletion';
 import insertDocBlock from './insertDocBlock';
 import onEnterRules from './onEnterRules';
-import runApexDoc from './runApexDoc';
+import runApexDox from './runApexDox';
 import serveDocs from './serveDocs';
 import { Disposable, ExtensionContext } from 'vscode';
 
-export type ApexDoc2Command = (context: ExtensionContext) => Disposable;
+export type ApexDoxCommand = (context: ExtensionContext) => Disposable;
 
 export default [
     docBlockCompletion,
     docTagCompletion,
     insertDocBlock,
     onEnterRules,
-    runApexDoc,
+    runApexDox,
     serveDocs
-] as ApexDoc2Command[];
+] as ApexDoxCommand[];

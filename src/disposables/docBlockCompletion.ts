@@ -1,6 +1,6 @@
 import ClassStub from '../docblock/ClassStub';
 import DefaultStub from '../docblock/DefaultStub';
-import DocBlockStub, { StubType } from '../docblock/DocBlockStub';
+import StubBase, { StubType } from '../docblock/StubBase';
 import MethodStub from '../docblock/MethodStub';
 import {
     commands,
@@ -16,22 +16,25 @@ import {
     } from 'vscode';
 import { IStubLine, Option } from '..';
 
-const COMMAND = 'apexdoc2.docBlockCompletion';
+// TODO: change docblock nomenclature to comment, e.g. apexdox.commentCompletion
+// this will make more sense and be more consistent overall. Will need to change
+// commands and settings names as well.
+const COMMAND = 'apexdox.docBlockCompletion';
 
-class ApexDocBlockCompletionItem extends CompletionItem {
+class DocBlockCompletionItem extends CompletionItem {
     constructor(position: Position) {
         super('/** */', CompletionItemKind.Snippet);
-        this.detail = 'ApexDoc2 Comment';
+        this.detail = 'ApexDox Comment';
         this.insertText = '';
         this.command = {
-            title: 'ApexDoc2 Comment',
+            title: 'ApexDox Comment',
             command: COMMAND,
             arguments: [position]
         };
     }
 }
 
-class ApexDocBlockCompletionProvider implements CompletionItemProvider {
+class DocBlockCompletionProvider implements CompletionItemProvider {
     public provideCompletionItems(
         document: TextDocument,
         position: Position
@@ -43,7 +46,7 @@ class ApexDocBlockCompletionProvider implements CompletionItemProvider {
             return Promise.resolve(undefined);
         }
 
-        return Promise.resolve([new ApexDocBlockCompletionItem(position)]);
+        return Promise.resolve([new DocBlockCompletionItem(position)]);
     }
 }
 
@@ -53,9 +56,9 @@ export default function docBlockCompletion(): Disposable {
 
         if (editor) {
             const lineIdx = editor.selection.active.line;
-            const stubLine: IStubLine = DocBlockStub.getLineAndType(editor.document, lineIdx, true);
+            const stubLine: IStubLine = StubBase.getLineAndType(editor.document, lineIdx, true);
 
-            let stub: DocBlockStub;
+            let stub: StubBase;
             switch (stubLine.type) {
                 case StubType.METHOD:
                     stub = new MethodStub(editor, lineIdx, stubLine, true);
@@ -73,5 +76,5 @@ export default function docBlockCompletion(): Disposable {
         }
     });
 
-    return languages.registerCompletionItemProvider('apex', new ApexDocBlockCompletionProvider(), '*');
+    return languages.registerCompletionItemProvider('apex', new DocBlockCompletionProvider(), '*');
 }

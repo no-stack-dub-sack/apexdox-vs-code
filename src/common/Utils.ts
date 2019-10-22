@@ -1,4 +1,4 @@
-import ApexDoc from '../engine/ApexDoc';
+import ApexDox from '../engine/ApexDox';
 import { ClassModel } from './models/ClassModel';
 import { last } from './ArrayUtils';
 import { Option } from '..';
@@ -72,9 +72,9 @@ class Utils {
         let className = last(classNameParts);
 
         if (!this.getScope(line) &&
-            !line.toLowerCase().startsWith(ApexDoc.ENUM + " ") &&
-            !line.toLowerCase().startsWith(ApexDoc.CLASS + " ") &&
-            !line.toLowerCase().startsWith(ApexDoc.INTERFACE + " ") &&
+            !line.toLowerCase().startsWith(ApexDox.ENUM + " ") &&
+            !line.toLowerCase().startsWith(ApexDox.CLASS + " ") &&
+            !line.toLowerCase().startsWith(ApexDox.INTERFACE + " ") &&
             // don't skip default constructors without access modifiers
             !(cModel && new RegExp('\\b' + className + '\\s*\\(').test(line)) &&
             // don't skip interface methods - they don't have access modifiers
@@ -87,7 +87,7 @@ class Utils {
 
     /** Can match some implicitly private methods, but not all! */
     public static getScope(line: string): Option<string, void> {
-        for (let scope of ApexDoc.config.scope) {
+        for (let scope of ApexDox.config.scope) {
             // if line starts with annotations, replace them, so
             // we can accurately use startsWith to match scope.
             line = this.stripAnnotations(line).toLowerCase().trim();
@@ -106,7 +106,7 @@ class Utils {
 
         // try to reasonably match implicitly private lines if
         // 'private' included in user's documentable scopes list
-        if (ApexDoc.config.scope.includes(this.PRIVATE)) {
+        if (ApexDox.config.scope.includes(this.PRIVATE)) {
             // match static props or methods
             if (line.startsWith('static ') && !line.includes(` ${this.TEST_METHOD} `)) {
                 return this.PRIVATE;
@@ -195,6 +195,10 @@ class Utils {
         }
 
         return path;
+    }
+
+    public static escapeRegExp(str: string): string {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
     // common guard utility for Validator classes
