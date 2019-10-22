@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/no-stack-dub-sack/ApexDox VS Code/raw/master/assets/logo.png"
+    <img src="https://github.com/no-stack-dub-sack/apexdox-vs-code/raw/master/assets/logo.png"
          alt="ApexDox Logo" style="max-width:100%;">
 </p>
 
@@ -20,8 +20,8 @@ ApexDox is A fast, reliable, and configurable documentation generator for Salesf
 
 <p align="center">
     <a target="_blank" rel="noopener noreferrer"
-        href="https://github.com/no-stack-dub-sack/ApexDox VS Code/blob/master/images/apexdox-demo.gif">
-        <img src="https://github.com/no-stack-dub-sack/ApexDox VS Code/raw/master/images/apexdox-demo.gif"
+        href="https://github.com/no-stack-dub-sack/apexdox-vs-code/blob/master/images/apexdox-demo.gif">
+        <img src="https://github.com/no-stack-dub-sack/apexdox-vs-code/raw/master/images/apexdox-demo.gif"
              alt="Short Demo" style="max-width:100%;">
     </a>
 </p>
@@ -169,7 +169,7 @@ In addition to the `@tag`s listed above, there are a few other special tokens to
 
 | Token | Description |
 |-------|-------------|
-| `{@link}` | Unlike the `@see` tag, this syntax can be used in the text of any other tag to create inline links throughout your documentation. It accepts the same kinds of links as the `@see` tag (URL, markdown URL, or fully qualified class or method name; see `@see` description above), e.g. `{@link MyClass.MyInnerClass.MyOverloadedMethod[3]}` or `{@link https://github.com/no-stack-dub-sack/ApexDox VS Code}` |
+| `{@link}` | Unlike the `@see` tag, this syntax can be used in the text of any other tag to create inline links throughout your documentation. It accepts the same kinds of links as the `@see` tag (URL, markdown URL, or fully qualified class or method name; see `@see` description above), e.g. `{@link MyClass.MyInnerClass.MyOverloadedMethod[3]}` or `{@link https://github.com/no-stack-dub-sack/apexdox-vs-code}` |
 | \` \` | Backticks, \` \`, can be used to indicate inline code within your ApexDox comments. E.g. \`String cool = 'cool!';\` &mdash; the expression within the backticks will be formatted as code. |
 | &lt;br&gt; | The &lt;br&gt; tag can be used to render line breaks in your comments when more complex formatting is needed. &lt;br /&gt; is also acceptable. |
 
@@ -178,8 +178,8 @@ Located in the lines above any top-level type that lives within a .cls file, or 
 
 <p align="center">
     <a target="_blank" rel="noopener noreferrer"
-        href="https://github.com/no-stack-dub-sack/ApexDox VS Code/blob/master/images/class-docblock.gif">
-        <img src="https://github.com/no-stack-dub-sack/ApexDox VS Code/raw/master/images/class-docblock.gif"
+        href="https://github.com/no-stack-dub-sack/apexdox-vs-code/blob/master/images/class-docblock.gif">
+        <img src="https://github.com/no-stack-dub-sack/apexdox-vs-code/raw/master/images/class-docblock.gif"
              alt="Class Comment Example" style="max-width:100%;">
     </a>
 </p>
@@ -189,8 +189,8 @@ In order for ApexDox to best identify class methods, the method line must contai
 
 <p align="center">
     <a target="_blank" rel="noopener noreferrer"
-        href="https://github.com/no-stack-dub-sack/ApexDox VS Code/blob/master/images/method-docblock.gif">
-        <img src="https://github.com/no-stack-dub-sack/ApexDox VS Code/raw/master/images/method-docblock.gif"
+        href="https://github.com/no-stack-dub-sack/apexdox-vs-code/blob/master/images/method-docblock.gif">
+        <img src="https://github.com/no-stack-dub-sack/apexdox-vs-code/raw/master/images/method-docblock.gif"
              alt="Method Comment Example" style="max-width:100%;">
     </a>
 </p>
@@ -200,8 +200,8 @@ These are the simplest comment blocks. They only support description tags (the t
 
 <p align="center">
     <a target="_blank" rel="noopener noreferrer"
-        href="https://github.com/no-stack-dub-sack/ApexDox VS Code/blob/master/images/prop-enum-docblock.PNG">
-        <img src="https://github.com/no-stack-dub-sack/ApexDox VS Code/raw/master/images/prop-enum-docblock.PNG"
+        href="https://github.com/no-stack-dub-sack/apexdox-vs-code/blob/master/images/prop-enum-docblock.PNG">
+        <img src="https://github.com/no-stack-dub-sack/apexdox-vs-code/raw/master/images/prop-enum-docblock.PNG"
              alt="Prop / Inner Enum Comment Example" style="max-width:100%;">
     </a>
 </p>
