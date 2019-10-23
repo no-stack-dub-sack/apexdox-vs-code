@@ -5,3 +5,7 @@ All notable changes to the "apexdox-vs-code" extension will be documented in thi
 ## 1.0.0 (10/23/2019)
 
 - Initial release
+
+## 1.0.1 (10/23/2019)
+
+- package.json change only. Updated `galeryBanner.theme` to light for better contrast in VS Code Marketplace.

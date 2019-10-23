@@ -1,8 +1,3 @@
-<p align="center">
-    <img src="https://github.com/no-stack-dub-sack/apexdox-vs-code/raw/master/assets/logo.png"
-         alt="ApexDox Logo" style="max-width:100%;">
-</p>
-
 # ApexDox VS Code
 ApexDox is A fast, reliable, and configurable documentation generator for Salesforce Apex .cls files, that works with both DX and non-DX projects. ApexDox uses a JSDoc-like inline comment syntax. Simply tell ApexDox where your class files are, and it will generate a set of static HTML pages that fully document each class/class file, including its properties, methods, enums, and annotations.
 
