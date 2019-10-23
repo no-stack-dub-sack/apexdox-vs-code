@@ -23,7 +23,7 @@
 	"icon": "assets/icon.png",
 	"galleryBanner": {
 		"color": "#F0F8FF",
-		"theme": "dark"
+		"theme": "light"
 	},
 	"homepage": "https://github.com/no-stack-dub-sack/apexdox-vs-code/blob/master/README.md",
 	"repository": {
