@@ -5,6 +5,7 @@ dist/
 # sample docs created during testing
 src/test/test-proj/docs
 
+TODO
 node_modules
 .vscode-test/
 *.vsix
