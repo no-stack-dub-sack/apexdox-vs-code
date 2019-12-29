@@ -112,11 +112,6 @@
 					"default": "",
 					"markdownDescription": "An absolute path of an HTML file that contains the project's 'home page' markup. Only the markup inside the `<body>` tags will be used, or if the file contains only a partial HTML page, e.g. `<h2>Cool!</h2>`, the entire contents will be used."
 				},
-				"apexdox.engine.bannerPagePath": {
-					"type": "string",
-					"default": "",
-					"markdownDescription": "An absolute path of an HTML file that contains the project's 'banner' markup. Only the markup inside the `<body>` tags will be used, or if the file contains only a partial HTML page, e.g. `<h2>Cool!</h2>`, the entire contents will be used."
-				},
 				"apexdox.engine.title": {
 					"type": "string",
 					"default": "Apex Documentation",
