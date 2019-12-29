@@ -43,6 +43,8 @@ class ApexDoxError extends Error {
 
     public static CONFIG_PARSE_ERROR = (fileName: string) =>
         `Failed to parse ${fileName}. Check for syntax errors. See the [documentation](${REPOSITORY}) for more information on ${fileName} config files.`
+
+    public static UNKNOWN_CONFIG_SETTING = (field: string) => `Unknown configuration setting '${field}' found. Please check your settings file.`;
 }
 
 export default ApexDoxError;
