@@ -13,3 +13,8 @@ All notable changes to the "apexdox-vs-code" extension will be documented in thi
 ## 1.0.2 (10/23/2019)
 
 - README change only. Removed logo from README.md to avoid redundant presentation in VS Code Marketplace.
+
+## 1.0.3 (12/28/2019)
+
+- Fixes bug reported in #12 thanks to [@dmitry-prohorov](https://github.com/dmitry-prohorov).
+- Updates the way unknown configuration settings are handled by the extension.
