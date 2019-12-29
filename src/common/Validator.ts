@@ -1,3 +1,5 @@
+import ApexDoxError from './ApexDoxError';
+
 abstract class Validator<T> {
     [key: string]: any;
     protected currentFields: string[];
@@ -9,18 +11,18 @@ abstract class Validator<T> {
     }
 
     /**
-     * Since we're allowing rc and yaml config files, we need to carefully validate configs coming in.
-     * This method will match each config key to an instance method which validates that key. For engine
-     * configs, the 'port' setting is the exception which will be validated only at serveDocs runtime.
-     * This will also take care of deleting any unexpected, rogue config keys.
+     * Since we're allowing rc and yaml config files (e.g. losing helpful intellisense)
+     * we need to carefully validate configs coming in. This method will match each config
+     * key to an instance method which validates that key. For engine configs, the 'port'
+     * setting is the exception which will be validated only at serveDocs runtime. This
+     * will also throw an error if any unexpected, rogue configuration settings are found.
      */
     public validate(): T {
         for (let field of this.currentFields) {
             if (this.validFields.includes(field)) {
                 this[field] && this[field]();
             } else {
-                // @ts-ignore: delete rogue keys found in rc/yaml config
-                delete this.config[field];
+                throw new ApexDoxError(ApexDoxError.UNKNOWN_CONFIG_SETTING(field));
             }
         }
 
