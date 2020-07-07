@@ -102,13 +102,13 @@ export const PARAM: IApexDoxTag = {
 };
 
 export const RETURNS: IApexDoxTag = {
-    label: '@returns',
-    snippet: `returns \${1:}`,
+    label: '@return',
+    snippet: `return \${1:}`,
     documentation:
 `For: **Method**
 
 \`\`\`
-@returns [description or return type]
+@return [description or return type]
 \`\`\``
 };
 
