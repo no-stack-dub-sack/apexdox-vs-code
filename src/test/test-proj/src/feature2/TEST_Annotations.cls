@@ -21,7 +21,7 @@
 
     /**
      * Our annotation regexp should match this annotation with params.
-     * @returns `Integer`
+     * @return `Integer`
      */
     @InvocableMethod(label='Get Account Names' description='Returns the list of account names corresponding to the specified account IDs.')
     Integer method2() { return 5; }

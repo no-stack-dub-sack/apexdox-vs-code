@@ -33,7 +33,7 @@ public class TEST_JWT {
     
     /**
      * Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.
-     * @returns JSON string
+     * @return JSON string
      */    
     public String issue() {
     
@@ -87,7 +87,7 @@ public class TEST_JWT {
     /**
      * Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.
      * @param input Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.
-     * @returns Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.
+     * @return Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.
      */    
     public String base64URLencode(Blob input){ 
         String output = encodingUtil.base64Encode(input);

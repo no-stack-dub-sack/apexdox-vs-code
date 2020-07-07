@@ -29,7 +29,7 @@ global class TEST_ArrayUtils {
     /**
      * Cast a list of objects as strings and return the list.
      * @param objects A list of objects to cast
-     * @returns Returns a `List<String>` of casted objects
+     * @return Returns a `List<String>` of casted objects
      */
     global static List<String> objectToString(List<Object> objects){
         List<String> strings = null;
@@ -49,7 +49,7 @@ global class TEST_ArrayUtils {
     /**
      * Reverse an array.
      * @param anArray The array to reverse
-     * @returns The reversed array.
+     * @return The reversed array.
      */
     global static Object[] reverse(Object[] anArray) {
         if (anArray == null) {
@@ -71,7 +71,7 @@ global class TEST_ArrayUtils {
     /**
      * Reverse an array of SObjects.
      * @param anArray The array to reverse
-     * @returns The reversed array.
+     * @return The reversed array.
      */
     global static SObject[] reverse(SObject[] anArray) {
         if (anArray == null) {
@@ -93,7 +93,7 @@ global class TEST_ArrayUtils {
     /**
      * Lowercase each item of a string array.
      * @param strs A list of strings to convert to lowercase
-     * @returns The list of lowercased strings.
+     * @return The list of lowercased strings.
      */
     global static List<String> lowerCase(List<String> strs){
         List<String> returnValue = null;
@@ -111,7 +111,7 @@ global class TEST_ArrayUtils {
     /**
      * Uppercase each item of a string array.
      * @param strs A list of strings to convert to uppercase
-     * @returns The list of uppercased strings.
+     * @return The list of uppercased strings.
      */
     global static List<String> upperCase(List<String> strs){
         List<String> returnValue = null;
@@ -129,7 +129,7 @@ global class TEST_ArrayUtils {
     /**
      * Trim each element of a string array.
      * @param strs The list of strings to trim.
-     * @returns The list of trimmed strings.
+     * @return The list of trimmed strings.
      */
     global static List<String> trim(List<String> strs){
         List<String> returnValue = null;
@@ -149,7 +149,7 @@ global class TEST_ArrayUtils {
      * @param array1 The elements of this array will be first in the resulting array.
      * @param array2 The elements of this array will come after the elements of `array1`
      * in the resulting array.
-     * @returns The merged array.
+     * @return The merged array.
      */
     global static Object[] mergex(Object[] array1, Object[] array2){
         if(array1 == null){ return array2; }
@@ -208,7 +208,7 @@ global class TEST_ArrayUtils {
      * Iterate over an SObject array, plucking out a given field, and returning each plucked element in an array.
      * @param objectArray An array of SObjects
      * @param fieldName The field name to pluck.
-     * @returns An `object` array continaing the plucked elements.
+     * @return An `object` array continaing the plucked elements.
      */
     global static Object[] pluck(SObject[] objectArray, String fieldName){
         if(isEmpty(objectArray) || fieldName == null || fieldName.trim() == null || fieldName.trim().length() == 0){
@@ -224,7 +224,7 @@ global class TEST_ArrayUtils {
     /**
      * Stringify an array.
      * @param objectArray The array to stringigy.
-     * @returns `String`
+     * @return `String`
      */
     global static String toString(Object[] objectArray){
         if(objectArray == null){
@@ -242,7 +242,7 @@ global class TEST_ArrayUtils {
     /**
      * Stringify an array.
      * @param objectArray The array to stringigy.
-     * @returns `String`
+     * @return `String`
      */
     global static String toString(SObject[] objectArray){
         if(objectArray == null){
