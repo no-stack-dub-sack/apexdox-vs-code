@@ -102,7 +102,7 @@ abstract class ApexModel {
                 || ((i = lineLower.indexOf(block = tags.SEE.label)) >= 0)
                 || ((i = lineLower.indexOf(block = tags.RETURN.label)) >= 0)
                 || (((i = lineLower.indexOf(block = tags.RETURNS.label)) >= 0)
-                    && ((i = lineLower.indexOf(tags.RETURN.label)) < 0))
+                    && (lineLower.indexOf(tags.RETURN.label) < 0))
                 || ((i = lineLower.indexOf(block = tags.PARAM.label)) >= 0)
                 || ((i = lineLower.indexOf(block = tags.EXCEPTION.label)) >= 0)
                 || ((i = lineLower.indexOf(block = tags.DEPRECATED.label)) >= 0)
