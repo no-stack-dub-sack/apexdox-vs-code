@@ -155,7 +155,8 @@ Note that in the table below, the 'Class' column includes any top-level types th
 | **@deprecated** | Indicates class or method should no longer be used; message should indicate replacement path. | Y | Y | N | N |
 | **@example** | Example code usage. There may only be one `@example` tag per class or method. Start your example on the line below the tag. Code will be given syntax highlighting complements of [highlight.js](https://highlightjs.org/) and be wrapped in `<pre><code>` tags to preserve whitespace. | Y | Y | N | N |
 | **@param** *param name* | A description of what a method's parameter does. | N | Y | N | N |
-| **@return** | A description of a method's return value. | N | Y | N | N |
+| **@return** | [Standard](https://github.com/pmd/pmd/blob/master/pmd-apex/src/main/java/net/sourceforge/pmd/lang/apex/rule/documentation/ApexDocRule.java) description of a method's return value. | N | Y | N | N |
+| **@returns** | Non-standard way to add description of a method's return value. [deprecated] | N | Y | N | N |
 | **@exception** | A description of or list of exceptions that a method throws. | N | Y | N | N |
 | **@see** | A URL, markdown URL (e.g. '\[ApexDox\]\(https://github.com/no-stack-dub-sack/ApexDox-VS-Code)', or fully qualified class or method name. The latter creates link(s) to that class or method in the documentation. The name must be a fully qualified name, even if its a reference to another method in the same class, e.g. 'Class.Method', 'Class.InnerClass', 'Class.InnerClass.InnerClassMethod'. For overloaded constructors and methods, the `@see` tag accepts a special syntax: 'MyClass.MyInnerClass.MyOverloadedMethod[3]' where '3' is a zero based index indicating the overloaded method to link to (this would indicate the 4th overload of `MyOverloadedMethod`). When a link cannot be made, a tooltip will be shown on hover. There may be more than one `@see` tag per class / method. | Y | Y | N | N |
 

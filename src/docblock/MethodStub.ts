@@ -5,7 +5,7 @@ import {
     DESCRIPTION,
     EXCEPTION,
     PARAM,
-    RETURNS
+    RETURN
     } from '../common/tags';
 import {
     IDocblockConfig,
@@ -47,8 +47,8 @@ class MethodStub extends StubBase {
         }
 
         if (returnType !== 'void') {
-            const pad = this.getPadding(this.config.alignItems, RETURNS.label.length, maxLength);
-            stub += this.tagTemplate(RETURNS.label, pad, this.lineIndent, tabIndex++, `\`${returnType}\``);
+            const pad = this.getPadding(this.config.alignItems, RETURN.label.length, maxLength);
+            stub += this.tagTemplate(RETURN.label, pad, this.lineIndent, tabIndex++, `\`${returnType}\``);
         }
 
         if (throwsException) {
@@ -209,7 +209,7 @@ class MethodStub extends StubBase {
      */
     private getMaxLength(config: IDocblockConfig, returnType: string, params: string[], throwsEx: boolean): number {
         // establish lengths of tags and params
-        const returnTag = returnType && returnType !== 'void' ? RETURNS.label.length : 0;
+        const returnTag = returnType && returnType !== 'void' ? RETURN.label.length : 0;
         const descriptionTag = config.omitDescriptionTag ? 0 : DESCRIPTION.label.length;
         const paramsLength = params.map(p => PARAM.label.length + p.length + 1);
         const exceptionLength = throwsEx ? EXCEPTION.label.length : 0;
