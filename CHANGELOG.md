@@ -22,3 +22,4 @@ All notable changes to the "apexdox-vs-code" extension will be documented in thi
 ## 1.0.4 (01/03/2020)
 
 - Deprecates `@returns` in favor of the more standard `@return` tag. Thanks to [@berardo](https://github.com/berardo) for the PR.
+- Dependabot security vulnerability updates.
