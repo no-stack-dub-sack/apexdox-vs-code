@@ -59,7 +59,7 @@ public class TEST_Methods {
      * @param int2 b
      * @param int3 c
      * @param int22 d
-     * @returns `Integer`
+     * @return `Integer`
      */
     private Integer method11(Map<String, Map<SomeCustomClass.InnerClass, Map<Int, List<Map<String, Integer>>>>> crazyType, List<String> int2, OuterClass.InnerType int3, Integer int22) {
         return MY_INT + int;
@@ -68,7 +68,7 @@ public class TEST_Methods {
     /**
      * @param crazyType a
      * @param int22 d
-     * @returns `Integer`
+     * @return `Integer`
      */
     protected static Integer method12(Map<String, Map<SomeCustomClass.InnerClass, Map<Int, List<Map<String, Integer>>>>> crazyType, List<String> int2, OuterClass.InnerType int3, Integer int22) {
         return MY_INT + int;

@@ -14,7 +14,7 @@ public class TEST_MultiLineTagValues {
      * over multiple lines (exception).
      * @deprecated Works
      * over multiple lines (deprecated).
-     * @returns Works
+     * @return Works
      * over multiple lines (returns).
      * @author Works
      * over multiple lines (author).

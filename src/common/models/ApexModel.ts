@@ -100,7 +100,9 @@ abstract class ApexModel {
             if (((i = lineLower.indexOf(block = tags.AUTHOR.label)) >= 0)
                 || ((i = lineLower.indexOf(block = tags.SINCE.label)) >= 0)
                 || ((i = lineLower.indexOf(block = tags.SEE.label)) >= 0)
-                || ((i = lineLower.indexOf(block = tags.RETURNS.label)) >= 0)
+                || ((i = lineLower.indexOf(block = tags.RETURN.label)) >= 0)
+                || (((i = lineLower.indexOf(block = tags.RETURNS.label)) >= 0)
+                    && (lineLower.indexOf(tags.RETURN.label) < 0))
                 || ((i = lineLower.indexOf(block = tags.PARAM.label)) >= 0)
                 || ((i = lineLower.indexOf(block = tags.EXCEPTION.label)) >= 0)
                 || ((i = lineLower.indexOf(block = tags.DEPRECATED.label)) >= 0)
@@ -135,7 +137,7 @@ abstract class ApexModel {
                     this._since += (this._since ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.SEE.label) {
                     this._see.push(line.trim());
-                } else if (currBlock === tags.RETURNS.label) {
+                } else if (currBlock === tags.RETURNS.label || currBlock === tags.RETURN.label) {
                     this._returns += (this._returns ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.PARAM.label) {
                     let p = (newBlock ? '' : this._params.pop());

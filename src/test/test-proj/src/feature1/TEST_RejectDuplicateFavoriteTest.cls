@@ -12,7 +12,7 @@ public class TEST_RejectDuplicateFavoriteTest {
 
     /**
      * Test util method for getting username prefix.
-     * @returns `String`
+     * @return `String`
      */    
     public static String getUserNamePrefix(){
         return UserInfo.getOrganizationId() + System.now().millisecond();
@@ -20,7 +20,7 @@ public class TEST_RejectDuplicateFavoriteTest {
     
     /**
      * Test util method for creating user.
-     * @returns `User`
+     * @return `User`
      */    
     public static User getTestUser(){
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];

@@ -101,6 +101,17 @@ export const PARAM: IApexDoxTag = {
 \`\`\``
 };
 
+export const RETURN: IApexDoxTag = {
+    label: '@return',
+    snippet: `return \${1:}`,
+    documentation:
+`For: **Method**
+
+\`\`\`
+@return [description or return type]
+\`\`\``
+};
+
 export const RETURNS: IApexDoxTag = {
     label: '@returns',
     snippet: `returns \${1:}`,

@@ -37,7 +37,7 @@ public class TEST_Links {
      * @param int2 int2 desc
      * @param int3 int3 desc
      * @param int4 int4 desc
-     * @returns `Integer`
+     * @return `Integer`
      */
     public static Integer getInt(Integer int, Integer int2, Integer int3, Integer int4) {
         return MY_INT + int;

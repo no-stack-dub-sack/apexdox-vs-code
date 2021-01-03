@@ -20,7 +20,7 @@ public interface TEST_BotHandler {
      * This is totally cool, no biggie.
      * @param fileName Filename description.
      * @param fileContent FileContent description.
-     * @returns Looks like it returns a `BotResponse` instance.
+     * @return Looks like it returns a `BotResponse` instance.
      * @see TEST_BotController.submit
      */    
     BotResponse handle(String utterance, String[] params, Map<String, String> session, String fileName, String fileContent);
