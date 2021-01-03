@@ -137,7 +137,7 @@ abstract class ApexModel {
                     this._since += (this._since ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.SEE.label) {
                     this._see.push(line.trim());
-                } else if (currBlock === tags.RETURNS.label) {
+                } else if (currBlock === tags.RETURNS.label || currBlock === tags.RETURN.label) {
                     this._returns += (this._returns ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.PARAM.label) {
                     let p = (newBlock ? '' : this._params.pop());
