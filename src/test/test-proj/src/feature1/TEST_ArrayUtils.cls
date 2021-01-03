@@ -29,7 +29,7 @@ global class TEST_ArrayUtils {
     /**
      * Cast a list of objects as strings and return the list.
      * @param objects A list of objects to cast
-     * @return Returns a `List<String>` of casted objects
+     * @returns Returns a `List<String>` of casted objects
      */
     global static List<String> objectToString(List<Object> objects){
         List<String> strings = null;
@@ -49,7 +49,7 @@ global class TEST_ArrayUtils {
     /**
      * Reverse an array.
      * @param anArray The array to reverse
-     * @return The reversed array.
+     * @returns The reversed array.
      */
     global static Object[] reverse(Object[] anArray) {
         if (anArray == null) {
@@ -93,7 +93,7 @@ global class TEST_ArrayUtils {
     /**
      * Lowercase each item of a string array.
      * @param strs A list of strings to convert to lowercase
-     * @return The list of lowercased strings.
+     * @returns The list of lowercased strings.
      */
     global static List<String> lowerCase(List<String> strs){
         List<String> returnValue = null;
@@ -111,7 +111,7 @@ global class TEST_ArrayUtils {
     /**
      * Uppercase each item of a string array.
      * @param strs A list of strings to convert to uppercase
-     * @return The list of uppercased strings.
+     * @returns The list of uppercased strings.
      */
     global static List<String> upperCase(List<String> strs){
         List<String> returnValue = null;
