@@ -102,7 +102,7 @@ export const PARAM: IApexDoxTag = {
 };
 
 export const RETURN: IApexDoxTag = {
-    label: '@return',
+    label: '@return ', // trailing space to differentiate between @return & @returns
     snippet: `return \${1:}`,
     documentation:
 `For: **Method**
