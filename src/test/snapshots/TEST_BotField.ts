@@ -202,7 +202,7 @@ export default `<!DOCTYPE html>
  }</code></pre>
             </div>
             <div class="subsection properties TEST_BotField">
-              <h3 class="subsection-title properties">TEST_BotField Properties</h2>
+              <h3 class="subsection-title properties">TEST_BotField Properties</h3>
                 <table class="attributes-table properties">
 
                   <tr>

@@ -184,7 +184,7 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_Properties">
-              <h3 class="subsection-title properties">TEST_Properties Properties</h2>
+              <h3 class="subsection-title properties">TEST_Properties Properties</h3>
                 <table class="attributes-table properties">
 
                   <tr>
@@ -398,7 +398,7 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_Properties_InnerOne">
-              <h3 class="subsection-title properties">TEST_Properties.InnerOne Properties</h2>
+              <h3 class="subsection-title properties">TEST_Properties.InnerOne Properties</h3>
                 <table class="attributes-table properties">
 
                   <tr>
@@ -494,7 +494,7 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_Properties_InnerThree">
-              <h3 class="subsection-title properties">TEST_Properties.InnerThree Properties</h2>
+              <h3 class="subsection-title properties">TEST_Properties.InnerThree Properties</h3>
                 <table class="attributes-table properties">
 
                   <tr>
@@ -592,7 +592,7 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_Properties_InnerTwo">
-              <h3 class="subsection-title properties">TEST_Properties.InnerTwo Properties</h2>
+              <h3 class="subsection-title properties">TEST_Properties.InnerTwo Properties</h3>
                 <table class="attributes-table properties">
 
                   <tr>

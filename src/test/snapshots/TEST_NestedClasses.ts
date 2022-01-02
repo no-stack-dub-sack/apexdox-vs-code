@@ -187,7 +187,7 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_NestedClasses">
-              <h3 class="subsection-title properties">TEST_NestedClasses Properties</h2>
+              <h3 class="subsection-title properties">TEST_NestedClasses Properties</h3>
                 <table class="attributes-table properties">
 
                   <tr>
@@ -565,7 +565,7 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_NestedClasses_InnerClass">
-              <h3 class="subsection-title properties">TEST_NestedClasses.InnerClass Properties</h2>
+              <h3 class="subsection-title properties">TEST_NestedClasses.InnerClass Properties</h3>
                 <table class="attributes-table properties">
 
                   <tr>
@@ -770,7 +770,7 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_NestedClasses_MyException">
-              <h3 class="subsection-title properties">TEST_NestedClasses.MyException Properties</h2>
+              <h3 class="subsection-title properties">TEST_NestedClasses.MyException Properties</h3>
                 <table class="attributes-table properties">
 
                   <tr>
