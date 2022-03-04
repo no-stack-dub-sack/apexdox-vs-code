@@ -195,7 +195,7 @@
 	},
 	"devDependencies": {
 		"@types/cheerio": "^0.22.11",
-		"@types/js-yaml": "^3.12.1",
+		"@types/js-yaml": "^4.0.5",
 		"@types/lodash.escape": "^4.0.6",
 		"@types/mocha": "^2.2.42",
 		"@types/node": "^10.12.21",
