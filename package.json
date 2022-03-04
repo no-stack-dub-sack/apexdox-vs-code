@@ -210,7 +210,8 @@
 		"typescript": "^3.3.1",
 		"vscode": "^1.1.28",
 		"webpack": "^4.30.0",
-		"webpack-cli": "^3.3.1"
+		"webpack-cli": "^3.3.1",
+		"yarn": "^1.22.17"
 	},
 	"dependencies": {
 		"js-yaml": "^3.13.1",
@@ -219,5 +220,6 @@
 		"open": "^6.0.0",
 		"pretty": "^2.0.0",
 		"rimraf": "^2.6.3"
-	}
+	},
+	"packageManager": "yarn@3.2.0"
 }
