@@ -13,7 +13,7 @@ import {
     Option
     } from '..';
 import { resolve } from 'path';
-import { safeLoad as yamlToJson } from 'js-yaml';
+import { load as yamlToJson } from 'js-yaml';
 import { workspace, WorkspaceFolder } from 'vscode';
 
 export enum Feature {
