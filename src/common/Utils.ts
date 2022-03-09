@@ -216,7 +216,7 @@ class Utils {
      * document. Here, we're removing that space so pre and code tags do not have space between them.
      * @param html The html string to make replacements on.
      */
-    public static preCodeTrim(html: string) {
+    /* public static preCodeTrim(html: string) {
         if (!/<pre/.test(html)) {
             return html;
         }
@@ -224,7 +224,7 @@ class Utils {
         html = html.replace(/<pre class="([a-z\-]+)">\s+<code>/g, '<pre class="$1"><code>');
         html = html.replace(/<\/code>\s+<\/pre>/g, '</code></pre>');
         return html;
-    }
+    } */
 }
 
 export default Utils;

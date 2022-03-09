@@ -8,8 +8,7 @@ ApexDox is A fast, reliable, and configurable documentation generator for Salesf
 - Customizable project "Home page", "project splash" section, and Class Group pages
 - Links class, interface, method, prop, and enum signatures to source code hosted on GitHub
 - Customize the favicon, and/or use your own logo, and other static assets in your docs
-- Produces clean, readable HTML output (complements of [pretty](https://github.com/jonschlinkert/pretty))
-- Includes customized syntax highlighting to make your ApexDox comment blocks stand out and easy to read
+- Includes customized syntax highlighting to make your ApexDox comment blocks stand out and easy to read (override with your own highlights.css file)
 - Generated documentation is fully searchable, powered by [Lunr](https://lunrjs.com) (supports wildcard searches using the `*` character and searching by page title using `title:<search-term>` syntax)
 - Easily configurable using VS Code settings.json file or, for more safely checking configs into source control, using an .apexdoxrc (JSON) or apexdox.yml (YAML) file, depending on you and your team's preference (see examples in the [sample app repo](https://github.com/no-stack-dub-sack/apexdox-sample-app))
 
@@ -22,23 +21,29 @@ ApexDox is A fast, reliable, and configurable documentation generator for Salesf
 </p>
 
 ## Table of Contents
-- [ApexDox Sample Documentation](#apexdox-sample-documentation)
-- [Commands](#commands)
-- [Favicon & Logo Customization](#favicon--logo-customization)
-- [Extension Settings](#extension-settings)
+- [ApexDox VS Code](#apexdox-vs-code)
+  - [Features](#features)
+  - [Table of Contents](#table-of-contents)
+  - [ApexDox Sample Documentation](#apexdox-sample-documentation)
+  - [Commands](#commands)
+    - [Create/Preview Docs](#createpreview-docs)
+    - [Auto-Stub Comment Blocks](#auto-stub-comment-blocks)
+  - [Favicon & Logo Customization](#favicon--logo-customization)
+  - [Extension Settings](#extension-settings)
     - [The ${workspaceFolder} Variable](#the-workspacefolder-variable)
     - [Documentation Engine Settings](#documentation-engine-settings)
     - [Comment Block Settings](#comment-block-settings)
-    - [Examples](#minimum-settings-example)
-- [Documenting Class Files](#documenting-class-files)
-    - [Documentation @ Tags](#documentation-tags)
+    - [Minimum Settings Example](#minimum-settings-example)
+    - [Expanded Settings Example](#expanded-settings-example)
+  - [Documenting Class Files](#documenting-class-files)
+    - [Documentation Tags](#documentation-tags)
     - [Special Tokens](#special-tokens)
-    - [Class Comments](#class-comments-includes-class-level-interfaces-and-enums)
+    - [Class Comments (includes class-level Interfaces and Enums)](#class-comments-includes-class-level-interfaces-and-enums)
     - [Method Comments](#method-comments)
     - [Property and Inner Enum Comments](#property-and-inner-enum-comments)
-- [Tips](#tips)
-- [Known Issues](#known-issues)
-- [History](#history)
+    - [Tips](#tips)
+  - [Known Issues](#known-issues)
+  - [History](#history)
 
 ## ApexDox Sample Documentation
 Check out our ApexDox sample docs to get a feel for what ApexDox documentation looks like: https://apexdox-sample-docs.surge.sh. The repository that these docs were created from lives [here](https://github.com/no-stack-dub-sack/apexdox-sample-app). If you'd like to easily test out different settings, install the extension and clone the repo; the settings are checked-in in the `.vscode/settings.json` file. Run `ApexDox: Run` from the command pallette, and `ApexDox: Open Docs` to generate new documentation and preview your changes locally.

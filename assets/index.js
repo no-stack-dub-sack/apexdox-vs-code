@@ -58,13 +58,14 @@ function initHighlightJs() {
 	// initialize highlighting for code examples and
 	// signatures for methods, classes, props and enums
 
-	// Updating this to highlight.js v11 will throw errors if we use Pretty, because Pretty forces use of <br> in sample code, and that is a security hole for highlight.js
-	// TODO: First, remove Pretty, then update to highlight v11 and update this block to use hljs.highlightAll();
+	// Highlight specific blocks, as indicated above.
 	highlightJsSelectors.forEach(selector => {
 		document.querySelectorAll(selector).forEach(block => {
-			hljs.highlightBlock(block);
+			hljs.highlightElement(block);
 		});
 	});
+	// Optional to highlight everything it finds
+	//hljs.highlightAll();
 }
 
 // create session storage object for menu state
