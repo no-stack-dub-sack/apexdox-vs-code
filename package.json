@@ -200,7 +200,6 @@
 		"@types/mocha": "^9.1.0",
 		"@types/node": "^17.0.21",
 		"@types/node-static": "^0.7.7",
-		"@types/open": "^6.1.0",
 		"@types/rimraf": "^3.0.2",
 		"@types/vscode": "^1.65.0",
 		"@vscode/test-electron": "^2.1.3",
