@@ -64,8 +64,8 @@ function initHighlightJs() {
 			hljs.highlightElement(block);
 		});
 	});
-	// Optional to highlight everything it finds
-	//hljs.highlightAll();
+	// Also highlight everything in code/pre it finds
+	hljs.highlightAll();
 }
 
 // create session storage object for menu state
