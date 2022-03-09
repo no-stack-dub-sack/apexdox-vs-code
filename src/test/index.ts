@@ -1,4 +1,5 @@
-import * as testRunner from 'vscode/lib/testrunner';
+//import * as testRunner from 'vscode/lib/testrunner';
+const testRunner = require("vscode/lib/testrunner");
 //
 // PLEASE DO NOT MODIFY / DELETE UNLESS YOU KNOW WHAT YOU ARE DOING
 //

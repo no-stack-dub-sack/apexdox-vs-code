@@ -95,6 +95,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/mime@npm:^1":
+  version: 1.3.2
+  resolution: "@types/mime@npm:1.3.2"
+  checksum: 0493368244cced1a69cb791b485a260a422e6fcc857782e1178d1e6f219f1b161793e9f87f5fae1b219af0f50bee24fcbe733a18b4be8fdd07a38a8fb91146fd
+  languageName: node
+  linkType: hard
+
 "@types/minimatch@npm:*":
   version: 3.0.5
   resolution: "@types/minimatch@npm:3.0.5"
@@ -106,6 +113,16 @@ __metadata:
   version: 9.1.0
   resolution: "@types/mocha@npm:9.1.0"
   checksum: 21e1000dafcfe387c6812be41c44a47b48c27a74d5a70c3d5ef1bb5c88eadadfc74dba06e93f160e7248c8a57b3977b590f82504c801c9927816ecd4668023c0
+  languageName: node
+  linkType: hard
+
+"@types/node-static@npm:^0.7.7":
+  version: 0.7.7
+  resolution: "@types/node-static@npm:0.7.7"
+  dependencies:
+    "@types/mime": ^1
+    "@types/node": "*"
+  checksum: 5f7b2c114025b9b4ce551217f50725c74be9aab5bf8dcdb8b635c0039a710e4d03869c9ce4139dd4c05f2ce37b20f0d93833e4b7c652670b53249e3168821090
   languageName: node
   linkType: hard
 
@@ -432,6 +449,7 @@ __metadata:
     "@types/lodash.escape": ^4.0.6
     "@types/mocha": ^9.1.0
     "@types/node": ^17.0.21
+    "@types/node-static": ^0.7.7
     "@types/open": ^6.1.0
     "@types/pretty": ^2.0.1
     "@types/rimraf": ^3.0.2
@@ -517,17 +535,17 @@ __metadata:
   linkType: hard
 
 "browserslist@npm:^4.14.5":
-  version: 4.19.3
-  resolution: "browserslist@npm:4.19.3"
+  version: 4.20.0
+  resolution: "browserslist@npm:4.20.0"
   dependencies:
-    caniuse-lite: ^1.0.30001312
-    electron-to-chromium: ^1.4.71
+    caniuse-lite: ^1.0.30001313
+    electron-to-chromium: ^1.4.76
     escalade: ^3.1.1
     node-releases: ^2.0.2
     picocolors: ^1.0.0
   bin:
     browserslist: cli.js
-  checksum: c28958313dd17f345dd6e26379cc863126cd7d855588e57a1ed9e552a1135d64f05ec57063b48fff0d94a9b785bd248e9472c2d63ce8460ca56fc2444f5a1e66
+  checksum: 6d77f54bd43e7e1b86c3f10a3aa84b6c198f2ecc8b345ebd42cb9feb1c143554ad62a0eaf1365f28d14589a4d1fb12b367ade3798fa493dab5cff4ca525384aa
   languageName: node
   linkType: hard
 
@@ -552,10 +570,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001312":
-  version: 1.0.30001313
-  resolution: "caniuse-lite@npm:1.0.30001313"
-  checksum: 49f2dcd1fa493a09a5247dcf3a4da3b9df355131b1fc1fd08b67ae7683c300ed9b9eef6a5424b4ac7e5d1ff0e129d2a0b4adf2a6a5a04ab5c2c0b2c590e935be
+"caniuse-lite@npm:^1.0.30001313":
+  version: 1.0.30001314
+  resolution: "caniuse-lite@npm:1.0.30001314"
+  checksum: d82e1b8b287b1b2d2ed25c4495fe293276853dd9c77553c722929a6142fc49b3dd5ea21a95f6410d93319434a5bd071c304ea92e93debbcf292a9156cf08b35d
   languageName: node
   linkType: hard
 
@@ -814,10 +832,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"electron-to-chromium@npm:^1.4.71":
-  version: 1.4.75
-  resolution: "electron-to-chromium@npm:1.4.75"
-  checksum: 38ae5e197a100b9f9931a6112b0791659f736ad88ab3cd5534ed07dcc6001964a99de6757cbb708007bc59b0cd1b7cc36aeb5ea2efbfff6bd36ab53e49decb69
+"electron-to-chromium@npm:^1.4.76":
+  version: 1.4.78
+  resolution: "electron-to-chromium@npm:1.4.78"
+  checksum: 3a579fe3c6626dc3a311566cd41ee6cbf2dc2666285c5e329784f4a9329a572b9b5f73c717db4466fdc8d295e0b7a6ee23ad1b5160771979c4a9fd9f8667c681
   languageName: node
   linkType: hard
 
@@ -1394,7 +1412,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimist@npm:^1.2.5, minimist@npm:~0.0.1":
+"minimist@npm:^1.2.5":
+  version: 1.2.5
+  resolution: "minimist@npm:1.2.5"
+  checksum: 86706ce5b36c16bfc35c5fe3dbb01d5acdc9a22f2b6cc810b6680656a1d2c0e44a0159c9a3ba51fb072bb5c203e49e10b51dcd0eec39c481f4c42086719bae52
+  languageName: node
+  linkType: hard
+
+"minimist@npm:~0.0.1":
   version: 0.0.10
   resolution: "minimist@npm:0.0.10"
   checksum: f7b2cb17af165d042bb3d2803f5e6c38d137f0c36a62230fdb643058c25b56749d2c335b17d4de0b0f08f19cb868cac40df207ff7a4c59fd0771e8762e9b783c
