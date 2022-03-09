@@ -1,5 +1,6 @@
 import * as assert from 'assert';
-import cheerio from 'cheerio';
+//import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 import { ITestFile } from '../..';
 import { last, only } from '../../common/ArrayUtils';
 

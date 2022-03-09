@@ -1,7 +1,8 @@
 import * as Models from '../common/models';
 import ApexDox from './ApexDox';
 import ApexDoxError from '../common/ApexDoxError';
-import cheerio from 'cheerio';
+//import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 import ClassMarkupGenerator from './generators/models/ClassMarkupGenerator';
 import EnumMarkupGenerator from './generators/models/EnumMarkupGenerator';
 import fs from 'fs';
