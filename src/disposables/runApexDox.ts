@@ -16,7 +16,7 @@ export default function(context: ExtensionContext): Disposable {
             const config = Settings.getConfig<IEngineConfig>(Feature.ENGINE);
             ApexDox.extensionRoot = context.extensionPath;
             ApexDox.run(config);
-        } catch (e) {
+        } catch (e: any) {
             console.log(e);
             window.showErrorMessage(e.message);
         }

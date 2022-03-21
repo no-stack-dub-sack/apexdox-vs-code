@@ -21,7 +21,7 @@ class LineReader {
             const EOL = /(?:\r\n|[\r\n])/;
             this.lines = readFileSync(filePath).toString('utf8').split(EOL);
             this.end = this.lines.length;
-        } catch (e) {
+        } catch (e: any) {
             throw new ApexDoxError(e);
         }
     }

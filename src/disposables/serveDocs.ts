@@ -11,7 +11,7 @@ export default function() {
         try {
             const config = Settings.getConfig<IEngineConfig>(Feature.ENGINE);
             createDocServer(config.targetDirectory, config.title, Validator.port(config.port));
-        } catch (e) {
+        } catch (e: any) {
             console.error(e);
             window.showErrorMessage(e.message);
         }

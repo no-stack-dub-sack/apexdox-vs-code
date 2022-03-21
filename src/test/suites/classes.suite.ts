@@ -10,7 +10,7 @@ export const createClassesSuite = (files: ITestFile[]) => {
             const testFile = last(only(files, ['TEST_InterfaceClass.html'], 'name'));
             const $ = cheerio.load(testFile.snapshot);
 
-            assert.equal($('#item-IncludeTwo').attr('class').includes('private'), true, 'IncludeTwo.cls @isTest class not found or not private.');
+            assert.equal($('#item-IncludeTwo').attr('class')?.includes('private'), true, 'IncludeTwo.cls @isTest class not found or not private.');
         });
 
         test('Should correctly parse inner classes', function() {
@@ -20,7 +20,7 @@ export const createClassesSuite = (files: ITestFile[]) => {
             const innerClasses = $('h2.class-title')
                 .toArray()
                 .map(el => $(el).attr('id'))
-                .filter(id => id.startsWith('TEST_NestedClasses.'));
+                .filter(id => id?.startsWith('TEST_NestedClasses.'));
 
             const expectedInnerClasses =
                 ['TEST_NestedClasses.AbstractChildClass',

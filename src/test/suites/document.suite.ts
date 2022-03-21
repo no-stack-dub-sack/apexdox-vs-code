@@ -65,7 +65,7 @@ export const createDocumentSuite = (files: ITestFile[]) => {
                     onclick: $(el).attr('onclick')
                 }))
                 .forEach(menuObj => {
-                    assert.ok(menuObj.onclick.includes(menuObj.text + '.html'), "Menu item's onclick attribute does not link to correct file.");
+                    assert.ok(menuObj.onclick?.includes(menuObj.text + '.html'), "Menu item's onclick attribute does not link to correct file.");
                 });
         });
 
