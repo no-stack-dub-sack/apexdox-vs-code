@@ -186,36 +186,34 @@
 		"vscode:prepublish": "webpack --mode production",
 		"compile": "webpack --mode none",
 		"watch": "webpack --mode none --watch",
-		"yaml-2-grammar": "yarn node ./scripts/convertGrammar.js",
-		"test": "yarn run test-setup && yarn node ./node_modules/vscode/bin/test",
-		"test-setup": "yarn run test-compile && yarn run test-cleanup",
+		"yaml-2-grammar": "node scripts/convertGrammar.js",
+		"test": "npm run test-setup && node node_modules/vscode/bin/test",
+		"test-setup": "npm run test-compile && npm run test-cleanup",
 		"test-compile": "tsc -p ./",
 		"test-cleanup": "rm -rf ./src/test/test-proj/docs",
-		"update-snapshots": "rm ./src/test/snapshots/* && yarn node ./scripts/updateSnapshots.js"
+		"update-snapshots": "rm ./src/test/snapshots/* && node ./scripts/updateSnapshots.js"
 	},
 	"devDependencies": {
 		"@types/cheerio": "^0.22.31",
 		"@types/js-yaml": "^4.0.5",
 		"@types/lodash.escape": "^4.0.6",
 		"@types/mocha": "^9.1.0",
-		"@types/node": "^17.0.21",
+		"@types/node": "^17.0.22",
 		"@types/node-static": "^0.7.7",
 		"@types/rimraf": "^3.0.2",
 		"@types/vscode": "^1.65.0",
 		"@vscode/test-electron": "^2.1.3",
 		"cheerio": "^1.0.0-rc.10",
-		"node-static": "^0.7.11",
-		"ts-loader": "^9.2.7",
+		"ts-loader": "^9.2.8",
 		"typescript": "^4.6.2",
 		"webpack": "^5.70.0",
-		"webpack-cli": "^4.9.2",
-		"yarn": "^1.22.17"
+		"webpack-cli": "^4.9.2"
 	},
 	"dependencies": {
 		"js-yaml": "^4.1.0",
 		"lodash.escape": "^4.0.1",
 		"open": "^8.4.0",
+		"node-static": "^0.7.11",
 		"rimraf": "^3.0.2"
-	},
-	"packageManager": "yarn@3.2.0"
+	}
 }

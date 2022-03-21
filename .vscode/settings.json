@@ -12,7 +12,7 @@
     "saveAndRun": {
         "commands": [{
             "match": "apex.tmLanguage.injection.yml",
-            "cmd": "yarn yaml-2-grammar",
+            "cmd": "npx yaml-2-grammar",
             "useShortcut": false,
             "silent": false
         }]
