@@ -13,7 +13,7 @@ const { resolve } = require('path');
     const SOURCE = resolve(__dirname, '..', 'syntaxes', 'apex.tmLanguage.injection.yml');
     const TARGET = resolve(__dirname, '..', 'syntaxes', 'apex.tmLanguage.injection.json');
 
-    execSync(`npx js-yaml ${SOURCE} > ${TARGET}`);
+    execSync(`yarn run js-yaml ${SOURCE} > ${TARGET}`);
     let json = readFileSync(TARGET).toString('utf8');
     json = json.slice(json.indexOf('{'));
     writeFileSync(TARGET, json);
