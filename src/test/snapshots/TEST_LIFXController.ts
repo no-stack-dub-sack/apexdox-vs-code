@@ -187,7 +187,7 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_LIFXController">
-              <h3 class="subsection-title properties">TEST_LIFXController Properties</h2>
+              <h3 class="subsection-title properties">TEST_LIFXController Properties</h3>
                 <table class="attributes-table properties">
 
                   <tr>

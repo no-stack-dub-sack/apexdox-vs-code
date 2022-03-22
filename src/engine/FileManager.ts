@@ -9,7 +9,6 @@ import GeneratorUtils from './generators/GeneratorUtils';
 import LineReader from '../common/LineReader';
 import MenuGenerator from './generators/MenuGenerator';
 import path from 'path';
-import pretty from 'pretty';
 import rimraf from 'rimraf';
 import { window } from 'vscode';
 import { ISourceEntry, Option, ILunrDocument, IApexDoxMenus } from '..';
@@ -179,9 +178,12 @@ class FileManager {
         }
     }
 
+    /**
+     * 2022-03 We no longer use `pretty`, as it is interfering with pre tag rendering for code blocks
+     */
     private createHTMLFiles(fileMap: Map<string, string>): void {
         for (let fileName of fileMap.keys()) {
-            let contents = Utils.preCodeTrim(pretty(<string>fileMap.get(fileName)));
+            let contents = Utils.preCodeTrim(<string>fileMap.get(fileName));
             let fullyQualifiedFileName = path.resolve(this.path, fileName + '.html');
             fs.writeFileSync(fullyQualifiedFileName, contents);
         }

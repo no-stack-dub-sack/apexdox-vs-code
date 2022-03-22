@@ -193,7 +193,7 @@ export default `<!DOCTYPE html>
               </div><br />Richard Vanhook<br />Dec 28, 2008
             </div>
             <div class="subsection properties TEST_ArrayUtils">
-              <h3 class="subsection-title properties">TEST_ArrayUtils Properties</h2>
+              <h3 class="subsection-title properties">TEST_ArrayUtils Properties</h3>
                 <table class="attributes-table properties">
 
                   <tr>

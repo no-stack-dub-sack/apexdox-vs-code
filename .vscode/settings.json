@@ -20,5 +20,6 @@
     "cSpell.words": [
         "Docblock",
         "apexdox"
-    ]
+    ],
+    "tslint.packageManager": "yarn"
 }

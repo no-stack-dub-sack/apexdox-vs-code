@@ -184,7 +184,7 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection enums">
-              <h3 class="subsection-title enums">Enums</h2>
+              <h3 class="subsection-title enums">Enums</h3>
                 <table class="attributes-table enums">
 
                   <tr>

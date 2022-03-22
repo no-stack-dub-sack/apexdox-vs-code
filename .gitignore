@@ -5,8 +5,20 @@ dist/
 # sample docs created during testing
 src/test/test-proj/docs
 
+# Local system files
+.DS_Store
+
 TODO
 node_modules
 .vscode-test/
 *.vsix
 *.log
+
+# Yarn files
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

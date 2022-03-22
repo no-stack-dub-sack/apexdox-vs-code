@@ -193,7 +193,7 @@ export default `<!DOCTYPE html>
               </div><br />Salesforce.com<br />Jul 2017
             </div>
             <div class="subsection properties TEST_BotItem">
-              <h3 class="subsection-title properties">TEST_BotItem Properties</h2>
+              <h3 class="subsection-title properties">TEST_BotItem Properties</h3>
                 <table class="attributes-table properties">
 
                   <tr>

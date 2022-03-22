@@ -193,7 +193,7 @@ export default `<!DOCTYPE html>
               </div><br />Salesforce.com<br />Jul 2017
             </div>
             <div class="subsection properties TEST_SlackOpportunityPublisher">
-              <h3 class="subsection-title properties">TEST_SlackOpportunityPublisher Properties</h2>
+              <h3 class="subsection-title properties">TEST_SlackOpportunityPublisher Properties</h3>
                 <table class="attributes-table properties">
 
                   <tr>
@@ -221,7 +221,7 @@ export default `<!DOCTYPE html>
                 </table>
             </div>
             <div class="subsection enums">
-              <h3 class="subsection-title enums">Enums</h2>
+              <h3 class="subsection-title enums">Enums</h3>
                 <table class="attributes-table enums">
 
                   <tr>
@@ -365,7 +365,7 @@ export default `<!DOCTYPE html>
  System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST&#39;, body));</code></pre>
             </div>
             <div class="subsection properties TEST_SlackOpportunityPublisher_QueueableSlackCall">
-              <h3 class="subsection-title properties">TEST_SlackOpportunityPublisher.QueueableSlackCall Properties</h2>
+              <h3 class="subsection-title properties">TEST_SlackOpportunityPublisher.QueueableSlackCall Properties</h3>
                 <table class="attributes-table properties">
 
                   <tr>
