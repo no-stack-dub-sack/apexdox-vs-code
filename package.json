@@ -8,7 +8,7 @@
 	},
 	"description": "A lightweight VS Code extension that makes creating and generating static documentation for your Salesforce Apex files an easy, integrated experience.",
 	"engines": {
-		"vscode": "^1.32.0"
+		"vscode": "^1.65.2"
 	},
 	"categories": [
 		"Other"
@@ -202,7 +202,6 @@
 		"@types/node": "^10.12.21",
 		"@types/node-static": "^0.7.3",
 		"@types/open": "^6.0.0",
-		"@types/pretty": "^2.0.0",
 		"@types/rimraf": "^2.0.2",
 		"cheerio": "^1.0.0-rc.3",
 		"ts-loader": "^5.4.3",
@@ -217,7 +216,6 @@
 		"lodash.escape": "^4.0.1",
 		"node-static": "^0.7.11",
 		"open": "^6.0.0",
-		"pretty": "^2.0.0",
 		"rimraf": "^2.6.3"
 	}
 }
