@@ -8,7 +8,7 @@
 	},
 	"description": "A lightweight VS Code extension that makes creating and generating static documentation for your Salesforce Apex files an easy, integrated experience.",
 	"engines": {
-		"vscode": "^1.65.2"
+		"vscode": "^1.32.0"
 	},
 	"categories": [
 		"Other"
