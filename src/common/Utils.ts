@@ -222,6 +222,7 @@ class Utils {
         }
 
         html = html.replace(/<pre class="([a-z\-]+)">\s+<code>/g, '<pre class="$1"><code>');
+        html = html.replace(/<pre>\s+<code class="([a-z\-]+)">/g, '<pre><code class="$1">');
         html = html.replace(/<\/code>\s+<\/pre>/g, '</code></pre>');
         return html;
     }
