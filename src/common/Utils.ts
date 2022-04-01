@@ -215,7 +215,6 @@ class Utils {
      * there is whitespace between the pre and code tags which causes unwanted space in the HTML
      * document. Here, we're removing that space so pre and code tags do not have space between them.
      * @param html The html string to make replacements on.
-     * 2022-03 We no longer use `pretty`, as it is interfering with pre tag rendering for code blocks
      */
     public static preCodeTrim(html: string) {
         if (!/<pre/.test(html)) {
@@ -223,7 +222,6 @@ class Utils {
         }
 
         html = html.replace(/<pre class="([a-z\-]+)">\s+<code>/g, '<pre class="$1"><code>');
-        html = html.replace(/<pre>\s+<code class="([a-z\-]+)">/g, '<pre><code class="$1">');
         html = html.replace(/<\/code>\s+<\/pre>/g, '</code></pre>');
         return html;
     }
