@@ -146,7 +146,7 @@ class FileManager {
      */
     public parseHTMLFile(filePath: string): Option<string, void> {
         if (!filePath.trim()) { return; }
-        const contents = new LineReader(filePath).toString();
+        const contents = new LineReader(filePath).toString(false, "\n");
         if (contents) {
             const startIndex = contents.indexOf('<body>');
             const endIndex = contents.indexOf('</body>');
