@@ -93,5 +93,20 @@ export const createDocumentSuite = (files: ITestFile[]) => {
             const deprecated = $('.method-subtitle-description').toArray().filter(el => $(el).text().trim() === 'Works over multiple lines (deprecated).');
             assert.equal($(deprecated).text().trim(), 'Works over multiple lines (deprecated).', 'deprecated value does not match expected multi-line value');
         });
+
+        test('Should preserver whitespace and newlines for supplementary page code examples', function() {
+            const indexHtml = last(only(files, ['index.html'], 'name'));
+            let $ = cheerio.load(indexHtml.snapshot);
+
+            const actual = $("code").toArray().reduce((acc, el) => acc + $(el).text(), "");
+
+            const expected = `@AuraEnabled
+public static void someMethod() {
+    List<BotField> fields = new List<BotField>();
+    System.debug('Some debug statement');
+}`;
+
+            assert.equal(actual, expected, "Example code does not match expected value");
+        });
     });
 };

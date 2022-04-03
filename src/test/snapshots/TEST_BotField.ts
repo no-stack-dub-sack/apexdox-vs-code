@@ -202,61 +202,61 @@ export default `<!DOCTYPE html>
  }</code></pre>
             </div>
             <div class="subsection properties TEST_BotField">
-              <h3 class="subsection-title properties">TEST_BotField Properties</h2>
-                <table class="attributes-table properties">
+              <h3 class="subsection-title properties">TEST_BotField Properties</h3>
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
-                    <th>Annotations</th>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
+                  <th>Annotations</th>
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotField.cls#L26">
-                        linkURL
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String linkURL
-                      </div>
-                    </td>
-                    <td>
-                      <div class="prop-annotations">@AuraEnabled</div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotField.cls#L26">
+                      linkURL
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String linkURL
+                    </div>
+                  </td>
+                  <td>
+                    <div class="prop-annotations">@AuraEnabled</div>
+                  </td>
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotField.cls#L24">
-                        name
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String name
-                      </div>
-                    </td>
-                    <td>
-                      <div class="prop-annotations">@AuraEnabled</div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotField.cls#L24">
+                      name
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String name
+                    </div>
+                  </td>
+                  <td>
+                    <div class="prop-annotations">@AuraEnabled</div>
+                  </td>
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotField.cls#L25">
-                        value
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String value
-                      </div>
-                    </td>
-                    <td>
-                      <div class="prop-annotations">@AuraEnabled</div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotField.cls#L25">
+                      value
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String value
+                    </div>
+                  </td>
+                  <td>
+                    <div class="prop-annotations">@AuraEnabled</div>
+                  </td>
 
-                  </tr>
-                </table>
+                </tr>
+              </table>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_BotField Methods</h3>

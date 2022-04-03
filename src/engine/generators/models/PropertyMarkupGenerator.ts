@@ -25,7 +25,7 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
 
         markup =
             `<div class="subsection properties ${cModel.name.replace('.', '_')}">
-                <h3 class="subsection-title properties">${cModel.name} Properties</h2>
+                <h3 class="subsection-title properties">${cModel.name} Properties</h3>
                 <table class="attributes-table properties">
                     ${markup}
                 </table>

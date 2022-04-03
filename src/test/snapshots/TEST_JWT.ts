@@ -193,198 +193,198 @@ export default `<!DOCTYPE html>
               </div><br />Salesforce.com<br />Jul 2017
             </div>
             <div class="subsection properties TEST_JWT">
-              <h3 class="subsection-title properties">TEST_JWT Properties</h2>
-                <table class="attributes-table properties">
+              <h3 class="subsection-title properties">TEST_JWT Properties</h3>
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
-
-
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L11">
-                        alg
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String alg
-                      </div>
-                    </td>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L14">
-                        aud
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String aud
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L11">
+                      alg
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String alg
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L19">
-                        cert
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String cert
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L14">
+                      aud
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String aud
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L17">
-                        claims
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public Map&lt;String,String&gt; claims
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L19">
+                      cert
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String cert
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L15">
-                        exp
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String exp
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L17">
+                      claims
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public Map&lt;String,String&gt; claims
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L24">
-                        HS256
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public static final String HS256
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L15">
+                      exp
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String exp
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L16">
-                        iat
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String iat
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L24">
+                      HS256
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public static final String HS256
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L12">
-                        iss
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String iss
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L16">
+                      iat
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String iat
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L26">
-                        NONE
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public static final String NONE
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L12">
+                      iss
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String iss
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L20">
-                        pkcs8
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String pkcs8
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L26">
+                      NONE
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public static final String NONE
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L21">
-                        privateKey
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String privateKey
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L20">
+                      pkcs8
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String pkcs8
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L25">
-                        RS256
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public static final String RS256
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L21">
+                      privateKey
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String privateKey
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L13">
-                        sub
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String sub
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L25">
+                      RS256
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public static final String RS256
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L18">
-                        validFor
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public Integer validFor
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L13">
+                      sub
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String sub
+                    </div>
+                  </td>
 
 
-                  </tr>
-                </table>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L18">
+                      validFor
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public Integer validFor
+                    </div>
+                  </td>
+
+
+                </tr>
+              </table>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_JWT Methods</h3>

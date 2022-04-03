@@ -184,198 +184,198 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_Properties">
-              <h3 class="subsection-title properties">TEST_Properties Properties</h2>
-                <table class="attributes-table properties">
+              <h3 class="subsection-title properties">TEST_Properties Properties</h3>
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
-
-
-                  </tr>
-                  <tr class="property protected">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L12">
-                        outer_eight
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        protected static Map&lt;String,String&gt; outer_eight
-                      </div>
-                    </td>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
 
 
-                  </tr>
-                  <tr class="property protected">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L15">
-                        outer_eleven
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        protected Set&lt;String&gt; outer_eleven
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property protected">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L12">
+                      outer_eight
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      protected static Map&lt;String,String&gt; outer_eight
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L9">
-                        outer_five
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private String outer_five
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property protected">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L15">
+                      outer_eleven
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      protected Set&lt;String&gt; outer_eleven
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L8">
-                        outer_four
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private String outer_four
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L9">
+                      outer_five
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private String outer_five
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L29">
-                        outer_fourteen
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private Integer outer_fourteen
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L8">
+                      outer_four
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private String outer_four
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property protected">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L13">
-                        outer_nine
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        protected Map&lt;String,String&gt; outer_nine
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L29">
+                      outer_fourteen
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private Integer outer_fourteen
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L5">
-                        outer_one
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String outer_one
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property protected">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L13">
+                      outer_nine
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      protected Map&lt;String,String&gt; outer_nine
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L11">
-                        outer_seven
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private String outer_seven
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L5">
+                      outer_one
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String outer_one
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L10">
-                        outer_six
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private String outer_six
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L11">
+                      outer_seven
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private String outer_seven
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property protected">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L14">
-                        outer_ten
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        protected List&lt;Integer&gt; outer_ten
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L10">
+                      outer_six
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private String outer_six
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L23">
-                        outer_thirteen
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private String outer_thirteen
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property protected">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L14">
+                      outer_ten
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      protected List&lt;Integer&gt; outer_ten
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L7">
-                        outer_three
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public static String outer_three
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L23">
+                      outer_thirteen
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private String outer_thirteen
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L17">
-                        outer_twelve
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private String outer_twelve
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L7">
+                      outer_three
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public static String outer_three
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L6">
-                        outer_two
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public static final String outer_two
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L17">
+                      outer_twelve
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private String outer_twelve
+                    </div>
+                  </td>
 
 
-                  </tr>
-                </table>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L6">
+                      outer_two
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public static final String outer_two
+                    </div>
+                  </td>
+
+
+                </tr>
+              </table>
             </div>
           </div>
 
@@ -398,80 +398,80 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_Properties_InnerOne">
-              <h3 class="subsection-title properties">TEST_Properties.InnerOne Properties</h2>
-                <table class="attributes-table properties">
+              <h3 class="subsection-title properties">TEST_Properties.InnerOne Properties</h3>
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
 
-                    <th>Description</th>
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L46">
-                        inner_four
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private String inner_four
-                      </div>
-                    </td>
-
-
-                    <td class="attribute-description">
-
-                    </td>
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L43">
-                        inner_one
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String inner_one
-                      </div>
-                    </td>
+                  <th>Description</th>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L46">
+                      inner_four
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private String inner_four
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
-                      Description for inner_one
-                    </td>
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L45">
-                        inner_three
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public static String inner_three
-                      </div>
-                    </td>
+                  <td class="attribute-description">
+
+                  </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L43">
+                      inner_one
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String inner_one
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
+                  <td class="attribute-description">
+                    Description for inner_one
+                  </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L45">
+                      inner_three
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public static String inner_three
+                    </div>
+                  </td>
 
-                    </td>
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L44">
-                        inner_two
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public static final String inner_two
-                      </div>
-                    </td>
+
+                  <td class="attribute-description">
+
+                  </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L44">
+                      inner_two
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public static final String inner_two
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
+                  <td class="attribute-description">
 
-                    </td>
-                  </tr>
-                </table>
+                  </td>
+                </tr>
+              </table>
             </div>
           </div>
 
@@ -494,82 +494,82 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_Properties_InnerThree">
-              <h3 class="subsection-title properties">TEST_Properties.InnerThree Properties</h2>
-                <table class="attributes-table properties">
+              <h3 class="subsection-title properties">TEST_Properties.InnerThree Properties</h3>
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
-                    <th>Annotations</th>
-                    <th>Description</th>
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L63">
-                        inner_four
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private String inner_four
-                      </div>
-                    </td>
-                    <td></td>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
+                  <th>Annotations</th>
+                  <th>Description</th>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L63">
+                      inner_four
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private String inner_four
+                    </div>
+                  </td>
+                  <td></td>
 
-                    <td class="attribute-description">
+                  <td class="attribute-description">
 
-                    </td>
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L59">
-                        inner_one
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String inner_one
-                      </div>
-                    </td>
-                    <td></td>
+                  </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L59">
+                      inner_one
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String inner_one
+                    </div>
+                  </td>
+                  <td></td>
 
-                    <td class="attribute-description">
-                      Description for inner_one
-                    </td>
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L62">
-                        inner_three
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public static String inner_three
-                      </div>
-                    </td>
-                    <td></td>
+                  <td class="attribute-description">
+                    Description for inner_one
+                  </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L62">
+                      inner_three
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public static String inner_three
+                    </div>
+                  </td>
+                  <td></td>
 
-                    <td class="attribute-description">
+                  <td class="attribute-description">
 
-                    </td>
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L61">
-                        inner_two
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public static final String inner_two
-                      </div>
-                    </td>
-                    <td>
-                      <div class="prop-annotations">@TestVisible</div>
-                    </td>
+                  </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L61">
+                      inner_two
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public static final String inner_two
+                    </div>
+                  </td>
+                  <td>
+                    <div class="prop-annotations">@TestVisible</div>
+                  </td>
 
-                    <td class="attribute-description">
+                  <td class="attribute-description">
 
-                    </td>
-                  </tr>
-                </table>
+                  </td>
+                </tr>
+              </table>
             </div>
           </div>
 
@@ -592,70 +592,70 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_Properties_InnerTwo">
-              <h3 class="subsection-title properties">TEST_Properties.InnerTwo Properties</h2>
-                <table class="attributes-table properties">
+              <h3 class="subsection-title properties">TEST_Properties.InnerTwo Properties</h3>
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
-                    <th>Annotations</th>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
+                  <th>Annotations</th>
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L54">
-                        inner_four
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private String inner_four
-                      </div>
-                    </td>
-                    <td></td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L54">
+                      inner_four
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private String inner_four
+                    </div>
+                  </td>
+                  <td></td>
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L51">
-                        inner_one
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public String inner_one
-                      </div>
-                    </td>
-                    <td>
-                      <div class="prop-annotations">@TestVisible</div>
-                    </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L51">
+                      inner_one
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public String inner_one
+                    </div>
+                  </td>
+                  <td>
+                    <div class="prop-annotations">@TestVisible</div>
+                  </td>
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L53">
-                        inner_three
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public static String inner_three
-                      </div>
-                    </td>
-                    <td></td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L53">
+                      inner_three
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public static String inner_three
+                    </div>
+                  </td>
+                  <td></td>
 
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L52">
-                        inner_two
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public static final String inner_two
-                      </div>
-                    </td>
-                    <td></td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Properties.cls#L52">
+                      inner_two
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public static final String inner_two
+                    </div>
+                  </td>
+                  <td></td>
 
-                  </tr>
-                </table>
+                </tr>
+              </table>
             </div>
           </div>
 

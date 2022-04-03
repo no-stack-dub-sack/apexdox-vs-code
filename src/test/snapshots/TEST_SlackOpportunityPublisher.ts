@@ -193,108 +193,108 @@ export default `<!DOCTYPE html>
               </div><br />Salesforce.com<br />Jul 2017
             </div>
             <div class="subsection properties TEST_SlackOpportunityPublisher">
-              <h3 class="subsection-title properties">TEST_SlackOpportunityPublisher Properties</h2>
-                <table class="attributes-table properties">
+              <h3 class="subsection-title properties">TEST_SlackOpportunityPublisher Properties</h3>
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
 
-                    <th>Description</th>
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L17">
-                        slackURL
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static final String slackURL
-                      </div>
-                    </td>
+                  <th>Description</th>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L17">
+                      slackURL
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static final String slackURL
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
-                      The slack URL to use for publishing.
-                    </td>
-                  </tr>
-                </table>
+                  <td class="attribute-description">
+                    The slack URL to use for publishing.
+                  </td>
+                </tr>
+              </table>
             </div>
             <div class="subsection enums">
-              <h3 class="subsection-title enums">Enums</h2>
-                <table class="attributes-table enums">
+              <h3 class="subsection-title enums">Enums</h3>
+              <table class="attributes-table enums">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
-                    <th>Values</th>
-                    <th>Description</th>
-                  </tr>
-                  <tr class="enum public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L55">
-                        Days
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public enum Days
-                      </div>
-                    </td>
-                    <td class="enum-values">MONDAY,&nbsp;TUESDAY,&nbsp;WEDNESDAY,&nbsp;THURSDAY,&nbsp;FRIDAY,&nbsp;SATURDAY,&nbsp;SUNDAY</td>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
+                  <th>Values</th>
+                  <th>Description</th>
+                </tr>
+                <tr class="enum public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L55">
+                      Days
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public enum Days
+                    </div>
+                  </td>
+                  <td class="enum-values">MONDAY,&nbsp;TUESDAY,&nbsp;WEDNESDAY,&nbsp;THURSDAY,&nbsp;FRIDAY,&nbsp;SATURDAY,&nbsp;SUNDAY</td>
 
-                    <td class="attribute-description">
-                      An inner enum added to demonstrate how ApexDox VS Code handles inner enums. They will be presented in a table and can only have description&#39;s, like properties.
-                    </td>
-                  </tr>
-                  <tr class="enum public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L40">
-                        Months
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public enum Months
-                      </div>
-                    </td>
-                    <td class="enum-values">JANUARY,&nbsp;FEBRUARY,&nbsp;MARCH,&nbsp;APRIL,&nbsp;MAY,&nbsp;JUNE,&nbsp;JULY,&nbsp;AUGUST,&nbsp;SEPTEMBER,&nbsp;OCTOBER,&nbsp;NOVEMBER,&nbsp;DECEMBER</td>
+                  <td class="attribute-description">
+                    An inner enum added to demonstrate how ApexDox VS Code handles inner enums. They will be presented in a table and can only have description&#39;s, like properties.
+                  </td>
+                </tr>
+                <tr class="enum public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L40">
+                      Months
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public enum Months
+                    </div>
+                  </td>
+                  <td class="enum-values">JANUARY,&nbsp;FEBRUARY,&nbsp;MARCH,&nbsp;APRIL,&nbsp;MAY,&nbsp;JUNE,&nbsp;JULY,&nbsp;AUGUST,&nbsp;SEPTEMBER,&nbsp;OCTOBER,&nbsp;NOVEMBER,&nbsp;DECEMBER</td>
 
-                    <td class="attribute-description">
-                      An inner enum added to demonstrate how ApexDox VS Code handles inner enums. They can only have description&#39;s, like properties. ApexDoc2 Should be able to handle to wonky way this enum is written in code.
-                    </td>
-                  </tr>
-                  <tr class="enum public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L65">
-                        Numbers
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public enum Numbers
-                      </div>
-                    </td>
-                    <td class="enum-values">ONE,&nbsp;TWO,&nbsp;THREE,&nbsp;FOUR,&nbsp;FIVE</td>
+                  <td class="attribute-description">
+                    An inner enum added to demonstrate how ApexDox VS Code handles inner enums. They can only have description&#39;s, like properties. ApexDoc2 Should be able to handle to wonky way this enum is written in code.
+                  </td>
+                </tr>
+                <tr class="enum public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L65">
+                      Numbers
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public enum Numbers
+                    </div>
+                  </td>
+                  <td class="enum-values">ONE,&nbsp;TWO,&nbsp;THREE,&nbsp;FOUR,&nbsp;FIVE</td>
 
-                    <td class="attribute-description">
-                      An inner enum added to demonstrate how ApexDox VS Code handles inner enums. They will be presented in a table and can only have description&#39;s, like properties.
-                    </td>
-                  </tr>
-                  <tr class="enum public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L78">
-                        Rgb
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public enum Rgb
-                      </div>
-                    </td>
-                    <td class="enum-values">RED,&nbsp;GREEN,&nbsp;BLUE</td>
+                  <td class="attribute-description">
+                    An inner enum added to demonstrate how ApexDox VS Code handles inner enums. They will be presented in a table and can only have description&#39;s, like properties.
+                  </td>
+                </tr>
+                <tr class="enum public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L78">
+                      Rgb
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public enum Rgb
+                    </div>
+                  </td>
+                  <td class="enum-values">RED,&nbsp;GREEN,&nbsp;BLUE</td>
 
-                    <td class="attribute-description">
-                      An inner enum added to demonstrate how ApexDox VS Code handles inner enums. They will be presented in a table and can only have description&#39;s, like properties.
-                    </td>
-                  </tr>
-                </table>
+                  <td class="attribute-description">
+                    An inner enum added to demonstrate how ApexDox VS Code handles inner enums. They will be presented in a table and can only have description&#39;s, like properties.
+                  </td>
+                </tr>
+              </table>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_SlackOpportunityPublisher Methods</h3>
@@ -365,55 +365,55 @@ export default `<!DOCTYPE html>
  System.enqueueJob(new QueueablePushCall(&#39;https://someurl.com&#39;, &#39;POST&#39;, body));</code></pre>
             </div>
             <div class="subsection properties TEST_SlackOpportunityPublisher_QueueableSlackCall">
-              <h3 class="subsection-title properties">TEST_SlackOpportunityPublisher.QueueableSlackCall Properties</h2>
-                <table class="attributes-table properties">
+              <h3 class="subsection-title properties">TEST_SlackOpportunityPublisher.QueueableSlackCall Properties</h3>
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
-
-
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L96">
-                        body
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private final String body
-                      </div>
-                    </td>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L95">
-                        method
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private final String method
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L96">
+                      body
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private final String body
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L94">
-                        url
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private final String url
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L95">
+                      method
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private final String method
+                    </div>
+                  </td>
 
 
-                  </tr>
-                </table>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L94">
+                      url
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private final String url
+                    </div>
+                  </td>
+
+
+                </tr>
+              </table>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_SlackOpportunityPublisher.QueueableSlackCall Constructors</h3>

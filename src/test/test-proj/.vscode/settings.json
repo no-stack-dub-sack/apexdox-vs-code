@@ -17,7 +17,7 @@
         "*Test.cls",
         "TEST_ExcludeMe.cls"
     ],
-	"apexdox.engine.homePagePath": "",
+	"apexdox.engine.homePagePath": "${workspaceFolder}/src/Homepage.html",
 	"apexdox.engine.scope": [
         "public",
         "private",
