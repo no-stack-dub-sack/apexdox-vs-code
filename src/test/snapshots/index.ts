@@ -182,7 +182,7 @@ export default `<!DOCTYPE html>
             <pre class="code-example"><code>@AuraEnabled
 public static void someMethod() {
     List&lt;BotField&gt; fields = new List&lt;BotField&gt;();
-    System.debug('Some debug statement')
+    System.debug('Some debug statement');
 }</code></pre>
           </div>
 
