@@ -14,6 +14,7 @@ import rimraf from 'rimraf';
 import { window } from 'vscode';
 import { ISourceEntry, Option, ILunrDocument, IApexDoxMenus } from '..';
 import Utils from '../common/Utils';
+import { EOL } from "os";
 
 class FileManager {
     private path: string;
@@ -147,7 +148,7 @@ class FileManager {
      */
     public parseHTMLFile(filePath: string): Option<string, void> {
         if (!filePath.trim()) { return; }
-        const contents = new LineReader(filePath).toString();
+        const contents = new LineReader(filePath).toString(false, EOL);
         if (contents) {
             const startIndex = contents.indexOf('<body>');
             const endIndex = contents.indexOf('</body>');

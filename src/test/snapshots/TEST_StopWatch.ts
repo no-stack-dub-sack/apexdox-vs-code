@@ -193,146 +193,146 @@ export default `<!DOCTYPE html>
               </div><br />Richard Vanhook<br />Dec 28, 2008
             </div>
             <div class="subsection properties TEST_StopWatch">
-              <h3 class="subsection-title properties">TEST_StopWatch Properties</h2>
-                <table class="attributes-table properties">
+              <h3 class="subsection-title properties">TEST_StopWatch Properties</h3>
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
-
-
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L36">
-                        runningState
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private Integer runningState
-                      </div>
-                    </td>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L37">
-                        splitState
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private Integer splitState
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L36">
+                      runningState
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private Integer runningState
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L38">
-                        startTime
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private Long startTime
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L37">
+                      splitState
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private Integer splitState
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L28">
-                        STATE_RUNNING
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static final Integer STATE_RUNNING
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L38">
+                      startTime
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private Long startTime
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L34">
-                        STATE_SPLIT
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static final Integer STATE_SPLIT
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L28">
+                      STATE_RUNNING
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static final Integer STATE_RUNNING
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L29">
-                        STATE_STOPPED
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static final Integer STATE_STOPPED
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L34">
+                      STATE_SPLIT
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static final Integer STATE_SPLIT
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L30">
-                        STATE_SUSPENDED
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static final Integer STATE_SUSPENDED
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L29">
+                      STATE_STOPPED
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static final Integer STATE_STOPPED
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L33">
-                        STATE_UNSPLIT
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static final Integer STATE_UNSPLIT
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L30">
+                      STATE_SUSPENDED
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static final Integer STATE_SUSPENDED
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L27">
-                        STATE_UNSTARTED
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static final Integer STATE_UNSTARTED
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L33">
+                      STATE_UNSPLIT
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static final Integer STATE_UNSPLIT
+                    </div>
+                  </td>
 
 
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L39">
-                        stopTime
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private Long stopTime
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L27">
+                      STATE_UNSTARTED
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static final Integer STATE_UNSTARTED
+                    </div>
+                  </td>
 
 
-                  </tr>
-                </table>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L39">
+                      stopTime
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private Long stopTime
+                    </div>
+                  </td>
+
+
+                </tr>
+              </table>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_StopWatch Methods</h3>

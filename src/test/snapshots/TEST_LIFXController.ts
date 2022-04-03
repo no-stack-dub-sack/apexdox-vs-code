@@ -187,29 +187,29 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_LIFXController">
-              <h3 class="subsection-title properties">TEST_LIFXController Properties</h2>
-                <table class="attributes-table properties">
+              <h3 class="subsection-title properties">TEST_LIFXController Properties</h3>
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
-
-
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L9">
-                        settings
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static final Dreamhouse_Settings__c settings
-                      </div>
-                    </td>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
 
 
-                  </tr>
-                </table>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L9">
+                      settings
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static final Dreamhouse_Settings__c settings
+                    </div>
+                  </td>
+
+
+                </tr>
+              </table>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_LIFXController Methods</h3>

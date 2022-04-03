@@ -193,42 +193,42 @@ export default `<!DOCTYPE html>
               </div><br />Richard Vanhook<br />Dec 28, 2008
             </div>
             <div class="subsection properties TEST_ArrayUtils">
-              <h3 class="subsection-title properties">TEST_ArrayUtils Properties</h2>
-                <table class="attributes-table properties">
+              <h3 class="subsection-title properties">TEST_ArrayUtils Properties</h3>
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
-
-
-                  </tr>
-                  <tr class="property global">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L26">
-                        EMPTY_STRING_ARRAY
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        global static String[] EMPTY_STRING_ARRAY
-                      </div>
-                    </td>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
 
 
-                  </tr>
-                  <tr class="property global">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L27">
-                        MAX_NUMBER_OF_ELEMENTS_IN_LIST
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        global static Integer MAX_NUMBER_OF_ELEMENTS_IN_LIST
-                      </div>
-                    </td>
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L26">
+                      EMPTY_STRING_ARRAY
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global static String[] EMPTY_STRING_ARRAY
+                    </div>
+                  </td>
 
 
-                  </tr>
-                </table>
+                </tr>
+                <tr class="property global">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L27">
+                      MAX_NUMBER_OF_ELEMENTS_IN_LIST
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      global static Integer MAX_NUMBER_OF_ELEMENTS_IN_LIST
+                    </div>
+                  </td>
+
+
+                </tr>
+              </table>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_ArrayUtils Methods</h3>

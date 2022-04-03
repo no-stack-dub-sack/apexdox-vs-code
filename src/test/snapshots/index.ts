@@ -165,14 +165,29 @@ export default `<!DOCTYPE html>
       <tr>
         <td class="doc-page">
           <h2 class='section-title'>Home</h2>
-          <h2>
-            Project Home
-          </h2>
+          <h1>Test Docs Homepage</h1>
+
           <p>
-            Use the <code class="code-inline">apexdox.homePagePath</code> setting
-            to point to an HTML file that contains details about your project.
-            The body of the HTML will show up here instead of this default!
+            <strong>IMPORTANT:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
+
+          <h2>Subtitle</h2>
+
+          <p>This code should be formatted correctly:</p>
+
+          <div>
+            <pre class="code-example"><code>@AuraEnabled
+public static void someMethod() {
+    List&lt;BotField&gt; fields = new List&lt;BotField&gt;();
+    System.debug('Some debug statement');
+}</code></pre>
+          </div>
+
+          <p>Fin.</p>
+
         </td>
       </tr>
       <tr>

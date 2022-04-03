@@ -187,64 +187,64 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_NestedClasses">
-              <h3 class="subsection-title properties">TEST_NestedClasses Properties</h2>
-                <table class="attributes-table properties">
+              <h3 class="subsection-title properties">TEST_NestedClasses Properties</h3>
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
 
-                    <th>Description</th>
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L25">
-                        m
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private final String m
-                      </div>
-                    </td>
-
-
-                    <td class="attribute-description">
-                      Member variable for outer class
-                    </td>
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L8">
-                        MY_INT
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private static final Integer MY_INT
-                      </div>
-                    </td>
+                  <th>Description</th>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L25">
+                      m
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private final String m
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
-                      Static final variable (constant) – outer class level only
-                    </td>
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L14">
-                        sharedState
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public static String sharedState
-                      </div>
-                    </td>
+                  <td class="attribute-description">
+                    Member variable for outer class
+                  </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L8">
+                      MY_INT
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private static final Integer MY_INT
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
-                      Non-final static variable - use this to communicate state across triggers within a single request)
-                    </td>
-                  </tr>
-                </table>
+                  <td class="attribute-description">
+                    Static final variable (constant) – outer class level only
+                  </td>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L14">
+                      sharedState
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public static String sharedState
+                    </div>
+                  </td>
+
+
+                  <td class="attribute-description">
+                    Non-final static variable - use this to communicate state across triggers within a single request)
+                  </td>
+                </tr>
+              </table>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_NestedClasses Methods</h3>
@@ -565,64 +565,64 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_NestedClasses_InnerClass">
-              <h3 class="subsection-title properties">TEST_NestedClasses.InnerClass Properties</h2>
-                <table class="attributes-table properties">
+              <h3 class="subsection-title properties">TEST_NestedClasses.InnerClass Properties</h3>
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
 
-                    <th>Description</th>
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L67">
-                        i
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private final Integer i
-                      </div>
-                    </td>
-
-
-                    <td class="attribute-description">
-                      Inline initialization (happens after the block above executes)
-                    </td>
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L58">
-                        s
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private final String s
-                      </div>
-                    </td>
+                  <th>Description</th>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L67">
+                      i
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private final Integer i
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
+                  <td class="attribute-description">
+                    Inline initialization (happens after the block above executes)
+                  </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L58">
+                      s
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private final String s
+                    </div>
+                  </td>
 
-                    </td>
-                  </tr>
-                  <tr class="property private">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L59">
-                        s2
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private final String s2
-                      </div>
-                    </td>
+
+                  <td class="attribute-description">
+
+                  </td>
+                </tr>
+                <tr class="property private">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L59">
+                      s2
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      private final String s2
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
+                  <td class="attribute-description">
 
-                    </td>
-                  </tr>
-                </table>
+                  </td>
+                </tr>
+              </table>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_NestedClasses.InnerClass Constructors</h3>
@@ -770,32 +770,32 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection properties TEST_NestedClasses_MyException">
-              <h3 class="subsection-title properties">TEST_NestedClasses.MyException Properties</h2>
-                <table class="attributes-table properties">
+              <h3 class="subsection-title properties">TEST_NestedClasses.MyException Properties</h3>
+              <table class="attributes-table properties">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
 
-                    <th>Description</th>
-                  </tr>
-                  <tr class="property public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L138">
-                        d
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public Double d
-                      </div>
-                    </td>
+                  <th>Description</th>
+                </tr>
+                <tr class="property public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L138">
+                      d
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public Double d
+                    </div>
+                  </td>
 
 
-                    <td class="attribute-description">
-                      Exception class member variable
-                    </td>
-                  </tr>
-                </table>
+                  <td class="attribute-description">
+                    Exception class member variable
+                  </td>
+                </tr>
+              </table>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_NestedClasses.MyException Constructors</h3>

@@ -184,80 +184,80 @@ export default `<!DOCTYPE html>
               </div>
             </div>
             <div class="subsection enums">
-              <h3 class="subsection-title enums">Enums</h2>
-                <table class="attributes-table enums">
+              <h3 class="subsection-title enums">Enums</h3>
+              <table class="attributes-table enums">
 
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
-                    <th>Values</th>
-                    <th>Description</th>
-                  </tr>
-                  <tr class="enum public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L21">
-                        Days
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public enum Days
-                      </div>
-                    </td>
-                    <td class="enum-values">MONDAY,&nbsp;TUESDAY,&nbsp;WEDNESDAY,&nbsp;THURSDAY,&nbsp;FRIDAY,&nbsp;SATURDAY,&nbsp;SUNDAY</td>
+                <tr>
+                  <th>Name</th>
+                  <th>Signature</th>
+                  <th>Values</th>
+                  <th>Description</th>
+                </tr>
+                <tr class="enum public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L21">
+                      Days
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public enum Days
+                    </div>
+                  </td>
+                  <td class="enum-values">MONDAY,&nbsp;TUESDAY,&nbsp;WEDNESDAY,&nbsp;THURSDAY,&nbsp;FRIDAY,&nbsp;SATURDAY,&nbsp;SUNDAY</td>
 
-                    <td class="attribute-description">
-                      Documentation Engine should parse inner enum values.
-                    </td>
-                  </tr>
-                  <tr class="enum public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L8">
-                        Months
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public enum Months
-                      </div>
-                    </td>
-                    <td class="enum-values">JAN,&nbsp;FEB,&nbsp;MAR,&nbsp;APR,&nbsp;MAY,&nbsp;JUN,&nbsp;JUL,&nbsp;AUG,&nbsp;SEP,&nbsp;OCT,&nbsp;NOV,&nbsp;DEC</td>
+                  <td class="attribute-description">
+                    Documentation Engine should parse inner enum values.
+                  </td>
+                </tr>
+                <tr class="enum public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L8">
+                      Months
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public enum Months
+                    </div>
+                  </td>
+                  <td class="enum-values">JAN,&nbsp;FEB,&nbsp;MAR,&nbsp;APR,&nbsp;MAY,&nbsp;JUN,&nbsp;JUL,&nbsp;AUG,&nbsp;SEP,&nbsp;OCT,&nbsp;NOV,&nbsp;DEC</td>
 
-                    <td class="attribute-description">
-                      Documentation Engine should parse inner enum values.
-                    </td>
-                  </tr>
-                  <tr class="enum public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L29">
-                        Numbers
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public enum Numbers
-                      </div>
-                    </td>
-                    <td class="enum-values">ONE,&nbsp;TWO,&nbsp;THREE,&nbsp;FOUR,&nbsp;FIVE</td>
+                  <td class="attribute-description">
+                    Documentation Engine should parse inner enum values.
+                  </td>
+                </tr>
+                <tr class="enum public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L29">
+                      Numbers
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public enum Numbers
+                    </div>
+                  </td>
+                  <td class="enum-values">ONE,&nbsp;TWO,&nbsp;THREE,&nbsp;FOUR,&nbsp;FIVE</td>
 
-                    <td class="attribute-description">
-                      Documentation Engine should parse inner enum values.
-                    </td>
-                  </tr>
-                  <tr class="enum public">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L40">
-                        Rgb
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        public enum Rgb
-                      </div>
-                    </td>
-                    <td class="enum-values">RED,&nbsp;GREEN,&nbsp;BLUE</td>
+                  <td class="attribute-description">
+                    Documentation Engine should parse inner enum values.
+                  </td>
+                </tr>
+                <tr class="enum public">
+                  <td class="attribute-name">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L40">
+                      Rgb
+                    </a></td>
+                  <td>
+                    <div class="attribute-signature">
+                      public enum Rgb
+                    </div>
+                  </td>
+                  <td class="enum-values">RED,&nbsp;GREEN,&nbsp;BLUE</td>
 
-                    <td class="attribute-description">
-                      Documentation Engine should parse inner enum values.
-                    </td>
-                  </tr>
-                </table>
+                  <td class="attribute-description">
+                    Documentation Engine should parse inner enum values.
+                  </td>
+                </tr>
+              </table>
             </div>
           </div>
 
