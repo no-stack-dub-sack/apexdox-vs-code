@@ -57,9 +57,13 @@ window.onbeforeunload = () => {
 function initHighlightJs() {
 	// initialize highlighting for code examples and
 	// signatures for methods, classes, props and enums
+	hljs.configure({
+		ignoreUnescapedHTML: true,
+	});
 	highlightJsSelectors.forEach(selector => {
 		document.querySelectorAll(selector).forEach(block => {
-			hljs.highlightBlock(block);
+			hljs.highlightElement(block);
+
 		});
 	});
 }
@@ -113,7 +117,7 @@ function updateMenuModel(items, state) {
 	if (newKeys.length > 0) {
 		newKeys.forEach(item => state[item.id] = item.isOpen === '' && true);
 		console.log('ApexDox: New menu keys found, adding to session storage:');
-		console.log(newKeys.map(function(g) { return g.id }));
+		console.log(newKeys.map(function (g) { return g.id }));
 	}
 }
 
