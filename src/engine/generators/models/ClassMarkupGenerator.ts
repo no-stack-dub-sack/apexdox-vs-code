@@ -41,8 +41,7 @@ class ClassMarkupGenerator extends MarkupGenerator<ClassModel> {
         return `
             <h2 class="class-title ${this.model.name === topmostTypeName ? 'top-level-type' : ''}" id="${this.model.name}">
                 ${super.linkToSource(GeneratorUtils.encodeText(this.model.name), topmostTypeName)}
-            </h2>`
-        ;
+            </h2>`;
     }
 }
 

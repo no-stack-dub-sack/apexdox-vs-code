@@ -56,7 +56,7 @@ class ApexDox {
             let numProcessed = 0;
 
             // parse our top-level class files
-            files.forEach(entry => {
+            files.forEach((entry) => {
                 this.currentFile = basename(entry.path);
 
                 const model = this.parseFileContents(entry.path, entry.sourceUrl);
@@ -86,11 +86,11 @@ class ApexDox {
     private static createClassGroupMap(models: Map<string, Models.TopLevelModel>): Map<string, Models.ClassGroup> {
         const classGroupMap: Map<string, Models.ClassGroup> = new Map<string, Models.ClassGroup>();
 
-        models.forEach(model => {
+        models.forEach((model) => {
             // if group name is falsy, default to this misc bucket
             // un-grouped classes will be placed under this menu
-            const group = model.groupName || 'Miscellaneous'
-                , contentPath = model.groupContentPath;
+            const group = model.groupName || 'Miscellaneous',
+                contentPath = model.groupContentPath;
 
             let classGroup = classGroupMap.get(group);
 
@@ -119,8 +119,10 @@ class ApexDox {
 
         let line: Option<string, null>;
         let comments = new Array<string>();
-        let lineNum = 0, nestedCurlyBraceDepth = 0;
-        let commentsStarted = false, docBlockStarted = false;
+        let lineNum = 0,
+            nestedCurlyBraceDepth = 0;
+        let commentsStarted = false,
+            docBlockStarted = false;
         let cModel: Option<Models.ClassModel>, cModelParent: Option<Models.ClassModel>;
 
         while ((line = reader.readLine()) !== null) {

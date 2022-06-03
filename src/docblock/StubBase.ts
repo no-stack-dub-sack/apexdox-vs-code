@@ -2,18 +2,12 @@ import ApexDox from '../engine/ApexDox';
 import Settings, { Feature } from '../common/Settings';
 import Utils from '../common/Utils';
 import { IDocblockConfig, IStubLine } from '..';
-import {
-    Position,
-    SnippetString,
-    TextDocument,
-    TextEditor,
-    TextLine
-    } from 'vscode';
+import { Position, SnippetString, TextDocument, TextEditor, TextLine } from 'vscode';
 
 export enum StubType {
     TOP_LEVEL_TYPE,
     PROP_OR_NESTED_TYPE,
-    METHOD
+    METHOD,
 }
 
 abstract class StubBase {
@@ -29,8 +23,8 @@ abstract class StubBase {
     private activeLine: number;
 
     public constructor(editor: TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
-		// set this flag to true so MethodModel does not call
-		// functions in the constructor that we don't care about
+        // set this flag to true so MethodModel does not call
+        // functions in the constructor that we don't care about
         ApexDox.isStub = true;
 
         this.editor = editor;
@@ -80,9 +74,9 @@ abstract class StubBase {
      * @returns The `TextLine` object on which our method begins.
      */
     public static getLineAndType(document: TextDocument, lineIndex: number, isCompletion?: boolean): IStubLine {
-        let type: StubType
-            , insertNewLine = false
-            , line = document.lineAt(lineIndex);
+        let type: StubType,
+            insertNewLine = false,
+            line = document.lineAt(lineIndex);
 
         // handle completion event and command being
         // invoked on an empty line
@@ -108,7 +102,7 @@ abstract class StubBase {
             insertNewLine,
             lineIndex,
             type,
-            line
+            line,
         };
     }
 
@@ -119,14 +113,16 @@ abstract class StubBase {
      * @param lineText The contents of the line.
      * @returns `StubType` enum
      */
-    private static getStubType(lineText: string, lineIndex: number, document: TextDocument) : StubType {
+    private static getStubType(lineText: string, lineIndex: number, document: TextDocument): StubType {
         // If we encounter an enum or class, traverse up the
         // doc and find out if we're nested inside another class
         if (Utils.isEnum(lineText.trim()) || Utils.isClassOrInterface(lineText)) {
             let isNested = false;
             while (lineIndex >= 1 && isNested === false) {
                 let prevLineText = document.lineAt(--lineIndex).text.trim();
-                if (!prevLineText) { continue; }
+                if (!prevLineText) {
+                    continue;
+                }
                 // if line starts with anything except annotation
                 // or comment chars, we're nested inside a class
                 else if (!/^@|\/\/|\*|\/\*/.test(prevLineText)) {
@@ -146,9 +142,7 @@ abstract class StubBase {
         // and properties. Can we think of a better wsay or will this do?
         else if (lineText.includes('(') && !lineText.includes('=')) {
             return StubType.METHOD;
-        }
-
-        else {
+        } else {
             return StubType.PROP_OR_NESTED_TYPE;
         }
     }
@@ -176,7 +170,7 @@ abstract class StubBase {
     }
 
     protected descriptionTemplate(indent: string, pad: string, omitDesc: boolean): string {
-        return `${this.blockOpen}${indent} * ${!omitDesc ? '@description ' : ''}${(omitDesc ? '' : pad)}$0\n`;
+        return `${this.blockOpen}${indent} * ${!omitDesc ? '@description ' : ''}${omitDesc ? '' : pad}$0\n`;
     }
     // #endregion
 }

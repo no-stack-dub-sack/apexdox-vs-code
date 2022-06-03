@@ -4,7 +4,6 @@ import Utils from '../../common/Utils';
 import { IMethodMatch } from '../..';
 
 class SeeLinkGenerator {
-
     private static isMarkdownURL(str: string): boolean {
         return /^\[.*\]\(.*\)$/.test(str.trim());
     }
@@ -60,13 +59,13 @@ class SeeLinkGenerator {
             if (/.*\[\d+\]$/.test(qualifier)) {
                 const i = qualifier.lastIndexOf('[');
                 // isolate the number inside the brackets
-                const selector = qualifier.substring(i+1, qualifier.length - 1);
+                const selector = qualifier.substring(i + 1, qualifier.length - 1);
                 overloadSelector = Number(selector);
                 // strip away the suffix from the qualifier
                 qualifier = qualifier.substring(0, i);
             }
 
-            const parts = qualifier.split('.').map(p => p.toLowerCase());
+            const parts = qualifier.split('.').map((p) => p.toLowerCase());
 
             if (!parts.length || parts.length > 3) {
                 throw new ApexDoxError(`Qualifier '${qualifier}' is invalid. ${ApexDoxError.INVALID_SEE_QUALIFIER}`);
@@ -112,7 +111,7 @@ class SeeLinkGenerator {
                         const childClass = childClasses.get(maybeChildClassName);
 
                         if (childClass) {
-                            const [ parentClassName, childClassName ] = childClass.name.split('.');
+                            const [parentClassName, childClassName] = childClass.name.split('.');
                             // 4.D) If match, and only 2 parts, stop here.
                             if (parts.length === 2) {
                                 // to ensure the link works, use model names rather than user provided
@@ -166,7 +165,8 @@ class SeeLinkGenerator {
     private static methodMatcher(methods: Models.MethodModel[], matcher: string, overloadSelector: number): IMethodMatch {
         let methodNum = 0;
         let foundMatch = false;
-        let selector = '', methodName = '';
+        let selector = '',
+            methodName = '';
 
         for (let method of methods) {
             if (method.name.toLowerCase() === matcher) {
@@ -195,7 +195,7 @@ class SeeLinkGenerator {
         return {
             foundMatch,
             methodName,
-            selector
+            selector,
         };
     }
 }

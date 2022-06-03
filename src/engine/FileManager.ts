@@ -14,7 +14,7 @@ import rimraf from 'rimraf';
 import { window } from 'vscode';
 import { ISourceEntry, Option, ILunrDocument, IApexDoxMenus } from '..';
 import Utils from '../common/Utils';
-import { EOL } from "os";
+import { EOL } from 'os';
 
 class FileManager {
     private path: string;
@@ -39,18 +39,19 @@ class FileManager {
      * @param excludes See config settings: a list of patterns to exclude
      */
     public getFiles(sources: ISourceEntry[], includes: string[], excludes: string[]): ISourceEntry[] {
-        const filesToCopy = new Array<ISourceEntry>()
-            , noneFound = new Array<string>();
+        const filesToCopy = new Array<ISourceEntry>(),
+            noneFound = new Array<string>();
 
-        const isEntryMatch = (entry: string, fileName: string) => fileName === entry ||
-            entry.startsWith('*') && fileName.endsWith(entry.slice(1)) ||
-            entry.endsWith('*') && fileName.startsWith(entry.slice(0, -1));
+        const isEntryMatch = (entry: string, fileName: string) =>
+            fileName === entry ||
+            (entry.startsWith('*') && fileName.endsWith(entry.slice(1))) ||
+            (entry.endsWith('*') && fileName.startsWith(entry.slice(0, -1)));
 
         for (let src of sources) {
             const files = fs.readdirSync(src.path);
 
-            if (files && files.some(file => file.endsWith('cls'))) {
-                files.forEach(fileName => {
+            if (files && files.some((file) => file.endsWith('cls'))) {
+                files.forEach((fileName) => {
                     // make sure entry is a file and is an apex class
                     if (!fileName.endsWith('.cls')) {
                         return;
@@ -58,7 +59,7 @@ class FileManager {
 
                     // if file is explicitly excluded or matches wildcard, return early
                     for (let entry of excludes) {
-                        if (isEntryMatch(entry, fileName))  {
+                        if (isEntryMatch(entry, fileName)) {
                             return;
                         }
                     }
@@ -67,7 +68,7 @@ class FileManager {
                     if (includes.length === 0) {
                         filesToCopy.push({
                             path: path.resolve(src.path, fileName),
-                            sourceUrl: src.sourceUrl
+                            sourceUrl: src.sourceUrl,
                         });
                         return;
                     }
@@ -75,10 +76,10 @@ class FileManager {
                     // there are includes params, only include files that pass test
                     for (let entry of includes) {
                         // file matches explicitly matches or matches wildcard
-                        if (isEntryMatch(entry, fileName))  {
+                        if (isEntryMatch(entry, fileName)) {
                             filesToCopy.push({
                                 path: path.resolve(src.path, fileName),
-                                sourceUrl: src.sourceUrl
+                                sourceUrl: src.sourceUrl,
                             });
                             return;
                         }
@@ -91,7 +92,7 @@ class FileManager {
 
         if (!filesToCopy.length) {
             // no .cls files found at all, or all .cls files have been excluded, throw error
-            const sourceDirs = sources.map(src => src.path).join(',');
+            const sourceDirs = sources.map((src) => src.path).join(',');
             throw new ApexDoxError(ApexDoxError.NO_FILES_FOUND(sourceDirs));
         } else if (noneFound.length) {
             // no .cls files found in one or more (but not all) of given source dirs, show warning
@@ -110,13 +111,12 @@ class FileManager {
      * @param pages Any additional pages, including the project home page, the user has included
      */
     public createDocs(groupNameMap: Map<string, Models.ClassGroup>, models: Map<string, Models.TopLevelModel>, pages: string[]): void {
-
         // make the menu and the scoping panel
         // and initialize our main file map
         const fileMap = new Map<string, string>();
         const menus = {
             class: MenuGenerator.makeMenu(groupNameMap, models),
-            scope: MenuGenerator.makeScopeMenu()
+            scope: MenuGenerator.makeScopeMenu(),
         };
 
         // create the markup for our different varieties of HTML pages
@@ -147,7 +147,9 @@ class FileManager {
      * @returns string representing the markup or void.
      */
     public parseHTMLFile(filePath: string): Option<string, void> {
-        if (!filePath.trim()) { return; }
+        if (!filePath.trim()) {
+            return;
+        }
         const contents = new LineReader(filePath).toString(false, EOL);
         if (contents) {
             const startIndex = contents.indexOf('<body>');
@@ -174,7 +176,7 @@ class FileManager {
         ApexDox.config.cleanDir && rimraf.sync(root);
 
         if (!fs.existsSync(root)) {
-            [root, assets].forEach(path => fs.mkdirSync(path));
+            [root, assets].forEach((path) => fs.mkdirSync(path));
         } else if (fs.existsSync(root) && !fs.existsSync(assets)) {
             fs.mkdirSync(assets);
         }
@@ -199,29 +201,26 @@ class FileManager {
                 .text()
                 .replace(/\s\(/g, '(')
                 .split('\n')
-                .map(line => line.trim())
-                .filter(line => !!line);
+                .map((line) => line.trim())
+                .filter((line) => !!line);
 
             searchIndex.push({
                 title: fileName === 'index' ? 'Home' : fileName,
                 fileName: fileName + '.html',
-                text: plainText.join(' ')
+                text: plainText.join(' '),
             });
         });
 
-        fs.writeFileSync(
-            path.resolve(this.path, 'assets', 'search-idx.js'),
-            `export default ${JSON.stringify(searchIndex, null, 4)};\n`
-        );
+        fs.writeFileSync(path.resolve(this.path, 'assets', 'search-idx.js'), `export default ${JSON.stringify(searchIndex, null, 4)};\n`);
     }
 
     private collectApexDoxAssets(): string[] {
         const files = fs.readdirSync(path.resolve(ApexDox.extensionRoot, 'assets'));
-        return files.map(fileName => path.resolve(ApexDox.extensionRoot, 'assets', fileName));
+        return files.map((fileName) => path.resolve(ApexDox.extensionRoot, 'assets', fileName));
     }
 
     private copyAssetsToTarget(files: string[]): void {
-        files.forEach(file => {
+        files.forEach((file) => {
             if (fs.existsSync(file)) {
                 fs.copyFileSync(file, path.resolve(this.path, 'assets', path.basename(file)));
             } else {
@@ -237,9 +236,7 @@ class FileManager {
     // ===========================================================================
 
     private makePage(contents: string, menus: IApexDoxMenus, title = '') {
-        const pageTitle = title
-            ? `<h2 class='section-title'>${title}</h2>`
-            : '';
+        const pageTitle = title ? `<h2 class='section-title'>${title}</h2>` : '';
 
         const rows = [
             ['scoping-panel', menus.scope],
@@ -247,15 +244,16 @@ class FileManager {
             ['footer', GeneratorUtils.footer],
         ];
 
-        const html =
-            `<!DOCTYPE html>
+        const html = `<!DOCTYPE html>
             <html lang="en">
             ${GeneratorUtils.makeHead(this.projectTitle)}
             <body>
                 ${menus.class}
                 <table id="content">
-                ${GeneratorUtils.mapHTML(rows, ([ className, contents ]) =>
-                    `<tr>
+                ${GeneratorUtils.mapHTML(
+                    rows,
+                    ([className, contents]) =>
+                        `<tr>
                         <td class="${className}">
                             ${contents}
                         </td>
@@ -276,24 +274,18 @@ class FileManager {
                 fileName = model.name;
 
                 if (model.modelType === Models.ModelType.CLASS) {
-
                     const cModel = <Models.ClassModel>model;
                     contents += ClassMarkupGenerator.generate(cModel, models);
 
                     // get child classes to work with in the order user specifies
-                    const childClasses = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA
-                        ? cModel.childClassesSorted
-                        : cModel.childClasses;
+                    const childClasses = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA ? cModel.childClassesSorted : cModel.childClasses;
 
                     // map over child classes, creating HTML, and concat result
-                    contents += childClasses.map(cmChild =>
-                        ClassMarkupGenerator.generate(cmChild, models)).join('');
-
+                    contents += childClasses.map((cmChild) => ClassMarkupGenerator.generate(cmChild, models)).join('');
                 } else if (model.modelType === Models.ModelType.ENUM) {
                     const eModel = <Models.EnumModel>model;
                     contents += EnumMarkupGenerator.generate(eModel, models);
                 }
-
             } else {
                 continue;
             }

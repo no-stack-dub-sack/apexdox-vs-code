@@ -5,7 +5,6 @@ import { except, last } from '../ArrayUtils';
 import { IMethodParam, Option } from '../..';
 
 class MethodModel extends ApexModel {
-
     private _isConstructor: boolean;
 
     public constructor(comments: string[], nameLine: string, lineNum: number, className = '', sourceUrl?: Option<string>) {
@@ -74,9 +73,10 @@ class MethodModel extends ApexModel {
 
         for (let i = 0; i < params.length; i++) {
             const param = params[i];
-            const prevParam = params[i-1];
+            const prevParam = params[i - 1];
 
-            let type = '', sliceStart = 0;
+            let type = '',
+                sliceStart = 0;
             let reString = `[A-Za-z0-9_.<>,\\s]+?\\s+${Utils.escapeRegExp(param)}`;
 
             if (prevParam) {
@@ -99,14 +99,15 @@ class MethodModel extends ApexModel {
 
     public get paramsFromNameLine(): string[] {
         const nameLine = this.nameLine;
-        const params = nameLine
-            .substring(nameLine.indexOf('(') + 1, nameLine.indexOf(')'))
-            .split(',');
+        const params = nameLine.substring(nameLine.indexOf('(') + 1, nameLine.indexOf(')')).split(',');
 
-        const result = except(params.map(param => {
-            let paramPair = param.trim().split(/\s+/);
-            return paramPair.length === 2 ? paramPair[1] : null;
-        }), [null]);
+        const result = except(
+            params.map((param) => {
+                let paramPair = param.trim().split(/\s+/);
+                return paramPair.length === 2 ? paramPair[1] : null;
+            }),
+            [null]
+        );
 
         return <string[]>result;
     }
@@ -126,7 +127,7 @@ class MethodModel extends ApexModel {
     // isTest methods will initially be recognized as implicitly private.
     protected parseScope(): void {
         super.parseScope();
-        if (this._scope === 'private' && this._annotations.map(a => a.toLowerCase()).includes('@istest')) {
+        if (this._scope === 'private' && this._annotations.map((a) => a.toLowerCase()).includes('@istest')) {
             this._scope = 'testmethod';
         }
     }

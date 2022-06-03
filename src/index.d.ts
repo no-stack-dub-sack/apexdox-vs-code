@@ -3,7 +3,6 @@ import { StubType } from './docblock/StubBase';
 import { TextLine } from 'vscode';
 
 declare namespace ApexDox {
-
     /** ============================================================
      *  Config / Settings Types
      *  ============================================================
@@ -116,7 +115,6 @@ declare namespace ApexDox {
         name: string;
         snapshot: string;
     }
-
 }
 
 export = ApexDox;

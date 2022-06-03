@@ -47,7 +47,7 @@ class LineReader {
      * @returns String, the previous line, or null if there is no previous line.
      */
     public peekPrevLine(): Option<string, null> {
-        if ((this.nextIndex - 1) > 0) {
+        if (this.nextIndex - 1 > 0) {
             return this.lines[this.nextIndex - 2];
         }
         return null;
@@ -58,7 +58,7 @@ class LineReader {
      * @returns String, the next line, or null if there is no next line.
      */
     public peekNextLine(): Option<string, null> {
-        if ((this.nextIndex + 1) < this.end) {
+        if (this.nextIndex + 1 < this.end) {
             return this.lines[this.nextIndex + 2];
         }
         return null;

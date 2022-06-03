@@ -6,7 +6,7 @@ import { IEngineConfig } from '..';
 
 const COMMAND = 'apexdox.serveDocs';
 
-export default function() {
+export default function () {
     return commands.registerCommand(COMMAND, () => {
         try {
             const config = Settings.getConfig<IEngineConfig>(Feature.ENGINE);

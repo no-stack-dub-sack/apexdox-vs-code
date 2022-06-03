@@ -7,7 +7,6 @@ import { existsSync } from 'fs';
 import { IEngineConfig, Option } from '../index';
 
 class ValidatorEngine extends Validator<IEngineConfig> {
-
     public constructor(config: IEngineConfig) {
         super(config);
         this.validFields = Object.keys(new EngineConfig());
@@ -35,14 +34,14 @@ class ValidatorEngine extends Validator<IEngineConfig> {
     }
 
     private pages() {
-        this.config.pages = ValidatorEngine.stringArray(this.config.pages, 'pages')
-            .map(path => ValidatorEngine.directory(path, 'pages', '.html'));
+        this.config.pages = ValidatorEngine.stringArray(this.config.pages, 'pages').map((path) =>
+            ValidatorEngine.directory(path, 'pages', '.html')
+        );
     }
 
     private assets() {
         // do not validate directory on assets, user will be warned at runtime
-        this.config.assets = ValidatorEngine.stringArray(this.config.assets, 'assets')
-            .map(path => Utils.resolveWorkspaceFolder(path));
+        this.config.assets = ValidatorEngine.stringArray(this.config.assets, 'assets').map((path) => Utils.resolveWorkspaceFolder(path));
     }
 
     private targetDirectory() {
@@ -90,14 +89,14 @@ class ValidatorEngine extends Validator<IEngineConfig> {
 
         let registeredScopes = new Array<string>();
 
-        scopes.forEach(scope => {
+        scopes.forEach((scope) => {
             if (typeof scope !== 'string') {
                 throw new ApexDoxError(ApexDoxError.ONLY_STRINGS('scope'));
             }
 
             let foundScope = false;
             scope = scope.toLowerCase().trim();
-            ApexDox.SCOPES.forEach(s => {
+            ApexDox.SCOPES.forEach((s) => {
                 if (s.toLowerCase() === scope) {
                     registeredScopes.push(s.toLowerCase());
                     foundScope = true;
@@ -113,9 +112,9 @@ class ValidatorEngine extends Validator<IEngineConfig> {
     }
 
     private source() {
-        this.config.source = this.config.source.map(src => ({
+        this.config.source = this.config.source.map((src) => ({
             path: ValidatorEngine.directory(src.path, 'source.path'),
-            sourceUrl: ValidatorEngine.sourceUrl(src.sourceUrl)
+            sourceUrl: ValidatorEngine.sourceUrl(src.sourceUrl),
         }));
     }
     // #endregion
@@ -163,7 +162,7 @@ class ValidatorEngine extends Validator<IEngineConfig> {
 
     private static stringArray(arr: string[], argName: string): string[] {
         this.typeGuard('array', arr, argName);
-        arr.forEach(item => {
+        arr.forEach((item) => {
             if (typeof item !== 'string') {
                 throw new ApexDoxError(ApexDoxError.ONLY_STRINGS(argName));
             }

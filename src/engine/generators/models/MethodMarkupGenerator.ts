@@ -5,35 +5,20 @@ import { ClassModel, MethodModel, TopLevelModel } from '../../../common/models';
 import { Option } from '../../..';
 
 class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
-
     protected constructor(model: MethodModel, models: Map<string, TopLevelModel>) {
         super(model, models);
     }
 
     public static generate(cModel: ClassModel, models: Map<string, TopLevelModel>): string {
         // retrieve methods to work with in the order user specifies
-        const allMethods = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA
-            ? cModel.methodsSorted
-            : cModel.methods;
+        const allMethods = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA ? cModel.methodsSorted : cModel.methods;
 
-        const constructors = allMethods.filter(m => m.isConstructor);
-        const methods = allMethods.filter(m => !m.isConstructor);
+        const constructors = allMethods.filter((m) => m.isConstructor);
+        const methods = allMethods.filter((m) => !m.isConstructor);
 
-        const constructorsMarkup = constructors.length
-            ? this.generateSection(
-                'Constructors',
-                constructors,
-                cModel,
-                models
-            ) : '';
+        const constructorsMarkup = constructors.length ? this.generateSection('Constructors', constructors, cModel, models) : '';
 
-        const methodsMarkup = methods.length
-            ? this.generateSection(
-                'Methods',
-                methods,
-                cModel,
-                models
-            ) : '';
+        const methodsMarkup = methods.length ? this.generateSection('Methods', methods, cModel, models) : '';
 
         return constructorsMarkup + methodsMarkup;
     }
@@ -78,8 +63,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         }
 
         // concat and close TOC and full methods display HTML
-        const markup =
-            `<div class="subsection methods">
+        const markup = `<div class="subsection methods">
                 <h3 class="subsection-title methods">${cModel.name} ${section}</h3>
                 <div class="methods-container">
                     <ul class="methods-toc">${tocMarkup}</ul>
@@ -105,10 +89,9 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
 
     protected header(id: string, topmostTypeName: string): string {
         return `
-            <h4 class="method-title ${(this.model.deprecated ? 'deprecated' : '')}" id="${id}">
+            <h4 class="method-title ${this.model.deprecated ? 'deprecated' : ''}" id="${id}">
                 ${super.linkToSource(`${this.model.name}(${this.model.paramsFromNameLine.join(', ')})`, topmostTypeName)}
-            </h4>`
-        ;
+            </h4>`;
     }
 
     protected since(): string {
@@ -135,8 +118,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
                 markup += `<div class="param-name">${name}</div>`;
 
                 if (type) {
-                    markup +=
-                    `<div class="param-type">
+                    markup += `<div class="param-type">
                         Type: <code class="code-inline">${type}</code>
                     </div>`;
                 }
@@ -159,9 +141,8 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
     }
 
     protected getTOCEntry(showTOCSnippets: boolean, id: string): string {
-        let entry =
-            `<li class="method ${this.model.scope}">
-                <a class="methods-toc__entry ${(this.model.deprecated ? 'deprecated' : '')}" href="#${id}">
+        let entry = `<li class="method ${this.model.scope}">
+                <a class="methods-toc__entry ${this.model.deprecated ? 'deprecated' : ''}" href="#${id}">
                     ${this.model.name} (${this.model.paramsFromNameLine.join(', ')})
                 </a>
                 ${showTOCSnippets && this.model.description ? this.description('methods-toc__description') : ''}
@@ -175,7 +156,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
      * (must be an overloaded method or constructor) and amend
      * as needed to ensure all of our methods have unique IDs
      */
-    protected generateMethodId(idCountMap: Map<string, number>,  classModel: ClassModel): string {
+    protected generateMethodId(idCountMap: Map<string, number>, classModel: ClassModel): string {
         let methodId = classModel.name + '.' + this.model.name;
         let count: Option<number>;
         if ((count = idCountMap.get(methodId)) === undefined) {

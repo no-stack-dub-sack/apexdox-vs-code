@@ -23,8 +23,7 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         markup += generator.since();
         markup += generator.example();
 
-        markup =
-            `<div class="class-container">
+        markup = `<div class="class-container">
                 ${markup}
             </div>`;
 

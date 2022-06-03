@@ -7,7 +7,6 @@ import { window, workspace, WorkspaceFolder } from 'vscode';
 import { Option } from '../..';
 
 abstract class ApexModel {
-
     protected _annotations: string[] = [];
     protected _author: string = '';
     protected _deprecated: string = '';
@@ -87,7 +86,8 @@ abstract class ApexModel {
         let block: Option<string, null> = null;
 
         for (let line of comments) {
-            let newBlock = false, isBreak = false;
+            let newBlock = false,
+                isBreak = false;
             const lineLower = line.toLowerCase();
             let i: number;
 
@@ -97,19 +97,20 @@ abstract class ApexModel {
             }
 
             // if we find a tag, start a new block
-            if (((i = lineLower.indexOf(block = tags.AUTHOR.label)) >= 0)
-                || ((i = lineLower.indexOf(block = tags.SINCE.label)) >= 0)
-                || ((i = lineLower.indexOf(block = tags.SEE.label)) >= 0)
-                || ((i = lineLower.indexOf(block = tags.RETURN.label)) >= 0)
-                || ((i = lineLower.indexOf(block = tags.RETURNS.label)) >= 0)
-                || ((i = lineLower.indexOf(block = tags.PARAM.label)) >= 0)
-                || ((i = lineLower.indexOf(block = tags.EXCEPTION.label)) >= 0)
-                || ((i = lineLower.indexOf(block = tags.DEPRECATED.label)) >= 0)
-                || ((i = lineLower.indexOf(block = tags.DESCRIPTION.label)) >= 0)
-                || ((i = lineLower.indexOf(block = tags.GROUP.label)) >= 0)
-                || ((i = lineLower.indexOf(block = tags.GROUP_CONTENT.label)) >= 0)
-                || ((i = lineLower.indexOf(block = tags.EXAMPLE.label)) >= 0)) {
-
+            if (
+                (i = lineLower.indexOf((block = tags.AUTHOR.label))) >= 0 ||
+                (i = lineLower.indexOf((block = tags.SINCE.label))) >= 0 ||
+                (i = lineLower.indexOf((block = tags.SEE.label))) >= 0 ||
+                (i = lineLower.indexOf((block = tags.RETURN.label))) >= 0 ||
+                (i = lineLower.indexOf((block = tags.RETURNS.label))) >= 0 ||
+                (i = lineLower.indexOf((block = tags.PARAM.label))) >= 0 ||
+                (i = lineLower.indexOf((block = tags.EXCEPTION.label))) >= 0 ||
+                (i = lineLower.indexOf((block = tags.DEPRECATED.label))) >= 0 ||
+                (i = lineLower.indexOf((block = tags.DESCRIPTION.label))) >= 0 ||
+                (i = lineLower.indexOf((block = tags.GROUP.label))) >= 0 ||
+                (i = lineLower.indexOf((block = tags.GROUP_CONTENT.label))) >= 0 ||
+                (i = lineLower.indexOf((block = tags.EXAMPLE.label))) >= 0
+            ) {
                 line = line.substring(i + block.length);
                 currBlock = block;
                 newBlock = true;
@@ -129,7 +130,7 @@ abstract class ApexModel {
             // add line to appropriate block...
             // if currBlock was not reset on this iteration we're on the next line of the last tag, add line
             // to that value. Allow empty lines in @example blocks to preserve whitespace in complex examples
-            if (currBlock !== null && (line.trim() || !line.trim() && currBlock === tags.EXAMPLE.label)) {
+            if (currBlock !== null && (line.trim() || (!line.trim() && currBlock === tags.EXAMPLE.label))) {
                 if (currBlock === tags.AUTHOR.label) {
                     this._author += (this._author ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.SINCE.label) {
@@ -139,7 +140,7 @@ abstract class ApexModel {
                 } else if (currBlock === tags.RETURNS.label || currBlock === tags.RETURN.label) {
                     this._returns += (this._returns ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.PARAM.label) {
-                    let p = (newBlock ? '' : this._params.pop());
+                    let p = newBlock ? '' : this._params.pop();
                     this._params.push(p + (p && p.length > 0 ? ' ' : '') + line.trim());
                 } else if (currBlock === tags.EXCEPTION.label) {
                     this._exception += (this._exception ? ' ' : '') + line.trim();
@@ -148,7 +149,7 @@ abstract class ApexModel {
                 } else if (currBlock === tags.DESCRIPTION.label) {
                     this._description += (this._description ? ' ' : '') + line.trim();
                 } else if (currBlock === tags.EXAMPLE.label) {
-                    this._example += (this._example ? ' \n'  : '') + line;
+                    this._example += (this._example ? ' \n' : '') + line;
                 }
                 // These tags only support a single line if a duplicate
                 // tag is encountered, override any existing value.
@@ -187,7 +188,7 @@ abstract class ApexModel {
         const matches: Option<RegExpMatchArray, null> = line.match(/@\w+\s*(\([\w=.*''/\s]+\))?/g);
 
         if (matches !== null) {
-            matches.forEach(match => {
+            matches.forEach((match) => {
                 if (match) {
                     this.annotations.push(match.trim());
                 }

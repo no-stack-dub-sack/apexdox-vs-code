@@ -8,11 +8,4 @@ import { Disposable, ExtensionContext } from 'vscode';
 
 export type ApexDoxCommand = (context: ExtensionContext) => Disposable;
 
-export default [
-    docBlockCompletion,
-    docTagCompletion,
-    insertDocBlock,
-    onEnterRules,
-    runApexDox,
-    serveDocs
-] as ApexDoxCommand[];
+export default [docBlockCompletion, docTagCompletion, insertDocBlock, onEnterRules, runApexDox, serveDocs] as ApexDoxCommand[];

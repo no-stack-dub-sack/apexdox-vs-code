@@ -10,7 +10,7 @@ import {
     Position,
     TextDocument,
     MarkdownString,
-    } from 'vscode';
+} from 'vscode';
 
 class DocTagCompletionItem extends CompletionItem {
     constructor(tag: IApexDoxTag) {
@@ -32,19 +32,14 @@ class DocTagCompletionItem extends CompletionItem {
 }
 
 class DocTagCompletionProvider implements CompletionItemProvider {
-    public provideCompletionItems(
-        document: TextDocument,
-        position: Position
-        ): Promise<Option<CompletionItem[]>>  {
-
+    public provideCompletionItems(document: TextDocument, position: Position): Promise<Option<CompletionItem[]>> {
         const line = document.lineAt(position.line).text.trim();
 
         if (!/^\*\s+@$/.test(line)) {
             return Promise.resolve(undefined);
         }
 
-        const tagCompletionItems = Object.values(tags)
-            .map(tag => new DocTagCompletionItem(tag));
+        const tagCompletionItems = Object.values(tags).map((tag) => new DocTagCompletionItem(tag));
 
         return Promise.resolve(tagCompletionItems);
     }

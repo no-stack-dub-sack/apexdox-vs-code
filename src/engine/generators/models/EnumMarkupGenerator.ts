@@ -22,23 +22,23 @@ class EnumMarkupGenerator extends MarkupGenerator<EnumModel> {
         return `
             <h2 class="class-title top-level-type" id="${this.model.name}">
                 ${super.linkToSource(GeneratorUtils.encodeText(this.model.name), topmostTypeName)}
-            </h2>`
-        ;
+            </h2>`;
     }
 
     protected valuesTable(): string {
         return `
             <table class="attributes-table">
                 <tr><th>Values</th></tr>
-                ${GeneratorUtils.mapHTML(this.model.values, val =>
-                    `<tr>
+                ${GeneratorUtils.mapHTML(
+                    this.model.values,
+                    (val) =>
+                        `<tr>
                         <td class="enum-values">
                             ${val}
                         </td>
                     </tr>`
                 )}
-            </table>`
-        ;
+            </table>`;
     }
 }
 

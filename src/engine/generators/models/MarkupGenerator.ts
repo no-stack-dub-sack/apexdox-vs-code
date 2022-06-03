@@ -11,7 +11,6 @@ import SeeLinkGenerator from '../SeeLinkGenerator';
  * methods that they correctly correspond to the model you are generating markup for.
  */
 abstract class MarkupGenerator<T extends ApexModel> {
-
     protected constructor(protected model: T, protected models: Map<string, TopLevelModel>) {
         this.model = model;
         this.models = models;
@@ -24,8 +23,7 @@ abstract class MarkupGenerator<T extends ApexModel> {
             </div>
             <${tag} class="${contentClass}">
                 ${contents}
-            </${tag}>`
-        ;
+            </${tag}>`;
     }
 
     protected annotations(className: string): string {
@@ -52,8 +50,7 @@ abstract class MarkupGenerator<T extends ApexModel> {
         return `
             <${tag} class="${className}">
                 ${GeneratorUtils.encodeText(this.model.description, true, this.models)}
-            </${tag}>`
-        ;
+            </${tag}>`;
     }
 
     protected example(): string {
@@ -89,8 +86,7 @@ abstract class MarkupGenerator<T extends ApexModel> {
             ${this.annotations(`${signatureType}-annotations`)}
             <div class="${signatureType}-signature">
                 ${GeneratorUtils.encodeText(this.model.nameLine)}
-            </div>`
-        ;
+            </div>`;
     }
 
     protected linkToSource(nameOrSignature: string, topmostTypeName: string, highlightJSify = false): string {
@@ -112,9 +108,9 @@ abstract class MarkupGenerator<T extends ApexModel> {
     }
 
     /**
-    * Help highlight.js along, since props and enum signatures are not
-    * recognized by highlight.js since they are not full declarations.
-    */
+     * Help highlight.js along, since props and enum signatures are not
+     * recognized by highlight.js since they are not full declarations.
+     */
     protected highlightSignature(nameLine: string): string {
         if (nameLine.includes('(')) {
             const name = Utils.previousWord(nameLine, nameLine.indexOf('('));

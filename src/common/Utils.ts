@@ -26,7 +26,7 @@ class Utils {
         'long',
         'object',
         'string',
-        'time'
+        'time',
     ];
 
     public static isClassOrInterface(line: string): boolean {
@@ -68,18 +68,20 @@ class Utils {
      * private. Also, interface methods don't have scope, so don't skip those lines either.
      */
     public static shouldSkipLine(line: string, cModel?: ClassModel): boolean {
-        let classNameParts = cModel && cModel.name.split('.') || [''];
+        let classNameParts = (cModel && cModel.name.split('.')) || [''];
         let className = last(classNameParts);
 
-        if (!this.getScope(line) &&
-            !line.toLowerCase().startsWith(ApexDox.ENUM + " ") &&
-            !line.toLowerCase().startsWith(ApexDox.CLASS + " ") &&
-            !line.toLowerCase().startsWith(ApexDox.INTERFACE + " ") &&
+        if (
+            !this.getScope(line) &&
+            !line.toLowerCase().startsWith(ApexDox.ENUM + ' ') &&
+            !line.toLowerCase().startsWith(ApexDox.CLASS + ' ') &&
+            !line.toLowerCase().startsWith(ApexDox.INTERFACE + ' ') &&
             // don't skip default constructors without access modifiers
             !(cModel && new RegExp('\\b' + className + '\\s*\\(').test(line)) &&
             // don't skip interface methods - they don't have access modifiers
-            !(cModel && cModel.isInterface && line.includes('('))) {
-                return true;
+            !(cModel && cModel.isInterface && line.includes('('))
+        ) {
+            return true;
         }
 
         return false;
@@ -175,7 +177,7 @@ class Utils {
     public static resolveWorkspaceFolder(path: string): string {
         // should be safe to cast this as not-undefined
         // If running this tool, workspace folders should always exist.
-        const folders = <WorkspaceFolder[]>(workspace.workspaceFolders);
+        const folders = <WorkspaceFolder[]>workspace.workspaceFolders;
 
         const rootFolderRe = /\$\{workspaceFolder\}(.*)?/;
         const multiFolderRe = /\$\{workspaceFolder:(.*)\}(.*)/;

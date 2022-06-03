@@ -9,11 +9,9 @@ class ClassStub extends StubBase {
     }
 
     protected make(): void {
-        const tags = [AUTHOR.label, SINCE.label]
-            , maxLength = !this.config.omitDescriptionTag
-                ? this.getMaxLength(DESCRIPTION.label, ...tags)
-                : this.getMaxLength(...tags)
-            , pad = this.getPadding(this.config.alignItems, DESCRIPTION.label.length, maxLength);
+        const tags = [AUTHOR.label, SINCE.label],
+            maxLength = !this.config.omitDescriptionTag ? this.getMaxLength(DESCRIPTION.label, ...tags) : this.getMaxLength(...tags),
+            pad = this.getPadding(this.config.alignItems, DESCRIPTION.label.length, maxLength);
 
         let stub = this.descriptionTemplate(this.lineIndent, pad, this.config.omitDescriptionTag);
 
@@ -31,7 +29,7 @@ class ClassStub extends StubBase {
     }
 
     private getMaxLength(...tags: string[]) {
-        return Math.max(...tags.map(tag => tag.length));
+        return Math.max(...tags.map((tag) => tag.length));
     }
 }
 

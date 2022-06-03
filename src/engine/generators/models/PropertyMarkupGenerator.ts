@@ -4,15 +4,12 @@ import MarkupGenerator from './MarkupGenerator';
 import { ClassModel, PropertyModel, TopLevelModel } from '../../../common/models';
 
 class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
-
     protected constructor(model: PropertyModel, models: Map<string, TopLevelModel>) {
         super(model, models);
     }
 
     public static generate(cModel: ClassModel, models: Map<string, TopLevelModel>): string {
-        const properties = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA
-            ? cModel.propertiesSorted
-            : cModel.properties;
+        const properties = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA ? cModel.propertiesSorted : cModel.properties;
 
         let markup = PropertyMarkupGenerator.headerRow(properties);
         const hasAnnotations = PropertyMarkupGenerator.hasAnnotationsColumn(markup);
@@ -23,8 +20,7 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
             markup += generator.propRow(cModel.topMostClassName, hasAnnotations, hasDescription);
         }
 
-        markup =
-            `<div class="subsection properties ${cModel.name.replace('.', '_')}">
+        markup = `<div class="subsection properties ${cModel.name.replace('.', '_')}">
                 <h3 class="subsection-title properties">${cModel.name} Properties</h3>
                 <table class="attributes-table properties">
                     ${markup}
@@ -43,8 +39,9 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
     }
 
     protected static headerRow(properties: Array<PropertyModel>): string {
-        let descriptionCol = '', annotationsCol = '';
-        properties.forEach(prop => {
+        let descriptionCol = '',
+            annotationsCol = '';
+        properties.forEach((prop) => {
             prop.description && (descriptionCol = '<th>Description</th>');
             prop.annotations.length && (annotationsCol = '<th>Annotations</th>');
         });

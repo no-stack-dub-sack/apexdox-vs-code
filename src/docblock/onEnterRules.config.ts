@@ -10,32 +10,35 @@ const langConfig: LanguageConfiguration = {
             // e.g. /* | */
             beforeText: /^\s*\/\*\*?(?!\/)([^\*]|\*(?!\/))*$/,
             afterText: /^\s*\*\/$/,
-            action: { indentAction: IndentAction.IndentOutdent, appendText: ' * ' }
-        }, {
+            action: { indentAction: IndentAction.IndentOutdent, appendText: ' * ' },
+        },
+        {
             // e.g. /** ...|
             // e.g. /* ...|
             beforeText: /^\s*\/\*\*?(?!\/)([^\*]|\*(?!\/))*$/,
-            action: { indentAction: IndentAction.None, appendText: ' * ' }
-        }, {
+            action: { indentAction: IndentAction.None, appendText: ' * ' },
+        },
+        {
             // e.g.  * ...|
             beforeText: /^(\t|(\ ))*\ \*(\ ([^\*]|\*(?!\/))*)?$/,
-            action: { indentAction: IndentAction.None, appendText: '* ' }
-        }, {
+            action: { indentAction: IndentAction.None, appendText: '* ' },
+        },
+        {
             // Keeps next non-comment line aligned with code, e.g.
             // /**
             //  *
             //  */|
             // public class MyClass { ... }
             beforeText: /^(\t|(\ ))*\ \*\/\s*$/,
-            action: { indentAction: IndentAction.None, removeText: 1 }
+            action: { indentAction: IndentAction.None, removeText: 1 },
         },
         {
             // same as above, but when closing */ is not on a new line
             // e.g.  *-----*/|
             beforeText: /^(\t|(\ ))*\ \*[^/]*\*\/\s*$/,
-            action: { indentAction: IndentAction.None, removeText: 1 }
-        }
-    ]
+            action: { indentAction: IndentAction.None, removeText: 1 },
+        },
+    ],
 };
 
 export default langConfig;

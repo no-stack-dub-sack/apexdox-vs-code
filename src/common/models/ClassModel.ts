@@ -6,7 +6,6 @@ import { Option } from '../..';
 import { PropertyModel } from './PropertyModel';
 
 class ClassModel extends TopLevelModel {
-
     private _childClassMap: Map<string, ClassModel>;
     private _cModelParent?: ClassModel;
     private _enums: Array<EnumModel>;
@@ -35,8 +34,7 @@ class ClassModel extends TopLevelModel {
     }
 
     public get childClassesSorted(): Array<ClassModel> {
-        return this.childClasses
-            .sort((a, b) => a.name.localeCompare(b.name));
+        return this.childClasses.sort((a, b) => a.name.localeCompare(b.name));
     }
 
     public get childClassMap(): Map<string, ClassModel> {

@@ -6,15 +6,12 @@ import { ClassModel, EnumModel, TopLevelModel } from '../../../common/models';
 // models not needed!
 
 class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
-
     public constructor(model: EnumModel, models: Map<string, TopLevelModel>) {
         super(model, models);
     }
 
     public static generate(cModel: ClassModel, models: Map<string, TopLevelModel>): string {
-        const enums = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA
-            ? cModel.enumsSorted
-            : cModel.enums;
+        const enums = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA ? cModel.enumsSorted : cModel.enums;
 
         let markup = ChildEnumMarkupGenerator.headerRow(enums);
         const hasDescription = ChildEnumMarkupGenerator.hasDescriptionColumn(markup);
@@ -24,8 +21,7 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
             markup += generator.enumRow(cModel.topMostClassName, hasDescription);
         }
 
-        markup =
-            `<div class="subsection enums">
+        markup = `<div class="subsection enums">
                 <h3 class="subsection-title enums">Enums</h3>
                 <table class="attributes-table enums">
                     ${markup}

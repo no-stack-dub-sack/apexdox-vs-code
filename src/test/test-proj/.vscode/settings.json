@@ -1,38 +1,28 @@
 {
-	"apexdox.engine.source": [{
-        "path": "${workspaceFolder}/src/feature1",
-        "sourceUrl": "https://somefakeurl.com"
-    },{
-        "path": "${workspaceFolder}/src/feature2",
-        "sourceUrl": "https://somefakeurl.com"
-    }],
-	"apexdox.engine.targetDirectory": "${workspaceFolder}/docs",
-	"apexdox.engine.includes": [
-        "IncludeTwo.cls",
-        "IncludeOne.cls",
-        "TEST_*"
-    ],
-	"apexdox.engine.excludes": [
-        "*Exclude.cls",
-        "*Test.cls",
-        "TEST_ExcludeMe.cls"
-    ],
-	"apexdox.engine.homePagePath": "${workspaceFolder}/src/Homepage.html",
-	"apexdox.engine.scope": [
-        "public",
-        "private",
-        "protected",
-        "global"
-    ],
-	"apexdox.engine.title": "My Test Docs",
-	"apexdox.engine.showTOCSnippets": true,
-	"apexdox.engine.sortOrder": "alpha",
-    "apexdox.engine.cleanDir": false, // we delete the directory & its contents in the test-setup command instead
-    "apexdox.engine.assets": [
-        "${workspaceFolder}/src/info.md"
-    ],
-    "apexdox.engine.pages": [
-        "${workspaceFolder}/src/Page.html"
-    ],
-    "apexdox.engine.port": 8080
+  "apexdox.engine.source": [
+    {
+      "path": "${workspaceFolder}/src/feature1",
+      "sourceUrl": "https://somefakeurl.com"
+    },
+    {
+      "path": "${workspaceFolder}/src/feature2",
+      "sourceUrl": "https://somefakeurl.com"
+    }
+  ],
+  "apexdox.engine.targetDirectory": "${workspaceFolder}/docs",
+  "apexdox.engine.includes": ["IncludeTwo.cls", "IncludeOne.cls", "TEST_*"],
+  "apexdox.engine.excludes": [
+    "*Exclude.cls",
+    "*Test.cls",
+    "TEST_ExcludeMe.cls"
+  ],
+  "apexdox.engine.homePagePath": "${workspaceFolder}/src/Homepage.html",
+  "apexdox.engine.scope": ["public", "private", "protected", "global"],
+  "apexdox.engine.title": "My Test Docs",
+  "apexdox.engine.showTOCSnippets": true,
+  "apexdox.engine.sortOrder": "alpha",
+  "apexdox.engine.cleanDir": false, // we delete the directory & its contents in the test-setup command instead
+  "apexdox.engine.assets": ["${workspaceFolder}/src/info.md"],
+  "apexdox.engine.pages": ["${workspaceFolder}/src/Page.html"],
+  "apexdox.engine.port": 8080
 }

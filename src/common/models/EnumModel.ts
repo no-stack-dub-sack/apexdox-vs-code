@@ -3,7 +3,6 @@ import { ModelType, TopLevelModel } from './TopLevelModel';
 import { Option } from '../..';
 
 class EnumModel extends TopLevelModel {
-
     private _values: string[] = [];
 
     public constructor(comments: string[], nameLine: string, lineNum: number, sourceUrl: Option<string>) {
@@ -42,8 +41,7 @@ class EnumModel extends TopLevelModel {
         line = line.substring(line.indexOf('{') + 1, line.indexOf('}'));
         line.trim()
             .split(',')
-            .forEach(value => value.trim()
-                && this.values.push(value.trim()));
+            .forEach((value) => value.trim() && this.values.push(value.trim()));
     }
 }
 

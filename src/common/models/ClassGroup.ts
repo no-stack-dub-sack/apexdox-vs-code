@@ -13,7 +13,6 @@ class ClassGroup {
         return this._name;
     }
 
-
     public get contentSource(): string {
         return this._contentSource;
     }

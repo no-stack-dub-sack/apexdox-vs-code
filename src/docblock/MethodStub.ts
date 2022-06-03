@@ -1,23 +1,12 @@
 import ApexDox from '../engine/ApexDox';
 import StubBase from './StubBase';
 import Utils from '../common/Utils';
-import {
-    DESCRIPTION,
-    EXCEPTION,
-    PARAM,
-    RETURN
-    } from '../common/tags';
-import {
-    IDocblockConfig,
-    IPairCount,
-    IParsedMethod,
-    IStubLine
-    } from '..';
+import { DESCRIPTION, EXCEPTION, PARAM, RETURN } from '../common/tags';
+import { IDocblockConfig, IPairCount, IParsedMethod, IStubLine } from '..';
 import { MethodModel } from '../common/models/MethodModel';
 import { TextEditor } from 'vscode';
 
 class MethodStub extends StubBase {
-
     public constructor(editor: TextEditor, activeLine: number, stubLine: IStubLine, isCompletion?: boolean) {
         super(editor, activeLine, stubLine, isCompletion);
     }
@@ -27,9 +16,9 @@ class MethodStub extends StubBase {
      * method and creating the stub / snippet's contents.
      */
     protected make(): void {
-        const { throwsException, returnType, params } = this.parseMethod()
-            , maxLength = this.getMaxLength(this.config, returnType, params, throwsException)
-            , pad = this.getPadding(this.config.alignItems, DESCRIPTION.label.length, maxLength);
+        const { throwsException, returnType, params } = this.parseMethod(),
+            maxLength = this.getMaxLength(this.config, returnType, params, throwsException),
+            pad = this.getPadding(this.config.alignItems, DESCRIPTION.label.length, maxLength);
 
         let stub = this.descriptionTemplate(this.lineIndent, pad, this.config.omitDescriptionTag);
 
@@ -70,11 +59,11 @@ class MethodStub extends StubBase {
      * @returns An `IParsedMethod` object describing the method.
      */
     private parseMethod(): IParsedMethod {
-        let methodText = this.line.text.trim()
-            , currLineIndex = this.lineIndex
-            , pairs = this.countMatchingPairs(methodText)
-            , throwsException = false
-            , start = true;
+        let methodText = this.line.text.trim(),
+            currLineIndex = this.lineIndex,
+            pairs = this.countMatchingPairs(methodText),
+            throwsException = false,
+            start = true;
 
         if (!this.isInterfaceOrAbstractMethod(methodText, pairs)) {
             // Capture the method's nameLine, and traverse over
@@ -104,19 +93,18 @@ class MethodStub extends StubBase {
                     break;
                 }
             }
-
         }
 
         // trim our method text if needed and create a method model from it
         const endIdx = methodText.indexOf('{');
-        methodText = endIdx > -1 ? methodText.substring(0,  endIdx) : methodText;
+        methodText = endIdx > -1 ? methodText.substring(0, endIdx) : methodText;
         const method = new MethodModel([], methodText, 0);
 
         return {
             throwsException,
             name: method.name,
             params: method.paramsFromNameLine,
-            returnType: this.getReturnType(method)
+            returnType: this.getReturnType(method),
         };
     }
 
@@ -133,7 +121,7 @@ class MethodStub extends StubBase {
                 openCurlies: Utils.countChars(lineText, '{'),
                 closeCurlies: Utils.countChars(lineText, '}'),
                 openParens: Utils.countChars(lineText, '('),
-                closeParens: Utils.countChars(lineText, ')')
+                closeParens: Utils.countChars(lineText, ')'),
             };
         } else {
             pairs.openCurlies += Utils.countChars(lineText, '{');
@@ -152,8 +140,10 @@ class MethodStub extends StubBase {
      */
     private isInterfaceOrAbstractMethod(methodText: string, pairs: IPairCount): boolean {
         if (
-            pairs.openParens === 1 && pairs.closeParens === 1 &&
-            pairs.openCurlies === 0 && pairs.closeCurlies === 0 &&
+            pairs.openParens === 1 &&
+            pairs.closeParens === 1 &&
+            pairs.openCurlies === 0 &&
+            pairs.closeCurlies === 0 &&
             methodText.trim().endsWith(';')
         ) {
             return true;
@@ -169,8 +159,9 @@ class MethodStub extends StubBase {
      * @param method The method to get the return type for
      */
     private getReturnType(method: MethodModel): string {
-        const PRECEDING_WORDS = ['public','private','protected','global','static','virtual','testMethod','override'];
-        const name = method.name, nameLine = method.nameLine;
+        const PRECEDING_WORDS = ['public', 'private', 'protected', 'global', 'static', 'virtual', 'testMethod', 'override'];
+        const name = method.name,
+            nameLine = method.nameLine;
         let prevWord = Utils.previousWord(nameLine, nameLine.indexOf(name));
         let returnType = '';
         // if prev word is access modifier on first run
@@ -211,7 +202,7 @@ class MethodStub extends StubBase {
         // establish lengths of tags and params
         const returnTag = returnType && returnType !== 'void' ? RETURN.label.length : 0;
         const descriptionTag = config.omitDescriptionTag ? 0 : DESCRIPTION.label.length;
-        const paramsLength = params.map(p => PARAM.label.length + p.length + 1);
+        const paramsLength = params.map((p) => PARAM.label.length + p.length + 1);
         const exceptionLength = throwsEx ? EXCEPTION.label.length : 0;
 
         // gather all lengths and take max

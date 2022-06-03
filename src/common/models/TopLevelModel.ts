@@ -3,7 +3,7 @@ import { Option } from '../..';
 
 export enum ModelType {
     CLASS,
-    ENUM
+    ENUM,
 }
 
 abstract class TopLevelModel extends ApexModel {

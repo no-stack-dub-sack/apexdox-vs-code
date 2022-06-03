@@ -3,11 +3,11 @@ import ApexDox from '../ApexDox';
 import GeneratorUtils from './GeneratorUtils';
 
 class MenuGenerator {
-
     public static makeScopeMenu(): string {
         // add checkboxes for registered scopes
-        const checkBoxes = ApexDox.config.scope.map(scope =>
-            `<input
+        const checkBoxes = ApexDox.config.scope.map(
+            (scope) =>
+                `<input
                 type="checkbox" checked="true" id="cbx-${scope}"
                 onclick="toggleScope('${scope}', this.checked);" />
             <label for="cbx-${scope}">
@@ -15,8 +15,7 @@ class MenuGenerator {
             </label>`
         );
 
-        let markup =
-            `Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
+        let markup = `Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
              <label for="cbx-all">All</label>&nbsp;&nbsp;
              ${checkBoxes.join('&nbsp;&nbsp;')}`;
 
@@ -24,30 +23,26 @@ class MenuGenerator {
     }
 
     public static makeMenu(classGroupMap: Map<string, Models.ClassGroup>, models: Map<string, Models.TopLevelModel>): string {
-        const menuMarkupMap = new Map<string, string>()
-            , sortedGroups = Array
-                .from(classGroupMap.keys())
-                .sort((a: string, b: string) =>  a.localeCompare(b));
+        const menuMarkupMap = new Map<string, string>(),
+            sortedGroups = Array.from(classGroupMap.keys()).sort((a: string, b: string) => a.localeCompare(b));
 
         // 1) iterate over groups and make our top level
         // menu items, open UL. store markup in map, we
         // will create and append our LI items next.
         for (let group of sortedGroups) {
             const cg = classGroupMap.get(group);
-            const groupId = group.replace(/\s+/g, "_");
+            const groupId = group.replace(/\s+/g, '_');
             let label = '';
 
             if (cg && cg.contentFileName) {
                 let destination = cg.contentFileName + '.html';
-                label +=
-                    `<a href="javascript:void(0)" title="See Class Group info"
+                label += `<a href="javascript:void(0)" title="See Class Group info"
                         onclick="goToLocation('${destination}');">${group}</a>`;
             } else {
                 label += `<span>${group}</span>`;
             }
 
-            const markup =
-                `<details id="${groupId}" class="group-name">
+            const markup = `<details id="${groupId}" class="group-name">
                     <summary id="header-${groupId}" class="nav-header">
                         ${label}
                     </summary>
@@ -63,9 +58,8 @@ class MenuGenerator {
             const group = model.groupName || 'Miscellaneous';
 
             if (model.nameLine) {
-                const fileName = model.name
-                    , markup =
-                        `<li title="${fileName}" id="item-${fileName}" class="nav-item class ${model.scope}"
+                const fileName = model.name,
+                    markup = `<li title="${fileName}" id="item-${fileName}" class="nav-item class ${model.scope}"
                             onclick="goToLocation('${fileName}.html');">
                             <a tabindex="1" href="javascript:void(0)">${fileName}</a>
                         </li>`;
@@ -76,8 +70,7 @@ class MenuGenerator {
 
         // 3) iterate over map's values and concat each menu item with the
         // opening markup, closing each UL and details tag along the way
-        let markup =
-            `<div id="side-bar">
+        let markup = `<div id="side-bar">
                 ${GeneratorUtils.makeProjectSplash()}
                 <div id="search-wrapper">
                     <div class="search-icon"></div>
@@ -90,8 +83,7 @@ class MenuGenerator {
                             onclick="goToLocation('index.html');">
                             Home
                         </a>
-                        ${Array.from(menuMarkupMap.values())
-                            .reduce((acc, menuItem) => acc += (menuItem + '</ul></details>'), '')}
+                        ${Array.from(menuMarkupMap.values()).reduce((acc, menuItem) => (acc += menuItem + '</ul></details>'), '')}
                     </nav>
                 </div>
             </div>`;

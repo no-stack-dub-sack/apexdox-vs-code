@@ -2,7 +2,6 @@ import { ApexModel } from './ApexModel';
 import { Option } from '../..';
 
 class PropertyModel extends ApexModel {
-
     public constructor(comments: string[], nameLine: string, lineNum: number, sourceUrl: Option<string>) {
         super(comments, sourceUrl);
         this.setNameLine(nameLine, lineNum);

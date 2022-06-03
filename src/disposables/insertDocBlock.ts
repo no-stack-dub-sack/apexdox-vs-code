@@ -6,13 +6,13 @@ import { commands, window } from 'vscode';
 
 const COMMAND = 'apexdox.insertDocBlock';
 
-export default function() {
+export default function () {
     return commands.registerCommand(COMMAND, () => {
         const editor = window.activeTextEditor;
 
         if (editor) {
-            const lineIdx = editor.selection.active.line
-                , stubLine = StubBase.getLineAndType(editor.document, lineIdx);
+            const lineIdx = editor.selection.active.line,
+                stubLine = StubBase.getLineAndType(editor.document, lineIdx);
 
             switch (stubLine.type) {
                 case StubType.METHOD:

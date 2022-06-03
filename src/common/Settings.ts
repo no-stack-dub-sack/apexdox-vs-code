@@ -6,23 +6,17 @@ import EngineValidator from './ValidatorEngine';
 import LineReader from './LineReader';
 import { existsSync, readFileSync } from 'fs';
 import { EXTENSION } from '../extension';
-import {
-    IApexDoxRc,
-    IDocblockConfig,
-    IEngineConfig,
-    Option
-    } from '..';
+import { IApexDoxRc, IDocblockConfig, IEngineConfig, Option } from '..';
 import { resolve } from 'path';
 import { safeLoad as yamlToJson } from 'js-yaml';
 import { workspace, WorkspaceFolder } from 'vscode';
 
 export enum Feature {
     ENGINE,
-    DOC_BLOCK
+    DOC_BLOCK,
 }
 
 class Settings {
-
     // this should be a safe cast. If running this tool, workspace folders should always exist.
     private static projectRoot = (<WorkspaceFolder[]>workspace.workspaceFolders)[0].uri.fsPath;
 
@@ -85,7 +79,7 @@ class Settings {
             if (rcConfig) {
                 config = {
                     ...new EngineConfig(),
-                    ...rcConfig.engine || {}
+                    ...(rcConfig.engine || {}),
                 };
             } else {
                 // if no .apexdoxrc file found, get config from settings.json
@@ -101,7 +95,7 @@ class Settings {
             if (rcConfig) {
                 config = {
                     ...new DocblockConfig(),
-                    ...rcConfig.docblock || {}
+                    ...(rcConfig.docblock || {}),
                 };
             } else {
                 config = <IDocblockConfig>workspace.getConfiguration(EXTENSION).get('docblock');
@@ -119,7 +113,6 @@ class Settings {
      * @param config The `IEngineConfig` instance fetched from the user's settings.json or .apexdoxrc file.
      */
     private static setEngineDirectoryDefaults(config: IEngineConfig): IEngineConfig {
-
         const defaultSource = [{ path: this.getDefaultDir(this.projectRoot) }];
         const defaultTarget = resolve(this.projectRoot, 'apex-documentation');
 
@@ -156,10 +149,7 @@ class Settings {
      * @param projectRoot The workspace's root folder.
      */
     private static isDX(projectRoot: string): boolean {
-        if (
-            existsSync(resolve(projectRoot, 'force-app')) &&
-            !existsSync(resolve(projectRoot, 'src'))
-        ) {
+        if (existsSync(resolve(projectRoot, 'force-app')) && !existsSync(resolve(projectRoot, 'src'))) {
             return true;
         }
 

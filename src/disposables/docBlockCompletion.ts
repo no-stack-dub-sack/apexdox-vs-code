@@ -12,8 +12,8 @@ import {
     Position,
     SnippetString,
     TextDocument,
-    window
-    } from 'vscode';
+    window,
+} from 'vscode';
 import { IStubLine, Option } from '..';
 
 // TODO: change docblock nomenclature to comment, e.g. apexdox.commentCompletion
@@ -29,17 +29,13 @@ class DocBlockCompletionItem extends CompletionItem {
         this.command = {
             title: 'ApexDox Comment',
             command: COMMAND,
-            arguments: [position]
+            arguments: [position],
         };
     }
 }
 
 class DocBlockCompletionProvider implements CompletionItemProvider {
-    public provideCompletionItems(
-        document: TextDocument,
-        position: Position
-        ): Promise<Option<CompletionItem[]>>  {
-
+    public provideCompletionItems(document: TextDocument, position: Position): Promise<Option<CompletionItem[]>> {
         const line = document.lineAt(position.line).text;
 
         if (line.indexOf('/**') === -1) {
