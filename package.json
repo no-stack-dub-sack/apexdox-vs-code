@@ -188,10 +188,12 @@
 		"watch": "webpack --mode none --watch",
 		"yaml-2-grammar": "node ./scripts/convertGrammar.js",
 		"postinstall": "node ./node_modules/vscode/bin/install",
+		"prepare": "husky install",
 		"test": "yarn run test-setup && node ./node_modules/vscode/bin/test",
 		"test-setup": "yarn run test-compile && yarn run test-cleanup",
 		"test-compile": "tsc -p ./",
 		"test-cleanup": "rm -rf ./src/test/test-proj/docs",
+		"update-highlight": ". scripts/updateHighlight.sh",
 		"update-snapshots": "rm ./src/test/snapshots/* && node ./scripts/updateSnapshots.js"
 	},
 	"devDependencies": {
@@ -205,6 +207,7 @@
 		"@types/pretty": "^2.0.0",
 		"@types/rimraf": "^2.0.2",
 		"cheerio": "^1.0.0-rc.3",
+		"husky": "^8.0.1",
 		"ts-loader": "^5.4.3",
 		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
