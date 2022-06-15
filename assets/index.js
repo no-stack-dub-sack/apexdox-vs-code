@@ -10,7 +10,6 @@ const
 	SEARCH_STATE_KEY = 'APEXDOX_SEARCH_RESULTS';
 
 const highlightJsSelectors = [
-	'pre code',
 	'.method-annotations',
 	'.class-signature',
 	'.attribute-signature',
@@ -55,17 +54,22 @@ window.onbeforeunload = () => {
 // ==================================================================
 
 function initHighlightJs() {
-	// initialize highlighting for code examples and
-	// signatures for methods, classes, props and enums
-	hljs.configure({
-		ignoreUnescapedHTML: true,
-	});
-	highlightJsSelectors.forEach(selector => {
+	apexJsSelectors.forEach((selector) => {
 		document.querySelectorAll(selector).forEach(block => {
-			hljs.highlightElement(block);
-
+			block.classList.add("language-apex");
 		});
 	});
+	// Alow language auto-detection in "pre code" blocks
+	apexJsSelectors.push("pre code");
+	// initialize highlighting for code examples and
+	// signatures for methods, classes, props and enums
+	// Highlight.js now contains multiple languages to aid in
+	// code highlighting for the HTML pages in documentation
+	// Bash, CSS, JSON, YAML, Markdown, HTML/Visualforce, JavaScript, Plain Text)
+	hljs.configure({
+		cssSelector: apexJsSelectors
+	});
+	hljs.highlightAll();
 }
 
 // create session storage object for menu state
