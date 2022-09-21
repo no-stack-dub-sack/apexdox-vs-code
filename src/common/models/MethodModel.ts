@@ -14,7 +14,7 @@ class MethodModel extends ApexModel {
         this._isConstructor = this.name.toLowerCase() === last(className.split('.')).toLowerCase();
     }
 
-    public get changeLog(): Array<string[]> {
+    public get changeLog(): string[][] {
         return this._changeLog;
     }
 

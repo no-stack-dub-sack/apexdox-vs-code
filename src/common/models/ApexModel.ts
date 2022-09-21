@@ -9,7 +9,7 @@ import { Option } from '../..';
 abstract class ApexModel {
 
     protected _annotations: string[] = [];
-    protected _changeLog: Array<string[]> = [[]];
+    protected _changeLog: string[][] = [];
     protected _deprecated: string = '';
     protected _description: string = '';
     protected _example: string = '';
