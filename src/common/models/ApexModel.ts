@@ -5,6 +5,7 @@ import { existsSync } from 'fs';
 import { resolve } from 'path';
 import { window, workspace, WorkspaceFolder } from 'vscode';
 import { Option } from '../..';
+import { listenerCount } from 'cluster';
 
 abstract class ApexModel {
 
@@ -131,18 +132,20 @@ abstract class ApexModel {
             if (currBlock !== null && (line.trim() || !line.trim() && currBlock === tags.EXAMPLE.label)) {
                 if (currBlock === tags.AUTHOR.label) {
                     let changeArray = (newBlock ? [] : this._changeLog.pop());
-                    let author = this.changeArray.pop();
-                    author += (author ? ' ' : '') + line.trim();
-                    changeArray.push(author);
-                    this._changeLog.push(changeArray);
+                    if(! changeArray) {
+                        changeArray = [];
+                    }
+                    let author = changeArray.pop();
+                    changeArray.push((author && author.length > 0 ? author+' ' : '') + line.trim());
+                    this._changeLog.push(changeArray!);
                 } else if (currBlock === tags.SINCE.label) {
-                    let changeArray = this._changeLog.pop();
+                    let changeArray = this._changeLog.pop();                    
                     if(! changeArray) {
                         changeArray = [''];
                     }
-                    let p = (newblock ? '' : changeArray.pop());
-                    changeArray.push(p + (p && p.length > 0 ? ' ' : '') + line.trim());
-                    this._changeLog.push(changeArray);
+                    let since = (newBlock ? '' : changeArray.pop());
+                    changeArray.push((since && since.length > 0 ? since+' ' : '') + line.trim());
+                    this._changeLog.push(changeArray!);
                 } else if (currBlock === tags.SEE.label) {
                     this._see.push(line.trim());
                 } else if (currBlock === tags.RETURNS.label || currBlock === tags.RETURN.label) {
