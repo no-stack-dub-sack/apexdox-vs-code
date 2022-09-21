@@ -9,7 +9,7 @@ import { Option } from '../..';
 abstract class ApexModel {
 
     protected _annotations: string[] = [];
-    protected _author: string = '';
+    protected _changeLog: Array<string[]> = [[]];
     protected _deprecated: string = '';
     protected _description: string = '';
     protected _example: string = '';
@@ -22,7 +22,6 @@ abstract class ApexModel {
     protected _returns: string = '';
     protected _scope: string = '';
     protected _see: string[] = [];
-    protected _since: string = '';
     protected _sourceUrl?: string;
 
     protected constructor(comments: string[], sourceUrl: Option<string>) {
@@ -131,9 +130,19 @@ abstract class ApexModel {
             // to that value. Allow empty lines in @example blocks to preserve whitespace in complex examples
             if (currBlock !== null && (line.trim() || !line.trim() && currBlock === tags.EXAMPLE.label)) {
                 if (currBlock === tags.AUTHOR.label) {
-                    this._author += (this._author ? ' ' : '') + line.trim();
+                    let changeArray = (newBlock ? [] : this._changeLog.pop());
+                    let author = this.changeArray.pop();
+                    author += (author ? ' ' : '') + line.trim();
+                    changeArray.push(author);
+                    this._changeLog.push(changeArray);
                 } else if (currBlock === tags.SINCE.label) {
-                    this._since += (this._since ? ' ' : '') + line.trim();
+                    let changeArray = this._changeLog.pop();
+                    if(! changeArray) {
+                        changeArray = [''];
+                    }
+                    let p = (newblock ? '' : changeArray.pop());
+                    changeArray.push(p + (p && p.length > 0 ? ' ' : '') + line.trim());
+                    this._changeLog.push(changeArray);
                 } else if (currBlock === tags.SEE.label) {
                     this._see.push(line.trim());
                 } else if (currBlock === tags.RETURNS.label || currBlock === tags.RETURN.label) {

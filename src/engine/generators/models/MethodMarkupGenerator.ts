@@ -69,8 +69,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
             methodMarkup += generator.returns();
             methodMarkup += generator.exception();
             methodMarkup += generator.see();
-            methodMarkup += generator.author();
-            methodMarkup += generator.since();
+            methodMarkup += generator.changeLog();
             methodMarkup += generator.example();
 
             // add method markup to our running methodsMarkup string
@@ -95,12 +94,20 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         return super.markupTemplate(label, contents, titleClass, contentClass, tag);
     }
 
-    protected author(): string {
-        if (!this.model.author) {
-            return '';
-        } else {
-            return this.markupTemplate('Author', GeneratorUtils.encodeText(this.model.author, true, this.models));
+    protected changeLog(): string {
+        let markup = '';
+        if (this.model.params.length) {
+            for (let changeLogArray of this.model.changeLog) {
+                let templateName = 'Author';
+                for(let value of changeLogArray) {
+                    if(value && value.length() > 0) {
+                        markup += this.markupTemplate(templateName, GeneratorUtils.encodeText(value, true, this.models));
+                    }
+                    templateName = 'Since';
+                }
+            }
         }
+        return markup;
     }
 
     protected header(id: string, topmostTypeName: string): string {
@@ -109,14 +116,6 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
                 ${super.linkToSource(`${this.model.name}(${this.model.paramsFromNameLine.join(', ')})`, topmostTypeName)}
             </h4>`
         ;
-    }
-
-    protected since(): string {
-        if (!this.model.since) {
-            return '';
-        } else {
-            return this.markupTemplate('Since', GeneratorUtils.encodeText(this.model.since, true, this.models));
-        }
     }
 
     protected exception(): string {

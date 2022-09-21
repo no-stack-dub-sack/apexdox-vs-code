@@ -14,8 +14,8 @@ class MethodModel extends ApexModel {
         this._isConstructor = this.name.toLowerCase() === last(className.split('.')).toLowerCase();
     }
 
-    public get author(): string {
-        return this._author;
+    public get changeLog(): Array<string[]> {
+        return this._changeLog;
     }
 
     public get exception(): string {
@@ -149,10 +149,6 @@ class MethodModel extends ApexModel {
 
     public set scope(scope: string) {
         this._scope = scope;
-    }
-
-    public get since(): string {
-        return this._since;
     }
 }
 
