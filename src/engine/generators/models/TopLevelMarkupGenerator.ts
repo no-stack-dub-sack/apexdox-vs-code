@@ -19,8 +19,7 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         markup += additionalContent;
         markup += generator.deprecated();
         markup += generator.see();
-        markup += generator.author();
-        markup += generator.since();
+        markup += generator.changeLog();
         markup += generator.example();
 
         markup =
@@ -36,20 +35,16 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         return super.markupTemplate(label, contents, titleClass, contentClass, tag);
     }
 
-    protected author() {
-        if (!this.model.author) {
-            return '';
+    protected changeLog() {
+        let markup = '';
+        if (this.model.changeLog) {
+            for(let changeArray of this.model.changeLog) {
+                for(let value of changeArray) {
+                    markup += `<br/>${GeneratorUtils.encodeText(value, true, this.models)}`;
+                }
+            }
         }
-
-        return `<br/>${GeneratorUtils.encodeText(this.model.author, true, this.models)}`;
-    }
-
-    protected since() {
-        if (!this.model.since) {
-            return '';
-        }
-
-        return `<br/>${GeneratorUtils.encodeText(this.model.since, true, this.models)}`;
+        return markup;
     }
 }
 

@@ -98,9 +98,9 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         let markup = '';
         if (this.model.params.length) {
             for (let changeLogArray of this.model.changeLog) {
-                let templateName = 'Author';
+                let templateName:string = 'Author';
                 for(let value of changeLogArray) {
-                    if(value && value.length() > 0) {
+                    if(value && value.length > 0) {
                         markup += this.markupTemplate(templateName, GeneratorUtils.encodeText(value, true, this.models));
                     }
                     templateName = 'Since';
