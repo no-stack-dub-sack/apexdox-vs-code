@@ -25,8 +25,20 @@ class GeneratorUtils {
         }
 
         // unescape <br> tags, we want to keep these
-        result = result.replace(/&lt;br\s?\/?&gt;/g, '<br>');
+        result = result.replace(/&lt;br\s?\/?&gt;/g, '<br>');        
+        
+        // unescape <b> and </b> tags, we want to keep these (ce 20220923)
+        result = result.replace(/&lt;b&gt;/g, '<b>');        
+        result = result.replace(/&lt;\/b&gt;/g, '</b>');        
 
+        // unescape <li> and </li> tags, we want to keep these (ce 20220923)
+        result = result.replace(/&lt;li&gt;/g, '<li>');        
+        result = result.replace(/&lt;\/li&gt;/g, '</li>');                
+
+        // unescape <ul> and </ul> tags, we want to keep these (ce 20220923)
+        result = result.replace(/&lt;ul&gt;/g, '<ul>');        
+        result = result.replace(/&lt;\/ul&gt;/g, '</ul>');   
+        
         return result;
     }
 
