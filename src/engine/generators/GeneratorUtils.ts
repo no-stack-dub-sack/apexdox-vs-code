@@ -31,6 +31,18 @@ class GeneratorUtils {
         result = result.replace(/&lt;b&gt;/g, '<b>');        
         result = result.replace(/&lt;\/b&gt;/g, '</b>');        
 
+        // unescape <i> and </i> tags, we want to keep these (ce 20220923)
+        result = result.replace(/&lt;i&gt;/g, '<i>');        
+        result = result.replace(/&lt;\/i&gt;/g, '</i>');  
+        
+        // unescape <s> and </s> tags, we want to keep these (ce 20220923)
+        result = result.replace(/&lt;s&gt;/g, '<s>');        
+        result = result.replace(/&lt;\/s&gt;/g, '</s>');          
+        
+        // unescape <u> and </u> tags, we want to keep these (ce 20220923)
+        result = result.replace(/&lt;u&gt;/g, '<u>');        
+        result = result.replace(/&lt;\/u&gt;/g, '</u>');                
+
         // unescape <li> and </li> tags, we want to keep these (ce 20220923)
         result = result.replace(/&lt;li&gt;/g, '<li>');        
         result = result.replace(/&lt;\/li&gt;/g, '</li>');                

@@ -34,4 +34,10 @@ All notable changes to the "apexdox-vs-code" extension will be documented in thi
 
 ## 1.4.2 (09/23/2022)
 
-- Added support for `<b></b>`, `<li></li>` and `<ul></ul>` tags in comment blocks
+- Added support for a few additional html tags in comments blocks:
+    * `<b></b>`
+    * `<i></i>`
+    * `<u></u>`
+    * `<s></s>`            
+    * `<li></li>`
+    * `<ul></ul>`
