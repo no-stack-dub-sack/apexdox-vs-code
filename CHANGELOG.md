@@ -31,3 +31,7 @@ All notable changes to the "apexdox-vs-code" extension will be documented in thi
 - Fixes issue where whitespace / newlines in code examples found in user-provided homepages and other supplementary HTML pages was not being correctly preserved.
 - Thanks to [@dschach](https://github.com/dschach) for identifying these issues and opening a PR to fix them.
 - Dependabot security vulnerability updates.
+
+## 1.4.2 (09/23/2022)
+
+- Added support for `<b></b>`, `<li></li>` and `<ul></ul>` tags in comment blocks
