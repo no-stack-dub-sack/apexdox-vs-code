@@ -1,5 +1,8 @@
 /**
  * @group Assertions
+ * 
+ * @author Bill C Riemers
+ * @since 2022-10-05 Added changelog
  */
 public class TEST_Properties {
     public String outer_one {get;set;}

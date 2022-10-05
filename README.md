@@ -214,3 +214,7 @@ ApexDox2 uses some modern HTML5 tags and JavaScript features, so unfortunately I
 ApexDox VS Code is a complete TypeScript re-write of [a Java project, originally maintained by Salesforce](https://github.com/SalesforceFoundation/ApexDoc). After spending a considerable amount of time [enhancing the Java project](https://github.com/no-stack-dub-sack/ApexDoc2/blob/master/CHANGELOG.md), originally intended for re-release as ApexDoc2 (a command line tool), I decided that given the current state of Apex/Salesforce development, abandoning that in favor of a VS Code extension made much more sense. That being said, TypeScript was the obvious choice. In addition to re-writing (and in many cases modifying, and hopefully improving!) all of the program's core logic, several major enhancements to the original have been made, including new features that take advantage of the VS Code eco-system.
 
 I hope you enjoy the new and improved ApexDox VS Code!
+
+## Build
+
+To build your own version of this extension from source code see [Testing Extension](https://code.visualstudio.com/api/working-with-extensions/testing-extension) and [Publishing Extension](https://code.visualstudio.com/api/working-with-extensions/publishing-extension) in the visual studio documentation.

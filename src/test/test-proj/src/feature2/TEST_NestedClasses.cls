@@ -1,6 +1,10 @@
 /**
  * Testing that nested classes are properly documented.
+ * 
  * @group Assertions
+ * 
+ * @author Bill C Riemers
+ * @since 2022-10-05 Added changelog
  */
 public class TEST_NestedClasses {
 

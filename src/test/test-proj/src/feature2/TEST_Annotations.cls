@@ -5,7 +5,11 @@
  * edge cases.
  *
  * @author P. Weinberg
- * @since 2019
+ * @since 2019-01-01 Created
+ * 
+ * @author Bill C Riemers
+ * @since 2022-10-05 Added changelog
+ * 
  * @group Assertions
  */
 @FirstAnnotation(param=true) @SecondAnnotation(paramWithValue='/value/*')
