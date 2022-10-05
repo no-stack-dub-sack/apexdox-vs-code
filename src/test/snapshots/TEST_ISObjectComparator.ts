@@ -96,11 +96,11 @@ export default `<!DOCTYPE html>
               <li title="TEST_HandlerSOQL" id="item-TEST_HandlerSOQL" class="nav-item class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
               </li>
-              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
-                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
-              </li>
               <li title="TEST_ISObjectComparator" id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
+              </li>
+              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
               </li>
               <li title="TEST_JWT" id="item-TEST_JWT" class="nav-item class public" onclick="goToLocation('TEST_JWT.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
@@ -169,7 +169,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_ISObjectComparator">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ISObjectComparator.cls#L25">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ISObjectComparator.cls#L29">
                 TEST_ISObjectComparator
               </a>
             </h2>
@@ -190,7 +190,7 @@ export default `<!DOCTYPE html>
               </div>
               <div class="class-subtitle-description">
                 <a target="_blank" rel="noopener noreferrer" href="http://code.google.com/p/apex-lang/">Source</a>, <a target="_blank" rel="noopener noreferrer" href="http://www.apache.org/licenses/LICENSE-2.0">License</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html#TEST_ArrayUtils.qsort_4')">TEST_ArrayUtils.qsort</a>
-              </div><br />Richard Vanhook<br />Dec 28, 2008
+              </div><br />Richard Vanhook<br />2008-12-28 Created<br />Bill C Riemers<br />2022-10-05 Added changelog
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_ISObjectComparator Methods</h3>
@@ -206,7 +206,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ISObjectComparator.compare">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ISObjectComparator.cls#L26">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ISObjectComparator.cls#L30">
                       compare(record1, record2)
                     </a>
                   </h4>

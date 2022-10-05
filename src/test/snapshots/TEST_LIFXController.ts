@@ -96,11 +96,11 @@ export default `<!DOCTYPE html>
               <li title="TEST_HandlerSOQL" id="item-TEST_HandlerSOQL" class="nav-item class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
               </li>
-              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
-                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
-              </li>
               <li title="TEST_ISObjectComparator" id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
+              </li>
+              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
               </li>
               <li title="TEST_JWT" id="item-TEST_JWT" class="nav-item class public" onclick="goToLocation('TEST_JWT.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
@@ -169,7 +169,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_LIFXController">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L7">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L10">
                 TEST_LIFXController
               </a>
             </h2>
@@ -184,7 +184,7 @@ export default `<!DOCTYPE html>
 
               <div class="class-signature">
                 public with sharing class TEST_LIFXController
-              </div>
+              </div><br />Bill C Riemers<br />2022-10-05 Added changelog
             </div>
             <div class="subsection properties TEST_LIFXController">
               <h3 class="subsection-title properties">TEST_LIFXController Properties</h3>
@@ -198,7 +198,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L9">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L12">
                       settings
                     </a></td>
                   <td>
@@ -243,7 +243,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_LIFXController.getLights">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L12">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L15">
                       getLights()
                     </a>
                   </h4>
@@ -258,7 +258,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_LIFXController.setBrightness">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L32">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L35">
                       setBrightness(lightId, brightness)
                     </a>
                   </h4>
@@ -273,7 +273,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_LIFXController.setPower">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L27">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L30">
                       setPower(lightId, isOn)
                     </a>
                   </h4>
@@ -288,7 +288,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_LIFXController.setState">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L36">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L39">
                       setState(lightId, state)
                     </a>
                   </h4>

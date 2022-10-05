@@ -96,11 +96,11 @@ export default `<!DOCTYPE html>
               <li title="TEST_HandlerSOQL" id="item-TEST_HandlerSOQL" class="nav-item class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
               </li>
-              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
-                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
-              </li>
               <li title="TEST_ISObjectComparator" id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
+              </li>
+              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
               </li>
               <li title="TEST_JWT" id="item-TEST_JWT" class="nav-item class public" onclick="goToLocation('TEST_JWT.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
@@ -169,7 +169,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_ArrayUtils">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L24">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L28">
                 TEST_ArrayUtils
               </a>
             </h2>
@@ -190,7 +190,7 @@ export default `<!DOCTYPE html>
               </div>
               <div class="class-subtitle-description">
                 <a target="_blank" rel="noopener noreferrer" href="http://code.google.com/p/apex-lang/">Source</a>, <a target="_blank" rel="noopener noreferrer" href="http://www.apache.org/licenses/LICENSE-2.0">License</a>
-              </div><br />Richard Vanhook<br />Dec 28, 2008
+              </div><br />Richard Vanhook<br />2008-12-28 Created<br />Bill C Riemers<br />2022-10-05 Added changelog
             </div>
             <div class="subsection properties TEST_ArrayUtils">
               <h3 class="subsection-title properties">TEST_ArrayUtils Properties</h3>
@@ -204,7 +204,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property global">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L26">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L30">
                       EMPTY_STRING_ARRAY
                     </a></td>
                   <td>
@@ -217,7 +217,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property global">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L27">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L31">
                       MAX_NUMBER_OF_ELEMENTS_IN_LIST
                     </a></td>
                   <td>
@@ -517,7 +517,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.assertArraysAreEqual">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L261">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L265">
                       assertArraysAreEqual(expected, actual)
                     </a>
                   </h4>
@@ -535,7 +535,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.assertArraysAreEqual_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L277">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L281">
                       assertArraysAreEqual(expected, actual)
                     </a>
                   </h4>
@@ -553,7 +553,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.isEmpty">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L182">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L186">
                       isEmpty(objectArray)
                     </a>
                   </h4>
@@ -571,7 +571,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.isEmpty_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L190">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L194">
                       isEmpty(objectArray)
                     </a>
                   </h4>
@@ -589,7 +589,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.isNotEmpty">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L198">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L202">
                       isNotEmpty(objectArray)
                     </a>
                   </h4>
@@ -607,7 +607,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.isNotEmpty_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L203">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L207">
                       isNotEmpty(objectArray)
                     </a>
                   </h4>
@@ -625,7 +625,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.lowerCase">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L98">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L102">
                       lowerCase(strs)
                     </a>
                   </h4>
@@ -655,7 +655,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.merg">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L293">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L297">
                       merg(list1, list2)
                     </a>
                   </h4>
@@ -673,7 +673,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.merg_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L312">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L316">
                       merg(list1, list2)
                     </a>
                   </h4>
@@ -691,7 +691,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.mergex">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L154">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L158">
                       mergex(array1, array2)
                     </a>
                   </h4>
@@ -720,7 +720,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.mergex_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L171">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L175">
                       mergex(array1, array2)
                     </a>
                   </h4>
@@ -744,7 +744,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.objectToString">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L34">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L38">
                       objectToString(objects)
                     </a>
                   </h4>
@@ -774,7 +774,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.pluck">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L213">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L217">
                       pluck(objectArray, fieldName)
                     </a>
                   </h4>
@@ -806,7 +806,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.qsort">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L387">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L391">
                       qsort(theList)
                     </a>
                   </h4>
@@ -824,7 +824,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.qsort_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L394">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L398">
                       qsort(theList, sortAsc)
                     </a>
                   </h4>
@@ -842,7 +842,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.qsort_2">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L402">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L406">
                       qsort(theList, comparator)
                     </a>
                   </h4>
@@ -860,7 +860,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.qsort_3">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L409">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L413">
                       qsort(theList, comparator, sortAsc)
                     </a>
                   </h4>
@@ -878,7 +878,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.qsort_4">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L418">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L422">
                       qsort(theList, comparator)
                     </a>
                   </h4>
@@ -896,7 +896,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.qsort_5">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L425">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L429">
                       qsort(theList, comparator, sortAsc)
                     </a>
                   </h4>
@@ -914,7 +914,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_ArrayUtils.qsort_6">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L430">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L434">
                       qsort(theList, lo0, hi0, comparator, sortAsc)
                     </a>
                   </h4>
@@ -932,7 +932,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_ArrayUtils.qsort_7">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L480">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L484">
                       qsort(theList, lo0, hi0, comparator, sortAsc)
                     </a>
                   </h4>
@@ -950,7 +950,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.reverse">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L54">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L58">
                       reverse(anArray)
                     </a>
                   </h4>
@@ -977,7 +977,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.reverse_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L76">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L80">
                       reverse(anArray)
                     </a>
                   </h4>
@@ -1004,7 +1004,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.subset">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L339">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L343">
                       subset(aList, count)
                     </a>
                   </h4>
@@ -1028,7 +1028,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.subset_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L346">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L350">
                       subset(list1, startIndex, count)
                     </a>
                   </h4>
@@ -1046,7 +1046,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.subset_2">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L359">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L363">
                       subset(aList, count)
                     </a>
                   </h4>
@@ -1064,7 +1064,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.subset_3">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L366">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L370">
                       subset(list1, startIndex, count)
                     </a>
                   </h4>
@@ -1082,7 +1082,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.toString">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L229">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L233">
                       toString(objectArray)
                     </a>
                   </h4>
@@ -1109,7 +1109,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.toString_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L247">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L251">
                       toString(objectArray)
                     </a>
                   </h4>
@@ -1136,7 +1136,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.trim">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L134">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L138">
                       trim(strs)
                     </a>
                   </h4>
@@ -1166,7 +1166,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ArrayUtils.upperCase">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L116">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ArrayUtils.cls#L120">
                       upperCase(strs)
                     </a>
                   </h4>

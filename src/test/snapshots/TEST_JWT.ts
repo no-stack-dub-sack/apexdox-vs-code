@@ -96,11 +96,11 @@ export default `<!DOCTYPE html>
               <li title="TEST_HandlerSOQL" id="item-TEST_HandlerSOQL" class="nav-item class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
               </li>
-              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
-                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
-              </li>
               <li title="TEST_ISObjectComparator" id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
+              </li>
+              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
               </li>
               <li title="TEST_JWT" id="item-TEST_JWT" class="nav-item class public" onclick="goToLocation('TEST_JWT.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
@@ -169,7 +169,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_JWT">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L9">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L13">
                 TEST_JWT
               </a>
             </h2>
@@ -190,7 +190,7 @@ export default `<!DOCTYPE html>
               </div>
               <div class="class-subtitle-description">
                 <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a>
-              </div><br />Salesforce.com<br />Jul 2017
+              </div><br />Salesforce.com<br />2017-07-01 Created<br />Bill C Riemers<br />2022-10-05 Added changelog
             </div>
             <div class="subsection properties TEST_JWT">
               <h3 class="subsection-title properties">TEST_JWT Properties</h3>
@@ -204,7 +204,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L11">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L15">
                       alg
                     </a></td>
                   <td>
@@ -217,7 +217,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L14">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L18">
                       aud
                     </a></td>
                   <td>
@@ -230,7 +230,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L19">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L23">
                       cert
                     </a></td>
                   <td>
@@ -243,7 +243,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L17">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L21">
                       claims
                     </a></td>
                   <td>
@@ -256,7 +256,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L15">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L19">
                       exp
                     </a></td>
                   <td>
@@ -269,7 +269,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L24">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L28">
                       HS256
                     </a></td>
                   <td>
@@ -282,7 +282,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L16">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L20">
                       iat
                     </a></td>
                   <td>
@@ -295,7 +295,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L12">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L16">
                       iss
                     </a></td>
                   <td>
@@ -308,7 +308,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L26">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L30">
                       NONE
                     </a></td>
                   <td>
@@ -321,7 +321,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L20">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L24">
                       pkcs8
                     </a></td>
                   <td>
@@ -334,7 +334,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L21">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L25">
                       privateKey
                     </a></td>
                   <td>
@@ -347,7 +347,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L25">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L29">
                       RS256
                     </a></td>
                   <td>
@@ -360,7 +360,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L13">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L17">
                       sub
                     </a></td>
                   <td>
@@ -373,7 +373,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L18">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L22">
                       validFor
                     </a></td>
                   <td>
@@ -418,7 +418,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_JWT.base64URLencode">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L92">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L96">
                       base64URLencode(input)
                     </a>
                   </h4>
@@ -448,7 +448,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_JWT.issue">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L38">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L42">
                       issue()
                     </a>
                   </h4>
@@ -472,7 +472,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_JWT.JWT">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L29">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_JWT.cls#L33">
                       JWT(alg)
                     </a>
                   </h4>

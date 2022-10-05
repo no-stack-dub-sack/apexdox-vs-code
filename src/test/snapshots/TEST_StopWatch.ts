@@ -96,11 +96,11 @@ export default `<!DOCTYPE html>
               <li title="TEST_HandlerSOQL" id="item-TEST_HandlerSOQL" class="nav-item class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
               </li>
-              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
-                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
-              </li>
               <li title="TEST_ISObjectComparator" id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
+              </li>
+              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
               </li>
               <li title="TEST_JWT" id="item-TEST_JWT" class="nav-item class public" onclick="goToLocation('TEST_JWT.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
@@ -169,7 +169,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_StopWatch">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L24">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L28">
                 TEST_StopWatch
               </a>
             </h2>
@@ -190,7 +190,7 @@ export default `<!DOCTYPE html>
               </div>
               <div class="class-subtitle-description">
                 <a target="_blank" rel="noopener noreferrer" href="http://code.google.com/p/apex-lang/">Source</a>, <a target="_blank" rel="noopener noreferrer" href="http://www.apache.org/licenses/LICENSE-2.0">License</a>
-              </div><br />Richard Vanhook<br />Dec 28, 2008
+              </div><br />Richard Vanhook<br />2008-12-28 Created<br />Bill C Riemers<br />2022-10-05 Added changelog
             </div>
             <div class="subsection properties TEST_StopWatch">
               <h3 class="subsection-title properties">TEST_StopWatch Properties</h3>
@@ -204,7 +204,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L36">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L40">
                       runningState
                     </a></td>
                   <td>
@@ -217,7 +217,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L37">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L41">
                       splitState
                     </a></td>
                   <td>
@@ -230,7 +230,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L38">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L42">
                       startTime
                     </a></td>
                   <td>
@@ -243,7 +243,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L28">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L32">
                       STATE_RUNNING
                     </a></td>
                   <td>
@@ -256,7 +256,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L34">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L38">
                       STATE_SPLIT
                     </a></td>
                   <td>
@@ -269,7 +269,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L29">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L33">
                       STATE_STOPPED
                     </a></td>
                   <td>
@@ -282,7 +282,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L30">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L34">
                       STATE_SUSPENDED
                     </a></td>
                   <td>
@@ -295,7 +295,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L33">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L37">
                       STATE_UNSPLIT
                     </a></td>
                   <td>
@@ -308,7 +308,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L27">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L31">
                       STATE_UNSTARTED
                     </a></td>
                   <td>
@@ -321,7 +321,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L39">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L43">
                       stopTime
                     </a></td>
                   <td>
@@ -450,7 +450,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_StopWatch.getSplitTime">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L146">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L150">
                       getSplitTime()
                     </a>
                   </h4>
@@ -474,7 +474,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_StopWatch.getStartTime">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L157">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L161">
                       getStartTime()
                     </a>
                   </h4>
@@ -498,7 +498,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_StopWatch.getTime">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L133">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L137">
                       getTime()
                     </a>
                   </h4>
@@ -516,7 +516,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_StopWatch.reset">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L74">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L78">
                       reset()
                     </a>
                   </h4>
@@ -534,7 +534,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_StopWatch.resume">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L121">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L125">
                       resume()
                     </a>
                   </h4>
@@ -558,7 +558,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_StopWatch.split">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L85">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L89">
                       split()
                     </a>
                   </h4>
@@ -582,7 +582,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_StopWatch.start">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L45">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L49">
                       start()
                     </a>
                   </h4>
@@ -606,7 +606,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_StopWatch.stop">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L61">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L65">
                       stop()
                     </a>
                   </h4>
@@ -630,7 +630,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_StopWatch.suspend">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L109">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L113">
                       suspend()
                     </a>
                   </h4>
@@ -654,7 +654,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_StopWatch.toSplitString">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L174">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L178">
                       toSplitString()
                     </a>
                   </h4>
@@ -672,7 +672,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_StopWatch.toStr">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L167">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L171">
                       toStr()
                     </a>
                   </h4>
@@ -690,7 +690,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_StopWatch.unsplit">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L97">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_StopWatch.cls#L101">
                       unsplit()
                     </a>
                   </h4>

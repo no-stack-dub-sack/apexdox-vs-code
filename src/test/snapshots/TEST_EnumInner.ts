@@ -96,11 +96,11 @@ export default `<!DOCTYPE html>
               <li title="TEST_HandlerSOQL" id="item-TEST_HandlerSOQL" class="nav-item class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
               </li>
-              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
-                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
-              </li>
               <li title="TEST_ISObjectComparator" id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
+              </li>
+              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
               </li>
               <li title="TEST_JWT" id="item-TEST_JWT" class="nav-item class public" onclick="goToLocation('TEST_JWT.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
@@ -169,7 +169,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_EnumInner">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L4">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L7">
                 TEST_EnumInner
               </a>
             </h2>
@@ -181,7 +181,7 @@ export default `<!DOCTYPE html>
 
               <div class="class-signature">
                 public class TEST_EnumInner
-              </div>
+              </div><br />Bill C Riemers<br />2022-10-05 Added changelog
             </div>
             <div class="subsection enums">
               <h3 class="subsection-title enums">Enums</h3>
@@ -195,7 +195,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L21">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L24">
                       Days
                     </a></td>
                   <td>
@@ -211,7 +211,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L8">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L11">
                       Months
                     </a></td>
                   <td>
@@ -227,7 +227,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L29">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L32">
                       Numbers
                     </a></td>
                   <td>
@@ -243,7 +243,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L40">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L43">
                       Rgb
                     </a></td>
                   <td>

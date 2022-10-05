@@ -96,11 +96,11 @@ export default `<!DOCTYPE html>
               <li title="TEST_HandlerSOQL" id="item-TEST_HandlerSOQL" class="nav-item class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
               </li>
-              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
-                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
-              </li>
               <li title="TEST_ISObjectComparator" id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
+              </li>
+              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
               </li>
               <li title="TEST_JWT" id="item-TEST_JWT" class="nav-item class public" onclick="goToLocation('TEST_JWT.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
@@ -169,7 +169,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_Links">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Links.cls#L17">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Links.cls#L21">
                 TEST_Links
               </a>
             </h2>
@@ -190,7 +190,7 @@ export default `<!DOCTYPE html>
               </div>
               <div class="class-subtitle-description">
                 <a target="_blank" rel="noopener noreferrer" href="http://code.google.com/p/apex-lang/">Markdown Link</a>, <a target="_blank" rel="noopener noreferrer" href="https://www.google.com">https://www.google.com</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html')">TEST_ArrayUtils</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html#TEST_ArrayUtils.qsort')">TEST_ArrayUtils.qsort</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html#TEST_ArrayUtils.qsort_2')">TEST_ArrayUtils.qsort</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_NestedClasses.html#TEST_NestedClasses.ConcreteChildClass')">TEST_NestedClasses.ConcreteChildClass</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_NestedClasses.html#TEST_NestedClasses.ConcreteChildClass.overloadedMethod')">TEST_NestedClasses.ConcreteChildClass.overloadedMethod</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_NestedClasses.html#TEST_NestedClasses.ConcreteChildClass.overloadedMethod_1')">TEST_NestedClasses.ConcreteChildClass.overloadedMethod</a>, <span title="A valid link could not be created with this identifier.">ThisOneShouldFail</span>
-              </div>
+              </div><br />Bill C Riemers<br />2022-10-05 Added changelog
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_Links Methods</h3>
@@ -233,7 +233,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_Links.getInt">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Links.cls#L22">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Links.cls#L26">
                       getInt()
                     </a>
                   </h4>
@@ -254,7 +254,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_Links.getInt_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Links.cls#L25">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Links.cls#L29">
                       getInt(int, int2)
                     </a>
                   </h4>
@@ -272,7 +272,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_Links.getInt_2">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Links.cls#L30">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Links.cls#L34">
                       getInt(int, int2, int3)
                     </a>
                   </h4>
@@ -290,7 +290,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_Links.getInt_3">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Links.cls#L42">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Links.cls#L46">
                       getInt(int, int2, int3, int4)
                     </a>
                   </h4>

@@ -96,11 +96,11 @@ export default `<!DOCTYPE html>
               <li title="TEST_HandlerSOQL" id="item-TEST_HandlerSOQL" class="nav-item class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
               </li>
-              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
-                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
-              </li>
               <li title="TEST_ISObjectComparator" id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
+              </li>
+              <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
               </li>
               <li title="TEST_JWT" id="item-TEST_JWT" class="nav-item class public" onclick="goToLocation('TEST_JWT.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
@@ -169,7 +169,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_SlackOpportunityPublisher">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L12">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L16">
                 TEST_SlackOpportunityPublisher
               </a>
             </h2>
@@ -190,7 +190,7 @@ export default `<!DOCTYPE html>
               </div>
               <div class="class-subtitle-description">
                 <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a>
-              </div><br />Salesforce.com<br />Jul 2017
+              </div><br />Salesforce.com<br />2017-07-01 Created<br />Bill C Riemers<br />2022-10-05 Added changelog
             </div>
             <div class="subsection properties TEST_SlackOpportunityPublisher">
               <h3 class="subsection-title properties">TEST_SlackOpportunityPublisher Properties</h3>
@@ -204,7 +204,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L17">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L21">
                       slackURL
                     </a></td>
                   <td>
@@ -232,7 +232,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L55">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L59">
                       Days
                     </a></td>
                   <td>
@@ -248,7 +248,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L40">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L44">
                       Months
                     </a></td>
                   <td>
@@ -264,7 +264,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L65">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L69">
                       Numbers
                     </a></td>
                   <td>
@@ -280,7 +280,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L78">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L82">
                       Rgb
                     </a></td>
                   <td>
@@ -313,7 +313,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_SlackOpportunityPublisher.postToSlack">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L24">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L28">
                       postToSlack(opportunityId)
                     </a>
                   </h4>
@@ -342,7 +342,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title " id="TEST_SlackOpportunityPublisher.QueueableSlackCall">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L92">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L96">
                 TEST_SlackOpportunityPublisher.QueueableSlackCall
               </a>
             </h2>
@@ -376,7 +376,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L96">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L100">
                       body
                     </a></td>
                   <td>
@@ -389,7 +389,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L95">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L99">
                       method
                     </a></td>
                   <td>
@@ -402,7 +402,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L94">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L98">
                       url
                     </a></td>
                   <td>
@@ -429,7 +429,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_SlackOpportunityPublisher.QueueableSlackCall.QueueableSlackCall">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L103">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L107">
                       QueueableSlackCall(url, method, body)
                     </a>
                   </h4>
@@ -476,7 +476,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_SlackOpportunityPublisher.QueueableSlackCall.execute">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L114">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SlackOpportunityPublisher.cls#L118">
                       execute(ctx)
                     </a>
                   </h4>
