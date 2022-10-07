@@ -169,7 +169,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_Annotations">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Annotations.cls#L16">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Annotations.cls#L21">
                 TEST_Annotations
               </a>
             </h2>
@@ -184,7 +184,7 @@ export default `<!DOCTYPE html>
               <div class="class-annotations">@FirstAnnotation(param=true) @SecondAnnotation(paramWithValue='/value/*') @ThirdAnnotation</div>
               <div class="class-signature">
                 public class TEST_Annotations
-              </div><br />P. Weinberg<br />2019-01-01 Created<br />Bill C Riemers<br />2022-10-05 Added changelog
+              </div><br /><br />2022-10-07 This is an example of a since not associated with an author followed by an author without a since<br />Unknown<br />P. Weinberg<br />2019-01-01 Created<br />Bill C Riemers<br />2022-10-05 Added changelog<br />2022-10-07 This is validating that both changes pickup
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_Annotations Methods</h3>
@@ -230,7 +230,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_Annotations.method1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Annotations.cls#L22">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Annotations.cls#L27">
                       method1()
                     </a>
                   </h4>
@@ -248,7 +248,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Annotations.method2">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Annotations.cls#L31">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Annotations.cls#L36">
                       method2()
                     </a>
                   </h4>
@@ -272,7 +272,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_Annotations.method3">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Annotations.cls#L37">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Annotations.cls#L42">
                       method3()
                     </a>
                   </h4>
@@ -290,7 +290,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_Annotations.method4">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Annotations.cls#L45">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Annotations.cls#L50">
                       method4()
                     </a>
                   </h4>

@@ -4,11 +4,16 @@
  * even if this scenario is unlikely or will never happen in real life. Testing
  * edge cases.
  *
+ * @since 2022-10-07 This is an example of a since not associated with an author followed by an author without a since
+ * 
+ * @author Unknown
+ * 
  * @author P. Weinberg
  * @since 2019-01-01 Created
  * 
  * @author Bill C Riemers
  * @since 2022-10-05 Added changelog
+ * @since 2022-10-07 This is validating that both changes pickup
  * 
  * @group Assertions
  */
