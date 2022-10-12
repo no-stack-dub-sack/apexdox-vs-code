@@ -208,7 +208,7 @@ In order for ApexDox to best identify class methods, the method line must contai
     </a>
 </p>
 
-Like a class itself, you can create a changelog for a message using @author and @since tags in sequence.
+Like a class itself, you can create a change log for a method using @author and @since tags in sequence.
 
 ### Property and Inner Enum Comments
 These are the simplest comment blocks. They only support description tags (the tag itself may optionally be omitted for brevity). For properties to be detected by ApexDox, they **must** be given an explicit access modifier or have signatures beginning with the `static` keywork. **Other implicitly private properties will not be detected.**
