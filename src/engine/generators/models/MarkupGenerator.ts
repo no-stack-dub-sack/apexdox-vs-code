@@ -41,20 +41,19 @@ abstract class MarkupGenerator<T extends ApexModel> {
         if (this.model.changeLog && this.model.changeLog.length) {
             for (let changeLogArray of this.model.changeLog) {
                 let changeString:string = '';
+                let sep:string = '';
                 for(let value of changeLogArray) {
                     if(value && value.length > 0) {
-                        if(changeString.length > 0) {
-                            changeString += '<br />';
-                        }
-                        changeString += value;
+                        changeString += sep + GeneratorUtils.encodeText(value,true,this.models);
                     }
+                    sep = '<li />'
                 }
                 if(changeString.length > 0) {
                     let templateName:string = 'Since';
                     if(changeLogArray.length > 0 && changeLogArray[0] && changeLogArray[0].length > 0) {
                         templateName = 'Author';
                     }
-                    markup += this.markupTemplate(templateName, GeneratorUtils.encodeText(changeString, true, this.models));
+                    markup += this.markupTemplate(templateName, changeString);
                 }
             }
         }
