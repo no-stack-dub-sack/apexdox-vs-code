@@ -181,7 +181,13 @@ export default `<!DOCTYPE html>
 
               <div class="class-signature">
                 public class TEST_Properties
-              </div><br />Bill C Riemers<br />2022-10-05 Added changelog
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                Bill C Riemers<br>2022-10-05 Added changelog
+              </div>
             </div>
             <div class="subsection properties TEST_Properties">
               <h3 class="subsection-title properties">TEST_Properties Properties</h3>

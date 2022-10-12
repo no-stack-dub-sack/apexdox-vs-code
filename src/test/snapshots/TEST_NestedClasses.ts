@@ -184,7 +184,13 @@ export default `<!DOCTYPE html>
 
               <div class="class-signature">
                 public class TEST_NestedClasses
-              </div><br />Bill C Riemers<br />2022-10-05 Added changelog
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                Bill C Riemers<br>2022-10-05 Added changelog
+              </div>
             </div>
             <div class="subsection properties TEST_NestedClasses">
               <h3 class="subsection-title properties">TEST_NestedClasses Properties</h3>

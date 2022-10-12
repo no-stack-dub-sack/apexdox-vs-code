@@ -181,7 +181,13 @@ export default `<!DOCTYPE html>
 
               <div class="class-signature">
                 global interface TEST_InterfaceClass
-              </div><br />Bill C Riemers<br />2022-10-05 Added changelog
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                Bill C Riemers<br>2022-10-05 Added changelog
+              </div>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_InterfaceClass Methods</h3>

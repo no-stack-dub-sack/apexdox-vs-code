@@ -94,22 +94,6 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         return super.markupTemplate(label, contents, titleClass, contentClass, tag);
     }
 
-    protected changeLog(): string {
-        let markup = '';
-        if (this.model.params.length) {
-            for (let changeLogArray of this.model.changeLog) {
-                let templateName:string = 'Author';
-                for(let value of changeLogArray) {
-                    if(value && value.length > 0) {
-                        markup += this.markupTemplate(templateName, GeneratorUtils.encodeText(value, true, this.models));
-                    }
-                    templateName = 'Since';
-                }
-            }
-        }
-        return markup;
-    }
-
     protected header(id: string, topmostTypeName: string): string {
         return `
             <h4 class="method-title ${(this.model.deprecated ? 'deprecated' : '')}" id="${id}">

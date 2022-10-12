@@ -212,7 +212,19 @@ export default `<!DOCTYPE html>
                   FAILED
                 </td>
               </tr>
-            </table><br />P. Weinberg<br />2019-01-01 Created<br />Bill C Riemers<br />2022-10-05 Added changelog
+            </table>
+            <div class="class-subtitle">
+              Author
+            </div>
+            <div class="class-subtitle-description">
+              P. Weinberg<br>2019-01-01 Created
+            </div>
+            <div class="class-subtitle">
+              Author
+            </div>
+            <div class="class-subtitle-description">
+              Bill C Riemers<br>2022-10-05 Added changelog
+            </div>
           </div>
         </td>
       </tr>

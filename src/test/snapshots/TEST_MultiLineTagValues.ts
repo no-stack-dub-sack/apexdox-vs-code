@@ -184,7 +184,13 @@ export default `<!DOCTYPE html>
 
               <div class="class-signature">
                 public class TEST_MultiLineTagValues
-              </div><br />Bill C Riemers<br />2022-10-05 Added changelog
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                Bill C Riemers<br>2022-10-05 Added changelog
+              </div>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">TEST_MultiLineTagValues Methods</h3>
@@ -245,13 +251,7 @@ export default `<!DOCTYPE html>
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    Works over multiple lines (author).
-                  </div>
-                  <div class="method-subtitle">
-                    Since
-                  </div>
-                  <div class="method-subtitle-description">
-                    Works over multiple lines (since).
+                    Works over multiple lines (author).<br>Works over multiple lines (since).
                   </div>
                 </div>
               </div>

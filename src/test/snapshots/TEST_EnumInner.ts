@@ -181,7 +181,13 @@ export default `<!DOCTYPE html>
 
               <div class="class-signature">
                 public class TEST_EnumInner
-              </div><br />Bill C Riemers<br />2022-10-05 Added changelog
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                Bill C Riemers<br>2022-10-05 Added changelog
+              </div>
             </div>
             <div class="subsection enums">
               <h3 class="subsection-title enums">Enums</h3>

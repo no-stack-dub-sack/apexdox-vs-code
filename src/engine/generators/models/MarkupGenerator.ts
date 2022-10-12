@@ -36,6 +36,31 @@ abstract class MarkupGenerator<T extends ApexModel> {
         return `<div class="${className}">${this.model.annotations.join(' ')}</div>`;
     }
 
+    protected changeLog(): string {
+        let markup = '';
+        if (this.model.changeLog && this.model.changeLog.length) {
+            for (let changeLogArray of this.model.changeLog) {
+                let changeString:string = '';
+                for(let value of changeLogArray) {
+                    if(value && value.length > 0) {
+                        if(changeString.length > 0) {
+                            changeString += '<br />';
+                        }
+                        changeString += value;
+                    }
+                }
+                if(changeString.length > 0) {
+                    let templateName:string = 'Since';
+                    if(changeLogArray.length > 0 && changeLogArray[0] && changeLogArray[0].length > 0) {
+                        templateName = 'Author';
+                    }
+                    markup += this.markupTemplate(templateName, GeneratorUtils.encodeText(changeString, true, this.models));
+                }
+            }
+        }
+        return markup;
+    }
+
     protected deprecated(): string {
         if (!this.model.deprecated) {
             return '';

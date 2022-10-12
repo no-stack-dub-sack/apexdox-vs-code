@@ -184,7 +184,13 @@ export default `<!DOCTYPE html>
 
               <div class="class-signature">
                 public with sharing class TEST_LIFXController
-              </div><br />Bill C Riemers<br />2022-10-05 Added changelog
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                Bill C Riemers<br>2022-10-05 Added changelog
+              </div>
             </div>
             <div class="subsection properties TEST_LIFXController">
               <h3 class="subsection-title properties">TEST_LIFXController Properties</h3>

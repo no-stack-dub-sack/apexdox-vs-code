@@ -16,10 +16,6 @@ abstract class TopLevelModel extends ApexModel {
 
     public abstract get groupName(): string;
 
-    public get changeLog(): string[][] {
-        return this._changeLog;
-    }
-
     public get groupContentPath(): string {
         return this._groupContentPath;
     }

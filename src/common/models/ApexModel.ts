@@ -57,13 +57,17 @@ abstract class ApexModel {
 
     /* ===================================================================================================
      * NOTE: Ideally, we should only expose those getters on this class that are shared amongst all
-     * ApexModel descendants. The following three break this convention. 'Example,' 'Deprecated,' and
+     * ApexModel descendants. The following four break this convention. 'ChangeLog', 'Example,' 'Deprecated,' and
      * 'See' are only available to MethodModel and TopLevelModel, however it aids us in reducing repetitive
      * code in their respective markup generators to expose these getters here. This way, we can write the
      * markup generation code for these attributes only once on the base MarkupGenerator class, rather than
      * repeating the same or very similar code on both MethodMarkupGenerator and TopLevelMarkupGenerator.
      * ===================================================================================================
      */
+    public get changeLog(): string[][] {
+        return this._changeLog;
+    }
+
     public get example(): string {
         // remove trailing white space which may have built
         // up due to the allowance of preserving white space

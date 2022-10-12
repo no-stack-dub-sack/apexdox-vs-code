@@ -34,18 +34,6 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         titleClass = titleClass ? `class-subtitle ${titleClass}` : 'class-subtitle';
         return super.markupTemplate(label, contents, titleClass, contentClass, tag);
     }
-
-    protected changeLog() {
-        let markup = '';
-        if (this.model.changeLog) {
-            for(let changeArray of this.model.changeLog) {
-                for(let value of changeArray) {
-                    markup += `<br/>${GeneratorUtils.encodeText(value, true, this.models)}`;
-                }
-            }
-        }
-        return markup;
-    }
 }
 
 export default TopLevelMarkupGenerator;

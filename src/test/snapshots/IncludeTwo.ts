@@ -184,7 +184,19 @@ export default `<!DOCTYPE html>
               <div class="class-annotations">@isTest</div>
               <div class="class-signature">
                 class IncludeTwo
-              </div><br />P. Weinberg<br />2019-01-01 Created<br />Bill C Riemers<br />2022-10-05 Added changelog
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                P. Weinberg<br>2019-01-01 Created
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                Bill C Riemers<br>2022-10-05 Added changelog
+              </div>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">IncludeTwo Methods</h3>
