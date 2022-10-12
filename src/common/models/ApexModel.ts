@@ -5,7 +5,6 @@ import { existsSync } from 'fs';
 import { resolve } from 'path';
 import { window, workspace, WorkspaceFolder } from 'vscode';
 import { Option } from '../..';
-import { listenerCount } from 'cluster';
 
 abstract class ApexModel {
 
