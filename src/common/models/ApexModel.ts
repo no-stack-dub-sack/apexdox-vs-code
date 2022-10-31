@@ -5,11 +5,12 @@ import { existsSync } from 'fs';
 import { resolve } from 'path';
 import { window, workspace, WorkspaceFolder } from 'vscode';
 import { Option } from '../..';
+import { OrderTag } from './OrderTag';
 
 abstract class ApexModel {
 
     protected _annotations: string[] = [];
-    protected _changeLog: string[][] = [];
+    protected _changeLog: OrderTag[] = [];
     protected _deprecated: string = '';
     protected _description: string = '';
     protected _example: string = '';
@@ -64,7 +65,7 @@ abstract class ApexModel {
      * repeating the same or very similar code on both MethodMarkupGenerator and TopLevelMarkupGenerator.
      * ===================================================================================================
      */
-    public get changeLog(): string[][] {
+    public get changeLog(): OrderTag[] {
         return this._changeLog;
     }
 
@@ -133,22 +134,17 @@ abstract class ApexModel {
             // if currBlock was not reset on this iteration we're on the next line of the last tag, add line
             // to that value. Allow empty lines in @example blocks to preserve whitespace in complex examples
             if (currBlock !== null && (line.trim() || !line.trim() && currBlock === tags.EXAMPLE.label)) {
-                if (currBlock === tags.AUTHOR.label) {
-                    let changeArray = (newBlock ? [] : this._changeLog.pop());
-                    if(! changeArray) {
-                        changeArray = [];
+                if (currBlock === tags.AUTHOR.label || currBlock === tags.SINCE.label) {
+                    let currOrderTag:OrderTag = this._changeLog.pop()!;
+                    if(! currOrderTag ) {
+                        currOrderTag = new OrderTag(currBlock);
+                    } else if(currOrderTag.tagLabel !== currBlock) {
+                        this._changeLog.push(currOrderTag!);
+                        currOrderTag  = new OrderTag(currBlock);
                     }
-                    let author = changeArray.pop();
-                    changeArray.push((author && author.length > 0 ? author+' ' : '') + line.trim());
-                    this._changeLog.push(changeArray!);
-                } else if (currBlock === tags.SINCE.label) {
-                    let changeArray = this._changeLog.pop();                    
-                    if(! changeArray) {
-                        changeArray = [''];
-                    }
-                    let since = (newBlock ? '' : changeArray.pop());
-                    changeArray.push((since && since.length > 0 ? since+' ' : '') + line.trim());
-                    this._changeLog.push(changeArray!);
+                    let value = (newBlock ? '' : currOrderTag.values.pop());
+                    currOrderTag.values.push((value && value.length > 0 ? value+' ' : '') + line.trim());
+                    this._changeLog.push(currOrderTag);
                 } else if (currBlock === tags.SEE.label) {
                     this._see.push(line.trim());
                 } else if (currBlock === tags.RETURNS.label || currBlock === tags.RETURN.label) {

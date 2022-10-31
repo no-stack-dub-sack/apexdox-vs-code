@@ -189,25 +189,32 @@ export default `<!DOCTYPE html>
                 Since
               </div>
               <div class="class-subtitle-description">
-                2022-10-07 This is an example of a since not associated with an author followed by an author without a since
+                <li>2022-10-07 This is an example of a since not associated with an author followed by an author without a since</li>
               </div>
               <div class="class-subtitle">
-                Author
+                Author(s)
               </div>
               <div class="class-subtitle-description">
-                Unknown
+                Unknown, P. Weinberg
               </div>
               <div class="class-subtitle">
-                Author
+                Since
               </div>
               <div class="class-subtitle-description">
-                P. Weinberg<br>2019-01-01 Created
+                <li>2019-01-01 Created</li>
               </div>
               <div class="class-subtitle">
-                Author
+                Author(s)
               </div>
               <div class="class-subtitle-description">
-                Bill C Riemers<br>2022-10-05 Added changelog<br>2022-10-07 This is validating that both changes pickup
+                Bill C Riemers
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>2022-10-05 Added changelog</li>
+                <li>2022-10-07 This is validating that both changes pickup</li>
               </div>
             </div>
             <div class="subsection methods">

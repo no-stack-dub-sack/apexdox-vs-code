@@ -192,16 +192,28 @@ export default `<!DOCTYPE html>
                 <a target="_blank" rel="noopener noreferrer" href="http://code.google.com/p/apex-lang/">Source</a>, <a target="_blank" rel="noopener noreferrer" href="http://www.apache.org/licenses/LICENSE-2.0">License</a>
               </div>
               <div class="class-subtitle">
-                Author
+                Author(s)
               </div>
               <div class="class-subtitle-description">
-                Richard Vanhook<br>2008-12-28 Created
+                Richard Vanhook
               </div>
               <div class="class-subtitle">
-                Author
+                Since
               </div>
               <div class="class-subtitle-description">
-                Bill C Riemers<br>2022-10-05 Added changelog
+                <li>2008-12-28 Created</li>
+              </div>
+              <div class="class-subtitle">
+                Author(s)
+              </div>
+              <div class="class-subtitle-description">
+                Bill C Riemers
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>2022-10-05 Added changelog</li>
               </div>
             </div>
             <div class="subsection properties TEST_ArrayUtils">

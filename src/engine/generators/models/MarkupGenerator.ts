@@ -3,6 +3,7 @@ import Utils from '../../../common/Utils';
 import { ApexModel, TopLevelModel } from '../../../common/models';
 import { last } from '../../../common/ArrayUtils';
 import SeeLinkGenerator from '../SeeLinkGenerator';
+import * as tags from '../../../common/tags';
 
 /**
  * This class is the base markup generation class and is not instantiated directly. It
@@ -39,21 +40,20 @@ abstract class MarkupGenerator<T extends ApexModel> {
     protected changeLog(): string {
         let markup = '';
         if (this.model.changeLog && this.model.changeLog.length) {
-            for (let changeLogArray of this.model.changeLog) {
-                let changeString:string = '';
-                let sep:string = '';
-                for(let value of changeLogArray) {
+            for (let currOrderTag of this.model.changeLog) {
+                let values:string[] = [];
+                for(let value of currOrderTag.values) {
                     if(value && value.length > 0) {
-                        changeString += sep + GeneratorUtils.encodeText(value,true,this.models);
+                        values.push(GeneratorUtils.encodeText(value,true,this.models));
                     }
-                    sep = '<li />'
                 }
-                if(changeString.length > 0) {
-                    let templateName:string = 'Since';
-                    if(changeLogArray.length > 0 && changeLogArray[0] && changeLogArray[0].length > 0) {
-                        templateName = 'Author';
+                if(values.length > 0) {
+                    if(currOrderTag.tagLabel === tags.AUTHOR.label) {
+                        markup += this.markupTemplate('Author(s)',values.join(', '));
                     }
-                    markup += this.markupTemplate(templateName, changeString);
+                    else if(currOrderTag.tagLabel === tags.SINCE.label) {
+                        markup += this.markupTemplate('Since','<li>'+values.join('</li>\n<li>')+'</li>');
+                    }
                 }
             }
         }

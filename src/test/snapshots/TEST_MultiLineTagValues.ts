@@ -186,10 +186,16 @@ export default `<!DOCTYPE html>
                 public class TEST_MultiLineTagValues
               </div>
               <div class="class-subtitle">
-                Author
+                Author(s)
               </div>
               <div class="class-subtitle-description">
-                Bill C Riemers<br>2022-10-05 Added changelog
+                Bill C Riemers
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>2022-10-05 Added changelog</li>
               </div>
             </div>
             <div class="subsection methods">
@@ -248,10 +254,16 @@ export default `<!DOCTYPE html>
                     Works over multiple lines (exception).
                   </div>
                   <div class="method-subtitle">
-                    Author
+                    Author(s)
                   </div>
                   <div class="method-subtitle-description">
-                    Works over multiple lines (author).<br>Works over multiple lines (since).
+                    Works over multiple lines (author).
+                  </div>
+                  <div class="method-subtitle">
+                    Since
+                  </div>
+                  <div class="method-subtitle-description">
+                    <li>Works over multiple lines (since).</li>
                   </div>
                 </div>
               </div>

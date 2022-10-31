@@ -192,10 +192,16 @@ export default `<!DOCTYPE html>
                 <a target="_blank" rel="noopener noreferrer" href="http://code.google.com/p/apex-lang/">Markdown Link</a>, <a target="_blank" rel="noopener noreferrer" href="https://www.google.com">https://www.google.com</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html')">TEST_ArrayUtils</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html#TEST_ArrayUtils.qsort')">TEST_ArrayUtils.qsort</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_ArrayUtils.html#TEST_ArrayUtils.qsort_2')">TEST_ArrayUtils.qsort</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_NestedClasses.html#TEST_NestedClasses.ConcreteChildClass')">TEST_NestedClasses.ConcreteChildClass</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_NestedClasses.html#TEST_NestedClasses.ConcreteChildClass.overloadedMethod')">TEST_NestedClasses.ConcreteChildClass.overloadedMethod</a>, <a href="javascript:void(0)" onclick="goToLocation('TEST_NestedClasses.html#TEST_NestedClasses.ConcreteChildClass.overloadedMethod_1')">TEST_NestedClasses.ConcreteChildClass.overloadedMethod</a>, <span title="A valid link could not be created with this identifier.">ThisOneShouldFail</span>
               </div>
               <div class="class-subtitle">
-                Author
+                Author(s)
               </div>
               <div class="class-subtitle-description">
-                Bill C Riemers<br>2022-10-05 Added changelog
+                Bill C Riemers
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>2022-10-05 Added changelog</li>
               </div>
             </div>
             <div class="subsection methods">

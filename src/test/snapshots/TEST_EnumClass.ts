@@ -214,16 +214,28 @@ export default `<!DOCTYPE html>
               </tr>
             </table>
             <div class="class-subtitle">
-              Author
+              Author(s)
             </div>
             <div class="class-subtitle-description">
-              P. Weinberg<br>2019-01-01 Created
+              P. Weinberg
             </div>
             <div class="class-subtitle">
-              Author
+              Since
             </div>
             <div class="class-subtitle-description">
-              Bill C Riemers<br>2022-10-05 Added changelog
+              <li>2019-01-01 Created</li>
+            </div>
+            <div class="class-subtitle">
+              Author(s)
+            </div>
+            <div class="class-subtitle-description">
+              Bill C Riemers
+            </div>
+            <div class="class-subtitle">
+              Since
+            </div>
+            <div class="class-subtitle-description">
+              <li>2022-10-05 Added changelog</li>
             </div>
           </div>
         </td>

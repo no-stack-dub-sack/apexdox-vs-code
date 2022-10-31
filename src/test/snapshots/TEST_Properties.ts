@@ -183,10 +183,16 @@ export default `<!DOCTYPE html>
                 public class TEST_Properties
               </div>
               <div class="class-subtitle">
-                Author
+                Author(s)
               </div>
               <div class="class-subtitle-description">
-                Bill C Riemers<br>2022-10-05 Added changelog
+                Bill C Riemers
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>2022-10-05 Added changelog</li>
               </div>
             </div>
             <div class="subsection properties TEST_Properties">

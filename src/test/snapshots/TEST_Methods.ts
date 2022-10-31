@@ -186,10 +186,17 @@ export default `<!DOCTYPE html>
                 public class TEST_Methods
               </div>
               <div class="class-subtitle">
-                Author
+                Author(s)
               </div>
               <div class="class-subtitle-description">
-                Bill C Riemers<br>2022-10-05 Added changelog<br>2022-10-12 Added method14 to test changelogs on methods
+                Bill C Riemers
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>2022-10-05 Added changelog</li>
+                <li>2022-10-12 Added method14 to test changelogs on methods</li>
               </div>
             </div>
             <div class="subsection methods">
@@ -457,16 +464,29 @@ export default `<!DOCTYPE html>
                   </div>
                   <div class="param-description">d</div>
                   <div class="method-subtitle">
-                    Author
+                    Author(s)
                   </div>
                   <div class="method-subtitle-description">
-                    Bill Riemers &lt;briemers@redhat.com&gt;<br>2022-10-11 Added to test changelog<br>2022-10-12 Revised to show second log entry
+                    Bill Riemers &lt;briemers@redhat.com&gt;
                   </div>
                   <div class="method-subtitle">
-                    Author
+                    Since
                   </div>
                   <div class="method-subtitle-description">
-                    Jane Doe &lt;jdoe@example.org&gt;<br>2022-10-31 Pretend update
+                    <li>2022-10-11 Added to test changelog</li>
+                    <li>2022-10-12 Revised to show second log entry</li>
+                  </div>
+                  <div class="method-subtitle">
+                    Author(s)
+                  </div>
+                  <div class="method-subtitle-description">
+                    Jane Doe &lt;jdoe@example.org&gt;
+                  </div>
+                  <div class="method-subtitle">
+                    Since
+                  </div>
+                  <div class="method-subtitle-description">
+                    <li>2022-10-31 Pretend update</li>
                   </div>
                 </div>
                 <div class="method private">

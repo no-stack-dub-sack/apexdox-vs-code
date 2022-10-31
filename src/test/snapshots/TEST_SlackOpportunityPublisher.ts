@@ -192,16 +192,28 @@ export default `<!DOCTYPE html>
                 <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a>
               </div>
               <div class="class-subtitle">
-                Author
+                Author(s)
               </div>
               <div class="class-subtitle-description">
-                Salesforce.com<br>2017-07-01 Created
+                Salesforce.com
               </div>
               <div class="class-subtitle">
-                Author
+                Since
               </div>
               <div class="class-subtitle-description">
-                Bill C Riemers<br>2022-10-05 Added changelog
+                <li>2017-07-01 Created</li>
+              </div>
+              <div class="class-subtitle">
+                Author(s)
+              </div>
+              <div class="class-subtitle-description">
+                Bill C Riemers
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>2022-10-05 Added changelog</li>
               </div>
             </div>
             <div class="subsection properties TEST_SlackOpportunityPublisher">
