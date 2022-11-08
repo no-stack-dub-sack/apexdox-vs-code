@@ -31,3 +31,7 @@ All notable changes to the "apexdox-vs-code" extension will be documented in thi
 - Fixes issue where whitespace / newlines in code examples found in user-provided homepages and other supplementary HTML pages was not being correctly preserved.
 - Thanks to [@dschach](https://github.com/dschach) for identifying these issues and opening a PR to fix them.
 - Dependabot security vulnerability updates.
+
+## 1.5.1 (11/07/2022)
+
+- Adds improved support for `@since` and `@author` tags. Thanks to [@docbill](https://github.com/docbill) for his work on [this feature](https://github.com/no-stack-dub-sack/apexdox-vs-code/pull/55).
