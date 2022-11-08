@@ -16,7 +16,9 @@
  * http://www.apache.org/licenses/LICENSE-2.0.
  * 
  * @author Richard Vanhook
+ * @author Someone Else
  * @since 2008-12-28 Created
+ * @since 2008-12-30 Modified
  * 
  * @author Bill C Riemers
  * @since 2022-10-05 Added changelog
