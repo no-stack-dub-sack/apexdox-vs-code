@@ -96,11 +96,11 @@ export default `<!DOCTYPE html>
               <li title="TEST_HandlerSOQL" id="item-TEST_HandlerSOQL" class="nav-item class public" onclick="goToLocation('TEST_HandlerSOQL.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_HandlerSOQL</a>
               </li>
-              <li title="TEST_ISObjectComparator" id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
-                <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
-              </li>
               <li title="TEST_IllegalStateException" id="item-TEST_IllegalStateException" class="nav-item class global" onclick="goToLocation('TEST_IllegalStateException.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_IllegalStateException</a>
+              </li>
+              <li title="TEST_ISObjectComparator" id="item-TEST_ISObjectComparator" class="nav-item class global" onclick="goToLocation('TEST_ISObjectComparator.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_ISObjectComparator</a>
               </li>
               <li title="TEST_JWT" id="item-TEST_JWT" class="nav-item class public" onclick="goToLocation('TEST_JWT.html');">
                 <a tabindex="1" href="javascript:void(0)">TEST_JWT</a>
@@ -192,7 +192,7 @@ export default `<!DOCTYPE html>
                 <li>2022-10-07 This is an example of a since not associated with an author followed by an author without a since</li>
               </div>
               <div class="class-subtitle">
-                Author(s)
+                Authors
               </div>
               <div class="class-subtitle-description">
                 Unknown, P. Weinberg
@@ -204,7 +204,7 @@ export default `<!DOCTYPE html>
                 <li>2019-01-01 Created</li>
               </div>
               <div class="class-subtitle">
-                Author(s)
+                Author
               </div>
               <div class="class-subtitle-description">
                 Bill C Riemers
