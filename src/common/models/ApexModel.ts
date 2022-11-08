@@ -135,15 +135,15 @@ abstract class ApexModel {
             // to that value. Allow empty lines in @example blocks to preserve whitespace in complex examples
             if (currBlock !== null && (line.trim() || !line.trim() && currBlock === tags.EXAMPLE.label)) {
                 if (currBlock === tags.AUTHOR.label || currBlock === tags.SINCE.label) {
-                    let currOrderTag:OrderTag = this._changeLog.pop()!;
-                    if(! currOrderTag ) {
+                    let currOrderTag: OrderTag | undefined = this._changeLog.pop();
+                    if (!currOrderTag) {
                         currOrderTag = new OrderTag(currBlock);
-                    } else if(currOrderTag.tagLabel !== currBlock) {
-                        this._changeLog.push(currOrderTag!);
-                        currOrderTag  = new OrderTag(currBlock);
+                    } else if (currOrderTag.tagLabel !== currBlock) {
+                        this._changeLog.push(currOrderTag);
+                        currOrderTag = new OrderTag(currBlock);
                     }
-                    let value = (newBlock ? '' : currOrderTag.values.pop());
-                    currOrderTag.values.push((value && value.length > 0 ? value+' ' : '') + line.trim());
+                    let value = newBlock ? '' : currOrderTag.values.pop();
+                    currOrderTag.values.push((value && value.length > 0 ? value + ' ' : '') + line.trim());
                     this._changeLog.push(currOrderTag);
                 } else if (currBlock === tags.SEE.label) {
                     this._see.push(line.trim());

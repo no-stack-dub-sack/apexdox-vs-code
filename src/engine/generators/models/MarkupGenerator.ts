@@ -49,10 +49,12 @@ abstract class MarkupGenerator<T extends ApexModel> {
                 }
                 if(values.length > 0) {
                     if(currOrderTag.tagLabel === tags.AUTHOR.label) {
-                        markup += this.markupTemplate('Author(s)',values.join(', '));
+                        let hasMultipleAuthors = values.length > 1;
+                        let label = 'Author' + (hasMultipleAuthors ? 's' : '');
+                        markup += this.markupTemplate(label ,values.join(', '));
                     }
                     else if(currOrderTag.tagLabel === tags.SINCE.label) {
-                        markup += this.markupTemplate('Since','<li>'+values.join('</li>\n<li>')+'</li>');
+                        markup += this.markupTemplate('Since', '<li>'+values.join('</li>\n<li>')+'</li>');
                     }
                 }
             }
