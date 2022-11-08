@@ -19,8 +19,7 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
         markup += additionalContent;
         markup += generator.deprecated();
         markup += generator.see();
-        markup += generator.author();
-        markup += generator.since();
+        markup += generator.changeLog();
         markup += generator.example();
 
         markup =
@@ -34,22 +33,6 @@ class TopLevelMarkupGenerator extends MarkupGenerator<TopLevelModel> {
     protected markupTemplate(label: string, contents: string, titleClass = '', contentClass = 'class-subtitle-description', tag = 'div') {
         titleClass = titleClass ? `class-subtitle ${titleClass}` : 'class-subtitle';
         return super.markupTemplate(label, contents, titleClass, contentClass, tag);
-    }
-
-    protected author() {
-        if (!this.model.author) {
-            return '';
-        }
-
-        return `<br/>${GeneratorUtils.encodeText(this.model.author, true, this.models)}`;
-    }
-
-    protected since() {
-        if (!this.model.since) {
-            return '';
-        }
-
-        return `<br/>${GeneratorUtils.encodeText(this.model.since, true, this.models)}`;
     }
 }
 

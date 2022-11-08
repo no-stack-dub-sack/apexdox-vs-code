@@ -169,7 +169,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="IncludeTwo">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/IncludeTwo.cls#L7">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/IncludeTwo.cls#L10">
                 IncludeTwo
               </a>
             </h2>
@@ -184,7 +184,31 @@ export default `<!DOCTYPE html>
               <div class="class-annotations">@isTest</div>
               <div class="class-signature">
                 class IncludeTwo
-              </div><br />P. Weinberg<br />2019
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                P. Weinberg
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>2019-01-01 Created</li>
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                Bill C Riemers
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>2022-10-05 Added changelog</li>
+              </div>
             </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">IncludeTwo Methods</h3>
@@ -200,7 +224,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="IncludeTwo.myFunkyMethod">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/IncludeTwo.cls#L9">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/IncludeTwo.cls#L12">
                       myFunkyMethod(str, ridicMap, ridicList, ridicSet)
                     </a>
                   </h4>

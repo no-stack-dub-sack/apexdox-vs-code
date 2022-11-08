@@ -16,14 +16,6 @@ abstract class TopLevelModel extends ApexModel {
 
     public abstract get groupName(): string;
 
-    public get author(): string {
-        return this._author;
-    }
-
-    public get since(): string {
-        return this._since;
-    }
-
     public get groupContentPath(): string {
         return this._groupContentPath;
     }

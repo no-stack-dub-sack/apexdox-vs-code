@@ -169,7 +169,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_EnumInner">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L4">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L7">
                 TEST_EnumInner
               </a>
             </h2>
@@ -181,6 +181,18 @@ export default `<!DOCTYPE html>
 
               <div class="class-signature">
                 public class TEST_EnumInner
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                Bill C Riemers
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>2022-10-05 Added changelog</li>
               </div>
             </div>
             <div class="subsection enums">
@@ -195,7 +207,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L21">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L24">
                       Days
                     </a></td>
                   <td>
@@ -211,7 +223,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L8">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L11">
                       Months
                     </a></td>
                   <td>
@@ -227,7 +239,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L29">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L32">
                       Numbers
                     </a></td>
                   <td>
@@ -243,7 +255,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L40">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L43">
                       Rgb
                     </a></td>
                   <td>

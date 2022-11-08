@@ -2,7 +2,11 @@
  * Testing that the following tags support values of multiple
  * lines as they're supposed to. Doesn't matter if on class or
  * method, code that handles both is the same.
+ * 
  * @group Assertions
+ * 
+ * @author Bill C Riemers
+ * @since 2022-10-05 Added changelog
  */
 public class TEST_MultiLineTagValues {
     /**

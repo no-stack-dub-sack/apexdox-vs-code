@@ -4,7 +4,11 @@
  * veniam, quis nostrud exercitation ullamco laboris nis.
  *
  * @author Salesforce.com
- * @since Jul 2017
+ * @since 2017-07-01 Created
+ * 
+ * @author Bill C Riemers
+ * @since 2022-10-05 Added changelog
+ * 
  * @see [License](https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE)
  * @see [Github](https://github.com/dreamhouseapp/dreamhouse-sfdx)
  * @see TEST_BotController

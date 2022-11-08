@@ -5,11 +5,12 @@ import { existsSync } from 'fs';
 import { resolve } from 'path';
 import { window, workspace, WorkspaceFolder } from 'vscode';
 import { Option } from '../..';
+import { OrderTag } from './OrderTag';
 
 abstract class ApexModel {
 
     protected _annotations: string[] = [];
-    protected _author: string = '';
+    protected _changeLog: OrderTag[] = [];
     protected _deprecated: string = '';
     protected _description: string = '';
     protected _example: string = '';
@@ -22,7 +23,6 @@ abstract class ApexModel {
     protected _returns: string = '';
     protected _scope: string = '';
     protected _see: string[] = [];
-    protected _since: string = '';
     protected _sourceUrl?: string;
 
     protected constructor(comments: string[], sourceUrl: Option<string>) {
@@ -58,13 +58,17 @@ abstract class ApexModel {
 
     /* ===================================================================================================
      * NOTE: Ideally, we should only expose those getters on this class that are shared amongst all
-     * ApexModel descendants. The following three break this convention. 'Example,' 'Deprecated,' and
+     * ApexModel descendants. The following four break this convention. 'ChangeLog', 'Example,' 'Deprecated,' and
      * 'See' are only available to MethodModel and TopLevelModel, however it aids us in reducing repetitive
      * code in their respective markup generators to expose these getters here. This way, we can write the
      * markup generation code for these attributes only once on the base MarkupGenerator class, rather than
      * repeating the same or very similar code on both MethodMarkupGenerator and TopLevelMarkupGenerator.
      * ===================================================================================================
      */
+    public get changeLog(): OrderTag[] {
+        return this._changeLog;
+    }
+
     public get example(): string {
         // remove trailing white space which may have built
         // up due to the allowance of preserving white space
@@ -130,10 +134,17 @@ abstract class ApexModel {
             // if currBlock was not reset on this iteration we're on the next line of the last tag, add line
             // to that value. Allow empty lines in @example blocks to preserve whitespace in complex examples
             if (currBlock !== null && (line.trim() || !line.trim() && currBlock === tags.EXAMPLE.label)) {
-                if (currBlock === tags.AUTHOR.label) {
-                    this._author += (this._author ? ' ' : '') + line.trim();
-                } else if (currBlock === tags.SINCE.label) {
-                    this._since += (this._since ? ' ' : '') + line.trim();
+                if (currBlock === tags.AUTHOR.label || currBlock === tags.SINCE.label) {
+                    let currOrderTag: OrderTag | undefined = this._changeLog.pop();
+                    if (!currOrderTag) {
+                        currOrderTag = new OrderTag(currBlock);
+                    } else if (currOrderTag.tagLabel !== currBlock) {
+                        this._changeLog.push(currOrderTag);
+                        currOrderTag = new OrderTag(currBlock);
+                    }
+                    let value = newBlock ? '' : currOrderTag.values.pop();
+                    currOrderTag.values.push((value && value.length > 0 ? value + ' ' : '') + line.trim());
+                    this._changeLog.push(currOrderTag);
                 } else if (currBlock === tags.SEE.label) {
                     this._see.push(line.trim());
                 } else if (currBlock === tags.RETURNS.label || currBlock === tags.RETURN.label) {

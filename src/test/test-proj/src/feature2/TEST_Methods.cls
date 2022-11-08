@@ -1,6 +1,11 @@
 /**
  * Test for method parsing / visibility.
+ * 
  * @group Assertions
+ * 
+ * @author Bill C Riemers
+ * @since 2022-10-05 Added changelog
+ * @since 2022-10-12 Added method14 to test changelogs on methods
  */
 public class TEST_Methods {
     public static String method1() {
@@ -79,5 +84,25 @@ public class TEST_Methods {
     // and does not start with a known keyword
     SomeCustomClass method10() {
         return new SomeCustomClass();
+    }
+
+    /**
+     * @description
+     * Method to demonstrate changelogs.
+     * 
+     * @author Bill Riemers <briemers@redhat.com>
+     * @since 2022-10-11 Added to test changelog
+     * @since 2022-10-12 Revised to show second log entry
+     * 
+     * @author Jane Doe <jdoe@example.org>
+     * @since 2022-10-31 Pretend update
+     * 
+     * @param int a
+     * @param int2 b
+     * @param int3 c
+     * @param int4 d
+     */
+    public static Integer method14(Integer int, String int2, Double int3, Set<String> int4) {
+        return MY_INT + int;
     }
 }

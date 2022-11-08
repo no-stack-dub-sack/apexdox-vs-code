@@ -10,6 +10,7 @@ node_modules
 .vscode-test/
 *.vsix
 *.log
+.pmdCache
 
 # OSX files
 .DS_Store

@@ -150,8 +150,8 @@ Note that in the table below, the 'Class' column includes any top-level types th
 | **@description** | A description or overview of the code you are documenting. | Y | Y | Y | Y |
 | **@group** | The group to display a class under in the menu hierarchy. Un-grouped classes will be placed under 'Miscellaneous'. | Y | N | N | N |
 | **@group-content** | A relative path (to the project's root directory) to a static HTML file that provides content about the class group. The group's menu item will be hyperlinked to this content, which will be parsed and placed into the documentation's content window. Only one group-content tag is required for all classes in the group. | Y | N | N | N |
-| **@author** | The author of a class or method. | Y | Y | N | N |
-| **@since** | The date a class or method was first implemented. | Y | Y | N | N |
+| **@author** | The author of a class, a class feature, a class defect fix, a method, a method feature, a method defect fix, etc.  Normally this is followed by one or more `@since` attributes to create a change log. | Y | Y | N | N |
+| **@since** | The date a class or method or feature was implemented or updated optionally followed by a description of the change.  This typically follows and `@author` attribute to create a change log. | Y | Y | N | N |
 | **@deprecated** | Indicates class or method should no longer be used; message should indicate replacement path. | Y | Y | N | N |
 | **@example** | Example code usage. There may only be one `@example` tag per class or method. Start your example on the line below the tag. Code will be given syntax highlighting complements of [highlight.js](https://highlightjs.org/) and be wrapped in `<pre><code>` tags to preserve whitespace. | Y | Y | N | N |
 | **@param** *param name* | A description of what a method's parameter does. | N | Y | N | N |
@@ -180,6 +180,23 @@ Located in the lines above any top-level type that lives within a .cls file, or 
     </a>
 </p>
 
+You can create a full revision history by sequencing `@author` and `@since` attributes appropriately:
+
+<pre>
+  /**
+   * @description 
+   * A class that does cool things.
+   * 
+   * @author John Smith <jsmith@example.org>
+   * @since 2022-06-01 Created
+   * @since 2022-07-02 Added cool things
+   * 
+   * @author Jane Doe <jdoe@example.org>
+   * @since 2022-06-03 Added a standard constructor
+   * @since 2022-07-05 Fixed cool things
+   */
+</pre>
+
 ### Method Comments
 In order for ApexDox to best identify class methods, the method line must contain an explicit access modifier / scope: global, public, private, testMethod, webService (some implicitly private methods can be detected, but be wary of this. See the note on implicit privacy in the [Tips](#Tips) section below).
 
@@ -190,6 +207,8 @@ In order for ApexDox to best identify class methods, the method line must contai
              alt="Method Comment Example" style="max-width:100%;">
     </a>
 </p>
+
+Like a class itself, you can create a change log for a method using @author and @since tags in sequence.
 
 ### Property and Inner Enum Comments
 These are the simplest comment blocks. They only support description tags (the tag itself may optionally be omitted for brevity). For properties to be detected by ApexDox, they **must** be given an explicit access modifier or have signatures beginning with the `static` keywork. **Other implicitly private properties will not be detected.**
@@ -214,3 +233,7 @@ ApexDox2 uses some modern HTML5 tags and JavaScript features, so unfortunately I
 ApexDox VS Code is a complete TypeScript re-write of [a Java project, originally maintained by Salesforce](https://github.com/SalesforceFoundation/ApexDoc). After spending a considerable amount of time [enhancing the Java project](https://github.com/no-stack-dub-sack/ApexDoc2/blob/master/CHANGELOG.md), originally intended for re-release as ApexDoc2 (a command line tool), I decided that given the current state of Apex/Salesforce development, abandoning that in favor of a VS Code extension made much more sense. That being said, TypeScript was the obvious choice. In addition to re-writing (and in many cases modifying, and hopefully improving!) all of the program's core logic, several major enhancements to the original have been made, including new features that take advantage of the VS Code eco-system.
 
 I hope you enjoy the new and improved ApexDox VS Code!
+
+## Build
+
+To build your own version of this extension from source code see [Testing Extension](https://code.visualstudio.com/api/working-with-extensions/testing-extension) and [Publishing Extension](https://code.visualstudio.com/api/working-with-extensions/publishing-extension) in the visual studio documentation.

@@ -15,7 +15,7 @@ export const createMethodsSuite = (files: ITestFile[]) => {
             const $ = cheerio.load(testFile.snapshot);
 
             const methodNames = $('li.method.public').children('a').toArray().map(el => $(el).text().trim());
-            assert.deepEqual(methodNames, ['method1 ()', 'method10 (int, int2, int3, int4)'], 'Incorrect public method names found');
+            assert.deepEqual(methodNames, ['method1 ()', 'method10 (int, int2, int3, int4)', "method14 (int, int2, int3, int4)"], 'Incorrect public method names found');
         });
 
         test('Should correctly parse protected methods', function() {
@@ -87,7 +87,7 @@ export const createMethodsSuite = (files: ITestFile[]) => {
             const $ = cheerio.load(testFile.snapshot);
 
             const types = $('.method.public .param-type').toArray().map(el => $(el).text().trim());
-            const expectedTypes = ['Type: Integer','Type: String','Type: Double','Type: Set<String>'];
+            const expectedTypes = ['Type: Integer','Type: String','Type: Double','Type: Set<String>','Type: Integer','Type: String','Type: Double','Type: Set<String>'];
 
             assert.deepEqual(types, expectedTypes, 'Param types do not match.');
         });
