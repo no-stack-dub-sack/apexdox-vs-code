@@ -56,7 +56,7 @@ class FileManager {
       (entry.endsWith("*") && fileName.startsWith(entry.slice(0, -1)));
 
     for (let src of sources) {
-      const files = this.getRecursiveListOfClsFiles(src, []); //fs.readdirSync(src.path);
+      const files = this.getRecursiveListOfClsFiles(src.path, []); //fs.readdirSync(src.path);
 
       if (files && files.some((file) => file.endsWith("cls"))) {
         files.forEach((fileName) => {
@@ -381,7 +381,7 @@ class FileManager {
     const files = fs.readdirSync(sourceDir);
     arrayOfFiles = arrayOfFiles || [];
 
-    files.forEach(function (file: string) {
+    files.forEach((file: string) => {
       if (fs.statSync(sourceDir + "/" + file).isDirectory()) {
         arrayOfFiles = this.getRecursiveListOfClsFiles(
           sourceDir + "/" + file,
