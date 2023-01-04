@@ -21,11 +21,7 @@ class FileManager {
     private projectTitle: string;
     private userAssets: string[];
 
-    public constructor(
-        targetDirectory: string,
-        projectTitle: string,
-        assets: string[]
-    ) {
+    public constructor(targetDirectory: string, projectTitle: string, assets: string[]) {
         this.path = targetDirectory;
         this.userAssets = assets;
         this.projectTitle = projectTitle;
@@ -42,11 +38,7 @@ class FileManager {
      * @param includes See config settings: a list of patterns to include
      * @param excludes See config settings: a list of patterns to exclude
      */
-    public getFiles(
-        sources: ISourceEntry[],
-        includes: string[],
-        excludes: string[]
-    ): ISourceEntry[] {
+    public getFiles(sources: ISourceEntry[], includes: string[], excludes: string[]): ISourceEntry[] {
         const filesToCopy = new Array<ISourceEntry>(),
             noneFound = new Array<string>();
 
@@ -104,9 +96,7 @@ class FileManager {
             throw new ApexDoxError(ApexDoxError.NO_FILES_FOUND(sourceDirs));
         } else if (noneFound.length) {
             // no .cls files found in one or more (but not all) of given source dirs, show warning
-            window.showWarningMessage(
-                `No matching .cls files found in ${noneFound.join(',')}`
-            );
+            window.showWarningMessage(`No matching .cls files found in ${noneFound.join(',')}`);
         }
 
         return filesToCopy;
@@ -120,11 +110,7 @@ class FileManager {
      * @param models Map of our model names to their TopLevelModel instances
      * @param pages Any additional pages, including the project home page, the user has included
      */
-    public createDocs(
-        groupNameMap: Map<string, Models.ClassGroup>,
-        models: Map<string, Models.TopLevelModel>,
-        pages: string[]
-    ): void {
+    public createDocs(groupNameMap: Map<string, Models.ClassGroup>, models: Map<string, Models.TopLevelModel>, pages: string[]): void {
         // make the menu and the scoping panel
         // and initialize our main file map
         const fileMap = new Map<string, string>();
@@ -198,13 +184,8 @@ class FileManager {
 
     private createHTMLFiles(fileMap: Map<string, string>): void {
         for (let fileName of fileMap.keys()) {
-            let contents = Utils.preCodeTrim(
-                pretty(<string>fileMap.get(fileName))
-            );
-            let fullyQualifiedFileName = path.resolve(
-                this.path,
-                fileName + '.html'
-            );
+            let contents = Utils.preCodeTrim(pretty(<string>fileMap.get(fileName)));
+            let fullyQualifiedFileName = path.resolve(this.path, fileName + '.html');
             fs.writeFileSync(fullyQualifiedFileName, contents);
         }
     }
@@ -230,28 +211,18 @@ class FileManager {
             });
         });
 
-        fs.writeFileSync(
-            path.resolve(this.path, 'assets', 'search-idx.js'),
-            `export default ${JSON.stringify(searchIndex, null, 4)};\n`
-        );
+        fs.writeFileSync(path.resolve(this.path, 'assets', 'search-idx.js'), `export default ${JSON.stringify(searchIndex, null, 4)};\n`);
     }
 
     private collectApexDoxAssets(): string[] {
-        const files = fs.readdirSync(
-            path.resolve(ApexDox.extensionRoot, 'assets')
-        );
-        return files.map((fileName) =>
-            path.resolve(ApexDox.extensionRoot, 'assets', fileName)
-        );
+        const files = fs.readdirSync(path.resolve(ApexDox.extensionRoot, 'assets'));
+        return files.map((fileName) => path.resolve(ApexDox.extensionRoot, 'assets', fileName));
     }
 
     private copyAssetsToTarget(files: string[]): void {
         files.forEach((file) => {
             if (fs.existsSync(file)) {
-                fs.copyFileSync(
-                    file,
-                    path.resolve(this.path, 'assets', path.basename(file))
-                );
+                fs.copyFileSync(file, path.resolve(this.path, 'assets', path.basename(file)));
             } else {
                 window.showWarningMessage(ApexDoxError.ASSET_NOT_FOUND(file));
             }
@@ -265,9 +236,7 @@ class FileManager {
     // ===========================================================================
 
     private makePage(contents: string, menus: IApexDoxMenus, title = '') {
-        const pageTitle = title
-            ? `<h2 class='section-title'>${title}</h2>`
-            : '';
+        const pageTitle = title ? `<h2 class='section-title'>${title}</h2>` : '';
 
         const rows = [
             ['scoping-panel', menus.scope],
@@ -297,11 +266,7 @@ class FileManager {
         return html;
     }
 
-    public makeDocumentationPages(
-        fileMap: Map<string, string>,
-        menus: IApexDoxMenus,
-        models: Map<string, Models.TopLevelModel>
-    ): void {
+    public makeDocumentationPages(fileMap: Map<string, string>, menus: IApexDoxMenus, models: Map<string, Models.TopLevelModel>): void {
         for (let model of models.values()) {
             let fileName = '';
             let contents = '';
@@ -313,17 +278,10 @@ class FileManager {
                     contents += ClassMarkupGenerator.generate(cModel, models);
 
                     // get child classes to work with in the order user specifies
-                    const childClasses =
-                        ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA
-                            ? cModel.childClassesSorted
-                            : cModel.childClasses;
+                    const childClasses = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA ? cModel.childClassesSorted : cModel.childClasses;
 
                     // map over child classes, creating HTML, and concat result
-                    contents += childClasses
-                        .map((cmChild) =>
-                            ClassMarkupGenerator.generate(cmChild, models)
-                        )
-                        .join('');
+                    contents += childClasses.map((cmChild) => ClassMarkupGenerator.generate(cmChild, models)).join('');
                 } else if (model.modelType === Models.ModelType.ENUM) {
                     const eModel = <Models.EnumModel>model;
                     contents += EnumMarkupGenerator.generate(eModel, models);
@@ -336,70 +294,43 @@ class FileManager {
         }
     }
 
-    private makeSupplementaryPages(
-        fileMap: Map<string, string>,
-        menus: IApexDoxMenus,
-        pages: string[]
-    ): void {
+    private makeSupplementaryPages(fileMap: Map<string, string>, menus: IApexDoxMenus, pages: string[]): void {
         pages.forEach((pagePath, i) => {
             if (i === 0) {
                 // our home page is always the first index
                 const homePageContents = this.parseHTMLFile(pagePath);
-                const markup = this.makePage(
-                    homePageContents || GeneratorUtils.defaultHomePage,
-                    menus,
-                    'Home'
-                );
+                const markup = this.makePage(homePageContents || GeneratorUtils.defaultHomePage, menus, 'Home');
                 fileMap.set('index', markup);
             } else {
                 const contents = this.parseHTMLFile(pagePath);
                 if (contents) {
                     const markup = this.makePage(contents, menus);
-                    fileMap.set(
-                        path.basename(
-                            pagePath.substring(0, pagePath.lastIndexOf('.'))
-                        ),
-                        markup
-                    );
+                    fileMap.set(path.basename(pagePath.substring(0, pagePath.lastIndexOf('.'))), markup);
                 }
             }
         });
     }
 
-    private makeClassGroupPages(
-        fileMap: Map<string, string>,
-        menus: IApexDoxMenus,
-        classGroupMap: Map<string, Models.ClassGroup>
-    ): void {
+    private makeClassGroupPages(fileMap: Map<string, string>, menus: IApexDoxMenus, classGroupMap: Map<string, Models.ClassGroup>): void {
         for (let group of classGroupMap.keys()) {
             const cg = classGroupMap.get(group);
             if (cg && cg.contentSource) {
                 const cgContent = this.parseHTMLFile(cg.contentSource);
                 if (cgContent) {
-                    let markup = this.makePage(
-                        cgContent,
-                        menus,
-                        GeneratorUtils.encodeText(cg.name, false)
-                    );
+                    let markup = this.makePage(cgContent, menus, GeneratorUtils.encodeText(cg.name, false));
                     fileMap.set(cg.contentFileName, markup);
                 }
             }
         }
     }
 
-    private getRecursiveListOfClsFiles(
-        sourceDir: string,
-        arrayOfFiles: string[] = [] as string[]
-    ): string[] {
+    private getRecursiveListOfClsFiles(sourceDir: string, arrayOfFiles: string[] = [] as string[]): string[] {
         const files = fs.readdirSync(sourceDir);
         arrayOfFiles = arrayOfFiles || [];
 
         files.forEach((file: string) => {
             if (fs.statSync(sourceDir + '/' + file).isDirectory()) {
-                arrayOfFiles = this.getRecursiveListOfClsFiles(
-                    sourceDir + '/' + file,
-                    arrayOfFiles
-                );
+                arrayOfFiles = this.getRecursiveListOfClsFiles(sourceDir + '/' + file, arrayOfFiles);
             } else {
                 arrayOfFiles.push(path.join(__dirname, sourceDir, '/', file));
             }
