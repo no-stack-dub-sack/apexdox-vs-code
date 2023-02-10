@@ -9,7 +9,7 @@ const
 	SCOPE_STATE_KEY = 'APEXDOX_SCOPE',
 	SEARCH_STATE_KEY = 'APEXDOX_SEARCH_RESULTS';
 
-const highlightJsSelectors = [
+const apexJsSelectors = [
 	'.method-annotations',
 	'.class-signature',
 	'.attribute-signature',
