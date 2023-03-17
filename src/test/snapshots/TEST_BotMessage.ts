@@ -169,7 +169,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_BotMessage">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L12">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L16">
                 TEST_BotMessage
               </a>
             </h2>
@@ -190,7 +190,31 @@ export default `<!DOCTYPE html>
               </div>
               <div class="class-subtitle-description">
                 <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a>
-              </div><br />Salesforce.com<br />Jul 2017
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                Salesforce.com
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>2017-07-01 Created</li>
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                Bill C Riemers
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>2022-10-05 Added changelog</li>
+              </div>
             </div>
             <div class="subsection properties TEST_BotMessage">
               <h3 class="subsection-title properties">TEST_BotMessage Properties</h3>
@@ -204,7 +228,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L14">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L18">
                       author
                     </a></td>
                   <td>
@@ -219,7 +243,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L18">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L22">
                       buttons
                     </a></td>
                   <td>
@@ -234,7 +258,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L19">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L23">
                       imageURL
                     </a></td>
                   <td>
@@ -249,7 +273,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L17">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L21">
                       items
                     </a></td>
                   <td>
@@ -264,7 +288,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L15">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L19">
                       messageText
                     </a></td>
                   <td>
@@ -279,7 +303,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L16">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L20">
                       records
                     </a></td>
                   <td>
@@ -356,7 +380,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_BotMessage.BotMessage">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L24">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L28">
                       BotMessage()
                     </a>
                   </h4>
@@ -374,7 +398,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_BotMessage.BotMessage_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L37">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L41">
                       BotMessage(author, messageText)
                     </a>
                   </h4>
@@ -409,7 +433,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_BotMessage.BotMessage_2">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L49">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L53">
                       BotMessage(author, messageText, records)
                     </a>
                   </h4>
@@ -449,7 +473,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_BotMessage.BotMessage_3">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L62">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L66">
                       BotMessage(author, messageText, items)
                     </a>
                   </h4>
@@ -489,7 +513,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_BotMessage.BotMessage_4">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L75">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L79">
                       BotMessage(author, messageText, buttons)
                     </a>
                   </h4>
@@ -526,7 +550,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_BotMessage.BotMessage_5">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L87">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotMessage.cls#L91">
                       BotMessage(author, messageText, imageURL)
                     </a>
                   </h4>

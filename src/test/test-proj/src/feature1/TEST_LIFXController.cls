@@ -3,6 +3,9 @@
  * sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
  * veniam, quis nostrud exercitation ullamco laboris nis.
  * @group Feature1
+ * 
+ * @author Bill C Riemers
+ * @since 2022-10-05 Added changelog
  */
 public with sharing class TEST_LIFXController {
 

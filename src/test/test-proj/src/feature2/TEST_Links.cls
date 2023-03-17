@@ -3,6 +3,10 @@
  * Also test that overloads are correctly linked within their own class, method TOC entry : correct overloaded method.
  * Test inline link syntax: {@link TEST_Links.getInt}, and another one: {@link TEST_Methods.method10},
  * and markdown link: {@link [Markdown Link](http://code.google.com/p/apex-lang/)}, and regular link: {@link https://www.google.com }
+ * 
+ * @author Bill C Riemers
+ * @since 2022-10-05 Added changelog
+ * 
  * @see [Markdown Link](http://code.google.com/p/apex-lang/)
  * @see https://www.google.com
  * @see TEST_ARRAYUTILS

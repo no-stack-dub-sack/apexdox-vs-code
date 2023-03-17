@@ -169,7 +169,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_Methods">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L5">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L10">
                 TEST_Methods
               </a>
             </h2>
@@ -184,6 +184,19 @@ export default `<!DOCTYPE html>
 
               <div class="class-signature">
                 public class TEST_Methods
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                Bill C Riemers
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>2022-10-05 Added changelog</li>
+                <li>2022-10-12 Added method14 to test changelogs on methods</li>
               </div>
             </div>
             <div class="subsection methods">
@@ -213,6 +226,15 @@ export default `<!DOCTYPE html>
                       method12 (crazyType, int2, int3, int22)
                     </a>
 
+                  </li>
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#TEST_Methods.method14">
+                      method14 (int, int2, int3, int4)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Method to demonstrate changelogs.
+                    </div>
                   </li>
                   <li class="method private">
                     <a class="methods-toc__entry " href="#TEST_Methods.method2">
@@ -281,7 +303,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_Methods.method1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L6">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L11">
                       method1()
                     </a>
                   </h4>
@@ -296,7 +318,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_Methods.method10">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L53">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L58">
                       method10(int, int2, int3, int4)
                     </a>
                   </h4>
@@ -332,7 +354,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Methods.method11">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L64">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L69">
                       method11(crazyType, int2, int3, int22)
                     </a>
                   </h4>
@@ -374,7 +396,7 @@ export default `<!DOCTYPE html>
                 <div class="method protected">
                   <h4 class="method-title " id="TEST_Methods.method12">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L73">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L78">
                       method12(crazyType, int2, int3, int22)
                     </a>
                   </h4>
@@ -403,10 +425,74 @@ export default `<!DOCTYPE html>
                     <code class="code-inline">Integer</code>
                   </div>
                 </div>
+                <div class="method public">
+                  <h4 class="method-title " id="TEST_Methods.method14">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L105">
+                      method14(int, int2, int3, int4)
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Method to demonstrate changelogs.
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public static Integer method14(Integer int, String int2, Double int3, Set&lt;String&gt; int4)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">int</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">Integer</code>
+                  </div>
+                  <div class="param-description">a</div>
+                  <div class="param-name">int2</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">String</code>
+                  </div>
+                  <div class="param-description">b</div>
+                  <div class="param-name">int3</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">Double</code>
+                  </div>
+                  <div class="param-description">c</div>
+                  <div class="param-name">int4</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">Set&lt;String&gt;</code>
+                  </div>
+                  <div class="param-description">d</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Bill Riemers &lt;briemers@redhat.com&gt;
+                  </div>
+                  <div class="method-subtitle">
+                    Since
+                  </div>
+                  <div class="method-subtitle-description">
+                    <li>2022-10-11 Added to test changelog</li>
+                    <li>2022-10-12 Revised to show second log entry</li>
+                  </div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    Jane Doe &lt;jdoe@example.org&gt;
+                  </div>
+                  <div class="method-subtitle">
+                    Since
+                  </div>
+                  <div class="method-subtitle-description">
+                    <li>2022-10-31 Pretend update</li>
+                  </div>
+                </div>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Methods.method2">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L10">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L15">
                       method2()
                     </a>
                   </h4>
@@ -421,7 +507,7 @@ export default `<!DOCTYPE html>
                 <div class="method protected">
                   <h4 class="method-title " id="TEST_Methods.method3">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L14">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L19">
                       method3()
                     </a>
                   </h4>
@@ -436,7 +522,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_Methods.method4">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L18">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L23">
                       method4()
                     </a>
                   </h4>
@@ -451,7 +537,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Methods.method5">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L23">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L28">
                       method5()
                     </a>
                   </h4>
@@ -469,7 +555,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Methods.method6">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L28">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L33">
                       method6()
                     </a>
                   </h4>
@@ -487,7 +573,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Methods.method7">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L33">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L38">
                       method7()
                     </a>
                   </h4>
@@ -505,7 +591,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Methods.method8">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L38">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L43">
                       method8()
                     </a>
                   </h4>
@@ -523,7 +609,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Methods.method9">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L43">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L48">
                       method9()
                     </a>
                   </h4>

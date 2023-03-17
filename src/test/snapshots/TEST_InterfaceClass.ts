@@ -169,7 +169,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_InterfaceClass">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L4">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L7">
                 TEST_InterfaceClass
               </a>
             </h2>
@@ -181,6 +181,18 @@ export default `<!DOCTYPE html>
 
               <div class="class-signature">
                 global interface TEST_InterfaceClass
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                Bill C Riemers
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>2022-10-05 Added changelog</li>
               </div>
             </div>
             <div class="subsection methods">
@@ -209,7 +221,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_InterfaceClass.doIt">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L5">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L8">
                       doIt(object1, object2)
                     </a>
                   </h4>
@@ -224,7 +236,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_InterfaceClass.doSomething">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L7">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L10">
                       doSomething(object1, object2)
                     </a>
                   </h4>
@@ -239,7 +251,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_InterfaceClass.doSomethingElse">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L9">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L12">
                       doSomethingElse(myInt, myString)
                     </a>
                   </h4>

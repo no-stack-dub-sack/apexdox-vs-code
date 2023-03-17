@@ -1,6 +1,9 @@
 /**
  * The `LIFXController` test class.
  * @group Feature1
+ * 
+ * @author Bill C Riemers
+ * @since 2022-10-05 Added changelog
  */
 @isTest
 public class TEST_LIFXControllerTest {

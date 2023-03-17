@@ -18,7 +18,7 @@ export const SINCE: IApexDoxTag = {
 `For: **Class**, **Interface**, **Enum** (top level), & **Method**
 
 \`\`\`
-@since [The date the type or method was implemented]
+@since [The YYYY-MM-DD date the type or method was changed and summary of change]
 \`\`\``
 };
 

@@ -3,6 +3,7 @@ import Utils from '../../../common/Utils';
 import { ApexModel, TopLevelModel } from '../../../common/models';
 import { last } from '../../../common/ArrayUtils';
 import SeeLinkGenerator from '../SeeLinkGenerator';
+import * as tags from '../../../common/tags';
 
 /**
  * This class is the base markup generation class and is not instantiated directly. It
@@ -34,6 +35,31 @@ abstract class MarkupGenerator<T extends ApexModel> {
         }
 
         return `<div class="${className}">${this.model.annotations.join(' ')}</div>`;
+    }
+
+    protected changeLog(): string {
+        let markup = '';
+        if (this.model.changeLog && this.model.changeLog.length) {
+            for (let currOrderTag of this.model.changeLog) {
+                let values:string[] = [];
+                for(let value of currOrderTag.values) {
+                    if(value && value.length > 0) {
+                        values.push(GeneratorUtils.encodeText(value,true,this.models));
+                    }
+                }
+                if(values.length > 0) {
+                    if(currOrderTag.tagLabel === tags.AUTHOR.label) {
+                        let hasMultipleAuthors = values.length > 1;
+                        let label = 'Author' + (hasMultipleAuthors ? 's' : '');
+                        markup += this.markupTemplate(label ,values.join(', '));
+                    }
+                    else if(currOrderTag.tagLabel === tags.SINCE.label) {
+                        markup += this.markupTemplate('Since', '<li>'+values.join('</li>\n<li>')+'</li>');
+                    }
+                }
+            }
+        }
+        return markup;
     }
 
     protected deprecated(): string {
