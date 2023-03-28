@@ -207,7 +207,6 @@
 		"@types/pretty": "^2.0.0",
 		"@types/rimraf": "^2.0.2",
 		"cheerio": "^1.0.0-rc.3",
-		"husky": "^8.0.1",
 		"ts-loader": "^5.4.3",
 		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
