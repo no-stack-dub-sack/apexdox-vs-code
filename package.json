@@ -192,6 +192,7 @@
 		"test-setup": "yarn run test-compile && yarn run test-cleanup",
 		"test-compile": "tsc -p ./",
 		"test-cleanup": "rm -rf ./src/test/test-proj/docs",
+		"update-highlight": ". scripts/updateHighlight.sh",
 		"update-snapshots": "rm ./src/test/snapshots/* && node ./scripts/updateSnapshots.js"
 	},
 	"devDependencies": {

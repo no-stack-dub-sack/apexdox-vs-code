@@ -9,8 +9,7 @@ const
 	SCOPE_STATE_KEY = 'APEXDOX_SCOPE',
 	SEARCH_STATE_KEY = 'APEXDOX_SEARCH_RESULTS';
 
-const highlightJsSelectors = [
-	'pre code',
+const apexJsSelectors = [
 	'.method-annotations',
 	'.class-signature',
 	'.attribute-signature',
@@ -55,13 +54,22 @@ window.onbeforeunload = () => {
 // ==================================================================
 
 function initHighlightJs() {
-	// initialize highlighting for code examples and
-	// signatures for methods, classes, props and enums
-	highlightJsSelectors.forEach(selector => {
+	apexJsSelectors.forEach((selector) => {
 		document.querySelectorAll(selector).forEach(block => {
-			hljs.highlightBlock(block);
+			block.classList.add("language-apex");
 		});
 	});
+	// Alow language auto-detection in "pre code" blocks
+	apexJsSelectors.push("pre code");
+	// initialize highlighting for code examples and
+	// signatures for methods, classes, props and enums
+	// Highlight.js now contains multiple languages to aid in
+	// code highlighting for the HTML pages in documentation
+	// Bash, CSS, JSON, YAML, Markdown, HTML/Visualforce, JavaScript, Plain Text)
+	hljs.configure({
+		cssSelector: apexJsSelectors
+	});
+	hljs.highlightAll();
 }
 
 // create session storage object for menu state
@@ -113,7 +121,7 @@ function updateMenuModel(items, state) {
 	if (newKeys.length > 0) {
 		newKeys.forEach(item => state[item.id] = item.isOpen === '' && true);
 		console.log('ApexDox: New menu keys found, adding to session storage:');
-		console.log(newKeys.map(function(g) { return g.id }));
+		console.log(newKeys.map(function (g) { return g.id }));
 	}
 }
 
