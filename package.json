@@ -188,7 +188,6 @@
 		"watch": "webpack --mode none --watch",
 		"yaml-2-grammar": "node ./scripts/convertGrammar.js",
 		"postinstall": "node ./node_modules/vscode/bin/install",
-		"prepare": "husky install",
 		"test": "yarn run test-setup && node ./node_modules/vscode/bin/test",
 		"test-setup": "yarn run test-compile && yarn run test-cleanup",
 		"test-compile": "tsc -p ./",
