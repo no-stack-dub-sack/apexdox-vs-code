@@ -39,27 +39,24 @@ class FileManager {
      * @param excludes See config settings: a list of patterns to exclude
      */
     public getFiles(sources: ISourceEntry[], includes: string[], excludes: string[]): ISourceEntry[] {
-        const filesToCopy = new Array<ISourceEntry>(),
-            noneFound = new Array<string>();
+        const filesToCopy = new Array<ISourceEntry>();
+        const noneFound = new Array<string>();
 
-        const isEntryMatch = (entry: string, fileName: string) =>
+        const isIncludeExcludeMatch = (entry: string, fileName: string) =>
             fileName === entry ||
             (entry.startsWith('*') && fileName.endsWith(entry.slice(1))) ||
             (entry.endsWith('*') && fileName.startsWith(entry.slice(0, -1)));
 
         for (let src of sources) {
-            const files = this.getRecursiveListOfClsFiles(src.path, []); //fs.readdirSync(src.path);
+            const filePaths = this.getRecursiveListOfClsFiles(src.path);
 
-            if (files && files.some((file) => file.endsWith('cls'))) {
-                files.forEach((fileName) => {
-                    // make sure entry is a file and is an apex class
-                    if (!fileName.endsWith('.cls')) {
-                        return;
-                    }
+            if (filePaths.length > 0) {
+                filePaths.forEach((filePath) => {
+                    const fileName = filePath.split(/\\|\//).slice(-1)[0];
 
                     // if file is explicitly excluded or matches wildcard, return early
                     for (let entry of excludes) {
-                        if (isEntryMatch(entry, fileName)) {
+                        if (isIncludeExcludeMatch(entry, fileName)) {
                             return;
                         }
                     }
@@ -67,7 +64,7 @@ class FileManager {
                     // no includes params, include file
                     if (includes.length === 0) {
                         filesToCopy.push({
-                            path: path.resolve(src.path, fileName),
+                            path: filePath,
                             sourceUrl: src.sourceUrl
                         });
                         return;
@@ -76,9 +73,9 @@ class FileManager {
                     // there are includes params, only include files that pass test
                     for (let entry of includes) {
                         // file matches explicitly matches or matches wildcard
-                        if (isEntryMatch(entry, fileName)) {
+                        if (isIncludeExcludeMatch(entry, fileName)) {
                             filesToCopy.push({
-                                path: path.resolve(src.path, fileName),
+                                path: filePath,
                                 sourceUrl: src.sourceUrl
                             });
                             return;
@@ -241,19 +238,18 @@ class FileManager {
         const rows = [
             ['scoping-panel', menus.scope],
             ['doc-page', pageTitle + contents],
-            ['footer', GeneratorUtils.footer]
+            ['footer', GeneratorUtils.footer],
         ];
 
-        const html = `<!DOCTYPE html>
+        const html =
+            `<!DOCTYPE html>
             <html lang="en">
             ${GeneratorUtils.makeHead(this.projectTitle)}
             <body>
                 ${menus.class}
                 <table id="content">
-                ${GeneratorUtils.mapHTML(
-                    rows,
-                    ([className, contents]) =>
-                        `<tr>
+                ${GeneratorUtils.mapHTML(rows, ([className, contents]) =>
+                    `<tr>
                         <td class="${className}">
                             ${contents}
                         </td>
@@ -278,7 +274,9 @@ class FileManager {
                     contents += ClassMarkupGenerator.generate(cModel, models);
 
                     // get child classes to work with in the order user specifies
-                    const childClasses = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA ? cModel.childClassesSorted : cModel.childClasses;
+                    const childClasses = ApexDox.config.sortOrder === ApexDox.ORDER_ALPHA
+                        ? cModel.childClassesSorted
+                        : cModel.childClasses;
 
                     // map over child classes, creating HTML, and concat result
                     contents += childClasses.map((cmChild) => ClassMarkupGenerator.generate(cmChild, models)).join('');
@@ -324,19 +322,20 @@ class FileManager {
         }
     }
 
-    private getRecursiveListOfClsFiles(sourceDir: string, arrayOfFiles: string[] = [] as string[]): string[] {
-        const files = fs.readdirSync(sourceDir);
-        arrayOfFiles = arrayOfFiles || [];
+    private getRecursiveListOfClsFiles(sourceDir: string, filePaths: string[] = []) {
+        const filesOrDirs = fs.readdirSync(sourceDir);
 
-        files.forEach((file: string) => {
-            if (fs.statSync(sourceDir + '/' + file).isDirectory()) {
-                arrayOfFiles = this.getRecursiveListOfClsFiles(sourceDir + '/' + file, arrayOfFiles);
-            } else {
-                arrayOfFiles.push(path.join(__dirname, sourceDir, '/', file));
+        filesOrDirs.forEach((fileOrDir: string) => {
+            const fullyQualifiedPath = path.resolve(sourceDir, fileOrDir);
+
+            if (fs.statSync(fullyQualifiedPath).isDirectory()) {
+                this.getRecursiveListOfClsFiles(fullyQualifiedPath, filePaths);
+            } else if (fileOrDir.endsWith('.cls')) {
+                filePaths.push(fullyQualifiedPath);
             }
         });
 
-        return arrayOfFiles;
+        return filePaths;
     }
 
     // #endregion
