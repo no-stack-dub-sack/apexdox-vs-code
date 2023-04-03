@@ -170,175 +170,66 @@ export default `<!DOCTYPE html>
 
           <div class="section">
 
-            <h2 class="class-title top-level-type" id="TEST_BotItem">
+            <h2 class="class-title top-level-type" id="TEST_HtmlTags">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotItem.cls#L16">
-                TEST_BotItem
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_HtmlTags.cls#L29">
+                TEST_HtmlTags
               </a>
             </h2>
             <div class="class-container">
 
               <div class="class-description">
-                The <code class="code-inline">BotItem</code> class. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad veniam, quis nostrud exercitation ullamco laboris nis.
+                A class. <br> This is some <i>Italic</i> text. <br> This is also some <em>Italic</em> text. <br> This is some <b>bold</b> text. <br> This is also some <strong>bold</strong> text. <br> This text is <s>struck through</s>. <br> This text is <u>underlined</u>. <br> This is an ordered list: <ol>
+                  <li>List Item 1</li>
+                  <li>List Item 2</li>
+                </ol> <br> <br> This is an unordered list: <ul>
+                  <li>List Item 1</li>
+                  <li>List Item 2</li>
+                </ul>
               </div>
               <div class="class-subtitle">
                 Signature
               </div>
 
               <div class="class-signature">
-                public class TEST_BotItem
+                public class TEST_HtmlTags
               </div>
-              <div class="class-subtitle">
-                See
-              </div>
-              <div class="class-subtitle-description">
-                <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx/blob/master/LICENSE">License</a>, <a target="_blank" rel="noopener noreferrer" href="https://github.com/dreamhouseapp/dreamhouse-sfdx">Github</a>
-              </div>
-              <div class="class-subtitle">
-                Author
-              </div>
-              <div class="class-subtitle-description">
-                Salesforce.com
-              </div>
-              <div class="class-subtitle">
-                Since
-              </div>
-              <div class="class-subtitle-description">
-                <li>2017-07-01 Created</li>
-              </div>
-              <div class="class-subtitle">
-                Author
-              </div>
-              <div class="class-subtitle-description">
-                Bill C Riemers
-              </div>
-              <div class="class-subtitle">
-                Since
-              </div>
-              <div class="class-subtitle-description">
-                <li>2022-10-05 Added changelog</li>
-              </div>
-            </div>
-            <div class="subsection properties TEST_BotItem">
-              <h3 class="subsection-title properties">TEST_BotItem Properties</h3>
-              <table class="attributes-table properties">
-
-                <tr>
-                  <th>Name</th>
-                  <th>Signature</th>
-                  <th>Annotations</th>
-
-                </tr>
-                <tr class="property public">
-                  <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotItem.cls#L19">
-                      linkURL
-                    </a></td>
-                  <td>
-                    <div class="attribute-signature">
-                      public String linkURL
-                    </div>
-                  </td>
-                  <td>
-                    <div class="prop-annotations">@AuraEnabled</div>
-                  </td>
-
-                </tr>
-                <tr class="property public">
-                  <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotItem.cls#L18">
-                      name
-                    </a></td>
-                  <td>
-                    <div class="attribute-signature">
-                      public String name
-                    </div>
-                  </td>
-                  <td>
-                    <div class="prop-annotations">@AuraEnabled</div>
-                  </td>
-
-                </tr>
-              </table>
             </div>
             <div class="subsection methods">
-              <h3 class="subsection-title methods">TEST_BotItem Methods</h3>
+              <h3 class="subsection-title methods">TEST_HtmlTags Methods</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
-                  <li class="method public">
-                    <a class="methods-toc__entry " href="#TEST_BotItem.BotItem">
-                      BotItem (name)
+                  <li class="method private">
+                    <a class="methods-toc__entry " href="#TEST_HtmlTags.doSomething">
+                      doSomething ()
                     </a>
 
                     <div class="methods-toc__description">
-                      Convenience constructor to create a single item
-                    </div>
-                  </li>
-                  <li class="method public">
-                    <a class="methods-toc__entry " href="#TEST_BotItem.BotItem_1">
-                      BotItem (name, linkURL)
-                    </a>
+                      A method. <br> This is some <i>Italic</i> text. This is some <b>bold</b> text. This text is <s>struck through</s>. This text is <u>underlined</u>.
+                  <li>List Item 1</li>. <li>List Item 2</li>. <ul>List Item 3</ul>. <ul>List Item 4</ul>.
+              </div>
+              </li>
+              </ul>
+              <div class="method private">
+                <h4 class="method-title " id="TEST_HtmlTags.doSomething">
 
-                    <div class="methods-toc__description">
-                      Convenience constructor to create a single item
-                    </div>
-                  </li>
-                </ul>
-                <div class="method public">
-                  <h4 class="method-title " id="TEST_BotItem.BotItem">
-
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotItem.cls#L25">
-                      BotItem(name)
-                    </a>
-                  </h4>
-                  <div class="method-description">
-                    Convenience constructor to create a single item
-                  </div>
-                  <div class="method-subtitle">
-                    Signature
-                  </div>
-
-                  <div class="method-signature">
-                    public BotItem(String name)
-                  </div>
-                  <div class="method-subtitle">Parameters</div>
-                  <div class="param-name">name</div>
-                  <div class="param-type">
-                    Type: <code class="code-inline">String</code>
-                  </div>
-                  <div class="param-description">The <code class="code-inline">BotItem</code>s name</div>
+                  <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_HtmlTags.cls#L42">
+                    doSomething()
+                  </a>
+                </h4>
+                <div class="method-description">
+                  A method. <br> This is some <i>Italic</i> text. This is some <b>bold</b> text. This text is <s>struck through</s>. This text is <u>underlined</u>. <li>List Item 1</li>. <li>List Item 2</li>. <ul>List Item 3</ul>. <ul>List Item 4</ul>.
                 </div>
-                <div class="method public">
-                  <h4 class="method-title " id="TEST_BotItem.BotItem_1">
+                <div class="method-subtitle">
+                  Signature
+                </div>
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotItem.cls#L34">
-                      BotItem(name, linkURL)
-                    </a>
-                  </h4>
-                  <div class="method-description">
-                    Convenience constructor to create a single item
-                  </div>
-                  <div class="method-subtitle">
-                    Signature
-                  </div>
-
-                  <div class="method-signature">
-                    public BotItem(String name, string linkURL)
-                  </div>
-                  <div class="method-subtitle">Parameters</div>
-                  <div class="param-name">name</div>
-                  <div class="param-type">
-                    Type: <code class="code-inline">String</code>
-                  </div>
-                  <div class="param-description">The <code class="code-inline">BotItem</code>s name</div>
-                  <div class="param-name">linkURL</div>
-                  <div class="param-type">
-                    Type: <code class="code-inline">string</code>
-                  </div>
-                  <div class="param-description">The <code class="code-inline">BotItem</code>s link</div>
+                <div class="method-signature">
+                  private static void doSomething()
                 </div>
               </div>
             </div>
+          </div>
           </div>
 
         </td>

@@ -27,6 +27,38 @@ class GeneratorUtils {
         // unescape <br> tags, we want to keep these
         result = result.replace(/&lt;br\s?\/?&gt;/g, '<br>');
 
+        // unescape bolding tags, we want to keep these
+        result = result.replace(/&lt;b&gt;/g, '<b>');
+        result = result.replace(/&lt;\/b&gt;/g, '</b>');
+        result = result.replace(/&lt;strong&gt;/g, '<strong>');
+        result = result.replace(/&lt;\/strong&gt;/g, '</strong>');
+
+        // unescape italicization tags, we want to keep these
+        result = result.replace(/&lt;i&gt;/g, '<i>');
+        result = result.replace(/&lt;\/i&gt;/g, '</i>');
+        result = result.replace(/&lt;em&gt;/g, '<em>');
+        result = result.replace(/&lt;\/em&gt;/g, '</em>');
+
+        // unescape strikethrough tags, we want to keep these
+        result = result.replace(/&lt;s&gt;/g, '<s>');
+        result = result.replace(/&lt;\/s&gt;/g, '</s>');
+
+        // unescape underline tags, we want to keep these
+        result = result.replace(/&lt;u&gt;/g, '<u>');
+        result = result.replace(/&lt;\/u&gt;/g, '</u>');
+
+        // unescape list item tags, we want to keep these
+        result = result.replace(/&lt;li&gt;/g, '<li>');
+        result = result.replace(/&lt;\/li&gt;/g, '</li>');
+
+        // unescape unordered list tags, we want to keep these
+        result = result.replace(/&lt;ul&gt;/g, '<ul>');
+        result = result.replace(/&lt;\/ul&gt;/g, '</ul>');
+
+        // unescape ordered list tags, we want to keep these
+        result = result.replace(/&lt;ol&gt;/g, '<ol>');
+        result = result.replace(/&lt;\/ol&gt;/g, '</ol>');
+
         return result;
     }
 

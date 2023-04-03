@@ -22,7 +22,7 @@ export const createDocumentSuite = (files: ITestFile[]) => {
             const featureGroup = $('a', '#Feature1').toArray().map(el => $(el).text());
             const miscellaneousGroup = $('a', '#Miscellaneous').toArray().map(el => $(el).text());
 
-            const expectedMiscellaneousGroup = ['IncludeOne', 'IncludeTwo'];
+            const expectedMiscellaneousGroup = ['IncludeOne', 'TEST_HtmlTags', 'IncludeTwo'];
 
             const expectedAssertionsGroup = [
                 'TEST_Annotations', 'TEST_EnumClass', 'TEST_EnumInner', 'TEST_InterfaceClass', 'TEST_Links',

@@ -167,7 +167,21 @@ In addition to the `@tag`s listed above, there are a few other special tokens to
 |-------|-------------|
 | `{@link}` | Unlike the `@see` tag, this syntax can be used in the text of any other tag to create inline links throughout your documentation. It accepts the same kinds of links as the `@see` tag (URL, markdown URL, or fully qualified class or method name; see `@see` description above), e.g. `{@link MyClass.MyInnerClass.MyOverloadedMethod[3]}` or `{@link https://github.com/no-stack-dub-sack/apexdox-vs-code}` |
 | \` \` | Backticks, \` \`, can be used to indicate inline code within your ApexDox comments. E.g. \`String cool = 'cool!';\` &mdash; the expression within the backticks will be formatted as code. |
-| &lt;br&gt; | The &lt;br&gt; tag can be used to render line breaks in your comments when more complex formatting is needed. &lt;br /&gt; is also acceptable. |
+
+### HTML Tag Support
+A limited set of HTML tags are valid within documentation comments. Those tags include:
+| Tag                 | Description        |
+|---------------------|--------------------|
+| `<b>` or `<b />`    | Line breaks        |
+| `<ul></ul>`         | Unordered list     |
+| `<ol></ol>`         | Ordered list       |
+| `<li></li>`         | List item          |
+| `<strong></strong>` | Bold               |
+| `<b></b>`           | Bold alternative   |
+| `<em></em>`         | Italic             |
+| `<i></i>`           | Italic alternative |
+| `<s></s>`           | Strike through     |
+| `<u></u>`           | Underline          |
 
 ### Class Comments (includes class-level Interfaces and Enums)
 Located in the lines above any top-level type that lives within a .cls file, or in the lines above inner classes and interfaces.

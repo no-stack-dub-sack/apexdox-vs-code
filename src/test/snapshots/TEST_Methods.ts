@@ -134,6 +134,9 @@ export default `<!DOCTYPE html>
               <li title="IncludeOne" id="item-IncludeOne" class="nav-item class public" onclick="goToLocation('IncludeOne.html');">
                 <a tabindex="1" href="javascript:void(0)">IncludeOne</a>
               </li>
+              <li title="TEST_HtmlTags" id="item-TEST_HtmlTags" class="nav-item class public" onclick="goToLocation('TEST_HtmlTags.html');">
+                <a tabindex="1" href="javascript:void(0)">TEST_HtmlTags</a>
+              </li>
               <li title="IncludeTwo" id="item-IncludeTwo" class="nav-item class private" onclick="goToLocation('IncludeTwo.html');">
                 <a tabindex="1" href="javascript:void(0)">IncludeTwo</a>
               </li>
