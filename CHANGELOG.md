@@ -35,3 +35,10 @@ All notable changes to the "apexdox-vs-code" extension will be documented in thi
 ## 1.5.1 (11/07/2022)
 
 - Adds improved support for `@since` and `@author` tags. Thanks to [@docbill](https://github.com/docbill) for his work on [this feature](https://github.com/no-stack-dub-sack/apexdox-vs-code/pull/55).
+
+## 1.6.0 (04/02/2023)
+
+- Updates HighlightJS to v11 and improves support for Apex highlighting and other languages. Thanks to [@dschach](https://github.com/dschach) for his work on PR #48 for this update.
+- Improves support for HTML tags in documentation comments (adds support for b, strong, i, em, s, u, ol, ul, and li tags). Thanks to [@cemerson](https://github.com/cemerson) for his work on this feature in PR #58.
+- Improves .cls file discoverability by recursively scanning source directories, reducing the number of explicit directories users have to define in their configs for projects with nested folder structures. Thanks to [@codefriar](https://github.com/codefriar) for his work on this feature in PR #68.
+- Interesting theme of PR numbers that made it into this release!
