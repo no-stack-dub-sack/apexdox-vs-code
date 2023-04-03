@@ -25,32 +25,40 @@ class GeneratorUtils {
         }
 
         // unescape <br> tags, we want to keep these
-        result = result.replace(/&lt;br\s?\/?&gt;/g, '<br>');        
-        
-        // unescape <b> and </b> tags, we want to keep these (ce 20220923)
-        result = result.replace(/&lt;b&gt;/g, '<b>');        
-        result = result.replace(/&lt;\/b&gt;/g, '</b>');        
+        result = result.replace(/&lt;br\s?\/?&gt;/g, '<br>');
 
-        // unescape <i> and </i> tags, we want to keep these (ce 20220923)
-        result = result.replace(/&lt;i&gt;/g, '<i>');        
-        result = result.replace(/&lt;\/i&gt;/g, '</i>');  
-        
-        // unescape <s> and </s> tags, we want to keep these (ce 20220923)
-        result = result.replace(/&lt;s&gt;/g, '<s>');        
-        result = result.replace(/&lt;\/s&gt;/g, '</s>');          
-        
-        // unescape <u> and </u> tags, we want to keep these (ce 20220923)
-        result = result.replace(/&lt;u&gt;/g, '<u>');        
-        result = result.replace(/&lt;\/u&gt;/g, '</u>');                
+        // unescape bolding tags, we want to keep these
+        result = result.replace(/&lt;b&gt;/g, '<b>');
+        result = result.replace(/&lt;\/b&gt;/g, '</b>');
+        result = result.replace(/&lt;strong&gt;/g, '<strong>');
+        result = result.replace(/&lt;\/strong&gt;/g, '</strong>');
 
-        // unescape <li> and </li> tags, we want to keep these (ce 20220923)
-        result = result.replace(/&lt;li&gt;/g, '<li>');        
-        result = result.replace(/&lt;\/li&gt;/g, '</li>');                
+        // unescape italicization tags, we want to keep these
+        result = result.replace(/&lt;i&gt;/g, '<i>');
+        result = result.replace(/&lt;\/i&gt;/g, '</i>');
+        result = result.replace(/&lt;em&gt;/g, '<em>');
+        result = result.replace(/&lt;\/em&gt;/g, '</em>');
 
-        // unescape <ul> and </ul> tags, we want to keep these (ce 20220923)
-        result = result.replace(/&lt;ul&gt;/g, '<ul>');        
-        result = result.replace(/&lt;\/ul&gt;/g, '</ul>');   
-        
+        // unescape strikethrough tags, we want to keep these
+        result = result.replace(/&lt;s&gt;/g, '<s>');
+        result = result.replace(/&lt;\/s&gt;/g, '</s>');
+
+        // unescape underline tags, we want to keep these
+        result = result.replace(/&lt;u&gt;/g, '<u>');
+        result = result.replace(/&lt;\/u&gt;/g, '</u>');
+
+        // unescape list item tags, we want to keep these
+        result = result.replace(/&lt;li&gt;/g, '<li>');
+        result = result.replace(/&lt;\/li&gt;/g, '</li>');
+
+        // unescape unordered list tags, we want to keep these
+        result = result.replace(/&lt;ul&gt;/g, '<ul>');
+        result = result.replace(/&lt;\/ul&gt;/g, '</ul>');
+
+        // unescape ordered list tags, we want to keep these
+        result = result.replace(/&lt;ol&gt;/g, '<ol>');
+        result = result.replace(/&lt;\/ol&gt;/g, '</ol>');
+
         return result;
     }
 
