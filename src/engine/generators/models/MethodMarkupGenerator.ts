@@ -61,7 +61,7 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
 
             // run our generators in the desired order
             let methodMarkup = '';
-            methodMarkup += generator.header(methodId, cModel.topMostClassName);
+            methodMarkup += generator.header(methodId, cModel.relativeFilePath);
             methodMarkup += generator.description('method-description');
             methodMarkup += generator.signature('method');
             methodMarkup += generator.deprecated();
@@ -94,10 +94,10 @@ class MethodMarkupGenerator extends MarkupGenerator<MethodModel> {
         return super.markupTemplate(label, contents, titleClass, contentClass, tag);
     }
 
-    protected header(id: string, topmostTypeName: string): string {
+    protected header(id: string, relativeFilePath: string): string {
         return `
             <h4 class="method-title ${(this.model.deprecated ? 'deprecated' : '')}" id="${id}">
-                ${super.linkToSource(`${this.model.name}(${this.model.paramsFromNameLine.join(', ')})`, topmostTypeName)}
+                ${super.linkToSource(`${this.model.name}(${this.model.paramsFromNameLine.join(', ')})`, relativeFilePath)}
             </h4>`
         ;
     }

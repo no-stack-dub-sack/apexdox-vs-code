@@ -14,8 +14,8 @@ class ClassModel extends TopLevelModel {
     private _methods: Array<MethodModel>;
     private _properties: Array<PropertyModel>;
 
-    public constructor(cModelParent: Option<ClassModel>, comments: string[], nameLine: string, lineNum: number, sourceUrl: Option<string>) {
-        super(comments, ModelType.CLASS, sourceUrl);
+    public constructor(cModelParent: Option<ClassModel>, comments: string[], nameLine: string, lineNum: number, sourceUrl: Option<string>, relativeFilePath = "") {
+        super(comments, ModelType.CLASS, sourceUrl, relativeFilePath);
         super.setNameLine(nameLine, lineNum);
 
         this.setIsInterface(nameLine);
@@ -159,11 +159,11 @@ class ClassModel extends TopLevelModel {
         return sorted;
     }
 
-    public get topMostClassName(): string {
+    public get relativeFilePath(): string {
         if (this._cModelParent) {
-            return this._cModelParent.name;
+            return this._cModelParent._relativeFilePath;
         } else {
-            return this.name;
+            return this._relativeFilePath;
         }
     }
 

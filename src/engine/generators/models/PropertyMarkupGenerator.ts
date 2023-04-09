@@ -20,7 +20,7 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
 
         for (let prop of properties) {
             const generator = new PropertyMarkupGenerator(prop, models);
-            markup += generator.propRow(cModel.topMostClassName, hasAnnotations, hasDescription);
+            markup += generator.propRow(cModel.relativeFilePath, hasAnnotations, hasDescription);
         }
 
         markup =
@@ -58,10 +58,10 @@ class PropertyMarkupGenerator extends MarkupGenerator<PropertyModel> {
             </tr>`;
     }
 
-    protected propRow(topmostTypeName: string, hasAnnotationsColumn: boolean, hasDescriptionColumn: boolean): string {
+    protected propRow(relativeFilePath: string, hasAnnotationsColumn: boolean, hasDescriptionColumn: boolean): string {
         return `
             <tr class="property ${this.model.scope}">
-                <td class="attribute-name">${super.linkToSource(this.model.name, topmostTypeName)}</td>
+                <td class="attribute-name">${super.linkToSource(this.model.name, relativeFilePath)}</td>
                 <td>
                     <div class="attribute-signature">
                         ${GeneratorUtils.encodeText(this.model.nameLine)}

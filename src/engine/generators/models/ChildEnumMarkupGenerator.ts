@@ -21,7 +21,7 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
 
         for (let Enum of enums) {
             const generator = new ChildEnumMarkupGenerator(Enum, models);
-            markup += generator.enumRow(cModel.topMostClassName, hasDescription);
+            markup += generator.enumRow(cModel.relativeFilePath, hasDescription);
         }
 
         markup =
@@ -57,10 +57,10 @@ class ChildEnumMarkupGenerator extends MarkupGenerator<EnumModel> {
             </tr>`;
     }
 
-    protected enumRow(topmostTypeName: string, hasDescriptionColumn: boolean): string {
+    protected enumRow(relativeFilePath: string, hasDescriptionColumn: boolean): string {
         return `
             <tr class="enum ${this.model.scope}">
-                <td class="attribute-name">${super.linkToSource(this.model.name, topmostTypeName)}</td>
+                <td class="attribute-name">${super.linkToSource(this.model.name, relativeFilePath)}</td>
                 <td>
                     <div class="attribute-signature">
                         ${GeneratorUtils.encodeText(this.model.nameLine)}

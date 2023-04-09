@@ -52,7 +52,19 @@ class FileManager {
 
             if (filePaths.length > 0) {
                 filePaths.forEach((filePath) => {
-                    const fileName = filePath.split(/\\|\//).slice(-1)[0];
+                    const fileName = filePath.split(path.sep).slice(-1)[0];
+
+                    // use standard join to form URL compliant path
+                    const relativeFilePath = [
+                      ...src.relativePath.split(path.sep),
+                      ...filePath
+                        .split(src.relativePath)[1]
+                        .split(path.sep),
+                    ]
+                      .filter(Boolean)
+                      .join("/");
+
+                    console.log("relativePath", relativeFilePath);
 
                     // if file is explicitly excluded or matches wildcard, return early
                     for (let entry of excludes) {
@@ -65,7 +77,8 @@ class FileManager {
                     if (includes.length === 0) {
                         filesToCopy.push({
                             path: filePath,
-                            sourceUrl: src.sourceUrl
+                            sourceUrl: src.sourceUrl,
+                            relativePath: relativeFilePath
                         });
                         return;
                     }
@@ -76,7 +89,8 @@ class FileManager {
                         if (isIncludeExcludeMatch(entry, fileName)) {
                             filesToCopy.push({
                                 path: filePath,
-                                sourceUrl: src.sourceUrl
+                                sourceUrl: src.sourceUrl,
+                                relativePath: relativeFilePath,
                             });
                             return;
                         }

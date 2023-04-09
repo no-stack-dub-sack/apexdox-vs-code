@@ -59,7 +59,8 @@ class ApexDox {
             files.forEach(entry => {
                 this.currentFile = basename(entry.path);
 
-                const model = this.parseFileContents(entry.path, entry.sourceUrl);
+                // @ts-ignore
+                const model = this.parseFileContents(entry.path, entry.sourceUrl, entry.relativePath);
 
                 if (model) {
                     models.set(model.name.toLowerCase(), model);
@@ -113,7 +114,7 @@ class ApexDox {
      *
      * @param filePath The path of the file being parsed
      */
-    public static parseFileContents(filePath: string, sourceUrl: Option<string>): Models.TopLevelModel {
+    public static parseFileContents(filePath: string, sourceUrl: Option<string>, relativePath: string): Models.TopLevelModel {
         const reader = new LineReader(filePath);
         const cModels = new Array<Models.ClassModel>();
 
@@ -216,7 +217,7 @@ class ApexDox {
             // look for a class.
             if (Utils.isClassOrInterface(line)) {
                 // create the new class
-                const cModelNew: Models.ClassModel = new Models.ClassModel(cModelParent, comments, line, lineNum, sourceUrl);
+                const cModelNew: Models.ClassModel = new Models.ClassModel(cModelParent, comments, line, lineNum, sourceUrl, relativePath);
                 cModelNew.parseAnnotations(line, reader.peekPrevLine());
                 comments = [];
 
@@ -247,7 +248,7 @@ class ApexDox {
                     lineNum++;
                 }
 
-                const eModel: Models.EnumModel = new Models.EnumModel(comments, line, startingLine, sourceUrl);
+                const eModel: Models.EnumModel = new Models.EnumModel(comments, line, startingLine, sourceUrl, relativePath);
                 eModel.parseAnnotations(line, reader.peekPrevLine());
 
                 // if no class models have been created, and we see an

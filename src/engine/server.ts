@@ -14,7 +14,7 @@ const listening = (port: number) => `ApexDox VS Code server listening on port ${
 const error = (dir: string) =>  `No index.html file to serve in directory: ${dir}. Did you run 'ApexDox: Run' first?`;
 
 export default async function createDocServer(targetDirectory: string, docsTitle: string, port: number) {
-    const resolvedTarget = Utils.resolveWorkspaceFolder(targetDirectory);
+    const resolvedTarget = Utils.resolveWorkspaceFolder(targetDirectory).resolvedPath;
 
     if (existsSync(resolve(resolvedTarget, 'index.html'))) {
 

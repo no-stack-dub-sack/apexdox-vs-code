@@ -13,7 +13,7 @@ class ClassMarkupGenerator extends MarkupGenerator<ClassModel> {
 
     public static generate(cModel: ClassModel, models: Map<string, TopLevelModel>): string {
         const generator = new ClassMarkupGenerator(cModel, models);
-        const header = generator.header(cModel.topMostClassName);
+        const header = generator.header(cModel.relativeFilePath);
 
         let contents = TopLevelMarkupGenerator.generate(cModel, models);
 
@@ -37,10 +37,10 @@ class ClassMarkupGenerator extends MarkupGenerator<ClassModel> {
         `;
     }
 
-    protected header(topmostTypeName: string) {
+    protected header(relativeFilePath: string) {
         return `
-            <h2 class="class-title ${this.model.name === topmostTypeName ? 'top-level-type' : ''}" id="${this.model.name}">
-                ${super.linkToSource(GeneratorUtils.encodeText(this.model.name), topmostTypeName)}
+            <h2 class="class-title ${relativeFilePath.endsWith(`${this.model.name}.cls`) ? 'top-level-type' : ''}" id="${this.model.name}">
+                ${super.linkToSource(GeneratorUtils.encodeText(this.model.name), relativeFilePath)}
             </h2>`
         ;
     }

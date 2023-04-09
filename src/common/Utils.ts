@@ -2,7 +2,7 @@ import ApexDox from '../engine/ApexDox';
 import { ClassModel } from './models/ClassModel';
 import { last } from './ArrayUtils';
 import { Option } from '..';
-import { resolve } from 'path';
+import { join, resolve } from 'path';
 import { window, workspace, WorkspaceFolder } from 'vscode';
 
 class Utils {
@@ -172,29 +172,40 @@ class Utils {
         return /^(https?):\/\/[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]/.test(str.trim());
     }
 
-    public static resolveWorkspaceFolder(path: string): string {
+    public static resolveWorkspaceFolder(path: string) {
         // should be safe to cast this as not-undefined
         // If running this tool, workspace folders should always exist.
         const folders = <WorkspaceFolder[]>(workspace.workspaceFolders);
+
+        console.log("path", path);
 
         const rootFolderRe = /\$\{workspaceFolder\}(.*)?/;
         const multiFolderRe = /\$\{workspaceFolder:(.*)\}(.*)/;
 
         if (rootFolderRe.test(path)) {
             const results = <RegExpExecArray>rootFolderRe.exec(path);
-            return resolve(folders[0].uri.fsPath, ...results[1].split(/\\|\//));
+            const relativePath = results[1].split(/\\|\//);
+
+            return {
+                relativePath: join(...relativePath),
+                resolvedPath: resolve(folders[0].uri.fsPath, ...relativePath),
+            }
         } else if (multiFolderRe.test(path)) {
             const results = <RegExpExecArray>multiFolderRe.exec(path);
             for (let folder of folders) {
                 if (folder.name === results[1]) {
-                    return resolve(folder.uri.fsPath, ...results[2].split(/\\|\//));
+                    const relativePath = results[2].split(/\\|\//);
+
+                    return {
+                        relativePath: join(...relativePath),
+                        resolvedPath: resolve(folder.uri.fsPath, ...relativePath),
+                    }
                 }
             }
 
             window.showWarningMessage(`Workspace variable in path '${path}' could not be resolved.`);
         }
-
-        return path;
+        return {} as never;
     }
 
     public static escapeRegExp(str: string): string {

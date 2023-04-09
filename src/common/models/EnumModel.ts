@@ -6,8 +6,8 @@ class EnumModel extends TopLevelModel {
 
     private _values: string[] = [];
 
-    public constructor(comments: string[], nameLine: string, lineNum: number, sourceUrl: Option<string>) {
-        super(comments, ModelType.ENUM, sourceUrl);
+    public constructor(comments: string[], nameLine: string, lineNum: number, sourceUrl: Option<string>, relativeFilePath: string) {
+        super(comments, ModelType.ENUM, sourceUrl, relativeFilePath);
         this.setNameLine(nameLine, lineNum);
         this.setValues(nameLine);
     }
