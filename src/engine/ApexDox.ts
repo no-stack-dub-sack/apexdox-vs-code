@@ -77,7 +77,7 @@ class ApexDox {
             // we are done!
             const endElapsed = performance.now();
             const elapsed = ((endElapsed - beginElapsed) / 1000).toFixed(2);
-            window.showInformationMessage(`ApexDox VS Code complete! ${numProcessed} Apex files documented in ${elapsed}s.`);
+            window.setStatusBarMessage(`ApexDox VS Code complete! ${numProcessed} Apex files documented in ${elapsed}s.`);
         } catch (err) {
             throw err;
         }

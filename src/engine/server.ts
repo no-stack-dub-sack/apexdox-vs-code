@@ -27,7 +27,7 @@ export default async function createDocServer(targetDirectory: string, docsTitle
 
         console.info(listening(port));
         await open(`http://localhost:${port}/index.html`);
-        window.showInformationMessage(success(docsTitle));
+        window.setStatusBarMessage(success(docsTitle));
     } else {
         window.showErrorMessage(error(resolvedTarget));
     }
