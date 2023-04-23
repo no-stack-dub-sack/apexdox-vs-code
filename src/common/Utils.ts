@@ -177,8 +177,6 @@ class Utils {
         // If running this tool, workspace folders should always exist.
         const folders = <WorkspaceFolder[]>(workspace.workspaceFolders);
 
-        console.log("path", path);
-
         const rootFolderRe = /\$\{workspaceFolder\}(.*)?/;
         const multiFolderRe = /\$\{workspaceFolder:(.*)\}(.*)/;
 

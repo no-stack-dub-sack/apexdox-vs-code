@@ -64,8 +64,6 @@ class FileManager {
                       .filter(Boolean)
                       .join("/");
 
-                    console.log("relativePath", relativeFilePath);
-
                     // if file is explicitly excluded or matches wildcard, return early
                     for (let entry of excludes) {
                         if (isIncludeExcludeMatch(entry, fileName)) {
