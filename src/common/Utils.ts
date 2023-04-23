@@ -201,7 +201,7 @@ class Utils {
                 }
             }
 
-            window.showWarningMessage(`Workspace variable in path '${path}' could not be resolved.`);
+            window.showErrorMessage(`Workspace variable in path '${path}' could not be resolved.`);
         }
         return {} as never;
     }

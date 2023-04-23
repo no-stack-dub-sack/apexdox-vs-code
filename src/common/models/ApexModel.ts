@@ -231,7 +231,7 @@ abstract class ApexModel {
             `@group-content path '${contentPath.trim()}' in file '${ApexDox.currentFile}' is invalid! ` +
             `You may want to update this tag's value to a valid HTML file path.`;
 
-        window.showWarningMessage(warningMessage);
+        window.showErrorMessage(warningMessage);
         return null;
     }
 
