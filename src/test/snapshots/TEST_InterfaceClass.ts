@@ -172,7 +172,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_InterfaceClass">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L7">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/subFolder1/TEST_InterfaceClass.cls#L7">
                 TEST_InterfaceClass
               </a>
             </h2>
@@ -224,7 +224,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_InterfaceClass.doIt">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L8">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/subFolder1/TEST_InterfaceClass.cls#L8">
                       doIt(object1, object2)
                     </a>
                   </h4>
@@ -239,7 +239,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_InterfaceClass.doSomething">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L10">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/subFolder1/TEST_InterfaceClass.cls#L10">
                       doSomething(object1, object2)
                     </a>
                   </h4>
@@ -254,7 +254,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_InterfaceClass.doSomethingElse">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_InterfaceClass.cls#L12">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/subFolder1/TEST_InterfaceClass.cls#L12">
                       doSomethingElse(myInt, myString)
                     </a>
                   </h4>

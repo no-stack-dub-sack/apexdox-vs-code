@@ -172,7 +172,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_MultiLineTagValues">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_MultiLineTagValues.cls#L11">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_MultiLineTagValues.cls#L11">
                 TEST_MultiLineTagValues
               </a>
             </h2>
@@ -218,7 +218,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title deprecated" id="TEST_MultiLineTagValues.method1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_MultiLineTagValues.cls#L28">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_MultiLineTagValues.cls#L28">
                       method1(s2)
                     </a>
                   </h4>
