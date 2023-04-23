@@ -255,6 +255,21 @@ ApexDox VS Code is a complete TypeScript re-write of [a Java project, originally
 
 I hope you enjoy the new and improved ApexDox VS Code!
 
-## Build
+## Contributing
 
 To build your own version of this extension from source code see [Testing Extension](https://code.visualstudio.com/api/working-with-extensions/testing-extension) and [Publishing Extension](https://code.visualstudio.com/api/working-with-extensions/publishing-extension) in the visual studio documentation.
+
+### Quick Start
+
+To get started, clone the repo and install the packages:
+
+```
+git clone https://github.com/no-stack-dub-sack/apexdox-vs-code.git
+cd apexdox-vs-code
+code .
+yarn
+```
+
+To run the extension, press <kbd>F5</kbd>, or click on "Run & Debug" and choose "Run Extension" from the dropdown. This should open a new window where ApexDox commands will be available. To test your changes, restart using <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>F5</kbd>.
+
+To run the extension's tests, first compile your changes by running `yarn compile`, then select "Extension Tests" from the "Run & Debug" dropdown. If changes you've made affect the documentation output, please verify that the output looks correct, and then update snapshots to get the tests to pass: `yarn update-snapshots`. Snapshot tests are meant to highlight changes to the expected documentation output and should be carefully inspected before getting updated to ensure that unexpected or unwanted changes aren't committed.
