@@ -172,7 +172,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_EnumInner">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L7">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/subFolder1/TEST_EnumInner.cls#L7">
                 TEST_EnumInner
               </a>
             </h2>
@@ -210,7 +210,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L24">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/subFolder1/TEST_EnumInner.cls#L24">
                       Days
                     </a></td>
                   <td>
@@ -226,7 +226,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L11">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/subFolder1/TEST_EnumInner.cls#L11">
                       Months
                     </a></td>
                   <td>
@@ -242,7 +242,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L32">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/subFolder1/TEST_EnumInner.cls#L32">
                       Numbers
                     </a></td>
                   <td>
@@ -258,7 +258,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="enum public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_EnumInner.cls#L43">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/subFolder1/TEST_EnumInner.cls#L43">
                       Rgb
                     </a></td>
                   <td>

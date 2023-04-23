@@ -172,7 +172,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_NestedClasses">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L9">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L9">
                 TEST_NestedClasses
               </a>
             </h2>
@@ -213,7 +213,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L29">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L29">
                       m
                     </a></td>
                   <td>
@@ -229,7 +229,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L12">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L12">
                       MY_INT
                     </a></td>
                   <td>
@@ -245,7 +245,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L18">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L18">
                       sharedState
                     </a></td>
                   <td>
@@ -278,7 +278,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_NestedClasses.getInt">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L21">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L21">
                       getInt()
                     </a>
                   </h4>
@@ -301,7 +301,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title " id="TEST_NestedClasses.AbstractChildClass">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L101">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L101">
                 TEST_NestedClasses.AbstractChildClass
               </a>
             </h2>
@@ -353,7 +353,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_NestedClasses.AbstractChildClass.abstractMethod">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L116">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L116">
                       abstractMethod()
                     </a>
                   </h4>
@@ -371,7 +371,7 @@ export default `<!DOCTYPE html>
                 <div class="method protected">
                   <h4 class="method-title " id="TEST_NestedClasses.AbstractChildClass.method2">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L111">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L111">
                       method2()
                     </a>
                   </h4>
@@ -389,7 +389,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_NestedClasses.AbstractChildClass.myMethod">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L106">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L106">
                       myMethod()
                     </a>
                   </h4>
@@ -412,7 +412,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title " id="TEST_NestedClasses.AnotherChildClass">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L132">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L132">
                 TEST_NestedClasses.AnotherChildClass
               </a>
             </h2>
@@ -443,7 +443,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_NestedClasses.AnotherChildClass.AnotherChildClass">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L133">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L133">
                       AnotherChildClass(s)
                     </a>
                   </h4>
@@ -463,7 +463,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title " id="TEST_NestedClasses.ConcreteChildClass">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L120">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L120">
                 TEST_NestedClasses.ConcreteChildClass
               </a>
             </h2>
@@ -509,7 +509,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_NestedClasses.ConcreteChildClass.abstractMethod">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L125">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L125">
                       abstractMethod()
                     </a>
                   </h4>
@@ -527,7 +527,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_NestedClasses.ConcreteChildClass.overloadedMethod">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L127">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L127">
                       overloadedMethod()
                     </a>
                   </h4>
@@ -542,7 +542,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_NestedClasses.ConcreteChildClass.overloadedMethod_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L128">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L128">
                       overloadedMethod(someInt)
                     </a>
                   </h4>
@@ -562,7 +562,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title " id="TEST_NestedClasses.InnerClass">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L59">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L59">
                 TEST_NestedClasses.InnerClass
               </a>
             </h2>
@@ -591,7 +591,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L71">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L71">
                       i
                     </a></td>
                   <td>
@@ -607,7 +607,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L62">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L62">
                       s
                     </a></td>
                   <td>
@@ -623,7 +623,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L63">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L63">
                       s2
                     </a></td>
                   <td>
@@ -665,7 +665,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_NestedClasses.InnerClass.InnerClass">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L74">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L74">
                       InnerClass()
                     </a>
                   </h4>
@@ -683,7 +683,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_NestedClasses.InnerClass.InnerClass_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L80">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L80">
                       InnerClass(s2)
                     </a>
                   </h4>
@@ -723,7 +723,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_NestedClasses.InnerClass.method2">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L94">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L94">
                       method2(i)
                     </a>
                   </h4>
@@ -744,7 +744,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_NestedClasses.InnerClass.myMethod">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L87">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L87">
                       myMethod()
                     </a>
                   </h4>
@@ -767,7 +767,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title " id="TEST_NestedClasses.MyException">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L140">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L140">
                 TEST_NestedClasses.MyException
               </a>
             </h2>
@@ -796,7 +796,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L142">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L142">
                       d
                     </a></td>
                   <td>
@@ -829,7 +829,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_NestedClasses.MyException.MyException">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L145">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L145">
                       MyException(d)
                     </a>
                   </h4>
@@ -863,7 +863,7 @@ export default `<!DOCTYPE html>
                 <div class="method protected">
                   <h4 class="method-title " id="TEST_NestedClasses.MyException.doIt">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L150">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L150">
                       doIt()
                     </a>
                   </h4>
@@ -886,7 +886,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title " id="TEST_NestedClasses.MyInterface">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L43">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L43">
                 TEST_NestedClasses.MyInterface
               </a>
             </h2>
@@ -920,7 +920,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_NestedClasses.MyInterface.myMethod">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L47">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L47">
                       myMethod()
                     </a>
                   </h4>
@@ -943,7 +943,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title " id="TEST_NestedClasses.MySecondException">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L154">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L154">
                 TEST_NestedClasses.MySecondException
               </a>
             </h2>
@@ -966,7 +966,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title " id="TEST_NestedClasses.MySecondInterface">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L51">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L51">
                 TEST_NestedClasses.MySecondInterface
               </a>
             </h2>
@@ -997,7 +997,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_NestedClasses.MySecondInterface.method2">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_NestedClasses.cls#L52">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_NestedClasses.cls#L52">
                       method2(i)
                     </a>
                   </h4>

@@ -172,7 +172,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_Methods">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L10">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_Methods.cls#L10">
                 TEST_Methods
               </a>
             </h2>
@@ -306,7 +306,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_Methods.method1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L11">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_Methods.cls#L11">
                       method1()
                     </a>
                   </h4>
@@ -321,7 +321,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_Methods.method10">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L58">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_Methods.cls#L58">
                       method10(int, int2, int3, int4)
                     </a>
                   </h4>
@@ -357,7 +357,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Methods.method11">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L69">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_Methods.cls#L69">
                       method11(crazyType, int2, int3, int22)
                     </a>
                   </h4>
@@ -399,7 +399,7 @@ export default `<!DOCTYPE html>
                 <div class="method protected">
                   <h4 class="method-title " id="TEST_Methods.method12">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L78">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_Methods.cls#L78">
                       method12(crazyType, int2, int3, int22)
                     </a>
                   </h4>
@@ -431,7 +431,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_Methods.method14">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L105">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_Methods.cls#L105">
                       method14(int, int2, int3, int4)
                     </a>
                   </h4>
@@ -495,7 +495,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Methods.method2">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L15">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_Methods.cls#L15">
                       method2()
                     </a>
                   </h4>
@@ -510,7 +510,7 @@ export default `<!DOCTYPE html>
                 <div class="method protected">
                   <h4 class="method-title " id="TEST_Methods.method3">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L19">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_Methods.cls#L19">
                       method3()
                     </a>
                   </h4>
@@ -525,7 +525,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_Methods.method4">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L23">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_Methods.cls#L23">
                       method4()
                     </a>
                   </h4>
@@ -540,7 +540,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Methods.method5">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L28">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_Methods.cls#L28">
                       method5()
                     </a>
                   </h4>
@@ -558,7 +558,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Methods.method6">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L33">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_Methods.cls#L33">
                       method6()
                     </a>
                   </h4>
@@ -576,7 +576,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Methods.method7">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L38">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_Methods.cls#L38">
                       method7()
                     </a>
                   </h4>
@@ -594,7 +594,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Methods.method8">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L43">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_Methods.cls#L43">
                       method8()
                     </a>
                   </h4>
@@ -612,7 +612,7 @@ export default `<!DOCTYPE html>
                 <div class="method private">
                   <h4 class="method-title " id="TEST_Methods.method9">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_Methods.cls#L48">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/TEST_Methods.cls#L48">
                       method9()
                     </a>
                   </h4>

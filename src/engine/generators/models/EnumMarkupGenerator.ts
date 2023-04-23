@@ -10,7 +10,7 @@ class EnumMarkupGenerator extends MarkupGenerator<EnumModel> {
 
     public static generate(eModel: EnumModel, models: Map<string, TopLevelModel>): string {
         const generator = new EnumMarkupGenerator(eModel, models);
-        let markup = generator.header(eModel.name);
+        let markup = generator.header(eModel.relativeFilePath);
         let values = generator.valuesTable();
 
         markup += TopLevelMarkupGenerator.generate(eModel, models, values);
@@ -18,10 +18,10 @@ class EnumMarkupGenerator extends MarkupGenerator<EnumModel> {
         return markup;
     }
 
-    protected header(topmostTypeName: string) {
+    protected header(relativeFilePath: string) {
         return `
             <h2 class="class-title top-level-type" id="${this.model.name}">
-                ${super.linkToSource(GeneratorUtils.encodeText(this.model.name), topmostTypeName)}
+                ${super.linkToSource(GeneratorUtils.encodeText(this.model.name), relativeFilePath)}
             </h2>`
         ;
     }

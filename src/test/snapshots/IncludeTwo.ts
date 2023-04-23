@@ -172,7 +172,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="IncludeTwo">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/IncludeTwo.cls#L10">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/subFolder1/IncludeTwo.cls#L10">
                 IncludeTwo
               </a>
             </h2>
@@ -227,7 +227,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="IncludeTwo.myFunkyMethod">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/IncludeTwo.cls#L12">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature2/subFolder1/IncludeTwo.cls#L12">
                       myFunkyMethod(str, ridicMap, ridicList, ridicSet)
                     </a>
                   </h4>

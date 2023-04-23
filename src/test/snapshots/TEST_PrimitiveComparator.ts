@@ -172,7 +172,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_PrimitiveComparator">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L29">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_PrimitiveComparator.cls#L29">
                 TEST_PrimitiveComparator
               </a>
             </h2>
@@ -281,7 +281,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_PrimitiveComparator.compare">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L31">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_PrimitiveComparator.cls#L31">
                       compare(object1, object2)
                     </a>
                   </h4>
@@ -296,7 +296,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_PrimitiveComparator.compare_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L59">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_PrimitiveComparator.cls#L59">
                       compare(b1, b2)
                     </a>
                   </h4>
@@ -311,7 +311,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_PrimitiveComparator.compare_2">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L65">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_PrimitiveComparator.cls#L65">
                       compare(d1, d2)
                     </a>
                   </h4>
@@ -326,7 +326,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_PrimitiveComparator.compare_3">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L71">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_PrimitiveComparator.cls#L71">
                       compare(d1, d2)
                     </a>
                   </h4>
@@ -341,7 +341,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_PrimitiveComparator.compare_4">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L77">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_PrimitiveComparator.cls#L77">
                       compare(d1, d2)
                     </a>
                   </h4>
@@ -356,7 +356,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_PrimitiveComparator.compare_5">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L83">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_PrimitiveComparator.cls#L83">
                       compare(i1, i2)
                     </a>
                   </h4>
@@ -371,7 +371,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_PrimitiveComparator.compare_6">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L89">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_PrimitiveComparator.cls#L89">
                       compare(l1, l2)
                     </a>
                   </h4>
@@ -386,7 +386,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_PrimitiveComparator.compare_7">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L95">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_PrimitiveComparator.cls#L95">
                       compare(s1, s2)
                     </a>
                   </h4>
@@ -401,7 +401,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_PrimitiveComparator.compare_8">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_PrimitiveComparator.cls#L101">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_PrimitiveComparator.cls#L101">
                       compare(t1, t2)
                     </a>
                   </h4>

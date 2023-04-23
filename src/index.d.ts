@@ -11,6 +11,7 @@ declare namespace ApexDox {
     interface ISourceEntry {
         path: string;
         sourceUrl?: string;
+        relativePath: string;
     }
 
     interface IEngineConfig {

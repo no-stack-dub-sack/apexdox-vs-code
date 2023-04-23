@@ -12,7 +12,7 @@ import {
     IEngineConfig,
     Option
     } from '..';
-import { resolve } from 'path';
+import { join, resolve } from 'path';
 import { safeLoad as yamlToJson } from 'js-yaml';
 import { workspace, WorkspaceFolder } from 'vscode';
 
@@ -119,8 +119,9 @@ class Settings {
      * @param config The `IEngineConfig` instance fetched from the user's settings.json or .apexdoxrc file.
      */
     private static setEngineDirectoryDefaults(config: IEngineConfig): IEngineConfig {
+        const { resolved, relative } = this.getDefaultDir(this.projectRoot);
 
-        const defaultSource = [{ path: this.getDefaultDir(this.projectRoot) }];
+        const defaultSource = [{ path: resolved, relativePath: relative }];
         const defaultTarget = resolve(this.projectRoot, 'apex-documentation');
 
         if (
@@ -143,10 +144,17 @@ class Settings {
      *
      * @param projectRoot The workspace's root folder.
      */
-    private static getDefaultDir(projectRoot: string): string {
-        return !this.isDX(projectRoot)
-            ? resolve(projectRoot, 'src', 'classes')
-            : resolve(projectRoot, 'force-app', 'main', 'default', 'classes');
+    private static getDefaultDir(projectRoot: string) {
+        const legacyDefault = ['src', 'classes'];
+        const dxDefault = ['force-app', 'main', 'default', 'classes'];
+
+        return !this.isDX(projectRoot) ? {
+            relative: join(...legacyDefault),
+            resolved: resolve(projectRoot, ...legacyDefault),
+        } : {
+            relative: join(...dxDefault),
+            resolved: resolve(projectRoot, ...dxDefault),
+        }
     }
 
     /**

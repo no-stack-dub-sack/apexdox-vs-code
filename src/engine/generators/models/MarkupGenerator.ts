@@ -119,7 +119,7 @@ abstract class MarkupGenerator<T extends ApexModel> {
         ;
     }
 
-    protected linkToSource(nameOrSignature: string, topmostTypeName: string, highlightJSify = false): string {
+    protected linkToSource(nameOrSignature: string, relativeFilePath: string, highlightJSify = false): string {
         nameOrSignature = highlightJSify ? this.highlightSignature(nameOrSignature) : nameOrSignature;
         let sourceUrl = this.model.sourceUrl;
         if (sourceUrl) {
@@ -127,7 +127,7 @@ abstract class MarkupGenerator<T extends ApexModel> {
             if (!sourceUrl.endsWith('/')) {
                 sourceUrl += '/';
             }
-            let href = sourceUrl + topmostTypeName + '.cls#L' + this.model.lineNum;
+            let href = sourceUrl + relativeFilePath + '#L' + this.model.lineNum;
             return `
                 <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="${href}">
                     ${nameOrSignature}

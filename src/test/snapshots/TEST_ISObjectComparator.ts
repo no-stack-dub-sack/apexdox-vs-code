@@ -172,7 +172,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_ISObjectComparator">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ISObjectComparator.cls#L29">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_ISObjectComparator.cls#L29">
                 TEST_ISObjectComparator
               </a>
             </h2>
@@ -233,7 +233,7 @@ export default `<!DOCTYPE html>
                 <div class="method global">
                   <h4 class="method-title " id="TEST_ISObjectComparator.compare">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_ISObjectComparator.cls#L30">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_ISObjectComparator.cls#L30">
                       compare(record1, record2)
                     </a>
                   </h4>

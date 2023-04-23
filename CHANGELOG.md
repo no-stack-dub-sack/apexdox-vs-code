@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to the "apexdox-vs-code" extension will be documented in this file.
+**NOTE:** This changelog is no longer maintained. Please refer to the [releases](https://github.com/no-stack-dub-sack/apexdox-vs-code/releases) page for a complete changelog for every release.
 
 ## 1.0.0 (10/23/2019)
 
@@ -42,3 +42,6 @@ All notable changes to the "apexdox-vs-code" extension will be documented in thi
 - Improves support for HTML tags in documentation comments (adds support for b, strong, i, em, s, u, ol, ul, and li tags). Thanks to [@cemerson](https://github.com/cemerson) for his work on this feature in PR #58.
 - Improves .cls file discoverability by recursively scanning source directories, reducing the number of explicit directories users have to define in their configs for projects with nested folder structures. Thanks to [@codefriar](https://github.com/codefriar) for his work on this feature in PR #68.
 - Interesting theme of PR numbers that made it into this release!
+
+## 2.0.0 (04/23/2023)
+- As of this release this changelog is no longer maintained! Please refer to the [releases](https://github.com/no-stack-dub-sack/apexdox-vs-code/releases) page for a complete changelog for every release.

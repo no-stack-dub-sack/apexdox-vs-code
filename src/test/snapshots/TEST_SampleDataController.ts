@@ -172,7 +172,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_SampleDataController">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SampleDataController.cls#L16">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_SampleDataController.cls#L16">
                 TEST_SampleDataController
               </a>
             </h2>
@@ -236,7 +236,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_SampleDataController.importSampleData">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_SampleDataController.cls#L25">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_SampleDataController.cls#L25">
                       importSampleData()
                     </a>
                   </h4>

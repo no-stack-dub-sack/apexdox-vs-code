@@ -172,7 +172,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_LIFXController">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L10">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_LIFXController.cls#L10">
                 TEST_LIFXController
               </a>
             </h2>
@@ -213,7 +213,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property private">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L12">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_LIFXController.cls#L12">
                       settings
                     </a></td>
                   <td>
@@ -258,7 +258,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_LIFXController.getLights">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L15">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_LIFXController.cls#L15">
                       getLights()
                     </a>
                   </h4>
@@ -273,7 +273,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_LIFXController.setBrightness">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L35">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_LIFXController.cls#L35">
                       setBrightness(lightId, brightness)
                     </a>
                   </h4>
@@ -288,7 +288,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_LIFXController.setPower">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L30">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_LIFXController.cls#L30">
                       setPower(lightId, isOn)
                     </a>
                   </h4>
@@ -303,7 +303,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_LIFXController.setState">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_LIFXController.cls#L39">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder2/TEST_LIFXController.cls#L39">
                       setState(lightId, state)
                     </a>
                   </h4>

@@ -42,14 +42,14 @@ class ValidatorEngine extends Validator<IEngineConfig> {
     private assets() {
         // do not validate directory on assets, user will be warned at runtime
         this.config.assets = ValidatorEngine.stringArray(this.config.assets, 'assets')
-            .map(path => Utils.resolveWorkspaceFolder(path));
+            .map(path => Utils.resolveWorkspaceFolder(path).resolvedPath);
     }
 
     private targetDirectory() {
         const path = this.config.targetDirectory;
         ValidatorEngine.typeGuard('string', path, 'targetDirectory');
         if (path && path.length > 0) {
-            this.config.targetDirectory = Utils.resolveWorkspaceFolder(path);
+            this.config.targetDirectory = Utils.resolveWorkspaceFolder(path).resolvedPath;
         } else {
             throw new ApexDoxError(ApexDoxError.INVALID_TARGET_DIRECTORY(path));
         }
@@ -113,10 +113,15 @@ class ValidatorEngine extends Validator<IEngineConfig> {
     }
 
     private source() {
-        this.config.source = this.config.source.map(src => ({
-            path: ValidatorEngine.directory(src.path, 'source.path'),
-            sourceUrl: ValidatorEngine.sourceUrl(src.sourceUrl)
-        }));
+        this.config.source = this.config.source.map(src => {
+            const { relativePath } = Utils.resolveWorkspaceFolder(src.path);
+
+            return {
+                relativePath: relativePath,
+                sourceUrl: ValidatorEngine.sourceUrl(src.sourceUrl),
+                path: ValidatorEngine.directory(src.path, 'source.path'),
+            }
+        });
     }
     // #endregion
 
@@ -137,7 +142,7 @@ class ValidatorEngine extends Validator<IEngineConfig> {
         this.typeGuard('string', path, arg);
         // blank directory's can be ignored as default for non-required
         // arguments. Source directory will always be populated by this point.
-        path = Utils.resolveWorkspaceFolder(path);
+        path = Utils.resolveWorkspaceFolder(path).resolvedPath;
         if (path === '' || existsSync(path)) {
             if (path && extension && !path.endsWith(extension)) {
                 throw new ApexDoxError(ApexDoxError.INVALID_EXTENSION(arg, path, extension));

@@ -172,7 +172,7 @@ export default `<!DOCTYPE html>
 
             <h2 class="class-title top-level-type" id="TEST_BotItem">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotItem.cls#L16">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder1/TEST_BotItem.cls#L16">
                 TEST_BotItem
               </a>
             </h2>
@@ -231,7 +231,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotItem.cls#L19">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder1/TEST_BotItem.cls#L19">
                       linkURL
                     </a></td>
                   <td>
@@ -246,7 +246,7 @@ export default `<!DOCTYPE html>
                 </tr>
                 <tr class="property public">
                   <td class="attribute-name">
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotItem.cls#L18">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder1/TEST_BotItem.cls#L18">
                       name
                     </a></td>
                   <td>
@@ -287,7 +287,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_BotItem.BotItem">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotItem.cls#L25">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder1/TEST_BotItem.cls#L25">
                       BotItem(name)
                     </a>
                   </h4>
@@ -311,7 +311,7 @@ export default `<!DOCTYPE html>
                 <div class="method public">
                   <h4 class="method-title " id="TEST_BotItem.BotItem_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somefakeurl.com/TEST_BotItem.cls#L34">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://somehost.com/some-user/some-repo/tree/main/src/feature1/subFolder1/TEST_BotItem.cls#L34">
                       BotItem(name, linkURL)
                     </a>
                   </h4>

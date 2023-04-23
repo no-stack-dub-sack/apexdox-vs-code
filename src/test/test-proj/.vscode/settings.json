@@ -1,10 +1,10 @@
 {
 	"apexdox.engine.source": [{
         "path": "${workspaceFolder}/src/feature1",
-        "sourceUrl": "https://somefakeurl.com"
+        "sourceUrl": "https://somehost.com/some-user/some-repo/tree/main/"
     },{
         "path": "${workspaceFolder}/src/feature2",
-        "sourceUrl": "https://somefakeurl.com"
+        "sourceUrl": "https://somehost.com/some-user/some-repo/tree/main/"
     }],
 	"apexdox.engine.targetDirectory": "${workspaceFolder}/docs",
 	"apexdox.engine.includes": [
