@@ -203,6 +203,7 @@ class Utils {
 
             window.showErrorMessage(`Workspace variable in path '${path}' could not be resolved.`);
         }
+
         return {} as never;
     }
 
