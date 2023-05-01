@@ -14,11 +14,9 @@ const listening = (port: number) => `ApexDox VS Code server listening on port ${
 const error = (dir: string) =>  `No index.html file to serve in directory: ${dir}. Did you run 'ApexDox: Run' first?`;
 
 export default async function createDocServer(targetDirectory: string, docsTitle: string, port: number) {
-    const resolvedTarget = Utils.resolveWorkspaceFolder(targetDirectory).resolvedPath;
+    if (existsSync(resolve(targetDirectory, 'index.html'))) {
 
-    if (existsSync(resolve(resolvedTarget, 'index.html'))) {
-
-        const file = new _static.Server(resolvedTarget, { cache: false }); // do not cache files
+        const file = new _static.Server(targetDirectory, { cache: false }); // do not cache files
         closeServer() && (server = http.createServer((request, response) => {
             request.addListener('end', () => {
                 file.serve(request, response);
@@ -29,7 +27,7 @@ export default async function createDocServer(targetDirectory: string, docsTitle
         await open(`http://localhost:${port}/index.html`);
         window.setStatusBarMessage(success(docsTitle));
     } else {
-        window.showErrorMessage(error(resolvedTarget));
+        window.showErrorMessage(error(targetDirectory));
     }
 }
 
