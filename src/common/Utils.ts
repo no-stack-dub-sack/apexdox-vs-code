@@ -204,7 +204,10 @@ class Utils {
             window.showErrorMessage(`Workspace variable in path '${path}' could not be resolved.`);
         }
 
-        return {} as never;
+        return {
+            resolvedPath: "",
+            relativePath: "",
+        };
     }
 
     public static escapeRegExp(str: string): string {
