@@ -150,10 +150,10 @@ class Settings {
 
         return !this.isDX(projectRoot) ? {
             relative: join(...legacyDefault),
-            resolved: resolve(projectRoot, ...legacyDefault),
+            resolved: resolve("${workspaceFolder}", ...legacyDefault),
         } : {
             relative: join(...dxDefault),
-            resolved: resolve(projectRoot, ...dxDefault),
+            resolved: resolve("${workspaceFolder}", ...dxDefault),
         }
     }
 
